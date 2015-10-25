@@ -1,12 +1,7 @@
 "=============================================================================
-"     FileName: .vimrc
-"         Desc: My vimrc
 "       Author: Wenxuan Zhang
-"        Email: WenxuanGM@gmail.com
-"     HomePage: wfxr@github.io
-"      Version: 3.2.0
-"   LastChange: 2015-01-03 01:22:40
-"      History:
+"        Email: wenxuan-zhang@outlook.com
+"     HomePage: wenxuan.info
 "=============================================================================
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -53,7 +48,7 @@ if g:isGUI
         "set guifont=Monospace\ 14 
         "set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 14
         "set guifont=Fantasque\ Sans\ Mono\ 16
-        set guifont=Inconsolata-g\ 16
+        set guifont=Inconsolata-g\ for\ Powerline\ 16
         "set linespace=2
     else
         "set guifont=YaHei\ Fantasque\ Sans\ Mono:h18:cANSI
@@ -199,7 +194,7 @@ else
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Set key mapping
+" Set key -ng
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " With a map leader it's possible to do extra key combinations
 let mapleader = ","
@@ -290,14 +285,21 @@ noremap <leader>m mmHmt:%s/<C-v><CR>//ge<CR>'tzt'm
 "map <leader>pp :setlocal paste!<CR>
 
 map <leader>y "+y
+map <leader>Y "+Y
 map <leader>p "+p
+map <leader>P "+P
 
 nmap <leader>tl :TlistToggle<CR>
 nmap <leader>tl :TlistToggle<CR>
 nmap <leader>tl :TlistToggle<CR>
 nmap <leader>nt :NERDTree<CR>
 
+" fast jump
+nnoremap <CR> G
+nnoremap <BS> gg
 
+" Select pasted text
+noremap vp `[v`]
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -388,6 +390,13 @@ else    " For Linux
     call vundle#rc()    " Default is OK
 endif
 
+
+" Youdao translator
+Plugin 'ianva/vim-youdao-translater'
+vnoremap <slient> <C-T> <Esc>:Ydv<CR>
+nnoremap <slient> <C-T> <Esc>:Ydc<CR>
+noremap <leader>yd :Yde<CR>
+
 " let Vundle manage Vundle, required!
 Plugin 'gmarik/Vundle.vim'
 
@@ -418,16 +427,16 @@ Plugin 'bling/vim-airline'
 let g:airline_theme='gruvbox'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-let g:airline_left_sep = '⮀'
-let g:airline_left_alt_sep = '⮁'
-let g:airline_right_sep = '⮂'
-let g:airline_right_alt_sep = '⮃'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = '⮀'
-let g:airline#extensions#tabline#left_alt_sep = '|'
+"if !exists('g:airline_symbols')
+  "let g:airline_symbols = {}
+"endif
+"let g:airline_left_sep = '⮀'
+"let g:airline_left_alt_sep = '⮁'
+"let g:airline_right_sep = '⮂'
+"let g:airline_right_alt_sep = '⮃'
+"let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#tabline#left_sep = '⮀'
+"let g:airline#extensions#tabline#left_alt_sep = '|'
 
 " Taglist plugin
 Plugin 'taglist.vim'
@@ -581,6 +590,10 @@ let g:indent_guides_enable_on_vim_startup = 0
 let g:indent_guides_guide_size = 1
 let g:indent_guides_start_level = 2
 map <leader>il <Plug>IndentGuidesToggle
+
+Plugin 'terryma/vim-expand-region'
+map + <Plug>(expand_region_expand)
+map - <Plug>(expand_region_shrink)
 
 
 filetype plugin indent on     " required!
