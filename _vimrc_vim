@@ -53,10 +53,11 @@ if g:isGUI
         "set guifont=Monospace\ 14 
         "set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 14
         "set guifont=Fantasque\ Sans\ Mono\ 16
-        set guifont=Inconsolata-g\ 15
+        set guifont=Inconsolata-g\ 16
         "set linespace=2
     else
-        set guifont=YaHei\ Fantasque\ Sans\ Mono:h18:cANSI
+        "set guifont=YaHei\ Fantasque\ Sans\ Mono:h18:cANSI
+        set guifont=Inconsolata-g:h16:cANSI
         "set guifont=YaHei\ Consolas\ Hybrid:h14:cANSI
     endif
 
