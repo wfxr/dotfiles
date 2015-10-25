@@ -15,6 +15,8 @@ source $ZSH/oh-my-zsh.sh
 export EDITOR='vim'
 export cc='clang'
 
+alias rcup='rcup -v'
+alias rcdn='rcdn -v'
 alias ai='sudo apt-get install'
 alias xx='python ~/tools/xx-net/launcher/start.py'
 alias idea='sh ~/tools/intelliJ-IDEA/bin/idea.sh'
