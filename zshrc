@@ -5,7 +5,7 @@
 #=============================================================================
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/wenxuan/.oh-my-zsh
+export ZSH=/home/wenxuan/.oh-my-zsh
 
 # User configuration
 export PATH="/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
@@ -17,6 +17,7 @@ export cc='clang'
 
 alias rcup='rcup -v'
 alias rcdn='rcdn -v'
+alias shutdown='sudo shutdown -h now'
 alias ai='sudo apt-get install'
 alias xx='python ~/tools/xx-net/launcher/start.py'
 alias idea='sh ~/tools/intelliJ-IDEA/bin/idea.sh'
