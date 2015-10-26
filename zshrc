@@ -57,5 +57,6 @@ zle-line-init() {
 }
 zle -N zle-line-init
 bindkey '^f' vi-forward-word
+bindkey '^b' vi-forward-blank-word
 
 antigen apply

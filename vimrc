@@ -31,10 +31,6 @@ set nocompatible
 let $LANG = 'en_US'
 set langmenu=en_US
 
-" Set utf-8 as standard encoding and en_US as standard language
-" Must be set before setting GUI Font
-set encoding=utf-8
-
 " Set extra options when running in GUI mode
 if g:isGUI 
     set guioptions-=T
@@ -77,17 +73,11 @@ set wrap        " Wrap lines
 " Hilight current line
 "set cursorline
 
-" Make backspace work properly.
-set backspace=eol,start,indent
-
 " Make '<', '>', 'h', 'l' work properly.
 set whichwrap+=<,>,h,l
 
 " Set how many lines of history Vim will remember
 set history=1000
-
-" Set to auto read when a file is changed from the outside
-set autoread
 
 " Don't redraw while executing macros (good performance config)
 set lazyredraw
@@ -96,9 +86,6 @@ set lazyredraw
 if g:isWIN
     set clipboard+=unnamed
 endif
-
-" Set 256 colors
-set t_Co=256
 
 " Turn on syntax
 syntax enable 
@@ -109,25 +96,14 @@ set number
 " Show relative number
 set relativenumber
 
-" Show status of the cursor position
-set ruler
-
-set laststatus=2
-
 " Set height of cmd line to 2
 set cmdheight=2
 
 " Add a bit extra margin to the left
 "set foldcolumn=1
 
-" Show command in status bar
-set showcmd
-
 " Highlight search matches
 set hlsearch
-
-" Incremental search
-set incsearch
 
 " Show matching brackets when text indicator is over them
 set showmatch
@@ -140,13 +116,11 @@ set ignorecase
 " When searching try to be smart about cases
 set smartcase
 
-" Turn on the Wild menu
-set wildmenu
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc
 
-" Set 8 lines to the cursor - when moving vertically using j/k
-set scrolloff=8
+" Set n lines to the cursor - when moving vertically using j/k
+set scrolloff=4
 
 " No fold when vim start up
 set nofoldenable
@@ -165,7 +139,6 @@ set shiftwidth=4
 
 
 " Set auto indent and C/C++ indent
-set autoindent
 set smartindent
 set cindent
 
@@ -218,7 +191,7 @@ map j gj
 map k gk
 
 " Disable highlight when <leader><cr> is pressed
-map <silent> <leader><cr> :noh<cr>
+"map <silent> <leader><cr> :noh<cr>
 
 " Split window
 map <leader>S :split<Space>
@@ -230,12 +203,15 @@ map <leader>Q :q!<cr>
 " Save write
 map <leader>w :w<cr>
 map <leader>W :w!<cr>
+" Save and quit
+map <leader>x :x<cr>
+map <leader>X :x!<cr>
 
 " Smart way to move windows
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-h> <C-w>h
-map <C-l> <C-w>l
+"map <C-j> <C-w>j
+"map <C-k> <C-w>k
+"map <C-h> <C-w>h
+"map <C-l> <C-w>l
 
 map <C-Up> :resize +1<cr>
 map <C-Down> :resize -1<cr>
@@ -296,7 +272,9 @@ nmap <leader>nt :NERDTree<CR>
 
 " fast jump
 nnoremap <CR> G
+vnoremap <CR> G
 nnoremap <BS> gg
+vnoremap <BS> gg
 
 " Select pasted text
 noremap vp `[v`]
@@ -390,6 +368,11 @@ else    " For Linux
     call vundle#rc()    " Default is OK
 endif
 
+" 通用的vim基本配置
+Plugin 'tpope/vim-sensible'
+
+" 为编辑.tmux.conf提供额外的支持
+Plugin 'tmux-plugins/vim-tmux'
 
 " Youdao translator
 Plugin 'ianva/vim-youdao-translater'
@@ -522,8 +505,8 @@ Plugin 'scrooloose/nerdcommenter'
 " 快速插入注释，需要NerdCommenter支持
 Plugin 'AuthorInfo'
 let g:vimrc_author='Wenxuan Zhang'
-let g:vimrc_email='WenxuanGM@gmail.com'
-let g:vimrc_homepage='wfxr@github.io'
+let g:vimrc_email='wenxuan-zhang@outlook.com'
+let g:vimrc_homepage='wenxuan.info'
 nmap <F4> :AuthorInfoDetect<cr>
 
 " Tabular to line up text
