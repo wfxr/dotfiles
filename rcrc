@@ -1,1 +1,1 @@
-EXCLUDES="README.md LICENSE.txt"
+EXCLUDES="*.md *.bat *.txt"
