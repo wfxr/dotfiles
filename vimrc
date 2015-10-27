@@ -166,6 +166,11 @@ else
     autocmd! bufwritepost .vimrc source ~/.vimrc
 endif
 
+" disable Background Color Erase (BCE) so that color schemes
+" render properly when inside 256-color tmux and GNU screen.
+" see also http://snk.tuxfamily.org/log/vim-256color-bce.html
+set t_ut=
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set key -ng
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -368,6 +373,10 @@ else    " For Linux
     call vundle#rc()    " Default is OK
 endif
 
+" let Vundle manage Vundle, required!
+Plugin 'gmarik/Vundle.vim'
+
+
 " 通用的vim基本配置
 Plugin 'tpope/vim-sensible'
 
@@ -380,14 +389,10 @@ vnoremap <slient> <C-T> <Esc>:Ydv<CR>
 nnoremap <slient> <C-T> <Esc>:Ydc<CR>
 noremap <leader>yd :Yde<CR>
 
-" let Vundle manage Vundle, required!
-Plugin 'gmarik/Vundle.vim'
-
 " Full path fuzzy file, buffer, mru, tag, ... finder for Vim
 "Plugin 'Kien/ctrlp.vim'
 
 " best Git wrapper
-Plugin 'tpope/vim-fugitive'
 set diffopt=vertical
 
 " wonderful and powerful file navigator
@@ -424,13 +429,42 @@ let g:airline#extensions#tabline#enabled=1
 " Taglist plugin
 Plugin 'taglist.vim'
 
-" Plugin for C/C++
-"Plugin 'wfxr/c.vim'
+" General {
+    " Nerd tree to explore filesystem and open files or directories
+    Plugin 'scrooloose/nerdtree'
+    " Surround.vim is all about surroundings
+    Plugin 'tpope/vim-surround'
+    Plugin 'tpope/vim-repeat'
+    " 配对符号插件
+    Plugin 'jiangmiao/auto-pairs'
+    Plugin 'powerline/fonts'
+    " Move cusor in vim quickly
+    Plugin 'Lokaltog/vim-easymotion'
+    Plugin 'mbbill/undotree'
+    Plugin 'mhinz/vim-signify'
+    Plugin 'osyo-manga/vim-over'
+    Plugin 'terryma/vim-expand-region'
+    Plugin 'ctrlpvim/ctrlp.vim'
+    Plugin 'tacahiroy/ctrlp-funky'
+" }
 
-" Track the engin
-Plugin 'SirVer/ultisnips'
-" Snippets are separated from the engine. Add this if you want them:
-Plugin 'honza/vim-snippets'
+" Genenal Programming {
+    Plugin 'scrooloose/syntastic'
+    Plugin 'tpope/vim-fugitive'
+    Plugin 'mattn/gist-vim'
+    " Nerd Commenter to comment code quickly
+    Plugin 'scrooloose/nerdcommenter'
+    Plugin 'tpope/vim-commentary'
+" }
+
+" Snippets & AutoComplete {
+    " YouCompleteMe!
+    Plugin 'Valloric/YouCompleteMe'
+    " Track the engin
+    Plugin 'SirVer/ultisnips'
+    " Snippets are separated from the engine. Add this if you want them:
+    Plugin 'honza/vim-snippets'
+" }
 
 " Trigger configuration. Do not use <tab> if you use 'YouCompleteMe'
 let g:UltiSnipsExpandTrigger="<leader><tab>"
@@ -450,8 +484,6 @@ Plugin 'itchyny/calendar.vim'
 "Plugin 'FuzzyFinder'
 "Plugin 'L9'
 
-" Move cusor in vim quickly
-Plugin 'Lokaltog/vim-easymotion'
 nmap <leader>f <Plug>(easymotion-s)
 nmap <leader>F <Plug>(easymotion-s2)
 map <leader>/ <Plug>(easymotion-sn)
@@ -495,11 +527,7 @@ nmap <Leader>C :ClangFormatAutoToggle<CR>
 " for editing markdown file conveniently
 Plugin 'suan/vim-instant-markdown'
 
-" Nerd tree to explore filesystem and open files or directories
-Plugin 'scrooloose/nerdtree'
 
-" Nerd Commenter to comment code quickly
-Plugin 'scrooloose/nerdcommenter'
 "let g:NERDSpaceDelims = 1
 
 " 快速插入注释，需要NerdCommenter支持
@@ -515,30 +543,11 @@ Plugin 'godlygeek/tabular'
 " Draw CSS color
 Plugin 'skammer/vim-css-color'
 
-" Surround.vim is all about surroundings
-Plugin 'tpope/vim-surround'
 
-" Interactive command execution in Vim
-"Plugin 'Shougo/vimproc.vim'
 
-" Vim Markdown runtime files
-"Plugin 'tpope/vim-markdown'
-
-" YouCompleteMe! Only support Linux
-if has('unix') && !has('win32unix')
-    Plugin 'Valloric/YouCompleteMe'
-else
-    Plugin 'ervandew/supertab'
-    Plugin 'vim-scripts/OmniCppComplete'
-    "Plugin 'Rip-Rip/clang_complete'
-endif
-
-" 配对符号插件
-Plugin 'Raimondi/delimitMate'
 
 " Syntastic is a syntax checking plugin for Vim that runs files through 
 " external syntax checkers and displays any resulting errors to the user. 
-Plugin 'scrooloose/syntastic'
 "let g:syntastic_check_on_open = 1  
 "let g:syntastic_cpp_include_dirs = ['/usr/include/']  
 "let g:syntastic_cpp_remove_include_errors = 1  
@@ -574,7 +583,6 @@ let g:indent_guides_guide_size = 1
 let g:indent_guides_start_level = 2
 map <leader>il <Plug>IndentGuidesToggle
 
-Plugin 'terryma/vim-expand-region'
 map + <Plug>(expand_region_expand)
 map - <Plug>(expand_region_shrink)
 
@@ -584,12 +592,10 @@ filetype plugin indent on     " required!
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Theme
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:gruvbox_italic=1
 colorscheme gruvbox
-if !isGUI
-    let g:gruvbox_italic=0
-endif
-
 set background=dark
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Taglist
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
