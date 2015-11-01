@@ -51,7 +51,7 @@ if g:isGUI
         "set linespace=2
     else
         "set guifont=YaHei\ Fantasque\ Sans\ Mono:h18:cANSI
-        set guifont=Inconsolata-g:h16:cANSI
+        set guifont=Inconsolata-g\ for\ Powerline:h16:cANSI
         "set guifont=YaHei\ Consolas\ Hybrid:h14:cANSI
     endif
 
@@ -60,8 +60,8 @@ if g:isGUI
         source $VIMRUNTIME/delmenu.vim
         source $VIMRUNTIME/menu.vim
         
-        " Avoid messy code under console. Seams not necessary?
-        "language messages en_US
+        " Avoid messy code under console.
+        language messages en_US
     endif
 endif
 
@@ -142,6 +142,9 @@ set cindent
 
 set ttimeoutlen=50
 
+" 设置编码格式为UTF-8,防止中文乱码
+set encoding=utf-8
+
 " Set the sequence of auto encoding
 set fileencodings=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936,big5
 
@@ -190,8 +193,6 @@ map k gk
 map <silent> <leader><cr> :noh<cr>
 
 " With this, we can now type "<leader><leader>" to exit out of  insert mode
-" If we really wanted type "<leader><leader>", the just type one char, wait
-" a seciond, type another
 inoremap <leader><leader> <Esc>
 vnoremap <leader><leader> <Esc>
 nnoremap <leader><leader> <Esc>
