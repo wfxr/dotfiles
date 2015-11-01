@@ -31,6 +31,9 @@ set nocompatible
 let $LANG = 'en_US'
 set langmenu=en_US
 
+" add 'cjk' to spelllang to avoid checking Chinese
+set spelllang+=cjk
+
 " Set extra options when running in GUI mode
 if g:isGUI 
     set guioptions-=T
@@ -87,10 +90,6 @@ if g:isWIN
     set clipboard+=unnamed
 endif
 
-" Turn on syntax
-syntax enable 
-syntax on
-
 " Show row number
 set number
 " Show relative number
@@ -127,12 +126,11 @@ set nofoldenable
 
 " Set fold method
 set foldmethod=indent
+set foldlevel=0
 
 " Use spaces instead of tabs
 set expandtab
 :%retab
-" Be smart when use tabs (delete 'shiftwidth' blanks with one <BACKSPACE>
-set smarttab
 " Set tab witdh to 4 spaces 
 set tabstop=4
 set shiftwidth=4
@@ -180,13 +178,6 @@ let g:mapleader = ","
 
 " Using <F8> to toggle background mode
 map <F8> :call ToggleBg()<CR>
-function! ToggleBg()
-    if &background == 'dark'
-        set bg=light
-    else
-        set bg=dark
-    endif
-endfunction
 
 " Using <SPACE> to fold or unfold
 nnoremap <leader><SPACE> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
@@ -196,7 +187,18 @@ map j gj
 map k gk
 
 " Disable highlight when <leader><cr> is pressed
-"map <silent> <leader><cr> :noh<cr>
+map <silent> <leader><cr> :noh<cr>
+
+" With this, we can now type "<leader><leader>" to exit out of  insert mode
+" If we really wanted type "<leader><leader>", the just type one char, wait
+" a seciond, type another
+inoremap <leader><leader> <Esc>
+vnoremap <leader><leader> <Esc>
+nnoremap <leader><leader> <Esc>
+
+" These create newlines like o and O but stay in normal mode
+nnoremap <silent> zj o<Esc>k
+nnoremap <silent> zk O<Esc>j
 
 " Split window
 map <leader>S :split<Space>
@@ -213,10 +215,10 @@ map <leader>x :x<cr>
 map <leader>X :x!<cr>
 
 " Smart way to move windows
-"map <C-j> <C-w>j
-"map <C-k> <C-w>k
-"map <C-h> <C-w>h
-"map <C-l> <C-w>l
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-h> <C-w>h
+map <C-l> <C-w>l
 
 map <C-Up> :resize +1<cr>
 map <C-Down> :resize -1<cr>
@@ -235,29 +237,37 @@ map <leader>tc :tabclose<CR>
 "map <leader>p :tabNext<CR>
 
 " Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
-nmap <M-j> mz:m+<CR>`z
-nmap <M-k> mz:m-2<CR>`z
-vmap <M-j> :m'>+<CR>`<my`>mzgv`yo`z
-vmap <M-k> :m'<-2<CR>`>my`<mzgv`yo`z
-
-" if has("mac") || has("macunix")
-"   nmap <D-j> <M-j>
-"   nmap <D-k> <M-k>
-"   vmap <D-j> <M-j>
-"   vmap <D-k> <M-k>
-" endif
+" Note: 如果激活Alt映射,<Esc>会被视作Alt的前导(eg:<Esc>j和<M-j>
+" 将具有相同的效果)
+"if g:isGUI
+    "nnoremap <M-j> mz:m+<CR>`z
+    "nnoremap <M-k> mz:m-2<CR>`z
+    "vnoremap <M-j> :m'>+<CR>`<my`>mzgv`yo`z
+    "vnoremap <M-k> :m'<-2<CR>`>my`<mzgv`yo`z
+    "if has("mac") || has("macunix")
+        "nmap <D-j> <M-j>
+        "nmap <D-k> <M-k>
+        "vmap <D-j> <M-j>
+        "vmap <D-k> <M-k>
+    "endif
+"else
+    "nnoremap j mz:m+<CR>`z
+    "nnoremap k mz:m-2<CR>`z
+    "vnoremap j :m'>+<CR>`<my`>mzgv`yo`z
+    "vnoremap k :m'<-2<CR>`>my`<mzgv`yo`z
+"endif
 
 " Visual mode pressing * or $ searches for the current selection
 " Super useful! From and idea by Michael Naumann
 vnoremap <silent> * :call VisualSelection('f', '')<CR>
 vnoremap <silent> # :call VisualSelection('b', '')<CR>
 
-" Pressing <leader>ss will toggle and untoggle spell checking
-"map <leader>ss :setlocal spell!<CR>
-"map <leader>sn ]s
-"map <leader>sp [s
-"map <leader>sa zg
-"map <leader>s? z=
+" pressing <leader>ss will toggle and untoggle spell checking
+noremap <leader>ss :setlocal spell!<cr>
+noremap <leader>sn ]s
+noremap <leader>sp [s
+noremap <leader>sa zg
+noremap <leader>s? z=
 
 " Remove the Windows ^M - when the encodings gets messed up
 noremap <leader>m mmHmt:%s/<C-v><CR>//ge<CR>'tzt'm
@@ -276,89 +286,25 @@ nmap <leader>tl :TlistToggle<CR>
 nmap <leader>nt :NERDTree<CR>
 
 " fast jump
-nnoremap <CR> G
-vnoremap <CR> G
-nnoremap <BS> gg
-vnoremap <BS> gg
+nnoremap L G$
+vnoremap L G$
+nnoremap H gg
+vnoremap H gg
+
+" 卷动屏幕（光标不移动）
+"nmap <C-j> <C-y>
+"nmap <C-k> <C-e>
 
 " Select pasted text
 noremap vp `[v`]
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Helper functions
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! VisualSelection(direction, extra_filter) range
-    let l:saved_reg = @"
-    execute "normal! vgvy"
 
-    let l:pattern = escape(@", '\\/.*$^~[]')
-    let l:pattern = substitute(l:pattern, "\n$", "", "")
+" 安装插件
+nmap <leader>I :BundleInstall<CR>
 
-    if a:direction == 'b'
-        execute "normal ?" . l:pattern . "^M"
-    elseif a:direction == 'gv'
-        call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.' . a:extra_filter)
-    elseif a:direction == 'replace'
-        call CmdLine("%s" . '/'. l:pattern . '/')
-    elseif a:direction == 'f'
-        execute "normal /" . l:pattern . "^M"
-    endif
+" 用<CR>来快速跳转到指定行(eg: 23<CR>跳转到第23行)
+" Note: 这个映射会导致不能通过LocationList等键入<CR>进行跳转
+"nmap <CR> G
 
-    let @/ = l:pattern
-    let @" = l:saved_reg
-endfunction
-
-
-function! VisualSelection(direction, extra_filter) range
-    let l:saved_reg = @"
-    execute "normal! vgvy"
-
-    let l:pattern = escape(@", '\\/.*$^~[]')
-    let l:pattern = substitute(l:pattern, "\n$", "", "")
-
-    if a:direction == 'b'
-        execute "normal ?" . l:pattern . "^M"
-    elseif a:direction == 'gv'
-        call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.' . a:extra_filter)
-    elseif a:direction == 'replace'
-        call CmdLine("%s" . '/'. l:pattern . '/')
-    elseif a:direction == 'f'
-        execute "normal /" . l:pattern . "^M"
-    endif
-
-    let @/ = l:pattern
-    let @" = l:saved_reg
-endfunction
-
-
-" Returns true if paste mode is enabled
-function! HasPaste()
-    if &paste
-        return 'PASTE MODE  '
-    en
-    return ''
-endfunction
-
-
-" Don't close window, when deleting a buffer
-command! Bclose call <SID>BufcloseCloseIt()
-function! <SID>BufcloseCloseIt()
-   let l:currentBufNum = bufnr("%")
-   let l:alternateBufNum = bufnr("#")
-
-   if buflisted(l:alternateBufNum)
-     buffer #
-   else
-     bnext
-   endif
-
-   if bufnr("%") == l:currentBufNum
-     new
-   endif
-
-   if buflisted(l:currentBufNum)
-     execute("bdelete! ".l:currentBufNum)
-   endif
-endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -376,10 +322,6 @@ endif
 " let Vundle manage Vundle, required!
 Plugin 'gmarik/Vundle.vim'
 
-
-" 通用的vim基本配置
-Plugin 'tpope/vim-sensible'
-
 " 为编辑.tmux.conf提供额外的支持
 Plugin 'tmux-plugins/vim-tmux'
 
@@ -389,8 +331,6 @@ vnoremap <slient> <C-T> <Esc>:Ydv<CR>
 nnoremap <slient> <C-T> <Esc>:Ydc<CR>
 noremap <leader>yd :Yde<CR>
 
-" Full path fuzzy file, buffer, mru, tag, ... finder for Vim
-"Plugin 'Kien/ctrlp.vim'
 
 " best Git wrapper
 set diffopt=vertical
@@ -401,30 +341,11 @@ nnoremap <leader>` :Unite -start-insert buffer file file_rec file_mru<CR>
 " unite need this to support file_mru
 Plugin 'Shougo/neomru.vim'
 
-" PowerLine plugin
-"Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-"let g:Powerline_symbols = 'fancy'
-"set noshowmode
-"setfillchars+=stl:\,stlnc:\
-"let g:Powerline_theme = 'solarized256'
-"let g:Powerline_symbols = 'fancy'
-"let g:Powerline_colorscheme = 'solarized256'
-
 " AirLine plugin
 Plugin 'bling/vim-airline'
 let g:airline_theme='gruvbox'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
-"if !exists('g:airline_symbols')
-  "let g:airline_symbols = {}
-"endif
-"let g:airline_left_sep = '⮀'
-"let g:airline_left_alt_sep = '⮁'
-"let g:airline_right_sep = '⮂'
-"let g:airline_right_alt_sep = '⮃'
-"let g:airline#extensions#tabline#enabled = 1
-"let g:airline#extensions#tabline#left_sep = '⮀'
-"let g:airline#extensions#tabline#left_alt_sep = '|'
 
 " Taglist plugin
 Plugin 'taglist.vim'
@@ -444,11 +365,14 @@ Plugin 'taglist.vim'
     Plugin 'mhinz/vim-signify'
     Plugin 'osyo-manga/vim-over'
     Plugin 'terryma/vim-expand-region'
+    " Full path fuzzy file, buffer, mru, tag, ... finder for Vim
     Plugin 'ctrlpvim/ctrlp.vim'
     Plugin 'tacahiroy/ctrlp-funky'
 " }
 
 " Genenal Programming {
+    " Syntastic is a syntax checking plugin for Vim that runs files through 
+    " external syntax checkers and displays any resulting errors to the user. 
     Plugin 'scrooloose/syntastic'
     Plugin 'tpope/vim-fugitive'
     Plugin 'mattn/gist-vim'
@@ -460,6 +384,11 @@ Plugin 'taglist.vim'
 " Snippets & AutoComplete {
     " YouCompleteMe!
     Plugin 'Valloric/YouCompleteMe'
+    " 快速开启或关闭quickfix窗口
+    Plugin 'wfxr/ListToggle'
+    " To generate .ycm_extra_conf.py file
+    Plugin 'rdnetto/YCM-Generator'
+
     " Track the engin
     Plugin 'SirVer/ultisnips'
     " Snippets are separated from the engine. Add this if you want them:
@@ -478,7 +407,7 @@ let g:UltiSnipsEditSplit="vertical"
 "Plugin 'klen/python-mode'
 
 " Plugin of calendar
-Plugin 'itchyny/calendar.vim'
+"Plugin 'itchyny/calendar.vim'
 
 " FuzzyFinder(L9 library is necessary for FuzzyFinder)
 "Plugin 'FuzzyFinder'
@@ -527,7 +456,6 @@ nmap <Leader>C :ClangFormatAutoToggle<CR>
 " for editing markdown file conveniently
 Plugin 'suan/vim-instant-markdown'
 
-
 "let g:NERDSpaceDelims = 1
 
 " 快速插入注释，需要NerdCommenter支持
@@ -543,26 +471,23 @@ Plugin 'godlygeek/tabular'
 " Draw CSS color
 Plugin 'skammer/vim-css-color'
 
+" Syntastic config {
+    set statusline+=%#warningmsg#
+    set statusline+=%{SyntasticStatuslineFlag()}
+    set statusline+=%*
 
+    let g:syntastic_always_populate_loc_list = 1
+    let g:syntastic_auto_loc_list = 1
+    let g:syntastic_check_on_open = 1
+    let g:syntastic_check_on_wq = 0
 
-
-" Syntastic is a syntax checking plugin for Vim that runs files through 
-" external syntax checkers and displays any resulting errors to the user. 
-"let g:syntastic_check_on_open = 1  
-"let g:syntastic_cpp_include_dirs = ['/usr/include/']  
-"let g:syntastic_cpp_remove_include_errors = 1  
-"let g:syntastic_cpp_check_header = 1  
-"let g:syntastic_cpp_compiler = 'clang++'  
-"let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libc++ -lc++abi'  
-let g:syntastic_cpp_compiler_options = '-std=c++11'  
-let g:synatastic_auto_loc_list=1
-let g:syntastic_enable_signs=1
-" Weather to show balloons
-"let g:syntastic_enable_balloons=1
-"let g:Syntastic_always_populate_loc_list=1
-" Set error or warning signs
-let g:syntastic_error_symbol = '྾' 
-let g:syntastic_warning_symbol = '⚠'
+    let g:syntastic_error_symbol = '྾' 
+    let g:syntastic_warning_symbol = '⚠'
+    let g:syntastic_always_populate_loc_list = 1
+    let g:syntastic_cpp_compiler_options = '-std=c++14'  
+    "let g:synatastic_auto_loc_list=1
+    "let g:syntastic_enable_signs=1
+"}
 
 " Wonderful themes
 Plugin 'morhetz/gruvbox'
@@ -576,16 +501,17 @@ Plugin 'morhetz/gruvbox'
 "Plugin 'zenorocha/dracula-theme'
 
 " vim plugin to display the indention levels with thin vertical lines
-"Plugin 'Yggdroot/indentLine'
-Plugin 'nathanaelkane/vim-indent-guides'
-let g:indent_guides_enable_on_vim_startup = 0
-let g:indent_guides_guide_size = 1
-let g:indent_guides_start_level = 2
-map <leader>il <Plug>IndentGuidesToggle
+Plugin 'Yggdroot/indentLine'
+let g:indentLine_color_term = 239
+let g:indentLine_color_gui = '#4E4E4E'
+map <leader>il :IndentLinesToggle<CR>
 
+" 扩展/收缩选区
 map + <Plug>(expand_region_expand)
 map - <Plug>(expand_region_shrink)
 
+" 通用的vim基本配置
+Plugin 'tpope/vim-sensible'
 
 filetype plugin indent on     " required!
 
@@ -637,4 +563,93 @@ let g:ycm_key_invoke_completion = '<C-\>'
 let g:ycm_autoclose_preview_window_after_completion = 1
 
 " 映射快捷键跳转到定义或声明
-nnoremap <leader>gd :YcmCompleter GoTo<CR>
+nnoremap <leader>g :YcmCompleter GoTo<CR>
+
+" ListToggle配置
+let g:lt_height = 10
+let g:lt_location_list_toggle_map = '<leader>1'
+let g:lt_quickfix_list_toggle_map = '<leader>2'
+
+" Helper functions {
+    function! ToggleBg()
+        if &background == 'dark'
+            set bg=light
+        else
+            set bg=dark
+        endif
+    endfunction
+
+    function! VisualSelection(direction, extra_filter) range
+        let l:saved_reg = @"
+        execute "normal! vgvy"
+
+        let l:pattern = escape(@", '\\/.*$^~[]')
+        let l:pattern = substitute(l:pattern, "\n$", "", "")
+
+        if a:direction == 'b'
+            execute "normal ?" . l:pattern . "^M"
+        elseif a:direction == 'gv'
+            call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.' . a:extra_filter)
+        elseif a:direction == 'replace'
+            call CmdLine("%s" . '/'. l:pattern . '/')
+        elseif a:direction == 'f'
+            execute "normal /" . l:pattern . "^M"
+        endif
+
+        let @/ = l:pattern
+        let @" = l:saved_reg
+    endfunction
+
+
+    function! VisualSelection(direction, extra_filter) range
+        let l:saved_reg = @"
+        execute "normal! vgvy"
+
+        let l:pattern = escape(@", '\\/.*$^~[]')
+        let l:pattern = substitute(l:pattern, "\n$", "", "")
+
+        if a:direction == 'b'
+            execute "normal ?" . l:pattern . "^M"
+        elseif a:direction == 'gv'
+            call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.' . a:extra_filter)
+        elseif a:direction == 'replace'
+            call CmdLine("%s" . '/'. l:pattern . '/')
+        elseif a:direction == 'f'
+            execute "normal /" . l:pattern . "^M"
+        endif
+
+        let @/ = l:pattern
+        let @" = l:saved_reg
+    endfunction
+
+
+    " Returns true if paste mode is enabled
+    function! HasPaste()
+        if &paste
+            return 'PASTE MODE  '
+        en
+        return ''
+    endfunction
+
+
+    " Don't close window, when deleting a buffer
+    command! Bclose call <SID>BufcloseCloseIt()
+    function! <SID>BufcloseCloseIt()
+       let l:currentBufNum = bufnr("%")
+       let l:alternateBufNum = bufnr("#")
+
+       if buflisted(l:alternateBufNum)
+         buffer #
+       else
+         bnext
+       endif
+
+       if bufnr("%") == l:currentBufNum
+         new
+       endif
+
+       if buflisted(l:currentBufNum)
+         execute("bdelete! ".l:currentBufNum)
+       endif
+    endfunction
+" }
