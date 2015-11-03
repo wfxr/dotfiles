@@ -5,30 +5,35 @@ import ycm_core
 flags = [
 '-Wall',
 '-Wextra', 
-# Turn warnings into error.
+# Turn warnings into error
 # '-Werror',
-'-Wc++98-compat',
+# '-Wc++98-compat',
 '-Wno-long-long',
 '-Wno-variadic-macros',
 '-fexceptions',
 '-DNDEBUG',
 
-'-isystem', 
-'/usr/include',
+# Use libc++
+'-stdlib=libc++'
 
+# Use libc++ headers
 '-isystem', 
 '/usr/include/c++/v1',
 
+# C headers
 '-isystem',
 '/usr/include',
 
+# GoogleTest headers
 '-isystem', 
 '/home/wenxuan/src/googletest/googletest/include',
 
 
+# Work directory
 '-I',
 '.',
 
+# Use C++14 standard
 '-std=c++14',
 '-x',
 'c++',
