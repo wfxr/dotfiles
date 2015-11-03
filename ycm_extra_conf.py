@@ -14,7 +14,7 @@ flags = [
 '-DNDEBUG',
 
 # Use libc++
-'-stdlib=libc++'
+'-stdlib=libc++',
 
 # Use libc++ headers
 '-isystem', 
