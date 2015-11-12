@@ -31,8 +31,11 @@ set nocompatible
 let $LANG = 'en_US'
 set langmenu=en_US
 
-" add 'cjk' to spelllang to avoid checking Chinese
+" Add 'cjk' to spelllang to avoid checking Chinese
 set spelllang+=cjk
+
+" Use spell check
+setlocal spell
 
 " Set extra options when running in GUI mode
 if g:isGUI 
@@ -173,7 +176,7 @@ endif
 set t_ut=
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Set key -ng
+" Key mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " With a map leader it's possible to do extra key combinations
 let mapleader = ","
@@ -191,11 +194,6 @@ map k gk
 
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
-
-" With this, we can now type "<leader><leader>" to exit out of  insert mode
-inoremap <leader><leader> <Esc>
-vnoremap <leader><leader> <Esc>
-nnoremap <leader><leader> <Esc>
 
 " These create newlines like o and O but stay in normal mode
 nnoremap <silent> zj o<Esc>k
@@ -305,6 +303,11 @@ nmap <leader>I :BundleInstall<CR>
 " 用<CR>来快速跳转到指定行(eg: 23<CR>跳转到第23行)
 " Note: 这个映射会导致不能通过LocationList等键入<CR>进行跳转
 "nmap <CR> G
+
+" With this, we can now type ",." to exit out of  insert mode
+inoremap ,. <Esc>
+nnoremap ,. <Esc>
+vnoremap ,. <Esc>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle

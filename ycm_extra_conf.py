@@ -13,12 +13,13 @@ flags = [
 '-fexceptions',
 '-DNDEBUG',
 
-# Use libc++
-'-stdlib=libc++',
-
 # Use libc++ headers
 '-isystem', 
 '/usr/include/c++/v1',
+
+# Use Eigen
+'-isystem',
+'/home/wenxuan/src/eigen',
 
 # C headers
 '-isystem',
@@ -28,13 +29,16 @@ flags = [
 '-isystem', 
 '/home/wenxuan/src/googletest/googletest/include',
 
-
 # Work directory
 '-I',
 '.',
 
+# Use libc++
+'-stdlib=libc++',
+
 # Use C++14 standard
 '-std=c++14',
+
 '-x',
 'c++',
 ]
