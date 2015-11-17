@@ -38,7 +38,7 @@ set spelllang+=cjk
 setlocal spell
 
 " Set extra options when running in GUI mode
-if g:isGUI 
+if g:isGUI
     set guioptions-=T
     set guioptions-=m
     set guioptions-=r
@@ -47,7 +47,7 @@ if g:isGUI
 
     " Set fonts when running in GUI mode
     if !g:isWIN
-        "set guifont=Monospace\ 14 
+        "set guifont=Monospace\ 14
         "set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 14
         "set guifont=Fantasque\ Sans\ Mono\ 16
         set guifont=Inconsolata-g\ for\ Powerline\ 16
@@ -62,7 +62,7 @@ if g:isGUI
     if g:isWIN
         source $VIMRUNTIME/delmenu.vim
         source $VIMRUNTIME/menu.vim
-        
+
         " Avoid messy code under console.
         language messages en_US
     endif
@@ -71,7 +71,7 @@ endif
 " Enable mouse
 set mouse=a
 
-" Linebrake on 90 characters  
+" Linebrake on 90 characters
 set linebreak
 set textwidth=90
 set wrap        " Wrap lines
@@ -134,7 +134,7 @@ set foldlevel=0
 " Use spaces instead of tabs
 set expandtab
 :%retab
-" Set tab witdh to 4 spaces 
+" Set tab witdh to 4 spaces
 set tabstop=4
 set shiftwidth=4
 
@@ -383,17 +383,18 @@ Plugin 'taglist.vim'
     Plugin 'mhinz/vim-signify'
     Plugin 'osyo-manga/vim-over'
     Plugin 'terryma/vim-expand-region'
+    Plugin 'ntpeters/vim-better-whitespace'
     " Full path fuzzy file, buffer, mru, tag, ... finder for Vim
     Plugin 'ctrlpvim/ctrlp.vim'
     Plugin 'tacahiroy/ctrlp-funky'
 " }
 
 " General Programming {
-    " Syntastic is a syntax checking plugin for Vim that runs files through 
-    " external syntax checkers and displays any resulting errors to the user. 
+    " Syntastic is a syntax checking plugin for Vim that runs files through
+    " external syntax checkers and displays any resulting errors to the user.
     Plugin 'scrooloose/syntastic'
     Plugin 'tpope/vim-fugitive'
-    Plugin 'mattn/gist-vim' 
+    Plugin 'mattn/gist-vim'
     Plugin 'mattn/webapi-vim'
     " A collection of syntax definitions not yet shipped with stock vim.
     "Plugin 'octol/vim-cpp-enhanced-highlight'
@@ -444,6 +445,9 @@ map <Leader>l <Plug>(easymotion-lineforward)
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 map <Leader>h <Plug>(easymotion-linebackward)
+
+" To clean extra whitespace
+nnoremap <leader><F8> :StripWhitespace<CR>
 
 " a.vim to fast switch between .h and .c/.cpp file
 Plugin 'a.vim'
@@ -501,10 +505,10 @@ Plugin 'skammer/vim-css-color'
     let g:syntastic_check_on_open = 1
     let g:syntastic_check_on_wq = 0
 
-    let g:syntastic_error_symbol = '྾' 
+    let g:syntastic_error_symbol = '྾'
     let g:syntastic_warning_symbol = '⚠'
     let g:syntastic_always_populate_loc_list = 1
-    let g:syntastic_cpp_compiler_options = '-std=c++14'  
+    let g:syntastic_cpp_compiler_options = '-std=c++14'
     "let g:synatastic_auto_loc_list=1
     "let g:syntastic_enable_signs=1
 "}
@@ -555,15 +559,15 @@ let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf = 0
 " 注释补全开关
 let g:ycm_complete_in_comments = 1
-" 字符串补全开关
-let g:ycm_complete_in_strings = 0
+" 字符串补全开关:关闭会导致在包含双引号形式的头文件时无法补全！
+let g:ycm_complete_in_strings = 1
 " 基于标签收集引擎
 let g:ycm_collect_identifiers_from_tags_files = 1
 " 基于注释和字符串的收集引擎
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
 " 语言关键字补全
 let g:ycm_seed_identifiers_with_syntax = 1
-" 从第x个字符开始展开补全
+" 从第n个字符开始展开补全
 let g:ycm_min_num_of_chars_for_completion = 1
 " 添加UltiSnips进行snippet补全
 let g:ycm_use_ultisnips_completer = 1
