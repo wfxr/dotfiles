@@ -29,6 +29,7 @@ alias au='sudo apt-get update'
 alias xx='python ~/tools/xx-net/launcher/start.py'
 alias idea='sh ~/tools/intelliJ-IDEA/bin/idea.sh'
 alias clion='sh ~/tools/clion/bin/clion.sh'
+alias ycm='sh ~/tools/ycm-helper/ycm-helper.sh'
 alias cd..='cd ..'
 
 alias evalclip='eval `xclip -o`'

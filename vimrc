@@ -198,6 +198,8 @@ map <silent> <leader><cr> :noh<cr>
 " These create newlines like o and O but stay in normal mode
 nnoremap <silent> zj o<Esc>k
 nnoremap <silent> zk O<Esc>j
+inoremap <silent> <leader>o <Esc>o
+inoremap <silent> <leader>O <Esc>O
 
 " Split window
 map <leader>S :split<Space>
@@ -274,10 +276,12 @@ noremap <leader>m mmHmt:%s/<C-v><CR>//ge<CR>'tzt'm
 " Toggle paste mode on and off
 "map <leader>pp :setlocal paste!<CR>
 
-map <leader>y "+y
-map <leader>Y "+Y
-map <leader>p "+p
-map <leader>P "+P
+noremap <leader>y "+y
+noremap <leader>Y "+Y
+noremap <leader>p "+p
+inoremap <leader>p <Esc>"+pa
+noremap <leader>P "+P
+inoremap <leader>P <Esc>"+Pi
 
 nmap <leader>tl :TlistToggle<CR>
 nmap <leader>tl :TlistToggle<CR>
@@ -331,10 +335,20 @@ Plugin 'tmux-plugins/vim-tmux'
 
 " Youdao translator
 Plugin 'ianva/vim-youdao-translater'
-vnoremap <slient> <C-T> <Esc>:Ydv<CR>
-nnoremap <slient> <C-T> <Esc>:Ydc<CR>
-noremap <leader>yd :Yde<CR>
+"vnoremap <slient> <C-T> <Esc>:Ydv<CR>
+"nnoremap <slient> <C-T> <Esc>:Ydc<CR>
+noremap <leader>dic :Yde<CR>
 
+" Wonderful themes
+Plugin 'morhetz/gruvbox'
+"Plugin 'nanotech/jellybeans.vim'
+"Plugin 'zeis/vim-kolor'
+"Plugin 'tpope/vim-vividchalk'
+"Plugin 'Lokaltog/vim-distinguished'
+"Plugin 'ryanb/dotfiles'
+"Plugin 'altercation/vim-colors-solarized'
+"Plugin 'dsolstad/vim-wombat256i'
+"Plugin 'zenorocha/dracula-theme'
 
 " best Git wrapper
 set diffopt=vertical
@@ -361,7 +375,7 @@ Plugin 'taglist.vim'
     Plugin 'tpope/vim-surround'
     Plugin 'tpope/vim-repeat'
     " 配对符号插件
-    Plugin 'jiangmiao/auto-pairs'
+    "Plugin 'jiangmiao/auto-pairs'
     Plugin 'powerline/fonts'
     " Move cusor in vim quickly
     Plugin 'Lokaltog/vim-easymotion'
@@ -382,7 +396,8 @@ Plugin 'taglist.vim'
     Plugin 'mattn/gist-vim' 
     Plugin 'mattn/webapi-vim'
     " A collection of syntax definitions not yet shipped with stock vim.
-    Plugin 'octol/vim-cpp-enhanced-highlight'
+    "Plugin 'octol/vim-cpp-enhanced-highlight'
+
     " Nerd Commenter to comment code quickly
     Plugin 'scrooloose/nerdcommenter'
     Plugin 'tpope/vim-commentary'
@@ -393,8 +408,6 @@ Plugin 'taglist.vim'
     Plugin 'Valloric/YouCompleteMe'
     " 快速开启或关闭quickfix窗口
     Plugin 'wfxr/ListToggle'
-    " To generate .ycm_extra_conf.py file
-    Plugin 'rdnetto/YCM-Generator'
 
     " Track the engin
     Plugin 'SirVer/ultisnips'
@@ -496,17 +509,6 @@ Plugin 'skammer/vim-css-color'
     "let g:syntastic_enable_signs=1
 "}
 
-" Wonderful themes
-Plugin 'morhetz/gruvbox'
-"Plugin 'nanotech/jellybeans.vim'
-"Plugin 'zeis/vim-kolor'
-"Plugin 'tpope/vim-vividchalk'
-"Plugin 'Lokaltog/vim-distinguished'
-"Plugin 'ryanb/dotfiles'
-"Plugin 'altercation/vim-colors-solarized'
-"Plugin 'dsolstad/vim-wombat256i'
-"Plugin 'zenorocha/dracula-theme'
-
 " vim plugin to display the indention levels with thin vertical lines
 Plugin 'Yggdroot/indentLine'
 let g:indentLine_color_term = 239
@@ -561,8 +563,8 @@ let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
 " 语言关键字补全
 let g:ycm_seed_identifiers_with_syntax = 1
-" 从第二个字符开始展开补全
-let g:ycm_min_num_of_chars_for_completion = 2
+" 从第x个字符开始展开补全
+let g:ycm_min_num_of_chars_for_completion = 1
 " 添加UltiSnips进行snippet补全
 let g:ycm_use_ultisnips_completer = 1
 " 直接显示补全
