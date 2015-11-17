@@ -122,7 +122,7 @@ set smartcase
 set wildignore=*.o,*~,*.pyc
 
 " Set n lines to the cursor - when moving vertically using j/k
-set scrolloff=4
+set scrolloff=5
 
 " No fold when vim start up
 set nofoldenable
@@ -374,12 +374,15 @@ Plugin 'taglist.vim'
     Plugin 'tacahiroy/ctrlp-funky'
 " }
 
-" Genenal Programming {
+" General Programming {
     " Syntastic is a syntax checking plugin for Vim that runs files through 
     " external syntax checkers and displays any resulting errors to the user. 
     Plugin 'scrooloose/syntastic'
     Plugin 'tpope/vim-fugitive'
-    Plugin 'mattn/gist-vim'
+    Plugin 'mattn/gist-vim' 
+    Plugin 'mattn/webapi-vim'
+    " A collection of syntax definitions not yet shipped with stock vim.
+    Plugin 'octol/vim-cpp-enhanced-highlight'
     " Nerd Commenter to comment code quickly
     Plugin 'scrooloose/nerdcommenter'
     Plugin 'tpope/vim-commentary'
@@ -545,16 +548,16 @@ nmap <leader>nt :NERDTreeToggle<CR>
 " YouCompleteMe
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 配置默认的ycm_extra_conf.py
-let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 " 打开vim时不再询问是否加载ycm_extra_conf.py配置
 let g:ycm_confirm_extra_conf = 0
-" 开启注释补全
+" 注释补全开关
 let g:ycm_complete_in_comments = 1
-" 开启字符串补全
-let g:ycm_complete_in_strings = 1
-" 开启基于标签收集引擎
+" 字符串补全开关
+let g:ycm_complete_in_strings = 0
+" 基于标签收集引擎
 let g:ycm_collect_identifiers_from_tags_files = 1
-" 开启基于注释和字符串的收集引擎
+" 基于注释和字符串的收集引擎
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
 " 语言关键字补全
 let g:ycm_seed_identifiers_with_syntax = 1
@@ -566,8 +569,8 @@ let g:ycm_use_ultisnips_completer = 1
 let g:ycm_key_invoke_completion = '<C-\>'
 let g:ycm_autoclose_preview_window_after_completion = 1
 
-" 映射快捷键跳转到定义或声明
-nnoremap <leader>g :YcmCompleter GoTo<CR>
+"nnoremap <leader>g :YcmCompleter GoTo<CR>
+nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " ListToggle配置
 let g:lt_height = 10

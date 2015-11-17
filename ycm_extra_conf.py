@@ -21,9 +21,11 @@ flags = [
 '-isystem',
 '/home/wenxuan/src/eigen',
 
-# C headers
+# System headers
 '-isystem',
 '/usr/include',
+'-isystem',
+'/usr/local/include',
 
 # GoogleTest headers
 '-isystem', 
