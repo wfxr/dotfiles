@@ -175,6 +175,10 @@ endif
 " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
 set t_ut=
 
+" Home away from home. We store some config files and snippets here and the
+" whole dotfiles dir is a git repo. Should be the last entry in rtp (for
+" UltiSnips).
+set rtp+=$HOME/.dotfiles/vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Key mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -200,6 +204,7 @@ nnoremap <silent> zj o<Esc>k
 nnoremap <silent> zk O<Esc>j
 inoremap <silent> <leader>o <Esc>o
 inoremap <silent> <leader>O <Esc>O
+inoremap <silent> <leader>A <Esc>A
 
 " Split window
 map <leader>S :split<Space>
@@ -230,12 +235,12 @@ map <C-Left> :vertical resize -1<cr>
 "map <leader>bc :Bclose<cr>
 
 " Useful mappings for managing tabs
-map <leader>tn :tabnew<SPACE>
+map <leader>tc :tabnew<SPACE>
 "map <leader>to :tabonly<CR>
-map <leader>tc :tabclose<CR>
+map <leader>tq :tabclose<CR>
 "map <leader>t<tab> :tabnext<CR>
-"map <leader>n :tabnext<CR>
-"map <leader>p :tabNext<CR>
+map <leader>tn :tabnext<CR>
+map <leader>tp :tabNext<CR>
 
 " Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
 " Note: 如果激活Alt映射,<Esc>会被视作Alt的前导(eg:<Esc>j和<M-j>
@@ -375,7 +380,7 @@ Plugin 'taglist.vim'
     Plugin 'tpope/vim-surround'
     Plugin 'tpope/vim-repeat'
     " 配对符号插件
-    "Plugin 'jiangmiao/auto-pairs'
+    Plugin 'jiangmiao/auto-pairs'
     Plugin 'powerline/fonts'
     " Move cusor in vim quickly
     Plugin 'Lokaltog/vim-easymotion'
@@ -397,7 +402,7 @@ Plugin 'taglist.vim'
     Plugin 'mattn/gist-vim'
     Plugin 'mattn/webapi-vim'
     " A collection of syntax definitions not yet shipped with stock vim.
-    "Plugin 'octol/vim-cpp-enhanced-highlight'
+    Plugin 'octol/vim-cpp-enhanced-highlight'
 
     " Nerd Commenter to comment code quickly
     Plugin 'scrooloose/nerdcommenter'
@@ -420,6 +425,8 @@ Plugin 'taglist.vim'
 let g:UltiSnipsExpandTrigger="<leader><tab>"
 let g:UltiSnipsJumpForwardTrigger="<C-b>"
 let g:UltiSnipsJumpBackwardTrigger="<C-z>"
+let g:UltiSnipsSnippetsDir="~/.UltiSnips"
+let g:UltiSnipsSnippetsDir=$HOME.'/.dotfiles/vim/UltiSnips'
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
@@ -460,6 +467,12 @@ Plugin 'wfxr/BufferSwitch'
 " for quickly debug
 Plugin 'quickfix/quickfix'
 
+" Hardtime helps you break that annoying habit vimmers have of scrolling
+" up and down the page using jjjjj and kkkkk but without compromising the
+" rest of our vim experience.
+Plugin 'takac/vim-hardtime'
+let g:hardtime_default_on = 1
+
 " Format your C, C++ and Objective-C code
 Plugin 'rhysd/vim-clang-format'
 let g:clang_format#style_options = {
@@ -474,6 +487,7 @@ let g:clang_format#style_options = {
 " map to <Leader>cf in C++ code
 autocmd FileType c,cpp,objc nnoremap <buffer><leader>cf :<C-u>ClangFormat<CR>
 autocmd FileType c,cpp,objc vnoremap <buffer><leader>cf :ClangFormat<CR>
+autocmd FileType c,cpp,objc inoremap <buffer><leader>cf <Esc>:ClangFormat<CR>
 " Toggle auto formatting:
 nmap <Leader>C :ClangFormatAutoToggle<CR>
 

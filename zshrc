@@ -9,6 +9,7 @@ export ZSH=~/.oh-my-zsh
 
 # User configuration
 export PATH="/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+export PATH=~/script/:$PATH
 export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:~/src/googletest/googletest/include
 
 export TERM=xterm-256color
@@ -43,9 +44,13 @@ alias -s hpp=vi
 alias -s h=vi
 alias -s iml=idea
 
+# 开启vi模式后需要恢复Ctrl+R绑定
+bindkey -v
+bindkey '\e[3~' delete-char
+bindkey '^R' history-incremental-search-backward
+
 # Plugin manager
 source ~/tools/zsh/plugins/antigen/antigen.zsh
-
 # Load the oh-my-zsh's library
 #antigen use oh-my-zsh
 

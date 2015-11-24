@@ -1,1 +1,1 @@
-EXCLUDES="*.md *.bat *.txt Gdbinit"
+EXCLUDES="*.md *.bat *.txt Gdbinit .vim"

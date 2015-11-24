@@ -1,0 +1,18 @@
+! output taken from:
+! xmodmap -pke | egrep '(Control|Caps)'
+! Use to set keycodes correctly below. List reordered to match
+! keys from left to right.
+
+!keycode  37 = Control_L NoSymbol Control_L
+!keycode  66 = Caps_Lock NoSymbol Caps_Lock
+!keycode 105 = Control_R NoSymbol Control_R
+
+! First clear all modifiers, caps lock & control
+clear Lock
+clear Control
+
+keycode 37 = Caps_Lock
+keycode 66 = Control_L
+
+add Control = Control_L
+add Lock = Caps_Lock
