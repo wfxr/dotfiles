@@ -96,7 +96,7 @@ endif
 " Show row number
 set number
 " Show relative number
-set relativenumber
+"set relativenumber
 
 " Set height of cmd line to 2
 set cmdheight=2
@@ -120,6 +120,7 @@ set smartcase
 
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc
+set wildmode=full
 
 " Set n lines to the cursor - when moving vertically using j/k
 set scrolloff=5
@@ -185,6 +186,11 @@ set rtp+=$HOME/.dotfiles/vim
 " With a map leader it's possible to do extra key combinations
 let mapleader = ","
 let g:mapleader = ","
+noremap \ ,
+
+" Lock up history commands quickly
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
 
 " Using <F8> to toggle background mode
 map <F8> :call ToggleBg()<CR>
@@ -193,8 +199,8 @@ map <F8> :call ToggleBg()<CR>
 nnoremap <leader><SPACE> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 
 " Treat long line as break lines (useful when move around int them)
-map j gj
-map k gk
+"map j gj
+"map k gk
 
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
@@ -202,9 +208,10 @@ map <silent> <leader><cr> :noh<cr>
 " These create newlines like o and O but stay in normal mode
 nnoremap <silent> zj o<Esc>k
 nnoremap <silent> zk O<Esc>j
-inoremap <silent> <leader>o <Esc>o
-inoremap <silent> <leader>O <Esc>O
-inoremap <silent> <leader>A <Esc>A
+inoremap <silent> <leader>a <Esc>A
+inoremap <silent> <leader>i <Esc>I
+inoremap <silent> <leader>; <Esc>A;<Esc>
+inoremap <silent> <leader>. ->
 
 " Split window
 map <leader>S :split<Space>
@@ -221,10 +228,10 @@ map <leader>x :x<cr>
 map <leader>X :x!<cr>
 
 " Smart way to move windows
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-h> <C-w>h
-map <C-l> <C-w>l
+"map <C-j> <C-w>j
+"map <C-k> <C-w>k
+"map <C-h> <C-w>h
+"map <C-l> <C-w>l
 
 map <C-Up> :resize +1<cr>
 map <C-Down> :resize -1<cr>
@@ -245,30 +252,19 @@ map <leader>tp :tabNext<CR>
 " Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
 " Note: 如果激活Alt映射,<Esc>会被视作Alt的前导(eg:<Esc>j和<M-j>
 " 将具有相同的效果)
-"if g:isGUI
-    "nnoremap <M-j> mz:m+<CR>`z
-    "nnoremap <M-k> mz:m-2<CR>`z
-    "vnoremap <M-j> :m'>+<CR>`<my`>mzgv`yo`z
-    "vnoremap <M-k> :m'<-2<CR>`>my`<mzgv`yo`z
-    "if has("mac") || has("macunix")
-        "nmap <D-j> <M-j>
-        "nmap <D-k> <M-k>
-        "vmap <D-j> <M-j>
-        "vmap <D-k> <M-k>
-    "endif
-"else
-    "nnoremap j mz:m+<CR>`z
-    "nnoremap k mz:m-2<CR>`z
-    "vnoremap j :m'>+<CR>`<my`>mzgv`yo`z
-    "vnoremap k :m'<-2<CR>`>my`<mzgv`yo`z
-"endif
+"noremap <A-j> :m .+1<CR>==
+"nnoremap <A-k> :m .-2<CR>==
+"inoremap <A-j> <Esc>:m .+1<CR>==gi
+"inoremap <A-k> <Esc>:m .-2<CR>==gi
+"vnoremap <A-j> :m '>+1<CR>gv=gv
+"vnoremap <A-k> :m '<-2<CR>gv=gv
 
 " Visual mode pressing * or $ searches for the current selection
 " Super useful! From and idea by Michael Naumann
 vnoremap <silent> * :call VisualSelection('f', '')<CR>
 vnoremap <silent> # :call VisualSelection('b', '')<CR>
 
-" pressing <leader>ss will toggle and untoggle spell checking
+" pressing <leader>ss will toggle spell checking
 noremap <leader>ss :setlocal spell!<cr>
 noremap <leader>sn ]s
 noremap <leader>sp [s
@@ -314,9 +310,11 @@ nmap <leader>I :BundleInstall<CR>
 "nmap <CR> G
 
 " With this, we can now type ",." to exit out of  insert mode
-inoremap ,. <Esc>
-nnoremap ,. <Esc>
-vnoremap ,. <Esc>
+" <c-[> does the same thing
+" (No need after I swap Ctrl and CapsLock.)
+"inoremap ,. <Esc>
+"nnoremap ,. <Esc>
+"vnoremap ,. <Esc>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle
@@ -343,6 +341,17 @@ Plugin 'ianva/vim-youdao-translater'
 "vnoremap <slient> <C-T> <Esc>:Ydv<CR>
 "nnoremap <slient> <C-T> <Esc>:Ydc<CR>
 noremap <leader>dic :Yde<CR>
+
+Plugin 'kana/vim-textobj-user'
+Plugin 'kana/vim-textobj-function'
+Plugin 'sgur/vim-textobj-parameter'
+Plugin 'kana/vim-textobj-entire'
+Plugin 'glts/vim-textobj-comment'
+Plugin 'kana/vim-textobj-indent'
+Plugin 'mattn/vim-textobj-url'
+
+" A wonderful plugin for writing!
+Plugin 'reedes/vim-pencil'
 
 " Wonderful themes
 Plugin 'morhetz/gruvbox'
@@ -423,8 +432,8 @@ Plugin 'taglist.vim'
 
 " Trigger configuration. Do not use <tab> if you use 'YouCompleteMe'
 let g:UltiSnipsExpandTrigger="<leader><tab>"
-let g:UltiSnipsJumpForwardTrigger="<C-b>"
-let g:UltiSnipsJumpBackwardTrigger="<C-z>"
+let g:UltiSnipsJumpForwardTrigger="<c-f>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 let g:UltiSnipsSnippetsDir="~/.UltiSnips"
 let g:UltiSnipsSnippetsDir=$HOME.'/.dotfiles/vim/UltiSnips'
 
@@ -433,9 +442,6 @@ let g:UltiSnipsEditSplit="vertical"
 
 " plugin for Python
 "Plugin 'klen/python-mode'
-
-" Plugin of calendar
-"Plugin 'itchyny/calendar.vim'
 
 " FuzzyFinder(L9 library is necessary for FuzzyFinder)
 "Plugin 'FuzzyFinder'
@@ -448,13 +454,15 @@ omap <leader>/ <Plug>(easymotion-tn)
 map <leader>n <Plug>(easymotion-next)
 map <leader>N <Plug>(easymotion-prev)
 " Avoid repetitive use of the h j k and l key.
-map <Leader>l <Plug>(easymotion-lineforward)
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
-map <Leader>h <Plug>(easymotion-linebackward)
+map <c-l> <Plug>(easymotion-lineforward)
+map <c-j> <Plug>(easymotion-j)
+map <c-k> <Plug>(easymotion-k)
+map <c-h> <Plug>(easymotion-linebackward)
 
 " To clean extra whitespace
-nnoremap <leader><F8> :StripWhitespace<CR>
+nnoremap <Left> :StripWhitespace<CR>
+
+Plugin 'matchit'
 
 " a.vim to fast switch between .h and .c/.cpp file
 Plugin 'a.vim'
@@ -587,7 +595,12 @@ let g:ycm_min_num_of_chars_for_completion = 1
 let g:ycm_use_ultisnips_completer = 1
 " 直接显示补全
 let g:ycm_key_invoke_completion = '<C-\>'
+" 补全完成后关闭预览窗口
 let g:ycm_autoclose_preview_window_after_completion = 1
+
+" Disable completion previews with function prototypes, etc.
+set completeopt=menu
+let g:ycm_add_preview_tocompleteopt = 0
 
 "nnoremap <leader>g :YcmCompleter GoTo<CR>
 nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>

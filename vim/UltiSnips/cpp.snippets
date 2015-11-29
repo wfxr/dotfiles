@@ -1,0 +1,23 @@
+snippet try "try...catch block" b
+try {
+	${VISUAL}$0
+} catch(${1:std::exception& e}) {
+	${2:std::cerr << e.what() << std::endl;}
+}
+endsnippet
+
+snippet cls "class..." b
+class ${1:MyClass} {
+public:
+	${2}
+private:
+	${3}
+};
+endsnippet
+
+snippet vmain "main()..." b
+int main() {
+	$0
+	return 0;
+}
+endsnippet
