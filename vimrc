@@ -323,8 +323,8 @@ filetype off                  " required!
 
 " Set Vundle location and add-ons' location according to type of OS.
 if g:isWIN
-    set rtp+=$VIMRUNTIME/../vimfiles/bundle/Vundle/ " Vundle's path
-    call vundle#rc('$VIMRUNTIME/../vimfiles/bundle/')   " Add-ons' path
+    set rtp+=$VIM/vimfiles/bundle/Vundle.vim " Vundle's path
+    call vundle#rc('$VIM/vimfiles/bundle/')   " Add-ons' path
 else    " For Linux
     set rtp+=~/.vim/bundle/Vundle.vim/
     call vundle#rc()    " Default is OK
@@ -337,10 +337,10 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'tmux-plugins/vim-tmux'
 
 " Youdao translator
-Plugin 'ianva/vim-youdao-translater'
+"Plugin 'ianva/vim-youdao-translater'
 "vnoremap <slient> <C-T> <Esc>:Ydv<CR>
 "nnoremap <slient> <C-T> <Esc>:Ydc<CR>
-noremap <leader>dic :Yde<CR>
+"noremap <leader>dic :Yde<CR>
 
 Plugin 'kana/vim-textobj-user'
 Plugin 'kana/vim-textobj-function'
@@ -420,12 +420,18 @@ Plugin 'taglist.vim'
 
 " Snippets & AutoComplete {
     " YouCompleteMe!
-    Plugin 'Valloric/YouCompleteMe'
+    if !g:isWIN
+        Plugin 'Valloric/YouCompleteMe'
+    endif
+
     " 快速开启或关闭quickfix窗口
     Plugin 'wfxr/ListToggle'
 
     " Track the engin
-    Plugin 'SirVer/ultisnips'
+    if !g:isWIN
+        Plugin 'SirVer/ultisnips'
+    endif
+
     " Snippets are separated from the engine. Add this if you want them:
     Plugin 'honza/vim-snippets'
 " }
