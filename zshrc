@@ -9,7 +9,7 @@ export ZSH=~/.oh-my-zsh
 
 # User configuration
 export PATH="/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
-export PATH=~/script/:$PATH
+export PATH=~/script/:~/usr/games/:$PATH
 export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:~/src/googletest/googletest/include
 
 export TERM=xterm-256color
@@ -32,7 +32,6 @@ alias vscode='~/tools/VSCode-linux-x64/Code'
 alias idea='sh ~/tools/intelliJ-IDEA/bin/idea.sh'
 alias clion='sh ~/tools/clion/bin/clion.sh'
 alias ycm='sh ~/tools/ycm-helper/ycm-helper.sh'
-alias cd..='cd ..'
 
 alias evalclip='eval `xclip -o`'
 

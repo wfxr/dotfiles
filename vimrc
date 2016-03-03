@@ -462,7 +462,7 @@ map <c-h> <Plug>(easymotion-linebackward)
 " To clean extra whitespace
 nnoremap <Left> :StripWhitespace<CR>
 
-Plugin 'matchit'
+Plugin 'vim-scripts/matchit.zip'
 
 " a.vim to fast switch between .h and .c/.cpp file
 Plugin 'a.vim'
