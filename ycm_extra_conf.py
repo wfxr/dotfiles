@@ -4,14 +4,14 @@ import ycm_core
 # CHANGE THIS LIST OF FLAGS. YES, THIS IS THE DROID YOU HAVE BEEN LOOKING FOR.
 flags = [
 '-Wall',
-'-Wextra', 
+'-Wextra',
 '-Wno-long-long',
 '-Wno-variadic-macros',
 '-fexceptions',
 '-DNDEBUG',
 
-# Use libc++ headers
-'-isystem', '/usr/include/c++/v1',
+# Use std c++ headers
+'-isystem', '/usr/include/c++/5',
 
 # Use Eigen headers
 '-isystem', '/home/wenxuan/src/eigen',
@@ -21,14 +21,16 @@ flags = [
 '-isystem', '/usr/local/include',
 
 # GoogleTest headers
-'-isystem', 
+'-isystem',
 '/home/wenxuan/src/googletest/googletest/include',
 
 # Work directory
 '-I', '.',
 
 # Use libc++
-'-stdlib=libc++',
+# '-stdlib=libc++',
+# Use libstdc++
+'-stdlib=libstdc++'
 
 # Use C++14 standard
 '-std=c++14',

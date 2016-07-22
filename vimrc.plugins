@@ -1,0 +1,218 @@
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vim Plug: A minimalist Vim plugin manager.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+call plug#begin('~/.vim/plugged')
+
+Plug 'tmux-plugins/vim-tmux'
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-function'
+Plug 'sgur/vim-textobj-parameter'
+Plug 'kana/vim-textobj-entire'
+Plug 'glts/vim-textobj-comment'
+Plug 'kana/vim-textobj-indent'
+Plug 'mattn/vim-textobj-url'
+Plug 'reedes/vim-pencil'
+Plug 'morhetz/gruvbox'
+let g:gruvbox_italic=1
+Plug 'bling/vim-airline'
+let g:airline_theme='gruvbox'
+let g:airline_powerline_fonts=1
+let g:airline#extensions#tabline#enabled=1
+Plug 'taglist.vim'
+let Tlist_Exit_OnlyWindow=1
+let Tlist_Auto_Open=0
+Plug 'scrooloose/nerdtree'
+nmap <leader>nt :NERDTreeToggle<CR>
+nmap <leader>tl :TlistToggle<CR>
+nmap <leader>tl :TlistToggle<CR>
+nmap <leader>tl :TlistToggle<CR>
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'jiangmiao/auto-pairs'
+Plug 'powerline/fonts'
+Plug 'Lokaltog/vim-easymotion'
+nmap <leader>f <Plug>(easymotion-s)
+nmap <leader>F <Plug>(easymotion-s2)
+map <leader>/ <Plug>(easymotion-sn)
+omap <leader>/ <Plug>(easymotion-tn)
+map <leader>n <Plug>(easymotion-next)
+map <leader>N <Plug>(easymotion-prev)
+map <c-l> <Plug>(easymotion-lineforward)
+map <c-j> <Plug>(easymotion-j)
+map <c-k> <Plug>(easymotion-k)
+map <c-h> <Plug>(easymotion-linebackward)
+Plug 'mbbill/undotree'
+Plug 'mhinz/vim-signify'
+Plug 'osyo-manga/vim-over'
+Plug 'terryma/vim-expand-region'
+map + <Plug>(expand_region_expand)
+map - <Plug>(expand_region_shrink)
+Plug 'ntpeters/vim-better-whitespace'
+nnoremap <Left> :StripWhitespace<CR>
+Plug 'tpope/vim-fugitive'
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-commentary'
+Plug 'vim-scripts/matchit.zip'
+Plug 'a.vim'
+nmap <leader>aa :A<CR>
+nmap <leader>as :AS<CR>
+Plug 'wfxr/BufferSwitch'
+Plug 'quickfix/quickfix'
+Plug 'Valloric/ListToggle'
+let g:lt_height = 10
+let g:lt_location_list_toggle_map = '<leader>1'
+let g:lt_quickfix_list_toggle_map = '<leader>2'
+Plug 'godlygeek/tabular'
+Plug 'skammer/vim-css-color'
+Plug 'suan/vim-instant-markdown'
+Plug 'tpope/vim-sensible'
+Plug 'Yggdroot/indentLine'
+let g:indentLine_color_term = 239
+let g:indentLine_color_gui = '#4E4E4E'
+map <leader>il :IndentLinesToggle<CR>
+Plug 'takac/vim-hardtime'
+let g:hardtime_default_on = 0
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vim Clang Format: format C, C++ and Objective-C code
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Plug 'rhysd/vim-clang-format'
+let g:clang_format#style_options = {
+            \ "BasedOnStyle" : "LLVM",
+            \ "IndentWidth" : 4,
+            \ "AccessModifierOffset" : -4,
+            \ "ColumnLimit" : 80,
+            \ "AllowShortFunctionsOnASingleLine" : "All",
+            \ "AllowShortIfStatementsOnASingleLine" : "true",
+            \ "AlwaysBreakTemplateDeclarations" : "true",
+            \ "Standard" : "C++11" }
+" map to <Leader>cf in C++ code
+autocmd FileType c,cpp,objc nnoremap <buffer><leader>cf :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc vnoremap <buffer><leader>cf :ClangFormat<CR>
+autocmd FileType c,cpp,objc inoremap <buffer><leader>cf <Esc>:ClangFormat<CR>
+" Toggle auto formatting:
+nmap <Leader>C :ClangFormatAutoToggle<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Ultisnips && Vim-Snippets
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if !g:isWIN
+    Plug 'SirVer/ultisnips'
+    " Trigger configuration. Do not use <tab> if you use 'YouCompleteMe'
+    let g:UltiSnipsExpandTrigger="<leader><tab>"
+    let g:UltiSnipsJumpForwardTrigger="<c-f>"
+    let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+    let g:UltiSnipsSnippetsDir="~/.UltiSnips"
+    let g:UltiSnipsSnippetsDir=$HOME.'/.dotfiles/vim/UltiSnips'
+    " If you want :UltiSnipsEdit to split your window.
+    let g:UltiSnipsEditSplit="vertical"
+endif
+Plug 'honza/vim-snippets'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Syntastic: a syntax checking plugin for Vim that runs files through
+" external syntax checkers and displays any resulting errors to the user.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Plug 'scrooloose/syntastic'
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_error_symbol = '྾'
+let g:syntastic_warning_symbol = '⚠'
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_cpp_compiler_options = '-std=c++14'
+"let g:synatastic_auto_loc_list=1
+"let g:syntastic_enable_signs=1
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" YouCompleteMe or NeoComplete
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if !g:isWIN
+    Plug 'Valloric/YouCompleteMe'
+    " 配置默认的ycm_extra_conf.py
+    let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+    " 打开vim时不再询问是否加载ycm_extra_conf.py配置
+    let g:ycm_confirm_extra_conf = 0
+    " 注释补全开关
+    let g:ycm_complete_in_comments = 1
+    " 字符串补全开关:关闭会导致在包含双引号形式的头文件时无法补全！
+    let g:ycm_complete_in_strings = 1
+    " 基于标签收集引擎
+    let g:ycm_collect_identifiers_from_tags_files = 1
+    " 基于注释和字符串的收集引擎
+    let g:ycm_collect_identifiers_from_comments_and_strings = 1
+    " 语言关键字补全
+    let g:ycm_seed_identifiers_with_syntax = 1
+    " 从第n个字符开始展开补全
+    let g:ycm_min_num_of_chars_for_completion = 1
+    " 添加UltiSnips进行snippet补全
+    let g:ycm_use_ultisnips_completer = 1
+    " 直接显示补全
+    let g:ycm_key_invoke_completion = '<C-\>'
+    " 补全完成后关闭预览窗口
+    let g:ycm_autoclose_preview_window_after_completion = 1
+    " Disable completion previews with function prototypes, etc.
+    set completeopt=menu
+    let g:ycm_add_preview_tocompleteopt = 0
+    "nnoremap <leader>g :YcmCompleter GoTo<CR>
+    nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+else
+    Plug 'Shougo/neocomplete.vim'
+    let g:neocomplete#enable_at_startup = 1
+    let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+    " Define dictionary.
+    let g:neocomplete#sources#dictionary#dictionaries = {
+                \ 'default' : '',
+                \ 'vimshell' : $HOME.'/.vimshell_hist',
+                \ 'scheme' : $HOME.'/.gosh_completions'
+                \ }
+    " Define keyword.
+    if !exists('g:neocomplete#keyword_patterns')
+        let g:neocomplete#keyword_patterns = {}
+    endif
+    let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+    " Plugin key-mappings.
+    inoremap <expr><C-g>     neocomplete#undo_completion()
+    inoremap <expr><C-l>     neocomplete#complete_common_string()
+    " Recommended key-mappings.
+    " <CR>: close popup and save indent.
+    inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+    function! s:my_cr_function()
+        return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+        " For no inserting <CR> key.
+        "return pumvisible() ? "\<C-y>" : "\<CR>"
+    endfunction
+    " <TAB>: completion.
+    inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+    " <C-h>, <BS>: close popup and delete backword char.
+    inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+    inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+    " Close popup by <Space>.
+    "inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+    " AutoComplPop like behavior.
+    "let g:neocomplete#enable_auto_select = 1
+    " Enable omni completion.
+    autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+    " Enable heavy omni completion.
+    if !exists('g:neocomplete#sources#omni#input_patterns')
+        let g:neocomplete#sources#omni#input_patterns = {}
+    endif
+    "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+    "let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+    "let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+    " For perlomni.vim setting.
+    " https://github.com/c9s/perlomni.vim
+    let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+endif
+
+" Add plugins to &runtimepath
+call plug#end()

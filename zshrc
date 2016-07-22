@@ -15,7 +15,7 @@ export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:~/src/googletest/googletest/includ
 export TERM=xterm-256color
 
 source $ZSH/oh-my-zsh.sh
-source $HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh
+source $HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh
 
 export EDITOR='vim'
 export CC='clang'
@@ -27,10 +27,10 @@ alias rcdn='rcdn -v'
 alias shutdown='sudo shutdown -h now'
 alias ai='sudo apt-get install'
 alias au='sudo apt-get update'
-alias xx='~/tools/xx-net/start'
+alias xx='~/tools/XX-Net/start.sh'
 alias vscode='~/tools/VSCode-linux-x64/Code'
-alias idea='sh ~/tools/intelliJ-IDEA/bin/idea.sh'
-alias clion='sh ~/tools/clion/bin/clion.sh'
+#alias idea='sh ~/tools/idea/bin/idea.sh'
+#alias clion='sh ~/tools/clion/bin/clion.sh'
 alias ycm='sh ~/tools/ycm-helper/ycm-helper.sh'
 
 alias evalclip='eval `xclip -o`'

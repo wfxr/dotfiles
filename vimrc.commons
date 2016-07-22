@@ -1,0 +1,92 @@
+" Cancel compatible to avoid some bugs and limitations.
+set nocompatible
+
+" Set n lines to the cursor - when moving vertically using j/k
+set scrolloff=5
+
+" Use spaces instead of tabs
+set expandtab
+" Set tab width to 4 spaces
+set tabstop=4
+set shiftwidth=4
+
+" With a map leader it's possible to do extra key combinations
+let mapleader = ","
+let g:mapleader = ","
+noremap \ ,
+
+" Lock up history commands quickly
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+
+" Using <SPACE> to fold or unfold
+nnoremap <leader><SPACE> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+
+" Treat long line as break lines (useful when move around int them)
+"map j gj
+"map k gk
+
+" Disable highlight when <leader><cr> is pressed
+map <silent> <leader><cr> :noh<cr>
+
+" These create newlines like o and O but stay in normal mode
+nnoremap <silent> zj o<Esc>k
+nnoremap <silent> zk O<Esc>j
+inoremap <silent> <leader>a <Esc>A
+inoremap <silent> <leader>i <Esc>I
+inoremap <silent> <leader>; <Esc>A;<Esc>
+inoremap <silent> <leader>. ->
+
+" Split window
+map <leader>S :split<Space>
+map <leader>V :vsplit<Space>
+
+" Close window
+map <leader>q :q<cr>
+map <leader>Q :q!<cr>
+" Save write
+map <leader>w :w<cr>
+map <leader>W :w!<cr>
+" Save and quit
+map <leader>x :x<cr>
+map <leader>X :x!<cr>
+
+" Remove the Windows ^M - when the encodings gets messed up
+noremap <leader>m mmHmt:%s/<C-v><CR>//ge<CR>'tzt'm
+
+noremap <leader>y "+y
+noremap <leader>Y "+Y
+noremap <leader>p "+p
+inoremap <leader>p <Esc>"+pa
+noremap <leader>P "+P
+inoremap <leader>P <Esc>"+Pi
+
+" fast jump
+nnoremap L G$
+vnoremap L G$
+nnoremap H gg
+vnoremap H gg
+
+" Select pasted text
+noremap vp `[v`]
+
+" Ignore case when searching
+set ignorecase
+
+" When searching try to be smart about cases
+set smartcase
+
+" No fold when vim start up
+set nofoldenable
+
+" Set fold method
+set foldmethod=indent
+set foldlevel=0
+
+" Emacs-style start of line / end of line navigation
+nnoremap <silent> <C-b> ^
+nnoremap <silent> <C-e> $
+vnoremap <silent> <C-b> ^
+vnoremap <silent> <C-e> $
+inoremap <silent> <C-b> <esc>^i
+inoremap <silent> <C-e> <esc>$a
