@@ -17,20 +17,19 @@ export TERM=xterm-256color
 source $ZSH/oh-my-zsh.sh
 source $HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh
 
-export EDITOR='vim'
+export EDITOR='nvim'
 export CC='clang'
 export CXX='clang++'
 
 alias rcup='rcup -v'
 alias rcdn='rcdn -v'
 
+alias vim='nvim'
 alias shutdown='sudo shutdown -h now'
 alias ai='sudo apt-get install'
 alias au='sudo apt-get update'
 alias xx='~/tools/XX-Net/start.sh'
 alias vscode='~/tools/VSCode-linux-x64/Code'
-#alias idea='sh ~/tools/idea/bin/idea.sh'
-#alias clion='sh ~/tools/clion/bin/clion.sh'
 alias ycm='sh ~/tools/ycm-helper/ycm-helper.sh'
 
 alias evalclip='eval `xclip -o`'

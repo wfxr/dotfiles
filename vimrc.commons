@@ -35,7 +35,7 @@ nnoremap <silent> zk O<Esc>j
 inoremap <silent> <leader>a <Esc>A
 inoremap <silent> <leader>i <Esc>I
 inoremap <silent> <leader>; <Esc>A;<Esc>
-inoremap <silent> <leader>. ->
+inoremap <silent> <leader>. <Esc>o
 
 " Split window
 map <leader>S :split<Space>
