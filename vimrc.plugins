@@ -58,7 +58,7 @@ Plug 'a.vim'
 nmap <leader>aa :A<CR>
 nmap <leader>as :AS<CR>
 Plug 'wfxr/BufferSwitch'
-Plug 'quickfix/quickfix'
+"Plug 'quickfix/quickfix'
 Plug 'Valloric/ListToggle'
 let g:lt_height = 10
 let g:lt_location_list_toggle_map = '<leader>1'
@@ -125,9 +125,8 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_error_symbol = '྾'
 let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_cpp_compiler_options = '-std=c++14'
-"let g:synatastic_auto_loc_list=1
-"let g:syntastic_enable_signs=1
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = '-std=c++14 -stdlib=libstdc++'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " YouCompleteMe or NeoComplete
