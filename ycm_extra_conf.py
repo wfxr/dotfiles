@@ -30,7 +30,7 @@ flags = [
 # Use libc++
 # '-stdlib=libc++',
 # Use libstdc++
-'-stdlib=libstdc++',
+'-stdlib=libstdc++'
 
 # Use C++14 standard
 '-std=c++14',
