@@ -1,0 +1,17 @@
+set guioptions-=T
+set guioptions-=m
+set guioptions-=r
+set guioptions-=L
+set guitablabel=%M\ %t
+
+if g:isWIN
+    set guifont=Inconsolata-g\ for\ Powerline:h16:cANSI
+    " Request after changing the version of language
+    source $VIMRUNTIME/delmenu.vim
+    source $VIMRUNTIME/menu.vim
+    " Avoid messy code under console
+    language messages en_US
+else
+    set guifont=Inconsolata-g\ for\ Powerline\ 16
+endif
+
