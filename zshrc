@@ -7,6 +7,9 @@
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 
+# 清除所有本地化设置
+export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8
+
 # User configuration
 export PATH="/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 export PATH=~/script/:~/usr/games/:$PATH
@@ -24,11 +27,10 @@ export CXX='clang++'
 alias rcup='rcup -v'
 alias rcdn='rcdn -v'
 
-alias vim='nvim'
 alias shutdown='sudo shutdown -h now'
 alias ai='sudo apt-get install'
 alias au='sudo apt-get update'
-alias xx='~/tools/XX-Net/start.sh'
+alias xx='~/tools/xx-net/start.sh'
 alias vscode='~/tools/VSCode-linux-x64/Code'
 alias ycm='sh ~/tools/ycm-helper/ycm-helper.sh'
 

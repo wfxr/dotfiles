@@ -12,6 +12,10 @@ endif
 
 source ~/.vimrc.commons
 source ~/.vimrc.plugins
+
+if has("gui_running")
+    source ~/.vimrc.gui
+endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

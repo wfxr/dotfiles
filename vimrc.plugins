@@ -3,6 +3,11 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
 
+Plug 'terryma/vim-smooth-scroll'
+noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
+noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
+noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
+noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 Plug 'tmux-plugins/vim-tmux'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-function'
@@ -58,7 +63,7 @@ Plug 'a.vim'
 nmap <leader>aa :A<CR>
 nmap <leader>as :AS<CR>
 Plug 'wfxr/BufferSwitch'
-Plug 'quickfix/quickfix'
+"Plug 'quickfix/quickfix'
 Plug 'Valloric/ListToggle'
 let g:lt_height = 10
 let g:lt_location_list_toggle_map = '<leader>1'
@@ -86,11 +91,11 @@ let g:clang_format#style_options = {
             \ "AllowShortFunctionsOnASingleLine" : "All",
             \ "AllowShortIfStatementsOnASingleLine" : "true",
             \ "AlwaysBreakTemplateDeclarations" : "true",
-            \ "Standard" : "C++11" }
+            \ "Standard" : "Auto" }
 " map to <Leader>cf in C++ code
-autocmd FileType c,cpp,objc nnoremap <buffer><leader>cf :<C-u>ClangFormat<CR>
-autocmd FileType c,cpp,objc vnoremap <buffer><leader>cf :ClangFormat<CR>
-autocmd FileType c,cpp,objc inoremap <buffer><leader>cf <Esc>:ClangFormat<CR>
+autocmd FileType c,cpp,objc,java,js,ts nnoremap <buffer><leader>cf :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc,java,js,ts vnoremap <buffer><leader>cf :ClangFormat<CR>
+autocmd FileType c,cpp,objc,java,js,ts inoremap <buffer><leader>cf <Esc>:ClangFormat<CR>
 " Toggle auto formatting:
 nmap <Leader>C :ClangFormatAutoToggle<CR>
 
@@ -125,9 +130,8 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_error_symbol = '྾'
 let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_cpp_compiler_options = '-std=c++14'
-"let g:synatastic_auto_loc_list=1
-"let g:syntastic_enable_signs=1
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = '-std=c++17 -stdlib=libstdc++'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " YouCompleteMe or NeoComplete
