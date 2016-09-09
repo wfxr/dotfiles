@@ -3,4 +3,5 @@ mklink %USERPROFILE%\_vimrc 		%~dp0vimrc
 mklink %USERPROFILE%\.ideavimrc 	%~dp0ideavimrc
 mklink %USERPROFILE%\.vimrc.commons	%~dp0vimrc.commons
 mklink %USERPROFILE%\.vimrc.plugins 	%~dp0vimrc.plugins
+mklink %USERPROFILE%\.vimrc.gui 	%~dp0vimrc.gui
 mklink %USERPROFILE%\.vsvimrc 		%~dp0vsvimrc
