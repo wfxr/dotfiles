@@ -38,6 +38,12 @@ inoremap <silent> <leader>; <Esc>A;<Esc>
 inoremap <silent> <leader>o <Esc>o
 inoremap <silent> <leader>{ <Esc>A {<CR>}<Esc>O
 
+" Make j/k/0/$ work as expected on the wrap lines
+noremap  <buffer> <silent> k gk
+noremap  <buffer> <silent> j gj
+noremap  <buffer> <silent> 0 g0
+noremap  <buffer> <silent> $ g$
+
 " Split window
 map <leader>S :split<Space>
 map <leader>V :vsplit<Space>

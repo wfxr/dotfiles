@@ -33,6 +33,8 @@ alias au='sudo apt-get update'
 alias xx='~/tools/xx-net/start.sh'
 alias vscode='~/tools/VSCode-linux-x64/Code'
 alias ycm='sh ~/tools/ycm-helper/ycm-helper.sh'
+alias hhkb='setxkbmap -option "ctrl:swapcaps"'
+alias mkycm='cp ~/.dotfiles/ycm_extra_conf.py .ycm_extra_conf.py'
 
 alias evalclip='eval `xclip -o`'
 

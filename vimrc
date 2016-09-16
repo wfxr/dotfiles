@@ -35,7 +35,7 @@ set mouse=a
 " Linebrake on 90 characters
 set linebreak
 set textwidth=90
-set nowrap        " Wrap lines
+set wrap
 
 " Hilight current line
 "set cursorline

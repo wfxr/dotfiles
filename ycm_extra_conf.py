@@ -14,18 +14,19 @@ flags = [
 '-isystem', '/usr/include/c++/5',
 
 # Use Eigen headers
-'-isystem', '/home/wenxuan/src/eigen',
+# '-isystem', '/home/wenxuan/src/eigen',
 
 # Other headers
 '-isystem', '/usr/include',
 '-isystem', '/usr/local/include',
 
 # GoogleTest headers
-'-isystem',
-'/home/wenxuan/src/googletest/googletest/include',
+# (no need anymore, already in system path)
+# '-isystem',
+# '/home/wenxuan/src/googletest/googletest/include',
 
 # Work directory
-'-I', '.',
+# '-I', '.',
 
 # Use libc++
 # '-stdlib=libc++',
