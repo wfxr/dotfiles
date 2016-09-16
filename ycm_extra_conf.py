@@ -12,6 +12,8 @@ flags = [
 
 # Use std c++ headers
 '-isystem', '/usr/include/c++/5',
+# For Windows
+'-isystem', 'c:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include',
 
 # Use Eigen headers
 # '-isystem', '/home/wenxuan/src/eigen',
@@ -31,7 +33,7 @@ flags = [
 # Use libc++
 # '-stdlib=libc++',
 # Use libstdc++
-'-stdlib=libstdc++',
+'-stdlib=libstdc++'
 
 # Use C++14 standard
 '-std=c++14',

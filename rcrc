@@ -1,1 +1,1 @@
-EXCLUDES="*.md *.bat *.txt Gdbinit Xmodmap .vim"
+EXCLUDES="*.md *.bat *.txt Xmodmap .vim"
