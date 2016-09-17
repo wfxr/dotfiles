@@ -28,7 +28,7 @@ flags = [
 
 # Use libc++/libstdc++
 # '-stdlib=libc++',
-'-stdlib=libstdc++',
+# '-stdlib=libstdc++',
 
 # Use C++14 standard
 '-std=c++14',
