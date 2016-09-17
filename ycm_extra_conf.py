@@ -22,18 +22,13 @@ flags = [
 '-isystem', '/usr/include',
 '-isystem', '/usr/local/include',
 
-# GoogleTest headers
-# (no need anymore, already in system path)
+# GoogleTest headers (no need anymore, already in system path)
 # '-isystem',
 # '/home/wenxuan/src/googletest/googletest/include',
 
-# Work directory
-# '-I', '.',
-
-# Use libc++
+# Use libc++/libstdc++
 # '-stdlib=libc++',
-# Use libstdc++
-'-stdlib=libstdc++'
+'-stdlib=libstdc++',
 
 # Use C++14 standard
 '-std=c++14',

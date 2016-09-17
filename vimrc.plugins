@@ -81,17 +81,9 @@ let g:hardtime_default_on = 0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim Clang Format: format C, C++ and Objective-C code
+" clang-format options can be set int ~/.clang-format file
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Plug 'rhysd/vim-clang-format'
-let g:clang_format#style_options = {
-            \ "BasedOnStyle" : "LLVM",
-            \ "IndentWidth" : 4,
-            \ "AccessModifierOffset" : -4,
-            \ "ColumnLimit" : 80,
-            \ "AllowShortFunctionsOnASingleLine" : "All",
-            \ "AllowShortIfStatementsOnASingleLine" : "true",
-            \ "AlwaysBreakTemplateDeclarations" : "true",
-            \ "Standard" : "Auto" }
 " map to <Leader>cf in C++ code
 autocmd FileType c,cpp,objc,java,js,ts nnoremap <buffer><leader>cf :<C-u>ClangFormat<CR>
 autocmd FileType c,cpp,objc,java,js,ts vnoremap <buffer><leader>cf :ClangFormat<CR>
@@ -126,7 +118,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_enable_signs=1
 let g:syntastic_cpp_compiler = 'clang++'
-let g:syntastic_cpp_compiler_options = '-std=c++17 -stdlib=libstdc++'
+let g:syntastic_cpp_compiler_options = '-std=c++14 -stdlib=libstdc++'
 let g:syntastic_always_populate_loc_list = 1
 if g:isWIN
     let g:syntastic_error_symbol = '×'
