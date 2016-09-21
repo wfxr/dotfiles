@@ -7,9 +7,19 @@ try {
 endsnippet
 
 snippet cls "class..." b
-class ${1:MyClass} {
+class ${1:ClassName} {
 public:
-	${2}
+private:
+};
+endsnippet
+
+# 生成和file同名的类
+snippet class "An entire .h generator" b
+#pragma once
+
+class ${1:`!v substitute(substitute(vim_snippets#Filename('$1','ClassName'),'^.','\u&',''), '_\(\w\)', '\u\1', 'g')`} {
+public:
+
 private:
 	${3}
 };
@@ -18,11 +28,9 @@ endsnippet
 snippet vm "main()..." b
 int main() {
 	$0
-
-	return 0;
 }
 endsnippet
 
 snippet debug "insert debug statement" b
-std::cout<< "[debug] ${0}" << std::endl;
+std::cout << "[debug] ${0}" << std::endl;
 endsnippet

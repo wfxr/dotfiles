@@ -1,8 +1,9 @@
+---
 "BasedOnStyle" : "LLVM"
+"ColumnLimit" : 82
 "IndentWidth" : 4
+"Standard" : "Auto"
 "AccessModifierOffset" : -4
-"ColumnLimit" : 80
 "AllowShortFunctionsOnASingleLine" : "All"
 "AllowShortIfStatementsOnASingleLine" : "true"
 "AlwaysBreakTemplateDeclarations" : "true"
-"Standard" : "Auto"

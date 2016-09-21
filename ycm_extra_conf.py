@@ -9,31 +9,24 @@ flags = [
 '-Wno-variadic-macros',
 '-fexceptions',
 '-DNDEBUG',
+'-std=c++14',
+'-xc++',
 
 # Use std c++ headers
 '-isystem', '/usr/include/c++/5',
 # For Windows
 '-isystem', 'c:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include',
 
-# Use Eigen headers
-# '-isystem', '/home/wenxuan/src/eigen',
+# Project include folder
+'-I', 'include',
 
 # Other headers
-'-isystem', '/usr/include',
+# '-isystem', '/usr/include',
 '-isystem', '/usr/local/include',
-
-# GoogleTest headers (no need anymore, already in system path)
-# '-isystem',
-# '/home/wenxuan/src/googletest/googletest/include',
 
 # Use libc++/libstdc++
 # '-stdlib=libc++',
-'-stdlib=libstdc++',
-
-# Use C++14 standard
-'-std=c++14',
-
-'-x', 'c++',
+# '-stdlib=libstdc++',
 ]
 
 

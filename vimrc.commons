@@ -32,11 +32,14 @@ map <silent> <leader><cr> :noh<cr>
 " These create newlines like o and O but stay in normal mode
 nnoremap <silent> zj o<Esc>k
 nnoremap <silent> zk O<Esc>j
+nnoremap <silent> z<Space> i <Esc>l
 inoremap <silent> <leader>a <Esc>A
 inoremap <silent> <leader>i <Esc>I
 inoremap <silent> <leader>; <Esc>A;<Esc>
+inoremap <silent> <leader>. ->
 inoremap <silent> <leader>o <Esc>o
 inoremap <silent> <leader>{ <Esc>A {<CR>}<Esc>O
+"inoremap <silent> jj <Esc>
 
 " Make j/k/0/$ work as expected on the wrap lines
 noremap  <buffer> <silent> k gk
@@ -76,6 +79,9 @@ vnoremap H gg
 
 " Select pasted text
 noremap vp `[v`]
+
+" Highlight current line
+set cursorline
 
 " Ignore case when searching
 set ignorecase

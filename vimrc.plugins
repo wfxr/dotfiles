@@ -36,15 +36,18 @@ Plug 'tpope/vim-repeat'
 Plug 'jiangmiao/auto-pairs'
 Plug 'powerline/fonts'
 Plug 'Lokaltog/vim-easymotion'
-nmap <leader>f <Plug>(easymotion-s)
-nmap <leader>F <Plug>(easymotion-s2)
-map <leader>/ <Plug>(easymotion-sn)
-omap <leader>/ <Plug>(easymotion-tn)
-map <leader>n <Plug>(easymotion-next)
-map <leader>N <Plug>(easymotion-prev)
-map <c-l> <Plug>(easymotion-lineforward)
+let g:EasyMotion_do_mapping = 0
+let g:EasyMotion_use_upper = 1 " Use uppercase target labels and type as a lower case
+let g:EasyMotion_smartcase = 1
+let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
+nmap f <Plug>(easymotion-sl)
+nmap t <Plug>(easymotion-tl)
+map / <Plug>(easymotion-sn)
+map n <Plug>(easymotion-next)
+map N <Plug>(easymotion-prev)
 map <c-j> <Plug>(easymotion-j)
 map <c-k> <Plug>(easymotion-k)
+map <c-l> <Plug>(easymotion-lineforward)
 map <c-h> <Plug>(easymotion-linebackward)
 Plug 'mbbill/undotree'
 Plug 'mhinz/vim-signify'
@@ -150,7 +153,7 @@ let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_min_num_of_chars_for_completion = 1
 " 添加UltiSnips进行snippet补全
 let g:ycm_use_ultisnips_completer = 1
-" 直接显示补全
+" 直接显示补全（全局类型、变量、宏或函数等补全需要
 let g:ycm_key_invoke_completion = '<C-\>'
 " 补全完成后关闭预览窗口
 let g:ycm_autoclose_preview_window_after_completion = 1
