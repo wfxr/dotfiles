@@ -102,10 +102,10 @@ Plug 'SirVer/ultisnips'
 let g:UltiSnipsExpandTrigger="<leader><tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-f>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
-let g:UltiSnipsSnippetsDir="~/.UltiSnips"
-let g:UltiSnipsSnippetsDir=$HOME.'/.dotfiles/vim/UltiSnips'
+" Additional snippets directory
+"let g:UltiSnipsSnippetsDir="~/.UltiSnips"
 " If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsEditSplit="horizontal"
 Plug 'honza/vim-snippets'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
