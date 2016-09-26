@@ -13,14 +13,11 @@ export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8
 # User configuration
 export PATH="/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 export PATH=~/script/:~/usr/games/:$PATH
-export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:~/src/googletest/googletest/include
-
 export TERM=xterm-256color
 
 source $ZSH/oh-my-zsh.sh
-source $HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh
 
-export EDITOR='nvim'
+export EDITOR='vim'
 export CC='clang'
 export CXX='clang++'
 
@@ -68,3 +65,6 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 antigen theme wfxr/zsh-themes amuse
 
 antigen apply
+
+source ~/.tmuxinator.zsh
+source ~/.vim/plugged/gruvbox/gruvbox_256palette.sh

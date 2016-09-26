@@ -1,6 +1,6 @@
 ---
 "BasedOnStyle" : "LLVM"
-"ColumnLimit" : 82
+"ColumnLimit" : 80
 "IndentWidth" : 4
 "Standard" : "Auto"
 "AccessModifierOffset" : -4

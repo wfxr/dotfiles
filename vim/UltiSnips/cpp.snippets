@@ -6,6 +6,12 @@ try {
 }
 endsnippet
 
+snippet once "add #pragma once to header" b
+#pragma once
+
+
+endsnippet
+
 snippet cls "class..." b
 class ${1:ClassName} {
 public:
@@ -14,7 +20,7 @@ private:
 endsnippet
 
 # 生成和file同名的类
-snippet class "An entire .h generator" b
+snippet classfile "An entire .h generator" b
 #pragma once
 
 class ${1:`!v substitute(substitute(vim_snippets#Filename('$1','ClassName'),'^.','\u&',''), '_\(\w\)', '\u\1', 'g')`} {
@@ -33,4 +39,22 @@ endsnippet
 
 snippet debug "insert debug statement" b
 std::cout << "[debug] ${0}" << std::endl;
+endsnippet
+
+snippet vec "std::vector<T>"
+std::vector<${1:int}>
+endsnippet
+
+snippet pvec "ostream << vector<T>" b
+template <typename T>
+ostream &operator<<(ostream &os, const vector<T> &v) {
+	os << '[';
+	char comma[]{'\0', ' ', '\0'};
+	for (const auto &e : v) {
+		os << comma << e;
+		comma[0] = ',';
+	}
+	return os << ']';
+}
+
 endsnippet
