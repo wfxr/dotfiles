@@ -12,6 +12,7 @@ export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8
 
 # User configuration
 export PATH="/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+export CPLUS_INCLUDE_PATH=/usr/local/include/c++/v1:$CPLUS_INCLUDE_PATH
 export PATH=~/script/:~/usr/games/:$PATH
 export TERM=xterm-256color
 
@@ -49,7 +50,7 @@ bindkey '\e[3~' delete-char
 bindkey '^R' history-incremental-search-backward
 
 # Plugin manager
-source ~/tools/zsh/plugins/antigen/antigen.zsh
+source ~/.antigen.zsh
 # Load the oh-my-zsh's library
 #antigen use oh-my-zsh
 
