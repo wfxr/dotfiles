@@ -50,7 +50,7 @@ bindkey '\e[3~' delete-char
 bindkey '^R' history-incremental-search-backward
 
 # Plugin manager
-source ~/.antigen.zsh
+source ~/.antigen/antigen.zsh
 # Load the oh-my-zsh's library
 #antigen use oh-my-zsh
 
@@ -67,5 +67,5 @@ antigen theme wfxr/zsh-themes amuse
 
 antigen apply
 
-source ~/.tmuxinator.zsh
 source ~/.vim/plugged/gruvbox/gruvbox_256palette.sh
+source ~/.tmuxinator.zsh
