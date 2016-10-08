@@ -13,6 +13,7 @@ flags = [
 '-xc++',
 
 # Use std c++ headers
+'-isystem', '/usr/local/include/c++/v1',
 '-isystem', '/usr/include/c++/5',
 # For Windows
 '-isystem', 'c:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include',
