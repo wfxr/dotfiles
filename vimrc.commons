@@ -32,7 +32,7 @@ map <silent> <leader><cr> :noh<cr>
 " These create newlines like o and O but stay in normal mode
 nnoremap <silent> zj o<Esc>k
 nnoremap <silent> zk O<Esc>j
-nnoremap <silent> z<Space> i <Esc>l
+nnoremap <silent> <Space> i <Esc>l
 inoremap <silent> <leader>a <Esc>A
 inoremap <silent> <leader>i <Esc>I
 inoremap <silent> <leader>; <Esc>A;<Esc>
