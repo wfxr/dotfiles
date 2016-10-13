@@ -42,9 +42,9 @@ let g:EasyMotion_smartcase = 1
 let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
 nmap <leader>f <Plug>(easymotion-sl)
 vmap <leader>f <Plug>(easymotion-sl)
-map / <Plug>(easymotion-sn)
-map n <Plug>(easymotion-next)
-map N <Plug>(easymotion-prev)
+map <leader>/ <Plug>(easymotion-sn)
+map <leader>n <Plug>(easymotion-next)
+map <leader>N <Plug>(easymotion-prev)
 map <c-j> <Plug>(easymotion-j)
 map <c-k> <Plug>(easymotion-k)
 map <c-l> <Plug>(easymotion-lineforward)
@@ -74,6 +74,8 @@ let g:lt_quickfix_list_toggle_map = '<leader>2'
 Plug 'godlygeek/tabular'
 Plug 'skammer/vim-css-color'
 Plug 'suan/vim-instant-markdown'
+Plug 'plasticboy/vim-markdown'
+"let g:vim_markdown_conceal = 0     "取消隐藏代码段语言标记
 Plug 'tpope/vim-sensible'
 Plug 'Yggdroot/indentLine'
 let g:indentLine_color_term = 239
@@ -121,7 +123,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_enable_signs=1
 let g:syntastic_cpp_compiler = 'clang++'
-let g:syntastic_cpp_compiler_options = '-std=c++14 -stdlib=libstdc++'
+let g:syntastic_cpp_compiler_options = '-std=c++14'
 let g:syntastic_always_populate_loc_list = 1
 if g:isWIN
     let g:syntastic_error_symbol = '×'

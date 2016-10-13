@@ -37,12 +37,27 @@ int main() {
 }
 endsnippet
 
+snippet main "main(int argc, char **argv)..." b
+int main(int argc, char **argv) {
+	$0
+}
+endsnippet
+
+
 snippet debug "insert debug statement" b
 std::cout << "[debug] ${0}" << std::endl;
 endsnippet
 
-snippet vec "std::vector<T>"
-std::vector<${1:int}>
+snippet vec "std::vector<T>" i
+std::vector<${1:int}> $1
+endsnippet
+
+snippet cs "const string &" i
+const string &$1
+endsnippet
+
+snippet ss "std::string" i
+std::string
 endsnippet
 
 snippet pvec "ostream << vector<T>" b

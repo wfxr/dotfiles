@@ -28,9 +28,11 @@ alias rcdn='rcdn -v'
 alias shutdown='sudo shutdown -h now'
 alias ai='sudo apt-get install'
 alias au='sudo apt-get update'
-alias xx='~/tools/xx-net/start.sh'
+alias xx='~/tools/xx-net/start'
 alias vscode='~/tools/VSCode-linux-x64/Code'
 alias hhkb='setxkbmap -option "ctrl:swapcaps"'
+alias disable_touch_pad='sudo modprobe -r psmouse'   # 禁用触控板
+alias enable_touch_pad='sudo modprobe psmouse'       # 启用触控板
 alias mkycm='cp ~/.dotfiles/ycm_extra_conf.py .ycm_extra_conf.py'
 
 alias evalclip='eval `xclip -o`'
@@ -50,7 +52,7 @@ bindkey '\e[3~' delete-char
 bindkey '^R' history-incremental-search-backward
 
 # Plugin manager
-source ~/.antigen.zsh
+source ~/.antigen/antigen.zsh
 # Load the oh-my-zsh's library
 #antigen use oh-my-zsh
 
@@ -67,5 +69,5 @@ antigen theme wfxr/zsh-themes amuse
 
 antigen apply
 
-source ~/.tmuxinator.zsh
 source ~/.vim/plugged/gruvbox/gruvbox_256palette.sh
+source ~/.tmuxinator.zsh
