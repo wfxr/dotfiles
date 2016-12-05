@@ -56,7 +56,7 @@ Plug 'terryma/vim-expand-region'
 map + <Plug>(expand_region_expand)
 map - <Plug>(expand_region_shrink)
 Plug 'ntpeters/vim-better-whitespace'
-nnoremap <Left> :StripWhitespace<CR>
+nnoremap <leader>sw :StripWhitespace<CR>
 Plug 'tpope/vim-fugitive'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'scrooloose/nerdcommenter'
