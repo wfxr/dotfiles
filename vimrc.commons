@@ -38,6 +38,7 @@ inoremap <silent> <leader>i <Esc>I
 inoremap <silent> <leader>; <Esc>A;<Esc>
 inoremap <silent> <leader>. ->
 inoremap <silent> <leader>o <Esc>o
+inoremap <silent> <leader>, <Esc>A,<Esc>
 inoremap <silent> <leader>{ <Esc>A {<CR>}<Esc>O
 "inoremap <silent> jj <Esc>
 
