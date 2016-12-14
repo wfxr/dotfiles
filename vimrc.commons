@@ -10,6 +10,22 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 
+" Highlight current line
+set cursorline
+
+" Ignore case when searching
+set ignorecase
+
+" When searching try to be smart about cases
+set smartcase
+
+" No fold when vim start up
+set nofoldenable
+
+" Set fold method
+set foldmethod=indent
+set foldlevel=0
+
 " With a map leader it's possible to do extra key combinations
 let mapleader = ","
 let g:mapleader = ","
@@ -21,10 +37,6 @@ cnoremap <C-n> <Down>
 
 " Using <SPACE> to fold or unfold
 nnoremap <leader><SPACE> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
-
-" Treat long line as break lines (useful when move around int them)
-"map j gj
-"map k gk
 
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
@@ -40,7 +52,6 @@ inoremap <silent> <leader>. ->
 inoremap <silent> <leader>o <Esc>o
 inoremap <silent> <leader>, <Esc>A,<Esc>
 inoremap <silent> <leader>{ <Esc>A {<CR>}<Esc>O
-"inoremap <silent> jj <Esc>
 
 " Make j/k/0/$ work as expected on the wrap lines
 noremap  <buffer> <silent> k gk
@@ -80,22 +91,6 @@ vnoremap H gg
 
 " Select pasted text
 noremap vp `[v`]
-
-" Highlight current line
-set cursorline
-
-" Ignore case when searching
-set ignorecase
-
-" When searching try to be smart about cases
-set smartcase
-
-" No fold when vim start up
-set nofoldenable
-
-" Set fold method
-set foldmethod=indent
-set foldlevel=0
 
 " Emacs-style start of line / end of line navigation
 nnoremap <silent> <C-b> ^
