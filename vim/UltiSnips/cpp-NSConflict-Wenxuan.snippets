@@ -48,19 +48,19 @@ snippet debug "insert debug statement" b
 std::cout << "[debug] ${0}" << std::endl;
 endsnippet
 
-snippet sv "std::vector<T>" i
-std::vector<${1:int}>$2
+snippet vec "std::vector<T>" i
+std::vector<${1:int}> $1
 endsnippet
 
-snippet cs "const std::string &" i
-const std::string &$1
+snippet cs "const string &" i
+const string &$1
 endsnippet
 
 snippet ss "std::string" i
-std::string$1
+std::string
 endsnippet
 
-snippet pvec "ostream << vector<T>" b
+snippet outputvector "ostream << vector<T>" b
 template <typename T>
 ostream &operator<<(ostream &os, const vector<T> &v) {
 	os << '[';
@@ -72,4 +72,10 @@ ostream &operator<<(ostream &os, const vector<T> &v) {
 	return os << ']';
 }
 
+endsnippet
+
+snippet /* "block comment" b
+/*
+ * $1
+ */
 endsnippet

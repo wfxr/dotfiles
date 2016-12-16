@@ -98,7 +98,7 @@ set t_ut=
 " Home away from home. We store some config files and snippets here and the
 " whole dotfiles dir is a git repo. Should be the last entry in rtp (for
 " UltiSnips).
-set rtp+=$HOME/.dotfiles/vim
+"set rtp+=$HOME/.dotfiles/vim
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Key mappings
