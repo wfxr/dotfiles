@@ -65,7 +65,7 @@ antigen bundle sudo
 antigen bundle common-aliases
 antigen bundle zsh-users/zsh-syntax-highlighting
 
-antigen theme wfxr/zsh-themes amuse
+antigen theme wfxr/zsh-themes amuse2
 
 antigen apply
 
