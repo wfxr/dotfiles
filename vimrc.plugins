@@ -66,7 +66,7 @@ Plug 'a.vim'
 nmap <leader>aa :A<CR>
 nmap <leader>as :AS<CR>
 Plug 'wfxr/BufferSwitch'
-Plug 'quickfix/quickfix'
+"Plug 'quickfix/quickfix'
 Plug 'Valloric/ListToggle'
 let g:lt_height = 10
 let g:lt_location_list_toggle_map = '<leader>1'
