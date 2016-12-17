@@ -6,6 +6,7 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
+export LC_ALL=C
 
 # 清除所有本地化设置
 export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8
@@ -71,3 +72,7 @@ antigen apply
 
 source ~/.vim/plugged/gruvbox/gruvbox_256palette.sh
 source ~/.tmuxinator.zsh
+
+if [ -f ~/.zshrc_local ]; then
+    source ~/.zshrc_local
+fi
