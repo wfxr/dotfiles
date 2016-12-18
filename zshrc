@@ -6,7 +6,6 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
-export LC_ALL=C
 
 # 清除所有本地化设置
 export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8
