@@ -10,8 +10,9 @@ else
     let g:isWIN = 0
 endif
 
-source ~/.vimrc.commons
 source ~/.vimrc.plugins
+" source after .vimrc.plugins to overwrite some plugins default key map
+source ~/.vimrc.commons
 
 if has("gui_running")
     source ~/.vimrc.gui
