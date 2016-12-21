@@ -81,3 +81,6 @@ fi
 
 source ~/.vim/plugged/gruvbox/gruvbox_256palette.sh
 source ~/.tmuxinator.zsh
+
+export NVM_DIR="/home/wenxuan/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
