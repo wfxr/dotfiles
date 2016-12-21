@@ -99,3 +99,4 @@ vnoremap <silent> <C-b> ^
 vnoremap <silent> <C-e> $
 inoremap <silent> <C-b> <esc>^i
 inoremap <silent> <C-e> <esc>$a
+inoremap <silent> <C-u> <esc>cc
