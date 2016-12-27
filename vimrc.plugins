@@ -75,6 +75,7 @@ Plug 'godlygeek/tabular'
 Plug 'skammer/vim-css-color'
 Plug 'suan/vim-instant-markdown'
 Plug 'pangloss/vim-javascript'
+Plug 'moll/vim-node'
 Plug 'plasticboy/vim-markdown'
 "let g:vim_markdown_conceal = 0     "取消隐藏代码段语言标记
 Plug 'tpope/vim-sensible'
