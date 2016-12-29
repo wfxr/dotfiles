@@ -164,7 +164,7 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 " Disable completion previews with function prototypes, etc.
 set completeopt=menu
 let g:ycm_add_preview_tocompleteopt = 1
-" 关闭js文件补全（需要配置文件，类似C++，麻烦）
+" 关闭js文件补全（需要js项目配置文件，类似C++，麻烦）
 let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1}
 "nnoremap <leader>g :YcmCompleter GoTo<CR>
 nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
