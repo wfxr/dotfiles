@@ -65,9 +65,22 @@ antigen bundle sudo
 antigen bundle common-aliases
 antigen bundle zsh-users/zsh-syntax-highlighting
 
-antigen theme wfxr/zsh-themes amuse
+antigen theme denysdovhan/spaceship-zsh-theme spaceship
+#To disable default <<< NORMAL mode indicator in right prompt
+export RPS1="%{$reset_color%}"
 
 antigen apply
 
+if [ -f ~/.zshrc_theme_extra ]; then
+    source ~/.zshrc_theme_extra
+fi
+
+if [ -f ~/.zshrc_local ]; then
+    source ~/.zshrc_local
+fi
+
 source ~/.vim/plugged/gruvbox/gruvbox_256palette.sh
 source ~/.tmuxinator.zsh
+
+export NVM_DIR="/home/wenxuan/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

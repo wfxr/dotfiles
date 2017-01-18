@@ -66,7 +66,7 @@ Plug 'a.vim'
 nmap <leader>aa :A<CR>
 nmap <leader>as :AS<CR>
 Plug 'wfxr/BufferSwitch'
-Plug 'quickfix/quickfix'
+"Plug 'quickfix/quickfix'
 Plug 'Valloric/ListToggle'
 let g:lt_height = 10
 let g:lt_location_list_toggle_map = '<leader>1'
@@ -74,6 +74,8 @@ let g:lt_quickfix_list_toggle_map = '<leader>2'
 Plug 'godlygeek/tabular'
 Plug 'skammer/vim-css-color'
 Plug 'suan/vim-instant-markdown'
+Plug 'pangloss/vim-javascript'
+Plug 'moll/vim-node'
 Plug 'plasticboy/vim-markdown'
 "let g:vim_markdown_conceal = 0     "取消隐藏代码段语言标记
 Plug 'tpope/vim-sensible'
@@ -162,6 +164,8 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 " Disable completion previews with function prototypes, etc.
 set completeopt=menu
 let g:ycm_add_preview_tocompleteopt = 1
+" 关闭js文件补全（需要js项目配置文件，类似C++，麻烦）
+let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1}
 "nnoremap <leader>g :YcmCompleter GoTo<CR>
 nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
