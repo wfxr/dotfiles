@@ -1,4 +1,6 @@
-﻿<!h::Send {Left}
+﻿<!`::Suspend
+
+<!h::Send {Left}
 <!j::Send {Down}
 <!k::Send {Up}
 <!l::Send {Right}
@@ -61,7 +63,7 @@ LWin & j::Send {Volume_Down}
 LWin & m::Send {Volume_Mute}		; 静音
 
 ; 网易云音乐
-; LWin & XButton2::Run S:\Tools\NetEase CloudMusic\cloudmusic.exe	
+; LWin & XButton2::Run S:\Tools\NetEase CloudMusic\cloudmusic.exe
 ; LWin & XButton1::Send ^!p		; 暂停
 LWin & XButton2::Send ^!{Left}		; 上一曲
 LWin & XButton1::Send ^!{Right}		; 下一曲

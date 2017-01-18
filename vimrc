@@ -10,8 +10,9 @@ else
     let g:isWIN = 0
 endif
 
-source ~/.vimrc.commons
 source ~/.vimrc.plugins
+" source after .vimrc.plugins to overwrite some plugins default key map
+source ~/.vimrc.commons
 
 if has("gui_running")
     source ~/.vimrc.gui
@@ -98,7 +99,7 @@ set t_ut=
 " Home away from home. We store some config files and snippets here and the
 " whole dotfiles dir is a git repo. Should be the last entry in rtp (for
 " UltiSnips).
-set rtp+=$HOME/.dotfiles/vim
+"set rtp+=$HOME/.dotfiles/vim
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Key mappings

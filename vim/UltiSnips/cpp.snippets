@@ -48,16 +48,16 @@ snippet debug "insert debug statement" b
 std::cout << "[debug] ${0}" << std::endl;
 endsnippet
 
-snippet vec "std::vector<T>" i
-std::vector<${1:int}> $1
+snippet sv "std::vector<T>" i
+std::vector<${1:int}>$2
 endsnippet
 
-snippet cs "const string &" i
-const string &$1
+snippet cs "const std::string &" i
+const std::string &$1
 endsnippet
 
 snippet ss "std::string" i
-std::string
+std::string$1
 endsnippet
 
 snippet pvec "ostream << vector<T>" b
