@@ -45,7 +45,7 @@
 ^!t::Run cmd.exe    ; 控制台
 
 LWin & v::Run S:\Tools\Vim\vim80\gvim.exe  ; Vim
-LWin & w::Run www.google.com/ncr  ; Chrome
+LWin & w::Run www.baidu.com  ; Chrome
 LWin & q::Run C:\Program Files (x86)\Tencent\QQ\Bin\QQScLauncher.exe  ; QQ
 LWin & t::Run cmd.exe    ; 控制台
 LWin & c::Run calc.exe   ; 计算器
@@ -66,6 +66,8 @@ LWin & m::Send {Volume_Mute}		; 静音
 LWin & XButton2::Send ^!{Left}		; 上一曲
 LWin & XButton1::Send ^!{Right}		; 下一曲
 
+; 暂停/继续快捷键位
+<!`::suspend
 ; # --- Win
 ; ! --- Alt
 ; ^ --- Ctrl
