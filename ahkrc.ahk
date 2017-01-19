@@ -68,8 +68,6 @@ LWin & m::Send {Volume_Mute}		; 静音
 LWin & XButton2::Send ^!{Left}		; 上一曲
 LWin & XButton1::Send ^!{Right}		; 下一曲
 
-; 暂停/继续快捷键位
-<!`::suspend
 ; # --- Win
 ; ! --- Alt
 ; ^ --- Ctrl
