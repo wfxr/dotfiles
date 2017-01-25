@@ -93,10 +93,6 @@ vnoremap H gg
 noremap vp `[v`]
 
 " Emacs-style start of line / end of line navigation
-nnoremap <silent> <C-b> ^
-nnoremap <silent> <C-e> $
-vnoremap <silent> <C-b> ^
-vnoremap <silent> <C-e> $
-inoremap <silent> <C-b> <esc>^i
-inoremap <silent> <C-e> <esc>$a
 inoremap <silent> <C-u> <esc>cc
+inoremap <silent> <C-a> <esc>^i
+inoremap <silent> <C-e> <esc>$a
