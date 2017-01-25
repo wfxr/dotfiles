@@ -34,6 +34,8 @@ alias hhkb='setxkbmap -option "ctrl:swapcaps"'
 alias disable_touch_pad='sudo modprobe -r psmouse'   # 禁用触控板
 alias enable_touch_pad='sudo modprobe psmouse'       # 启用触控板
 alias mkycm='cp ~/.dotfiles/ycm_extra_conf.py .ycm_extra_conf.py'
+alias em='emacs -nw'
+alias emw=emacs
 
 alias evalclip='eval `xclip -o`'
 

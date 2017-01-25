@@ -42,8 +42,9 @@ values."
      better-defaults
      emacs-lisp
      clojure
-     ;; git
-     ;; markdown
+     c-c++
+     git
+     markdown
      org
      ;; (shell :variables
      ;;        shell-default-height 30
@@ -251,7 +252,7 @@ values."
    ;; If non nil line numbers are turned on in all `prog-mode' and `text-mode'
    ;; derivatives. If set to `relative', also turns on relative line numbers.
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers t
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil
@@ -301,7 +302,10 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  (unless (display-graphic-p) (setq linum-format "%d "))  ;; 增加Terminal下Line number到Text的距离
   (setq clojure-enable-fancify-symbols t)
+  (define-key evil-normal-state-map (kbd "M-j") (kbd "15j"))
+  (define-key evil-normal-state-map (kbd "M-k") (kbd "15k"))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

@@ -19,7 +19,7 @@ Plug 'mattn/vim-textobj-url'
 Plug 'reedes/vim-pencil'
 Plug 'morhetz/gruvbox'
 let g:gruvbox_italic=1
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
 let g:airline_theme='gruvbox'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
