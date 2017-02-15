@@ -11,9 +11,9 @@ export ZSH=~/.oh-my-zsh
 export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8
 
 # User configuration
-export PATH="/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/usr/games:/usr/local/games
+export PATH=~/script/:$PATH
 export CPLUS_INCLUDE_PATH=/usr/local/include/c++/v1:$CPLUS_INCLUDE_PATH
-export PATH=~/script/:~/usr/games/:$PATH
 export TERM=xterm-256color
 
 source $ZSH/oh-my-zsh.sh
@@ -33,6 +33,8 @@ alias vscode='~/tools/VSCode-linux-x64/Code'
 alias hhkb='setxkbmap -option "ctrl:swapcaps"'
 alias disable_touch_pad='sudo modprobe -r psmouse'   # 禁用触控板
 alias enable_touch_pad='sudo modprobe psmouse'       # 启用触控板
+alias start_global_proxy='source ~/tools/scripts/start_global_proxy'
+alias stop_global_proxy='source ~/tools/scripts/stop_global_proxy'
 alias mkycm='cp ~/.dotfiles/ycm_extra_conf.py .ycm_extra_conf.py'
 alias em='emacs -nw'
 alias emw=emacs
