@@ -3,6 +3,7 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
 
+Plug 'tpope/vim-sensible'
 Plug 'terryma/vim-smooth-scroll'
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
@@ -35,20 +36,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'jiangmiao/auto-pairs'
 Plug 'powerline/fonts'
-Plug 'Lokaltog/vim-easymotion'
-let g:EasyMotion_do_mapping = 0
-let g:EasyMotion_use_upper = 1 " Use uppercase target labels and type as a lower case
-let g:EasyMotion_smartcase = 1
-let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
-nmap <leader>f <Plug>(easymotion-sl)
-vmap <leader>f <Plug>(easymotion-sl)
-map <leader>/ <Plug>(easymotion-sn)
-map <leader>n <Plug>(easymotion-next)
-map <leader>N <Plug>(easymotion-prev)
-map <c-j> <Plug>(easymotion-j)
-map <c-k> <Plug>(easymotion-k)
-map <c-l> <Plug>(easymotion-lineforward)
-map <c-h> <Plug>(easymotion-linebackward)
 Plug 'mbbill/undotree'
 Plug 'mhinz/vim-signify'
 Plug 'osyo-manga/vim-over'
@@ -78,7 +65,6 @@ Plug 'pangloss/vim-javascript'
 Plug 'moll/vim-node'
 Plug 'plasticboy/vim-markdown'
 "let g:vim_markdown_conceal = 0     "取消隐藏代码段语言标记
-Plug 'tpope/vim-sensible'
 Plug 'Yggdroot/indentLine'
 let g:indentLine_color_term = 239
 let g:indentLine_color_gui = '#4E4E4E'
@@ -168,6 +154,51 @@ let g:ycm_add_preview_tocompleteopt = 1
 let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1}
 "nnoremap <leader>g :YcmCompleter GoTo<CR>
 nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Cursor move and incremental search
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Plug 'easymotion/vim-easymotion'
+let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
+" <Leader>f{char} to move to {char}
+map  <Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader>f <Plug>(easymotion-overwin-f)
+" s{char}{char} to move to {char}{char}
+nmap s <Plug>(easymotion-overwin-f2)
+" Move to line
+map <Leader>l <Plug>(easymotion-bd-jk)
+nmap <Leader>l <Plug>(easymotion-overwin-line)
+" Move to word
+map  <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>w <Plug>(easymotion-overwin-w)
+Plug 'haya14busa/incsearch.vim'
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+set hlsearch
+let g:incsearch#auto_nohlsearch = 1
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
+map *  <Plug>(incsearch-nohl-*)
+map #  <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)
+Plug 'haya14busa/incsearch-easymotion.vim'
+Plug 'haya14busa/incsearch-fuzzy.vim'
+map z/ <Plug>(incsearch-fuzzy-/)
+map z? <Plug>(incsearch-fuzzy-?)
+map zg/ <Plug>(incsearch-fuzzy-stay)
+" 带跳转标记的跨窗口模糊搜索
+function! s:config_easyfuzzymotion(...) abort
+  return extend(copy({
+  \   'converters': [incsearch#config#fuzzyword#converter()],
+  \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
+  \   'keymap': {"\<CR>": '<Over>(easymotion)'},
+  \   'is_expr': 0,
+  \   'is_stay': 1
+  \ }), get(a:, 1, {}))
+endfunction
+noremap <silent><expr> <leader>/ incsearch#go(<SID>config_easyfuzzymotion())
 
 " Add plugins to &runtimepath
 call plug#end()
