@@ -8,3 +8,4 @@ mklink %USERPROFILE%\.vsvimrc               %~dp0vsvimrc
 mklink %USERPROFILE%\.ycm_extra_conf.py     %~dp0ycm_extra_conf.py
 mklink %USERPROFILE%\.clang-format          %~dp0clang-format
 mklink %USERPROFILE%\.ahkrc.ahk             %~dp0ahkrc.ahk
+mklink %USERPROFILE%\.spacemacs             %~dp0spacemacs
