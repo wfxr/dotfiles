@@ -1,6 +1,3 @@
-" Cancel compatible to avoid some bugs and limitations.
-set nocompatible
-
 " Set n lines to the cursor - when moving vertically using j/k
 set scrolloff=5
 
@@ -83,16 +80,5 @@ inoremap <leader>p <Esc>"+pa
 noremap <leader>P "+P
 inoremap <leader>P <Esc>"+Pi
 
-" fast jump
-nnoremap L G$
-vnoremap L G$
-nnoremap H gg
-vnoremap H gg
-
 " Select pasted text
 noremap vp `[v`]
-
-" Emacs-style start of line / end of line navigation
-inoremap <silent> <C-u> <esc>cc
-inoremap <silent> <C-a> <esc>^i
-inoremap <silent> <C-e> <esc>$a
