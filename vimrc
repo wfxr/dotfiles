@@ -10,9 +10,11 @@ else
     let g:isWIN = 0
 endif
 
-source ~/.vimrc.plugins
-" source after .vimrc.plugins to overwrite some plugins default key map
+" Cancel compatible to avoid some bugs and limitations.
+set nocompatible
+
 source ~/.vimrc.commons
+source ~/.vimrc.plugins
 
 if has("gui_running")
     source ~/.vimrc.gui
