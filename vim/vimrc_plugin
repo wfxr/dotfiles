@@ -2,8 +2,10 @@
 " Vim Plug: A minimalist Vim plugin manager.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
-
-Plug 'tpope/vim-sensible'
+" no nead for nvim
+if !has('nvim')
+    Plug 'tpope/vim-sensible'
+endif
 Plug 'terryma/vim-smooth-scroll'
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
@@ -71,6 +73,14 @@ let g:indentLine_color_gui = '#4E4E4E'
 map <leader>il :IndentLinesToggle<CR>
 Plug 'takac/vim-hardtime'
 let g:hardtime_default_on = 0
+
+Plug 'elzr/vim-json', { 'for': 'json' }
+
+Plug 'guns/vim-clojure-static',      { 'for': 'clojure' }
+Plug 'luochen1990/rainbow',          { 'for': 'clojure' }
+Plug 'tpope/vim-fireplace',          { 'for': 'clojure' }
+Plug 'vim-scripts/paredit.vim',      { 'for': 'clojure' }
+Plug 'venantius/vim-cljfmt',         { 'for': 'clojure' }
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim Clang Format: format C, C++ and Objective-C code
