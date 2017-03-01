@@ -13,11 +13,15 @@ endif
 " Cancel compatible to avoid some bugs and limitations.
 set nocompatible
 
-source ~/.vimrc.commons
-source ~/.vimrc.plugins
+source ~/.vimrc_common
+source ~/.vimrc_plugin
 
 if has("gui_running")
     source ~/.vimrc.gui
+endif
+
+if has("termguicolors") && has("nvim")
+    set termguicolors
 endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -93,10 +97,12 @@ set fileformat=unix
 set fileformats=unix,dos,mac
 set diffopt=vertical
 
-" disable Background Color Erase (BCE) so that color schemes
-" render properly when inside 256-color tmux and GNU screen.
-" see also http://snk.tuxfamily.org/log/vim-256color-bce.html
-set t_ut=
+"" disable Background Color Erase (BCE) so that color schemes
+"" render properly when inside 256-color tmux and GNU screen.
+"" see also http://snk.tuxfamily.org/log/vim-256color-bce.html
+if !has("nvim")
+    set t_ut=
+endif
 
 " Home away from home. We store some config files and snippets here and the
 " whole dotfiles dir is a git repo. Should be the last entry in rtp (for
@@ -127,4 +133,5 @@ noremap <leader>sa zg
 noremap <leader>s? z=
 
 colorscheme gruvbox
+"colorscheme solarized
 set background=dark

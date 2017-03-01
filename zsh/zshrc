@@ -14,6 +14,9 @@ export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8
 export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/usr/games:/usr/local/games
 export PATH=~/script/:$PATH
 export CPLUS_INCLUDE_PATH=/usr/local/include/c++/v1:$CPLUS_INCLUDE_PATH
+#alias tmux="env TERM=tmux-256color tmux"
+#alias tmux="env TERM=xterm-256color-italic tmux"
+#export TERM=xterm-256color-italic
 export TERM=xterm-256color
 
 source $ZSH/oh-my-zsh.sh
@@ -38,6 +41,7 @@ alias stop_global_proxy='source ~/tools/scripts/stop_global_proxy'
 alias mkycm='cp ~/.dotfiles/ycm_extra_conf.py .ycm_extra_conf.py'
 alias em='emacs -nw'
 alias emw=emacs
+alias vi='/usr/bin/vim'
 
 alias evalclip='eval `xclip -o`'
 
@@ -56,7 +60,7 @@ bindkey '\e[3~' delete-char
 bindkey '^R' history-incremental-search-backward
 
 # Plugin manager
-source ~/.antigen/antigen.zsh
+source ~/.zsh/antigen/antigen.zsh
 # Load the oh-my-zsh's library
 #antigen use oh-my-zsh
 
@@ -68,6 +72,7 @@ antigen bundle vi-mode
 antigen bundle sudo
 antigen bundle common-aliases
 antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle wfxr/tmuxinator
 
 antigen theme denysdovhan/spaceship-zsh-theme spaceship
 #To disable default <<< NORMAL mode indicator in right prompt
@@ -84,7 +89,6 @@ if [ -f ~/.zshrc_local ]; then
 fi
 
 source ~/.vim/plugged/gruvbox/gruvbox_256palette.sh
-source ~/.tmuxinator.zsh
 
 export NVM_DIR="/home/wenxuan/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
