@@ -1,4 +1,4 @@
-sudo apt-get remove -y thunderbird
+sudo apt-get remove --purge -y thunderbird
 sudo apt-get update
 sudo apt-get -y upgrade
 sudo apt-get -y dist-upgrade
