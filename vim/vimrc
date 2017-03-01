@@ -17,7 +17,7 @@ source ~/.vimrc_common
 source ~/.vimrc_plugin
 
 if has("gui_running")
-    source ~/.vimrc.gui
+    source ~/.vimrc_gui
 endif
 
 if has("termguicolors") && has("nvim")

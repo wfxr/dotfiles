@@ -65,3 +65,6 @@ sudo apt-get -y install libnss3-tools
 sudo apt-get -y install tree
 sudo apt-get -y install autojump
 sudo apt-get -y install kdiff3
+
+# Compiz
+sudo apt-get -y install compiz compizconfig-settings-manager compiz-plugins compiz-plugins-extra

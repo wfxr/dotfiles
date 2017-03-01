@@ -4,14 +4,23 @@ set guioptions-=r
 set guioptions-=L
 set guitablabel=%M\ %t
 
+"let font_name="Inconsolata-g for Powerline"
+let font_name="Fira for Powerline 16"
+"let font_size=16
+"let font=&font_name &font_size
+
 if g:isWIN
-    set guifont=Inconsolata-g\ for\ Powerline:h16:cANSI
+    set guifont=Fira\ for\ Powerline:h16:cANSI
     " Request after changing the version of language
     source $VIMRUNTIME/delmenu.vim
     source $VIMRUNTIME/menu.vim
     " Avoid messy code under console
     language messages en_US
 else
-    set guifont=Inconsolata-g\ for\ Powerline\ 16
+    "set guifont=Inconsolata-g\ for\ Powerline\ 16
 endif
+
+" set guifont=font_name 不会将font_name视为变量
+"let &guifont=font_name
+set guifont=Inconsolata-g\ for\ Powerline\ 16
 

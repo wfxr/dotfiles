@@ -14,8 +14,8 @@ if [[ -a ~/.zshrc_theme_extra ]]; then
   mv ~/.zshrc_theme_extra ~/.zshrc_theme_extra.bak
 fi
 
-ln -s $script_dir/zsh/zshrc ~/.zshrc
-ln -s $script_dir/zsh/zshrc_theme_extra ~/.zshrc_theme_extra
+ln -sf $script_dir/zsh/zshrc ~/.zshrc
+ln -sf $script_dir/zsh/zshrc_theme_extra ~/.zshrc_theme_extra
 
 # zsh - antigen
 mkdir -p ~/.antigen
@@ -25,6 +25,13 @@ if [[ ! -a ~/.antigen/antigen ]]; then
 fi
 
 # vim
+mkdir -p ~/.vim/autoload
+
+if [[ ! -a ~/.vim/autoload/plug.vim ]]; then
+  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi
+
 if [[ -a ~/.vimrc ]]; then
   mv ~/.vimrc ~/.vimrc.bak
 fi
@@ -41,20 +48,20 @@ if [[ -a ~/.vimrc_plugin ]]; then
   mv ~/.vimrc_plugin ~/.vimrc_plugin.bak
 fi
 
-ln -s $script_dir/vim/vimrc ~/.vimrc
-ln -s $script_dir/vim/vimrc_gui ~/.vimrc_gui
-ln -s $script_dir/vim/vimrc_common ~/.vimrc_common
-ln -s $script_dir/vim/vimrc_plugin ~/.vimrc_plugin
+ln -sf $script_dir/vim/vimrc ~/.vimrc
+ln -sf $script_dir/vim/vimrc_gui ~/.vimrc_gui
+ln -sf $script_dir/vim/vimrc_common ~/.vimrc_common
+ln -sf $script_dir/vim/vimrc_plugin ~/.vimrc_plugin
 
 # nvim
-ln -sf ~/.vim ~/.config/nvim
-ln -sf ~/.vimrc ~/.config/nvim/init.vim
+ln -sff ~/.vim ~/.config/nvim
+ln -sff ~/.vimrc ~/.config/nvim/init.vim
 
 # emacs
 if [[ -a ~/.spacemacs ]]; then
     mv ~/.spacemacs ~/.spacemacs.bak
 fi
-ln -s $script_dir/emacs/spacemacs ~/.spacemacs
+ln -sf $script_dir/emacs/spacemacs ~/.spacemacs
 
 if [[ ! -a ~/.emacs.d || ! -a ~/.emacs.d/spacemacs.mk ]]; then
     git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
@@ -65,7 +72,7 @@ if [[ -a ~/.tmux.conf ]]; then
   mv ~/.tmux.conf ~/.tmux.conf.bak
 fi
 
-ln -s $script_dir/tmux/tmux.conf ~/.tmux.conf
+ln -sf $script_dir/tmux/tmux.conf ~/.tmux.conf
 
 # tmux - tpm
 if [[ ! -a ~/.tmux/plugins/tpm ]]; then
