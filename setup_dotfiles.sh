@@ -6,9 +6,6 @@ script_dir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 # -p says to create the dir if it doesn't exist already.
 mkdir -p ~/.config
 
-# zsh
-mkdir -p ~/.zsh
-
 if [[ -a ~/.zshrc ]]
 then
   mv ~/.zshrc ~/.zshrc.bak
@@ -23,10 +20,11 @@ ln -s $script_dir/zsh/zshrc ~/.zshrc
 ln -s $script_dir/zsh/zshrc_theme_extra ~/.zshrc_theme_extra
 
 # zsh - antigen
+mkdir -p ~/.antigen
 
-if [[ ! -a ~/.zsh/antigen ]]
+if [[ ! -a ~/.antigen/antigen ]]
 then
-  git clone https://github.com/zsh-users/antigen.git $HOME/.zsh/antigen
+  git clone https://github.com/zsh-users/antigen.git ~/.antigen/antigen
 fi
 
 # vim
@@ -58,8 +56,6 @@ ln -s $script_dir/vim/vimrc_plugin ~/.vimrc_plugin
 # nvim
 ln -sf ~/.vim ~/.config/nvim
 ln -sf ~/.vimrc ~/.config/nvim/init.vim
-sudo pip2 install --upgrade neovim
-sudo pip3 install --upgrade neovim
 
 # tmux
 if [[ -a ~/.tmux ]]

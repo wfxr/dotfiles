@@ -27,6 +27,7 @@ export CXX='clang++'
 
 alias rcup='rcup -v'
 alias rcdn='rcdn -v'
+alias dot='cd ~/.dotfiles'
 
 alias shutdown='sudo shutdown -h now'
 alias ai='sudo apt-get install'
@@ -60,7 +61,7 @@ bindkey '\e[3~' delete-char
 bindkey '^R' history-incremental-search-backward
 
 # Plugin manager
-source ~/.zsh/antigen/antigen.zsh
+source ~/.antigen/antigen/antigen.zsh
 # Load the oh-my-zsh's library
 #antigen use oh-my-zsh
 
