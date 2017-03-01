@@ -11,6 +11,6 @@ if [[ -a ~/.clang-format ]]; then
   mv ~/.clang-format ~/.clang-format.bak
 fi
 
-ln -s $script_dir/ycm_extra_conf.py ~/.ycm_extra_conf.py
-ln -s $script_dir/clang-format ~/.clang-format
+ln -sf $script_dir/ycm_extra_conf.py ~/.ycm_extra_conf.py
+ln -sf $script_dir/clang-format ~/.clang-format
 

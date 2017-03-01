@@ -14,14 +14,14 @@ export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8
 export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/usr/games:/usr/local/games
 export PATH=~/script/:$PATH
 export CPLUS_INCLUDE_PATH=/usr/local/include/c++/v1:$CPLUS_INCLUDE_PATH
-#alias tmux="env TERM=tmux-256color tmux"
-#alias tmux="env TERM=xterm-256color-italic tmux"
-#export TERM=xterm-256color-italic
+
 export TERM=xterm-256color
 
 export EDITOR='vim'
 export CC='clang'
 export CXX='clang++'
+
+alias sudo='sudo ' #可以使sudo支持alias
 
 alias rcup='rcup -v'
 alias rcdn='rcdn -v'
@@ -45,6 +45,7 @@ alias v='vim'
 alias vw='gvim'
 alias e='emacs -nw'
 alias ew='emacs'
+alias vvim='/usr/bin/vim'
 if command -v nvim >/dev/null 2>&1; then
     alias vim='/usr/bin/nvim'
 fi
