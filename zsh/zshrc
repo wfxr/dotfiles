@@ -5,7 +5,7 @@
 #=============================================================================
 
 # Path to your oh-my-zsh installation.
-export ZSH=~/.oh-my-zsh
+#export ZSH=~/.oh-my-zsh
 
 # 清除所有本地化设置
 export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8
@@ -19,8 +19,6 @@ export CPLUS_INCLUDE_PATH=/usr/local/include/c++/v1:$CPLUS_INCLUDE_PATH
 #export TERM=xterm-256color-italic
 export TERM=xterm-256color
 
-source $ZSH/oh-my-zsh.sh
-
 export EDITOR='vim'
 export CC='clang'
 export CXX='clang++'
@@ -32,27 +30,34 @@ alias dot='cd ~/.dotfiles'
 alias shutdown='sudo shutdown -h now'
 alias ai='sudo apt-get install'
 alias au='sudo apt-get update'
+alias auu='sudo apt-get upgrade'
+alias ar='sudo apt-get remove'
+alias aar='sudo apt-get autoremove'
 alias xx='~/tools/xx-net/start'
-alias vscode='~/tools/VSCode-linux-x64/Code'
+alias code='~/tools/VSCode-linux-x64/Code'
 alias hhkb='setxkbmap -option "ctrl:swapcaps"'
 alias disable_touch_pad='sudo modprobe -r psmouse'   # 禁用触控板
 alias enable_touch_pad='sudo modprobe psmouse'       # 启用触控板
 alias start_global_proxy='source ~/tools/scripts/start_global_proxy'
 alias stop_global_proxy='source ~/tools/scripts/stop_global_proxy'
 alias mkycm='cp ~/.dotfiles/ycm_extra_conf.py .ycm_extra_conf.py'
-alias em='emacs -nw'
-alias emw=emacs
-alias vi='/usr/bin/vim'
+alias v='vim'
+alias vw='gvim'
+alias e='emacs -nw'
+alias ew='emacs'
+if command -v nvim >/dev/null 2>&1; then
+    alias vim='/usr/bin/nvim'
+fi
 
 alias evalclip='eval `xclip -o`'
 
-alias -s cs=vi
-alias -s java=vi
-alias -s txt=vi
-alias -s c=vi
-alias -s cpp=vi
-alias -s hpp=vi
-alias -s h=vi
+alias -s cs=vim
+alias -s java=vim
+alias -s txt=vim
+alias -s c=vim
+alias -s cpp=vim
+alias -s hpp=vim
+alias -s h=vim
 alias -s iml=idea
 
 # 开启vi模式后需要恢复Ctrl+R绑定
@@ -63,7 +68,7 @@ bindkey '^R' history-incremental-search-backward
 # Plugin manager
 source ~/.antigen/antigen/antigen.zsh
 # Load the oh-my-zsh's library
-#antigen use oh-my-zsh
+antigen use oh-my-zsh
 
 antigen bundle git
 antigen bundle git-extras
@@ -81,11 +86,11 @@ export RPS1="%{$reset_color%}"
 
 antigen apply
 
-if [ -f ~/.zshrc_theme_extra ]; then
+if [[ -f ~/.zshrc_theme_extra ]]; then
     source ~/.zshrc_theme_extra
 fi
 
-if [ -f ~/.zshrc_local ]; then
+if [[ -f ~/.zshrc_local ]]; then
     source ~/.zshrc_local
 fi
 
