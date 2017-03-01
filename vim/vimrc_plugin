@@ -37,7 +37,6 @@ nmap <leader>tl :TlistToggle<CR>
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'jiangmiao/auto-pairs'
-Plug 'powerline/fonts'
 Plug 'mbbill/undotree'
 Plug 'mhinz/vim-signify'
 Plug 'osyo-manga/vim-over'

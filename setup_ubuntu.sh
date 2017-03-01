@@ -2,6 +2,15 @@ sudo apt-get update
 sudo apt-get -y upgrade
 sudo apt-get -y dist-upgrade
 
+# Development environments
+sudo apt-get install -y build-essential
+sudo apt-get install -y make cmake
+sudo apt-get install -y python python-dev python-pip
+sudo apt-get install -y python3 python3-dev python3-pip
+sudo apt-get install -y clang
+sudo apt-get install -y clang-format
+sudo apt-get install -y openjdk-8-jdk openjdk-8-doc
+
 sudo apt-get -y install git
 sudo apt-get -y install zsh
 
@@ -16,6 +25,8 @@ sudo apt-get install -y tilda
 sudo add-apt-repository -y ppa:neovim-ppa/stable
 sudo apt-get update
 sudo apt-get install neovim
+sudo pip2 install --upgrade neovim
+sudo pip3 install --upgrade neovim
 
 # Theme
 sudo apt-get install -y unity-tweak-tool
@@ -24,15 +35,6 @@ sudo add-apt-repository -y ppa:noobslab/icons
 sudo apt-get update
 sudo apt-get install -y flatabulous-theme
 sudo apt-get install -y ultra-flat-icons
-
-# Development environments
-sudo apt-get install -y build-essential
-sudo apt-get install -y make cmake
-sudo apt-get install -y python python-dev python-pip
-sudo apt-get install -y python3 python3-dev python3-pip
-sudo apt-get install -y clang
-sudo apt-get install -y clang-format
-sudo apt-get install -y openjdk-8-jdk openjdk-8-doc
 
 # Indicator
 #sudo add-apt-repository -y ppa:artfwo/ppa
