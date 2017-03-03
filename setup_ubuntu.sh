@@ -9,7 +9,13 @@ sudo apt-get -y install make cmake
 sudo apt-get -y install python python-dev python-pip
 sudo apt-get -y install python3 python3-dev python3-pip
 sudo apt-get -y install clang clang-format
+
+# OpenJDK
 sudo apt-get -y install openjdk-8-jdk openjdk-8-doc
+# OracleJDK
+#sudo add-apt-repository -y ppa:webupd8team/java
+#sudo apt-get update
+#sudo apt-get install -y oracle-java8-installer
 
 sudo apt-get -y install git
 sudo apt-get -y install zsh
