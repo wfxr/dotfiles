@@ -24,39 +24,6 @@ if [[ ! -a ~/.antigen/antigen ]]; then
   git clone https://github.com/zsh-users/antigen.git ~/.antigen/antigen
 fi
 
-# vim
-mkdir -p ~/.vim/autoload
-
-if [[ ! -a ~/.vim/autoload/plug.vim ]]; then
-  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-fi
-
-if [[ -a ~/.vimrc ]]; then
-  mv ~/.vimrc ~/.vimrc.bak
-fi
-
-if [[ -a ~/.vimrc_gui ]]; then
-  mv ~/.vimrc_gui ~/.vimrc_gui.bak
-fi
-
-if [[ -a ~/.vimrc_common ]]; then
-  mv ~/.vimrc_common ~/.vimrc_common.bak
-fi
-
-if [[ -a ~/.vimrc_plugin ]]; then
-  mv ~/.vimrc_plugin ~/.vimrc_plugin.bak
-fi
-
-ln -sf $script_dir/vim/vimrc ~/.vimrc
-ln -sf $script_dir/vim/vimrc_gui ~/.vimrc_gui
-ln -sf $script_dir/vim/vimrc_common ~/.vimrc_common
-ln -sf $script_dir/vim/vimrc_plugin ~/.vimrc_plugin
-
-# nvim
-ln -sff ~/.vim ~/.config/nvim
-ln -sff ~/.vimrc ~/.config/nvim/init.vim
-
 # emacs
 if [[ -a ~/.spacemacs ]]; then
     mv ~/.spacemacs ~/.spacemacs.bak
@@ -85,3 +52,5 @@ mkdir -p $HOME/bin
 $script_dir/git/git_setup.sh
 $script_dir/clojure/clojure_setup.sh
 $script_dir/c++/c++_setup.sh
+$script_dir/vim/setup_vim.sh
+$script_dir/intellij/setup_intellij.sh
