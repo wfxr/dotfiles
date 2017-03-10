@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<artifacts>
+  <artifact version="2.3.2" name="HSQLDB">
+    <item name="hsqldb-2.3.2.jar"
+         url="http://download.jetbrains.com/idea/jdbc-drivers/hsqldb-2.3.2.jar"
+         md5=""/>
+    <item name="hsqldb-license.txt" url="http://download.jetbrains.com/idea/jdbc-drivers/hsqldb-license.txt" md5=""/>
+  </artifact>
+  <artifact version="5.1.35" name="MySQL Connector/J">
+    <item name="mysql-connector-java-5.1.35-bin.jar"
+         url="http://download.jetbrains.com/idea/jdbc-drivers/mysql-connector-java-5.1.35-bin.jar"
+         md5=""/>
+    <item name="mysql-connector-license.txt" url="http://download.jetbrains.com/idea/jdbc-drivers/mysql-connector-license.txt" md5=""/>
+  </artifact>
+  <artifact version="9.4-1201" name="PostgreSQL">
+    <item name="postgresql-9.4-1201.jdbc4.jar"
+         url="http://download.jetbrains.com/idea/jdbc-drivers/postgresql-9.4-1201.jdbc4.jar"
+         md5=""/>
+    <item name="postgresql-driver-license.txt" url="http://download.jetbrains.com/idea/jdbc-drivers/postgresql-driver-license.txt" md5=""/>
+  </artifact>
+  <artifact version="1.3.0" name="jTDS (SQL Server and Sybase)">
+    <item name="jtds-1.3.0.jar"
+          url="http://download.jetbrains.com/idea/jdbc-drivers/jtds-1.3.0.jar"
+          md5=""/>
+    <item name="jtds-license.txt" url="http://download.jetbrains.com/idea/jdbc-drivers/jtds-license.txt" md5=""/>
+  </artifact>
+  <artifact version="4.9.78" name="DB2">
+    <item name="db2jcc4-4.9.78.jar"
+         url="http://download.jetbrains.com/idea/jdbc-drivers/db2jcc4-4.9.78.jar"
+         md5=""/>
+    <item name="db2-driver-license.txt" url="http://download.jetbrains.com/idea/jdbc-drivers/db2-driver-license.txt" md5=""/>
+  </artifact>
+  <artifact version="8.3" name="JTOpen (DB2 iSeries)">
+    <item name="jt400.jar"
+         url="http://download.jetbrains.com/idea/jdbc-drivers/jt400.jar"
+         md5=""/>
+    <item name="jtopen-driver-license.txt" url="http://download.jetbrains.com/idea/jdbc-drivers/jtopen-driver-license.txt" md5=""/>
+  </artifact>
+  <artifact version="12.1.0.2" name="Oracle">
+    <item name="ojdbc6-12.1.0.2.jar"
+         url="http://download.jetbrains.com/idea/jdbc-drivers/ojdbc6-12.1.0.2.jar"
+         md5=""/>
+    <item name="xdb6-12.1.0.2.jar"
+          url="http://download.jetbrains.com/idea/jdbc-drivers/xdb6-12.1.0.2.jar"
+          md5=""/>
+    <item name="xmlparserv2.jar"
+         url="http://download.jetbrains.com/idea/jdbc-drivers/xmlparserv2.jar"
+         md5=""/>
+    <item name="oracle-driver-license.txt" url="http://download.jetbrains.com/idea/jdbc-drivers/oracle-driver-license.txt" md5=""/>
+  </artifact>
+  <artifact version="3.8.11.2" name="Xerial SQLiteJDBC">
+    <item name="sqlite-jdbc-3.8.11.2.jar"
+         url="http://download.jetbrains.com/idea/jdbc-drivers/sqlite-jdbc-3.8.11.2.jar"
+         md5=""/>
+    <item name="xerial-sqlite-license.txt" url="http://download.jetbrains.com/idea/jdbc-drivers/xerial-sqlite-license.txt" md5=""/>
+  </artifact>
+  <artifact version="1.4.192" name="H2">
+    <item name="h2-1.4.192.jar"
+         url="http://download.jetbrains.com/idea/jdbc-drivers/h2-1.4.192.jar"
+         md5=""/>
+    <item name="h2-license.txt" url="http://download.jetbrains.com/idea/jdbc-drivers/h2-license.txt" md5=""/>
+  </artifact>
+  <artifact version="10.11.1.1" name="Apache Derby">
+    <item name="derby-10.11.1.1.jar" url="http://download.jetbrains.com/idea/jdbc-drivers/derby-10.11.1.1.jar" md5=""/>
+    <item name="derbyclient-10.11.1.1.jar" url="http://download.jetbrains.com/idea/jdbc-drivers/derbyclient-10.11.1.1.jar" md5=""/>
+    <item name="derby-license.txt" url="http://download.jetbrains.com/idea/jdbc-drivers/derby-license.txt" md5=""/>
+  </artifact>
+  <artifact version="4.0.2206.100" name="SQL Server">
+    <item name="sqljdbc4-4.0.2206.100.jar"
+         url="http://download.jetbrains.com/idea/jdbc-drivers/sqljdbc4-4.0.2206.100.jar"
+         md5=""/>
+    <item name="sqlserver-win-auth.jar" url="http://download.jetbrains.com/idea/jdbc-drivers/sqlserver-win-auth.jar" md5=""/>
+    <item name="sqlserver-driver-license.txt" url="http://download.jetbrains.com/idea/jdbc-drivers/sqlserver-driver-license.txt" md5=""/>
+  </artifact>
+</artifacts>

@@ -74,3 +74,4 @@ sudo apt-get -y install kdiff3
 
 # Compiz
 sudo apt-get -y install compiz compizconfig-settings-manager compiz-plugins compiz-plugins-extra
+sudo apt-get -y install font-manager

@@ -12,7 +12,7 @@ export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8
 
 # User configuration
 export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/usr/games:/usr/local/games
-export PATH=~/script/:$PATH
+export PATH=~/script/:~/bin/:$PATH
 export CPLUS_INCLUDE_PATH=/usr/local/include/c++/v1:$CPLUS_INCLUDE_PATH
 
 export TERM=xterm-256color
@@ -34,7 +34,6 @@ alias auu='sudo apt-get upgrade'
 alias ar='sudo apt-get remove'
 alias aar='sudo apt-get autoremove'
 alias xx='~/tools/xx-net/start'
-alias code='~/tools/VSCode-linux-x64/Code'
 alias hhkb='setxkbmap -option "ctrl:swapcaps"'
 alias disable_touch_pad='sudo modprobe -r psmouse'   # 禁用触控板
 alias enable_touch_pad='sudo modprobe psmouse'       # 启用触控板
