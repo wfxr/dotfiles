@@ -46,7 +46,7 @@ alias e='emacs -nw'
 alias ew='emacs'
 alias vvim='/usr/bin/vim'
 if command -v nvim >/dev/null 2>&1; then
-    alias vim='/usr/bin/nvim'
+    alias vim='`which nvim`'
 fi
 
 alias evalclip='eval `xclip -o`'
