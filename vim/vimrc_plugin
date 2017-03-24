@@ -130,6 +130,8 @@ else
     let g:syntastic_error_symbol = '྾'
     let g:syntastic_warning_symbol = '⚠'
 endif
+" Default javac checker is too slow!
+let g:syntastic_java_checkers=['checkstyle']
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " YouCompleteMe
