@@ -40,3 +40,5 @@ intellij/config/li-spelling/**
 intellij/config/li-options-backup/**
 intellij/config/li-options-backup/**
 intellij/config/tasks/*
+
+.DS_Store
