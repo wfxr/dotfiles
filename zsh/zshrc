@@ -17,7 +17,6 @@ export CPLUS_INCLUDE_PATH=/usr/local/include/c++/v1:$CPLUS_INCLUDE_PATH
 
 export TERM=xterm-256color
 
-export EDITOR='vim'
 export CC='clang'
 export CXX='clang++'
 
@@ -40,14 +39,14 @@ alias enable_touch_pad='sudo modprobe psmouse'       # 启用触控板
 alias start_global_proxy='source ~/tools/scripts/start_global_proxy'
 alias stop_global_proxy='source ~/tools/scripts/stop_global_proxy'
 alias mkycm='cp ~/.dotfiles/ycm_extra_conf.py .ycm_extra_conf.py'
+if command -v nvim >/dev/null 2>&1; then
+    alias vim='`which nvim`'
+fi
 alias v='vim'
 alias vw='gvim'
 alias e='emacs -nw'
 alias ew='emacs'
-alias vvim='/usr/bin/vim'
-if command -v nvim >/dev/null 2>&1; then
-    alias vim='`which nvim`'
-fi
+#alias vi='/usr/bin/vim'
 
 alias evalclip='eval `xclip -o`'
 
@@ -74,6 +73,7 @@ antigen bundle git
 antigen bundle git-extras
 antigen bundle autojump
 antigen bundle cp
+antigen bundle mvn
 antigen bundle vi-mode
 antigen bundle sudo
 antigen bundle common-aliases
