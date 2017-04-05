@@ -22,6 +22,7 @@ sudo apt-get -y install openjdk-8-jdk openjdk-8-doc
 sudo apt-get -y install git
 sudo apt-get -y install zsh
 
+sudo apt-get -y install most # Colored pager
 sudo apt-get -y install tmux
 sudo apt-get -y install vim
 sudo apt-get -y install emacs

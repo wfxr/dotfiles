@@ -20,6 +20,8 @@ export TERM=xterm-256color
 export CC='clang'
 export CXX='clang++'
 export EDITOR='vim'
+#export PAGER='most'
+export MANPAGER='most -s'
 
 alias sudo='sudo ' #可以使sudo支持alias
 
@@ -27,12 +29,8 @@ alias rcup='rcup -v'
 alias rcdn='rcdn -v'
 alias dot='cd ~/.dotfiles'
 
+alias vimrc='vim ~/.vimrc'
 alias shutdown='sudo shutdown -h now'
-alias ai='sudo apt-get install'
-alias au='sudo apt-get update'
-alias auu='sudo apt-get upgrade'
-alias ar='sudo apt-get remove'
-alias aar='sudo apt-get autoremove'
 alias xx='~/tools/xx-net/start'
 alias hhkb='setxkbmap -option "ctrl:swapcaps"'
 alias disable_touch_pad='sudo modprobe -r psmouse'   # 禁用触控板
@@ -67,20 +65,35 @@ bindkey '^R' history-incremental-search-backward
 
 # Plugin manager
 source ~/.antigen/antigen/antigen.zsh
+
 # Load the oh-my-zsh's library
 antigen use oh-my-zsh
 
+# Git alias. See: https://github.com/robbyrussell/oh-my-zsh/wiki/Plugin:git
 antigen bundle git
+# Git completions. On OS X with Homebrew, you need to install git with brew install git --without-completions. Otherwise, git's _git will take precedence, and you won't see the completions for git-extras commands.
 antigen bundle git-extras
+antigen bundle github
+antigen bundle osx
+# common alias for ubuntu
+antigen bundle ubuntu
+# Plug for highlighting file content
+antigen bundle colorize
+# Adds autocomplete options for Spring Boot commands
+antigen bundle spring
+# Single char alias. See: https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/singlechar/singlechar.plugin.zsh
+antigen bundle singlechar
 antigen bundle autojump
 antigen bundle cp
 antigen bundle mvn
 antigen bundle vi-mode
 antigen bundle sudo
 antigen bundle common-aliases
-antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh_reload
 antigen bundle wfxr/tmuxinator
-
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-completions
+antigen bundle zsh-users/zsh-autosuggestions
 antigen theme denysdovhan/spaceship-zsh-theme spaceship
 #To disable default <<< NORMAL mode indicator in right prompt
 export RPS1="%{$reset_color%}"
