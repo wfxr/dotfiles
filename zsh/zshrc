@@ -21,8 +21,9 @@ export TERM=xterm-256color
 export CC='clang'
 export CXX='clang++'
 export EDITOR='vim'
-#export PAGER='most'
-export MANPAGER='most -s'
+if type 'most' > /dev/null; then
+    export MANPAGER='most -s'
+fi
 
 alias sudo='sudo ' #可以使sudo支持alias
 
