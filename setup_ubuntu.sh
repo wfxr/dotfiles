@@ -44,5 +44,8 @@ sudo chsh -s /bin/zsh
 sudo apt-get -y install tree
 sudo apt-get -y install autojump
 
+# Code Lines of Code
+sudo apt-get -y install cloc
+
 # Clean up
 sudo apt -y autoremove
