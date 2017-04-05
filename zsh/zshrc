@@ -14,6 +14,7 @@ export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8
 export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/usr/games:/usr/local/games
 export PATH=~/script/:~/bin/:$PATH
 export CPLUS_INCLUDE_PATH=/usr/local/include/c++/v1:$CPLUS_INCLUDE_PATH
+export PATH="$PATH:$HOME/.vim/plugged/vim-superman/bin"
 
 export TERM=xterm-256color
 
@@ -27,7 +28,7 @@ alias sudo='sudo ' #可以使sudo支持alias
 
 alias rcup='rcup -v'
 alias rcdn='rcdn -v'
-alias dot='cd ~/.dotfiles'
+alias dot='cd ~/dotfiles'
 
 alias vimrc='vim ~/.vimrc'
 alias shutdown='sudo shutdown -h now'
