@@ -19,6 +19,7 @@ export TERM=xterm-256color
 
 export CC='clang'
 export CXX='clang++'
+export EDITOR='vim'
 
 alias sudo='sudo ' #可以使sudo支持alias
 
@@ -98,3 +99,6 @@ source ~/.vim/plugged/gruvbox/gruvbox_256palette.sh
 
 export NVM_DIR="/home/wenxuan/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# Homebrew Bottles中科大源
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
