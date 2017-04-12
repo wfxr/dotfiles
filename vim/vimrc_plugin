@@ -74,6 +74,7 @@ let g:indentLine_color_gui = '#4E4E4E'
 map <leader>il :IndentLinesToggle<CR>
 Plug 'takac/vim-hardtime'
 let g:hardtime_default_on = 0
+Plug 'vim-utils/vim-husk' " 在vim的命令模式支持eamcs-bash风格的快捷键操作
 
 Plug 'elzr/vim-json', { 'for': 'json' }
 

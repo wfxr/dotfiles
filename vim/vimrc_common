@@ -45,10 +45,11 @@ nnoremap <silent> <Space> i <Esc>l
 inoremap <silent> <leader>a <Esc>A
 inoremap <silent> <leader>i <Esc>I
 inoremap <silent> <leader>; <Esc>A;<Esc>
-inoremap <silent> <leader>. ->
-inoremap <silent> <leader>o <Esc>o
 inoremap <silent> <leader>, <Esc>A,<Esc>
 inoremap <silent> <leader>{ <Esc>A {<CR>}<Esc>O
+inoremap <silent> <leader>. ->
+inoremap <silent> <leader>o <Esc>o
+inoremap <silent> <leader>l <Esc>A
 
 " Make j/k/0/$ work as expected on the wrap lines
 noremap  <buffer> <silent> k gk

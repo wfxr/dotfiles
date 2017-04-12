@@ -21,8 +21,9 @@ export TERM=xterm-256color
 export CC='clang'
 export CXX='clang++'
 export EDITOR='vim'
-if type 'most' > /dev/null; then
-    export MANPAGER='most -s'
+if type 'tac' > /dev/null; then
+else
+    alias tac='tail -r'
 fi
 
 alias sudo='sudo ' #可以使sudo支持alias
@@ -33,7 +34,8 @@ alias dot='cd ~/dotfiles'
 
 alias vimrc='vim ~/.vimrc'
 alias shutdown='sudo shutdown -h now'
-alias xx='~/tools/xx-net/start'
+alias xxnet='~/tools/xx-net/start'
+alias xx='proxychains4'
 alias hhkb='setxkbmap -option "ctrl:swapcaps"'
 alias disable_touch_pad='sudo modprobe -r psmouse'   # 禁用触控板
 alias enable_touch_pad='sudo modprobe psmouse'       # 启用触控板
@@ -43,11 +45,12 @@ alias mkycm='cp ~/.dotfiles/ycm_extra_conf.py .ycm_extra_conf.py'
 if command -v nvim >/dev/null 2>&1; then
     alias vim='`which nvim`'
 fi
-alias v='vim'
-alias vw='gvim'
+alias v=vim
+alias vi=vim
+alias vw=gvim
 alias e='emacs -nw'
-alias ew='emacs'
-#alias vi='/usr/bin/vim'
+alias ew=emacs
+alias mux=tmuxinator
 
 alias evalclip='eval `xclip -o`'
 
@@ -92,13 +95,14 @@ antigen bundle vi-mode
 antigen bundle sudo
 antigen bundle common-aliases
 antigen bundle zsh_reload
-antigen bundle wfxr/tmuxinator
+antigen bundle tmuxinator/tmuxinator --loc=completion/tmuxinator.zsh
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-autosuggestions
 antigen theme denysdovhan/spaceship-zsh-theme spaceship
 #To disable default <<< NORMAL mode indicator in right prompt
 export RPS1="%{$reset_color%}"
+
 
 antigen apply
 
