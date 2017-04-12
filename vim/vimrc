@@ -40,7 +40,7 @@ setlocal spell
 set mouse=a
 
 " Linebrake on 90 characters
-set linebreak
+"set linebreak
 set textwidth=90
 set wrap
 
@@ -56,7 +56,7 @@ set history=1000
 " Don't redraw while executing macros (good performance config)
 set lazyredraw
 
-" Share clipboard with windows
+" Share clipboard with OS
 set clipboard+=unnamed
 
 " Show row number
