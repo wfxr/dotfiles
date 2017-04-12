@@ -39,8 +39,6 @@ fi
 # bin
 mkdir -p $HOME/bin
 
-$script_dir/git/git_setup.sh
-$script_dir/clojure/clojure_setup.sh
-$script_dir/c++/c++_setup.sh
-$script_dir/vim/setup_vim.sh
-$script_dir/intellij/setup_intellij.sh
+$script_dir/git/setup.sh
+$script_dir/c++/setup.sh
+$script_dir/vim/setup.sh
