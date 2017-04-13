@@ -1,0 +1,12 @@
+allprojects {
+    repositories {
+        maven {
+            name "aliyunRepo"
+                url "http://maven.aliyun.com/nexus/content/groups/public/"
+        }
+        maven {
+            name "kotlinRepo"
+                url "https://dl.bintray.com/kotlin/exposed/"
+        }
+    }
+}
