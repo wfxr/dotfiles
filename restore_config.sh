@@ -12,3 +12,4 @@ $script_dir/zsh/setup.sh
 $script_dir/vim/setup.sh
 $script_dir/tmux/setup.sh
 $script_dir/c++/setup.sh
+$script_dir/python/setup.sh

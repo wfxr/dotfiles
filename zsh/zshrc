@@ -51,6 +51,7 @@ alias vw=gvim
 alias e='emacs -nw'
 alias ew=emacs
 alias mux=tmuxinator
+alias daily='tmuxinator daily'
 
 alias evalclip='eval `xclip -o`'
 
