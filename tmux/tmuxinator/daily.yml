@@ -39,4 +39,4 @@ windows:
       panes:
         - htop
         - glances
-        - ls
+        - clear
