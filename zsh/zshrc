@@ -8,7 +8,7 @@
 #export ZSH=~/.oh-my-zsh
 
 # 清除所有本地化设置
-export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8
+#export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8
 
 # User configuration
 export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/usr/games:/usr/local/games
