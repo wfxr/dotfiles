@@ -16,4 +16,4 @@ if [[ ! -a ~/.tmux/plugins/tpm ]]; then
 fi
 
 # tmuxinator
-ln -sf $script_dir/tmuxinator ~/.tmuxinator
+ln -snf $script_dir/tmuxinator ~/.tmuxinator
