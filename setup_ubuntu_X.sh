@@ -2,13 +2,6 @@ sudo apt-get remove --purge -y thunderbird
 
 sudo apt-get -y install guake tilda
 
-# Neovim
-sudo add-apt-repository -y ppa:neovim-ppa/stable
-sudo apt-get update
-sudo apt-get -y install neovim
-sudo pip2 install --upgrade neovim
-sudo pip3 install --upgrade neovim
-
 # Theme
 sudo apt-get -y install unity-tweak-tool
 sudo add-apt-repository -y ppa:noobslab/themes
