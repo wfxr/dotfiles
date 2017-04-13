@@ -12,30 +12,6 @@ if [[ ! -a ~/.vim/autoload/plug.vim ]]; then
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 
-if [[ -a ~/.vimrc ]]; then
-  mv ~/.vimrc ~/.vimrc.bak
-fi
-
-if [[ -a ~/.vimrc_gui ]]; then
-  mv ~/.vimrc_gui ~/.vimrc_gui.bak
-fi
-
-if [[ -a ~/.vimrc_common ]]; then
-  mv ~/.vimrc_common ~/.vimrc_common.bak
-fi
-
-if [[ -a ~/.vimrc_plugin ]]; then
-  mv ~/.vimrc_plugin ~/.vimrc_plugin.bak
-fi
-
-if [[ -a ~/.vim/spell ]]; then
-  mv ~/.vim/spell ~/.vim/spell.bak
-fi
-
-if [[ -a ~/.vim/UltiSnips ]]; then
-  mv ~/.vim/UltiSnips ~/.vim/UltiSnips.bak
-fi
-
 ln -sf $script_dir/vimrc ~/.vimrc
 ln -sf $script_dir/vimrc_gui ~/.vimrc_gui
 ln -sf $script_dir/vimrc_common ~/.vimrc_common
