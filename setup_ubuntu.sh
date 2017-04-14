@@ -4,6 +4,7 @@ sudo apt-get -y upgrade
 
 sudo apt-get -y install python-software-properties
 sudo apt-get -y install software-properties-common
+sudo apt-get -y install language-pack-zh-hans
 
 # Development environments
 sudo apt-get -y install build-essential
