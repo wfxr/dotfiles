@@ -39,4 +39,4 @@ windows:
       panes:
         - screenfetch; w
         - glances
-        - vim
+        - cd dotfiles && git pull && vim
