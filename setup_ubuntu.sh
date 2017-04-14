@@ -11,8 +11,10 @@ sudo apt-get -y install build-essential
 sudo apt-get -y install make cmake
 sudo apt-get -y install python python-dev python-pip
 sudo apt-get -y install python3 python3-dev python3-pip
+./python/setup.sh
 sudo apt-get -y install clang clang-format
 sudo apt-get -y install ruby
+gem sources --add https://gems.ruby-china.org/ --remove https://rubygems.org/
 
 # OpenJDK
 sudo apt-get -y install openjdk-8-jdk openjdk-8-doc
