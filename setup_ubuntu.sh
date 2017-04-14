@@ -37,6 +37,8 @@ sudo apt-get -y install xclip
 sudo apt-get -y install screenfetch
 sudo apt-get -y install pstree
 sudo apt-get -y install privesieve
+sudo apt-get -y install cloc # Code Lines of Code
+
 
 # Tmux, Tmuxinator and Wemux
 sudo apt-get -y install tmux
@@ -52,12 +54,6 @@ sudo apt-get update
 sudo apt-get -y install neovim
 sudo pip2 install --upgrade neovim
 sudo pip3 install --upgrade neovim
-
-# Install oh-my-zsh if there is no one in ~ directory
-# sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
-# Code Lines of Code
-sudo apt-get -y install cloc
 
 # Clean up
 sudo apt -y autoremove
