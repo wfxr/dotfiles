@@ -89,6 +89,7 @@ antigen bundle colorize
 antigen bundle spring
 # Single char alias. See: https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/singlechar/singlechar.plugin.zsh
 antigen bundle singlechar
+unalias w
 antigen bundle autojump
 antigen bundle cp
 antigen bundle mvn
