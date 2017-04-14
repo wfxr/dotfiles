@@ -31,6 +31,7 @@ sudo apt-get -y install ctags
 sudo apt-get -y install htop
 sudo apt-get -y install glances
 sudo apt-get -y install xclip
+sudo apt-get -y install screenfetch
 
 # Tmux, Tmuxinator and Wemux
 sudo apt-get -y install tmux
