@@ -35,6 +35,8 @@ sudo apt-get -y install htop
 sudo apt-get -y install glances
 sudo apt-get -y install xclip
 sudo apt-get -y install screenfetch
+sudo apt-get -y install pstree
+sudo apt-get -y install privesieve
 
 # Tmux, Tmuxinator and Wemux
 sudo apt-get -y install tmux
@@ -64,3 +66,5 @@ sudo apt -y autoremove
 # Should not with sudo. That will change the sudo's shell but not current user
 chsh -s /bin/zsh
 
+screenfetch
+echo "Done! Enjoy your Ubuntu!"
