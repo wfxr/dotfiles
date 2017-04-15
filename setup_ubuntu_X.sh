@@ -30,3 +30,5 @@ sudo apt-get -y install font-manager
 git clone https://github.com/powerline/fonts.git /tmp/fonts
 cd /tmp/fonts && ./install.sh && cd -
 
+# Music player under terminal
+sudo apt-get -y install cmus
