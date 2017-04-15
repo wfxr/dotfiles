@@ -39,4 +39,4 @@ windows:
       panes:
         - htop
         - cd dotfiles && git pull && neofetch
-        - clear
+        - history
