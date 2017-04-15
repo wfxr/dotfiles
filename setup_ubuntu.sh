@@ -38,6 +38,13 @@ sudo apt-get -y install screenfetch # Show system log and other info
 sudo apt-get -y install pstree
 sudo apt-get -y install privesieve # Prime number generator
 sudo apt-get -y install cloc # Code Lines of Code
+sudo apt-get -y install rig # Generate random address info
+
+# Funning
+sudo apt-get -y install cowsay
+sudo apt-get -y install cowthink
+sudo apt-get -y install toilet
+sudo apt-get -y install bb # Amazing!
 
 # Neofetch
 sudo add-apt-repository -y ppa:dawidd0811/neofetch
