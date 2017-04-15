@@ -37,6 +37,10 @@ windows:
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
-        - clear; neofetch; w
+        - info:
+            - clear
+            - neofetch
+            - w
+            - ls
         - glances
-        - cd dotfiles && git fetch && history
+        - cd dotfiles && git fetch
