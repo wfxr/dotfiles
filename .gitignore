@@ -42,3 +42,4 @@ intellij/config/li-options-backup/**
 intellij/config/tasks/*
 
 .DS_Store
+*add.spl
