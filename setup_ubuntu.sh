@@ -34,11 +34,15 @@ sudo apt-get -y install ctags
 sudo apt-get -y install htop
 sudo apt-get -y install glances
 sudo apt-get -y install xclip
-sudo apt-get -y install screenfetch
+sudo apt-get -y install screenfetch # Show system log and other info
 sudo apt-get -y install pstree
-sudo apt-get -y install privesieve
+sudo apt-get -y install privesieve # Prime number generator
 sudo apt-get -y install cloc # Code Lines of Code
 
+# Neofetch
+sudo add-apt-repository -y ppa:dawidd0811/neofetch
+sudo apt-get -y update
+sudo apt-get -y install neofetch
 
 # Tmux, Tmuxinator and Wemux
 sudo apt-get -y install tmux
