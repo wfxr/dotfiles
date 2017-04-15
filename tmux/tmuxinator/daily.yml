@@ -38,5 +38,5 @@ windows:
       # synchronize: after
       panes:
         - htop
-        - glances
-        - clear
+        - cd dotfiles && git pull && neofetch
+        - history

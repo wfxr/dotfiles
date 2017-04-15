@@ -8,5 +8,9 @@ allprojects {
             name "kotlinRepo"
                 url "https://dl.bintray.com/kotlin/exposed/"
         }
+        maven {
+            name "jitpackRepo"
+                url "https://jitpack.io"
+        }
     }
 }
