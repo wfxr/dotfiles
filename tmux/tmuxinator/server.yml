@@ -41,6 +41,5 @@ windows:
             - clear
             - neofetch
             - w
-            - ls
         - glances
         - cd dotfiles && git fetch
