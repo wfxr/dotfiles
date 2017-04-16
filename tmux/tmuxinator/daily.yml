@@ -39,4 +39,4 @@ windows:
       panes:
         - htop
         - cd dotfiles && git pull && neofetch
-        - history
+        - clear && toilet -f mono12 -F metal `whoami`

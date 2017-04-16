@@ -1165,7 +1165,7 @@
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>524 286 606 456 0 0 1920 1057 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>208 238 796 473 0 0 1920 1057 </string>
+	<string>208 173 1018 447 0 0 1920 1080 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
 	<string>0 190 1360 867 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
@@ -1796,7 +1796,7 @@
 			<key>Shortcut</key>
 			<string></string>
 			<key>Silence Bell</key>
-			<false/>
+			<true/>
 			<key>Sync Title</key>
 			<false/>
 			<key>Tags</key>
@@ -2568,7 +2568,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-04-14T10:15:22Z</date>
+	<date>2017-04-15T11:07:45Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ShowFullScreenTabBar</key>

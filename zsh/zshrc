@@ -96,7 +96,7 @@ antigen bundle mvn
 antigen bundle vi-mode
 antigen bundle sudo
 antigen bundle common-aliases
-antigen bundle zsh_reload
+antigen bundle docker
 antigen bundle tmuxinator/tmuxinator --loc=completion/tmuxinator.zsh
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-completions
