@@ -26,9 +26,10 @@ sudo apt-get -y install kdiff3
 sudo apt-get -y install compiz compizconfig-settings-manager compiz-plugins compiz-plugins-extra
 sudo apt-get -y install font-manager
 
+# Music player under terminal
+sudo apt-get -y install cmus
+
 # Powerline font
 git clone https://github.com/powerline/fonts.git /tmp/fonts
 cd /tmp/fonts && ./install.sh && cd -
 
-# Music player under terminal
-sudo apt-get -y install cmus
