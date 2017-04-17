@@ -33,3 +33,7 @@ sudo apt-get -y install cmus
 git clone https://github.com/powerline/fonts.git /tmp/fonts
 cd /tmp/fonts && ./install.sh && cd -
 
+# Download tool
+sudo add-apt-repository ppa:plushuang-tw/uget-stable
+sudo apt update
+sudo apt install uget
