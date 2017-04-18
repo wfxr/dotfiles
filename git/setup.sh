@@ -40,3 +40,14 @@ git config --global push.default upstream
 # commits)
 git config --global core.autocrlf input
 
+# When editing the commit message, git will now always include a diff of the
+# changes below the message area (the diff does NOT become part of the commit
+# message, it's only there for information).
+git config --global commit.verbose true
+
+# Number of concurrent submodule fetches
+git config --global submodule.fetchJobs 8
+
+# Prettier diffs
+git config --global diff.compactionHeuristic true
+git config --global diff.indentHeuristic on
