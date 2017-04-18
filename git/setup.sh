@@ -30,3 +30,13 @@ git config --global diff.indentHeuristic on
 # avoid enter password again and again
 git config --global credential.helper cache
 git config --global credential.helper 'cache --timeout=3600'
+
+# This makes sure that push pushes only the current branch, and pushes it to the
+# same branch pull would pull from
+git config --global push.default upstream
+
+# This converts CRLF endings to LF endings on Mac & Lin and also keeps them in
+# the repo, but for Windows checkouts it converts LF to CRLF (and back to LF on
+# commits)
+git config --global core.autocrlf input
+

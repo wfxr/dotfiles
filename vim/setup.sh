@@ -18,5 +18,5 @@ ln -snf $script_dir/spell ~/.vim/spell
 
 # nvim
 mkdir -p ~/.config
-ln -sf ~/.vimrc ~/.config/nvim/init.vim
 ln -snf ~/.vim ~/.config/nvim
+ln -sf ~/.vimrc ~/.config/nvim/init.vim
