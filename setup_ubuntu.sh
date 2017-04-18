@@ -17,7 +17,7 @@ sudo apt-get -y install ruby
 gem sources --add https://gems.ruby-china.org/ --remove https://rubygems.org/
 
 # OpenJDK
-sudo apt-get -y install openjdk-8-jdk openjdk-8-doc
+sudo apt-get -y install openjdk-8-jdk
 # OracleJDK
 #sudo add-apt-repository -y ppa:webupd8team/java
 #sudo apt-get update
@@ -44,7 +44,7 @@ sudo apt-get -y install rig # Generate random address info
 sudo apt-get -y install cowsay
 sudo apt-get -y install cowthink
 sudo apt-get -y install toilet
-sudo apt-get -y install bb # Amazing!
+#sudo apt-get -y install bb # Amazing!
 
 # Neofetch
 sudo add-apt-repository -y ppa:dawidd0811/neofetch
@@ -72,7 +72,6 @@ sudo apt -y autoremove
 # Change default shell to zsh
 # Should not with sudo. That will change the sudo's shell but not current user
 chsh -s /bin/zsh
-zsh # antigen need download plugins at first time
 
 screenfetch
 echo "Done! Enjoy your Ubuntu!"
