@@ -34,6 +34,11 @@ git clone https://github.com/powerline/fonts.git /tmp/fonts
 cd /tmp/fonts && ./install.sh && cd -
 
 # Download tool
-sudo add-apt-repository ppa:plushuang-tw/uget-stable
+sudo add-apt-repository -y ppa:plushuang-tw/uget-stable
 sudo apt update
-sudo apt install uget
+sudo apt -y install uget
+
+# Launcher
+sudo add-apt-repository -y ppa:nilarimogard/webupd8
+sudo apt-get update
+sudo apt-get -y install albert
