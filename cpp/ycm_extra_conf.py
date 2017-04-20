@@ -22,7 +22,7 @@ flags = [
 '-I', 'include',
 
 # Other headers
-# '-isystem', '/usr/include',
+'-isystem', '/usr/include',
 '-isystem', '/usr/local/include',
 
 # Use libc++/libstdc++

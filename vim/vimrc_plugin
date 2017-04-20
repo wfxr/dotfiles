@@ -31,11 +31,14 @@ let g:airline#extensions#tabline#enabled=1
 Plug 'taglist.vim'
 let Tlist_Exit_OnlyWindow=1
 let Tlist_Auto_Open=0
+nmap <leader>tl :TlistToggle<CR>
 Plug 'scrooloose/nerdtree'
 nmap <leader>nt :NERDTreeToggle<CR>
-nmap <leader>tl :TlistToggle<CR>
-nmap <leader>tl :TlistToggle<CR>
-nmap <leader>tl :TlistToggle<CR>
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'jiangmiao/auto-pairs'
