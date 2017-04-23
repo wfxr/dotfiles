@@ -23,6 +23,9 @@ set nofoldenable
 set foldmethod=indent
 set foldlevel=0
 
+" Show whitespace
+set list listchars=tab:»·,trail:·
+
 " With a map leader it's possible to do extra key combinations
 let mapleader = ","
 let g:mapleader = ","
