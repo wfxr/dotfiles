@@ -51,7 +51,7 @@ int main(int argc, char **argv) {
 }
 endsnippet
 
-snippet sns "using namespace std;" b
+snippet ns "using namespace std;" b
 using namespace std;
 
 $0
@@ -67,6 +67,10 @@ endsnippet
 
 snippet info "insert info statement" b
 std::cerr << "[info] " << ${0} << std::endl;
+endsnippet
+
+snippet error "insert error statement" b
+std::cerr << "[error] " << ${0} << std::endl;
 endsnippet
 
 snippet sv "std::vector<T>" i

@@ -1,73 +1,55 @@
 #=============================================================================
 #       Author: Wenxuan Zhang
-#        Email: wenxuan-zhang@outlook.com
+#        Email: wenxuangm@gmail.com
 #     HomePage: wenxuan.info
 #=============================================================================
-
-# Path to your oh-my-zsh installation.
-#export ZSH=~/.oh-my-zsh
-
-# 清除所有本地化设置
-#export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8
 
 # User configuration
 export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/usr/games:/usr/local/games:$HOME/.local/bin
 export PATH=~/script/:~/bin/:$PATH
-export CPLUS_INCLUDE_PATH=/usr/local/include/c++/v1:$CPLUS_INCLUDE_PATH
 export PATH="$PATH:$HOME/.vim/plugged/vim-superman/bin"
+export CPLUS_INCLUDE_PATH=/usr/local/include/c++/v1:$CPLUS_INCLUDE_PATH
 
 export TERM=xterm-256color
 
 export CC='clang'
 export CXX='clang++'
 export EDITOR='vim'
-if type 'tac' > /dev/null; then
-else
+
+if [[ ! $+commands[tac] ]]; then
     alias tac='tail -r'
 fi
 
 alias sudo='sudo ' #可以使sudo支持alias
 
-alias rcup='rcup -v'
-alias rcdn='rcdn -v'
-alias dot='cd ~/dotfiles'
-
 alias vimrc='vim ~/.vimrc'
-alias shutdown='sudo shutdown -h now'
+alias shutdown='shutdown -h now'
 alias xxnet='~/tools/xx-net/start'
 alias xx='proxychains4'
 alias hhkb='setxkbmap -option "ctrl:swapcaps"'
 alias disable_touch_pad='sudo modprobe -r psmouse'   # 禁用触控板
 alias enable_touch_pad='sudo modprobe psmouse'       # 启用触控板
-alias start_global_proxy='source ~/tools/scripts/start_global_proxy'
-alias stop_global_proxy='source ~/tools/scripts/stop_global_proxy'
 alias mkycm='cp ~/dotfiles/cpp/ycm_extra_conf.py .ycm_extra_conf.py'
-if command -v nvim >/dev/null 2>&1; then
-    alias vim='`which nvim`'
+if [[ $+commands[nvim] ]]; then
+    alias vim=`which nvim`
 fi
 alias v=vim
 alias vi=vim
 alias vw=gvim
 alias e='emacs -nw'
 alias ew=emacs
+
 alias mux=tmuxinator
 alias daily='tmuxinator daily'
 
 alias evalclip='eval `xclip -o`'
+alias weather='curl wttr.in'
 
-alias -s cs=vim
-alias -s java=vim
-alias -s txt=vim
-alias -s c=vim
-alias -s cpp=vim
-alias -s hpp=vim
-alias -s h=vim
-alias -s iml=idea
-
-# 开启vi模式后需要恢复Ctrl+R绑定
-bindkey -v
-bindkey '\e[3~' delete-char
-bindkey '^R' history-incremental-search-backward
+alias fg1='fg %1'
+alias fg2='fg %2'
+alias fg3='fg %3'
+alias fg4='fg %4'
+alias fg5='fg %5'
 
 # Plugin manager
 source ~/.antigen/antigen/antigen.zsh
@@ -87,25 +69,29 @@ antigen bundle ubuntu
 # Plug for highlighting file content
 antigen bundle colorize
 # Adds autocomplete options for Spring Boot commands
-antigen bundle spring
-# Single char alias. See: https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/singlechar/singlechar.plugin.zsh
-antigen bundle singlechar
-unalias w
+#antigen bundle spring
 antigen bundle autojump
 antigen bundle cp
+antigen bundle wd
 antigen bundle mvn
+antigen bundle pip
 antigen bundle vi-mode
-antigen bundle sudo
+#antigen bundle sudo
 antigen bundle common-aliases
+antigen bundle web-search
+antigen bundle shrink-path
 antigen bundle docker
-antigen bundle tmuxinator/tmuxinator --loc=completion/tmuxinator.zsh
+antigen bundle z
+antigen bundle tmux
+antigen bundle tmuxinator
+antigen bundle thefuck
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-autosuggestions
+
 antigen theme denysdovhan/spaceship-zsh-theme spaceship
 #To disable default <<< NORMAL mode indicator in right prompt
-export RPS1="%{$reset_color%}"
-
+#export RPS1="%{$reset_color%}"
 
 antigen apply
 
@@ -119,8 +105,9 @@ fi
 
 source ~/.vim/plugged/gruvbox/gruvbox_256palette.sh
 
-export NVM_DIR="/home/wenxuan/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
 # Homebrew Bottles中科大源
 export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
