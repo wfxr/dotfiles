@@ -10,7 +10,7 @@ sudo apt-get -y install language-pack-zh-hans
 sudo apt-get -y install build-essential
 sudo apt-get -y install make cmake
 sudo apt-get -y install python python-dev python-pip
-sudo apt-get -y install python3 python3-dev python3-pip
+sudo apt-get -y install python3 python3-dev
 ./python/setup.sh
 sudo apt-get -y install clang clang-format
 sudo apt-get -y install ruby
@@ -64,7 +64,7 @@ sudo add-apt-repository -y ppa:neovim-ppa/stable
 sudo apt-get update
 sudo apt-get -y install neovim
 sudo pip2 install --upgrade neovim
-sudo pip3 install --upgrade neovim
+#sudo pip3 install --upgrade neovim
 
 # Clean up
 sudo apt -y autoremove
