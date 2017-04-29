@@ -13,8 +13,8 @@ ln -sf $script_dir/vimrc ~/.vimrc
 ln -sf $script_dir/vimrc_gui ~/.vimrc_gui
 ln -sf $script_dir/vimrc_common ~/.vimrc_common
 ln -sf $script_dir/vimrc_plugin ~/.vimrc_plugin
+ln -sf $script_dir/spell/en.utf-8.add ~/.vim/spell/en.utf-8.add
 ln -snf $script_dir/UltiSnips ~/.vim/UltiSnips
-ln -snf $script_dir/spell ~/.vim/spell
 
 # nvim
 mkdir -p ~/.config
