@@ -1,3 +1,6 @@
+# get the dir of the current script
+script_dir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+
 sudo apt-get update
 sudo apt-get -y dist-upgrade
 sudo apt-get -y upgrade
@@ -68,6 +71,11 @@ sudo pip2 install --upgrade neovim
 
 # Clean up
 sudo apt -y autoremove
+
+# Install tools
+# TODO wait better way
+mkdir -p ~/bin
+ln -sf $script_dir/bin/linux/peco ~/bin/peco
 
 # Change default shell to zsh
 # Should not with sudo. That will change the sudo's shell but not current user

@@ -43,3 +43,4 @@ intellij/config/tasks/*
 
 .DS_Store
 *add.spl
+.gdb_history
