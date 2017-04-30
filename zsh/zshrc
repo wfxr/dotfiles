@@ -4,18 +4,6 @@
 #     HomePage: wenxuan.info
 #=============================================================================
 
-# User configuration
-export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/usr/games:/usr/local/games:$HOME/.local/bin
-export PATH=~/script/:~/bin/:$PATH
-export PATH="$PATH:$HOME/.vim/plugged/vim-superman/bin"
-export CPLUS_INCLUDE_PATH=/usr/local/include/c++/v1:$CPLUS_INCLUDE_PATH
-
-export TERM=xterm-256color
-
-export CC='clang'
-export CXX='clang++'
-export EDITOR='vim'
-
 if [[ ! $+commands[tac] ]]; then
     alias tac='tail -r'
 fi
@@ -39,6 +27,12 @@ alias vw=gvim
 alias e='emacs -nw'
 alias ew=emacs
 
+# copy alias
+# eg: cat foo.csv | pbcopy
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
+
+
 alias mux=tmuxinator
 alias daily='tmuxinator daily'
 
@@ -52,49 +46,110 @@ alias fg4='fg %4'
 alias fg5='fg %5'
 
 # Plugin manager
-source ~/.antigen/antigen/antigen.zsh || git clone https://github.com/zsh-users/antigen.git ~/.antigen/antigen && source ~/.antigen/antigen/antigen.zsh
-# Load the oh-my-zsh's library
-antigen use oh-my-zsh
+source ~/.zplug/init.zsh || curl https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh && source ~/.zplug/init.zsh
+zplug "lib/completion", from:oh-my-zsh
+zplug "lib/directories", from:oh-my-zsh
+zplug "lib/clipboard", from:oh-my-zsh, as:command
+zplug "lib/grep", from:oh-my-zsh
+zplug "lib/theme-and-appearance", from:oh-my-zsh
 
 # Git alias. See: https://github.com/robbyrussell/oh-my-zsh/wiki/Plugin:git
-antigen bundle git
+zplug "plugins/git", from:oh-my-zsh
 # Git completions. On OS X with Homebrew, you need to install git with brew install git --without-completions. Otherwise, git's _git will take precedence, and you won't see the completions for git-extras commands.
-antigen bundle git-extras
-antigen bundle github
-antigen bundle gitignore
-antigen bundle osx
-# common alias for ubuntu
-antigen bundle ubuntu
+zplug "plugins/git-extras", from:oh-my-zsh
+zplug "plugins/github", from:oh-my-zsh
+zplug "plugins/gitignore", from:oh-my-zsh
+zplug "plugins/osx", from:oh-my-zsh, if:"[[ $OSTYPE = *darwin* ]]"
+zplug "plugins/ubuntu", from:oh-my-zsh, if:"[[ $OSTYPE = *linux* ]]"
 # Plug for highlighting file content
-antigen bundle colorize
-# Adds autocomplete options for Spring Boot commands
-#antigen bundle spring
-antigen bundle cp
-antigen bundle wd
-antigen bundle mvn
-antigen bundle pip
-antigen bundle vi-mode
-antigen bundle sudo
-antigen bundle common-aliases
-antigen bundle web-search
-antigen bundle docker
-antigen bundle z
-antigen bundle tmux
-antigen bundle tmuxinator
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-completions
-antigen bundle zsh-users/zsh-autosuggestions
+zplug "plugins/cp", from:oh-my-zsh
+zplug "plugins/wd", from:oh-my-zsh
+zplug "plugins/mvn", from:oh-my-zsh
+zplug "lukechilds/zsh-nvm"
+zplug "plugins/pip", from:oh-my-zsh
+zplug "plugins/vi-mode", from:oh-my-zsh
+zplug "plugins/sudo", from:oh-my-zsh
+zplug "plugins/common-aliases", from:oh-my-zsh
+zplug "plugins/web-search", from:oh-my-zsh
+zplug "plugins/docker", from:oh-my-zsh
+zplug "plugins/z", from:oh-my-zsh
+zplug "plugins/tmux", from:oh-my-zsh
+zplug "plugins/tmuxinator", from:oh-my-zsh
 
-antigen theme denysdovhan/spaceship-zsh-theme spaceship
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-autosuggestions"
+
+zplug "denysdovhan/spaceship-zsh-theme", as:theme
 SPACESHIP_VI_MODE_SHOW=false
+zplug "morhetz/gruvbox", use:"gruvbox_256palette.sh", if:"[[ $OSTYPE = *linux* ]]"
+zplug "morhetz/gruvbox", use:"gruvbox_256palette_osx.sh", if:"[[ $OSTYPE = *darwin* ]]"
 
-antigen apply
+# fzf is a general-purpose command-line fuzzy finder.
+# @see: https://github.com/junegunn/fzf
+zplug "junegunn/fzf-bin", \
+    as:command, \
+    from:gh-r, \
+    rename-to:"fzf", \
+    frozen:1
 
-source ~/.vim/plugged/gruvbox/gruvbox_256palette.sh
+# jq is a lightweight and flexible command-line JSON processor.
+zplug "stedolan/jq", \
+    as:command, \
+    from:gh-r, \
+    rename-to:jq
 
-# Homebrew Bottles中科大源
-export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
+# like grep, ack, ag
+zplug "monochromegane/the_platinum_searcher", \
+    as:command, \
+    from:gh-r, \
+    rename-to:"pt", \
+    frozen:1
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# Simplistic interactive filtering tool
+zplug "peco/peco", \
+    as:command, \
+    from:gh-r, \
+    frozen:1
+
+# A next-generation cd command with an interactive filter
+zplug "jhawthorn/fzy", \
+    as:command, \
+    hook-build:"make && sudo make install"
+
+# ghr creates GitHub Release and uploads artifacts in parallel.
+zplug "tcnksm/ghr", \
+    as:command, \
+    from:gh-r
+
+# Short, simple, direct scripts for creating ASCII graphical histograms in the terminal.
+zplug "philovivero/distribution", \
+    as:command, \
+    use:distribution, \
+    if:'(( $+commands[perl] ))'
+
+# httpstat visualizes curl(1) statistics in a way of beauty and clarity.
+zplug "reorx/httpstat", \
+    as:command, \
+    use:'(httpstat).py', \
+    rename-to:'$1', \
+    if:'(( $+commands[python] ))'
+
+# wrk - a HTTP benchmarking tool
+# eg: wrk -t12 -c400 -d30s http://127.0.0.1:8080/index.html
+zplug "wg/wrk", \
+    as:command, \
+    hook-build:"make -j8"
+
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+zplug load
+#zplug load --verbose
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

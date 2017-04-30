@@ -21,7 +21,7 @@ Plug 'kana/vim-textobj-entire'
 Plug 'glts/vim-textobj-comment'
 Plug 'kana/vim-textobj-indent'
 Plug 'mattn/vim-textobj-url'
-Plug 'reedes/vim-pencil'
+"Plug 'reedes/vim-pencil'
 Plug 'morhetz/gruvbox'
 let g:gruvbox_italic=1
 Plug 'vim-airline/vim-airline'
@@ -52,6 +52,8 @@ Plug 'ntpeters/vim-better-whitespace'
 nnoremap <leader>sw :StripWhitespace<CR>
 Plug 'tpope/vim-fugitive'
 Plug 'octol/vim-cpp-enhanced-highlight'
+" TODO need lua, no nvim support
+"Plug 'jeaye/color_coded' " C-family语法高亮
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-commentary'
 Plug 'vim-scripts/matchit.zip'
@@ -66,17 +68,17 @@ let g:lt_location_list_toggle_map = '<leader>1'
 let g:lt_quickfix_list_toggle_map = '<leader>2'
 Plug 'godlygeek/tabular'
 Plug 'skammer/vim-css-color'
-Plug 'suan/vim-instant-markdown'
 Plug 'pangloss/vim-javascript'
 Plug 'moll/vim-node'
-Plug 'plasticboy/vim-markdown'
+"Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 "let g:vim_markdown_conceal = 0     "取消隐藏代码段语言标记
 Plug 'Yggdroot/indentLine'
 let g:indentLine_color_term = 239
 let g:indentLine_color_gui = '#4E4E4E'
 map <leader>il :IndentLinesToggle<CR>
-Plug 'takac/vim-hardtime'
-let g:hardtime_default_on = 0
+"Plug 'takac/vim-hardtime'
+"let g:hardtime_default_on = 0
 Plug 'vim-utils/vim-husk' " 在vim的命令模式支持eamcs-bash风格的快捷键操作
 
 Plug 'elzr/vim-json', { 'for': 'json' }
@@ -86,6 +88,9 @@ Plug 'luochen1990/rainbow',          { 'for': 'clojure' }
 Plug 'tpope/vim-fireplace',          { 'for': 'clojure' }
 Plug 'vim-scripts/paredit.vim',      { 'for': 'clojure' }
 Plug 'venantius/vim-cljfmt',         { 'for': 'clojure' }
+
+Plug 'zplug/vim-zplug'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim Clang Format: format C, C++ and Objective-C code
@@ -102,7 +107,7 @@ nmap <Leader>C :ClangFormatAutoToggle<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Ultisnips && Vim-Snippets
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Plug 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " Trigger configuration. Do not use <tab> if you use 'YouCompleteMe'
 let g:UltiSnipsExpandTrigger="<leader><tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-f>"
@@ -111,7 +116,6 @@ let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 "let g:UltiSnipsSnippetsDir="~/.UltiSnips"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="horizontal"
-Plug 'honza/vim-snippets'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntastic: a syntax checking plugin for Vim that runs files through
@@ -141,7 +145,7 @@ let g:syntastic_java_checkers=['checkstyle']
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " YouCompleteMe
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe' | Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 " 配置默认的ycm_extra_conf.py
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 " 打开vim时不再询问是否加载ycm_extra_conf.py配置
@@ -165,8 +169,8 @@ let g:ycm_key_invoke_completion = '<C-\>'
 " 补全完成后关闭预览窗口
 let g:ycm_autoclose_preview_window_after_completion = 1
 " Disable completion previews with function prototypes, etc.
-set completeopt=menu
-let g:ycm_add_preview_tocompleteopt = 1
+"set completeopt=menu
+"let g:ycm_add_preview_tocompleteopt = 1
 " 关闭js文件补全（需要js项目配置文件，类似C++，麻烦）
 let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1}
 "nnoremap <leader>g :YcmCompleter GoTo<CR>
@@ -193,30 +197,30 @@ nmap <Leader>w <Plug>(easymotion-overwin-w)
 "map /  <Plug>(incsearch-forward)
 "map ?  <Plug>(incsearch-backward)
 "map g/ <Plug>(incsearch-stay)
-set hlsearch
-let g:incsearch#auto_nohlsearch = 1
-map n  <Plug>(incsearch-nohl-n)
-map N  <Plug>(incsearch-nohl-N)
-map *  <Plug>(incsearch-nohl-*)
-map #  <Plug>(incsearch-nohl-#)
-map g* <Plug>(incsearch-nohl-g*)
-map g# <Plug>(incsearch-nohl-g#)
-Plug 'haya14busa/incsearch-easymotion.vim'
-Plug 'haya14busa/incsearch-fuzzy.vim'
-map z/ <Plug>(incsearch-fuzzy-/)
-map z? <Plug>(incsearch-fuzzy-?)
-map zg/ <Plug>(incsearch-fuzzy-stay)
-" 带跳转标记的跨窗口模糊搜索
-function! s:config_easyfuzzymotion(...) abort
-  return extend(copy({
-  \   'converters': [incsearch#config#fuzzyword#converter()],
-  \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
-  \   'keymap': {"\<CR>": '<Over>(easymotion)'},
-  \   'is_expr': 0,
-  \   'is_stay': 1
-  \ }), get(a:, 1, {}))
-endfunction
-noremap <silent><expr> <leader>/ incsearch#go(<SID>config_easyfuzzymotion())
+"set hlsearch
+"let g:incsearch#auto_nohlsearch = 1
+"map n  <Plug>(incsearch-nohl-n)
+"map N  <Plug>(incsearch-nohl-N)
+"map *  <Plug>(incsearch-nohl-*)
+"map #  <Plug>(incsearch-nohl-#)
+"map g* <Plug>(incsearch-nohl-g*)
+"map g# <Plug>(incsearch-nohl-g#)
+"Plug 'haya14busa/incsearch-easymotion.vim'
+"Plug 'haya14busa/incsearch-fuzzy.vim'
+"map z/ <Plug>(incsearch-fuzzy-/)
+"map z? <Plug>(incsearch-fuzzy-?)
+"map zg/ <Plug>(incsearch-fuzzy-stay)
+"" 带跳转标记的跨窗口模糊搜索
+"function! s:config_easyfuzzymotion(...) abort
+  "return extend(copy({
+  "\   'converters': [incsearch#config#fuzzyword#converter()],
+  "\   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
+  "\   'keymap': {"\<CR>": '<Over>(easymotion)'},
+  "\   'is_expr': 0,
+  "\   'is_stay': 1
+  "\ }), get(a:, 1, {}))
+"endfunction
+"noremap <silent><expr> <leader>/ incsearch#go(<SID>config_easyfuzzymotion())
 
 " Add plugins to &runtimepath
 call plug#end()
