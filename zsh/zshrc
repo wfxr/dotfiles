@@ -52,8 +52,7 @@ alias fg4='fg %4'
 alias fg5='fg %5'
 
 # Plugin manager
-source ~/.antigen/antigen/antigen.zsh
-
+source ~/.antigen/antigen/antigen.zsh || git clone https://github.com/zsh-users/antigen.git ~/.antigen/antigen && source ~/.antigen/antigen/antigen.zsh
 # Load the oh-my-zsh's library
 antigen use oh-my-zsh
 
@@ -70,38 +69,26 @@ antigen bundle ubuntu
 antigen bundle colorize
 # Adds autocomplete options for Spring Boot commands
 #antigen bundle spring
-antigen bundle autojump
 antigen bundle cp
 antigen bundle wd
 antigen bundle mvn
 antigen bundle pip
 antigen bundle vi-mode
-#antigen bundle sudo
+antigen bundle sudo
 antigen bundle common-aliases
 antigen bundle web-search
-antigen bundle shrink-path
 antigen bundle docker
 antigen bundle z
 antigen bundle tmux
 antigen bundle tmuxinator
-antigen bundle thefuck
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-autosuggestions
 
 antigen theme denysdovhan/spaceship-zsh-theme spaceship
-#To disable default <<< NORMAL mode indicator in right prompt
-#export RPS1="%{$reset_color%}"
+SPACESHIP_VI_MODE_SHOW=false
 
 antigen apply
-
-if [[ -f ~/.zshrc_theme_extra ]]; then
-    source ~/.zshrc_theme_extra
-fi
-
-if [[ -f ~/.zshrc_local ]]; then
-    source ~/.zshrc_local
-fi
 
 source ~/.vim/plugged/gruvbox/gruvbox_256palette.sh
 

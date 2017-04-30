@@ -71,7 +71,7 @@ sudo apt -y autoremove
 
 # Change default shell to zsh
 # Should not with sudo. That will change the sudo's shell but not current user
-chsh -s /bin/zsh
+chsh -s `which zsh`
 
 screenfetch
 echo "Done! Enjoy your Ubuntu!"
