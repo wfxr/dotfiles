@@ -1,4 +1,6 @@
 # get the dir of the current script
+[ "$(whoami)" != "root"  ] && exec sudo -- "$0" "$@"
+
 script_dir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
 sudo apt-get update
