@@ -69,13 +69,16 @@ sudo apt-get -y install neovim
 sudo pip2 install --upgrade neovim
 #sudo pip3 install --upgrade neovim
 
+# timg - Terminal Image Viewer
+cd /tmp
+git clone https://github.com/hzeller/timg.git
+cd timg/src
+sudo apt-get -y install libwebp-dev libgraphicsmagick++-dev    # required libs.
+make
+sudo make install
+
 # Clean up
 sudo apt -y autoremove
-
-# Install tools
-# TODO wait better way
-mkdir -p ~/bin
-ln -sf $script_dir/bin/linux/peco ~/bin/peco
 
 # Change default shell to zsh
 # Should not with sudo. That will change the sudo's shell but not current user
