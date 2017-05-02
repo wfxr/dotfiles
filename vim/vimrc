@@ -104,11 +104,6 @@ if !has("nvim")
     set t_ut=
 endif
 
-" Home away from home. We store some config files and snippets here and the
-" whole dotfiles dir is a git repo. Should be the last entry in rtp (for
-" UltiSnips).
-"set rtp+=$HOME/.dotfiles/vim
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Key mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -132,6 +127,37 @@ noremap <leader>sp [s
 noremap <leader>sa zg
 noremap <leader>s? z=
 
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
+inoremap <C-h> <BS>
+inoremap <C-d> <Del>
+inoremap <C-f> <Right>
+inoremap <C-b> <Left>
+inoremap <C-n> <Up>
+inoremap <C-p> <Down>
+inoremap <C-m> <CR>
+
+nnoremap q: <Nop>
+nnoremap q/ <Nop>
+nnoremap q? <Nop>
+nnoremap <Up> <Nop>
+nnoremap <Down> <Nop>
+nnoremap <Left> <Nop>
+nnoremap <Right> <Nop>
+nnoremap ZZ <Nop>
+nnoremap ZQ <Nop>
+
+" Smart space mapping
+" Notice: when starting other <Space> mappings in noremap, disappeared [Space]
+nmap  <Space>   [Space]
+xmap  <Space>   [Space]
+nnoremap  [Space]   <Nop>
+xnoremap  [Space]   <Nop>
+" key map ^,$ to <Space>h,l. Because ^ and $ is difficult to type and damage little finger!!!
+noremap [Space]h ^
+noremap [Space]l $
+
 colorscheme gruvbox
+
 "colorscheme solarized
 set background=dark
