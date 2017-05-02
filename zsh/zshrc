@@ -4,10 +4,6 @@
 #     HomePage: wenxuan.info
 #=============================================================================
 
-if [[ ! $+commands[tac] ]]; then
-    alias tac='tail -r'
-fi
-
 alias sudo='sudo ' #可以使sudo支持alias
 
 alias vimrc='vim ~/.vimrc'
@@ -18,9 +14,9 @@ alias hhkb='setxkbmap -option "ctrl:swapcaps"'
 alias disable_touch_pad='sudo modprobe -r psmouse'   # 禁用触控板
 alias enable_touch_pad='sudo modprobe psmouse'       # 启用触控板
 alias mkycm='cp ~/dotfiles/cpp/ycm_extra_conf.py .ycm_extra_conf.py'
-if [[ $+commands[nvim] ]]; then
-    alias vim=`which nvim`
-fi
+[ ! $+commands[tac] ] && alias tac='tail -r'
+[ $+commands[nvim] ] && alias vim=`which nvim`
+[ $+commands[exa] ] && alias ls=exa && alias ll='exa -l' && alias la='exa -la'
 alias v=vim
 alias vi=vim
 alias vw=gvim
@@ -32,11 +28,9 @@ alias ew=emacs
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 
-
 alias mux=tmuxinator
 alias daily='tmuxinator daily'
 
-alias evalclip='eval `xclip -o`'
 alias weather='curl wttr.in'
 
 alias fg1='fg %1'
@@ -46,11 +40,13 @@ alias fg4='fg %4'
 alias fg5='fg %5'
 
 # Plugin manager
-source ~/.zplug/init.zsh || curl https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh && source ~/.zplug/init.zsh
+installer=https://raw.githubusercontent.com/zplug/installer/master/installer.zsh
+zshinit=~/.zplug/init.zsh
+source $zshinit || curl $installer | zsh && source $zshinit
 zplug "lib/completion", from:oh-my-zsh
 zplug "lib/directories", from:oh-my-zsh
 zplug "lib/grep", from:oh-my-zsh
-zplug "lib/theme-and-appearance", from:oh-my-zsh
+zplug "lib/theme-and-appearance", from:oh-my-zsh, if:"[[ ! $+commands[exa] ]]"
 
 # Git alias. See: https://github.com/robbyrussell/oh-my-zsh/wiki/Plugin:git
 zplug "plugins/git", from:oh-my-zsh
@@ -64,7 +60,6 @@ zplug "plugins/ubuntu", from:oh-my-zsh, if:"[[ $OSTYPE = *linux* ]]"
 zplug "plugins/cp", from:oh-my-zsh
 zplug "plugins/wd", from:oh-my-zsh
 zplug "plugins/mvn", from:oh-my-zsh
-zplug "lukechilds/zsh-nvm"
 zplug "plugins/pip", from:oh-my-zsh
 zplug "plugins/vi-mode", from:oh-my-zsh
 zplug "plugins/sudo", from:oh-my-zsh
@@ -77,6 +72,7 @@ zplug "plugins/tmuxinator", from:oh-my-zsh
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions"
+zplug "lukechilds/zsh-nvm"
 
 zplug "denysdovhan/spaceship-zsh-theme", as:theme
 SPACESHIP_VI_MODE_SHOW=false
@@ -172,4 +168,6 @@ fi
 zplug load
 #zplug load --verbose
 
+[ -f ~/.zsh_keybinds ] && source ~/.zsh_keybinds
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+alias fall='pt --hidden --follow --ignore .git -g "" | fzf'
