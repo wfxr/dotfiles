@@ -7,3 +7,4 @@
 "AllowShortFunctionsOnASingleLine" : "All"
 "AllowShortIfStatementsOnASingleLine" : "true"
 "AlwaysBreakTemplateDeclarations" : "true"
+"AlignConsecutiveAssignments" : "true"

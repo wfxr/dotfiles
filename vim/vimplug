@@ -1,3 +1,4 @@
+" vim: filetype=vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim Plug: A minimalist Vim plugin manager.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -51,7 +52,7 @@ map - <Plug>(expand_region_shrink)
 Plug 'ntpeters/vim-better-whitespace'
 nnoremap <leader>sw :StripWhitespace<CR>
 Plug 'tpope/vim-fugitive'
-Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'octol/vim-cpp-enhanced-highlight', {'for': 'cpp'}
 " TODO need lua, no nvim support
 "Plug 'jeaye/color_coded' " C-family语法高亮
 Plug 'scrooloose/nerdcommenter'
@@ -67,8 +68,8 @@ let g:lt_height = 10
 let g:lt_location_list_toggle_map = '<leader>1'
 let g:lt_quickfix_list_toggle_map = '<leader>2'
 Plug 'godlygeek/tabular'
-Plug 'skammer/vim-css-color'
-Plug 'pangloss/vim-javascript'
+Plug 'skammer/vim-css-color', {'for': 'css'}
+Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 Plug 'moll/vim-node'
 "Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
@@ -92,17 +93,22 @@ Plug 'venantius/vim-cljfmt',         { 'for': 'clojure' }
 Plug 'zplug/vim-zplug'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Vim Clang Format: format C, C++ and Objective-C code
-" clang-format options can be set int ~/.clang-format file
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Plug 'rhysd/vim-clang-format'
-" map to <Leader>cf in C++ code
-autocmd FileType c,cpp,objc,java,js,ts nnoremap <buffer><leader>cf :<C-u>ClangFormat<CR>
-autocmd FileType c,cpp,objc,java,js,ts vnoremap <buffer><leader>cf :ClangFormat<CR>
-autocmd FileType c,cpp,objc,java,js,ts inoremap <buffer><leader>cf <Esc>:ClangFormat<CR>
-" Toggle auto formatting:
-nmap <Leader>C :ClangFormatAutoToggle<CR>
+Plug 'sbdchd/neoformat'
+" Run neoformat on save
+augroup fmt
+  autocmd!
+  autocmd BufWritePre * Neoformat
+augroup END
+" Enable alignment
+let g:neoformat_basic_format_align = 1
+" Enable tab to spaces conversion
+let g:neoformat_basic_format_retab = 1
+" Enable trimmming of trailing whitespace
+let g:neoformat_basic_format_trim = 1
+
+Plug 'cespare/vim-toml', {'for': 'toml'}
+Plug 'rust-lang/rust.vim', {'for': 'rust'}
+let g:rustfmt_autosave = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Ultisnips && Vim-Snippets
@@ -175,6 +181,7 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1}
 "nnoremap <leader>g :YcmCompleter GoTo<CR>
 nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+map <leader>F :YcmCompleter FixIt<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Cursor move and incremental search

@@ -15,9 +15,9 @@ sudo apt-get -y install language-pack-zh-hans
 sudo apt-get -y install build-essential
 sudo apt-get -y install make cmake
 sudo apt-get -y install python python-dev python-pip
-sudo apt-get -y install python3 python3-dev
-./python/setup.sh
-sudo apt-get -y install clang clang-format
+sudo apt-get -y install python3 python3-dev python3-pip
+$script_dir/python/setup.sh # config pip source mirror
+sudo apt-get -y install clang
 sudo apt-get -y install ruby
 gem sources --add https://gems.ruby-china.org/ --remove https://rubygems.org/
 
@@ -32,8 +32,6 @@ sudo apt-get -y install openjdk-8-jdk
 sudo apt-get -y install git
 sudo apt-get -y install zsh
 sudo apt-get -y install tree
-sudo apt-get -y install autojump
-sudo apt-get -y install most # Colored pager
 sudo apt-get -y install vim
 sudo apt-get -y install ctags
 sudo apt-get -y install htop
@@ -49,6 +47,7 @@ sudo apt-get -y install rig # Generate random address info
 sudo apt-get -y install cowsay
 sudo apt-get -y install cowthink
 sudo apt-get -y install toilet
+sudo apt-get -y install lolcat
 #sudo apt-get -y install bb # Amazing!
 
 # Neofetch
@@ -71,6 +70,15 @@ sudo apt-get -y install neovim
 sudo pip2 install --upgrade neovim
 #sudo pip3 install --upgrade neovim
 
+# Ag - A code searching tool similar to ack, with a focus on speed.
+cd /tmp
+git clone https://github.com/ggreer/the_silver_searcher.git
+cd the_silver_searcher
+sudo apt-get install -y automake pkg-config libpcre3-dev zlib1g-dev liblzma-dev
+./build.sh
+sudo make install
+
+
 # timg - Terminal Image Viewer
 cd /tmp
 git clone https://github.com/hzeller/timg.git
@@ -81,10 +89,6 @@ sudo make install
 
 # Clean up
 sudo apt -y autoremove
-
-# Change default shell to zsh
-# Should not with sudo. That will change the sudo's shell but not current user
-chsh -s `which zsh`
 
 screenfetch
 echo "Done! Enjoy your Ubuntu!"
