@@ -1,3 +1,5 @@
+" vim: filetype=vim
+
 " Set n lines to the cursor - when moving vertically using j/k
 set scrolloff=5
 
@@ -44,7 +46,7 @@ map <silent> <leader><cr> :noh<cr>
 " These create newlines like o and O but stay in normal mode
 nnoremap <silent> zj o<Esc>k
 nnoremap <silent> zk O<Esc>j
-nnoremap <silent> <Space> i <Esc>l
+nnoremap <silent> zl i <Esc>l
 inoremap <silent> <leader>a <Esc>A
 inoremap <silent> <leader>i <Esc>I
 inoremap <silent> <leader>; <Esc>A;<Esc>
@@ -59,10 +61,6 @@ noremap  <buffer> <silent> k gk
 noremap  <buffer> <silent> j gj
 noremap  <buffer> <silent> 0 g0
 noremap  <buffer> <silent> $ g$
-
-" Split window
-map <leader>S :split<Space>
-map <leader>V :vsplit<Space>
 
 " Close window
 map <leader>q :q<cr>

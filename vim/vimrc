@@ -13,12 +13,8 @@ endif
 " Cancel compatible to avoid some bugs and limitations.
 set nocompatible
 
-source ~/.vimrc_common
-source ~/.vimrc_plugin
-
-if has("gui_running")
-    source ~/.vimrc_gui
-endif
+source ~/.vimcomm
+source ~/.vimplug
 
 if has("termguicolors") && has("nvim")
     set termguicolors
@@ -83,18 +79,17 @@ set wildmode=full
 set smartindent
 set cindent
 
-" 设置编码格式为UTF-8,防止中文乱码
-set encoding=utf-8
+" Use Unix as the standard file type
+set fileformat=unix
+set fileformats=unix,dos,mac
 
 " Set the sequence of auto encoding
 set fileencodings=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936,big5
+set encoding=utf-8
 
 " No swap files, use version control instead
 set noswapfile
 
-" Use Unix as the standard file type
-set fileformat=unix
-set fileformats=unix,dos,mac
 set diffopt=vertical
 
 "" disable Background Color Erase (BCE) so that color schemes
@@ -114,9 +109,7 @@ map <C-Left> :vertical resize -1<cr>
 
 " Useful mappings for managing tabs
 map <leader>tc :tabnew<SPACE>
-"map <leader>to :tabonly<CR>
 map <leader>tq :tabclose<CR>
-"map <leader>t<tab> :tabnext<CR>
 map <leader>tn :tabnext<CR>
 map <leader>tp :tabNext<CR>
 
