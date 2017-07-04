@@ -84,8 +84,11 @@ cd /tmp
 git clone https://github.com/hzeller/timg.git
 cd timg/src
 sudo apt-get -y install libwebp-dev libgraphicsmagick++-dev    # required libs.
-make
+make -j8
 sudo make install
+
+# Axel - Download tool
+sudo apt-get -y install axel
 
 # Clean up
 sudo apt -y autoremove
