@@ -29,7 +29,7 @@ Plug 'vim-airline/vim-airline'
 let g:airline_theme='gruvbox'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
-Plug 'taglist.vim'
+Plug 'vim-scripts/taglist.vim'
 let Tlist_Exit_OnlyWindow=1
 let Tlist_Auto_Open=0
 nmap <leader>tl :TlistToggle<CR>
@@ -58,7 +58,7 @@ Plug 'octol/vim-cpp-enhanced-highlight', {'for': 'cpp'}
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-commentary'
 Plug 'vim-scripts/matchit.zip'
-Plug 'a.vim'
+Plug 'vim-scripts/a.vim'
 nmap <leader>aa :A<CR>
 nmap <leader>as :AS<CR>
 Plug 'wfxr/BufferSwitch'
@@ -95,10 +95,10 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 Plug 'sbdchd/neoformat'
 " Run neoformat on save
-augroup fmt
-  autocmd!
-  autocmd BufWritePre * Neoformat
-augroup END
+"augroup fmt
+    "autocmd!
+    "autocmd BufWritePre * Neoformat
+"augroup END
 " Enable alignment
 let g:neoformat_basic_format_align = 1
 " Enable tab to spaces conversion
@@ -219,13 +219,13 @@ nmap <Leader>w <Plug>(easymotion-overwin-w)
 "map zg/ <Plug>(incsearch-fuzzy-stay)
 "" 带跳转标记的跨窗口模糊搜索
 "function! s:config_easyfuzzymotion(...) abort
-  "return extend(copy({
-  "\   'converters': [incsearch#config#fuzzyword#converter()],
-  "\   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
-  "\   'keymap': {"\<CR>": '<Over>(easymotion)'},
-  "\   'is_expr': 0,
-  "\   'is_stay': 1
-  "\ }), get(a:, 1, {}))
+"return extend(copy({
+"\   'converters': [incsearch#config#fuzzyword#converter()],
+"\   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
+"\   'keymap': {"\<CR>": '<Over>(easymotion)'},
+"\   'is_expr': 0,
+"\   'is_stay': 1
+"\ }), get(a:, 1, {}))
 "endfunction
 "noremap <silent><expr> <leader>/ incsearch#go(<SID>config_easyfuzzymotion())
 
