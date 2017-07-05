@@ -1,0 +1,75 @@
+#=============================================================================
+#       Author: Wenxuan Zhang
+#        Email: wenxuangm@gmail.com
+#     HomePage: wenxuan.info
+#=============================================================================
+
+export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/usr/games:/usr/local/games:$HOME/.local/bin
+export PATH=$HOME/bin/:$HOME/.cargo/bin:$PATH
+export PATH="$PATH:$HOME/.vim/plugged/vim-superman/bin"
+
+# C++
+export CPLUS_INCLUDE_PATH=/usr/local/include/c++/v1:$CPLUS_INCLUDE_PATH
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib"
+export CC=clang
+export CXX=clang++
+
+# Rust
+export RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static
+export RUST_SRC_PATH=~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
+
+export TERM=xterm-256color
+
+# LANGUAGE must be set by en_US
+export LANGUAGE="en_US.UTF-8"
+export LANG="${LANGUAGE}"
+export LC_ALL="${LANGUAGE}"
+export LC_CTYPE="${LANGUAGE}"
+
+# Editor
+export EDITOR=vim
+export CVSEDITOR=${EDITOR}
+export GIT_EDITOR=${EDITOR}
+
+# Homebrew Bottles中科大源
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
+
+# nvm
+export NVM_DIR=$HOME/.nvm
+export NVM_LAZY_LOAD=true
+export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node/
+
+# Golang
+export GOPATH=$HOME/.go
+export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+
+# Pager
+export PAGER=less
+# Less status line
+export LESS='-R -f -X -i -P ?f%f:(stdin). ?lb%lb?L/%L.. [?eEOF:?pb%pb\%..]'
+export LESSCHARSET='utf-8'
+
+# LESS man page colors (makes Man pages more readable).
+export LESS_TERMCAP_mb=$'\E[01;31m'
+export LESS_TERMCAP_md=$'\E[01;31m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[00;44;37m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[01;32m'
+
+# History file
+export HISTFILE=~/.zsh_history
+# History size in memory
+export HISTSIZE=10000
+# The number of histsize
+export SAVEHIST=1000000
+# The size of asking history
+export LISTMAX=50
+# Do not add in root
+if [[ $UID == 0 ]]; then
+    unset HISTFILE
+    export SAVEHIST=0
+fi
+
+[[ -f ~/.secret ]] && source ~/.secret

@@ -1,0 +1,53 @@
+# Add emacs-like keybind to vi mode
+bindkey -M viins '^F'  forward-char
+bindkey -M viins '^B'  backward-char
+bindkey -M viins '^A'  beginning-of-line
+bindkey -M viins '^E'  end-of-line
+bindkey -M viins '^K'  kill-line
+bindkey -M viins '^Y'  yank
+# Default is better!
+#bindkey -M viins '^W'  backward-kill-word
+bindkey -M viins '^U'  backward-kill-line
+bindkey -M viins '^H'  backward-delete-char
+bindkey -M viins '^?'  backward-delete-char
+bindkey -M viins '^G'  send-break
+bindkey -M viins '^D'  delete-char-or-list
+bindkey -M viins '^P'  up-line-or-history
+bindkey -M viins '^N'  down-line-or-history
+
+bindkey -M vicmd '^A'  beginning-of-line
+bindkey -M vicmd '^E'  end-of-line
+bindkey -M vicmd '^K'  kill-line
+bindkey -M vicmd '^P'  up-line-or-history
+bindkey -M vicmd '^N'  down-line-or-history
+bindkey -M vicmd '^Y'  yank
+bindkey -M vicmd '^U'  backward-kill-line
+bindkey -M vicmd '/'   vi-history-search-forward
+bindkey -M vicmd '?'   vi-history-search-backward
+
+if is-at-least 5.0.8; then
+    autoload -Uz surround
+    zle -N delete-surround surround
+    zle -N change-surround surround
+    zle -N add-surround surround
+    bindkey -a cs change-surround
+    bindkey -a ds delete-surround
+    bindkey -a ys add-surround
+    bindkey -a S add-surround
+fi
+
+alias -g P='| peco'
+alias -g F11='-Wall -std=c++11 '
+alias -g F14='-Wall -std=c++14 '
+# expand global aliases by space
+# http://blog.patshead.com/2012/11/automatically-expaning-zsh-global-aliases---simplified.html
+globalias() {
+   if [[ $LBUFFER =~ ' [A-Z0-9]+$' ]]; then
+     zle _expand_alias
+     #zle expand-word
+   fi
+   zle self-insert
+}
+
+zle -N globalias
+bindkey ' ' globalias
