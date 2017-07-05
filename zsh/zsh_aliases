@@ -1,0 +1,54 @@
+alias agall='ag --silent --hidden -g ""'
+alias agdot='ag --silent --hidden -g ".[^/]+"'
+
+alias sudo='sudo ' #可以使sudo支持alias
+
+alias vimrc='vim ~/.vimrc'
+alias vimplug='vim ~/.vimplug'
+alias vimcomm='vim ~/.vimcomm'
+alias gvimrc='vim ~/.gvimrc'
+
+alias zshrc='vim ~/.zshrc'
+alias zshenv='vim ~/.zsh_env'
+alias zshalias='vim ~/.zsh_aliases'
+alias zshbind='vim ~/.zsh_keybinds'
+
+alias tmuxconf='vim ~/.tmux.conf'
+
+alias ..='\cd ..'
+alias shutdown='shutdown -h now'
+alias xxnet='~/tools/xx-net/start'
+alias proxy='proxychains4'
+alias hhkb='setxkbmap -option "ctrl:swapcaps"'
+alias disable_touch_pad='sudo modprobe -r psmouse'   # 禁用触控板
+alias enable_touch_pad='sudo modprobe psmouse'       # 启用触控板
+alias mkycm='cp ~/dotfiles/cpp/ycm_extra_conf.py .ycm_extra_conf.py'
+[ ! $+commands[tac] ] && alias tac='tail -r'
+[ $+commands[nvim] ] && alias vim=`which nvim`
+[ $+commands[exa] ] && alias ls=exa && alias ll='ls -lbgh' && alias la='ll -a'
+alias v=vim
+alias vi=vim
+alias vw=gvim
+alias e='emacs -nw'
+alias ew=emacs
+
+# copy alias
+# eg: cat foo.csv | pbcopy
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
+
+alias mux=tmuxinator
+alias daily='tmuxinator daily'
+
+alias weather='curl wttr.in'
+
+alias fg1='fg %1'
+alias fg2='fg %2'
+alias fg3='fg %3'
+alias fg4='fg %4'
+alias fg5='fg %5'
+
+[ $+commands[ghq] ] && \
+    alias gget='ghq get' && \
+    alias glook='ghq look' && \
+    alias glist='ghq list'
