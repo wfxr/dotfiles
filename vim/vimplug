@@ -56,6 +56,9 @@ Plug 'octol/vim-cpp-enhanced-highlight', {'for': 'cpp'}
 " TODO need lua, no nvim support
 "Plug 'jeaye/color_coded' " C-family语法高亮
 Plug 'scrooloose/nerdcommenter'
+" For some reason, vim registers <C-/> as <C-_>
+nnoremap <c-_> :call NERDComment(0, "toggle")<CR>
+vnoremap <c-_> :call NERDComment(0, "toggle")<CR>
 Plug 'tpope/vim-commentary'
 Plug 'vim-scripts/matchit.zip'
 Plug 'vim-scripts/a.vim'
