@@ -136,52 +136,53 @@ zplug "philovivero/distribution", \
     use:distribution, \
     if:'(( $+commands[perl] ))'
 
-        zplug "holman/spark", \
-            as:command, \
-            use:spark
+zplug "holman/spark", \
+    as:command, \
+    use:spark
 
-        # httpstat visualizes curl(1) statistics in a way of beauty and clarity.
-        zplug "reorx/httpstat", \
-            as:command, \
-            use:'(httpstat).py', \
-            rename-to:'$1', \
-            if:'(( $+commands[python] ))'
+# httpstat visualizes curl(1) statistics in a way of beauty and clarity.
+zplug "reorx/httpstat", \
+    as:command, \
+    use:'(httpstat).py', \
+    rename-to:'$1', \
+    if:'(( $+commands[python] ))'
 
-                # wrk - a HTTP benchmarking tool
-                # eg: wrk -t12 -c400 -d30s http://127.0.0.1:8080/index.html
-                zplug "wg/wrk", \
-                    as:command, \
-                    hook-build:"make -j8"
+# wrk - a HTTP benchmarking tool
+# eg: wrk -t12 -c400 -d30s http://127.0.0.1:8080/index.html
+zplug "wg/wrk", \
+    as:command, \
+    hook-build:"make -j8"
 
-                # An interactive way to peruse your git history from the terminal
-                zplug 'Fakerr/git-recall', \
-                    as:command, \
-                    use:'git-recall'
+# An interactive way to peruse your git history from the terminal
+zplug 'Fakerr/git-recall', \
+    as:command, \
+    use:'git-recall'
 
-                # Remote repository management made easy
-                zplug "motemen/ghq", \
-                    as:command, \
-                    from:gh-r, \
-                    rename-to:ghq
+# Remote repository management made easy
+zplug "motemen/ghq", \
+    as:command, \
+    from:gh-r, \
+    rename-to:ghq
 
-                # sparklines
-                # usage: sparklines -n 3 null 3 7 4 2 5 6 | lolcat
-                zplug "deeplook/sparklines", hook-build:"sudo pip install -e ."
+# sparklines
+# usage: sparklines -n 3 null 3 7 4 2 5 6 | lolcat
+zplug "deeplook/sparklines", hook-build:"sudo pip install -e ."
 
-                # gomi is a simple trash tool that works on CLI, written in Go
-                zplug "b4b4r07/gomi", as:command, from:gh-r
+# gomi is a simple trash tool that works on CLI, written in Go
+zplug "b4b4r07/gomi", as:command, from:gh-r
 
-                # Install plugins if there are plugins that have not been installed
-                if ! zplug check --verbose; then
-                    printf "Install? [y/N]: "
-                    if read -q; then
-                        echo; zplug install
-                    fi
-                fi
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
 
-                zplug load
-                #zplug load --verbose
+zplug load
+#zplug load --verbose
 
-                source ~/.zsh_keybinds
-                source ~/.zsh_misc
-                source ~/.zsh_aliases
+source ~/.zsh_keybinds
+source ~/.zsh_misc
+source ~/.zsh_aliases
+[ -f ~/.zsh_local ] && source ~/.zsh_local
