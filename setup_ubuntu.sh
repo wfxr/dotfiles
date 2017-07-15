@@ -20,6 +20,7 @@ $script_dir/python/setup.sh # config pip source mirror
 sudo apt-get -y install clang
 sudo apt-get -y install ruby
 gem sources --add https://gems.ruby-china.org/ --remove https://rubygems.org/
+sudo apt-get install libssh2-1-dev # exa need it
 
 # OpenJDK
 sudo apt-get -y install openjdk-8-jdk

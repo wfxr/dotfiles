@@ -29,7 +29,7 @@ zplug "plugins/tmux", from:oh-my-zsh
 zplug "plugins/tmuxinator", from:oh-my-zsh
 zplug "plugins/cargo", from:oh-my-zsh, lazy:yes
 zplug "plugins/rust", from:oh-my-zsh, lazy:yes
-zplug "lukechilds/zsh-nvm"
+#zplug "lukechilds/zsh-nvm"
 
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "zsh-users/zsh-completions"
