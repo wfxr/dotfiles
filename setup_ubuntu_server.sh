@@ -75,5 +75,8 @@ sudo make install
 # Clean up
 sudo apt -y autoremove
 
+./restore_config.sh git vim zsh tmux
+echo 'export is_server=true' > ~/.zsh_local
+
 screenfetch
 echo "Done! Enjoy your Ubuntu!"
