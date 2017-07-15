@@ -84,3 +84,15 @@ inoremap <leader>P <Esc>"+Pi
 
 " Select pasted text
 noremap vp `[v`]
+
+" Emacs style key mapping
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
+inoremap <C-h> <BS>
+inoremap <C-d> <Del>
+inoremap <C-f> <Right>
+inoremap <C-b> <Left>
+inoremap <C-n> <Up>
+inoremap <C-p> <Down>
+inoremap <C-m> <CR>
+
