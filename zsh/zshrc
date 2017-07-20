@@ -4,6 +4,8 @@
 #     HomePage: wenxuan.info
 #=============================================================================
 
+source ~/.zsh_env
+
 # Plugin manager
 installer=https://raw.githubusercontent.com/zplug/installer/master/installer.zsh
 zshinit=~/.zplug/init.zsh
