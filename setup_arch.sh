@@ -1,0 +1,1 @@
+yaourt -S pet-git

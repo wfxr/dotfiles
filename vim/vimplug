@@ -13,6 +13,9 @@ noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
 noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
 noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 Plug 'mattn/emmet-vim'
+Plug 'mattn/vim-prompter'
+Plug 'mattn/vim-fixedsearch'
+Plug 'mattn/vim-xxdcursor'
 Plug 'jez/vim-superman'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'kana/vim-textobj-user'
@@ -22,6 +25,7 @@ Plug 'kana/vim-textobj-entire'
 Plug 'glts/vim-textobj-comment'
 Plug 'kana/vim-textobj-indent'
 Plug 'mattn/vim-textobj-url'
+Plug 'wakatime/vim-wakatime'
 "Plug 'reedes/vim-pencil'
 Plug 'morhetz/gruvbox'
 let g:gruvbox_italic=1
