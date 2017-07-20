@@ -38,5 +38,8 @@ windows:
       # synchronize: after
       panes:
         - htop
-        - cd dotfiles && git pull && neofetch
-        - clear && toilet -f mono12 -F metal `whoami`
+        - pane:
+            - cd dotfiles
+            - git pull
+            - neofetch
+        - tmux clock-mode
