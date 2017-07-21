@@ -36,6 +36,7 @@ alias ew=emacs
 # eg: cat foo.csv | pbcopy
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
+alias pget='pbpaste | xargs wget'
 
 alias mux=tmuxinator
 alias daily='tmuxinator daily'
