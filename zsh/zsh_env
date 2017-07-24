@@ -58,7 +58,7 @@ export FZF_DEFAULT_OPTS='
 --bind=ctrl-u:page-up
 --bind=ctrl-d:page-down
 --bind=ctrl-z:toggle-all
---preview="head -50 {} 2>/dev/null || ls -a {} 2>/dev/null"
+--preview="head -50 {} 2>/dev/null || ls -a {} 2>/dev/null || echo {}"
 --preview-window=down:50%
 '
 
