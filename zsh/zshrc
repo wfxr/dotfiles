@@ -39,7 +39,7 @@ zplug "zsh-users/zsh-autosuggestions"
 
 zplug "morhetz/gruvbox", use:"gruvbox_256palette.sh", if:"[[ $OSTYPE = *linux* ]]"
 zplug "morhetz/gruvbox", use:"gruvbox_256palette_osx.sh", if:"[[ $OSTYPE = *darwin* ]]"
-zplug "b4b4r07/zsh-vimode-visual", use:"*.zsh", defer:3
+#zplug "b4b4r07/zsh-vimode-visual", use:"*.zsh", defer:3
 zplug "b4b4r07/ultimate", as:theme
 #zplug "subnixr/minimal", as:theme, use:"minimal.zsh"
 if zplug check "b4b4r07/ultimate"; then
@@ -183,6 +183,9 @@ fi
 
 zplug load
 #zplug load --verbose
+
+ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=( forward-word forward-char )
+ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=( end-of-line)
 
 source ~/.zsh_keybinds
 source ~/.zsh_misc
