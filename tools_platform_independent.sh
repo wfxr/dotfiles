@@ -9,3 +9,6 @@ cargo install --git https://github.com/sharkdp/fd
 
 # Colored cat
 go get -u github.com/jingweno/ccat
+
+# WakaTime was built to solve time tracking for programmers.
+sudo pip install wakatime
