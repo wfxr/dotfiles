@@ -6,6 +6,8 @@
 
 source ~/.zsh_env
 
+bindkey -e
+
 # Plugin manager
 installer=https://raw.githubusercontent.com/zplug/installer/master/installer.zsh
 zshinit=~/.zplug/init.zsh
