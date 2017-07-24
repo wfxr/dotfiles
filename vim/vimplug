@@ -27,6 +27,7 @@ Plug 'kana/vim-textobj-indent'
 Plug 'mattn/vim-textobj-url'
 Plug 'wakatime/vim-wakatime'
 Plug 'lilydjwg/fcitx.vim'
+Plug 'robbles/logstash.vim'
 "Plug 'reedes/vim-pencil'
 Plug 'morhetz/gruvbox'
 let g:gruvbox_italic=1
