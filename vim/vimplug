@@ -17,7 +17,6 @@ Plug 'mattn/vim-prompter'
 Plug 'mattn/vim-fixedsearch'
 nmap \ <plug>(fixedsearch)
 Plug 'mattn/vim-xxdcursor'
-Plug 'jez/vim-superman'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-function'
