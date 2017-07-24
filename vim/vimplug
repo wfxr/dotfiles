@@ -29,6 +29,15 @@ Plug 'wakatime/vim-wakatime'
 Plug 'lilydjwg/fcitx.vim'
 Plug 'robbles/logstash.vim'
 "Plug 'reedes/vim-pencil'
+Plug 'tpope/vim-fugitive'
+Plug 'junegunn/vim-easy-align'
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+Plug 'junegunn/gv.vim'
+Plug 'junegunn/vim-peekaboo'
+Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'morhetz/gruvbox'
 let g:gruvbox_italic=1
 Plug 'vim-airline/vim-airline'
@@ -57,7 +66,6 @@ map + <Plug>(expand_region_expand)
 map - <Plug>(expand_region_shrink)
 Plug 'ntpeters/vim-better-whitespace'
 nnoremap <leader>sw :StripWhitespace<CR>
-Plug 'tpope/vim-fugitive'
 Plug 'octol/vim-cpp-enhanced-highlight', {'for': 'cpp'}
 " TODO need lua, no nvim support
 "Plug 'jeaye/color_coded' " C-family语法高亮
