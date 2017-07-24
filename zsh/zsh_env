@@ -72,4 +72,7 @@ if [[ $UID == 0 ]]; then
     export SAVEHIST=0
 fi
 
+# Word split
+export WORDCHARS=''
+
 [[ -f ~/.secret ]] && source ~/.secret
