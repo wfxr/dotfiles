@@ -43,6 +43,25 @@ export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node/
 export GOPATH=$HOME/.go
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 
+# FZF is a general-purpose command-line fuzzy finder.
+# Feed the output of ag into fzf (include hidden files)
+export FZF_DEFAULT_COMMAND='ag -g ""'
+export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
+#export FZF_ALT_C_COMMAND='cd'
+export FZF_DEFAULT_OPTS='
+--border
+--height 80%
+--extended
+--ansi
+--multi
+--reverse
+--bind=ctrl-u:page-up
+--bind=ctrl-d:page-down
+--bind=ctrl-z:toggle-all
+--preview="head -50 {} 2>/dev/null || ls -a {} 2>/dev/null"
+--preview-window=down:50%
+'
+
 # Pager
 export PAGER=less
 # Less status line
@@ -74,5 +93,3 @@ fi
 
 # Word split
 export WORDCHARS=''
-
-[[ -f ~/.secret ]] && source ~/.secret

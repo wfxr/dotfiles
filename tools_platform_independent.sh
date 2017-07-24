@@ -6,3 +6,6 @@ npm install -g tldr
 npm install -g clang-format
 
 cargo install --git https://github.com/sharkdp/fd
+
+# Colored cat
+go get -u github.com/jingweno/ccat

@@ -38,6 +38,8 @@ zplug "plugins/rust", from:oh-my-zsh, lazy:yes
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions"
+ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=( forward-word forward-char )
+ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=( end-of-line)
 
 zplug "morhetz/gruvbox", use:"gruvbox_256palette.sh", if:"[[ $OSTYPE = *linux* ]]"
 zplug "morhetz/gruvbox", use:"gruvbox_256palette_osx.sh", if:"[[ $OSTYPE = *darwin* ]]"
@@ -49,31 +51,6 @@ zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
 if zplug check "b4b4r07/ultimate"; then
     zstyle ':ultimate:prompt:path' mode 'shortpath'
 fi
-
-# fzf is a general-purpose command-line fuzzy finder.
-# @see: https://github.com/junegunn/fzf
-zplug "junegunn/fzf-bin", \
-    as:command, \
-    from:gh-r, \
-    frozen:1
-# fzf config
-# Feed the output of ag into fzf (include hidden files)
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_COMMAND='ag -g ""'
-export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
-#export FZF_ALT_C_COMMAND='cd'
-export FZF_DEFAULT_OPTS='--height 50% --reverse --border'
-export FZF_DEFAULT_OPTS='
---border
---height 50%
---extended
---ansi
---multi
---reverse
---bind=ctrl-u:page-up
---bind=ctrl-d:page-down
---bind=ctrl-z:toggle-all
-'
 
 # wonderful tools for fzf
 zplug 'b4b4r07/fzf-powertools', \
@@ -114,10 +91,10 @@ zplug "stedolan/jq", \
     rename-to:jq
 
 # Simplistic interactive filtering tool
-zplug "peco/peco", \
-    as:command, \
-    from:gh-r, \
-    frozen:1
+#zplug "peco/peco", \
+    #as:command, \
+    #from:gh-r, \
+    #frozen:1
 
 # A next-generation cd command with an interactive filter
 zplug "b4b4r07/enhancd", use:init.sh
@@ -188,11 +165,10 @@ fi
 zplug load
 #zplug load --verbose
 
-ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=( forward-word forward-char )
-ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=( end-of-line)
-
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.zsh_local ] && source ~/.zsh_local
+[ -f ~/.secret ] && source ~/.secret
 source ~/.zsh_keybinds
 source ~/.zsh_misc
 source ~/.zsh_aliases
 source ~/.zsh_custom
-[ -f ~/.zsh_local ] && source ~/.zsh_local
