@@ -37,6 +37,8 @@ alias ew=emacs
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 alias pget='pbpaste | xargs wget'
+alias pgit='pbpaste | xargs git clone'
+alias prun='pbpaste | sh'
 
 alias mux=tmuxinator
 alias daily='tmuxinator daily'
