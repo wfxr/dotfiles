@@ -21,12 +21,12 @@ zplug "plugins/git-extras", from:oh-my-zsh
 zplug "plugins/github", from:oh-my-zsh
 zplug "plugins/gitignore", from:oh-my-zsh
 #zplug "plugins/osx", from:oh-my-zsh, if:"[[ $OSTYPE = *darwin* ]]"
-zplug "plugins/ubuntu", from:oh-my-zsh, if:"[[ $OSTYPE = *linux* ]]", hook-load:"unalias ag fd"
+#zplug "plugins/ubuntu", from:oh-my-zsh, if:"[[ $OSTYPE = *linux* ]]", hook-load:"unalias ag fd"
 # Plug for highlighting file content
 zplug "plugins/cp", from:oh-my-zsh
 zplug "plugins/mvn", from:oh-my-zsh, lazy:yes
 zplug "plugins/pip", from:oh-my-zsh, lazy:yes
-zplug "plugins/common-aliases", from:oh-my-zsh
+zplug "plugins/common-aliases", from:oh-my-zsh, hook-load:"unalias fd"
 zplug "plugins/web-search", from:oh-my-zsh
 #zplug "plugins/docker", from:oh-my-zsh
 #zplug "plugins/tmux", from:oh-my-zsh # Why its folder always appears at top of fzf/fzy list?

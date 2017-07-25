@@ -27,6 +27,7 @@ alias mkycm='cp ~/dotfiles/cpp/ycm_extra_conf.py .ycm_extra_conf.py'
 [ $+commands[nvim] ] && alias vim=`which nvim`
 [ $+commands[exa] ] && alias ls=exa && alias ll='ls -lbgh' && alias la='ll -a'
 alias v=vim
+alias vv='vim $(fzf)'
 alias vi=vim
 alias vw=gvim
 alias e='emacs -nw'
