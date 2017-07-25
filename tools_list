@@ -1,3 +1,6 @@
 #highlight
 Arch: highlight-gui
 Ubuntu: highlight
+
+# lastpass-cli
+Arch: lastpass-cli
