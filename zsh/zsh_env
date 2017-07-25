@@ -46,12 +46,13 @@ export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 # FZF is a general-purpose command-line fuzzy finder.
 # Feed the output of ag into fzf (include hidden files)
 #export FZF_TMUX=1
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g "" 2>/dev/null'
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 #export FZF_ALT_C_COMMAND='cd'
-export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview' --bind 'ctrl-y:execute-silent(echo -n {2..} | xclip -selection clipboard)+abort' --header 'Press CTRL-Y to copy command into clipboard' --border --exact"
+# Using highlight (https://github.com/andre-simon/highlight)
+command -v pbcopy > /dev/null || pbcopy='xclip -selection clipboard'
+export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:2:hidden:wrap --bind '?:toggle-preview' --bind 'ctrl-y:execute-silent(echo -n {2..} | $pbcopy)+abort' --header 'Press CTRL-Y to copy command into clipboard' --border --exact --expect=ctrl-x"
 export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
-
 command -v blsd > /dev/null && export FZF_ALT_C_COMMAND='blsd $dir'
 command -v tree > /dev/null && export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 export FZF_DEFAULT_OPTS='
@@ -64,7 +65,8 @@ export FZF_DEFAULT_OPTS='
 --bind=ctrl-u:page-up
 --bind=ctrl-d:page-down
 --bind=ctrl-z:toggle-all
---preview="head -50 {} 2>/dev/null || ls -a {} 2>/dev/null || echo {}"
+--bind=?:toggle-preview
+--preview="(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200"
 --preview-window=down:50%
 '
 
