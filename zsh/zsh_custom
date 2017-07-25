@@ -12,4 +12,47 @@ function prev-add() {
   PREV=$(fc -lrn | head -n 1)
   sh -c "pet new `printf %q "$PREV"`"
 }
-# config for pet end
+
+# fs [FUZZY PATTERN] - Select selected tmux session
+#   - Bypass fuzzy finder if there's only one match (--select-1)
+#   - Exit if there's no match (--exit-0)
+fs() {
+    local session
+    session=$(tmux list-sessions -F "#{session_name}" | \
+        fzf --query="$1" --select-1 --exit-0) &&
+        tmux switch-client -t "$session"
+}
+
+# v - open files in ~/.viminfo
+v() {
+    local files
+    files=$(grep '^>' ~/.viminfo | cut -c3- |
+    while read line; do
+        [ -f "${line/\~/$HOME}" ] && echo "$line"
+    done | fzf-tmux -d -m -q "$*" -1) && vim ${files//\~/$HOME}
+}
+
+# fshow - git commit browser
+fshow() {
+  git log --graph --color=always \
+      --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
+  fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
+      --bind "ctrl-m:execute:
+                (grep -o '[a-f0-9]\{7\}' | head -1 |
+                xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
+                {}
+FZF-EOF"
+}
+
+# Search through your LastPass vault with LastPass CLI and copy password to clipboard.
+lppwd() {
+    lpass show -c --password $(lpass ls  | fzf | awk '{print $(NF)}' | sed 's/\]//g')
+}
+
+lpall() {
+    lpass show -c $(lpass ls  | fzf | awk '{print $(NF)}' | sed 's/\]//g')
+}
+
+lproot() {
+    lpass show -c --field=Root $(lpass ls  | fzf | awk '{print $(NF)}' | sed 's/\]//g')
+}
