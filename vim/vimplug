@@ -101,11 +101,12 @@ Plug 'vim-utils/vim-husk' " 在vim的命令模式支持eamcs-bash风格的快捷
 
 Plug 'elzr/vim-json', { 'for': 'json' }
 
-Plug 'guns/vim-clojure-static',      { 'for': 'clojure' }
-Plug 'luochen1990/rainbow',          { 'for': 'clojure' }
-Plug 'tpope/vim-fireplace',          { 'for': 'clojure' }
-Plug 'vim-scripts/paredit.vim',      { 'for': 'clojure' }
-Plug 'venantius/vim-cljfmt',         { 'for': 'clojure' }
+Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
+Plug 'luochen1990/rainbow',     { 'for': 'clojure' }
+Plug 'tpope/vim-fireplace',     { 'for': 'clojure' }
+Plug 'vim-scripts/paredit.vim', { 'for': 'clojure' }
+Plug 'venantius/vim-cljfmt',    { 'for': 'clojure' }
+Plug 'udalov/kotlin-vim',       { 'for': 'kotlin' }
 
 Plug 'zplug/vim-zplug'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
