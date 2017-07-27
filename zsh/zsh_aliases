@@ -12,10 +12,12 @@ alias zshrc='vim ~/.zshrc'
 alias zshenv='vim ~/.zsh_env'
 alias zshalias='vim ~/.zsh_aliases'
 alias zshbind='vim ~/.zsh_keybinds'
+alias zshcustom='vim ~/.zsh_custom'
+alias zshmisc='vim ~/.zsh_misc'
 
 alias tmuxconf='vim ~/.tmux.conf'
 
-alias ..='\cd ..'
+alias ..='cd .'
 alias shutdown='shutdown -h now'
 alias xxnet='~/tools/xx-net/start'
 alias proxy='proxychains4'
@@ -23,9 +25,17 @@ alias hhkb='setxkbmap -option "ctrl:swapcaps"'
 alias disable_touch_pad='sudo modprobe -r psmouse'   # 禁用触控板
 alias enable_touch_pad='sudo modprobe psmouse'       # 启用触控板
 alias mkycm='cp ~/dotfiles/cpp/ycm_extra_conf.py .ycm_extra_conf.py'
-[ ! $+commands[tac] ] && alias tac='tail -r'
-[ $+commands[nvim] ] && alias vim=`which nvim`
-[ $+commands[exa] ] && alias ls=exa && alias ll='ls -lbgh' && alias la='ll -a'
+(( ! $+commands[tac] )) && alias tac='tail -r'
+(( $+commands[nvim] )) && alias vim=`which nvim`
+if (( $+commands[exa] )); then
+    alias tree='ls -T'
+    alias ls=exa
+    alias ll='ls -lbgh'
+    alias la='ll -a'
+    alias ldot='ll -d .*'
+    alias lss='ll -s size'
+    alias lst='ll -s accessed'
+fi
 alias vv='vim $(fzf)'
 alias vi=vim
 alias vw=gvim
@@ -51,7 +61,32 @@ alias fg3='fg %3'
 alias fg4='fg %4'
 alias fg5='fg %5'
 
+alias tl='tmux list-sessions'
+
 [ $+commands[ghq] ] && \
     alias gget='ghq get' && \
     alias glook='ghq look' && \
     alias glist='ghq list'
+
+alias -s c=vim
+alias -s cpp=vim
+alias -s hpp=vim
+alias -s java=vim
+alias -s go=vim
+alias -s sh=vim
+alias -s zsh=vim
+alias -s rs=vim
+alias -s cs=vim
+alias -s rb=vim
+alias -s py=vim
+alias -s js=vim
+alias -s conf=vim
+alias -s txt=vim
+alias -s xml=vim
+alias -s html=vim
+alias -s yml=vim
+alias -s yaml=vim
+alias -s zip='unzip'
+alias -s gz='tar -xvf'
+alias -s tgz='tar -xvf'
+alias -s bz2='tar -xvf'

@@ -13,12 +13,12 @@ installer=https://raw.githubusercontent.com/zplug/installer/master/installer.zsh
 zshinit=~/.zplug/init.zsh
 # If zplug doesn't exist, install it
 source $zshinit &>/dev/null || curl $installer | zsh && source $zshinit
+zplug "zplug/zplug", hook-build:'zplug --self-manage'
 
 # Git alias. See: https://github.com/robbyrussell/oh-my-zsh/wiki/Plugin:git
 zplug "plugins/git", from:oh-my-zsh
 # Git completions. On OS X with Homebrew, you need to install git with brew install git --without-completions. Otherwise, git's _git will take precedence, and you won't see the completions for git-extras commands.
 zplug "plugins/git-extras", from:oh-my-zsh
-zplug "plugins/github", from:oh-my-zsh
 zplug "plugins/gitignore", from:oh-my-zsh
 #zplug "plugins/osx", from:oh-my-zsh, if:"[[ $OSTYPE = *darwin* ]]"
 #zplug "plugins/ubuntu", from:oh-my-zsh, if:"[[ $OSTYPE = *linux* ]]", hook-load:"unalias ag fd"
