@@ -1,3 +1,8 @@
+# remove broken symbolics
+function rm-broken-links() {
+    rm -- *(-@D)
+}
+
 # config for pet
 function pet-select() {
   BUFFER=$(pet search --query "$LBUFFER")
@@ -8,20 +13,22 @@ zle -N pet-select
 stty -ixon
 bindkey '^s' pet-select
 
-function prev-add() {
+function pet-prev() {
   PREV=$(fc -lrn | head -n 1)
   sh -c "pet new `printf %q "$PREV"`"
 }
 
-# fs [FUZZY PATTERN] - Select selected tmux session
-#   - Bypass fuzzy finder if there's only one match (--select-1)
-#   - Exit if there's no match (--exit-0)
-fs() {
-    local session
-    session=$(tmux list-sessions -F "#{session_name}" | \
-        fzf --query="$1" --select-1 --exit-0) &&
-        tmux switch-client -t "$session"
+
+# tmux utility
+ta() {
+    last_session=$(tmux display-message -p "#S")
+    session=$(tmux list-sessions -F "#{session_name}" | fzf +s --select-1 --exit-0)
+    (tmux attach-session -t $session || tmux switch-client -t $session) 2>/dev/null
 }
+tm() {
+    tmux has-session 2>/dev/null && ta || tmux
+}
+bindkey -s '^o' 'tm\n'
 
 # v - open files in ~/.viminfo
 v() {
@@ -40,8 +47,7 @@ fshow() {
       --bind "ctrl-m:execute:
                 (grep -o '[a-f0-9]\{7\}' | head -1 |
                 xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
-                {}
-FZF-EOF"
+                {} FZF-EOF"
 }
 
 # Search through your LastPass vault with LastPass CLI and copy password to clipboard.
