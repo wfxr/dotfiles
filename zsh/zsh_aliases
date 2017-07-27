@@ -70,6 +70,7 @@ alias tl='tmux list-sessions'
 
 alias -s c=vim
 alias -s cpp=vim
+alias -s h=vim
 alias -s hpp=vim
 alias -s java=vim
 alias -s go=vim
