@@ -44,6 +44,8 @@ alias ew=emacs
 
 # copy alias
 # eg: cat foo.csv | pbcopy
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
 alias pc='xclip -selection clipboard'
 alias pp='xclip -selection clipboard -o'
 alias pget='pp | xargs wget'
@@ -54,12 +56,6 @@ alias mux=tmuxinator
 alias daily='tmuxinator daily'
 
 alias weather='curl wttr.in'
-
-alias fg1='fg %1'
-alias fg2='fg %2'
-alias fg3='fg %3'
-alias fg4='fg %4'
-alias fg5='fg %5'
 
 alias tl='tmux list-sessions'
 
