@@ -25,7 +25,7 @@ ta() {
         curr=$(tmux display-message -p "#S")
         choice=$(tmux list-sessions -F "#{session_name}" | ag -v $curr | sed 's/^/ /g' |\
             fzf +s --exact --preview-window='hidden' --height=10 --select-1 --exit-0 --header="*$curr" | sed 's/^ //g')
-        tmux switch-client -t $choice
+        tmux switch-client -t $choice 2> /dev/null
     else
         choice=$(tmux list-sessions -F "#{session_name}" |\
             fzf +s --exact --preview-window='hidden' --height=10 --select-1 --exit-0)
@@ -50,6 +50,8 @@ v() {
 # git commit browser
 unalias glo 2>/dev/null
 glo() {
+    git rev-parse --is-inside-work-tree 1>/dev/null
+    if [ $? -ne 0 ]; then return; fi
     # DON'T join the lines!
     cmd="(grep -o '[a-f0-9]\{7\}' | head -1 | xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
             {} FZF-EOF"
