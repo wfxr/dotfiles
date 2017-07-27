@@ -19,14 +19,22 @@ function pet-prev() {
 }
 
 
-# tmux utility
+# powerfull tmux
 ta() {
-    last_session=$(tmux display-message -p "#S")
-    session=$(tmux list-sessions -F "#{session_name}" | fzf +s --select-1 --exit-0)
-    (tmux attach-session -t $session || tmux switch-client -t $session) 2>/dev/null
+    if [[ $TMUX ]]; then
+        curr=$(tmux display-message -p "#S")
+        choice=$(tmux list-sessions -F "#{session_name}" | ag -v $curr | sed 's/^/ /g' |\
+            fzf +s --exact --preview-window='hidden' --height=10 --select-1 --exit-0 --header="*$curr" | sed 's/^ //g')
+        tmux switch-client -t $choice
+    else
+        choice=$(tmux list-sessions -F "#{session_name}" |\
+            fzf +s --exact --preview-window='hidden' --height=10 --select-1 --exit-0)
+        tmux attach-session -t $choice 2> /dev/null
+    fi
 }
+
 tm() {
-    tmux has-session 2>/dev/null && ta || tmux
+    tmux has-session && ta || tmux
 }
 bindkey -s '^o' 'tm\n'
 
@@ -39,26 +47,28 @@ v() {
     done | fzf-tmux -d -m -q "$*" -1) && vim ${files//\~/$HOME}
 }
 
-# fshow - git commit browser
-fshow() {
-  git log --graph --color=always \
-      --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
-  fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
-      --bind "ctrl-m:execute:
-                (grep -o '[a-f0-9]\{7\}' | head -1 |
-                xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
-                {} FZF-EOF"
+# git commit browser
+unalias glo 2>/dev/null
+glo() {
+    # DON'T join the lines!
+    cmd="(grep -o '[a-f0-9]\{7\}' | head -1 | xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
+            {} FZF-EOF"
+    git log --graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |\
+        fzf --ansi --no-sort --exact --tiebreak=index --bind=ctrl-s:toggle-sort \
+            --bind "ctrl-m:execute: $cmd" \
+            --preview "$cmd" \
+            --preview-window=right
 }
 
 # Search through your LastPass vault with LastPass CLI and copy password to clipboard.
 lppwd() {
-    lpass show -c --password $(lpass ls  | fzf | awk '{print $(NF)}' | sed 's/\]//g')
+    lpass show -c --password $(lpass ls  | fzf --preview-window=hidden | awk '{print $(NF)}' | sed 's/\]//g')
 }
 
 lpall() {
-    lpass show -c $(lpass ls  | fzf | awk '{print $(NF)}' | sed 's/\]//g')
+    lpass show -c $(lpass ls  | fzf --preview-window=hidden | awk '{print $(NF)}' | sed 's/\]//g')
 }
 
 lproot() {
-    lpass show -c --field=Root $(lpass ls  | fzf | awk '{print $(NF)}' | sed 's/\]//g')
+    lpass show -c --field=Root $(lpass ls  | fzf --preview-window=hidden | awk '{print $(NF)}' | sed 's/\]//g')
 }
