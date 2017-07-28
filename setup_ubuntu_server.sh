@@ -18,7 +18,7 @@ sudo apt -y install python python-dev python-pip
 sudo apt -y install python3 python3-dev python3-pip
 $script_dir/python/setup.sh # config pip source mirror
 sudo apt -y install clang
-sudo apt -y install ruby
+sudo apt -y install ruby-full
 gem sources --add https://gems.ruby-china.org/ --remove https://rubygems.org/
 sudo apt-get install libssh2-1-dev # exa need it
 
