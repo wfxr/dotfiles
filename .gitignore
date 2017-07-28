@@ -42,7 +42,8 @@ intellij/config/li-options-backup/**
 intellij/config/tasks/*
 
 .DS_Store
-*add.spl
+*.spl
+*.sug
 .gdb_history
 *.zip
 *.tgz
