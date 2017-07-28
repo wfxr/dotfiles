@@ -31,15 +31,25 @@ startup_pane: 1
 # post: tmux -CC attach -t server
 
 windows:
-  - server:
+  - ansible:
       layout: main-vertical
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
-        - info:
-            - clear
-            - neofetch
-            - w
+        - clear; ansible all -m ping
         - glances
-        - cd dotfiles && git fetch
+        - clear; cd dotfiles && git fetch
+  - logstash1:
+      - ssh wenxuan@logstash1
+      - ta
+  - elasticsearch1:
+      - ssh wenxuan@es1
+      - ta
+  - dsp-offline:
+      - ssh wenxuan@dsp-offline
+      - ta
+  - bid1: ssh work@bid-server1
+  - bid2: ssh work@bid-server2
+  - rcv1: ssh work@rcv-server1
+  - rcv2: ssh work@rcv-server2

@@ -32,6 +32,14 @@ t() {
         tmux attach-session -t $choice 2> /dev/null
     fi
 }
+tw() {
+    if [[ ! $TMUX ]]; then return 1; fi
+    curr=$(tmux display-message -p "#W")
+    choice=$(tmux list-windows -F "#I #W #F" | grep -v $curr |\
+        fzf +s -e --height=10 --select-1 --exit-0 | cut -d' ' -f1)
+    echo $choice
+    tmux select-window -t $choice 2> /dev/null
+}
 td() {
     [[ $TMUX ]] && tmux detach
 }
