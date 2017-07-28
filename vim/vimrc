@@ -130,7 +130,7 @@ nnoremap <Right> <Nop>
 nnoremap ZZ <Nop>
 nnoremap ZQ <Nop>
 
-cmap w!! w !sudo tee > /dev/null %
+cmap w!! w !sudo tee % >/dev/null
 
 " Smart space mapping
 " Notice: when starting other <Space> mappings in noremap, disappeared [Space]
