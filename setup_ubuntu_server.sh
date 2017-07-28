@@ -61,8 +61,9 @@ sudo cp /usr/local/share/wemux/man/wemux.1
 sudo add-apt-repository -y ppa:neovim-ppa/stable
 sudo apt update
 sudo apt -y install neovim
-sudo pip2 install --upgrade neovim
+sudo pip2 install --upgrade neovim # python support
 #sudo pip3 install --upgrade neovim
+sudo gem install neovim # ruby support
 
 # Ag - A code searching tool similar to ack, with a focus on speed.
 cd /tmp

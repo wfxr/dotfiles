@@ -19,8 +19,7 @@ function pet-prev() {
 }
 
 
-# powerful tmux
-unalias t 2>/dev/null
+# Powerful tmux
 t() {
     if [[ $TMUX ]]; then
         curr=$(tmux display-message -p "#S")
@@ -33,8 +32,10 @@ t() {
         tmux attach-session -t $choice 2> /dev/null
     fi
 }
+td() {
+    [[ $TMUX ]] && tmux detach
+}
 
-alias td='tmux detach'
 alias tn='tmux new-session -s'
 
 # v - open files in ~/.viminfo
