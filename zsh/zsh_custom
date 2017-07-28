@@ -20,7 +20,8 @@ function pet-prev() {
 
 
 # powerful tmux
-ta() {
+unalias t 2>/dev/null
+t() {
     if [[ $TMUX ]]; then
         curr=$(tmux display-message -p "#S")
         choice=$(tmux ls -F "#{session_name}" | ag -v $curr | sed 's/^/ /g' |\
@@ -35,11 +36,6 @@ ta() {
 
 alias td='tmux detach'
 alias tn='tmux new-session -s'
-unalias t 2>/dev/null
-t() {
-    tmux has-session 2&>/dev/null && ta || tmux 2&>/dev/null
-    #(tmux has-session && ta || tmux) 2&>/dev/null
-}
 
 # v - open files in ~/.viminfo
 v() {
