@@ -40,7 +40,6 @@ t() {
     tmux has-session 2&>/dev/null && ta || tmux 2&>/dev/null
     #(tmux has-session && ta || tmux) 2&>/dev/null
 }
-bindkey -s '^o' 'tm\n'
 
 # v - open files in ~/.viminfo
 v() {
