@@ -47,13 +47,13 @@ td() {
 alias tn='tmux new-session -s'
 
 # v - open files in ~/.viminfo
-v() {
-    local files
-    files=$(grep '^>' ~/.viminfo | cut -c3- |
-    while read line; do
-        [ -f "${line/\~/$HOME}" ] && echo "$line"
-    done | fzf-tmux -d -m -q "$*" -1) && vim ${files//\~/$HOME}
-}
+#v() {
+    #local files
+    #files=$(grep '^>' ~/.viminfo | cut -c3- |
+    #while read line; do
+        #[ -f "${line/\~/$HOME}" ] && echo "$line"
+    #done | fzf-tmux -d -m -q "$*" -1) && vim ${files//\~/$HOME}
+#}
 
 # git commit browser
 unalias glo 2>/dev/null
@@ -97,3 +97,21 @@ fzf-fg() {
     [ $jobId ] && fg %$jobId
 }
 bindkey -s '^Y' "fzf-fg\n"
+
+# git ignore
+# TODO: Improve this by fzf
+function gi() { curl -sL https://www.gitignore.io/api/${(j:,:)@} }
+
+_gitignoreio_get_command_list() {
+  curl -sL https://www.gitignore.io/api/list | tr "," "\n"
+}
+
+_gitignoreio () {
+  compset -P '*,'
+  compadd -S '' `_gitignoreio_get_command_list`
+}
+
+compdef _gitignoreio gi
+
+# ssh complete
+zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'

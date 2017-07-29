@@ -7,7 +7,7 @@ root: ~/
 # socket_name: foo
 
 # Runs before everything. Use it to start daemons etc.
-# pre: sudo /etc/rc.d/mysqld start
+#pre: CURRENT_SHELL=$SHELL && SHELL=/bin/sh # workaround for zsh log issues
 
 # Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
 # pre_window: rbenv shell 2.0.0-p247
@@ -28,7 +28,7 @@ startup_pane: 1
 # attach: false
 
 # Runs after everything. Use it to attach to tmux with custom options etc.
-# post: tmux -CC attach -t server
+#post: SHELL=$CURRENT_SHELL # workaround for zsh log issue
 
 windows:
   - ansible:
@@ -37,19 +37,40 @@ windows:
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
-        - clear; ansible all -m ping
-        - glances
-        - clear; cd dotfiles && git fetch
+        - pane:
+          - clear
+          - ansible all -m ping
+        - pane:
+          - clear
+          - glances
+        - pane:
+          - clear
+          - cd dotfiles && git fetch
   - logstash1:
+      - clear
       - ssh wenxuan@logstash1
-      - ta
+      - t
   - elasticsearch1:
+      - clear
       - ssh wenxuan@es1
-      - ta
+      - t
   - dsp-offline:
+      - clear
       - ssh wenxuan@dsp-offline
-      - ta
-  - bid1: ssh work@bid-server1
-  - bid2: ssh work@bid-server2
-  - rcv1: ssh work@rcv-server1
-  - rcv2: ssh work@rcv-server2
+      - t
+  - bid1:
+      - clear
+      - ssh work@bid-server1
+      - tmux attach
+  - bid2:
+      - clear
+      - ssh work@bid-server2
+      - tmux attach
+  - rcv1:
+      - clear
+      - ssh work@rcv-server1
+      - tmux attach
+  - rcv2:
+      - clear
+      - ssh work@rcv-server2
+      - tmux attach
