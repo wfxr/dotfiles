@@ -102,5 +102,7 @@ if [[ $UID == 0 ]]; then
     export SAVEHIST=0
 fi
 
+export ZPLUG_LOG_LOAD_SUCCESS=false
+
 # Word split
-export WORDCHARS='"'
+export WORDCHARS=''
