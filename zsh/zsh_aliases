@@ -31,6 +31,7 @@ if (( $+commands[exa] )); then
     alias tree='ls -T'
     alias ls=exa
     alias ll='ls -lbgh'
+    alias l='ll'
     alias la='ll -a'
     alias ldot='ll -d .*'
     alias lss='ll -s size'

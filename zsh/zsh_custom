@@ -33,13 +33,13 @@ t() {
     fi
 }
 tw() {
-    if [[ ! $TMUX ]]; then return 1; fi
-    curr=$(tmux display-message -p "#W")
-    choice=$(tmux list-windows -F "#I #W #F" | grep -v $curr |\
+    [[ ! $TMUX ]] && return 1
+    #curr=$(tmux display-message -p "#W")
+    choice=$(tmux list-windows -F "#I #W #F" | grep -v '*' |\
         fzf +s -e --height=10 --select-1 --exit-0 | cut -d' ' -f1)
-    echo $choice
     tmux select-window -t $choice 2> /dev/null
 }
+bindkey -s '^o' 'tw\n'
 td() {
     [[ $TMUX ]] && tmux detach
 }
@@ -59,7 +59,7 @@ alias tn='tmux new-session -s'
 unalias glo 2>/dev/null
 glo() {
     git rev-parse --is-inside-work-tree 1>/dev/null
-    if [ $? -ne 0 ]; then return 1; fi
+    [ $? -ne 0 ] && return 1
     # DON'T join the lines!
     cmd="(grep -o '[a-f0-9]\{7\}' | head -1 | xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
             {} FZF-EOF"
