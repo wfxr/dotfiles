@@ -48,29 +48,29 @@ windows:
           - cd dotfiles && git fetch
   - logstash1:
       - clear
-      - ssh wenxuan@logstash1
+      - mosh wenxuan@logstash1
       - t
   - elasticsearch1:
       - clear
-      - ssh wenxuan@es1
+      - mosh wenxuan@es1
       - t
   - dsp-offline:
       - clear
-      - ssh wenxuan@dsp-offline
+      - mosh wenxuan@dsp-offline
       - t
   - bid1:
       - clear
-      - ssh work@bid-server1
+      - mosh work@bid-server1
       - tmux attach
   - bid2:
       - clear
-      - ssh work@bid-server2
+      - mosh work@bid-server2
       - tmux attach
   - rcv1:
       - clear
-      - ssh work@rcv-server1
+      - mosh work@rcv-server1
       - tmux attach
   - rcv2:
       - clear
-      - ssh work@rcv-server2
+      - mosh work@rcv-server2
       - tmux attach
