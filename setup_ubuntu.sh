@@ -31,6 +31,7 @@ sudo apt-get -y install openjdk-8-jdk
 
 # Tools
 sudo apt-get -y install git
+sudo apt-get -y install mosh
 sudo apt-get -y install zsh
 sudo apt-get -y install tree
 sudo apt-get -y install vim
