@@ -19,7 +19,7 @@ root: ~/
 # tmux_command: byobu
 
 # Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
-# startup_window: editor
+startup_window: main
 
 # Specitifes (by index) which pane of the specified window will be selected on project startup. If not set, the first pane is used.
 startup_pane: 3
@@ -31,15 +31,9 @@ startup_pane: 3
 # post: tmux -CC attach -t common
 
 windows:
-  - editor:
-      layout: 6ede,212x45,0,0{92x45,0,0[92x22,0,0,0,92x22,0,23,2],119x45,93,0,1}
-      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
-      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
-      # synchronize: after
+  - monitor: htop
+  - main:
+      layout: main-vertical
       panes:
-        - htop
-        - pane:
-            - cd dotfiles
-            - git pull
-            - neofetch
-        - tmux clock-mode
+        -
+        - cd dotfiles
