@@ -75,10 +75,10 @@ lppwd() {
     lpass show -c --password $(lpass ls  | fzf | awk '{print $(NF)}' | sed 's/\]//g')
 }
 lpall() {
-    lpass show -c $(lpass ls  | awk '{print $(NF)}' | sed 's/\]//g')
+    lpass show -c $(lpass ls  | fzf |  awk '{print $(NF)}' | sed 's/\]//g')
 }
 lproot() {
-    lpass show -c --field=Root $(lpass ls  | awk '{print $(NF)}' | sed 's/\]//g')
+    lpass show -c --field=Root $(lpass ls | fzf  | awk '{print $(NF)}' | sed 's/\]//g')
 }
 
 # Application launcher
