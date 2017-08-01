@@ -63,14 +63,20 @@ noremap  <buffer> <silent> 0 g0
 noremap  <buffer> <silent> $ g$
 
 " Close window
-map <leader>q :q<cr>
-map <leader>Q :q!<cr>
+noremap <leader>q :q<cr>
+noremap <leader>Q :q!<cr>
+noremap <C-c> :q<cr>
 " Save write
-map <leader>w :w<cr>
-map <leader>W :w!<cr>
+noremap <leader>w :w<cr>
+noremap <leader>W :w!<cr>
+noremap <C-s> :w<cr>
 " Save and quit
-map <leader>x :x<cr>
-map <leader>X :x!<cr>
+noremap <leader>x :x<cr>
+noremap <C-x> :x<cr>
+noremap <leader>X :x!<cr>
+
+" Save and suspend
+noremap <C-m> :w<cr><C-z>
 
 " Remove the Windows ^M - when the encodings gets messed up
 noremap <leader>m mmHmt:%s/<C-v><CR>//ge<CR>'tzt'm
@@ -85,7 +91,8 @@ inoremap <leader>P <Esc>"+Pi
 " Select pasted text
 noremap vp `[v`]
 
-noremap <C-s> :w<cr>
+noremap H gg
+noremap L G
 
 " Emacs style key mapping
 inoremap <C-a> <Home>
