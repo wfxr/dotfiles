@@ -156,11 +156,11 @@ let g:syntastic_enable_signs=1
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = '-std=c++14'
 let g:syntastic_always_populate_loc_list = 1
-if g:isWIN
     let g:syntastic_error_symbol = '×'
     let g:syntastic_warning_symbol = '»'
+if g:isWIN
 else
-    let g:syntastic_error_symbol = '྾'
+    let g:syntastic_error_symbol = '✖'
     let g:syntastic_warning_symbol = '⚠'
 endif
 " Default javac checker is too slow!
