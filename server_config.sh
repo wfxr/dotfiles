@@ -9,6 +9,6 @@ modules=(
 'python'
 )
 
-./restore_config.sh ${modules[@]}
+./custom_config.sh ${modules[@]}
 
 echo export is_server=true > ~/.zsh_local
