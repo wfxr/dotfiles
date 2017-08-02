@@ -12,3 +12,6 @@ go get -u github.com/jingweno/ccat
 
 # WakaTime was built to solve time tracking for programmers.
 sudo pip install wakatime
+
+# Thefuck is a magnificent app which corrects your previous console command
+#sudo pip3 install thefuck
