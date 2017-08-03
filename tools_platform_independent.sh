@@ -15,3 +15,6 @@ sudo pip install wakatime
 
 # Thefuck is a magnificent app which corrects your previous console command
 #sudo pip3 install thefuck
+
+# System monitor tool
+sudo pip install glances
