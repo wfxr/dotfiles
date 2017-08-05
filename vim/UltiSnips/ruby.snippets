@@ -3,5 +3,9 @@ snippet rb "Ruby script header" b
 endsnippet
 
 snippet sdir "script dir" b
-sdir = File.expand_path(File.dirname(__FILE__))
+sdir = __dir__
+endsnippet
+
+snippet spath "script path" b
+spath = Pathname.new(__dir__)
 endsnippet
