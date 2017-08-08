@@ -102,3 +102,7 @@ endsnippet
 snippet co "cout << [something] << endl;" b
 cout << ${1:"Hello, world!"} << endl;
 endsnippet
+
+snippet elapsed
+duration<double>(system_clock::now() - start).count()
+endsnippet
