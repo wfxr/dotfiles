@@ -106,3 +106,9 @@ endsnippet
 snippet elapsed
 duration<double>(system_clock::now() - start).count()
 endsnippet
+
+snippet fun_elapsed
+auto elapsed(const decltype(system_clock::now()) &start) {
+	return duration<double>(system_clock::now() - start).count();
+}
+endsnippet
