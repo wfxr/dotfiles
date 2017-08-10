@@ -99,14 +99,20 @@ fzf-fg() {
 bindkey -s '^Y' "fzf-fg\n"
 
 # git ignore
-# TODO: Improve this by fzf
-function gi() { curl -sL https://www.gitignore.io/api/${(j:,:)@} }
+function gi() {
+    if [ $# -eq 0 ]; then
+        [ -f ~/.gilist ] || gi-update
+        chosen=`cat ~/.gilist | fzf | tr '\n' ','`
+        curl -sL https://www.gitignore.io/api/$chosen
+    else
+        curl -sL https://www.gitignore.io/api/${(j:,:)@}
+    fi
+}
+function gi-update() {
+    curl -sL https://www.gitignore.io/api/list | tr ',' '\n' > ~/.gilist
+}
 
-_gitignoreio_get_command_list() {
-  curl -sL https://www.gitignore.io/api/list | tr "," "\n"
+# TODO: odps peek
+function odpspeek() {
+
 }
-_gitignoreio () {
-  compset -P '*,'
-  compadd -S '' `_gitignoreio_get_command_list`
-}
-compdef _gitignoreio gi
