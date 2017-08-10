@@ -112,7 +112,15 @@ function gi-update() {
     curl -sL https://www.gitignore.io/api/list | tr ',' '\n' > ~/.gilist
 }
 
-# TODO: odps peek
-function odpspeek() {
-
+# odps
+function odps-fzf() {
+    [ $# -eq 1 ] || return 1
+    [ -f ~/.odps-tables ] || odps-tables-update
+    cat ~/.odps-tables | fzf | xargs -i{} odpscmd -e "$1" 2>/dev/null | grep .
 }
+function odps-tables-update() {
+    odpscmd -e 'show tables' 2>/dev/null | grep . | cut -d : -f 2 > ~/.odps-tables
+}
+function odps-peek() { odps-fzf 'select * from {} limit 10' }
+function odps-desc() { odps-fzf 'desc {}' }
+function odps-count() { odps-fzf 'count {}' }
