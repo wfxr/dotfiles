@@ -73,6 +73,15 @@ glo() {
             --preview "$cmd" \
             --preview-window=right
 }
+unalias gd 2>/dev/null
+gd() {
+    cmd="git diff --color=always {} | less -R"
+    git ls-files -m | fzf \
+        --exact \
+        --bind "ctrl-m:execute: $cmd" \
+        --preview "$cmd" \
+        --preview-window=right
+}
 
 # Search through your LastPass vault with LastPass CLI and copy password to clipboard.
 lppwd() {
