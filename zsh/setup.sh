@@ -11,4 +11,4 @@ ln -sf $script_dir/zsh_misc     ~/.zsh_misc
 ln -sf $script_dir/zsh_custom   ~/.zsh_custom
 ln -sf $script_dir/zsh_plug     ~/.zsh_plug
 
-[[ ! $SHELL =~ "zsh" ]] && chsh -s `which zsh`
+[[ $SHELL =~ "zsh" ]] || chsh -s `which zsh`
