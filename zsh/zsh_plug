@@ -1,0 +1,152 @@
+#=============================================================================
+#       Author: Wenxuan Zhang
+#        Email: wenxuangm@gmail.com
+#     HomePage: wenxuan.info
+#=============================================================================
+
+# Plugin manager
+installer=https://raw.githubusercontent.com/zplug/installer/master/installer.zsh
+zshinit=~/.zplug/init.zsh
+# If zplug doesn't exist, install it
+source $zshinit &>/dev/null || curl $installer | zsh && source $zshinit
+
+# Git alias. See: https://github.com/robbyrussell/oh-my-zsh/wiki/Plugin:git
+zplug "plugins/git", from:oh-my-zsh
+# Git completions. On OS X with Homebrew, you need to install git with brew install git --without-completions. Otherwise, git's _git will take precedence, and you won't see the completions for git-extras commands.
+zplug "plugins/git-extras", from:oh-my-zsh
+#zplug "plugins/osx", from:oh-my-zsh, if:"[[ $OSTYPE = *darwin* ]]"
+#zplug "plugins/ubuntu", from:oh-my-zsh, if:"[[ $OSTYPE = *linux* ]]", hook-load:"unalias ag fd"
+# Plug for highlighting file content
+zplug "plugins/cp", from:oh-my-zsh
+zplug "plugins/mvn", from:oh-my-zsh, lazy:yes
+#zplug "plugins/pip", from:oh-my-zsh, lazy:yes # work badly
+#zplug "plugins/common-aliases", from:oh-my-zsh, hook-load:"unalias fd"
+zplug "plugins/web-search", from:oh-my-zsh
+#zplug "plugins/docker", from:oh-my-zsh
+#zplug "plugins/tmux", from:oh-my-zsh # Why its folder always appears at top of fzf/fzy list?
+zplug "plugins/tmuxinator", from:oh-my-zsh, lazy:yes
+zplug "plugins/cargo", from:oh-my-zsh, lazy:yes
+zplug "plugins/rust", from:oh-my-zsh, lazy:yes
+zplug "plugins/sudo", from:oh-my-zsh
+#zplug "lukechilds/zsh-nvm"
+
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-autosuggestions"
+ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=( forward-word forward-char )
+ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=( end-of-line)
+
+zplug "morhetz/gruvbox", use:"gruvbox_256palette.sh", if:"[[ $OSTYPE = *linux* ]]"
+zplug "morhetz/gruvbox", use:"gruvbox_256palette_osx.sh", if:"[[ $OSTYPE = *darwin* ]]"
+#zplug "b4b4r07/zsh-vimode-visual", use:"*.zsh", defer:3
+#zplug "b4b4r07/ultimate", as:theme
+#zplug "subnixr/minimal", as:theme, use:"minimal.zsh"
+zplug "mafredri/zsh-async", from:github
+zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
+#if zplug check "b4b4r07/ultimate"; then
+    #zstyle ':ultimate:prompt:path' mode 'shortpath'
+#fi
+
+# wonderful tools for fzf
+#zplug 'b4b4r07/fzf-powertools', \
+    #as:command, \
+    #use:'re'
+
+zplug 'b4b4r07/git-switch', \
+    as:command, \
+    use:'(*).sh', \
+    rename-to:'$1'
+export GIT_FILTER=fzf
+alias gsw='git switch'
+
+zplug 'b4b4r07/zplug-doctor', lazy:yes
+zplug 'b4b4r07/zplug-cd', lazy:yes
+zplug 'b4b4r07/zplug-rm', lazy:yes
+
+#zplug 'b4b4r07/copy', as:command, use:'(*).sh', rename-to:'$1'
+zplug 'wfxr/copy', as:command, use:'(*).sh', rename-to:'$1'
+
+# TODO: not work now
+#zplug "mrowa44/emojify", as:command
+#zplug "b4b4r07/emoji-cli", on:"junegunn/fzf-bin", if:'(( $+commands[jq] ))'
+#EMOJI_CLI_FILTER=fzf:peco:percol
+
+# A simple gist editor for CLI
+#zplug "b4b4r07/gist", \
+    #as:command, \
+    #from:gh-r
+
+# jq is a lightweight and flexible command-line JSON processor.
+zplug "stedolan/jq", \
+    as:command, \
+    from:gh-r, \
+    rename-to:jq
+
+# A next-generation cd command with an interactive filter
+zplug "b4b4r07/enhancd", use:init.sh
+ENHANCD_FILTER=fzf:fzy:peco
+ENHANCD_DOT_ARG=.
+export ENHANCD_FILTER
+export ENHANCD_DOT_ARG
+
+# fzy is faster and shows better results than other fuzzy finders.
+zplug "jhawthorn/fzy", \
+    as:command, \
+    hook-build:"make && sudo make install"
+
+# ghr creates GitHub Release and uploads artifacts in parallel.
+#zplug "tcnksm/ghr", \
+    #as:command, \
+    #from:gh-r
+
+# Short, simple, direct scripts for creating ASCII graphical histograms in the terminal.
+#zplug "philovivero/distribution", \
+    #as:command, \
+    #use:distribution, \
+    #if:'(( $+commands[perl] ))'
+
+#zplug "holman/spark", \
+    #as:command, \
+    #use:spark
+
+# httpstat visualizes curl(1) statistics in a way of beauty and clarity.
+#zplug "reorx/httpstat", \
+    #as:command, \
+    #use:'(httpstat).py', \
+    #rename-to:'$1', \
+    #if:'(( $+commands[python] ))'
+
+# wrk - a HTTP benchmarking tool
+# eg: wrk -t12 -c400 -d30s http://127.0.0.1:8080/index.html
+#zplug "wg/wrk", \
+    #as:command, \
+    #hook-build:"make -j8"
+
+# An interactive way to peruse your git history from the terminal
+#zplug 'Fakerr/git-recall', \
+    #as:command, \
+    #use:'git-recall'
+
+# Remote repository management made easy
+#zplug "motemen/ghq", \
+    #as:command, \
+    #from:gh-r, \
+    #rename-to:ghq
+
+# sparklines
+# usage: sparklines -n 3 null 3 7 4 2 5 6 | lolcat
+#zplug "deeplook/sparklines", hook-build:"sudo pip install -e ."
+
+# gomi is a simple trash tool that works on CLI, written in Go
+#zplug "b4b4r07/gomi", as:command, from:gh-r
+
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+zplug load
+#zplug load --verbose

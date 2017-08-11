@@ -9,5 +9,6 @@ ln -sf $script_dir/zsh_aliases  ~/.zsh_aliases
 ln -sf $script_dir/zsh_keybinds ~/.zsh_keybinds
 ln -sf $script_dir/zsh_misc     ~/.zsh_misc
 ln -sf $script_dir/zsh_custom   ~/.zsh_custom
+ln -sf $script_dir/zsh_plug     ~/.zsh_plug
 
 chsh -s `which zsh`
