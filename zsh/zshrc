@@ -4,12 +4,11 @@
 #     HomePage: wenxuan.info
 #=============================================================================
 
+source ~/.fzf.zsh 2>/dev/null
+source ~/.zsh_local 2>/dev/null
+source ~/.secret 2>/dev/null
+
 source ~/.zsh_env
-
-[ -f ~/.fzf.zsh   ] && source ~/.fzf.zsh
-[ -f ~/.secret    ] && source ~/.secret
-[ -f ~/.zsh_local ] && source ~/.zsh_local
-
 source ~/.zsh_plug
 source ~/.zsh_keybinds
 source ~/.zsh_misc
