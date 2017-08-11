@@ -3,5 +3,4 @@
 [ $# -ne 1 ] && exit 1
 curl -s https://api.github.com/repos/$1/releases/latest \
     | grep browser_download_url \
-    | grep linux \
     | cut -d'"' -f4
