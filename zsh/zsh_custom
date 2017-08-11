@@ -77,6 +77,7 @@ unalias gd 2>/dev/null
 gd() {
     cmd="git diff --color=always {} | less -R"
     git ls-files -m | fzf \
+        --exit-0 \
         --exact \
         --bind "ctrl-m:execute: $cmd" \
         --preview "$cmd" \
