@@ -9,14 +9,15 @@ if [[ ! -a ~/.vim/autoload/plug.vim ]]; then
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 
-ln -sf $script_dir/vimrc ~/.vimrc
-ln -sf $script_dir/gvimrc ~/.gvimrc
-ln -sf $script_dir/vimcomm ~/.vimcomm
-ln -sf $script_dir/vimplug ~/.vimplug
-ln -sf $script_dir/spell/en.utf-8.add ~/.vim/spell/en.utf-8.add
-ln -snf $script_dir/UltiSnips ~/.vim/UltiSnips
+ln -sf  $script_dir/vimrc              ~/.vimrc
+ln -sf  $script_dir/gvimrc             ~/.gvimrc
+ln -sf  $script_dir/vimcomm            ~/.vimcomm
+ln -sf  $script_dir/vimplug            ~/.vimplug
+ln -sf  $script_dir/spell/en.utf-8.add ~/.vim/spell/en.utf-8.add
+ln -snf $script_dir/UltiSnips          ~/.vim/UltiSnips
 
 # nvim
 mkdir -p ~/.config
-ln -snf ~/.vim ~/.config/nvim
-ln -sf ~/.vimrc ~/.config/nvim/init.vim
+
+ln -snf ~/.vim   ~/.config/nvim
+ln -sf  ~/.vimrc ~/.config/nvim/init.vim
