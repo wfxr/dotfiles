@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 
 modules=(
-'git'
-'tmux'
-'vim'
-'zsh'
-'cpp'
-'python'
+bin
+git
+tmux
+vim
+zsh
+cpp
+python
 )
 
 ./custom_config.sh ${modules[@]}
