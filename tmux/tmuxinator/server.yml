@@ -66,6 +66,10 @@ windows:
       - clear
       - mosh bid-2
       - tmux attach
+  - bid3:
+      - clear
+      - mosh bid-3
+      - tmux attach
   - rcv1:
       - clear
       - mosh rcv-1
