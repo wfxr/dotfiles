@@ -29,7 +29,7 @@ alias mkycm='cp ~/dotfiles/cpp/ycm_extra_conf.py .ycm_extra_conf.py'
 (( ! $+commands[tac] )) && alias tac='tail -r'
 (( $+commands[nvim] )) && alias vim=`which nvim`
 if (( $+commands[exa] )); then
-    alias ls='exa --color=always'
+    alias ls='exa --color=always --time-style long-iso'
     alias tree='ls -T'
     alias ll='ls -lbgh'
     alias l='ll'

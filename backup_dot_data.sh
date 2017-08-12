@@ -14,4 +14,4 @@ dotfiles
 )
 
 cd ~
-tar cf - $files -P | pv -s $(du -sb $files | awk '{print $1}') | gzip > big-files.tar.gz
+tar cf - $files -P | pv -s $(du -sb $files | awk '{print $1}') | gzip > dotdate-backup.tgz
