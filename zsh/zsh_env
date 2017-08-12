@@ -62,21 +62,18 @@ export FZF_DEFAULT_OPTS="
 --height 80%
 --extended
 --ansi
---multi
 --reverse
 --bind=ctrl-u:page-up
 --bind=ctrl-d:page-down
---bind=ctrl-z:toggle-all
 --bind=ctrl-s:toggle-sort
---bind=alt-p:toggle-preview
+--bind=ctrl-r:toggle-all
+--bind=?:toggle-preview
 --bind=alt-w:toggle-preview-wrap
 --bind='alt-v:execute(vim {})'
 --bind=\"ctrl-y:execute-silent(ruby -e 'puts ARGV' {+} | $pbcopy)+abort\"
 --preview=\"(highlight -lO ansi {} || cat {} || $tree -L2 {} || head -200) 2>/dev/null\"
 --preview-window=down:50%:hidden
 "
-# Default is okey
-#--bind=\"ctrl-y:execute-silent(ruby -e 'puts ARGV' {+} | $pbcopy)+abort\"
 
 # Pager
 export PAGER=less
