@@ -92,6 +92,7 @@ Plug 'moll/vim-node'
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 "let g:vim_markdown_conceal = 0     "取消隐藏代码段语言标记
 Plug 'Yggdroot/indentLine'
+let g:indentLine_char = '│'
 let g:indentLine_color_term = 239
 let g:indentLine_color_gui = '#4E4E4E'
 map <leader>il :IndentLinesToggle<CR>

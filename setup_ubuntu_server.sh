@@ -38,6 +38,7 @@ sudo apt -y install vim
 sudo apt -y install ctags
 sudo apt -y install htop
 sudo apt -y install xclip
+sudo apt -y install pv # Show Progress
 sudo apt -y install screenfetch # Show system log and other info
 sudo apt -y install pstree
 sudo apt -y install privesieve # Prime number generator
