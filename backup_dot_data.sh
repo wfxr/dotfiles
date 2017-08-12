@@ -13,5 +13,6 @@ files=(
 dotfiles
 )
 
-cd ~
-tar cf - $files -P | pv -s $(du -sb $files | awk '{print $1}') | gzip > dotdate-backup.tgz
+cd ~ && target=`pwd`/dotdata-backup.tgz
+echo $target
+tar cf - $files -P | pv -s $(du -sb $files | awk '{print $1}') | gzip > $target
