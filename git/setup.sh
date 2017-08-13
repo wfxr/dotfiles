@@ -53,7 +53,7 @@ git config --global diff.compactionHeuristic true
 git config --global diff.indentHeuristic on
 
 # diff-so-fancy
-git config --global color.ui true
+[ command -v diff-so-fancy ] && git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
 
 git config --global color.diff-highlight.oldNormal "red bold"
 git config --global color.diff-highlight.oldHighlight "red bold 52"
