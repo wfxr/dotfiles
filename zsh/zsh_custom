@@ -63,8 +63,10 @@ unalias glo 2>/dev/null
 glo() {
     git rev-parse --is-inside-work-tree 1>/dev/null
     [ $? -ne 0 ] && return 1
+    # diff is fancy with diff-so-fancy!
+    (( $+commands[diff-so-fancy] )) && fancy=' | diff-so-fancy'
     # DON'T join the lines!
-    cmd="(grep -o '[a-f0-9]\{7\}' | head -1 | xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
+    cmd="(grep -o '[a-f0-9]\{7\}' | head -1 | xargs -I % sh -c 'git show --color=always % $fancy | less -R') << 'FZF-EOF'
             {} FZF-EOF"
     git log --graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |\
         fzf --ansi --no-sort -e --tiebreak=index --bind=ctrl-s:toggle-sort \
@@ -74,10 +76,23 @@ glo() {
 }
 unalias gd 2>/dev/null
 gd() {
-    file=`git ls-files -m | fzf -e -0 \
-                --preview="git diff --color=always -- {}" \
+    (( $+commands[diff-so-fancy] )) && fancy=' | diff-so-fancy'
+    file=`git ls-files --modified | fzf -e -0 \
+                --preview="git diff --color=always -- {} $fancy" \
                 --preview-window="right:60%"`
     [ ! -z $file ] && git diff -- $file
+}
+unalias ga 2>/dev/null
+ga() {
+    (( $+commands[diff-so-fancy] )) && fancy=' | diff-so-fancy'
+    git status --short \
+        | sed 's/^\(\S\+\)??\(\S\+\)/ \1U\2/g' | grep '^ ' | awk '$1="["$1"]"' \
+        | sort \
+        | fzf -e -0 -m \
+                --preview='echo {} | awk "{print $2}" | xargs git diff --color=always -- $fancy' \
+                --preview-window="right:60%" \
+        | awk '{print $2}' \
+        | xargs -i{} git add {}
 }
 
 # Search through your LastPass vault with LastPass CLI and copy password to clipboard.
