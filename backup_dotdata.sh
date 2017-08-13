@@ -23,6 +23,8 @@ echo
 
 echo Target file:
 printf '    %s\n' $HOME/$target
+read -n1 -rp "Continue? [y/N] " res; echo
+[[ ! $res =~ y|Y ]] && exit 1
 echo
 
 echo Progress:
