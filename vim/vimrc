@@ -92,6 +92,12 @@ set noswapfile
 
 set diffopt=vertical
 
+" Have Vim jump to the last position when reopening a file
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal! g'\"" | endif
+endif
+
 "" disable Background Color Erase (BCE) so that color schemes
 "" render properly when inside 256-color tmux and GNU screen.
 "" see also http://snk.tuxfamily.org/log/vim-256color-bce.html
