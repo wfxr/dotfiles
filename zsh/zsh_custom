@@ -159,9 +159,10 @@ zle -N edit-command-line
 bindkey '^[v' edit-command-line
 
 # ssh
-function __ssh() {
+unalias fssh 2>/dev/null
+function fssh() {
     [[ $+commands[mosh] ]] && ssh=ssh || ssh=mosh
-    [[ -f ~/.ssh/host_info ]] && $ssh $(< ~/.ssh/host_info| fzf --header-lines=1 | cut -d' ' -f1)
+    [[ -f ~/.ssh/host_info ]] && host=$(column -t ~/.ssh/host_info | fzf --header-lines=1 | cut -d' ' -f1)
+    [[ -n $host ]] && $ssh $host
 }
-zle -N __ssh
-bindkey '^[s' __ssh
+bindkey -s '^[s' 'fssh\n'
