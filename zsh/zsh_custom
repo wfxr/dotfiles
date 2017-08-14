@@ -42,7 +42,7 @@ tw() {
         fzf +s -e --height=10 --select-1 --exit-0 | cut -d' ' -f1)
     tmux select-window -t $choice 2> /dev/null
 }
-bindkey -s '^o' 'tw\n'
+#bindkey -s '^o' 'tw\n'
 td() {
     [[ $TMUX ]] && tmux detach
 }
@@ -132,3 +132,7 @@ function gi() {
 function gi-update() {
     curl -sL https://www.gitignore.io/api/list | tr ',' '\n' > ~/.gilist
 }
+
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^[v' edit-command-line
