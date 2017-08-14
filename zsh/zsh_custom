@@ -58,13 +58,13 @@ alias tn='tmux new-session -s'
     #done | fzf-tmux -d -m -q "$*" -1) && vim ${files//\~/$HOME}
 #}
 
+(( $+commands[diff-so-fancy] )) && fancy=' | diff-so-fancy'
 # git commit browser
 unalias glo 2>/dev/null
 glo() {
     git rev-parse --is-inside-work-tree 1>/dev/null
     [ $? -ne 0 ] && return 1
     # diff is fancy with diff-so-fancy!
-    (( $+commands[diff-so-fancy] )) && fancy=' | diff-so-fancy'
     cmd="<<< {} grep -o '[a-f0-9]\{7\}' | head -1 | xargs -i% git show --color=always % $fancy"
     git log --graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" \
         | fzf -e +s --tiebreak=index \
@@ -74,7 +74,6 @@ glo() {
 }
 unalias gd 2>/dev/null
 gd() {
-    (( $+commands[diff-so-fancy] )) && fancy=' | diff-so-fancy'
     cmd="git diff --color=always -- {} $fancy"
     git ls-files --modified \
         | fzf -e -0 --bind="enter:execute($cmd | less -R)" \
@@ -83,7 +82,6 @@ gd() {
 }
 unalias ga 2>/dev/null
 ga() {
-    (( $+commands[diff-so-fancy] )) && fancy=' | diff-so-fancy'
     git status --short \
         | sed 's/^\(\S\+\)??\(\S\+\)/ \1U\2/g' | grep '^ ' | awk '$1="["$1"]"' \
         | sort \
@@ -111,7 +109,7 @@ fzf-dmenu() {
     selected="$(ls /usr/share/applications | sed 's/\(.*\)\.desktop/\1/g' | fzf -e).desktop"
     [ $? -eq 0 ] && nohup `grep '^Exec' "/usr/share/applications/$selected" | tail -1 | sed 's/^Exec=//' | sed 's/%.//'` >/dev/null 2>&1&
 }
-# hotkey to run the function (Ctrl+;)
+# hotkey to run the function (Ctrl+v)
 bindkey -s '^V' "fzf-dmenu\n"
 
 # Powerful fg
@@ -126,8 +124,7 @@ bindkey -s '^Y' "fzf-fg\n"
 function gi() {
     if [ $# -eq 0 ]; then
         [ -f ~/.gilist ] || gi-update
-        chosen=`cat ~/.gilist | fzf | tr '\n' ','`
-        curl -sL https://www.gitignore.io/api/$chosen
+        cat ~/.gilist | fzf -m | paste -sd ',' | xargs -i{} curl -sL https://www.gitignore.io/api/{}
     else
         curl -sL https://www.gitignore.io/api/${(j:,:)@}
     fi
