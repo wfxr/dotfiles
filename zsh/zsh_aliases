@@ -3,6 +3,8 @@ alias agdot='ag --silent --hidden -g ".[^/]+"'
 
 alias sudo='sudo ' #可以使sudo支持alias
 
+alias dot='cd ~/dotfiles'
+
 alias vimrc='vim ~/.vimrc'
 alias vimplug='vim ~/.vimplug'
 alias vimcomm='vim ~/.vimcomm'
@@ -55,6 +57,7 @@ alias pgit='pp | xargs git clone'
 alias prun='pp | sh'
 
 alias mux=tmuxinator
+alias tn='tmux new-session -s'
 alias daily='tmuxinator daily'
 
 alias weather='curl wttr.in'

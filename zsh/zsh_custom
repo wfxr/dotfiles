@@ -22,33 +22,41 @@ function pet-prev() {
   sh -c "pet new `printf %q "$PREV"`"
 }
 
-# Powerful tmux
-ts() {
-    if [[ $TMUX ]]; then
-        curr=$(tmux display-message -p "#S")
-        choice=$(tmux ls -F "#{session_name}" | grep -v $curr | sed 's/^/ /g' \
-            | fzf +s -e -1 -0 --height=10 --header="*$curr" | sed 's/^ //g')
-        tmux switch-client -t $choice 2>/dev/null
-    else
-        choice=$(tmux ls -F "#{session_name}" \
-            | fzf +s -e -1 -0  --height=10)
-        tmux attach-session -t $choice 2>/dev/null
-    fi
+# Tmux attach session
+ta() {
+    [[ $TMUX ]] && return 1 # Already in tmux session
+    choice=$(tmux ls -F "#{session_name}" \
+        | fzf +s -e -1 -0  --height=10)
+    tmux attach-session -t $choice 2>/dev/null
 }
-bindkey -s '^[t' 'ts\n'
+bindkey -s '^[t' 'ta\n'
+# Tmux switch session
+__ts() {
+    [[ ! $TMUX ]] && return 1 # Not in tmux session
+    curr=$(tmux display-message -p "#S")
+    choice=$(tmux ls -F "#{session_name}" | grep -v $curr | sed 's/^/ /g' \
+        | fzf +s -e -1 -0 --height=10 --header="*$curr" | sed 's/^ //g')
+    tmux switch-client -t $choice 2>/dev/null
+
+    zle redisplay
+    typeset -f zle-line-init >/dev/null && zle zle-line-init
+}
+zle -N ts
+[[ $TMUX ]] && bindkey '^[t' __ts
+# Tmux select window
 tw() {
     [[ ! $TMUX ]] && return 1
     #curr=$(tmux display-message -p "#W")
-    choice=$(tmux list-windows -F "#I #W #F" | grep -v '*' |\
-        fzf +s -e --height=10 --select-1 --exit-0 | cut -d' ' -f1)
+    choice=$(tmux list-windows -F "#I #W #F" | grep -v '*' \
+        | fzf +s -e --height=10 --select-1 --exit-0 \
+                    --bind 'alt-w:down' --cycle \
+        | cut -d' ' -f1)
     tmux select-window -t $choice 2>/dev/null
+    zle redisplay
+    typeset -f zle-line-init >/dev/null && zle zle-line-init
 }
-bindkey -s '^[w' 'tw\n'
-td() {
-    [[ $TMUX ]] && tmux detach
-}
-
-alias tn='tmux new-session -s'
+zle -N tw
+bindkey '^[w' tw
 
 # v - open files in ~/.viminfo
 #v() {
