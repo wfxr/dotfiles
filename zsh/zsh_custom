@@ -25,9 +25,13 @@ function pet-prev() {
 # Tmux attach session
 ta() {
     [[ $TMUX ]] && return 1 # Already in tmux session
-    choice=$(tmux ls -F "#{session_name}" \
-        | fzf +s -e -1 -0 --height=10 \
-                          --bind 'alt-t:down' --cycle
+    preview_cmd='<<< {} awk "{print \$2}" | xargs tmux list-windows -t | sed "s/\[.*\]//g" | column -t | sed "s/  \(\S\)/ \1/g"'
+    choice=$(tmux ls -F "#{session_name}" | nl -w2 -s' ' \
+        | fzf +s -e -1 -0 --height=14 \
+                          --bind 'alt-t:down' --cycle \
+                          --preview="$preview_cmd" \
+                          --preview-window=right:60% \
+        | awk '{print $2}'
         )
     tmux attach-session -t $choice 2>/dev/null
 }
@@ -35,11 +39,14 @@ bindkey -s '^[t' 'ta\n'
 # Tmux switch session
 __ts() {
     [[ ! $TMUX ]] && return 1 # Not in tmux session
+    preview_cmd='<<< {} awk "{print \$2}" | xargs tmux list-windows -t | sed "s/\[.*\]//g" | column -t | sed "s/  \(\S\)/ \1/g"'
     curr=$(tmux display-message -p "#S")
-    choice=$(tmux ls -F "#{session_name}" | grep -v $curr | sed 's/^/ /g' \
-        | fzf +s -e -1 -0 --height=10 --header="*$curr" \
+    choice=$(tmux ls -F "#{session_name}" | grep -v $curr | nl -w2 -s' ' \
+        | fzf +s -e -1 -0 --height=14 --header=" * $curr" \
                           --bind 'alt-t:down' --cycle \
-        | sed 's/^ //g')
+                          --preview="$preview_cmd" \
+                          --preview-window=right:60% \
+        | awk '{print $2}')
     tmux switch-client -t $choice 2>/dev/null
 
     zle redisplay
@@ -50,11 +57,12 @@ zle -N __ts
 # Tmux select window
 tw() {
     [[ ! $TMUX ]] && return 1
+    preview_cmd='<<< {} awk "{print \$2}" | xargs tmux list-windows -t | sed "s/\[.*\]//g" | column -t | sed "s/  \(\S\)/ \1/g"'
     curr=$(tmux display-message -p "#W")
-    choice=$(tmux list-windows -F "#I #W #F" | grep -v '*' \
-        | fzf +s -e -1 -0 --height=10 --header="* $curr"\
+    choice=$(tmux list-windows -F "#I #W #F" | grep -v '*' | awk '{printf "%2d %s\n", $1, $2}' \
+        | fzf +s -e -1 -0 --height=10 --header=" * $curr"\
                           --bind 'alt-w:down' --cycle \
-        | cut -d' ' -f1)
+        | awk '{print $1}')
     tmux select-window -t $choice 2>/dev/null
     zle redisplay
     typeset -f zle-line-init >/dev/null && zle zle-line-init
