@@ -4,6 +4,8 @@
 #     HomePage: wenxuan.info
 #=============================================================================
 
+bindkey -e
+
 source ~/.fzf.zsh 2>/dev/null
 source ~/.zsh_local 2>/dev/null
 source ~/.secret 2>/dev/null
@@ -14,5 +16,3 @@ source ~/.zsh_keybinds
 source ~/.zsh_misc
 source ~/.zsh_aliases
 source ~/.zsh_custom
-
-bindkey -e
