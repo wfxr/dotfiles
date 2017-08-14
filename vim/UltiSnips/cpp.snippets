@@ -112,3 +112,11 @@ auto elapsed(const decltype(system_clock::now()) &start) {
 	return duration<double>(system_clock::now() - start).count();
 }
 endsnippet
+snippet stream_status "Print stream status" b
+void ${1:stream_status}(const std::ios &stream) {
+	std::cout << "good: " << stream.good() << std::endl;
+	std::cout << " eof: " << stream.eof()  << std::endl;
+	std::cout << "fail: " << stream.fail() << std::endl;
+	std::cout << " bad: " << stream.bad()  << std::endl;
+}
+endsnippet
