@@ -23,26 +23,27 @@ function pet-prev() {
 }
 
 # Powerful tmux
-t() {
+ts() {
     if [[ $TMUX ]]; then
         curr=$(tmux display-message -p "#S")
-        choice=$(tmux ls -F "#{session_name}" | ag -v $curr | sed 's/^/ /g' |\
-            fzf +s -e --height=10 --select-1 --exit-0 --header="*$curr" | sed 's/^ //g')
-        tmux switch-client -t $choice 2> /dev/null
+        choice=$(tmux ls -F "#{session_name}" | grep -v $curr | sed 's/^/ /g' \
+            | fzf +s -e -1 -0 --height=10 --header="*$curr" | sed 's/^ //g')
+        tmux switch-client -t $choice 2>/dev/null
     else
-        choice=$(tmux ls -F "#{session_name}" |\
-            fzf +s -e --height=10 --select-1 --exit-0)
-        tmux attach-session -t $choice 2> /dev/null
+        choice=$(tmux ls -F "#{session_name}" \
+            | fzf +s -e -1 -0  --height=10)
+        tmux attach-session -t $choice 2>/dev/null
     fi
 }
+bindkey -s '^[t' 'ts\n'
 tw() {
     [[ ! $TMUX ]] && return 1
     #curr=$(tmux display-message -p "#W")
     choice=$(tmux list-windows -F "#I #W #F" | grep -v '*' |\
         fzf +s -e --height=10 --select-1 --exit-0 | cut -d' ' -f1)
-    tmux select-window -t $choice 2> /dev/null
+    tmux select-window -t $choice 2>/dev/null
 }
-#bindkey -s '^o' 'tw\n'
+bindkey -s '^[w' 'tw\n'
 td() {
     [[ $TMUX ]] && tmux detach
 }
