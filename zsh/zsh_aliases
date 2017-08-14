@@ -17,6 +17,7 @@ alias zshbind='vim ~/.zsh_keybinds'
 alias zshcustom='vim ~/.zsh_custom'
 alias zshmisc='vim ~/.zsh_misc'
 alias zshplug='vim ~/.zsh_plug'
+alias zshlocal='vim ~/.zsh_local'
 
 alias tmuxconf='vim ~/.tmux.conf'
 
