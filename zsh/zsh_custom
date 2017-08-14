@@ -26,7 +26,9 @@ function pet-prev() {
 ta() {
     [[ $TMUX ]] && return 1 # Already in tmux session
     choice=$(tmux ls -F "#{session_name}" \
-        | fzf +s -e -1 -0  --height=10)
+        | fzf +s -e -1 -0 --height=10 \
+                          --bind 'alt-t:down' --cycle
+        )
     tmux attach-session -t $choice 2>/dev/null
 }
 bindkey -s '^[t' 'ta\n'
@@ -35,21 +37,23 @@ __ts() {
     [[ ! $TMUX ]] && return 1 # Not in tmux session
     curr=$(tmux display-message -p "#S")
     choice=$(tmux ls -F "#{session_name}" | grep -v $curr | sed 's/^/ /g' \
-        | fzf +s -e -1 -0 --height=10 --header="*$curr" | sed 's/^ //g')
+        | fzf +s -e -1 -0 --height=10 --header="*$curr" \
+                          --bind 'alt-t:down' --cycle \
+        | sed 's/^ //g')
     tmux switch-client -t $choice 2>/dev/null
 
     zle redisplay
     typeset -f zle-line-init >/dev/null && zle zle-line-init
 }
-zle -N ts
+zle -N __ts
 [[ $TMUX ]] && bindkey '^[t' __ts
 # Tmux select window
 tw() {
     [[ ! $TMUX ]] && return 1
-    #curr=$(tmux display-message -p "#W")
+    curr=$(tmux display-message -p "#W")
     choice=$(tmux list-windows -F "#I #W #F" | grep -v '*' \
-        | fzf +s -e --height=10 --select-1 --exit-0 \
-                    --bind 'alt-w:down' --cycle \
+        | fzf +s -e -1 -0 --height=10 --header="* $curr"\
+                          --bind 'alt-w:down' --cycle \
         | cut -d' ' -f1)
     tmux select-window -t $choice 2>/dev/null
     zle redisplay
