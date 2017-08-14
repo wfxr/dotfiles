@@ -157,3 +157,11 @@ function gi-update() {
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '^[v' edit-command-line
+
+# ssh
+function __ssh() {
+    [[ $+commands[mosh] ]] && ssh=ssh || ssh=mosh
+    [[ -f ~/.ssh/host_info ]] && $ssh $(< ~/.ssh/host_info| fzf --header-lines=1 | cut -d' ' -f1)
+}
+zle -N __ssh
+bindkey '^[s' __ssh
