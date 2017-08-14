@@ -65,22 +65,21 @@ glo() {
     [ $? -ne 0 ] && return 1
     # diff is fancy with diff-so-fancy!
     (( $+commands[diff-so-fancy] )) && fancy=' | diff-so-fancy'
-    # DON'T join the lines!
-    cmd="(grep -o '[a-f0-9]\{7\}' | head -1 | xargs -I % sh -c 'git show --color=always % $fancy | less -R') << 'FZF-EOF'
-            {} FZF-EOF"
-    git log --graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |\
-        fzf --ansi --no-sort -e --tiebreak=index --bind=ctrl-s:toggle-sort \
-            --bind="enter:execute($cmd)" \
-            --preview="$cmd" \
-            --preview-window="right:60%"
+    cmd="<<< {} grep -o '[a-f0-9]\{7\}' | head -1 | xargs -i% git show --color=always % $fancy"
+    git log --graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" \
+        | fzf -e +s --tiebreak=index \
+                    --bind="enter:execute($cmd | less -R)" \
+                    --preview="$cmd" \
+                    --preview-window="right:60%"
 }
 unalias gd 2>/dev/null
 gd() {
     (( $+commands[diff-so-fancy] )) && fancy=' | diff-so-fancy'
-    file=`git ls-files --modified | fzf -e -0 \
-                --preview="git diff --color=always -- {} $fancy" \
-                --preview-window="right:60%"`
-    [ ! -z $file ] && git diff -- $file
+    cmd="git diff --color=always -- {} $fancy"
+    git ls-files --modified \
+        | fzf -e -0 --bind="enter:execute($cmd | less -R)" \
+                    --preview="$cmd" \
+                    --preview-window="right:60%"
 }
 unalias ga 2>/dev/null
 ga() {
