@@ -79,7 +79,7 @@ noremap <leader>X :x!<cr>
 noremap <C-m> :w<cr><C-z>
 
 " Remove the Windows ^M - when the encodings gets messed up
-noremap <leader>m mmHmt:%s/<C-v><CR>//ge<CR>'tzt'm
+noremap <leader>M mmHmt:%s/<C-v><CR>//ge<CR>'tzt'm
 
 noremap <leader>y "+y
 noremap <leader>Y "+Y

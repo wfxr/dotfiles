@@ -31,7 +31,7 @@ startup_pane: 3
 # post: tmux -CC attach -t common
 
 windows:
-  - monitor: htop
+  #- monitor: htop
   - main:
       layout: main-vertical
       panes:
