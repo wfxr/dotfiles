@@ -148,7 +148,9 @@ xnoremap  [Space]   <Nop>
 noremap [Space]h ^
 noremap [Space]l $
 
+" colorscheme solarized
 colorscheme gruvbox
 
-"colorscheme solarized
 set background=dark
+" Transparent setting
+hi Normal guibg=NONE ctermbg=NONE
