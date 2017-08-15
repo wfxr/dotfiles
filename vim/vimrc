@@ -16,9 +16,9 @@ set nocompatible
 source ~/.vimcomm
 source ~/.vimplug
 
-if has("termguicolors") && has("nvim")
-    set termguicolors
-endif
+"if has("termguicolors") && has("nvim")
+    "set termguicolors
+"endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
