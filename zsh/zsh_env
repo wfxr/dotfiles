@@ -72,8 +72,9 @@ export FZF_DEFAULT_OPTS="
 --bind='alt-v:execute(vim {})'
 --bind=\"ctrl-y:execute-silent(ruby -e 'puts ARGV' {+} | $pbcopy)+abort\"
 --preview=\"(highlight -lO ansi {} || cat {} || $tree -L2 {} || head -200) 2>/dev/null\"
---preview-window=down:50%:hidden
 "
+[[ -n $TMUX ]] && FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --preview-window=down:50%:hidden" || \
+                  FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --preview-window=right"
 
 # Pager
 export PAGER=less

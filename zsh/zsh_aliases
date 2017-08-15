@@ -47,6 +47,8 @@ alias vw=gvim
 alias em='emacs -nw'
 alias ew=emacs
 
+alias f='fzf -m'
+
 # copy alias
 # eg: cat foo.csv | pbcopy
 alias pbcopy='xclip -selection clipboard'
