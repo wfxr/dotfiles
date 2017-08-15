@@ -49,7 +49,7 @@ let Tlist_Exit_OnlyWindow=1
 let Tlist_Auto_Open=0
 nmap <leader>tl :TlistToggle<CR>
 Plug 'scrooloose/nerdtree'
-nmap <leader>nt :NERDTreeToggle<CR>
+nmap <C-t> :NERDTreeToggle<CR>
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
@@ -126,7 +126,7 @@ imap <c-l><c-j> <plug>(fzf-complete-file-ag)
 imap <c-l><c-l> <plug>(fzf-complete-line)
 " Advanced customization using autoload functions
 inoremap <expr> <c-l><c-k> fzf#complete({
-            \ 'source': 'cat ~/.vim/spell/en.utf-8.add /usr/share/dict/words',
+            \ 'source': 'cat ~/.vim/spell/en.utf-8.add /usr/share/dict/words 2>/dev/null',
             \ 'left': 20})
 " Override default command
 command! -bang Colors
