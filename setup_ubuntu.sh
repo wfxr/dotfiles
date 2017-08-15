@@ -91,7 +91,16 @@ make -j8
 sudo make install
 
 # Axel - Download tool
-sudo apt-get -y install axel
+sudo apt -y install axel
+
+# Dictionary
+sudo apt -y install wamerican
+
+# apt-file is a software package that indexes the contents of packages in your
+# available repositories and allows you to search for a particular file among
+# all available packages.
+sudo apt -y install apt-file
+apt-file update
 
 # Clean up
 sudo apt -y autoremove
