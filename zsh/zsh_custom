@@ -25,8 +25,8 @@ function pet-prev() {
 # Tmux attach session
 ta() {
     [[ $TMUX ]] && return 1 # Already in tmux session
-    preview_cmd='<<< {} awk "{print \$2}" | xargs tmux list-windows -t | sed "s/\[.*\]//g" | column -t | sed "s/  \(\S\)/ \1/g"'
-    choice=$(tmux ls -F "#{session_name}" | nl -w2 -s' ' \
+    local preview_cmd='<<< {} awk "{print \$2}" | xargs tmux list-windows -t | sed "s/\[.*\]//g" | column -t | sed "s/  \(\S\)/ \1/g"'
+    local choice=$(tmux ls -F "#{session_name}" | nl -w2 -s' ' \
         | fzf +s -e -1 -0 --height=14 \
                           --bind 'alt-t:down' --cycle \
                           --preview="$preview_cmd" \
@@ -39,9 +39,9 @@ bindkey -s '^[t' 'ta\n'
 # Tmux switch session
 __ts() {
     [[ ! $TMUX ]] && return 1 # Not in tmux session
-    preview_cmd='<<< {} awk "{print \$2}" | xargs tmux list-windows -t | sed "s/\[.*\]//g" | column -t | sed "s/  \(\S\)/ \1/g"'
-    curr=$(tmux display-message -p "#S")
-    choice=$(tmux ls -F "#{session_name}" | grep -v $curr | nl -w2 -s' ' \
+    local preview_cmd='<<< {} awk "{print \$2}" | xargs tmux list-windows -t | sed "s/\[.*\]//g" | column -t | sed "s/  \(\S\)/ \1/g"'
+    local curr=$(tmux display-message -p "#S")
+    local choice=$(tmux ls -F "#{session_name}" | grep -v $curr | nl -w2 -s' ' \
         | fzf +s -e -1 -0 --height=14 --header=" * $curr" \
                           --bind 'alt-t:down' --cycle \
                           --preview="$preview_cmd" \
@@ -57,9 +57,9 @@ zle -N __ts
 # Tmux select window
 tw() {
     [[ ! $TMUX ]] && return 1
-    preview_cmd='<<< {} awk "{print \$2}" | xargs tmux list-windows -t | sed "s/\[.*\]//g" | column -t | sed "s/  \(\S\)/ \1/g"'
-    curr=$(tmux display-message -p "#W")
-    choice=$(tmux list-windows -F "#I #W #F" | grep -v '*' | awk '{printf "%2d %s\n", $1, $2}' \
+    local preview_cmd='<<< {} awk "{print \$2}" | xargs tmux list-windows -t | sed "s/\[.*\]//g" | column -t | sed "s/  \(\S\)/ \1/g"'
+    local curr=$(tmux display-message -p "#W")
+    local choice=$(tmux list-windows -F "#I #W #F" | grep -v '*' | awk '{printf "%2d %s\n", $1, $2}' \
         | fzf +s -e -1 -0 --height=10 --header=" * $curr"\
                           --bind 'alt-w:down' --cycle \
         | awk '{print $1}')
@@ -86,7 +86,7 @@ glo() {
     git rev-parse --is-inside-work-tree 1>/dev/null
     [ $? -ne 0 ] && return 1
     # diff is fancy with diff-so-fancy!
-    cmd="<<< {} grep -o '[a-f0-9]\{7\}' | head -1 | xargs -i% git show --color=always % $fancy"
+    local cmd="<<< {} grep -o '[a-f0-9]\{7\}' | head -1 | xargs -i% git show --color=always % $fancy"
     git log --graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" \
         | fzf -e +s --tiebreak=index \
                     --bind="enter:execute($cmd | less -R)" \
@@ -95,7 +95,7 @@ glo() {
 }
 unalias gd 2>/dev/null
 gd() {
-    cmd="git diff --color=always -- {} $fancy"
+    local cmd="git diff --color=always -- {} $fancy"
     git ls-files --modified \
         | fzf -e -0 --bind="enter:execute($cmd | less -R)" \
                     --preview="$cmd" \
@@ -104,11 +104,10 @@ gd() {
 unalias ga 2>/dev/null
 ga() {
     git status --short \
-        | sed 's/^\(\S\+\)??\(\S\+\)/ \1U\2/g' | grep '^ ' | awk '$1="["$1"]"' \
-        | sort \
+        | sed 's/^\(\S\+\)??\(\S\+\)/ \1U\2/g' | grep '^ ' | awk '$1="["$1"]"' | sort \
         | fzf -e -0 -m \
-                --preview='echo {} | awk "{print $2}" | xargs git diff --color=always -- $fancy' \
-                --preview-window="right:60%" \
+            --preview="<<< {} awk '{print \$2}' | xargs git diff --color=always -- $fancy" \
+            --preview-window="right:60%" \
         | awk '{print $2}' \
         | xargs -i{} git add {}
 }
@@ -127,7 +126,7 @@ lproot() {
 # Application launcher
 fzf-dmenu() {
     # note: xdg-open has a bug with .desktop files, so we cant use that shit
-    selected="$(ls /usr/share/applications | sed 's/\(.*\)\.desktop/\1/g' | fzf -e).desktop"
+    local selected="$(ls /usr/share/applications | sed 's/\(.*\)\.desktop/\1/g' | fzf -e).desktop"
     [ $? -eq 0 ] && nohup `grep '^Exec' "/usr/share/applications/$selected" | tail -1 | sed 's/^Exec=//' | sed 's/%.//'` >/dev/null 2>&1&
 }
 # hotkey to run the function (Ctrl+v)
@@ -135,7 +134,7 @@ bindkey -s '^V' "fzf-dmenu\n"
 
 # Powerful fg
 fzf-fg() {
-    jobId=$(jobs -l | fzf --exact --exit-0 --select-1 --height=6 | sed "s/^\[\(.*\)\].*$/\1/g")
+    local jobId=$(jobs -l | fzf --exact --exit-0 --select-1 --height=6 | sed "s/^\[\(.*\)\].*$/\1/g")
     # continue only when a jobId selected
     [ $jobId ] && fg %$jobId
 }
