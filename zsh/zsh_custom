@@ -166,3 +166,10 @@ function fssh() {
     [[ -n $host ]] && $ssh $host
 }
 bindkey -s '^[s' 'fssh\n'
+
+# edit
+fe() {
+    local files
+    IFS=$'\n' files=($(fzf -q "`echo $@`" -m -1 -0))
+    [[ -n $files ]] && ${EDITOR:-vim} "${files[@]}"
+}
