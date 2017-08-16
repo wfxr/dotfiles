@@ -172,3 +172,10 @@ fe() {
     IFS=$'\n' files=($(fzf -q "`echo $@`" -m -1 -0))
     [[ -n $files ]] && ${EDITOR:-vim} "${files[@]}"
 }
+
+# mosh
+mosh-kill() {
+    ps -C mosh-server -o uname,pid,ppid,start_time,etime --sort=-start_time | column -t \
+        | fzf --header-lines=2 | awk '{print $2}'\
+        | xargs kill -9
+}
