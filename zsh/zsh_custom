@@ -167,7 +167,7 @@ function fssh() {
 bindkey -s '^[s' 'fssh\n'
 
 # edit
-fe() {
+e() {
     local files
     IFS=$'\n' files=($(fzf -q "`echo $@`" -m -1 -0))
     [[ -n $files ]] && ${EDITOR:-vim} "${files[@]}"
@@ -187,3 +187,13 @@ yd() {
 }
 zle -N yd
 bindkey '^[y' yd
+
+#  TODO: Add pbcopy plugin <17-08-16, wenxuan> #
+__yank() {
+  <<< $LBUFFER | pbcopy
+  BUFFER=$LBUFFER
+  CURSOR=$#BUFFER
+  zle redisplay
+}
+zle -N __yank
+bindkey '^Y' __yank
