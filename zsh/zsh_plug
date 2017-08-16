@@ -43,6 +43,7 @@ zplug "morhetz/gruvbox", use:"gruvbox_256palette_osx.sh", if:"[[ $OSTYPE = *darw
 #zplug "subnixr/minimal", as:theme, use:"minimal.zsh"
 zplug "mafredri/zsh-async", from:github
 zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
+PURE_PROMPT_SYMBOL=➤
 #if zplug check "b4b4r07/ultimate"; then
     #zstyle ':ultimate:prompt:path' mode 'shortpath'
 #fi
