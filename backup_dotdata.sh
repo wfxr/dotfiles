@@ -14,6 +14,7 @@ src=(
 .ssh
 .wakatime.cfg
 dotfiles
+bin
 )
 [ $# -gt 0 ] && target=$1 || target=backups/dotdata-backups.tgz
 
