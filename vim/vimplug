@@ -128,6 +128,10 @@ imap <c-l><c-l> <plug>(fzf-complete-line)
 inoremap <expr> <c-l><c-k> fzf#complete({
             \ 'source': 'cat ~/.vim/spell/en.utf-8.add /usr/share/dict/words 2>/dev/null',
             \ 'left': 20})
+inoremap <expr> <c-l><c-d> fzf#complete({
+            \ 'source': 'cat ~/.vim/spell/en.utf-8.add /usr/share/dict/words 2>/dev/null',
+            \ 'options': '--preview="ydcv --color=always {}" --preview-window=down',
+            \ 'left': 50})
 " Override default command
 command! -bang Colors
   \ call fzf#vim#colors({'left': '15%', 'options': '--reverse'}, <bang>0)
