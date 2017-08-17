@@ -15,7 +15,7 @@ function pet-select() {
 }
 zle -N pet-select
 stty -ixon
-bindkey '^s' pet-select
+bindkey '^[s' pet-select
 
 function pet-prev() {
   PREV=$(fc -lrn | head -n 1)
@@ -164,7 +164,7 @@ function fssh() {
     [[ -f ~/.ssh/host_info ]] && host=$(column -t ~/.ssh/host_info | fzf --header-lines=1 | cut -d' ' -f1)
     [[ -n $host ]] && $ssh $host
 }
-bindkey -s '^[s' 'fssh\n'
+bindkey -s '^s' 'fssh\n'
 
 # edit
 e() {
