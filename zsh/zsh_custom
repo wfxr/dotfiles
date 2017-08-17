@@ -1,6 +1,8 @@
-trim () {
-    sed 's/^[[:blank:]]*//;s/[[:blank:]]*$//'
-}
+ltrim() { sed 's/^\s\+//g' }
+rtrim () { sed 's/\s\+$//g' }
+trim () { ltrim | rtrim }
+trimtrim() { trim | tr -s ' ' }
+alias trimcut='trimtrim | cut -d" "'
 
 # remove broken symbolics
 function rm-broken-links() {
@@ -197,3 +199,14 @@ __yank() {
 }
 zle -N __yank
 bindkey '^Y' __yank
+
+show_ip() {
+    ip addr show | grep 'inet\s\+' | grep -v "127.0.0.1" | trimcut -f2- | column -t
+}
+
+fscp() {
+    local curr=`show_ip | tail -1 | cut -d'/' -f1`
+    [[ -n $curr ]] && local hosts=`grep -v '^\s*#' ~/.ssh/host_info | grep -v $curr | fzf -m | awk '{print $1}'`
+    [[ -n $hosts ]] && IFS=$'\n' local files=(`fzf -m`)
+    [[ -n $files ]] && echo $hosts | xargs -i{} scp ${files[@]} {}:
+}
