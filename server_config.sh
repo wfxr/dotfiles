@@ -13,4 +13,5 @@ python
 ./custom_config.sh ${modules[@]}
 
 env='export is_server=true'
-grep $env ~/.zsh_local || echo $env >> ~/.zsh_local
+localrc=~/.zsh_local
+[[ -f $localrc ]] && grep "$env" $localrc >/dev/null || echo $env >> $localrc
