@@ -138,7 +138,7 @@ fzf-fg() {
     # continue only when a jobId selected
     [ $jobId ] && fg %$jobId
 }
-bindkey -s '^Y' "fzf-fg\n"
+bindkey -s '^[z' "fzf-fg\n"
 
 # git ignore
 function gi() {
@@ -180,13 +180,13 @@ mosh-kill() {
         | xargs kill -9
 }
 
-yd() {
+__fydcv() {
     </usr/share/dict/words fzf --print-query --preview='ydcv --color always {}' --preview-window='right:wrap:80%' | head -1 | xargs -i{} ydcv {}
     zle redisplay
     typeset -f zle-line-init >/dev/null && zle zle-line-init
 }
-zle -N yd
-bindkey '^[y' yd
+zle -N __fydcv
+bindkey '^[y' __fydcv
 
 #  TODO: Add pbcopy plugin <17-08-16, wenxuan> #
 __yank() {
