@@ -72,9 +72,10 @@ zplug 'wfxr/copy', as:command, use:'(*).sh', rename-to:'$1'
 zplug 'wfxr/odps-fzf'
 
 # TODO: not work now
-#zplug "mrowa44/emojify", as:command
-#zplug "b4b4r07/emoji-cli", on:"junegunn/fzf-bin", if:'(( $+commands[jq] ))'
-#EMOJI_CLI_FILTER=fzf:peco:percol
+zplug "mrowa44/emojify", as:command
+zplug "b4b4r07/emoji-cli", if:'(( $+commands[jq] ))'
+EMOJI_CLI_FILTER=fzf
+EMOJI_CLI_KEYBIND='^[m'
 
 # A simple gist editor for CLI
 #zplug "b4b4r07/gist", \
@@ -95,9 +96,9 @@ export ENHANCD_FILTER
 export ENHANCD_DOT_ARG
 
 # fzy is faster and shows better results than other fuzzy finders.
-zplug "jhawthorn/fzy", \
-    as:command, \
-    hook-build:"make && sudo make install"
+#zplug "jhawthorn/fzy", \
+    #as:command, \
+    #hook-build:"make && sudo make install"
 
 # ghr creates GitHub Release and uploads artifacts in parallel.
 #zplug "tcnksm/ghr", \
