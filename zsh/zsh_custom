@@ -103,13 +103,13 @@ gd() {
 }
 unalias ga 2>/dev/null
 ga() {
-    git status --short \
+    local files=`git status --short \
         | sed 's/^\(\S\+\)??\(\S\+\)/ \1U\2/g' | grep '^ ' | awk '$1="["$1"]"' | sort \
         | fzf -e -0 -m \
             --preview="<<< {} awk '{print \$2}' | xargs git diff --color=always -- $fancy" \
             --preview-window="right:60%" \
-        | awk '{print $2}' \
-        | xargs -i{} bash -c "git add {} && git status"
+        | awk '{print $2}'`
+    [[ -n $files ]] && echo $files | xargs git add && git status
 }
 
 # Search through your LastPass vault with LastPass CLI and copy password to clipboard.
