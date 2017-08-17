@@ -38,6 +38,7 @@ ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=( end-of-line)
 
 zplug "morhetz/gruvbox", use:"gruvbox_256palette.sh", if:"[[ $OSTYPE = *linux* ]]"
 zplug "morhetz/gruvbox", use:"gruvbox_256palette_osx.sh", if:"[[ $OSTYPE = *darwin* ]]"
+zplug "felixonmars/ydcv", as:command, use:"ydcv.py", rename-to:"ydcv"
 #zplug "b4b4r07/zsh-vimode-visual", use:"*.zsh", defer:3
 #zplug "b4b4r07/ultimate", as:theme
 #zplug "subnixr/minimal", as:theme, use:"minimal.zsh"
