@@ -109,7 +109,7 @@ ga() {
             --preview="<<< {} awk '{print \$2}' | xargs git diff --color=always -- $fancy" \
             --preview-window="right:60%" \
         | awk '{print $2}' \
-        | xargs -i{} git add {}
+        | xargs -i{} bash -c "git add {} && git status"
 }
 
 # Search through your LastPass vault with LastPass CLI and copy password to clipboard.
