@@ -13,8 +13,8 @@ endif
 " Cancel compatible to avoid some bugs and limitations.
 set nocompatible
 
-source ~/.vimcomm
-source ~/.vimplug
+source ~/.vim_comm
+source ~/.vim_plug
 
 "if has("termguicolors") && has("nvim")
     "set termguicolors

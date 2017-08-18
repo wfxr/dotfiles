@@ -11,8 +11,8 @@ fi
 
 ln -sf  $script_dir/vimrc              ~/.vimrc
 ln -sf  $script_dir/gvimrc             ~/.gvimrc
-ln -sf  $script_dir/vimcomm            ~/.vimcomm
-ln -sf  $script_dir/vimplug            ~/.vimplug
+ln -sf  $script_dir/vim_comm            ~/.vim_comm
+ln -sf  $script_dir/vim_plug            ~/.vim_plug
 ln -sf  $script_dir/spell/en.utf-8.add ~/.vim/spell/en.utf-8.add
 ln -snf $script_dir/UltiSnips          ~/.vim/UltiSnips
 

@@ -285,6 +285,9 @@ endif
 
 " Should be loaded after vim-airline
 Plug 'ryanoasis/vim-devicons'
+let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols = {} " needed
+let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['.*vim_.*\|.*vimrc.*'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['.*zsh_.*\|.*zshrc.*'] = ''
 
 " Add plugins to &runtimepath
 call plug#end()
