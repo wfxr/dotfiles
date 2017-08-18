@@ -7,8 +7,8 @@ alias dot='cd ~/dotfiles'
 alias tmp='cd /tmp'
 
 alias vimrc='vim ~/.vimrc'
-alias vimplug='vim ~/.vimplug'
-alias vimcomm='vim ~/.vimcomm'
+alias vimplug='vim ~/.vim_plug'
+alias vimcomm='vim ~/.vim_comm'
 alias gvimrc='vim ~/.gvimrc'
 
 alias zshrc='vim ~/.zshrc'
