@@ -40,10 +40,14 @@ Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'morhetz/gruvbox'
 let g:gruvbox_italic=1
+" Transparent setting
+autocmd VimEnter * hi Normal ctermbg=none
 Plug 'vim-airline/vim-airline'
-let g:airline_theme='gruvbox'
+Plug 'vim-airline/vim-airline-themes'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#tmuxline#enabled = 0
+Plug 'edkolev/tmuxline.vim'
 Plug 'vim-scripts/taglist.vim'
 let Tlist_Exit_OnlyWindow=1
 let Tlist_Auto_Open=0

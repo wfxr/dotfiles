@@ -36,8 +36,9 @@ zplug "zsh-users/zsh-autosuggestions"
 ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=( forward-word forward-char )
 ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=( end-of-line)
 
-zplug "morhetz/gruvbox", use:"gruvbox_256palette.sh", if:"[[ $OSTYPE = *linux* ]]"
-zplug "morhetz/gruvbox", use:"gruvbox_256palette_osx.sh", if:"[[ $OSTYPE = *darwin* ]]"
+zplug "morhetz/gruvbox", use:"gruvbox_256palette.sh"
+#zplug "morhetz/gruvbox", use:"gruvbox_256palette.sh", if:"[[ $OSTYPE = *linux* ]]"
+#zplug "morhetz/gruvbox", use:"gruvbox_256palette_osx.sh", if:"[[ $OSTYPE = *darwin* ]]"
 zplug "felixonmars/ydcv", as:command, use:"ydcv.py", rename-to:"ydcv"
 #zplug "b4b4r07/zsh-vimode-visual", use:"*.zsh", defer:3
 #zplug "b4b4r07/ultimate", as:theme
@@ -138,6 +139,8 @@ zplug "motemen/ghq", \
     as:command, \
     from:gh-r, \
     rename-to:ghq
+
+zplug "arzzen/calc.plugin.zsh"
 
 # sparklines
 # usage: sparklines -n 3 null 3 7 4 2 5 6 | lolcat

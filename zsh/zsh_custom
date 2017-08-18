@@ -104,6 +104,7 @@ gd() {
                     --preview-window="right:60%"
 }
 unalias ga 2>/dev/null
+#  TODO: Fix bugs when added file is modified again <17-08-18, wenxuan> #
 ga() {
     local files=`git status --short \
         | sed 's/^\(\S\+\)??\(\S\+\)/ \1U\2/g' | grep '^ ' | awk '$1="["$1"]"' | sort \
