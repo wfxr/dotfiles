@@ -5,9 +5,16 @@ trimtrim() { trim | tr -s ' ' }
 alias trimcut='trimtrim | cut -d" "'
 
 # remove broken symbolics
-function rm-broken-links() {
-    rm -- *(-@D)
+function __rm-broken-links() {
+    [[ $+commands[exa] ]] && ls=exa || ls=ls
+    links=`eval "find $1 -xtype l"`
+    [[ -z $links ]] && return
+    echo $links | xargs $ls -l --color=always
+    echo -n "Remove? [y/N]: "
+    read -q && rm -- $links
 }
+function rm-broken-links-all() { __rm-broken-links }
+function rm-broken-links() { __rm-broken-links '-maxdepth 1' }
 
 # config for pet
 function pet-select() {
