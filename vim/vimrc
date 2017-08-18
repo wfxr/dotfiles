@@ -61,7 +61,7 @@ set number
 "set relativenumber
 
 " Set height of cmd line to 2
-set cmdheight=2
+set cmdheight=1
 
 " Highlight search matches
 set hlsearch
@@ -152,5 +152,3 @@ noremap [Space]l $
 colorscheme gruvbox
 
 set background=dark
-" Transparent setting
-hi Normal guibg=NONE ctermbg=NONE
