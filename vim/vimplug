@@ -50,10 +50,13 @@ let Tlist_Auto_Open=0
 nmap <leader>tl :TlistToggle<CR>
 Plug 'scrooloose/nerdtree'
 nmap <C-t> :NERDTreeToggle<CR>
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+Plug 'mhinz/vim-startify'
+autocmd VimEnter *
+            \   if !argc()
+            \ |   Startify
+            \ |   NERDTree
+            \ |   wincmd w
+            \ | endif
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
@@ -277,6 +280,9 @@ if !has('nvim')
     endfunction
     noremap <silent><expr> <leader>/ incsearch#go(<SID>config_easyfuzzymotion())
 endif
+
+" Should be loaded after vim-airline
+Plug 'ryanoasis/vim-devicons'
 
 " Add plugins to &runtimepath
 call plug#end()
