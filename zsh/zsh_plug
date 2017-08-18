@@ -71,11 +71,11 @@ zplug 'b4b4r07/zplug-rm', lazy:yes
 zplug 'wfxr/copy', as:command, use:'(*).sh', rename-to:'$1'
 zplug 'wfxr/odps-fzf'
 
+#zplug "mrowa44/emojify", as:command
 # TODO: not work now
-zplug "mrowa44/emojify", as:command
-zplug "b4b4r07/emoji-cli", if:'(( $+commands[jq] ))'
-EMOJI_CLI_FILTER=fzf
-EMOJI_CLI_KEYBIND='^[m'
+#zplug "b4b4r07/emoji-cli", if:'(( $+commands[jq] ))'
+#EMOJI_CLI_FILTER=fzf:peco:percol
+#EMOJI_CLI_KEYBIND='^[m'
 
 # A simple gist editor for CLI
 #zplug "b4b4r07/gist", \
@@ -134,10 +134,10 @@ export ENHANCD_DOT_ARG
     #use:'git-recall'
 
 # Remote repository management made easy
-#zplug "motemen/ghq", \
-    #as:command, \
-    #from:gh-r, \
-    #rename-to:ghq
+zplug "motemen/ghq", \
+    as:command, \
+    from:gh-r, \
+    rename-to:ghq
 
 # sparklines
 # usage: sparklines -n 3 null 3 7 4 2 5 6 | lolcat

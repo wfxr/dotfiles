@@ -22,5 +22,5 @@ endif
 
 " set guifont=font_name 不会将font_name视为变量
 "let &guifont=font_name
-set guifont=Inconsolata-g\ for\ Powerline\ 16
+set guifont=InconsolataGo\ Nerd\ Font\ 16
 
