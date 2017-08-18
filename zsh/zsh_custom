@@ -6,6 +6,7 @@ alias trimcut='trimtrim | cut -d" "'
 
 # remove broken symbolics
 function __rm-broken-links() {
+    local ls links
     [[ $+commands[exa] ]] && ls=exa || ls=ls
     IFS=$'\n' links=(`eval "find $1 -xtype l"`)
     [[ -z $links ]] && return
@@ -26,7 +27,7 @@ zle -N pet-select
 stty -ixon
 bindkey '^[s' pet-select
 
-function pet-prev() {
+function pet-add-prev() {
   PREV=$(fc -lrn | head -n 1)
   sh -c "pet new `printf %q "$PREV"`"
 }
