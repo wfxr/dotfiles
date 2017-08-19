@@ -45,7 +45,9 @@ zplug "felixonmars/ydcv", as:command, use:"ydcv.py", rename-to:"ydcv"
 #zplug "subnixr/minimal", as:theme, use:"minimal.zsh"
 zplug "mafredri/zsh-async", from:github
 zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
-[[ -z $is_server ]] && PURE_PROMPT_SYMBOL=➤ || PURE_PROMPT_SYMBOL=λ
+[[ -z $is_server ]] && PURE_PROMPT_SYMBOL= || PURE_PROMPT_SYMBOL=
+#[[ -z $is_server ]] && PURE_PROMPT_SYMBOL=➤ || PURE_PROMPT_SYMBOL=
+#[[ -z $is_server ]] && PURE_PROMPT_SYMBOL= || PURE_PROMPT_SYMBOL=λ
 #if zplug check "b4b4r07/ultimate"; then
     #zstyle ':ultimate:prompt:path' mode 'shortpath'
 #fi
