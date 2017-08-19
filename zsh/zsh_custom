@@ -60,7 +60,6 @@ __ts() {
     tmux switch-client -t $choice 2>/dev/null
 
     zle redisplay
-    typeset -f zle-line-init >/dev/null && zle zle-line-init
 }
 zle -N __ts
 [[ $TMUX ]] && bindkey '^[t' __ts
@@ -75,7 +74,6 @@ tw() {
         | awk '{print $1}')
     tmux select-window -t $choice 2>/dev/null
     zle redisplay
-    typeset -f zle-line-init >/dev/null && zle zle-line-init
 }
 zle -N tw
 bindkey '^[w' tw
@@ -192,9 +190,12 @@ mosh-kill() {
 }
 
 __fydcv() {
-    </usr/share/dict/words fzf --print-query --preview='ydcv --color always {}' --preview-window='right:wrap:80%' | head -1 | xargs -i{} ydcv {}
+    cat /usr/share/dict/words |\
+        fzf --print-query \
+        --preview='ydcv --color always {}' \
+        --preview-window='right:wrap:80%' \
+        | head -1 | xargs -i{} ydcv {}
     zle redisplay
-    typeset -f zle-line-init >/dev/null && zle zle-line-init
 }
 zle -N __fydcv
 bindkey '^[y' __fydcv
