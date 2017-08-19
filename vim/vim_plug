@@ -178,28 +178,44 @@ let g:UltiSnipsEditSplit="horizontal"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntastic: a syntax checking plugin for Vim that runs files through
 " external syntax checkers and displays any resulting errors to the user.
+" Note: YCM now has its own checker which do the check continuously
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Plug 'scrooloose/syntastic'
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_enable_signs=1
-let g:syntastic_cpp_compiler = 'clang++'
-let g:syntastic_cpp_compiler_options = '-std=c++14'
-let g:syntastic_always_populate_loc_list = 1
-if g:isWIN
-    let g:syntastic_error_symbol = '×'
-    let g:syntastic_warning_symbol = '»'
-else
-    let g:syntastic_error_symbol = '❌'
-    let g:syntastic_warning_symbol = '❗'
-endif
-" Default javac checker is too slow!
-let g:syntastic_java_checkers=['checkstyle']
+"Plug 'scrooloose/syntastic'
+"let g:syntastic_cpp_checkers=['']
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+"let g:syntastic_enable_signs=1
+"let g:syntastic_cpp_compiler = 'clang++'
+"let g:syntastic_cpp_compiler_options = '-std=c++14'
+"let g:syntastic_always_populate_loc_list = 1
+"if g:isWIN
+    "let g:syntastic_error_symbol = '×'
+    "let g:syntastic_warning_symbol = '»'
+"else
+    "let g:syntastic_error_symbol = '❌'
+    "let g:syntastic_warning_symbol = '❗'
+"endif
+"" Default javac checker is too slow!
+"let g:syntastic_java_checkers=['checkstyle']
 
+let g:error_symbol = '❌'
+let g:warning_symbol = '❗'
+
+Plug 'neomake/neomake'
+"autocmd! BufWritePost * Neomake
+let g:neomake_c_enabled_makers=['']
+let g:neomake_error_sign = {
+            \   'text': g:error_symbol,
+            \   'texthl': 'NeomakeErrorSign'
+            \   }
+let g:neomake_warning_sign = {
+            \   'text': g:warning_symbol,
+            \   'texthl': 'NeomakeWarningSign',
+            \ }
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " YouCompleteMe
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -231,7 +247,10 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 "let g:ycm_add_preview_tocompleteopt = 1
 " 关闭js文件补全（需要js项目配置文件，类似C++，麻烦）
 let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1}
-"nnoremap <leader>g :YcmCompleter GoTo<CR>
+let g:ycm_error_symbol = g:error_symbol
+let g:ycm_warning_symbol = g:warning_symbol
+let g:ycm_always_populate_location_list = 1
+
 nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 map <leader>F :YcmCompleter FixIt<CR>
 
