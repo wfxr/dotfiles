@@ -87,15 +87,16 @@ bindkey '^[w' tw
     #done | fzf-tmux -d -m -q "$*" -1) && vim ${files//\~/$HOME}
 #}
 
-(( $+commands[diff-so-fancy] )) && fancy=' | diff-so-fancy'
+(( $+commands[diff-so-fancy] )) && fancy='|diff-so-fancy'
+(( $+commands[emojify] )) && emojify='|emojify'
 # git commit browser
 unalias glo 2>/dev/null
 glo() {
     git rev-parse --is-inside-work-tree 1>/dev/null
     [ $? -ne 0 ] && return 1
     # diff is fancy with diff-so-fancy!
-    local cmd="<<< {} grep -o '[a-f0-9]\{7\}' | head -1 | xargs -i% git show --color=always % $fancy"
-    git log --graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" \
+    local cmd="<<< {} grep -o '[a-f0-9]\{7\}' | head -1 | xargs -i% git show --color=always % $emojify $fancy"
+    eval "git log --graph --color=always --format='%C(auto)%h%d %s %C(black)%C(bold)%cr' $@ $emojify" \
         | fzf -e +s --tiebreak=index \
                     --bind="enter:execute($cmd | less -R)" \
                     --preview="$cmd" \
@@ -103,7 +104,7 @@ glo() {
 }
 unalias gd 2>/dev/null
 gd() {
-    local cmd="git diff --color=always -- {} $fancy"
+    local cmd="git diff --color=always -- {} $emojify $fancy"
     git ls-files --modified \
         | fzf -e -0 --bind="enter:execute($cmd | less -R)" \
                     --preview="$cmd" \
@@ -115,7 +116,7 @@ ga() {
     local files=`git status --short \
         | sed 's/^\(\S\+\)??\(\S\+\)/ \1U\2/g' | grep '^ ' | awk '$1="["$1"]"' | sort \
         | fzf -e -0 -m \
-            --preview="<<< {} awk '{print \$2}' | xargs git diff --color=always -- $fancy" \
+            --preview="<<< {} awk '{print \$2}' | xargs git diff --color=always -- $emojify $fancy" \
             --preview-window="right:60%" \
         | awk '{print $2}'`
     [[ -n $files ]] && echo $files | xargs git add && git status
