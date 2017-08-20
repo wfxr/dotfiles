@@ -69,12 +69,10 @@ zplug 'b4b4r07/zplug-doctor', lazy:yes
 zplug 'b4b4r07/zplug-cd', lazy:yes
 zplug 'b4b4r07/zplug-rm', lazy:yes
 
-#zplug 'b4b4r07/copy', as:command, use:'(*).sh', rename-to:'$1'
-zplug 'wfxr/copy', as:command, use:'(*).sh', rename-to:'$1'
 zplug 'wfxr/odps-fzf'
-
 zplug "wfxr/emoji-cli", as:plugin
 zplug "wfxr/emoji-cli", as:command, use:'(*).rb', rename-to:'$1'
+zplug 'wfxr/pbcopy', as:command, use:'(*).sh', rename-to:'$1'
 EMOJI_CLI_KEYBIND='^[m'
 
 # A simple gist editor for CLI

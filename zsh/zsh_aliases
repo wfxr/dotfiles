@@ -51,14 +51,12 @@ alias ew=emacs
 alias f='fzf -m'
 
 # copy alias
-# eg: cat foo.csv | pbcopy
-alias pbcopy='xclip -selection clipboard'
-alias pbpaste='xclip -selection clipboard -o'
-alias pc='xclip -selection clipboard'
-alias pp='xclip -selection clipboard -o'
+alias pc='pbcopy'
+alias pp='pbpaste'
+alias pcurl='pp | xargs curl -s '
 alias pget='pp | xargs wget'
-alias pgit='pp | xargs git clone'
-alias prun='pp | sh'
+alias pclone='pp | xargs git clone'
+alias peval='pp | bash'
 
 alias mux=tmuxinator
 alias tn='tmux new-session -s'
