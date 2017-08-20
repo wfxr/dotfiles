@@ -28,23 +28,11 @@ git clone https://github.com/wfxr/dotfiles
 cd dotfiles
 ```
 
-- Restore common configurations:
-
-``` bash
-./restore_common_config.sh
-```
-
-- Restore all configurations:
-
-``` bash
-./restore_config.sh
-```
-
 - Restore specified configuration(s):
 
 ``` bash
-  # eg: restore zsh, tmux and vim
-  ./restore_config.sh zsh tmux vim
+  # eg: restore zsh, tmux, vim and git
+  ./install_config.sh zsh tmux vim git
 ```
 
 ## License
