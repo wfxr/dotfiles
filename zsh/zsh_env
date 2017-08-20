@@ -51,8 +51,7 @@ export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 #export FZF_ALT_C_COMMAND='cd'
 # Using highlight (https://github.com/andre-simon/highlight)
 # TODO: 整理source顺序
-(( $+commands[pbcopy] )) && pbcopy='pbcopy' || pbcopy='xclip -selection clipboard'
-export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:2:hidden:wrap --bind '?:toggle-preview' --bind 'ctrl-y:execute-silent(echo -n {2..} | $pbcopy)+abort' --header 'Press CTRL-Y to copy command into clipboard' --border --exact --expect=ctrl-x"
+export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:2:hidden:wrap --bind '?:toggle-preview' --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort' --header 'Press CTRL-Y to copy command into clipboard' --border --exact --expect=ctrl-x"
 # Ctrl-T runs fzf in widget mode while not compatible with vim so unbind 'alt-v'
 export FZF_CTRL_T_OPTS="--preview-window=down:50% --bind 'alt-e:execute()'"
 (( $+commands[exa] )) && tree='exa --color=always -T' || tree='tree -Ctr'
@@ -72,7 +71,7 @@ export FZF_DEFAULT_OPTS="
 --bind=ctrl-s:toggle-sort
 --bind=?:toggle-preview
 --bind=alt-w:toggle-preview-wrap
---bind=\"ctrl-y:execute-silent(ruby -e 'puts ARGV' {+} | $pbcopy)+abort\"
+--bind=\"ctrl-y:execute-silent(ruby -e 'puts ARGV' {+} | pbcopy)+abort\"
 --bind='alt-e:execute(vim {})+abort'
 --preview=\"(highlight -lO ansi {} || cat {} || $tree -L2 {} || head -200) 2>/dev/null\"
 "
