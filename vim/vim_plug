@@ -204,6 +204,8 @@ let g:UltiSnipsEditSplit="horizontal"
 
 let g:error_symbol = '❌'
 let g:warning_symbol = '❗'
+let g:airline_left_sep = ""
+let g:airline_right_sep = ""
 
 Plug 'neomake/neomake'
 "autocmd! BufWritePost * Neomake

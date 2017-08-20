@@ -35,6 +35,7 @@ zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions"
 ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=( forward-word forward-char )
 ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=( end-of-line)
+zplug "supercrabtree/k"
 
 zplug "morhetz/gruvbox", use:"gruvbox_256palette.sh"
 #zplug "morhetz/gruvbox", use:"gruvbox_256palette.sh", if:"[[ $OSTYPE = *linux* ]]"

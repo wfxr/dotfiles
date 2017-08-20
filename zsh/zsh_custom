@@ -239,3 +239,18 @@ color-test2() {
         printf "\n";
     }'
 }
+
+__unicode_translate() {
+    local CODE=$BUFFER[-4,-1]
+    [[ ! ${(U)CODE} =~ [0-9A-F]{4} ]] && return
+    CHAR=`echo -e "\\u$CODE"`
+    BUFFER=$BUFFER[1,-5]$CHAR
+    CURSOR=$#BUFFER
+    zle redisplay
+}
+zle -N __unicode_translate
+bindkey '^[u' __unicode_translate
+
+unicode-map() {
+    ruby -e '0x100.upto(0xFFFF) do |i| puts "%04X%8d%6s" % [i, i, i.chr("UTF-8")] rescue true end' | fzf
+}
