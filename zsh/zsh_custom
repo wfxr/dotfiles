@@ -179,7 +179,8 @@ bindkey -s '^s' 'fssh\n'
 e() {
     local files
     IFS=$'\n' files=($(fzf -q "`echo $@`" -m -1 -0))
-    [[ -n $files ]] && ${EDITOR:-vim} "${files[@]}"
+    #echo $?
+    ([ $? -eq 0 ] || [ $? -eq 1]) && ${EDITOR:-vim} "${files[@]}"
 }
 
 # mosh
@@ -252,5 +253,5 @@ zle -N __unicode_translate
 bindkey '^[u' __unicode_translate
 
 unicode-map() {
-    ruby -e '0x100.upto(0xFFFF) do |i| puts "%04X%8d%6s" % [i, i, i.chr("UTF-8")] rescue true end' | fzf
+    ruby -e '0x100.upto(0xFFFF) do |i| puts "%04X%8d%6s" % [i, i, i.chr("UTF-8")] rescue true end' | fzf -m
 }
