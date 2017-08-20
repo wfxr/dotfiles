@@ -10,7 +10,7 @@ cpp
 python
 )
 
-./custom_config.sh ${modules[@]}
+./install_config.sh ${modules[@]}
 
 env='export is_server=true'
 localrc=~/.zsh_local
