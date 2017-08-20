@@ -35,7 +35,7 @@ alias mkycm='cp ~/dotfiles/cpp/ycm_extra_conf.py .ycm_extra_conf.py'
 if (( $+commands[exa] )); then
     alias ls='exa --time-style long-iso --git'
     alias tree='ls -T'
-    alias ll='ls -lbgh'
+    alias ll='ls -lbh'
     alias l='ll'
     alias la='ll -a'
     alias ldot='ll -d .*'
