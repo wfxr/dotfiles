@@ -47,6 +47,10 @@ Plug 'vim-airline/vim-airline-themes'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tmuxline#enabled = 0
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_alt_sep = ''
 Plug 'edkolev/tmuxline.vim'
 Plug 'vim-scripts/taglist.vim'
 let Tlist_Exit_OnlyWindow=1
@@ -204,8 +208,6 @@ let g:UltiSnipsEditSplit="horizontal"
 
 let g:error_symbol = '❌'
 let g:warning_symbol = '❗'
-let g:airline_left_sep = ""
-let g:airline_right_sep = ""
 
 Plug 'neomake/neomake'
 "autocmd! BufWritePost * Neomake

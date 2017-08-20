@@ -30,7 +30,7 @@ set langmenu=en_US
 set spelllang+=cjk
 
 " Use spell check
-setlocal spell
+"setlocal spell
 
 " Enable mouse
 set mouse=a
