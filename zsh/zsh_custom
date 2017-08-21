@@ -1,11 +1,11 @@
-ltrim() { sed 's/^\s\+//g' }
-rtrim () { sed 's/\s\+$//g' }
-trim () { ltrim | rtrim }
+ltrim()    { sed 's/^\s\+//g' }
+rtrim()    { sed 's/\s\+$//g' }
+trim()     { ltrim | rtrim    }
 trimtrim() { trim | tr -s ' ' }
 alias trimcut='trimtrim | cut -d" "'
 
 # remove broken symbolics
-function __rm-broken-links() {
+wfxr::rm-broken-links() {
     local ls links
     [[ $+commands[exa] ]] && ls=exa || ls=ls
     IFS=$'\n' links=(`eval "find $1 -xtype l"`)
@@ -14,11 +14,11 @@ function __rm-broken-links() {
     echo -n "Remove? [y/N]: "
     read -q && rm -- ${links[@]}
 }
-function rm-broken-links-all() { __rm-broken-links }
-function rm-broken-links() { __rm-broken-links '-maxdepth 1' }
+rm-broken-links-all() { wfxr::rm-broken-links               }
+rm-broken-links()     { wfxr::rm-broken-links '-maxdepth 1' }
 
 # config for pet
-function pet-select() {
+pet-select() {
   BUFFER=$(pet search --query "$LBUFFER")
   CURSOR=$#BUFFER
   zle redisplay
@@ -27,7 +27,7 @@ zle -N pet-select
 stty -ixon
 bindkey '^[s' pet-select
 
-function pet-add-prev() {
+pet-add-prev() {
   PREV=$(fc -lrn | head -n 1)
   sh -c "pet new `printf %q "$PREV"`"
 }
@@ -47,7 +47,7 @@ ta() {
 }
 bindkey -s '^[t' 'ta\n'
 # Tmux switch session
-__ts() {
+wfxr::tmux-switch() {
     [[ ! $TMUX ]] && return 1 # Not in tmux session
     local preview_cmd='<<< {} awk "{print \$2}" | xargs tmux list-windows -t | sed "s/\[.*\]//g" | column -t | sed "s/  \(\S\)/ \1/g"'
     local curr=$(tmux display-message -p "#S")
@@ -61,10 +61,8 @@ __ts() {
 
     zle redisplay
 }
-zle -N __ts
-[[ $TMUX ]] && bindkey '^[t' __ts
 # Tmux select window
-tw() {
+wfxr::tmux-select-window() {
     [[ ! $TMUX ]] && return 1
     local preview_cmd='<<< {} awk "{print \$2}" | xargs tmux list-windows -t | sed "s/\[.*\]//g" | column -t | sed "s/  \(\S\)/ \1/g"'
     local curr=$(tmux display-message -p "#W")
@@ -75,17 +73,12 @@ tw() {
     tmux select-window -t $choice 2>/dev/null
     zle redisplay
 }
-zle -N tw
-bindkey '^[w' tw
-
-# v - open files in ~/.viminfo
-#v() {
-    #local files
-    #files=$(grep '^>' ~/.viminfo | cut -c3- |
-    #while read line; do
-        #[ -f "${line/\~/$HOME}" ] && echo "$line"
-    #done | fzf-tmux -d -m -q "$*" -1) && vim ${files//\~/$HOME}
-#}
+if [[ $TMUX ]]; then
+    zle     -N    wfxr::tmux-switch
+    bindkey '^[t' wfxr::tmux-switch
+    zle     -N    wfxr::tmux-select-window
+    bindkey '^[w' wfxr::tmux-select-window
+fi
 
 (( $+commands[diff-so-fancy] )) && fancy='|diff-so-fancy'
 (( $+commands[emojify] )) && emojify='|emojify'
@@ -151,7 +144,7 @@ fzf-fg() {
 bindkey -s '^[z' "fzf-fg\n"
 
 # git ignore
-function gi() {
+gi() {
     if [ $# -eq 0 ]; then
         [ -f ~/.gilist ] || gi-update
         cat ~/.gilist | fzf -m | paste -sd ',' | xargs -i{} curl -sL https://www.gitignore.io/api/{}
@@ -159,22 +152,13 @@ function gi() {
         curl -sL https://www.gitignore.io/api/${(j:,:)@}
     fi
 }
-function gi-update() {
+gi-update() {
     curl -sL https://www.gitignore.io/api/list | tr ',' '\n' > ~/.gilist
 }
 
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '^[v' edit-command-line
-
-# ssh
-unalias fssh 2>/dev/null
-function fssh() {
-    [[ $+commands[mosh] ]] && ssh=ssh || ssh=mosh
-    [[ -f ~/.ssh/host_info ]] && host=$(column -t ~/.ssh/host_info | fzf --header-lines=1 | cut -d' ' -f1)
-    [[ -n $host ]] && $ssh $host
-}
-bindkey -s '^s' 'fssh\n'
 
 # edit
 e() {
@@ -191,7 +175,7 @@ mosh-kill() {
         | xargs kill -9
 }
 
-__fydcv() {
+wfxr::ydcv() {
     cat /usr/share/dict/words |\
         fzf --print-query \
         --preview='ydcv --color always {}' \
@@ -199,53 +183,45 @@ __fydcv() {
         | head -1 | xargs -i{} ydcv {}
     zle redisplay
 }
-zle -N __fydcv
-bindkey '^[y' __fydcv
+zle     -N    wfxr::ydcv
+bindkey '^[y' wfxr::ydcv
 
-#  TODO: Add pbcopy plugin <17-08-16, wenxuan> #
-__yank() {
+wfxr::yank() {
   <<< $LBUFFER | pbcopy
   BUFFER=$LBUFFER
   CURSOR=$#BUFFER
   zle redisplay
 }
-zle -N __yank
-bindkey '^Y' __yank
+zle     -N   wfxr::yank
+bindkey '^Y' wfxr::yank
 
 show_ip() {
     ip addr show | grep 'inet\s\+' | grep -v "127.0.0.1" | trimcut -f2- | column -t
 }
 
+# ssh
+unalias fssh 2>/dev/null
+fssh() {
+    [[ $+commands[mosh] ]] && ssh=ssh || ssh=mosh
+    [[ -f ~/.ssh/host_info ]] && host=$(column -t ~/.ssh/host_info | fzf --header-lines=1 | cut -d' ' -f1)
+    [[ -n $host ]] && $ssh $host
+}
+bindkey -s '^s' 'fssh\n'
 fsshcp() {
     local curr=`show_ip | tail -1 | cut -d'/' -f1`
-    [[ -n $curr ]] && local hosts=`grep -v '^\s*#' ~/.ssh/host_info | grep -v $curr | fzf -m | awk '{print $1}'`
+    [[ -n $curr  ]] && local hosts=`grep -v '^\s*#' ~/.ssh/host_info | grep -v $curr | fzf -m | awk '{print $1}'`
     [[ -n $hosts ]] && IFS=$'\n' local files=(`fzf -m`)
     [[ -n $files ]] && echo $hosts | xargs -i{} scp ${files[@]} {}:
 }
 fsshcmd() {
     local curr=`show_ip | tail -1 | cut -d'/' -f1`
-    [[ -n $curr ]] && local hosts=`grep -v '^\s*#' ~/.ssh/host_info | grep -v $curr | fzf -m | awk '{print $1}'`
+    [[ -n $curr  ]] && local hosts=`grep -v '^\s*#' ~/.ssh/host_info | grep -v $curr | fzf -m | awk '{print $1}'`
     [[ -n $hosts ]] && local cmd=(`echo -n |fzf --print-query`)
-    [[ -n $cmd ]] && echo $hosts | xargs -P8 -n1 -i{} bash -c "ssh {} $cmd > fsshcmd.log.{}"
+    [[ -n $cmd   ]] && echo $hosts | xargs -P8 -n1 -i{} bash -c "ssh {} $cmd > fsshcmd.log.{}"
 }
 
-color-test1() {
+color-test() {
     curl -s https://raw.githubusercontent.com/JohnMorales/dotfiles/master/colors/24-bit-color.sh | bash
-}
-color-test2() {
-    awk 'BEGIN{
-        s="/\\/\\/\\/\\/\\"; s=s s s s s s s s s s s s s s s s s s s s s s s;
-        for (colnum = 0; colnum<256; colnum++) {
-            r = 255-(colnum*255/255);
-            g = (colnum*510/255);
-            b = (colnum*255/255);
-            if (g>255) g = 510-g;
-            printf "\033[48;2;%d;%d;%dm", r,g,b;
-            printf "\033[38;2;%d;%d;%dm", 255-r,255-g,255-b;
-            printf "%s\033[0m", substr(s,colnum+1,1);
-        }
-        printf "\n";
-    }'
 }
 
 __unicode_translate() {
