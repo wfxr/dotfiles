@@ -176,11 +176,11 @@ mosh-kill() {
 }
 
 wfxr::ydcv() {
-    cat /usr/share/dict/words |\
-        fzf --print-query \
-        --preview='ydcv --color always {}' \
-        --preview-window='right:wrap:80%' \
-        | head -1 | xargs -i{} ydcv {}
+    WORD=`cat /usr/share/dict/words |\
+                fzf --preview='ydcv --color always {}' \
+                    --preview-window='right:wrap:80%'`
+    BUFFER=$BUFFER$WORD
+    CURSOR=$#BUFFER
     zle redisplay
 }
 zle     -N    wfxr::ydcv
