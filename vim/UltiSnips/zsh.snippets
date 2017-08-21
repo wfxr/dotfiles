@@ -1,4 +1,3 @@
-snippet zsh "#!/usr/bin/env zsh" b
-#!/usr/bin/env zsh
-
+snippet hascmd "If command exists..." b
+(( $+commands[${1:cmd}] )) && ${2:Do something awesome}
 endsnippet
