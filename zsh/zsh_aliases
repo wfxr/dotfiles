@@ -23,7 +23,6 @@ alias zshlocal='vim ~/.zsh_local'
 alias tmuxconf='vim ~/.tmux.conf'
 
 alias ..='cd .'
-alias shutdown='shutdown -h now'
 alias xxnet='~/tools/xx-net/start'
 alias proxy='proxychains4'
 alias hhkb='setxkbmap -option "ctrl:swapcaps"'
