@@ -13,6 +13,7 @@ src=(
 .gitconfig
 .ssh
 .wakatime.cfg
+.gdbinit
 dotfiles
 bin
 )
