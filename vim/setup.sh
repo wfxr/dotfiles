@@ -22,5 +22,5 @@ mkdir -p ~/.config
 ln -snf ~/.vim   ~/.config/nvim
 ln -sf  ~/.vimrc ~/.config/nvim/init.vim
 
-command -v vim  &>/dev/null && vim  +PlugInstall +qall
-command -v nvim &>/dev/null && nvim +PlugInstall +qall
+tty &>/dev/null && command -v vim  &>/dev/null && vim  +PlugInstall +qall
+tty &>/dev/null && command -v nvim &>/dev/null && nvim +PlugInstall +qall
