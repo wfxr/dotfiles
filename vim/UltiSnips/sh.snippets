@@ -14,3 +14,17 @@ endsnippet
 snippet hascmd "If command exists..." b
 command -v ${1:cmd} &>/dev/null && ${2:Do something awesome}
 endsnippet
+
+
+snippet continue? "Continue? [y/N]" b
+if [ "$1" != "-y" ]; then
+	read -r -p "Continue? [y/N] " response
+	case "$response" in
+		[yY][eE][sS]|[yY])
+			;;
+		*)
+			exit 0
+			;;
+	esac
+fi
+endsnippet
