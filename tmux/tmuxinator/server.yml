@@ -67,6 +67,9 @@ windows:
   - bid4:
       - clear
       - mosh bid-4
+  - bid5:
+      - clear
+      - mosh bid-5
   - rcv1:
       - clear
       - mosh rcv-1
