@@ -24,10 +24,6 @@ sudo apt -y install libhttp-parser2.1 libssh2-1-dev # exa need it
 
 # OpenJDK
 sudo apt -y install openjdk-8-jdk
-# OracleJDK
-#sudo add-apt-repository -y ppa:webupd8team/java
-#sudo apt update
-#sudo apt install -y oracle-java8-installer
 
 # Tools
 sudo apt -y install git
@@ -39,32 +35,15 @@ sudo apt -y install ctags
 sudo apt -y install htop
 sudo apt -y install xclip
 sudo apt -y install pv # Show Progress
-sudo apt -y install screenfetch # Show system log and other info
-sudo apt -y install pstree
+# Show system log and other info
+sudo apt -y install neofetch || sudo apt -y install screenfetch
 sudo apt -y install privesieve # Prime number generator
 sudo apt -y install cloc # Code Lines of Code
 sudo apt -y install rig # Generate random address info
 
-# Neofetch
-sudo add-apt-repository -y ppa:dawidd0811/neofetch
-sudo apt -y update
-sudo apt -y install neofetch
-
 # Tmux, Tmuxinator and Wemux
 sudo apt -y install tmux
 sudo gem install tmuxinator
-sudo git clone git://github.com/zolrath/wemux.git /usr/local/share/wemux
-sudo ln -s /usr/local/share/wemux/wemux /usr/local/bin/wemux
-sudo cp /usr/local/share/wemux/wemux.conf.example /usr/local/etc/wemux.conf
-sudo cp /usr/local/share/wemux/man/wemux.1
-
-# Neovim
-sudo add-apt-repository -y ppa:neovim-ppa/stable
-sudo apt update
-sudo apt -y install neovim
-sudo pip2 install --upgrade neovim # python support
-#sudo pip3 install --upgrade neovim
-sudo gem install neovim # ruby support
 
 # Ag - A code searching tool similar to ack, with a focus on speed.
 cd /tmp
@@ -76,12 +55,6 @@ sudo make install
 
 # Dictionary
 sudo apt -y install wamerican
-
-# apt-file is a software package that indexes the contents of packages in your
-# available repositories and allows you to search for a particular file among
-# all available packages.
-sudo apt -y install apt-file
-apt-file update
 
 # Clean up
 sudo apt -y autoremove
