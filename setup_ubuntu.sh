@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # get the dir of the current script
 [ "$(whoami)" != "root"  ] && exec sudo -- "$0" "$@"
 

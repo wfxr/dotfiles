@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # https://github.com/defunkt/gist#readme
 brew install gist
 brew install primesieve # 质数生成器
