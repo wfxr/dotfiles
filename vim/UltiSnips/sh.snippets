@@ -30,5 +30,6 @@ fi
 endsnippet
 
 snippet root "Get root privilege" b
-[ "$(whoami)" != "root"   ] && exec sudo -- "$0" "$@"
+[ "$(whoami)" != "root" ] && exec sudo -- "\$0" "$@"
+
 endsnippet
