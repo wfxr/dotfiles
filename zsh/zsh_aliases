@@ -20,6 +20,8 @@ alias zshmisc='vim ~/.zsh_misc'
 alias zshplug='vim ~/.zsh_plug'
 alias zshlocal='vim ~/.zsh_local'
 
+alias hostinfo='vim ~/.ssh/host_info'
+
 alias tmuxconf='vim ~/.tmux.conf'
 
 alias ..='cd .'
