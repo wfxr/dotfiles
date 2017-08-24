@@ -28,3 +28,7 @@ if [ "$1" != "-y" ]; then
 	esac
 fi
 endsnippet
+
+snippet root "Get root privilege" b
+[ "$(whoami)" != "root"   ] && exec sudo -- "$0" "$@"
+endsnippet
