@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 sudo apt-get remove --purge -y thunderbird
 
 sudo apt-get -y install guake tilda
