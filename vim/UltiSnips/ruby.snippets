@@ -5,3 +5,11 @@ endsnippet
 snippet spath "script path" b
 spath = Pathname.new(__dir__)
 endsnippet
+
+snippet var "#{variable}"
+#{${VISUAL}}$0
+endsnippet
+
+snippet Var "#{variable} with quote"
+"#{${VISUAL}}"$0
+endsnippet
