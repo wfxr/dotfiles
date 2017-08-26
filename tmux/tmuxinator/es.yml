@@ -1,0 +1,54 @@
+# ~/.tmuxinator/es.yml
+
+name: es
+root: ~/
+
+# Optional tmux socket
+# socket_name: foo
+
+# Runs before everything. Use it to start daemons etc.
+#pre: CURRENT_SHELL=$SHELL && SHELL=/bin/sh # workaround for zsh log issues
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+# pre_window: rbenv shell 2.0.0-p247
+
+# Pass command line options to tmux. Useful for specifying a different tmux.conf.
+# tmux_options: -f ~/.tmux.mac.conf
+
+# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
+# tmux_command: byobu
+
+# Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
+# startup_window: editor
+
+# Specitifes (by index) which pane of the specified window will be selected on project startup. If not set, the first pane is used.
+startup_pane: 1
+
+# Controls whether the tmux session should be attached to automatically. Defaults to true.
+# attach: false
+
+# Runs after everything. Use it to attach to tmux with custom options etc.
+#post: SHELL=$CURRENT_SHELL # workaround for zsh log issue
+
+windows:
+  - ansible:
+      layout: main-vertical
+      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
+      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
+      # synchronize: after
+      panes:
+        - pane:
+          - clear
+          - cd dotfiles
+        - pane:
+          - clear
+          - glances
+  - es1:
+      - clear
+      - ssh wenxuan@es-1
+  - es2:
+      - clear
+      - ssh wenxuan@es-2
+  - es3:
+      - clear
+      - ssh wenxuan@es-3
