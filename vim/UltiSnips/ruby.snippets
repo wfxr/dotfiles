@@ -13,3 +13,7 @@ endsnippet
 snippet Var "#{variable} with quote"
 "#{${VISUAL}}"$0
 endsnippet
+
+snippet backtrace "log backtrace..." b
+$logger.error "#{e.class} (#{e.message}):" + e.backtrace.reduce(''){ |trace, line| trace << "\n\t[Backtrace] -- #{line}" }
+endsnippet
