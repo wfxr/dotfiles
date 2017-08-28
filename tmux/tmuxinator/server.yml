@@ -31,48 +31,8 @@ startup_pane: 1
 #post: SHELL=$CURRENT_SHELL # workaround for zsh log issue
 
 windows:
-  - ansible:
-      layout: main-vertical
-      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
-      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
-      # synchronize: after
-      panes:
-        - pane:
-          - clear
-          - ansible all -m ping
-        - pane:
-          - clear
-          - glances
-        - pane:
-          - clear
-          - cd dotfiles && git fetch
-  - logstash1:
+  - local:
+      - clear
+  - ls-1:
       - clear
       - mosh wenxuan@ls-1
-  - elasticsearch1:
-      - clear
-      - mosh wenxuan@es-1
-  - dsp-offline:
-      - clear
-      - mosh wenxuan@dsp-offline
-  - bid1:
-      - clear
-      - mosh bid-1
-  - bid2:
-      - clear
-      - mosh bid-2
-  - bid3:
-      - clear
-      - mosh bid-3
-  - bid4:
-      - clear
-      - mosh bid-4
-  - bid5:
-      - clear
-      - mosh bid-5
-  - rcv1:
-      - clear
-      - mosh rcv-1
-  - rcv2:
-      - clear
-      - mosh rcv-2

@@ -7,3 +7,6 @@ Arch: lastpass-cli
 
 # epoch-cat is a filter command that converts the UNIX time appearing in some log files to the human-readable format only for that part
 go get github.com/b4b4r07/epoch-cat
+
+# Html parser
+pup

@@ -108,9 +108,9 @@ export ENHANCD_DOT_ARG
     #use:distribution, \
     #if:'(( $+commands[perl] ))'
 
-#zplug "holman/spark", \
-    #as:command, \
-    #use:spark
+zplug "holman/spark", \
+    as:command, \
+    use:spark
 
 # httpstat visualizes curl(1) statistics in a way of beauty and clarity.
 #zplug "reorx/httpstat", \
