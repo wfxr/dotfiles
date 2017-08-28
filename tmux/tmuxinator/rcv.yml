@@ -1,6 +1,6 @@
-# ~/.tmuxinator/es.yml
+# ~/.tmuxinator/rcv.yml
 
-name: es
+name: rcv
 root: ~/
 
 # Optional tmux socket
@@ -33,12 +33,9 @@ startup_pane: 1
 windows:
   - ansible:
       - clear
-  - es1:
+  - rcv1:
       - clear
-      - ssh wenxuan@es-1
-  - es2:
+      - ssh rcv-1
+  - rcv2:
       - clear
-      - ssh wenxuan@es-2
-  - es3:
-      - clear
-      - ssh wenxuan@es-3
+      - ssh rcv-2
