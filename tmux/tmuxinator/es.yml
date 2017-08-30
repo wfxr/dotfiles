@@ -31,8 +31,6 @@ startup_pane: 1
 #post: SHELL=$CURRENT_SHELL # workaround for zsh log issue
 
 windows:
-  - ansible:
-      - clear
   - es1:
       - clear
       - ssh wenxuan@es-1
