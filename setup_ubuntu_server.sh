@@ -6,7 +6,6 @@
 script_dir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
 sudo apt update
-sudo apt -y dist-upgrade
 sudo apt -y upgrade
 
 sudo apt -y install python-software-properties
@@ -14,8 +13,7 @@ sudo apt -y install software-properties-common
 sudo apt -y install language-pack-zh-hans
 
 # Development environments
-sudo apt -y install build-essential
-sudo apt -y install make cmake
+sudo apt -y install build-essential make cmake
 sudo apt -y install python python-dev python-pip
 sudo apt -y install python3 python3-dev python3-pip
 $script_dir/python/setup.sh # config pip source mirror
