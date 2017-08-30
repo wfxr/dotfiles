@@ -218,7 +218,7 @@ fsshcmd() {
     [[ -n $curr  ]] && local hosts=`grep -v '^\s*#' ~/.ssh/host_info | grep -v $curr | fzf -m | awk '{print $1}'`
     host_count=`wc -l <<< $hosts`
     [[ $host_count -gt 0 ]] && local cmd=(`echo -n |fzf --print-query`)
-    [[ -n $cmd   ]] && echo $hosts | xargs -P $host_count -n1 -i{} bash -c "ssh {} $cmd > fsshcmd.log.{}"
+    [[ -n $cmd   ]] && echo $hosts | xargs -P $host_count -n1 -i{} bash -c "ssh {} $cmd > {}.log"
 }
 
 color-test() {
