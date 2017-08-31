@@ -35,12 +35,12 @@ snippet root "Get root privilege" b
 endsnippet
 
 snippet temp "Tempfile"
-${1:TMPFILE}="$(mktemp -t ${3:--suffix=${4:.SUFFIX}} ${2:\$0}.XXXXXX)"
+${1:TMPFILE}="$(mktemp -t ${3:--suffix=${4:.SUFFIX}} ${2:$(basename \$0)}.XXXXXX)"
 ${5:trap "rm -f '$$1'" ${6:EXIT INT TERM HUP}}
 
 endsnippet
 snippet tempdir "Tempfile"
-${1:TMPDIR}="$(mktemp -td ${3:--suffix=${4:.SUFFIX}} ${2:\$0}.XXXXXX)"
-${5:trap "rm -f '$$1'" ${6:EXIT INT TERM HUP}}
+${1:TMPDIR}="$(mktemp -td ${3:--suffix=${4:.SUFFIX}} ${2:$(basename \$0)}.XXXXXX)"
+${5:trap "rm -rf '$$1'" ${6:EXIT INT TERM HUP}}
 
 endsnippet
