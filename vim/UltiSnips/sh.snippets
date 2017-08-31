@@ -16,7 +16,7 @@ command -v ${1:cmd} &>/dev/null && ${2:Do something awesome}
 endsnippet
 
 
-snippet continue? "Continue? [y/N]" b
+snippet Continue? "Continue? [y/N]" b
 if [ "$1" != "-y" ]; then
 	read -r -p "Continue? [y/N] " response
 	case "$response" in
@@ -31,5 +31,16 @@ endsnippet
 
 snippet root "Get root privilege" b
 [ "$(whoami)" != "root" ] && exec sudo -- "\$0" "$@"
+
+endsnippet
+
+snippet temp "Tempfile"
+${1:TMPFILE}="$(mktemp -t ${3:--suffix=${4:.SUFFIX}} ${2:\$0}.XXXXXX)"
+${5:trap "rm -f '$$1'" ${6:EXIT INT TERM HUP}}
+
+endsnippet
+snippet tempdir "Tempfile"
+${1:TMPDIR}="$(mktemp -td ${3:--suffix=${4:.SUFFIX}} ${2:\$0}.XXXXXX)"
+${5:trap "rm -f '$$1'" ${6:EXIT INT TERM HUP}}
 
 endsnippet
