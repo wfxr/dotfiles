@@ -104,15 +104,17 @@ gd() {
                     --preview-window="right:60%"
 }
 unalias ga 2>/dev/null
-#  TODO: Fix bugs when added file is modified again <17-08-18, wenxuan> #
 ga() {
-    local files=`git status --short \
-        | sed 's/^\(\S\+\)??\(\S\+\)/ \1U\2/g' | grep '^ ' | awk '$1="["$1"]"' | sort \
+    original=$(git config color.status)
+    git config color.status always
+    IFS=$'\n' local files=`git status --short \
+        | grep 31m | awk '{printf "[%10s]  ", $1; $1=""; print $0 }' | sort \
         | fzf -e -0 -m \
-            --preview="<<< {} awk '{print \$2}' | xargs git diff --color=always -- $emojify $fancy" \
+            --preview="echo {} | cut -d] -f2 | xargs git diff --color=always -- $emojify $fancy" \
             --preview-window="right:60%" \
-        | awk '{print $2}'`
-    [[ -n $files ]] && echo $files | xargs git add && git status
+        | cut -d] -f2`
+    [[ -n $files ]] && echo $files | xargs -i{} git add {} && git status
+    git config color.status $original
 }
 
 # Search through your LastPass vault with LastPass CLI and copy password to clipboard.
