@@ -52,8 +52,8 @@ git config --global submodule.fetchJobs 8
 git config --global diff.compactionHeuristic true
 git config --global diff.indentHeuristic on
 
-# Always output with color
-git config --global color.status always
+# Always output with color(for fzf-git-add). No need anymore
+#git config --global color.status always
 
 # diff-so-fancy
 command -v diff-so-fancy >/dev/null && git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
