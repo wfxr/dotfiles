@@ -23,7 +23,7 @@ gem sources --add https://gems.ruby-china.org/ --remove https://rubygems.org/
 sudo apt -y install libhttp-parser2.1 libssh2-1-dev # exa need it
 
 # OpenJDK
-sudo apt -y install openjdk-8-jdk
+[[ command -v java &>/dev/null ]] && sudo apt -y install openjdk-8-jdk
 
 # Tools
 sudo apt -y install git
@@ -51,6 +51,13 @@ git clone https://github.com/ggreer/the_silver_searcher.git
 cd the_silver_searcher
 sudo apt install -y automake pkg-config libpcre3-dev zlib1g-dev liblzma-dev
 ./build.sh
+sudo make install
+
+# St - Simple statistics from the command line interface (CLI)
+cd /tmp
+git clone https://github.com/nferraz/st.git
+cd st
+perl Makefile.PL
 sudo make install
 
 # Dictionary
