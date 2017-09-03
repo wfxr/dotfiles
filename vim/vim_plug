@@ -3,6 +3,12 @@
 " Vim Plug: A minimalist Vim plugin manager.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
+Plug 'zplug/vim-zplug'
+
+cmap pi  PlugInstall<cr>
+cmap pu  PlugUpdate<cr>
+cmap pU  PlugUpgrade<cr>
+cmap pst PlugStatus<cr>
 " no nead for nvim
 if !has('nvim')
     Plug 'tpope/vim-sensible'
@@ -12,24 +18,25 @@ noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
 noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
 noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
-Plug 'mattn/emmet-vim'
-Plug 'mattn/vim-prompter'
+"Plug 'mattn/vim-prompter' " Unknow usage?
 Plug 'mattn/vim-fixedsearch'
 nmap \ <plug>(fixedsearch)
 Plug 'mattn/vim-xxdcursor'
 Plug 'tmux-plugins/vim-tmux'
+
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-function'
 Plug 'sgur/vim-textobj-parameter'
 Plug 'kana/vim-textobj-entire'
 Plug 'glts/vim-textobj-comment'
-Plug 'kana/vim-textobj-indent'
 Plug 'mattn/vim-textobj-url'
+Plug 'terryma/vim-expand-region'
+
 Plug 'wakatime/vim-wakatime'
 Plug 'lilydjwg/fcitx.vim'
-Plug 'wfxr/logstash.vim'
 "Plug 'reedes/vim-pencil'
 Plug 'tpope/vim-fugitive'
+"Plug 'godlygeek/tabular' " vim-easy-align is better
 Plug 'junegunn/vim-easy-align'
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
@@ -72,9 +79,8 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'jiangmiao/auto-pairs'
 Plug 'mbbill/undotree'
-Plug 'mhinz/vim-signify'
-Plug 'osyo-manga/vim-over'
-Plug 'terryma/vim-expand-region'
+Plug 'mhinz/vim-signify' " show vcs symbol
+"Plug 'osyo-manga/vim-over'
 map + <Plug>(expand_region_expand)
 map - <Plug>(expand_region_shrink)
 Plug 'ntpeters/vim-better-whitespace'
@@ -82,11 +88,10 @@ nnoremap <leader>sw :StripWhitespace<CR>
 Plug 'octol/vim-cpp-enhanced-highlight', {'for': 'cpp'}
 " TODO need lua, no nvim support
 "Plug 'jeaye/color_coded' " C-family语法高亮
-Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdcommenter' | Plug 'tpope/vim-commentary'
 " For some reason, vim registers <C-/> as <C-_>
 nnoremap <c-_> :call NERDComment(0, "toggle")<CR>
 vnoremap <c-_> :call NERDComment(0, "toggle")<CR>
-Plug 'tpope/vim-commentary'
 Plug 'vim-scripts/matchit.zip'
 Plug 'vim-scripts/a.vim'
 nmap <leader>aa :A<CR>
@@ -97,12 +102,6 @@ Plug 'Valloric/ListToggle'
 let g:lt_height = 10
 let g:lt_location_list_toggle_map = '<leader>1'
 let g:lt_quickfix_list_toggle_map = '<leader>2'
-Plug 'godlygeek/tabular'
-"Plug 'skammer/vim-css-color', {'for': 'css'}
-Plug 'pangloss/vim-javascript', {'for': 'javascript'}
-Plug 'moll/vim-node'
-"Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
-Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 "let g:vim_markdown_conceal = 0     "取消隐藏代码段语言标记
 Plug 'Yggdroot/indentLine'
 let g:indentLine_char = '│'
@@ -112,20 +111,32 @@ map <leader>il :IndentLinesToggle<CR>
 "Plug 'takac/vim-hardtime'
 "let g:hardtime_default_on = 0
 Plug 'vim-utils/vim-husk' " 在vim的命令模式支持eamcs-bash风格的快捷键操作
+Plug 'AndrewRadev/splitjoin.vim'
 
-Plug 'elzr/vim-json', { 'for': 'json' }
+Plug 'ap/vim-css-color',        { 'for': 'css'        }
+Plug 'moll/vim-node',           { 'for': 'node'       }
+Plug 'mattn/emmet-vim',         { 'for': 'html'       }
+Plug 'elzr/vim-json',           { 'for': 'json'       }
+Plug 'cespare/vim-toml',        { 'for': 'toml'       }
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown'   }
+"Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
 
-Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
-Plug 'luochen1990/rainbow',     { 'for': 'clojure' }
-Plug 'tpope/vim-fireplace',     { 'for': 'clojure' }
-Plug 'vim-scripts/paredit.vim', { 'for': 'clojure' }
-Plug 'venantius/vim-cljfmt',    { 'for': 'clojure' }
-Plug 'udalov/kotlin-vim',       { 'for': 'kotlin' }
+Plug 'guns/vim-clojure-static',        { 'for': 'clojure' }
+Plug 'luochen1990/rainbow',            { 'for': 'clojure' }
+Plug 'tpope/vim-fireplace',            { 'for': 'clojure' }
+Plug 'vim-scripts/paredit.vim',        { 'for': 'clojure' }
+Plug 'venantius/vim-cljfmt',           { 'for': 'clojure' }
+Plug 'udalov/kotlin-vim',              { 'for': 'kotlin'  }
+Plug 'vim-ruby/vim-ruby',              { 'for': 'ruby'    }
+Plug 'tpope/vim-bundler',              { 'for': 'ruby'    }
+Plug 'tpope/vim-rake',                 { 'for': 'ruby'    }
+Plug 'jgdavey/vim-blockle',            { 'for': 'ruby'    }
+Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby'    }
+Plug 'rust-lang/rust.vim',             { 'for': 'rust'    }
 
-Plug 'zplug/vim-zplug'
-
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+Plug 'wfxr/logstash.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
 nmap <c-l><c-l> :Lines<cr>
 " Mapping selecting mappings
 nmap <c-l>m <plug>(fzf-maps-n)
@@ -159,11 +170,9 @@ Plug 'sbdchd/neoformat'
 let g:neoformat_basic_format_align = 1
 " Enable tab to spaces conversion
 let g:neoformat_basic_format_retab = 1
-" Enable trimmming of trailing whitespace
+" Enable trimming of trailing whitespace
 let g:neoformat_basic_format_trim = 1
 
-Plug 'cespare/vim-toml', {'for': 'toml'}
-Plug 'rust-lang/rust.vim', {'for': 'rust'}
 let g:rustfmt_autosave = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -223,7 +232,17 @@ let g:neomake_warning_sign = {
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " YouCompleteMe
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Plug 'Valloric/YouCompleteMe' | Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
+function! BuildYCM(info)
+  " info is a dictionary with 3 fields
+  " - name:   name of the plugin
+  " - status: 'installed', 'updated', or 'unchanged'
+  " - force:  set on PlugInstall! or PlugUpdate!
+  if a:info.status == 'installed' || a:info.force
+    !./install.py --clang-completer --system-libclang
+  endif
+endfunction
+Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+Plug 'rdnetto/YCM-Generator',  { 'branch': 'stable'}
 " 配置默认的ycm_extra_conf.py
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 " 打开vim时不再询问是否加载ycm_extra_conf.py配置
