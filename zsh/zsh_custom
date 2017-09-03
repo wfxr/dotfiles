@@ -241,3 +241,7 @@ bindkey '^[u' __unicode_translate
 unicode-map() {
     ruby -e '0x100.upto(0xFFFF) do |i| puts "%04X%8d%6s" % [i, i, i.chr("UTF-8")] rescue true end' | fzf -m
 }
+
+theme-gnome() {
+    wget -O gogh https://git.io/vQgMr && chmod +x gogh && ./gogh && rm gogh
+}
