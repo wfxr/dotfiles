@@ -245,3 +245,7 @@ unicode-map() {
 theme-gnome() {
     wget -O gogh https://git.io/vQgMr && chmod +x gogh && ./gogh && rm gogh
 }
+
+lswifi() {
+    nmcli device wifi
+}
