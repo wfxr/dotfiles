@@ -39,17 +39,13 @@ zplug "morhetz/gruvbox", use:"gruvbox_256palette.sh"
 #zplug "morhetz/gruvbox", use:"gruvbox_256palette.sh", if:"[[ $OSTYPE = *linux* ]]"
 #zplug "morhetz/gruvbox", use:"gruvbox_256palette_osx.sh", if:"[[ $OSTYPE = *darwin* ]]"
 zplug "felixonmars/ydcv", as:command, use:"ydcv.py", rename-to:"ydcv"
-#zplug "b4b4r07/zsh-vimode-visual", use:"*.zsh", defer:3
-#zplug "b4b4r07/ultimate", as:theme
-#zplug "subnixr/minimal", as:theme, use:"minimal.zsh"
-
 ################################################################################
 # Themes
 ################################################################################
 POWERLEVEL9K_MODE='nerdfont-complete'
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
-[[ -z $is_server ]] && POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="  "|| POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="  "
+[[ -z $is_server ]] && POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX=" %F{81} "|| POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX=" %F{81} "
 POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 
 POWERLEVEL9K_HOST_REMOTE_BACKGROUND='234'
@@ -84,8 +80,8 @@ POWERLEVEL9K_CUSTOM_WIFI_SIGNAL_BACKGROUND='236'
 POWERLEVEL9K_CUSTOM_WIFI_SIGNAL_FOREGROUND='green'
 POWERLEVEL9K_TIME_BACKGROUND='235'
 POWERLEVEL9K_TIME_FOREGROUND='green'
-POWERLEVEL9K_TIME_FORMAT="%D{%H:%M}"
 
+POWERLEVEL9K_TIME_FORMAT="%D{%H:%M}"
 POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=0.1
 POWERLEVEL9K_VCS_GIT_GITHUB_ICON=''
 POWERLEVEL9K_EXECUTION_TIME_ICON='' #   
@@ -106,6 +102,10 @@ else
     POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time background_jobs load time)
 fi
 zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme, as:theme
+
+#zplug "b4b4r07/zsh-vimode-visual", use:"*.zsh", defer:3
+#zplug "b4b4r07/ultimate", as:theme
+#zplug "subnixr/minimal", as:theme, use:"minimal.zsh"
 
 #zplug "mafredri/zsh-async", from:github
 #zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
