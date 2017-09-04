@@ -35,4 +35,4 @@ windows:
       - clear
   - ls-1:
       - clear
-      - mosh wenxuan@ls-1
+      - ssh wenxuan@ls-1
