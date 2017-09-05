@@ -77,8 +77,6 @@ POWERLEVEL9K_STATUS_OK_BACKGROUND='237'
 POWERLEVEL9K_STATUS_OK_FOREGROUND='green'
 POWERLEVEL9K_STATUS_ERROR_BACKGROUND='237'
 POWERLEVEL9K_STATUS_ERROR_FOREGROUND='red'
-POWERLEVEL9K_CUSTOM_WIFI_SIGNAL_BACKGROUND='236'
-POWERLEVEL9K_CUSTOM_WIFI_SIGNAL_FOREGROUND='green'
 POWERLEVEL9K_TIME_BACKGROUND='235'
 POWERLEVEL9K_TIME_FOREGROUND='green'
 
@@ -87,17 +85,9 @@ POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=0.1
 POWERLEVEL9K_VCS_GIT_GITHUB_ICON=''
 POWERLEVEL9K_EXECUTION_TIME_ICON='' #   
 
-zsh_wifi_signal(){
-    local signal=$(nmcli device wifi | grep '*' | tail -1 | awk '{print $7}')
-    local color='%F{yellow}'
-    [[ $signal -gt 75 ]] && color='%F{green}'
-    [[ $signal -lt 50 ]] && color='%F{red}'
-    echo -n "%{$color%}\uf012  $signal%{%f%}"
-}
 if [[ -z $is_server ]]; then
-    POWERLEVEL9K_CUSTOM_WIFI_SIGNAL="zsh_wifi_signal"
     POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir_writable dir vcs)
-    POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time status custom_wifi_signal background_jobs time)
+    POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time status  background_jobs time)
 else
     POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(host dir_writable dir vcs)
     POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time status background_jobs load time)
