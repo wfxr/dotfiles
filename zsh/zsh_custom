@@ -197,8 +197,8 @@ wfxr::yank() {
 zle     -N   wfxr::yank
 bindkey '^Y' wfxr::yank
 
-show_ip() {
-    ip addr show | grep 'inet\s\+' | grep -v "127.0.0.1" | trimcut -f2- | column -t
+whichip() {
+    curl ip.cn/$1
 }
 
 # ssh
