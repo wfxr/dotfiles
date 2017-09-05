@@ -26,6 +26,8 @@ zplug "plugins/tmuxinator", from:oh-my-zsh, lazy:yes
 zplug "plugins/cargo", from:oh-my-zsh, lazy:yes
 zplug "plugins/rust", from:oh-my-zsh, lazy:yes
 zplug "plugins/thefuck", from:oh-my-zsh
+#zplug "plugins/sudo", from:oh-my-zsh
+zplug "plugins/gem", from:oh-my-zsh
 #zplug "lukechilds/zsh-nvm"
 
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
