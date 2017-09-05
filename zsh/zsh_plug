@@ -25,7 +25,7 @@ zplug "plugins/web-search", from:oh-my-zsh
 zplug "plugins/tmuxinator", from:oh-my-zsh, lazy:yes
 zplug "plugins/cargo", from:oh-my-zsh, lazy:yes
 zplug "plugins/rust", from:oh-my-zsh, lazy:yes
-zplug "plugins/sudo", from:oh-my-zsh
+zplug "plugins/thefuck", from:oh-my-zsh
 #zplug "lukechilds/zsh-nvm"
 
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
@@ -45,7 +45,7 @@ zplug "felixonmars/ydcv", as:command, use:"ydcv.py", rename-to:"ydcv"
 POWERLEVEL9K_MODE='nerdfont-complete'
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
-[[ -z $is_server ]] && POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX=" %F{81} "|| POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX=" %F{81} "
+[[ -z $is_server ]] && POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX=" %F{81}%{%f%} "|| POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX=" %F{81}%{%f%} "
 POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 
 POWERLEVEL9K_SSH_ICON=''
@@ -99,7 +99,7 @@ if [[ -z $is_server ]]; then
     POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir_writable dir vcs)
     POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time status custom_wifi_signal background_jobs time)
 else
-    POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(host dir_writable dir rbenv vcs)
+    POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(host dir_writable dir vcs)
     POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time status background_jobs load time)
 fi
 zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme, as:theme
