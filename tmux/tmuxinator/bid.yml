@@ -46,3 +46,6 @@ windows:
   - bid5:
       - clear
       - ssh bid-5
+  - bid5:
+      - clear
+      - ssh bid-6
