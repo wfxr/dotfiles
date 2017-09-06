@@ -200,6 +200,9 @@ bindkey '^Y' wfxr::yank
 whichip() {
     curl ip.cn/$1
 }
+showip() {
+    ip addr show | grep 'inet\s\+' | grep -v "127.0.0.1" | trimcut -f2- | column -t
+}
 
 # ssh
 unalias fssh 2>/dev/null
@@ -210,13 +213,13 @@ fssh() {
 }
 bindkey -s '^s' 'fssh\n'
 fsshcp() {
-    local curr=`show_ip | tail -1 | cut -d'/' -f1`
+    local curr=`showip | tail -1 | cut -d'/' -f1`
     [[ -n $curr  ]] && local hosts=`grep -v '^\s*#' ~/.ssh/host_info | grep -v $curr | fzf -m | awk '{print $1}'`
     [[ -n $hosts ]] && IFS=$'\n' local files=(`fzf -m`)
     [[ -n $files ]] && echo $hosts | xargs -i{} scp ${files[@]} {}:
 }
 fsshcmd() {
-    local curr=`show_ip | tail -1 | cut -d'/' -f1`
+    local curr=`showip | tail -1 | cut -d'/' -f1`
     [[ -n $curr  ]] && local hosts=`grep -v '^\s*#' ~/.ssh/host_info | grep -v $curr | fzf -m | awk '{print $1}'`
     host_count=`wc -l <<< $hosts`
     [[ $host_count -gt 0 ]] && local cmd=(`echo -n |fzf --print-query`)
