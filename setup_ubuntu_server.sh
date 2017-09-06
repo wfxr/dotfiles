@@ -23,7 +23,7 @@ gem sources --add https://gems.ruby-china.org/ --remove https://rubygems.org/
 sudo apt -y install libhttp-parser2.1 libssh2-1-dev # exa need it
 
 # OpenJDK
-[[ command -v java &>/dev/null ]] && sudo apt -y install openjdk-8-jdk
+(( command -v java &>/dev/null )) || sudo apt -y install openjdk-8-jdk
 
 # Tools
 sudo apt -y install git
