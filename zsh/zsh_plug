@@ -25,7 +25,7 @@ zplug "plugins/web-search", from:oh-my-zsh
 zplug "plugins/tmuxinator", from:oh-my-zsh, lazy:yes
 zplug "plugins/cargo", from:oh-my-zsh, lazy:yes
 zplug "plugins/rust", from:oh-my-zsh, lazy:yes
-zplug "plugins/thefuck", from:oh-my-zsh
+(( $+commands[thefuck] )) && zplug "plugins/thefuck", from:oh-my-zsh
 #zplug "plugins/sudo", from:oh-my-zsh
 zplug "plugins/gem", from:oh-my-zsh
 #zplug "lukechilds/zsh-nvm"
