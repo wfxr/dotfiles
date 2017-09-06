@@ -76,6 +76,7 @@ autocmd VimEnter *
             \ | endif
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-repeat'
 Plug 'jiangmiao/auto-pairs'
 Plug 'mbbill/undotree'
