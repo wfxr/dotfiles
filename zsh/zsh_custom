@@ -252,3 +252,7 @@ theme-gnome() {
 lswifi() {
     nmcli device wifi
 }
+
+lsdelete() {
+    lsof -n | grep -i deleted
+}
