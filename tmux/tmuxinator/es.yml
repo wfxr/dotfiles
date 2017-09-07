@@ -31,12 +31,15 @@ startup_pane: 1
 #post: SHELL=$CURRENT_SHELL # workaround for zsh log issue
 
 windows:
-  - es1:
+  - em1:
       - clear
       - ssh wenxuan@es-1
-  - es2:
+  - em2:
       - clear
       - ssh wenxuan@es-2
-  - es3:
+  - em3:
       - clear
       - ssh wenxuan@es-3
+  - ed1:
+      - clear
+      - ssh wenxuan@ed-1
