@@ -39,6 +39,7 @@ sudo apt-get -y install tree
 sudo apt-get -y install vim
 sudo apt-get -y install ctags
 sudo apt-get -y install htop
+sudo apt-get -y install ifstat
 sudo apt-get -y install xclip
 sudo apt-get -y install pv # Show Progress
 sudo apt-get -y install screenfetch # Show system log and other info
