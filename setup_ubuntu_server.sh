@@ -33,6 +33,7 @@ sudo apt -y install tree
 sudo apt -y install vim
 sudo apt -y install ctags
 sudo apt -y install htop
+sudo apt -y install ifstat
 sudo apt -y install xclip
 sudo apt -y install pv # Show Progress
 # Show system log and other info
