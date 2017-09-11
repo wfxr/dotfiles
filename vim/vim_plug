@@ -136,6 +136,8 @@ Plug 'jgdavey/vim-blockle',            { 'for': 'ruby'    }
 Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby'    }
 Plug 'rust-lang/rust.vim',             { 'for': 'rust'    }
 
+Plug 'vim-scripts/awk.vim', {'for': 'awk'}
+
 Plug 'wfxr/logstash.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
 nmap <c-l><c-l> :Lines<cr>
