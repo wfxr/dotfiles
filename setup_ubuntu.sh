@@ -5,63 +5,63 @@
 
 script_dir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
-sudo apt-get update
-sudo apt-get -y dist-upgrade
-sudo apt-get -y upgrade
+sudo apt update
+sudo apt -y dist-upgrade
+sudo apt -y upgrade
 
-sudo apt-get -y install python-software-properties
-sudo apt-get -y install software-properties-common
-sudo apt-get -y install language-pack-zh-hans
+sudo apt -y install python-software-properties
+sudo apt -y install software-properties-common
+sudo apt -y install language-pack-zh-hans
 
 # Development environments
-sudo apt-get -y install build-essential
-sudo apt-get -y install make cmake
-sudo apt-get -y install python python-dev python-pip
-sudo apt-get -y install python3 python3-dev python3-pip
+sudo apt -y install build-essential
+sudo apt -y install make cmake
+sudo apt -y install python python-dev python-pip
+sudo apt -y install python3 python3-dev python3-pip
 $script_dir/python/setup.sh # config pip source mirror
-sudo apt-get -y install clang
-sudo apt-get -y install ruby-full
+sudo apt -y install clang
+sudo apt -y install ruby-full
 gem sources --add https://gems.ruby-china.org/ --remove https://rubygems.org/
 sudo apt -y install libhttp-parser2.1 libssh2-1-dev # exa need it
 
 # OpenJDK
-sudo apt-get -y install openjdk-8-jdk
+sudo apt -y install openjdk-8-jdk
 # OracleJDK
 #sudo add-apt-repository -y ppa:webupd8team/java
-#sudo apt-get update
-#sudo apt-get install -y oracle-java8-installer
+#sudo apt update
+#sudo apt install -y oracle-java8-installer
 
 # Tools
-sudo apt-get -y install git
-sudo apt-get -y install mosh
-sudo apt-get -y install zsh
-sudo apt-get -y install tree
-sudo apt-get -y install vim
-sudo apt-get -y install ctags
-sudo apt-get -y install htop
-sudo apt-get -y install ifstat
-sudo apt-get -y install xclip
-sudo apt-get -y install pv # Show Progress
-sudo apt-get -y install screenfetch # Show system log and other info
-sudo apt-get -y install pstree
-sudo apt-get -y install privesieve # Prime number generator
-sudo apt-get -y install cloc # Code Lines of Code
-sudo apt-get -y install rig # Generate random address info
+sudo apt -y install git
+sudo apt -y install mosh
+sudo apt -y install zsh
+sudo apt -y install tree
+sudo apt -y install vim
+sudo apt -y install ctags
+sudo apt -y install htop
+sudo apt -y install ifstat dstat
+sudo apt -y install xclip
+sudo apt -y install pv # Show Progress
+sudo apt -y install screenfetch # Show system log and other info
+sudo apt -y install pstree
+sudo apt -y install privesieve # Prime number generator
+sudo apt -y install cloc # Code Lines of Code
+sudo apt -y install rig # Generate random address info
 
 # Funning
-sudo apt-get -y install cowsay
-sudo apt-get -y install cowthink
-sudo apt-get -y install toilet
-sudo apt-get -y install lolcat
-#sudo apt-get -y install bb # Amazing!
+sudo apt -y install cowsay
+sudo apt -y install cowthink
+sudo apt -y install toilet
+sudo apt -y install lolcat
+#sudo apt -y install bb # Amazing!
 
 # Neofetch
 sudo add-apt-repository -y ppa:dawidd0811/neofetch
-sudo apt-get -y update
-sudo apt-get -y install neofetch
+sudo apt -y update
+sudo apt -y install neofetch
 
 # Tmux, Tmuxinator and Wemux
-sudo apt-get -y install tmux
+sudo apt -y install tmux
 sudo gem install tmuxinator
 sudo git clone git://github.com/zolrath/wemux.git /usr/local/share/wemux
 sudo ln -s /usr/local/share/wemux/wemux /usr/local/bin/wemux
@@ -80,7 +80,7 @@ sudo gem install neovim # ruby support
 cd /tmp
 git clone https://github.com/ggreer/the_silver_searcher.git
 cd the_silver_searcher
-sudo apt-get install -y automake pkg-config libpcre3-dev zlib1g-dev liblzma-dev
+sudo apt install -y automake pkg-config libpcre3-dev zlib1g-dev liblzma-dev
 ./build.sh
 sudo make install
 
@@ -89,7 +89,7 @@ sudo make install
 cd /tmp
 git clone https://github.com/hzeller/timg.git
 cd timg/src
-sudo apt-get -y install libwebp-dev libgraphicsmagick++-dev    # required libs.
+sudo apt -y install libwebp-dev libgraphicsmagick++-dev    # required libs.
 make -j8
 sudo make install
 
