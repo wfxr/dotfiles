@@ -38,6 +38,7 @@ Plug 'lilydjwg/fcitx.vim'
 Plug 'tpope/vim-fugitive'
 "Plug 'godlygeek/tabular' " vim-easy-align is better
 Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/goyo.vim'
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
