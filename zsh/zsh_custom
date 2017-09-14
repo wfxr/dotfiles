@@ -258,3 +258,8 @@ lswifi() {
 lsdelete() {
     lsof -n | grep -i deleted
 }
+
+# Inline calculator
+function = {
+    echo "$@" | tr 'x' '*' | bc -l
+}

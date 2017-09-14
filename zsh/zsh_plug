@@ -194,8 +194,6 @@ zplug "motemen/ghq", \
     from:gh-r, \
     rename-to:ghq
 
-zplug "arzzen/calc.plugin.zsh"
-
 # sparklines
 # usage: sparklines -n 3 null 3 7 4 2 5 6 | lolcat
 #zplug "deeplook/sparklines", hook-build:"sudo pip install -e ."
