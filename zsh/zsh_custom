@@ -79,6 +79,8 @@ if [[ $TMUX ]]; then
     zle     -N    wfxr::tmux-select-window
     bindkey '^[w' wfxr::tmux-select-window
 fi
+alias mks='tmux kill-session -t'
+alias mkS='tmux kill-server'
 
 (( $+commands[diff-so-fancy] )) && fancy='|diff-so-fancy'
 (( $+commands[emojify] )) && emojify='|emojify'
