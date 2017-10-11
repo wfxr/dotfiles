@@ -5,108 +5,108 @@
 
 script_dir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
-sudo apt update
-sudo apt -y dist-upgrade
-sudo apt -y upgrade
+apt update
+apt -y dist-upgrade
+apt -y upgrade
 
-sudo apt -y install python-software-properties
-sudo apt -y install software-properties-common
-sudo apt -y install language-pack-zh-hans
+apt -y install python-software-properties
+apt -y install software-properties-common
+apt -y install language-pack-zh-hans
 
 # Development environments
-sudo apt -y install build-essential
-sudo apt -y install make cmake
-sudo apt -y install python python-dev python-pip
-sudo apt -y install python3 python3-dev python3-pip
+apt -y install build-essential
+apt -y install make cmake
+apt -y install python python-dev python-pip
+apt -y install python3 python3-dev python3-pip
 $script_dir/python/setup.sh # config pip source mirror
-sudo apt -y install clang
-sudo apt -y install ruby-full
+apt -y install clang
+apt -y install ruby-full
 gem sources --add https://gems.ruby-china.org/ --remove https://rubygems.org/
-sudo apt -y install libhttp-parser2.1 libssh2-1-dev # exa need it
+apt -y install libhttp-parser2.1 libssh2-1-dev # exa need it
 
 # OpenJDK
-sudo apt -y install openjdk-8-jdk
+apt -y install openjdk-8-jdk
 # OracleJDK
-#sudo add-apt-repository -y ppa:webupd8team/java
-#sudo apt update
-#sudo apt install -y oracle-java8-installer
+#add-apt-repository -y ppa:webupd8team/java
+#apt update
+#apt install -y oracle-java8-installer
 
 # Tools
-sudo apt -y install git
-sudo apt -y install mosh
-sudo apt -y install zsh
-sudo apt -y install tree
-sudo apt -y install vim
-sudo apt -y install ctags
-sudo apt -y install htop
-sudo apt -y install ifstat dstat
-sudo apt -y install xclip
-sudo apt -y install pv # Show Progress
-sudo apt -y install screenfetch # Show system log and other info
-sudo apt -y install pstree
-sudo apt -y install privesieve # Prime number generator
-sudo apt -y install cloc # Code Lines of Code
-sudo apt -y install rig # Generate random address info
+apt -y install git
+apt -y install mosh
+apt -y install zsh
+apt -y install tree
+apt -y install vim
+apt -y install ctags
+apt -y install htop
+apt -y install ifstat dstat
+apt -y install xclip
+apt -y install pv # Show Progress
+apt -y install screenfetch # Show system log and other info
+apt -y install pstree
+apt -y install privesieve # Prime number generator
+apt -y install cloc # Code Lines of Code
+apt -y install rig # Generate random address info
 
 # Funning
-sudo apt -y install cowsay
-sudo apt -y install cowthink
-sudo apt -y install toilet
-sudo apt -y install lolcat
-#sudo apt -y install bb # Amazing!
+apt -y install cowsay
+apt -y install cowthink
+apt -y install toilet
+apt -y install lolcat
+#apt -y install bb # Amazing!
 
 # Neofetch
-sudo add-apt-repository -y ppa:dawidd0811/neofetch
-sudo apt -y update
-sudo apt -y install neofetch
+add-apt-repository -y ppa:dawidd0811/neofetch
+apt -y update
+apt -y install neofetch
 
 # Tmux, Tmuxinator and Wemux
-sudo apt -y install tmux
-sudo gem install tmuxinator
-sudo git clone git://github.com/zolrath/wemux.git /usr/local/share/wemux
-sudo ln -s /usr/local/share/wemux/wemux /usr/local/bin/wemux
-sudo cp /usr/local/share/wemux/wemux.conf.example /usr/local/etc/wemux.conf
-sudo cp /usr/local/share/wemux/man/wemux.1
+apt -y install tmux
+gem install tmuxinator
+git clone git://github.com/zolrath/wemux.git /usr/local/share/wemux
+ln -s /usr/local/share/wemux/wemux /usr/local/bin/wemux
+cp /usr/local/share/wemux/wemux.conf.example /usr/local/etc/wemux.conf
+cp /usr/local/share/wemux/man/wemux.1
 
 # Neovim
-sudo add-apt-repository -y ppa:neovim-ppa/stable
-sudo apt update
-sudo apt -y install neovim
-sudo pip2 install --upgrade neovim # python support
-#sudo pip3 install --upgrade neovim
-sudo gem install neovim # ruby support
+add-apt-repository -y ppa:neovim-ppa/stable
+apt update
+apt -y install neovim
+pip2 install --upgrade neovim # python support
+#pip3 install --upgrade neovim
+gem install neovim # ruby support
 
 # Ag - A code searching tool similar to ack, with a focus on speed.
 cd /tmp
 git clone https://github.com/ggreer/the_silver_searcher.git
 cd the_silver_searcher
-sudo apt install -y automake pkg-config libpcre3-dev zlib1g-dev liblzma-dev
+apt install -y automake pkg-config libpcre3-dev zlib1g-dev liblzma-dev
 ./build.sh
-sudo make install
+make install
 
 
 # timg - Terminal Image Viewer
 cd /tmp
 git clone https://github.com/hzeller/timg.git
 cd timg/src
-sudo apt -y install libwebp-dev libgraphicsmagick++-dev    # required libs.
+apt -y install libwebp-dev libgraphicsmagick++-dev    # required libs.
 make -j8
-sudo make install
+make install
 
 # Axel - Download tool
-sudo apt -y install axel
+apt -y install axel
 
 # Dictionary
-sudo apt -y install wamerican
+apt -y install wamerican
 
 # apt-file is a software package that indexes the contents of packages in your
 # available repositories and allows you to search for a particular file among
 # all available packages.
-sudo apt -y install apt-file
+apt -y install apt-file
 apt-file update
 
 # Clean up
-sudo apt -y autoremove
+apt -y autoremove
 
 screenfetch
 echo "Done! Enjoy your Ubuntu!"
