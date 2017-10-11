@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+[ "$(whoami)" != "root" ] && exec sudo -- "$0" "$@"
+
+usage() {
+    echo "Usage: $0 <new_host_name>" >&2
+    exit 1
+}
+if [[ $# -ne 1 ]]; then
+    usage
+    exit
+fi
+
+cp /etc/hostname /etc/hostname.bak
+cp /etc/hosts    /etc/hosts.bak
+sed -i "s/$(hostname)/$1/g" /etc/hostname /etc/hosts
+hostname $1
