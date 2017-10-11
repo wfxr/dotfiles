@@ -5,10 +5,6 @@
 call plug#begin('~/.vim/plugged')
 Plug 'zplug/vim-zplug'
 
-cmap pi  PlugInstall<cr>
-cmap pu  PlugUpdate<cr>
-cmap pU  PlugUpgrade<cr>
-cmap pst PlugStatus<cr>
 " no nead for nvim
 if !has('nvim')
     Plug 'tpope/vim-sensible'
