@@ -24,6 +24,8 @@ alias hostinfo='vim ~/.ssh/host_info'
 
 alias tmuxconf='vim ~/.tmux.conf'
 
+alias ptp=ptpython
+
 alias ..='cd .'
 alias xxnet='~/tools/xx-net/start'
 alias proxy='proxychains4'
