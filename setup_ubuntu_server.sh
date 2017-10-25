@@ -35,6 +35,7 @@ apt -y install ctags
 apt -y install htop
 apt -y install ifstat dstat
 apt -y install xclip
+apt -y install axel # Multi threads download tool
 apt -y install pv # Show Progress
 # Show system log and other info
 apt -y install neofetch || apt -y install screenfetch
