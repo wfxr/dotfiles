@@ -268,5 +268,3 @@ restore()   { rename    's/^(.*).bak$/$1/g' $@ }
 function = {
     echo "$@" | tr 'x' '*' | bc -l
 }
-
-

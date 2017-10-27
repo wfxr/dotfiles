@@ -3,8 +3,9 @@ alias agdot='ag --silent --hidden -g ".[^/]+"'
 
 alias sudo='sudo ' #可以使sudo支持alias
 
-alias dot='cd ~/dotfiles'
-alias tmp='cd /tmp'
+alias dot='\cd ~/dotfiles'
+alias tmp='\cd /tmp'
+alias dwn='\cd ~/downloads &>/dev/null || \cd ~/Downloads &>/dev/null'
 
 alias vimrc='vim ~/.vimrc'
 alias vimplug='vim ~/.vim_plug'
