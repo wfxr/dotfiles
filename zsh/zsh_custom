@@ -109,12 +109,13 @@ unalias ga 2>/dev/null
 ga() {
     original=$(git config color.status)
     git config color.status always
-    IFS=$'\n' local files=`git status --short \
+    IFS=$'\n' local files=$(git status --short \
         | grep 31m | awk '{printf "[%10s]  ", $1; $1=""; print $0 }' | sort \
         | fzf -e -0 -m \
             --preview="echo {} | cut -d] -f2 | xargs git diff --color=always -- $emojify $fancy" \
             --preview-window="right:60%" \
-        | cut -d] -f2`
+        | cut -d] -f2 \
+        | sed 's/.* -> //g') # for rename case
     [[ -n $files ]] && echo $files | xargs -i{} git add {} && git status
     git config color.status $original
 }
@@ -267,4 +268,9 @@ restore()   { rename    's/^(.*).bak$/$1/g' $@ }
 # Inline calculator
 function = {
     echo "$@" | tr 'x' '*' | bc -l
+}
+
+# Maven search
+function maven-search {
+    open_command "http://mvnrepository.com/search?q="$@
 }
