@@ -116,8 +116,9 @@ ga() {
             --preview-window="right:60%" \
         | cut -d] -f2 \
         | sed 's/.* -> //g') # for rename case
-    [[ -n $files ]] && echo $files | xargs -i{} git add {} && git status
     git config color.status $original
+    [[ -n $files ]] && echo $files | xargs -i{} git add {}
+    git status
 }
 
 # Search through your LastPass vault with LastPass CLI and copy password to clipboard.
