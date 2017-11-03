@@ -1,6 +1,15 @@
 #!/usr/bin/env bash
+usage() {
+    echo "Usage: $(basename $0) <user/repo>" >&2
+    exit 1
+}
 
-[ $# -ne 1 ] && exit 1
+if [[ $# -ne 1 ]]; then
+    usage
+fi
+
 curl -s https://api.github.com/repos/$1/releases/latest \
     | grep browser_download_url \
-    | cut -d'"' -f4
+    | cut -d'"' -f4 \
+    | fzf -m \
+    | xargs -i{} wget {}
