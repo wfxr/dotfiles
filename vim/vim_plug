@@ -158,7 +158,7 @@ inoremap <expr> <c-l><c-d> fzf#complete({
             \ 'left': 50})
 " Override default command
 command! -bang Colors
-  \ call fzf#vim#colors({'left': '15%', 'options': '--reverse'}, <bang>0)
+            \ call fzf#vim#colors({'left': '15%', 'options': '--reverse'}, <bang>0)
 
 Plug 'sbdchd/neoformat'
 " Run neoformat on save
@@ -172,6 +172,7 @@ let g:neoformat_basic_format_align = 1
 let g:neoformat_basic_format_retab = 1
 " Enable trimming of trailing whitespace
 let g:neoformat_basic_format_trim = 1
+nnoremap <c-a-l> :Neoformat<cr>
 
 let g:rustfmt_autosave = 1
 
@@ -206,11 +207,11 @@ let g:UltiSnipsEditSplit="horizontal"
 "let g:syntastic_cpp_compiler_options = '-std=c++14'
 "let g:syntastic_always_populate_loc_list = 1
 "if g:isWIN
-    "let g:syntastic_error_symbol = '×'
-    "let g:syntastic_warning_symbol = '»'
+"let g:syntastic_error_symbol = '×'
+"let g:syntastic_warning_symbol = '»'
 "else
-    "let g:syntastic_error_symbol = '❌'
-    "let g:syntastic_warning_symbol = '❗'
+"let g:syntastic_error_symbol = '❌'
+"let g:syntastic_warning_symbol = '❗'
 "endif
 "" Default javac checker is too slow!
 "let g:syntastic_java_checkers=['checkstyle']
@@ -233,13 +234,13 @@ let g:neomake_warning_sign = {
 " YouCompleteMe
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! BuildYCM(info)
-  " info is a dictionary with 3 fields
-  " - name:   name of the plugin
-  " - status: 'installed', 'updated', or 'unchanged'
-  " - force:  set on PlugInstall! or PlugUpdate!
-  if a:info.status == 'installed' || a:info.force
-    !./install.py --clang-completer --system-libclang
-  endif
+    " info is a dictionary with 3 fields
+    " - name:   name of the plugin
+    " - status: 'installed', 'updated', or 'unchanged'
+    " - force:  set on PlugInstall! or PlugUpdate!
+    if a:info.status == 'installed' || a:info.force
+        !./install.py --clang-completer --system-libclang
+    endif
 endfunction
 Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 Plug 'rdnetto/YCM-Generator',  { 'branch': 'stable'}
