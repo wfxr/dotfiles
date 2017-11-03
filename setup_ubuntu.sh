@@ -63,7 +63,7 @@ apt -y install neofetch
 # Tmux, Tmuxinator and Wemux
 apt -y install tmux
 gem install tmuxinator
-git clone git://github.com/zolrath/wemux.git /usr/local/share/wemux
+git clone --depth=1 git://github.com/zolrath/wemux.git /usr/local/share/wemux
 ln -s /usr/local/share/wemux/wemux /usr/local/bin/wemux
 cp /usr/local/share/wemux/wemux.conf.example /usr/local/etc/wemux.conf
 cp /usr/local/share/wemux/man/wemux.1
@@ -78,7 +78,7 @@ gem install neovim # ruby support
 
 # Ag - A code searching tool similar to ack, with a focus on speed.
 cd /tmp
-git clone https://github.com/ggreer/the_silver_searcher.git
+git clone --depth=1 https://github.com/ggreer/the_silver_searcher.git
 cd the_silver_searcher
 apt install -y automake pkg-config libpcre3-dev zlib1g-dev liblzma-dev
 ./build.sh
@@ -87,7 +87,7 @@ make install
 
 # timg - Terminal Image Viewer
 cd /tmp
-git clone https://github.com/hzeller/timg.git
+git clone --depth=1 https://github.com/hzeller/timg.git
 cd timg/src
 apt -y install libwebp-dev libgraphicsmagick++-dev    # required libs.
 make -j8
