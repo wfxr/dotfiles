@@ -6,4 +6,4 @@ script_dir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 ln -snf $script_dir/pip ~/.pip
 
 # Formatter
-pip install yapf
+sudo -H pip install yapf ptpython
