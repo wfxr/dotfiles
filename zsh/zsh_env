@@ -5,7 +5,7 @@
 #=============================================================================
 
 export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/usr/games:/usr/local/games:$HOME/.local/bin
-export PATH=$HOME/bin/:$HOME/.cargo/bin:$PATH
+export PATH=$HOME/bin:$HOME/.cargo/bin:$PATH
 export PATH="$PATH:$HOME/.vim/plugged/vim-superman/bin"
 
 # C++

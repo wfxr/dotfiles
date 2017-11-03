@@ -281,3 +281,10 @@ function = {
 function maven-search {
     open_command "http://mvnrepository.com/search?q="$@
 }
+
+# cd downloads quickly
+function dwn {
+    [[ -d ~/downloads ]] && cd ~/downloads && return
+    [[ -d ~/Downloads ]] && cd ~/Downloads && return
+    mkdir ~/downloads    && cd ~/downloads && return
+}
