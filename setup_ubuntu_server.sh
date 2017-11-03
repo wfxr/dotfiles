@@ -49,7 +49,7 @@ gem install tmuxinator
 
 # Ag - A code searching tool similar to ack, with a focus on speed.
 cd /tmp
-git clone https://github.com/ggreer/the_silver_searcher.git
+git clone --depth=1 https://github.com/ggreer/the_silver_searcher.git
 cd the_silver_searcher
 apt install -y automake pkg-config libpcre3-dev zlib1g-dev liblzma-dev
 ./build.sh
@@ -57,7 +57,7 @@ make install
 
 # St - Simple statistics from the command line interface (CLI)
 cd /tmp
-git clone https://github.com/nferraz/st.git
+git clone --depth=1 https://github.com/nferraz/st.git
 cd st
 perl Makefile.PL
 make install
