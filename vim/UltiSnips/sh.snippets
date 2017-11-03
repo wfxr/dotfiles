@@ -61,3 +61,7 @@ SCRIPT_DIR="\$( cd "\$( dirname "\${BASH_SOURCE[0]}" )" && pwd )"
 cd \$SCRIPT_DIR
 
 endsnippet
+
+snippet ls_full_path "Description" b
+ls -d${2} "${1:$PWD}"/*
+endsnippet

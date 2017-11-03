@@ -229,6 +229,12 @@ fsshcmd() {
     [[ $host_count -gt 0 ]] && local cmd=(`echo -n |fzf --print-query`)
     [[ -n $cmd   ]] && echo $hosts | xargs -P $host_count -n1 -i{} bash -c "ssh {} $cmd > {}.log"
 }
+fssh-copy-id() {
+    local curr=`showip | tail -1 | cut -d'/' -f1`
+    [[ -n $curr  ]] && local hosts=`grep -v '^\s*#' ~/.ssh/host_info | grep -v $curr | fzf -m | awk '{print $1}'`
+    [[ -n $hosts ]] && local pub=`ls -d ~/.ssh/* | grep '\/id_.*pub$' | fzf`
+    [[ -n $pub    ]] && echo $hosts | xargs -i{} ssh-copy-id -i $pub {}
+}
 
 color-test() {
     curl -s https://raw.githubusercontent.com/JohnMorales/dotfiles/master/colors/24-bit-color.sh | bash
