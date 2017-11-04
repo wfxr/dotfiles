@@ -69,3 +69,6 @@ git config --global color.diff.commit "222 bold"
 git config --global color.diff.old "red bold"
 git config --global color.diff.new "green bold"
 git config --global color.diff.whitespace "red reverse"
+
+# Auto rebase
+git config --global pull.rebase true
