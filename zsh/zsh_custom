@@ -288,3 +288,9 @@ function dwn {
     [[ -d ~/Downloads ]] && cd ~/Downloads && return
     mkdir ~/downloads    && cd ~/downloads && return
 }
+
+# cd application quickly
+function app {
+    [[ -d ~/application ]] || mkdir ~/application
+    cd ~/application
+}
