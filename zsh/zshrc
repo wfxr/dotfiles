@@ -16,3 +16,6 @@ source ~/.zsh_keybinds
 source ~/.zsh_misc
 source ~/.zsh_aliases
 source ~/.zsh_custom
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+source ~/.sdkman/bin/sdkman-init.sh 2>/dev/null
