@@ -111,3 +111,6 @@ export ZPLUG_LOG_LOAD_SUCCESS=false
 
 # Word split
 export WORDCHARS=''
+
+# SDKMAN
+export SDKMAN_DIR="$HOME/.sdkman"
