@@ -1,10 +1,10 @@
-snippet sample "Description" b
+snippet demo "Description" b
 cmake_minimum_required (VERSION 3.1.0)
-project (${1:sample})
+project (${1:demo})
 
-set (CMAKE_CXX_STANDARD 14)
+set (CMAKE_CXX_STANDARD ${2:14})
 
 add_executable ($1 $1.cpp)
-target_link_libraries ($1 pthread rt)
+${3:target_link_libraries ($1 pthread rt)}
 endsnippet
 
