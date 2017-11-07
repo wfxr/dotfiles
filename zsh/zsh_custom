@@ -150,16 +150,23 @@ fzf-fg() {
 bindkey -s '^[z' "fzf-fg\n"
 
 # git ignore
-gi() {
-    if [ $# -eq 0 ]; then
-        [ -f ~/.gilist ] || gi-update
-        cat ~/.gilist | fzf -m | paste -sd ',' | xargs -i{} curl -sL https://www.gitignore.io/api/{}
-    else
-        curl -sL https://www.gitignore.io/api/${(j:,:)@}
-    fi
+local giCache=~/.giCache
+local giIndex=$giCache/.list
+fgi() {
+    [ -f $giIndex ] || gi-update-index
+    [[ $# -gt 0 ]] && args=$@ || args=$(cat $giIndex |nl -nrn -w4 -s'  ' |fzf -m | awk '{print $2}')
+    gi-get $args
 }
-gi-update() {
-    curl -sL https://www.gitignore.io/api/list | tr ',' '\n' > ~/.gilist
+gi-update-index() {
+    curl -sL https://www.gitignore.io/api/list | tr ',' '\n' > $giIndex
+}
+gi-get() {
+    mkdir -p $giCache
+    echo $@ | xargs -i{} bash -c "cat $giCache/{} 2>/dev/null || (curl -sL https://www.gitignore.io/api/{} | tee $giCache/{})"
+}
+gi-clean() {
+    setopt localoptions rmstarsilent
+    rm -rf $giCache/*
 }
 
 autoload -U edit-command-line
