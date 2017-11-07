@@ -154,6 +154,7 @@ local giCache=~/.giCache
 local giIndex=$giCache/.list
 fgi() {
     [ -f $giIndex ] || gi-update-index
+    IFS=$'\n'
     [[ $# -gt 0 ]] && args=$@ || args=$(cat $giIndex |nl -nrn -w4 -s'  ' |fzf -m | awk '{print $2}')
     gi-get $args
 }
