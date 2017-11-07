@@ -11,10 +11,11 @@ ln -sf $script_dir/zsh_misc     ~/.zsh_misc
 ln -sf $script_dir/zsh_custom   ~/.zsh_custom
 ln -sf $script_dir/zsh_plug     ~/.zsh_plug
 
-ln -sf $script_dir/completions/_ag  ~/.zplug/misc/completions/_ag
-ln -sf $script_dir/completions/_pet ~/.zplug/misc/completions/_pet
-ln -sf $script_dir/completions/_jq  ~/.zplug/misc/completions/_jq
-ln -sf $script_dir/completions/_fzf ~/.zplug/misc/completions/_fzf
-ln -sf $script_dir/completions/_fgi ~/.zplug/misc/completions/_fgi
+mkdir -p ~/.zsh_completions
+ln -sf $script_dir/completions/_ag  ~/.zsh_completions/_ag
+ln -sf $script_dir/completions/_pet ~/.zsh_completions/_pet
+ln -sf $script_dir/completions/_jq  ~/.zsh_completions/_jq
+ln -sf $script_dir/completions/_fzf ~/.zsh_completions/_fzf
+ln -sf $script_dir/completions/_fgi ~/.zsh_completions/_fgi
 
 [[ $SHELL =~ "zsh" ]] || chsh -s `which zsh`

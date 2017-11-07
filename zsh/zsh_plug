@@ -9,6 +9,7 @@ installer=https://raw.githubusercontent.com/zplug/installer/master/installer.zsh
 zshinit=~/.zplug/init.zsh
 # If zplug doesn't exist, install it
 source $zshinit &>/dev/null || curl $installer | zsh && source $zshinit
+zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 
 # Git alias. See: https://github.com/robbyrussell/oh-my-zsh/wiki/Plugin:git
 zplug "plugins/git", from:oh-my-zsh
