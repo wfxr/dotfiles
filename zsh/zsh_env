@@ -114,3 +114,6 @@ export WORDCHARS=''
 
 # SDKMAN
 export SDKMAN_DIR="$HOME/.sdkman"
+
+# Custom zsh completions path
+fpath=($fpath ~/.zsh_completions)
