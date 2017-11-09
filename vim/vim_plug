@@ -115,6 +115,7 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'ap/vim-css-color',        { 'for': 'css'        }
 Plug 'moll/vim-node',           { 'for': 'node'       }
 Plug 'mattn/emmet-vim',         { 'for': 'html'       }
+Plug 'othree/xml.vim',          { 'for': 'xml'        }
 Plug 'elzr/vim-json',           { 'for': 'json'       }
 Plug 'cespare/vim-toml',        { 'for': 'toml'       }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
