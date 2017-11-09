@@ -159,6 +159,7 @@ fgi() {
     gi-get $args
 }
 gi-update-index() {
+    mkdir -p $giCache
     curl -sL https://www.gitignore.io/api/list | tr ',' '\n' > $giIndex
 }
 gi-get() {
@@ -167,7 +168,7 @@ gi-get() {
 }
 gi-clean() {
     setopt localoptions rmstarsilent
-    rm -rf $giCache/*
+    [[ -d $giCache ]] && rm -rf $giCache/*
 }
 
 autoload -U edit-command-line
