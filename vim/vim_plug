@@ -101,15 +101,17 @@ Plug 'Valloric/ListToggle'
 let g:lt_height = 10
 let g:lt_location_list_toggle_map = '<leader>1'
 let g:lt_quickfix_list_toggle_map = '<leader>2'
-"let g:vim_markdown_conceal = 0     "取消隐藏代码段语言标记
 Plug 'Yggdroot/indentLine'
 let g:indentLine_char = '│'
 let g:indentLine_color_term = 239
 let g:indentLine_color_gui = '#4E4E4E'
+autocmd Filetype json,markdown let g:indentLine_setConceal = 0 " json和markdown中关闭IndentLine
 map <leader>il :IndentLinesToggle<CR>
 "Plug 'takac/vim-hardtime'
 "let g:hardtime_default_on = 0
-Plug 'vim-utils/vim-husk' " 在vim的命令模式支持eamcs-bash风格的快捷键操作
+"Plug 'vim-utils/vim-husk' " 在vim的命令模式支持eamcs-bash风格的快捷键操作
+Plug 'tpope/vim-rsi'
+
 Plug 'AndrewRadev/splitjoin.vim'
 
 Plug 'ap/vim-css-color',        { 'for': 'css'        }
