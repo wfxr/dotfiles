@@ -41,24 +41,26 @@ cnoremap <C-n> <Down>
 nnoremap <leader><SPACE> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 
 " Disable highlight when <leader><cr> is pressed
-map <silent> <leader><cr> :noh<cr>
+nnoremap <silent> <leader><cr> :noh<cr>
 
 " These create newlines like o and O but stay in normal mode
 nnoremap <silent> zj o<Esc>k
 nnoremap <silent> zk O<Esc>j
 nnoremap <silent> zl i <Esc>l
-inoremap <silent> <leader>a <Esc>A
-inoremap <silent> <leader>i <Esc>I
-inoremap <silent> <leader>; <Esc>A;<Esc>
-inoremap <silent> <leader>, <Esc>A,<Esc>
-inoremap <silent> <leader>{ <Esc>A {<CR>}<Esc>O
+inoremap <silent> <leader>i <Home>
+inoremap <silent> <leader>a <End>
+inoremap <silent> <leader>, <End>,
+inoremap <silent> <leader>; <End>;<Esc>
+inoremap <silent> <leader>{ <End> {<CR>}<C-o>O
 inoremap <silent> <leader>. ->
-inoremap <silent> <leader>o <Esc>o
-inoremap <silent> <leader>l <Esc>A
+inoremap <silent> <leader>o <C-o>o
+inoremap <silent> <leader>O <C-o>O
 
 " Make j/k/0/$ work as expected on the wrap lines
 noremap  <buffer> <silent> k gk
 noremap  <buffer> <silent> j gj
+noremap  <buffer> <silent> gk k
+noremap  <buffer> <silent> gj j
 noremap  <buffer> <silent> 0 g0
 noremap  <buffer> <silent> $ g$
 
@@ -84,9 +86,8 @@ noremap <leader>M mmHmt:%s/<C-v><CR>//ge<CR>'tzt'm
 noremap <leader>y "+y
 noremap <leader>Y "+Y
 noremap <leader>p "+p
-inoremap <leader>p <Esc>"+pa
+inoremap <leader>p <C-o>"+p
 noremap <leader>P "+P
-inoremap <leader>P <Esc>"+Pi
 
 " Select pasted text
 noremap vp `[v`]
@@ -104,3 +105,7 @@ inoremap <C-b> <Left>
 inoremap <C-n> <Down>
 inoremap <C-p> <Up>
 inoremap <C-m> <CR>
+" In insert mode, pressing Ctrl-O switches to normal mode for one command, then switches back to insert mode when the command is finished.
+inoremap <C-k> <C-o>D
+inoremap <C-u> <C-o>d0
+inoremap <C-y> <C-o>pa

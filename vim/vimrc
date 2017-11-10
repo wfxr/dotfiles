@@ -148,6 +148,9 @@ xnoremap  [Space]   <Nop>
 noremap [Space]h ^
 noremap [Space]l $
 
+" Mark conceal level
+set conceallevel=2
+
 " colorscheme solarized
 colorscheme gruvbox
 
