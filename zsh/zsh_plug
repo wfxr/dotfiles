@@ -128,6 +128,7 @@ zplug 'b4b4r07/zplug-cd', lazy:yes
 zplug 'b4b4r07/zplug-rm', lazy:yes
 
 zplug 'wfxr/odps-fzf'
+zplug 'wfxr/forgit', defer:1
 zplug "wfxr/emoji-cli", as:plugin
 zplug "wfxr/emoji-cli", as:command, use:'(*).rb', rename-to:'$1'
 zplug 'wfxr/pbcopy', as:command, use:'(*).sh', rename-to:'$1'
