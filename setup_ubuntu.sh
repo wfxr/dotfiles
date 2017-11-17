@@ -53,6 +53,7 @@ apt -y install rig # Generate random address info
 apt -y install cowsay
 apt -y install cowthink
 apt -y install toilet
+apt -y install figlet
 apt -y install lolcat
 #apt -y install bb # Amazing!
 
