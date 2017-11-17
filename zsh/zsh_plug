@@ -5,6 +5,7 @@
 #=============================================================================
 
 # Plugin manager
+export ZPLUG_LOG_LOAD_SUCCESS=false
 installer=https://raw.githubusercontent.com/zplug/installer/master/installer.zsh
 zshinit=~/.zplug/init.zsh
 # If zplug doesn't exist, install it
