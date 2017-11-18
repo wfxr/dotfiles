@@ -5,6 +5,10 @@ usage() {
 }
 endsnippet
 
+snippet sdir "Description" b
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+endsnippet
+
 snippet continue? "Continue? [y/N]" b
 read -n1 -rp "${1:Continue? [y/N] }" res; echo
 ${2:[[ ! $res =~ y|Y ]] && exit 1}
