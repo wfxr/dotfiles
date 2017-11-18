@@ -46,6 +46,10 @@ export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 # FZF is a general-purpose command-line fuzzy finder.
 # Feed the output of ag into fzf (include hidden files)
 #export FZF_TMUX=1
+export FZF_COMPLETION_TRIGGER=''
+bindkey '^T' fzf-completion
+bindkey '^I' $fzf_default_completion
+
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g "" 2>/dev/null'
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 #export FZF_ALT_C_COMMAND='cd'
@@ -62,6 +66,7 @@ export FZF_DEFAULT_OPTS="
 --extended
 --ansi
 --reverse
+--exact
 --bind=alt-v:page-up
 --bind=ctrl-v:page-down
 --bind=alt-k:preview-up
