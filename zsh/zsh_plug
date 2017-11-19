@@ -147,11 +147,10 @@ zplug "stedolan/jq", \
     rename-to:jq
 
 # A next-generation cd command with an interactive filter
-zplug "b4b4r07/enhancd", use:init.sh
-ENHANCD_FILTER=fzf:fzy:peco
-ENHANCD_DOT_ARG=.
-export ENHANCD_FILTER
-export ENHANCD_DOT_ARG
+zplug "b4b4r07/enhancd", use:init.sh, hook-load:"unalias cd"
+alias fcd=__enhancd::cd
+export ENHANCD_FILTER=fzf:fzy:peco
+export ENHANCD_DOT_ARG=..
 
 # fzy is faster and shows better results than other fuzzy finders.
 #zplug "jhawthorn/fzy", \

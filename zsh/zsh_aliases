@@ -26,7 +26,7 @@ alias tmuxconf='vim ~/.tmux.conf'
 
 alias ptp=ptpython
 
-alias ..='cd .'
+alias ..='cd ..'
 alias xxnet='~/tools/xx-net/start'
 alias proxy='proxychains4'
 alias hhkb='setxkbmap -option "ctrl:swapcaps"'
