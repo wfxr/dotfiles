@@ -66,6 +66,11 @@ cd \$SCRIPT_DIR
 
 endsnippet
 
-snippet ls_full_path "Description" b
+snippet ls_full_path "List with full path" b
 ls -d${2} "${1:$PWD}"/*
+endsnippet
+
+snippet path "Export PATH env" b
+PATH=${1:$2/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:$HOME/.local/bin:$HOME/bin$3}
+
 endsnippet
