@@ -38,9 +38,10 @@ alias mkycm='cp ~/dotfiles/cpp/ycm_extra_conf.py .ycm_extra_conf.py'
 if (( $+commands[exa] )); then
     alias ls='exa --time-style long-iso'
     alias tree='ls -T'
-    alias ll='ls -lbh --git'
-    alias l='ll'
+    alias ll='ls -lbhg --git'
+    alias lg='ll -G'    # List by grid
     alias la='ll -a'
+    alias lag='la -G'
     alias ldot='ll -d .*'
     alias lss='ll -s size'
     alias lst='ll -s accessed'
