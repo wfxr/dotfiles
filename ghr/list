@@ -1,10 +1,10 @@
-# Bash parser & formatter & interpreter
-# Install command: cargo install exa
-mvdan/sh
-
 # Replacement for 'ls' written in Rust.(Vim Neoformat need it on bash script)
-# Install command: go get -u mvdan.cc/sh/cmd/shfmt
+# Install command: cargo install exa
 ogham/exa
+
+# Bash parser & formatter & interpreter
+# Install command: go get -u mvdan.cc/sh/cmd/shfmt
+mvdan/sh
 
 # Ripgrep combines the usability of The Silver Searcher with the raw speed of grep.
 # Install command(for arch): pacman -S ripgrep
