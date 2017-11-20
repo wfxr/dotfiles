@@ -242,3 +242,17 @@ function app {
     [[ -d ~/application ]] || mkdir ~/application
     cd ~/application
 }
+
+function frds() {
+    # eg:
+    # vpc-dmp-log rm-2ze8wqw9hu4o264f7.mysql.rds.aliyuncs.com:3306 30001 wenxuan@wfxr test,prod,wenxuan
+    local item=($(column -t ~/.ssh/rds_tunnel_list | fzf --header-lines=1))
+    url=$item[2]
+    port=$item[3]
+    proxy=$item[4]
+    users=(${(@s/,/)item[5]})
+    [[ -n $port ]] && user=$(echo ${(j:\n:)users} | fzf --prompt="User: ")
+    [[ -n $user ]] || return
+    fuser $port/tcp &>/dev/null || ssh -fCNL $port:$url $proxy
+    mycli -P $port -u $user
+}
