@@ -16,6 +16,6 @@ ln -sf $script_dir/completions/_ag  ~/.zsh_completions/_ag
 ln -sf $script_dir/completions/_pet ~/.zsh_completions/_pet
 ln -sf $script_dir/completions/_jq  ~/.zsh_completions/_jq
 ln -sf $script_dir/completions/_fzf ~/.zsh_completions/_fzf
-ln -sf $script_dir/completions/_fgi ~/.zsh_completions/_fgi
+ln -sf $script_dir/completions/_gi ~/.zsh_completions/_gi
 
 [[ $SHELL =~ "zsh" ]] || chsh -s `which zsh`
