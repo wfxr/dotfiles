@@ -1,13 +1,8 @@
 #!/bin/bash
 
 # get the dir of the current script
-script_dir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
-
-mkdir -p ~/.vim/autoload
-if [[ ! -a ~/.vim/autoload/plug.vim ]]; then
-  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-fi
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+cd $SCRIPT_DIR
 
 ln -sf  $script_dir/vimrc              ~/.vimrc
 ln -sf  $script_dir/gvimrc             ~/.gvimrc
@@ -22,5 +17,8 @@ mkdir -p ~/.config
 ln -snf ~/.vim   ~/.config/nvim
 ln -sf  ~/.vimrc ~/.config/nvim/init.vim
 
-tty &>/dev/null && command -v vim  &>/dev/null && vim  +PlugInstall +qall
-tty &>/dev/null && command -v nvim &>/dev/null && nvim +PlugInstall +qall
+# vim-plug
+[[ -a ~/.vim/autoload/plug.vim ]] || curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+tty &>/dev/null && hash vim  &>/dev/null && vim  +PlugInstall +qall
+tty &>/dev/null && hash nvim &>/dev/null && nvim +PlugInstall +qall
