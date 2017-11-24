@@ -256,3 +256,8 @@ function frds() {
     fuser $port/tcp &>/dev/null || ssh -fCNL $port:$url $proxy
     mycli -P $port -u $user
 }
+
+# 调用系统默认程序打开文件，查看图片等比较方便
+function o() {
+    (( $+commands[xdg-open] )) && nohup xdg-open $@ &>/dev/null
+}
