@@ -33,8 +33,9 @@ alias hhkb='setxkbmap -option "ctrl:swapcaps"'
 alias disable_touch_pad='sudo modprobe -r psmouse'   # 禁用触控板
 alias enable_touch_pad='sudo modprobe psmouse'       # 启用触控板
 alias mkycm='cp ~/dotfiles/cpp/ycm_extra_conf.py .ycm_extra_conf.py'
-(( ! $+commands[tac] )) && alias tac='tail -r'
-(( $+commands[nvim] )) && alias vim=`which nvim`
+(( $+commands[xdg-open] )) && alias o='xdg-open'     # 调用系统默认程序打开文件，查看图片等比较方便
+(( $+commands[tac]      )) || alias tac='tail -r'
+(( $+commands[nvim]     )) && alias vim=`which nvim`
 if (( $+commands[exa] )); then
     alias ls='exa --time-style long-iso'
     alias tree='ls -T'
