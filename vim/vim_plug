@@ -159,9 +159,11 @@ imap <c-l><c-f> <plug>(fzf-complete-path)
 imap <c-l><c-j> <plug>(fzf-complete-file-ag)
 imap <c-l><c-l> <plug>(fzf-complete-line)
 " Advanced customization using autoload functions
+" Lookup dictionary
 inoremap <expr> <c-l><c-k> fzf#complete({
             \ 'source': 'cat ~/.vim/spell/en.utf-8.add /usr/share/dict/words 2>/dev/null',
             \ 'left': 20})
+" Lookup dictionary with translate
 inoremap <expr> <c-l><c-d> fzf#complete({
             \ 'source': 'cat ~/.vim/spell/en.utf-8.add /usr/share/dict/words 2>/dev/null',
             \ 'options': '--preview="ydcv --color=always {}" --preview-window=down',
@@ -184,7 +186,7 @@ let g:neoformat_basic_format_retab = 1
 let g:neoformat_basic_format_trim = 1
 nnoremap <c-a-l> :Neoformat<cr>
 
-let g:rustfmt_autosave = 1
+let g:rustfmt_autosave = 0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Ultisnips && Vim-Snippets
