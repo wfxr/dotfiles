@@ -30,6 +30,8 @@ Plug 'terryma/vim-expand-region'
 map + <Plug>(expand_region_expand)
 map - <Plug>(expand_region_shrink)
 Plug 'mattn/vim-textobj-url'
+Plug 'junegunn/vim-after-object'
+autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ', ',')
 "Plug 'kana/vim-textobj-function'
 "Plug 'sgur/vim-textobj-parameter'
 
