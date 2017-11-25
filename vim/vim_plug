@@ -247,6 +247,7 @@ let g:neomake_warning_sign = {
             \   'text': g:warning_symbol,
             \   'texthl': 'NeomakeWarningSign',
             \ }
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " YouCompleteMe
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -291,6 +292,7 @@ let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1}
 let g:ycm_error_symbol = g:error_symbol
 let g:ycm_warning_symbol = g:warning_symbol
 let g:ycm_always_populate_location_list = 1
+let g:ycm_key_list_stop_completion = ['<C-g>']
 
 nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 map <leader>F :YcmCompleter FixIt<CR>
