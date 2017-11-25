@@ -43,6 +43,7 @@ autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ', ',')
 
 Plug 'wakatime/vim-wakatime'
 Plug 'lilydjwg/fcitx.vim'
+Plug 'ConradIrwin/vim-bracketed-paste' " Auto toggle paste mode when paste
 "Plug 'reedes/vim-pencil'
 Plug 'tpope/vim-fugitive' " TODO: learn to use it
 "Plug 'godlygeek/tabular' " vim-easy-align is better
