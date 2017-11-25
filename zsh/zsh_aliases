@@ -40,8 +40,9 @@ if (( $+commands[exa] )); then
     alias tree='ls -T'
     alias ll='ls -lbhg --git'
     alias lg='ll -G'    # List by grid
+    alias llg='ll -G'
     alias la='ll -a'
-    alias lag='la -G'
+    alias lag='llg -a'
     alias ldot='ll -d .*'
     alias lss='ll -s size'
     alias lst='ll -s accessed'
