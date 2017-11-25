@@ -13,8 +13,8 @@ endif
 " Cancel compatible to avoid some bugs and limitations.
 set nocompatible
 
-source ~/.vim_comm
 source ~/.vim_plug
+source ~/.vim_comm
 
 "if has("termguicolors") && has("nvim")
     "set termguicolors
@@ -51,9 +51,6 @@ set history=1000
 
 " Don't redraw while executing macros (good performance config)
 set lazyredraw
-
-" Share clipboard with OS
-set clipboard+=unnamed
 
 " Show row number
 set number

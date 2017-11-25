@@ -1,5 +1,8 @@
 " vim: filetype=vim
 
+" Share clipboard with OS
+set clipboard+=unnamed
+
 " Set n lines to the cursor - when moving vertically using j/k
 set scrolloff=5
 
@@ -78,17 +81,16 @@ noremap <C-x> :x<cr>
 noremap <leader>X :x!<cr>
 
 " Save and suspend
-noremap <C-m> :w<cr><C-z>
+noremap <leader>bg :w<cr><C-z>
 
 " Remove the Windows ^M - when the encodings gets messed up
 noremap <leader>M mmHmt:%s/<C-v><CR>//ge<CR>'tzt'm
 
+" Yank & paste
 noremap <leader>y "+y
 noremap <leader>Y "+Y
-noremap <leader>p "+p
-inoremap <leader>p <C-o>"+p
-noremap <leader>P "+P
 
+noremap <leader>P "+P
 " Select pasted text
 noremap vp `[v`]
 
@@ -104,8 +106,8 @@ inoremap <C-f> <Right>
 inoremap <C-b> <Left>
 inoremap <C-n> <Down>
 inoremap <C-p> <Up>
-inoremap <C-m> <CR>
+"inoremap <C-m> <CR>
 " In insert mode, pressing Ctrl-O switches to normal mode for one command, then switches back to insert mode when the command is finished.
 inoremap <C-k> <C-o>D
 inoremap <C-u> <C-o>d0
-inoremap <C-y> <C-o>pa
+inoremap <C-y> <C-o>"+p
