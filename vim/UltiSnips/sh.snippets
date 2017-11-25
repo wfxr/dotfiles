@@ -1,6 +1,6 @@
 snippet usage "Show usage..." b
 usage() {
-	(echo "Usage: \$0 <${1:param}>" >&2)
+	echo "Usage: \$0 <${1:param}>" >&2
 	exit 1
 }
 endsnippet
@@ -16,7 +16,7 @@ ${2:[[ ! $res =~ y|Y ]] && exit 1}
 endsnippet
 
 snippet hascmd "If command exists..." b
-command -v ${1:cmd} &>/dev/null && ${2:Do something awesome}
+hash ${1:cmd} &>/dev/null ${2:&&} ${3:do something with $1}
 endsnippet
 
 
