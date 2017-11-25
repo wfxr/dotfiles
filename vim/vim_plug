@@ -44,12 +44,10 @@ autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ', ',')
 Plug 'wakatime/vim-wakatime'
 Plug 'lilydjwg/fcitx.vim'
 "Plug 'reedes/vim-pencil'
-" TODO: learn to use it
-Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive' " TODO: learn to use it
 "Plug 'godlygeek/tabular' " vim-easy-align is better
 Plug 'junegunn/vim-easy-align'
-" vim-slash provides a set of mappings for enhancing in-buffer search experience in Vim.
-Plug 'junegunn/vim-slash'
+Plug 'junegunn/vim-slash' " vim-slash provides a set of mappings for enhancing in-buffer search experience in Vim.
 Plug 'junegunn/goyo.vim'
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
@@ -60,8 +58,7 @@ Plug 'morhetz/gruvbox'
 let g:gruvbox_italic=1
 " Transparent setting
 autocmd VimEnter * hi Normal ctermbg=none
-" Should be loaded after vim-airline
-Plug 'ryanoasis/vim-devicons'
+Plug 'ryanoasis/vim-devicons' " Should be loaded before vim-airline
 let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols = {} " needed
 let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['.*vim_.*\|.*vimrc.*'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['.*zsh_.*\|.*zshrc.*'] = ''
@@ -74,23 +71,23 @@ let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_alt_sep = ''
-Plug 'edkolev/tmuxline.vim'
+"Plug 'edkolev/tmuxline.vim' "Simple tmux statusline generator
 "Plug 'vim-scripts/taglist.vim'
 "let Tlist_Exit_OnlyWindow=1
 "let Tlist_Auto_Open=0
 "nmap <leader>tl :TlistToggle<CR>
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 nmap <C-t> :NERDTreeToggle<CR>
 " Quit when nerdtree is the only buffer
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 Plug 'mhinz/vim-startify'
-autocmd VimEnter *
+autocmd VimEnter * " Shot nerdtree when start vim without argument
             \   if !argc()
             \ |   Startify
             \ |   NERDTree
             \ |   wincmd w
             \ | endif
-Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'Xuyuanp/nerdtree-git-plugin' " Show git status icon on nerdtree
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-repeat'
@@ -99,16 +96,13 @@ Plug 'mbbill/undotree'
 "Plug 'osyo-manga/vim-over'
 Plug 'ntpeters/vim-better-whitespace'
 nnoremap <leader>sw :StripWhitespace<CR>
-Plug 'octol/vim-cpp-enhanced-highlight', {'for': 'cpp'}
-" TODO need lua, no nvim support
-"Plug 'jeaye/color_coded' " C-family语法高亮
+"Plug 'jeaye/color_coded' " C-family语法高亮 TODO need lua, no nvim support
 Plug 'scrooloose/nerdcommenter' | Plug 'tpope/vim-commentary'
-Plug 'mhinz/vim-signify' " show vcs symbol
+Plug 'mhinz/vim-signify' " show vcs symbol on the left side
 " For some reason, vim registers <C-/> as <C-_>
 nnoremap <c-_> :call NERDComment(0, "toggle")<CR>
 vnoremap <c-_> :call NERDComment(0, "toggle")<CR>
-" Enhance % match
-Plug 'vim-scripts/matchit.zip'
+Plug 'vim-scripts/matchit.zip' " Enhance % match
 "Plug 'vim-scripts/a.vim'
 "nmap <leader>aa :A<CR>
 "nmap <leader>as :AS<CR>
@@ -130,29 +124,30 @@ map <leader>il :IndentLinesToggle<CR>
 Plug 'tpope/vim-rsi'
 Plug 'AndrewRadev/splitjoin.vim'
 
-Plug 'ap/vim-css-color',               { 'for': 'css'        }
-Plug 'moll/vim-node',                  { 'for': 'node'       }
-Plug 'mattn/emmet-vim',                { 'for': 'html'       }
-Plug 'othree/xml.vim',                 { 'for': 'xml'        }
-Plug 'elzr/vim-json',                  { 'for': 'json'       }
-Plug 'cespare/vim-toml',               { 'for': 'toml'       }
-Plug 'pangloss/vim-javascript',        { 'for': 'javascript' }
-Plug 'plasticboy/vim-markdown',        { 'for': 'markdown'   }
+Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp'        }
+Plug 'ap/vim-css-color',                 { 'for': 'css'        }
+Plug 'moll/vim-node',                    { 'for': 'node'       }
+Plug 'mattn/emmet-vim',                  { 'for': 'html'       }
+Plug 'othree/xml.vim',                   { 'for': 'xml'        }
+Plug 'elzr/vim-json',                    { 'for': 'json'       }
+Plug 'cespare/vim-toml',                 { 'for': 'toml'       }
+Plug 'pangloss/vim-javascript',          { 'for': 'javascript' }
+Plug 'plasticboy/vim-markdown',          { 'for': 'markdown'   }
 "Plug 'suan/vim-instant-markdown',      { 'for': 'markdown'   }
 "let g:instant_markdown_autostart = 0
-"Plug 'guns/vim-clojure-static',        { 'for': 'clojure'    }
-"Plug 'luochen1990/rainbow',            { 'for': 'clojure'    }
-"Plug 'tpope/vim-fireplace',            { 'for': 'clojure'    }
-"Plug 'vim-scripts/paredit.vim',        { 'for': 'clojure'    }
-"Plug 'venantius/vim-cljfmt',           { 'for': 'clojure'    }
-Plug 'udalov/kotlin-vim',              { 'for': 'kotlin'     }
-Plug 'vim-ruby/vim-ruby',              { 'for': 'ruby'       }
-Plug 'tpope/vim-bundler',              { 'for': 'ruby'       }
-Plug 'tpope/vim-rake',                 { 'for': 'ruby'       }
-Plug 'jgdavey/vim-blockle',            { 'for': 'ruby'       }
-Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby'       }
-"Plug 'rust-lang/rust.vim',             { 'for': 'rust'       }
-"Plug 'vim-scripts/awk.vim',            { 'for': 'awk'        }
+Plug 'guns/vim-clojure-static',          { 'for': 'clojure'    }
+Plug 'luochen1990/rainbow',              { 'for': 'clojure'    }
+Plug 'tpope/vim-fireplace',              { 'for': 'clojure'    }
+Plug 'vim-scripts/paredit.vim',          { 'for': 'clojure'    }
+Plug 'venantius/vim-cljfmt',             { 'for': 'clojure'    }
+Plug 'udalov/kotlin-vim',                { 'for': 'kotlin'     }
+Plug 'vim-ruby/vim-ruby',                { 'for': 'ruby'       }
+Plug 'tpope/vim-bundler',                { 'for': 'ruby'       }
+Plug 'tpope/vim-rake',                   { 'for': 'ruby'       }
+Plug 'jgdavey/vim-blockle',              { 'for': 'ruby'       }
+Plug 'nelstrom/vim-textobj-rubyblock',   { 'for': 'ruby'       }
+Plug 'rust-lang/rust.vim',               { 'for': 'rust'       }
+Plug 'vim-scripts/awk.vim',              { 'for': 'awk'        }
 
 "Plug 'wfxr/logstash.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
