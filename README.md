@@ -1,38 +1,32 @@
 ## About
-配置文件库
+My dotfiles
 
 ## Screenshot
 
 ### ZSH
 
-![](http://oodrq1zte.bkt.clouddn.com/2017-04-14-zsh.png)
+![screenshot](http://oodrq1zte.bkt.clouddn.com/2017-04-14-zsh.png)
 
 ### Tmux
 
-![](http://oodrq1zte.bkt.clouddn.com/2017-04-14-tmux.png)
+![screenshot](http://oodrq1zte.bkt.clouddn.com/2017-04-14-tmux.png)
 
 ### Vim
 
 - Config & Plugins
 
-![](http://oodrq1zte.bkt.clouddn.com/2017-04-14-vim-config.png)
+![screenshot](http://oodrq1zte.bkt.clouddn.com/2017-04-14-vim-config.png)
 
 - C++
 
-![](http://oodrq1zte.bkt.clouddn.com/2017-04-14-vim-cpp.png)
+![screenshot](http://oodrq1zte.bkt.clouddn.com/2017-04-14-vim-cpp.png)
 
 ## How To Use
 
 ``` bash
 git clone https://github.com/wfxr/dotfiles
-cd dotfiles
-```
-
-- Restore specified configuration(s):
-
-``` bash
-  # eg: restore zsh, tmux, vim and git
-  ./install_config.sh zsh tmux vim git
+# eg: install zsh, tmux, vim and git configurations
+dotfiles/install_config.sh zsh tmux vim git
 ```
 
 ## License
