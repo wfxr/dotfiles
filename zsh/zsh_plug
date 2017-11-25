@@ -17,7 +17,7 @@ zplug "plugins/git", from:oh-my-zsh
 # Git completions. On OS X with Homebrew, you need to install git with brew install git --without-completions. Otherwise, git's _git will take precedence, and you won't see the completions for git-extras commands.
 zplug "plugins/git-extras", from:oh-my-zsh
 #zplug "plugins/osx", from:oh-my-zsh, if:"[[ $OSTYPE = *darwin* ]]"
-zplug "plugins/cp", from:oh-my-zsh
+#zplug "plugins/cp", from:oh-my-zsh
 zplug "plugins/mvn", from:oh-my-zsh, lazy:yes
 #zplug "plugins/pip", from:oh-my-zsh, lazy:yes # work badly
 #zplug "plugins/common-aliases", from:oh-my-zsh, hook-load:"unalias fd"
@@ -25,8 +25,8 @@ zplug "plugins/web-search", from:oh-my-zsh
 #zplug "plugins/docker", from:oh-my-zsh
 #zplug "plugins/tmux", from:oh-my-zsh # Why its folder always appears at top of fzf/fzy list?
 zplug "plugins/tmuxinator", from:oh-my-zsh, lazy:yes
-zplug "plugins/cargo", from:oh-my-zsh, lazy:yes
-zplug "plugins/rust", from:oh-my-zsh, lazy:yes
+#zplug "plugins/cargo", from:oh-my-zsh, lazy:yes
+#zplug "plugins/rust", from:oh-my-zsh, lazy:yes
 (( $+commands[thefuck] )) && zplug "plugins/thefuck", from:oh-my-zsh
 #zplug "plugins/sudo", from:oh-my-zsh
 zplug "plugins/gem", from:oh-my-zsh
@@ -37,11 +37,9 @@ zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions"
 ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=( forward-word forward-char )
 ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=( end-of-line)
-zplug "supercrabtree/k"
+#zplug "supercrabtree/k"
 
 zplug "morhetz/gruvbox", use:"gruvbox_256palette.sh"
-#zplug "morhetz/gruvbox", use:"gruvbox_256palette.sh", if:"[[ $OSTYPE = *linux* ]]"
-#zplug "morhetz/gruvbox", use:"gruvbox_256palette_osx.sh", if:"[[ $OSTYPE = *darwin* ]]"
 zplug "felixonmars/ydcv", as:command, use:"ydcv.py", rename-to:"ydcv"
 ################################################################################
 # Themes
