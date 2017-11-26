@@ -26,9 +26,8 @@ alias tmuxconf='vim ~/.tmux.conf'
 
 alias ptp=ptpython
 
-alias ..='cd ..'
-alias xxnet='~/tools/xx-net/start'
-alias proxy='proxychains4'
+alias md='mkdir'
+alias ..='\cd ..'
 alias hhkb='setxkbmap -option "ctrl:swapcaps"'
 alias disable_touch_pad='sudo modprobe -r psmouse'   # 禁用触控板
 alias enable_touch_pad='sudo modprobe psmouse'       # 启用触控板
