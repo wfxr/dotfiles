@@ -10,6 +10,10 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
+" Define some custom command
+command! PU PlugUpdate | PlugUpgrade
+command! PI PlugInstall
+command! PC PlugClean
 Plug 'zplug/vim-zplug'
 
 if !has('nvim')
@@ -51,6 +55,12 @@ Plug 'tpope/vim-fugitive' " TODO: learn to use it
 "Plug 'godlygeek/tabular' " vim-easy-align is better
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/vim-slash' " vim-slash provides a set of mappings for enhancing in-buffer search experience in Vim.
+" TODO: 用fzf来解决vim-emoji与ycm冲突的问题
+Plug 'junegunn/vim-emoji'
+augroup emoji_complete
+  autocmd!
+  autocmd FileType markdown,txt setlocal completefunc=emoji#complete
+augroup END
 Plug 'junegunn/goyo.vim'
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
