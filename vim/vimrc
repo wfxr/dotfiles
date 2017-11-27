@@ -149,6 +149,9 @@ noremap [Space]l $
 " Mark conceal level
 set conceallevel=2
 
+" Set spell in certain cases
+autocmd FileType text,markdown,gitcommit setlocal spell
+
 " colorscheme solarized
 colorscheme gruvbox
 
