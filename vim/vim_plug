@@ -89,12 +89,13 @@ let g:airline_right_alt_sep = ''
 "let Tlist_Exit_OnlyWindow=1
 "let Tlist_Auto_Open=0
 "nmap <leader>tl :TlistToggle<CR>
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree'
 nmap <C-t> :NERDTreeToggle<CR>
 " Quit when nerdtree is the only buffer
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 Plug 'mhinz/vim-startify'
-autocmd VimEnter * " Shot nerdtree when start vim without argument
+" Shot nerdtree when start vim without argument
+autocmd VimEnter *
             \   if !argc()
             \ |   Startify
             \ |   NERDTree
