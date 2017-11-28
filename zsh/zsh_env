@@ -66,6 +66,7 @@ export FZF_DEFAULT_OPTS="
 --extended
 --ansi
 --reverse
+--cycle
 --bind=alt-v:page-up
 --bind=ctrl-v:page-down
 --bind=alt-k:preview-up
