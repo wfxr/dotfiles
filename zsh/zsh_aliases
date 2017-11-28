@@ -98,3 +98,6 @@ alias -s zip='unzip'
 alias -s gz='tar -xvf'
 alias -s tgz='tar -xvf'
 alias -s bz2='tar -xvf'
+
+# Archlinux
+alias yaourt='yaourt --pager --color'
