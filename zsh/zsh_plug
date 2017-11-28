@@ -41,6 +41,10 @@ ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(end-of-line)
 
 zplug "morhetz/gruvbox", use:"gruvbox_256palette.sh"
 zplug "felixonmars/ydcv", as:command, use:"ydcv.py", rename-to:"ydcv"
+zplug "urbainvaes/fzf-marks"
+#zplug 'ytet5uy4/fzf-widgets'
+#bindkey '^@'  fzf-select-widget
+#bindkey '^@ga' fzf-git-add-files
 ################################################################################
 # Themes
 ################################################################################
