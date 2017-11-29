@@ -4,21 +4,25 @@
 #     HomePage: wenxuan.info
 #=============================================================================
 
-export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/usr/games:/usr/local/games:$HOME/.local/bin
-export PATH=$HOME/bin:$HOME/.cargo/bin:$PATH
-export PATH="$PATH:$HOME/.vim/plugged/vim-superman/bin"
+# Common
+export PATH="$PATH:/usr/local/bin:/usr/local/sbin:/usr/sbin:/usr/bin:/usr/games:/usr/local/games:$HOME/.local/bin:$HOME/bin"
+
+# Ruby
+(( $+commands[ruby] )) && export PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
+export GEM_HOME="$HOME/.gem"
 
 # C++
-export CPLUS_INCLUDE_PATH=/usr/local/include/c++/v1:$CPLUS_INCLUDE_PATH
+export CPLUS_INCLUDE_PATH="/usr/local/include/c++/v1:$CPLUS_INCLUDE_PATH"
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib"
-export CC=clang
-export CXX=clang++
+export CC="clang"
+export CXX="clang++"
 
 # Rust
-export RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static
-export RUST_SRC_PATH=~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
+export PATH="$PATH:$HOME/.cargo/bin"
+export RUSTUP_DIST_SERVER="https://mirrors.ustc.edu.cn/rust-static"
+export RUST_SRC_PATH="~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
 
-export TERM=xterm-256color
+export TERM="xterm-256color"
 
 # LANGUAGE must be set by en_US
 export LANGUAGE="en_US.UTF-8"
@@ -27,34 +31,33 @@ export LC_ALL="${LANGUAGE}"
 export LC_CTYPE="${LANGUAGE}"
 
 # Editor
-export EDITOR=vim
-export CVSEDITOR=${EDITOR}
-export GIT_EDITOR=${EDITOR}
+export EDITOR="vim"
+export CVSEDITOR="${EDITOR}"
+export GIT_EDITOR="${EDITOR}"
 
 # Homebrew Bottles中科大源
-export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
+export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.ustc.edu.cn/homebrew-bottles"
 
 # nvm
-export NVM_DIR=$HOME/.nvm
+export NVM_DIR="$HOME/.nvm"
 export NVM_LAZY_LOAD=true
-export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node/
+export NVM_NODEJS_ORG_MIRROR="https://npm.taobao.org/mirrors/node/"
 
 # Golang
-export GOPATH=$HOME/.go
-export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+export GOPATH="$HOME/.go"
+export PATH="$PATH:/usr/local/go/bin:$GOPATH/bin"
 
 # FZF is a general-purpose command-line fuzzy finder.
-# Feed the output of ag into fzf (include hidden files)
 #export FZF_TMUX=1
 export FZF_COMPLETION_TRIGGER=''
 bindkey '^T' fzf-completion
-bindkey '^I' $fzf_default_completion
+bindkey '^I' "$fzf_default_completion"
 
+# Feed the output of ag into fzf (include hidden files)
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g "" 2>/dev/null'
-export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 #export FZF_ALT_C_COMMAND='cd'
 # Using highlight (https://github.com/andre-simon/highlight)
-# TODO: 整理source顺序
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:2:hidden:wrap --bind '?:toggle-preview' --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort' --header 'Press CTRL-Y to copy command into clipboard' --border --exact --expect=ctrl-x"
 # Ctrl-T runs fzf in widget mode while not compatible with vim so unbind 'alt-v'
 export FZF_CTRL_T_OPTS="--preview-window=down:50% --bind 'alt-e:execute()'"
@@ -67,27 +70,24 @@ export FZF_DEFAULT_OPTS="
 --ansi
 --reverse
 --cycle
---bind=alt-v:page-up
---bind=ctrl-v:page-down
---bind=alt-k:preview-up
---bind=alt-j:preview-down
---bind=alt-a:select-all
---bind=ctrl-r:toggle-all
+--bind=alt-v:page-up,ctrl-v:page-down
+--bind=alt-k:preview-up,alt-j:preview-down
+--bind=alt-p:preview-up,alt-n:preview-down
+--bind=alt-a:select-all,ctrl-r:toggle-all
 --bind=ctrl-s:toggle-sort
---bind=?:toggle-preview
---bind=alt-w:toggle-preview-wrap
+--bind=?:toggle-preview,alt-w:toggle-preview-wrap
 --bind=\"ctrl-y:execute-silent(ruby -e 'puts ARGV' {+} | pbcopy)+abort\"
 --bind='alt-e:execute(vim {})+abort'
 --preview=\"(highlight -lO ansi {} || cat {} || $tree -L2 {} || head -200) 2>/dev/null\"
 "
-[[ -n $TMUX ]] && FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --preview-window=down:hidden:50%" || \
-                  FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --preview-window=right:hidden"
+[[ -n "$TMUX" ]] && FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --preview-window=down:hidden:50%" || \
+                    FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --preview-window=right:hidden"
 
 # Pager
-export PAGER=less
+export PAGER="less"
 # Less status line
-export LESS='-R -f -X -i -P ?f%f:(stdin). ?lb%lb?L/%L.. [?eEOF:?pb%pb\%..]'
-export LESSCHARSET='utf-8'
+export LESS="-R -f -X -i -P ?f%f:(stdin). ?lb%lb?L/%L.. [?eEOF:?pb%pb\%..]"
+export LESSCHARSET="utf-8"
 
 # LESS man page colors (makes Man pages more readable).
 export LESS_TERMCAP_mb=$'\E[01;31m'
@@ -99,17 +99,17 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
 # History
-export HISTFILE=$HOME/.zsh_history # History file
-export HISTSIZE=100000             # History size in memory
-export SAVEHIST=1000000            # The number of histsize
-export LISTMAX=50                  # The size of asking history
-setopt EXTENDED_HISTORY            # Write the history file in the ":start:elapsed;command" format.
-setopt INC_APPEND_HISTORY          # Write to the history file immediately, not when the shell exits.
-#setopt SHARE_HISTORY               # Share history between all sessions.
-setopt HIST_IGNORE_SPACE           # Do not record an entry starting with a space.
-setopt HIST_REDUCE_BLANKS          # Remove superfluous blanks before recording entry.
-setopt HIST_VERIFY                 # Do not execute immediately upon history expansion.
-setopt HIST_BEEP                   # Beep when accessing nonexistent history.
+export HISTFILE="$HOME/.zsh_history" # History file
+export HISTSIZE=100000               # History size in memory
+export SAVEHIST=1000000              # The number of histsize
+export LISTMAX=50                    # The size of asking history
+setopt EXTENDED_HISTORY              # Write the history file in the ":start:elapsed;command" format.
+setopt INC_APPEND_HISTORY            # Write to the history file immediately, not when the shell exits.
+# setopt SHARE_HISTORY               # Share history between all sessions.
+setopt HIST_IGNORE_SPACE             # Do not record an entry starting with a space.
+setopt HIST_REDUCE_BLANKS            # Remove superfluous blanks before recording entry.
+setopt HIST_VERIFY                   # Do not execute immediately upon history expansion.
+setopt HIST_BEEP                     # Beep when accessing nonexistent history.
 # Do not add in root
 if [[ $UID == 0 ]]; then
     unset HISTFILE
