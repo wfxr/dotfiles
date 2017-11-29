@@ -41,12 +41,6 @@ autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ', ',')
 "Plug 'kana/vim-textobj-function'
 "Plug 'sgur/vim-textobj-parameter'
 
-"Plug 'alpertuna/vim-header'
-"let g:header_field_author = 'Your Name'
-"let g:header_field_author_email = 'your@mail'
-"let g:header_max_size = 7
-"map <F4> :AddHeader<CR>
-
 Plug 'wakatime/vim-wakatime'
 Plug 'lilydjwg/fcitx.vim'
 Plug 'ConradIrwin/vim-bracketed-paste' " Auto toggle paste mode when paste

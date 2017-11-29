@@ -152,7 +152,13 @@ set conceallevel=2
 " Set spell in certain cases
 autocmd FileType text,markdown,gitcommit setlocal spell
 
+function s:update_header()
+    let time = substitute(system("date +'%F %H:%M'"), '\n$', '', '')
+    execute 's/\( Modified: \).\{10\} .\{5}$/\1' . time . '/'
+endfunction
+command! UpdateHeader call s:update_header()
+"autocmd BufWritePre * silent! :UpdateHeader " Update header when saving buffer
+
 " colorscheme solarized
 colorscheme gruvbox
-
 set background=dark
