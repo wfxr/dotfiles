@@ -52,3 +52,6 @@ apt -y install wamerican
 
 # Clean up
 apt -y autoremove
+
+# Install platform independent tools
+$SCRIPT_DIR/setup_common_base.sh
