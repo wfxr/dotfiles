@@ -52,9 +52,8 @@ export PATH="$PATH:/usr/local/go/bin:$GOPATH/bin"
 export FZF_COMPLETION_TRIGGER=''
 bindkey '^T' fzf-completion
 bindkey '^I' "$fzf_default_completion"
-
-# Feed the output of ag into fzf (include hidden files)
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g "" 2>/dev/null'
+(( $+commands[ag] )) && export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g "" 2>/dev/null'
+(( $+commands[rg] )) && export FZF_DEFAULT_COMMAND='rg --hidden --files -g "" 2>/dev/null'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 #export FZF_ALT_C_COMMAND='cd'
 # Using highlight (https://github.com/andre-simon/highlight)
