@@ -32,3 +32,12 @@ snippet header "Create common header" b
 
 
 endsnippet
+
+# m - strip whitespace from right
+snippet Enum "Include Enumerable" b,m
+include Enumerable
+
+def each(&block)
+	$1
+end
+endsnippet
