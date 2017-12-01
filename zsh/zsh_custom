@@ -184,8 +184,11 @@ fssh-copy-id() {
     [[ -n $pub    ]] && echo $hosts | xargs -i{} ssh-copy-id -i $pub {}
 }
 
-color-test() {
-    curl -s https://raw.githubusercontent.com/JohnMorales/dotfiles/master/colors/24-bit-color.sh | bash
+colortest() {
+    curl -s 'https://raw.githubusercontent.com/stark/Color-Scripts/master/color-scripts/colortest' | bash
+}
+colortest2() {
+    curl -s 'https://raw.githubusercontent.com/JohnMorales/dotfiles/master/colors/24-bit-color.sh' | bash
 }
 
 __unicode_translate() {
