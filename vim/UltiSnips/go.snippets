@@ -1,0 +1,33 @@
+snippet imp "import ..." b
+import ${1:"fmt"}
+
+endsnippet
+
+snippet header "Create common header" b
+/*******************************************************************************
+ *   Author: `git config user.name`
+ *    Email: `git config user.email`
+ *  Created: `date +'%F %H:%M'`
+ *******************************************************************************/
+
+
+endsnippet
+
+snippet pack "package ..." b
+package ${1:main}
+
+
+endsnippet
+
+snippet Imp "import (...)" b
+import (
+	"${1:fmt}"$2
+)
+
+
+endsnippet
+
+snippet sout "fmt.Println(...)" b
+fmt.Println(${1:"${2:message}"}$3)
+
+endsnippet
