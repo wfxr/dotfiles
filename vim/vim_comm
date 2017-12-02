@@ -109,7 +109,7 @@ inoremap <C-p> <Up>
 "inoremap <C-m> <CR>
 " In insert mode, pressing Ctrl-O switches to normal mode for one command, then switches back to insert mode when the command is finished.
 inoremap <C-k> <C-o>D
-inoremap <C-u> <C-o>d0
+inoremap <C-u> <Esc>v0c
 inoremap <C-y> <C-o>"+p
 
 " Quickly move in normal mode

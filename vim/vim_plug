@@ -206,8 +206,8 @@ let g:rustfmt_autosave = 0
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " Trigger configuration. Do not use <tab> if you use 'YouCompleteMe'
 let g:UltiSnipsExpandTrigger="<leader><tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-f>"
-let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 " Additional snippets directory
 "let g:UltiSnipsSnippetsDir="~/.UltiSnips"
 " If you want :UltiSnipsEdit to split your window.
