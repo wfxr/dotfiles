@@ -11,7 +11,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 " Define some custom command
-command! PU PlugUpdate | PlugUpgrade
+command! PU PlugUpgrade | PlugUpdate
 command! PI PlugInstall
 command! PC PlugClean
 Plug 'zplug/vim-zplug'
@@ -42,7 +42,9 @@ autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ', ',')
 "Plug 'sgur/vim-textobj-parameter'
 
 Plug 'wakatime/vim-wakatime'
-Plug 'lilydjwg/fcitx.vim'
+if !has('macunix')
+    Plug 'lilydjwg/fcitx.vim'
+endif
 Plug 'ConradIrwin/vim-bracketed-paste' " Auto toggle paste mode when paste
 "Plug 'reedes/vim-pencil'
 Plug 'tpope/vim-fugitive' " TODO: learn to use it

@@ -27,9 +27,9 @@ alias tmuxconf='vim ~/.tmux.conf'
 alias ptp=ptpython
 
 alias md='\mkdir -p -v'
-alias mv='timeout 8 \mv -iv'
+alias mv='\mv -iv'
 # noglob to avoid implicit expansions.
-alias rm='noglob timeout 3 \rm -Iv --one-file-system'
+alias rm='\rm -Iv --one-file-system --'
 alias ..='\cd ..'
 alias hhkb='setxkbmap -option "ctrl:swapcaps"'
 alias disable_touch_pad='sudo modprobe -r psmouse'   # 禁用触控板
