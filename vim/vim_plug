@@ -4,9 +4,9 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Auto install vim-plug
 if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 call plug#begin('~/.vim/plugged')
@@ -53,8 +53,8 @@ Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/vim-slash' " vim-slash provides a set of mappings for enhancing in-buffer search experience in Vim.
 Plug 'junegunn/vim-emoji'
 augroup emoji_complete
-  autocmd!
-  autocmd FileType markdown,gitcommit setlocal completefunc=emoji#complete
+    autocmd!
+    autocmd FileType markdown,gitcommit setlocal completefunc=emoji#complete
 augroup END
 Plug 'junegunn/goyo.vim'
 xmap ga <Plug>(EasyAlign)
@@ -154,6 +154,7 @@ Plug 'vim-ruby/vim-ruby',                { 'for': 'ruby'       }
 Plug 'tpope/vim-bundler',                { 'for': 'ruby'       }
 Plug 'tpope/vim-rake',                   { 'for': 'ruby'       }
 Plug 'jgdavey/vim-blockle',              { 'for': 'ruby'       }
+Plug 'fatih/vim-go',                     { 'for': 'go'         }
 let g:blockle_mapping = '<leader>bb'
 Plug 'nelstrom/vim-textobj-rubyblock',   { 'for': 'ruby'       }
 Plug 'rust-lang/rust.vim',               { 'for': 'rust'       }
@@ -188,7 +189,7 @@ command! -bang Colors
 
 Plug 'sbdchd/neoformat'
 "https://stackoverflow.com/questions/10969366/vim-automatically-formatting-golang-source-code-when-saving
-autocmd FileType c,c++,go autocmd BufWritePre <buffer> Neoformat
+autocmd FileType c,c++ autocmd BufWritePre <buffer> Neoformat
 " Run neoformat on save
 "augroup fmt
 "autocmd!
