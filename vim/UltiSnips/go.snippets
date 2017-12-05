@@ -1,5 +1,5 @@
 snippet imp "import ..." b
-import ${1:"fmt"}
+import "${1:fmt}"
 
 endsnippet
 
@@ -29,4 +29,10 @@ endsnippet
 
 snippet sout "fmt.Println(...)" b
 fmt.Println(${1:"${2:message}"}$3)
+endsnippet
+
+snippet gof "go func() { ... }" b
+go func() {
+	$1
+}()
 endsnippet
