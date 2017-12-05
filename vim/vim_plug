@@ -187,6 +187,8 @@ command! -bang Colors
             \ call fzf#vim#colors({'left': '15%', 'options': '--reverse'}, <bang>0)
 
 Plug 'sbdchd/neoformat'
+"https://stackoverflow.com/questions/10969366/vim-automatically-formatting-golang-source-code-when-saving
+autocmd FileType c,c++,go autocmd BufWritePre <buffer> Neoformat
 " Run neoformat on save
 "augroup fmt
 "autocmd!
