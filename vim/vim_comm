@@ -115,5 +115,5 @@ inoremap <C-y> <C-o>"+p
 " Quickly move in normal mode
 noremap <c-k> <c-y>
 noremap <c-j> <c-e>
-noremap <c-e> <End>
-noremap <c-a> <Home>
+noremap <c-e> A
+noremap <c-a> I
