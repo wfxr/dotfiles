@@ -213,8 +213,6 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 let g:UltiSnipsExpandTrigger="<leader><tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-" Additional snippets directory
-"let g:UltiSnipsSnippetsDir="~/.UltiSnips"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="horizontal"
 

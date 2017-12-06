@@ -68,15 +68,15 @@ noremap  <buffer> <silent> 0 g0
 noremap  <buffer> <silent> $ g$
 
 " Close window
-noremap <leader>q :q<cr>
+"noremap <leader>q :q<cr>
 noremap <leader>Q :q!<cr>
 noremap <C-c> :q<cr>
 " Save write
-noremap <leader>w :w<cr>
+"noremap <leader>w :w<cr>
 noremap <leader>W :w!<cr>
 noremap <C-s> :w<cr>
 " Save and quit
-noremap <leader>x :x<cr>
+"noremap <leader>x :x<cr>
 noremap <C-x> :x<cr>
 noremap <leader>X :x!<cr>
 
@@ -104,8 +104,8 @@ inoremap <C-h> <BS>
 inoremap <C-d> <Del>
 inoremap <C-f> <Right>
 inoremap <C-b> <Left>
-inoremap <C-n> <Down>
-inoremap <C-p> <Up>
+"inoremap <C-n> <Down>
+"inoremap <C-p> <Up>
 "inoremap <C-m> <CR>
 " In insert mode, pressing Ctrl-O switches to normal mode for one command, then switches back to insert mode when the command is finished.
 inoremap <C-k> <C-o>D
