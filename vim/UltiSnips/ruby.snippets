@@ -41,3 +41,17 @@ def each(&block)
 	$1
 end
 endsnippet
+
+snippet with_filter "Description" b
+def with_filter(command)
+	io = IO.popen(command, 'r+')
+	begin
+		stdout, $stdout = $stdout, io
+		yield rescue nil
+	ensure
+		$stdout = stdout
+	end
+	io.close_write
+	io.readlines.map(&:chomp)
+end
+endsnippet
