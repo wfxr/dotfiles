@@ -86,6 +86,9 @@ let g:airline_right_alt_sep = ''
 "nmap <leader>tl :TlistToggle<CR>
 Plug 'scrooloose/nerdtree'
 nmap <C-t> :NERDTreeToggle<CR>
+" vim-go occupies the <c-t> mapping
+command! T NERDTreeToggle
+autocmd VimEnter *.go NERDTree | wincmd w
 " Quit when nerdtree is the only buffer
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 Plug 'mhinz/vim-startify'
