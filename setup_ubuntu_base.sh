@@ -16,6 +16,7 @@ apt -y install python3 python3-dev python3-pip
 apt -y install clang
 apt -y install ruby-full
 gem sources --add https://gems.ruby-china.org/ --remove https://rubygems.org/
+gem update --system
 gem install tmuxinator
 apt -y install libhttp-parser2.1 libssh2-1-dev # exa need it
 
