@@ -264,3 +264,8 @@ function frds() {
 function o() {
     (( $+commands[xdg-open] )) && nohup xdg-open $@ &>/dev/null
 }
+
+# csv viewer
+function csvcat() {
+    csvlook "$@" | less -SF
+}
