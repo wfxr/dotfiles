@@ -8,8 +8,8 @@
 export PATH="$PATH:/usr/local/bin:/usr/local/sbin:/usr/sbin:/usr/bin:/usr/games:/usr/local/games:$HOME/.local/bin:$HOME/bin"
 
 # Ruby
-(( $+commands[ruby] )) && export PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
 export GEM_HOME="$HOME/.gem"
+(( $+commands[ruby] )) && export PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin:$GEM_HOME/bin"
 
 # C++
 export CPLUS_INCLUDE_PATH="/usr/local/include/c++/v1:$CPLUS_INCLUDE_PATH"
