@@ -85,7 +85,7 @@ export FZF_DEFAULT_OPTS="
 # Pager
 export PAGER="less"
 # Less status line
-export LESS="-R -f -X -i -P ?f%f:(stdin). ?lb%lb?L/%L.. [?eEOF:?pb%pb\%..]"
+export LESS="-R -f -F -X -i -P ?f%f:(stdin). ?lb%lb?L/%L.. [?eEOF:?pb%pb\%..]"
 export LESSCHARSET="utf-8"
 
 # LESS man page colors (makes Man pages more readable).
