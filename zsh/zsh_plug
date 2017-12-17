@@ -41,7 +41,6 @@ ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(end-of-line)
 
 zplug "morhetz/gruvbox", use:"gruvbox_256palette.sh"
 zplug "felixonmars/ydcv", as:command, use:"src/ydcv.py", rename-to:"ydcv"
-zplug "urbainvaes/fzf-marks"
 #zplug 'ytet5uy4/fzf-widgets'
 #bindkey '^@'  fzf-select-widget
 #bindkey '^@ga' fzf-git-add-files
@@ -127,9 +126,10 @@ alias gsw='git switch'
 zplug 'so-fancy/diff-so-fancy', as:command, use:diff-so-fancy, hook-build:'git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"'
 
 zplug 'b4b4r07/zplug-doctor', lazy:yes
-zplug 'b4b4r07/zplug-rm', lazy:yes
 
+zplug 'wfxr/zplug-rm', lazy:yes
 zplug 'wfxr/zplug-cd', lazy:yes
+zplug "wfxr/fzf-marks"
 zplug 'wfxr/odps-fzf'
 zplug 'wfxr/forgit', defer:1
 zplug "wfxr/emoji-cli", as:plugin
