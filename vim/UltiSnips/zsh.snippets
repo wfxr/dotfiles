@@ -1,3 +1,7 @@
 snippet hascmd "If command exists..." b
 (( $+commands[${1:cmd}] )) && ${2:Do something awesome}
 endsnippet
+
+snippet better_ll "Create common header" b
+(( $+commands[exa] )) && ll='exa -lbhg --git ${1:--time-style long-iso} ${2:--color=always}' || ll='ls -l $1 $2'
+endsnippet
