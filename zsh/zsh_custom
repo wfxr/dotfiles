@@ -269,3 +269,12 @@ function o() {
 function csvcat() {
     csvlook "$@" | less -SF
 }
+
+# ghq
+unalias gcd 2>/dev/null
+function gcd() {
+    (( $+commands[exa] )) && ll='exa -lbhg --git --time-style long-iso --color=always' || ll='ls -l --time-style long-iso --color=always'
+    root=$(ghq root)
+    repo=$(ghq list| fzf --preview="$ll $root/{}" --preview-window=right:60%)
+    [[ -n "$repo" ]] && cd "$(ghq root)/$repo"
+}
