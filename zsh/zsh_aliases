@@ -10,7 +10,6 @@ alias vimrc='vim ~/.vimrc'
 alias vimplug='vim ~/.vim_plug'
 alias vimcomm='vim ~/.vim_comm'
 alias gvimrc='vim ~/.gvimrc'
-
 alias zshrc='vim ~/.zshrc'
 alias zshenv='vim ~/.zsh_env'
 alias zshalias='vim ~/.zsh_aliases'
@@ -19,9 +18,7 @@ alias zshcustom='vim ~/.zsh_custom'
 alias zshmisc='vim ~/.zsh_misc'
 alias zshplug='vim ~/.zsh_plug'
 alias zshlocal='vim ~/.zsh_local'
-
 alias hostinfo='vim ~/.ssh/host_info'
-
 alias tmuxconf='vim ~/.tmux.conf'
 
 alias ptp=ptpython
@@ -35,8 +32,8 @@ alias hhkb='setxkbmap -option "ctrl:swapcaps"'
 alias disable_touch_pad='sudo modprobe -r psmouse'   # 禁用触控板
 alias enable_touch_pad='sudo modprobe psmouse'       # 启用触控板
 alias mkycm='cp ~/dotfiles/cpp/ycm_extra_conf.py .ycm_extra_conf.py'
-(( $+commands[tac]      )) || alias tac='tail -r'
-(( $+commands[nvim]     )) && alias vim=`which nvim`
+(( $+commands[tac]  )) || alias tac='tail -r'
+(( $+commands[nvim] )) && alias vim='nvim'
 if (( $+commands[exa] )); then
     alias ls='exa --time-style long-iso'
     alias tree='ls -T'
@@ -73,34 +70,34 @@ alias weather='curl wttr.in'
 
 alias tl='tmux list-sessions'
 
-[ $+commands[ghq] ] && \
+(( $+commands[ghq] )) && \
     alias gget='ghq get' && \
-    alias glook='ghq look' && \
-    alias glist='ghq list'
+    alias gcd='ghq look' && \
+    alias gls='ghq list'
 
-alias -s c=vim
-alias -s cpp=vim
-alias -s h=vim
-alias -s hpp=vim
-alias -s java=vim
-alias -s go=vim
+#alias -s c=vim
+#alias -s cpp=vim
+#alias -s h=vim
+#alias -s hpp=vim
+#alias -s java=vim
+#alias -s go=vim
 #alias -s sh=vim
 #alias -s zsh=vim
-alias -s rs=vim
-alias -s cs=vim
+#alias -s rs=vim
+#alias -s cs=vim
 #alias -s rb=vim
 #alias -s py=vim
-alias -s js=vim
-alias -s conf=vim
-alias -s txt=vim
-alias -s xml=vim
-alias -s html=vim
-alias -s yml=vim
-alias -s yaml=vim
-alias -s zip='unzip'
-alias -s gz='tar -xvf'
-alias -s tgz='tar -xvf'
-alias -s bz2='tar -xvf'
+#alias -s js=vim
+#alias -s conf=vim
+#alias -s txt=vim
+#alias -s xml=vim
+#alias -s html=vim
+#alias -s yml=vim
+#alias -s yaml=vim
+#alias -s zip='unzip'
+#alias -s gz='tar -xvf'
+#alias -s tgz='tar -xvf'
+#alias -s bz2='tar -xvf'
 
 # Archlinux
 # -F Causes less to automatically exit if the entire file can be displayed on one screen
