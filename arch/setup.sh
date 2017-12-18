@@ -1,9 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 mv /etc/pacman.d/mirrorlist /etc/pacman/mirrorlist.bak
-cp $SCRIPT_DIR/mirrorlist /etc/pacman/mirrorlist
+cp $SCRIPT_DIR/mirrorlist   /etc/pacman/mirrorlist
+mv /etc/pacman.conf         /etc/pacman.conf.bak
+cp $SCRIPT_DIR/pacman.conf  /etc/pacman.conf
 
 # Download pacman mirrorlist
 # Uncomment the wanted mirror
