@@ -10,6 +10,7 @@ tmux
 vim
 zsh
 cpp
+ruby
 python
 )
 

@@ -21,7 +21,8 @@ apt -y install libhttp-parser2.1 libssh2-1-dev # exa need it
 hash java &>/dev/null || apt -y install openjdk-8-jdk
 
 # Tools
-apt -y install git tmux mosh zsh tree vim ctags htop ifstat dstat pstree
+apt -y install git tmux mosh zsh tree vim exuberant-ctags htop ifstat dstat
+apt -y install psmisc                                 # A set of some small useful utilities that use the proc filesystem
 apt -y install axel                                   # Multi threads download tool
 apt -y install pv                                     # Show Progress
 apt -y install neofetch || apt -y install screenfetch # Show system log and other info
