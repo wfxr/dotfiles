@@ -7,4 +7,7 @@ pip install pydf    # pydf is much easier to read
 pip install thefuck # Thefuck is a magnificent app which corrects your previous console command
 pip install csvkit  # A suite of utilities for converting to and working with CSV, the king of tabular file formats.
 
+gem sources --add https://gems.ruby-china.org/ --remove https://rubygems.org/
+gem update --system
+gem install tmuxinator
 gem install lolcat
