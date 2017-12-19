@@ -11,13 +11,10 @@ apt -y install language-pack-zh-hans
 
 # Development environments
 apt -y install build-essential make cmake
+apt -y install ruby-full
 #apt -y install python python-dev python-pip
 apt -y install python3 python3-dev python3-pip
 apt -y install clang
-apt -y install ruby-full
-gem sources --add https://gems.ruby-china.org/ --remove https://rubygems.org/
-gem update --system
-gem install tmuxinator
 apt -y install libhttp-parser2.1 libssh2-1-dev # exa need it
 
 # OpenJDK
@@ -55,4 +52,4 @@ apt -y install wamerican
 apt -y autoremove
 
 # Install platform independent tools
-$SCRIPT_DIR/setup_common_base.sh
+$SCRIPT_DIR/post_install.sh

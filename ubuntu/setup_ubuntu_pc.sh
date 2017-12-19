@@ -25,8 +25,9 @@ apt -y install xclip
 add-apt-repository -y ppa:neovim-ppa/unstable
 apt update
 apt -y install neovim
-pip3 install --upgrade neovim
-gem install neovim # ruby support
+hash gem  &>/dev/null && gem  install neovim
+hash pip2 &>/dev/null && pip2 install --upgrade neovim
+hash pip3 &>/dev/null && pip3 install --upgrade neovim
 
 # Timg - Terminal Image Viewer
 cd /tmp
