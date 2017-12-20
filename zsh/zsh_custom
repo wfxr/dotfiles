@@ -278,3 +278,7 @@ function gcd() {
     repo=$(ghq list| fzf --preview="$ll $root/{}" --preview-window=right:60%)
     [[ -n "$repo" ]] && cd "$(ghq root)/$repo"
 }
+
+function xx() {
+    (start_proxy && "$@")
+}
