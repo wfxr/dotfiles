@@ -282,3 +282,11 @@ function gcd() {
 function xx() {
     (start_proxy && "$@")
 }
+
+function ghr-get() {
+    local url=$(__zplug::utils::releases::get_url "$@" 2>/dev/null || echo "$@: no release found" >&2)
+    [[ -n "$url" ]] || return 1
+    echo "Latest release found: $url\n"
+
+    curl -LO --proto-redir -all,https "$url"
+}
