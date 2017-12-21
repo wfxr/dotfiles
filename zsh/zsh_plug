@@ -5,12 +5,14 @@
 #=============================================================================
 
 # Plugin manager
-export ZPLUG_LOG_LOAD_SUCCESS=false
+export ZPLUG_BIN=~/bin
+export ZPLUG_THREADS=32
 ZSHINIT_=~/.zplug/init.zsh
 INSTALLER_=https://raw.githubusercontent.com/zplug/installer/master/installer.zsh
 # If zplug doesn't exist, install it
 source "$ZSHINIT_" &>/dev/null || curl -sL --proto-redir -all,https "$INSTALLER_" |zsh && source "$ZSHINIT_"
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+zplug 'github/hub', from:gh-r
 
 # Git alias. See: https://github.com/robbyrussell/oh-my-zsh/wiki/Plugin:git
 zplug "plugins/git", from:oh-my-zsh

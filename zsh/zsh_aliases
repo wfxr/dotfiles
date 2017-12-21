@@ -101,4 +101,7 @@ alias tl='tmux list-sessions'
 
 # Archlinux
 # -F Causes less to automatically exit if the entire file can be displayed on one screen
-alias yaourt='LESS="-F $LESS" yaourt --pager --color'
+(( $+commands[yaourt] )) alias yaourt='LESS="-F $LESS" yaourt --pager --color'
+
+# Hub for git
+(( $+commands[hub] )) && alias git=hub

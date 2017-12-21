@@ -1,15 +1,14 @@
 #!/usr/bin/env bash
-usage() {
-    echo "Usage: $(basename $0) <user/repo>" >&2
+usage ()
+{
+    echo "Usage :  $(basename $0) [get] <user/repo>"
     exit 1
 }
 
-if [[ $# -ne 1 ]]; then
-    usage
-fi
+[[ "$#" -eq 1 ]] || usage
 
-curl -s https://api.github.com/repos/$1/releases/latest \
-    | grep browser_download_url \
-    | cut -d'"' -f4 \
-    | fzf -m \
-    | xargs -i{} wget {}
+curl -s https://api.github.com/repos/$1/releases/latest |
+    grep browser_download_url |
+    cut -d'"' -f4 |
+    fzf -m |
+    xargs -i{} curl -LO --proto-redir -all,https {}
