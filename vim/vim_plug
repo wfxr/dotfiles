@@ -104,6 +104,11 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-repeat'
 Plug 'jiangmiao/auto-pairs'
+" gs/gr to switch or switch reverse
+Plug 'AndrewRadev/switch.vim'
+noremap gr :SwitchReverse<CR>
+Plug 'AndrewRadev/splitjoin.vim'
+" gS/gJ to split or join
 Plug 'mbbill/undotree'
 "Plug 'osyo-manga/vim-over'
 Plug 'ntpeters/vim-better-whitespace'
@@ -134,7 +139,6 @@ map <leader>il :IndentLinesToggle<CR>
 "let g:hardtime_default_on = 0
 "Plug 'vim-utils/vim-husk' " 在vim的命令模式支持eamcs-bash风格的快捷键操作
 Plug 'tpope/vim-rsi'
-Plug 'AndrewRadev/splitjoin.vim'
 
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp'        }
 Plug 'ap/vim-css-color',                 { 'for': 'css'        }
