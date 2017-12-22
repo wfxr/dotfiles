@@ -8,7 +8,7 @@ bindkey -e
 
 source ~/.fzf.zsh 2>/dev/null
 source ~/.zsh_local 2>/dev/null
-source ~/.secret 2>/dev/null
+source ~/.zsh_secret 2>/dev/null
 
 source ~/.zsh_env
 source ~/.zsh_plug
