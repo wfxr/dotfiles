@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 #===============================================================================
 #   Author: Wenxuan
 #    Email: wenxuangm@gmail.com
@@ -8,3 +9,6 @@ SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 mkdir -p ~/.proxychains
 ln -sf $SCRIPT_DIR/proxychains.conf ~/.proxychains/proxychains.conf
+
+# https://github.com/shadowsocks/shadowsocks-qt5
+# https://github.com/shadowsocks/shadowsocks/wiki/Using-Shadowsocks-with-Command-Line-Tools
