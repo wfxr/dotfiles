@@ -19,6 +19,10 @@ Plug 'zplug/vim-zplug'
 if !has('nvim')
     Plug 'tpope/vim-sensible' " no nead for nvim
 endif
+" Wonderfun calendar plugin
+"Plug 'itchyny/calendar.vim'
+"let g:calendar_google_calendar = 1
+"let g:calendar_google_task = 1
 Plug 'terryma/vim-smooth-scroll'
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
@@ -133,7 +137,8 @@ Plug 'Yggdroot/indentLine'
 let g:indentLine_char = '│'
 let g:indentLine_color_term = 239
 let g:indentLine_color_gui = '#4E4E4E'
-autocmd Filetype json,markdown let g:indentLine_setConceal = 0 " json和markdown中关闭IndentLine
+autocmd Filetype json,markdown let g:indentLine_setConceal = 0
+let g:indentLine_fileTypeExclude = ['calendar']
 map <leader>il :IndentLinesToggle<CR>
 "Plug 'takac/vim-hardtime'
 "let g:hardtime_default_on = 0
