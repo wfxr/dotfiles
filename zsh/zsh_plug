@@ -7,10 +7,10 @@
 # Plugin manager
 export ZPLUG_BIN=~/bin
 export ZPLUG_THREADS=32
-ZSHINIT_=~/.zplug/init.zsh
-INSTALLER_=https://raw.githubusercontent.com/zplug/installer/master/installer.zsh
 # If zplug doesn't exist, install it
-source "$ZSHINIT_" &>/dev/null || curl -sL --proto-redir -all,https "$INSTALLER_" |zsh && source "$ZSHINIT_"
+ZPLUG_INIT=~/.zplug/init.zsh
+[[ -f "$ZPLUG_INIT" ]] || curl -sL https://raw.githubusercontent.com/zplug/installer/master/installer.zsh |zsh
+source "$ZPLUG_INIT"
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug 'github/hub', from:gh-r
 
@@ -18,7 +18,6 @@ zplug 'github/hub', from:gh-r
 zplug "plugins/git", from:oh-my-zsh
 # Git completions. On OS X with Homebrew, you need to install git with brew install git --without-completions. Otherwise, git's _git will take precedence, and you won't see the completions for git-extras commands.
 zplug "plugins/git-extras", from:oh-my-zsh
-#zplug "plugins/osx", from:oh-my-zsh, if:"[[ $OSTYPE = *darwin* ]]"
 #zplug "plugins/cp", from:oh-my-zsh
 zplug "plugins/mvn", from:oh-my-zsh, lazy:yes
 #zplug "plugins/pip", from:oh-my-zsh, lazy:yes # work badly
@@ -27,7 +26,6 @@ zplug "plugins/web-search", from:oh-my-zsh
 #zplug "plugins/docker", from:oh-my-zsh
 #zplug "plugins/tmux", from:oh-my-zsh # Why its folder always appears at top of fzf/fzy list?
 zplug "plugins/tmuxinator", from:oh-my-zsh, lazy:yes
-zplug "plugins/archlinux", from:oh-my-zsh, if:'cat /etc/lsb-release | grep -i arch'
 #zplug "plugins/cargo", from:oh-my-zsh, lazy:yes
 #zplug "plugins/rust", from:oh-my-zsh, lazy:yes
 (( $+commands[thefuck] )) && zplug "plugins/thefuck", from:oh-my-zsh
@@ -50,10 +48,12 @@ zplug "felixonmars/ydcv", as:command, use:"src/ydcv.py", rename-to:"ydcv"
 ################################################################################
 # Themes
 ################################################################################
+[[ -n $is_server ]] && PROMPT_SYMBOL='' || PROMPT_SYMBOL=''
+
 POWERLEVEL9K_MODE='nerdfont-complete'
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
-[[ -z $is_server ]] && POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX=" %F{81}%{%f%} "|| POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX=" %F{81}%{%f%} "
+POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX=" %F{81}${PROMPT_SYMBOL}%{%f%} "
 POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 
 POWERLEVEL9K_SSH_ICON=''
@@ -108,16 +108,9 @@ zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme, as:theme
 
 #zplug "mafredri/zsh-async", from:github
 #zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
-#[[ -z $is_server ]] && PURE_PROMPT_SYMBOL=➤ || PURE_PROMPT_SYMBOL=
-#[[ -z $is_server ]] && PURE_PROMPT_SYMBOL= || PURE_PROMPT_SYMBOL=
 #if zplug check "b4b4r07/ultimate"; then
     #zstyle ':ultimate:prompt:path' mode 'shortpath'
 #fi
-
-# wonderful tools for fzf
-#zplug 'b4b4r07/fzf-powertools', \
-    #as:command, \
-    #use:'re'
 
 zplug 'b4b4r07/git-switch', \
     as:command, \
@@ -126,14 +119,16 @@ zplug 'b4b4r07/git-switch', \
 export GIT_FILTER=fzf
 alias gsw='git switch'
 
-zplug 'so-fancy/diff-so-fancy', as:command, use:diff-so-fancy, hook-build:'git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"'
+zplug 'so-fancy/diff-so-fancy', \
+    as:command, use:diff-so-fancy, \
+    hook-build:'git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"'
 
 zplug 'b4b4r07/zplug-doctor', lazy:yes
 
 zplug 'wfxr/zplug-rm', lazy:yes
 zplug 'wfxr/zplug-cd', lazy:yes
 zplug "wfxr/fzf-marks"
-zplug 'wfxr/odps-fzf'
+(( $+commands[odpscmd] )) && zplug 'wfxr/odps-fzf'
 zplug 'wfxr/forgit', defer:1
 zplug "wfxr/emoji-cli", as:plugin
 zplug "wfxr/emoji-cli", as:command, use:'emojify|fuzzy-emoji'
@@ -152,10 +147,10 @@ zplug "stedolan/jq", \
     rename-to:jq
 
 # A next-generation cd command with an interactive filter
-zplug "b4b4r07/enhancd", use:init.sh, hook-load:"unalias cd"
-alias fcd=__enhancd::cd
-export ENHANCD_FILTER=fzf:fzy:peco
-export ENHANCD_DOT_ARG=..
+#zplug "b4b4r07/enhancd", use:init.sh, hook-load:"unalias cd"
+#alias fcd=__enhancd::cd
+#export ENHANCD_FILTER=fzf:fzy:peco
+#export ENHANCD_DOT_ARG=..
 
 # fzy is faster and shows better results than other fuzzy finders.
 #zplug "jhawthorn/fzy", \
@@ -170,19 +165,17 @@ export ENHANCD_DOT_ARG=..
 # Short, simple, direct scripts for creating ASCII graphical histograms in the terminal.
 #zplug "philovivero/distribution", \
     #as:command, \
-    #use:distribution, \
-    #if:'(( $+commands[perl] ))'
+    #use:distribution
 
-zplug "holman/spark", \
-    as:command, \
-    use:spark
+#zplug "holman/spark", \
+    #as:command, \
+    #use:spark
 
 # httpstat visualizes curl(1) statistics in a way of beauty and clarity.
 #zplug "reorx/httpstat", \
     #as:command, \
     #use:'(httpstat).py', \
-    #rename-to:'$1', \
-    #if:'(( $+commands[python] ))'
+    #rename-to:'$1'
 
 # wrk - a HTTP benchmarking tool
 # eg: wrk -t12 -c400 -d30s http://127.0.0.1:8080/index.html
@@ -207,6 +200,18 @@ zplug "motemen/ghq", \
 
 # gomi is a simple trash tool that works on CLI, written in Go
 #zplug "b4b4r07/gomi", as:command, from:gh-r
+
+#[[ ${(L)OSNAME} =~ darwin ]] && zplug "plugins/osx",       from:oh-my-zsh
+#[[ ${(L)OSNAME} =~ ubuntu ]] && zplug "plugins/ubuntu",    from:oh-my-zsh
+#[[ ${(L)OSNAME} =~ arch   ]] && zplug "plugins/archlinux", from:oh-my-zsh
+case ${(L)OSNAME} in
+    *arch* )
+        zplug "plugins/archlinux", from:oh-my-zsh ;;
+    *ubuntu* )
+        zplug "plugins/ubuntu", from:oh-my-zsh ;;
+    *darwin* )
+        zplug "plugins/darwin", from:oh-my-zsh ;;
+esac
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then

@@ -118,8 +118,7 @@ bindkey '^[v' edit-command-line
 e() {
     local files
     IFS=$'\n' files=($(fzf -q "`echo $@`" -m -1 -0))
-    #echo $?
-    ([ $? -eq 0 ] || [ $? -eq 1]) && ${EDITOR:-vim} "${files[@]}"
+    [[ $? -eq 0 ]] && ${EDITOR:-vim} "${files[@]}"
 }
 
 # mosh
