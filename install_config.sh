@@ -13,7 +13,7 @@ usage() {
 [[ $# -lt 1 ]] && usage
 
 # source color code
-source ./color.sh
+source scripts/color.sh
 
 install_module() {
     local module=$1
