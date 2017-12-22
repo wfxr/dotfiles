@@ -297,10 +297,10 @@ let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_min_num_of_chars_for_completion = 1
 " 添加UltiSnips进行snippet补全
 let g:ycm_use_ultisnips_completer = 1
+" 关闭函数原型等补全预览窗口
+set completeopt=menu
 " 补全完成后关闭预览窗口
 let g:ycm_autoclose_preview_window_after_completion = 1
-" Disable completion previews with function prototypes, etc.
-"set completeopt=menu
 "let g:ycm_add_preview_tocompleteopt = 1
 " 关闭js文件补全（需要js项目配置文件，类似C++，麻烦）
 let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1}
