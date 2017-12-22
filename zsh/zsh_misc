@@ -32,14 +32,14 @@ zmodload -i zsh/complist
 #bindkey -M menuselect '^[l' vi-forward-char
 #bindkey -M menuselect '^k' accept-and-infer-next-history
 
-autoload -Uz cdr
+#autoload -Uz cdr
 autoload -Uz history-search-end
 autoload -Uz modify-current-argument
 autoload -Uz smart-insert-last-word
 autoload -Uz terminfo
 autoload -Uz vcs_info
-autoload -Uz zcalc
-autoload -Uz zmv
-autoload -Uz run-help-git
-autoload -Uz run-help-svk
-autoload -Uz run-help-svn
+#autoload -Uz zcalc
+#autoload -Uz zmv
+#autoload -Uz run-help-git
+#autoload -Uz run-help-svk
+#autoload -Uz run-help-svn
