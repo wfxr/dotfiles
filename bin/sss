@@ -1,0 +1,12 @@
+#!/usr/bin/env zsh
+#===============================================================================
+#   Author: Wenxuan
+#    Email: wenxuangm@gmail.com
+#  Created: 2017-12-22 15:56
+#===============================================================================
+
+source ~/.zsh_env
+
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+
+shadowsocks-local -c ~/.secret/shadowsocks.json
