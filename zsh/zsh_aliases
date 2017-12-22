@@ -25,7 +25,7 @@ alias ptp=ptpython
 
 alias md='\mkdir -p -v'
 alias mv='\mv -iv'
-[[ $OSTYPE =~ *linux* ]] && alias rm='\rm -Iv --one-file-system' || alias rm='\rm -iv'
+[[ "$OSTYPE" =~ linux ]] && alias rm='\rm -Iv --one-file-system' || alias rm='\rm -iv'
 alias ..='\cd ..'
 alias hhkb='setxkbmap -option "ctrl:swapcaps"'
 alias disable_touch_pad='sudo modprobe -r psmouse'   # 禁用触控板
