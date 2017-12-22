@@ -27,6 +27,7 @@ zplug "plugins/web-search", from:oh-my-zsh
 #zplug "plugins/docker", from:oh-my-zsh
 #zplug "plugins/tmux", from:oh-my-zsh # Why its folder always appears at top of fzf/fzy list?
 zplug "plugins/tmuxinator", from:oh-my-zsh, lazy:yes
+zplug "plugins/archlinux", from:oh-my-zsh, if:'cat /etc/lsb-release | grep -i arch'
 #zplug "plugins/cargo", from:oh-my-zsh, lazy:yes
 #zplug "plugins/rust", from:oh-my-zsh, lazy:yes
 (( $+commands[thefuck] )) && zplug "plugins/thefuck", from:oh-my-zsh
