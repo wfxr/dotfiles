@@ -28,3 +28,10 @@ endglobal
 snippet todo "TODO comment" bw
 `!p snip.rv=get_comment_format()[0]` ${2:TODO}: $0${3: <${4:`!v strftime('%y-%m-%d')`}, ${5:`whoami`}>} `!p snip.rv=get_comment_format()[2]`
 endsnippet
+
+snippet today "date of today" b
+`date +%F`
+endsnippet
+snippet yesterday "date of today" b
+`[[ "$OSTYPE" =~ darwin ]] && date -v -1d +%F || date --date=yesterday +%F`
+endsnippet
