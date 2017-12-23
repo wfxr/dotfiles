@@ -48,7 +48,7 @@ zplug "felixonmars/ydcv", as:command, use:"src/ydcv.py", rename-to:"ydcv"
 ################################################################################
 # Themes
 ################################################################################
-[[ -n $is_server ]] && PROMPT_SYMBOL='' || PROMPT_SYMBOL=''
+[[ -n ${SSH_CLIENT} ]] && PROMPT_SYMBOL='' || PROMPT_SYMBOL=''
 
 POWERLEVEL9K_MODE='nerdfont-complete'
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
@@ -93,7 +93,7 @@ POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=0.1
 POWERLEVEL9K_VCS_GIT_GITHUB_ICON=''
 POWERLEVEL9K_EXECUTION_TIME_ICON='' #   
 
-if [[ -z $is_server ]]; then
+if [[ -z ${SSH_CLIENT} ]]; then
     POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir_writable dir vcs)
     POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time status  background_jobs time)
 else

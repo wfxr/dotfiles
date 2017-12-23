@@ -15,7 +15,3 @@ python
 )
 
 ./install_config.sh "${modules[@]}"
-
-env='export is_server=true'
-localrc=~/.zsh_local
-grep "$env" $localrc &>/dev/null || echo "$env" >> $localrc
