@@ -49,7 +49,8 @@ zplug "felixonmars/ydcv", as:command, use:"src/ydcv.py", rename-to:"ydcv"
 ################################################################################
 # Themes
 ################################################################################
-zplug "denysdovhan/spaceship-zsh-theme", use:spaceship.zsh, as:theme
+zplug "wfxr/spaceship-zsh-theme", use:spaceship.zsh, as:theme
+#zplug "denysdovhan/spaceship-zsh-theme", use:spaceship.zsh, as:theme
 #zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme, as:theme
 #zplug "b4b4r07/zsh-vimode-visual", use:"*.zsh", defer:3
 #zplug "b4b4r07/ultimate", as:theme
