@@ -10,6 +10,7 @@ ln -sf $script_dir/zsh_keybinds ~/.zsh_keybinds
 ln -sf $script_dir/zsh_misc     ~/.zsh_misc
 ln -sf $script_dir/zsh_custom   ~/.zsh_custom
 ln -sf $script_dir/zsh_plug     ~/.zsh_plug
+ln -sf $script_dir/zsh_theme    ~/.zsh_theme
 
 mkdir -p ~/.zsh_completions
 ln -sf $script_dir/completions/_ag  ~/.zsh_completions/_ag

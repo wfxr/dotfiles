@@ -17,6 +17,7 @@ source ~/.zsh_misc
 source ~/.zsh_aliases
 source ~/.zsh_custom
 
+source ~/.zsh_theme 2>/dev/null
 eval $(thefuck --alias 2>/dev/null) &>/dev/null
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
