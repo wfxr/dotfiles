@@ -1,23 +1,24 @@
-[legacy/keybindings]
-switch-to-tab-1='<Super>1'
-new-tab='<Super>t'
-switch-to-tab-2='<Super>2'
-switch-to-tab-3='<Super>3'
-copy='<Primary><Shift>c'
-switch-to-tab-5='<Super>5'
-preferences='<Super>comma'
-prev-tab='<Super>p'
-switch-to-tab-6='<Super>6'
-close-tab='<Super>q'
-switch-to-tab-4='<Super>4'
-paste='<Primary><Shift>v'
-next-tab='<Super>n'
-
 [legacy]
+new-terminal-mode='tab'
 menu-accelerator-enabled=true
 schema-version=uint32 3
 default-show-menubar=false
 theme-variant='dark'
+
+[legacy/keybindings]
+switch-to-tab-1='<Alt>1'
+new-tab='<Super>t'
+switch-to-tab-2='<Alt>2'
+switch-to-tab-3='<Alt>3'
+copy='<Primary><Shift>c'
+switch-to-tab-5='<Alt>5'
+preferences='<Super>comma'
+prev-tab='<Super>p'
+switch-to-tab-6='<Alt>6'
+close-tab='<Super>q'
+switch-to-tab-4='<Alt>4'
+paste='<Primary><Shift>v'
+next-tab='<Super>n'
 
 [legacy/profiles:]
 list=['db110e17-71cf-4dd1-b4f4-061946508896']
@@ -26,15 +27,16 @@ default='db110e17-71cf-4dd1-b4f4-061946508896'
 [legacy/profiles:/:db110e17-71cf-4dd1-b4f4-061946508896]
 foreground-color='#9494A3A3A5A5'
 visible-name='wfxr'
-palette=['#444447475a5a', '#ffff55555555', '#5050fafa7b7b', '#ffffb8b86c6c', '#8b8be9e9fdfd', '#bdbd9393f9f9', '#ffff7979c6c6', '#9494A3A3A5A5', '#000000000000', '#ffff55555555', '#5050fafa7b7b', '#ffffb8b86c6c', '#8b8be9e9fdfd', '#bdbd9393f9f9', '#ffff7979c6c6', '#ffffffffffff']
+scrollbar-policy='never'
+palette=['rgb(68,71,90)', 'rgb(255,85,85)', 'rgb(80,250,123)', 'rgb(255,184,108)', 'rgb(139,233,253)', 'rgb(189,147,249)', 'rgb(0,255,255)', 'rgb(148,163,165)', 'rgb(0,0,0)', 'rgb(255,85,85)', 'rgb(80,250,123)', 'rgb(255,184,108)', 'rgb(139,233,253)', 'rgb(189,147,249)', 'rgb(0,255,255)', 'rgb(255,255,255)']
 scroll-on-keystroke=true
 use-system-font=false
 use-transparent-background=true
 use-theme-colors=false
-font='MesloLGSDZ Nerd Font 14'
+font='MesloLGS Nerd Font 14'
 use-theme-background=false
 bold-color-same-as-fg=true
 bold-color='#9494A3A3A5A5'
 background-color='#28282a2a3636'
 background-transparency-percent=6
-scrollbar-policy='never'
+audible-bell=false
