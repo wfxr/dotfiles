@@ -92,7 +92,7 @@ let g:airline_right_alt_sep = ''
 Plug 'scrooloose/nerdtree'
 nmap <C-t> :NERDTreeToggle<CR>
 " vim-go occupies the <c-t> mapping
-command! T NERDTreeToggle
+noremap <leader>t :NERDTreeToggle<CR>
 autocmd VimEnter *.go NERDTree | wincmd w
 " Quit when nerdtree is the only buffer
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -169,8 +169,27 @@ Plug 'vim-ruby/vim-ruby',                { 'for': 'ruby'       }
 Plug 'tpope/vim-bundler',                { 'for': 'ruby'       }
 Plug 'tpope/vim-rake',                   { 'for': 'ruby'       }
 Plug 'jgdavey/vim-blockle',              { 'for': 'ruby'       }
+let g:blockle_mapping = '<leader>B'
 Plug 'fatih/vim-go',                     { 'for': 'go'         }
-let g:blockle_mapping = '<leader>bb'
+function! s:build_go_files()
+    let l:file = expand('%')
+    if l:file =~# '^\f\+_test\.go$'
+        call go#test#Test(0, 1)
+    elseif l:file =~# '^\f\+\.go$'
+        call go#cmd#Build(0)
+    endif
+endfunction
+augroup go_env
+    autocmd!
+    autocmd FileType go
+                \ nmap <leader>b<CR> :call <SID>build_go_files()<CR> |
+                \ nmap <leader>r<CR> <Plug>(go-run) |
+                \ nmap <leader>t<CR> <Plug>(go-test) |
+                \ nmap <leader>c<CR> <Plug>(go-coverage-toggle) |
+                \ nmap <c-a-j> :cnext<CR> |
+                \ nmap <c-a-k> :cprevious<CR>
+    let g:go_list_type = "quickfix"
+augroup END
 Plug 'nelstrom/vim-textobj-rubyblock',   { 'for': 'ruby'       }
 Plug 'rust-lang/rust.vim',               { 'for': 'rust'       }
 Plug 'vim-scripts/awk.vim',              { 'for': 'awk'        }
