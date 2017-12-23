@@ -112,6 +112,8 @@ Plug 'jiangmiao/auto-pairs'
 " gs/gr to switch or switch reverse
 Plug 'AndrewRadev/switch.vim'
 noremap gr :SwitchReverse<CR>
+noremap - :Switch<CR>
+noremap _ :SwitchReverse<CR>
 Plug 'AndrewRadev/splitjoin.vim'
 " gS/gJ to split or join
 Plug 'mbbill/undotree'
