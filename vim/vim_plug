@@ -187,8 +187,16 @@ augroup go_env
                 \ nmap <leader>t<CR> <Plug>(go-test) |
                 \ nmap <leader>c<CR> <Plug>(go-coverage-toggle) |
                 \ nmap <c-a-j> :cnext<CR> |
-                \ nmap <c-a-k> :cprevious<CR>
-    let g:go_list_type = "quickfix"
+                \ nmap <c-a-k> :cprevious<CR> |
+                \ let g:go_fmt_command = "goimports" |
+                \ let g:go_list_type = "quickfix" |
+                \ let g:go_highlight_types = 1 |
+                \ let g:go_highlight_fields = 1 |
+                \ let g:go_highlight_functions = 1 |
+                \ let g:go_highlight_methods = 1 |
+                \ let g:go_highlight_operators = 1 |
+                \ let g:go_highlight_build_constraints = 1 |
+                \ let g:go_highlight_generate_tags = 1
 augroup END
 Plug 'nelstrom/vim-textobj-rubyblock',   { 'for': 'ruby'       }
 Plug 'rust-lang/rust.vim',               { 'for': 'rust'       }
