@@ -159,6 +159,9 @@ endfunction
 command! UpdateHeader call s:update_header()
 "autocmd BufWritePre * silent! :UpdateHeader " Update header when saving buffer
 
+" Default 800ms is too slow
+set updatetime=100
+
 " colorscheme solarized
 colorscheme gruvbox
 set background=dark

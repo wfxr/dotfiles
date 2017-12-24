@@ -19,6 +19,9 @@ Plug 'zplug/vim-zplug'
 if !has('nvim')
     Plug 'tpope/vim-sensible' " no nead for nvim
 endif
+
+Plug 'ctrlpvim/ctrlp.vim'
+let g:ctrlp_working_path_mode = 'ra'
 " Wonderfun calendar plugin
 "Plug 'itchyny/calendar.vim'
 "let g:calendar_google_calendar = 1
@@ -90,16 +93,13 @@ let g:airline_right_alt_sep = ''
 "let Tlist_Auto_Open=0
 "nmap <leader>tl :TlistToggle<CR>
 Plug 'scrooloose/nerdtree'
-nmap <C-t> :NERDTreeToggle<CR>
-" vim-go occupies the <c-t> mapping
-noremap <leader>t :NERDTreeToggle<CR>
-autocmd VimEnter *.go NERDTree | wincmd w
+nmap <C-\> :NERDTreeToggle<CR>
 " Quit when nerdtree is the only buffer
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 Plug 'mhinz/vim-startify'
 " Shot nerdtree when start vim without argument
 autocmd VimEnter *
-            \   if !argc()
+            \ if !argc()
             \ |   Startify
             \ |   NERDTree
             \ |   wincmd w
@@ -186,8 +186,11 @@ augroup go_env
                 \ nmap <leader>r<CR> <Plug>(go-run) |
                 \ nmap <leader>t<CR> <Plug>(go-test) |
                 \ nmap <leader>c<CR> <Plug>(go-coverage-toggle) |
+                \ nmap <leader>a <Plug>(go-alternate-edit) |
+                \ nmap <Leader>i <Plug>(go-info) |
                 \ nmap <c-a-j> :cnext<CR> |
                 \ nmap <c-a-k> :cprevious<CR> |
+                \ nmap <c-a-r> <Plug>(go-rename) |
                 \ let g:go_fmt_command = "goimports" |
                 \ let g:go_list_type = "quickfix" |
                 \ let g:go_highlight_types = 1 |
@@ -196,7 +199,17 @@ augroup go_env
                 \ let g:go_highlight_methods = 1 |
                 \ let g:go_highlight_operators = 1 |
                 \ let g:go_highlight_build_constraints = 1 |
-                \ let g:go_highlight_generate_tags = 1
+                \ let g:go_highlight_generate_tags = 1 |
+                \ let g:go_auto_type_info = 1 |
+                \ let g:go_updatetime = 100 |
+                \ let g:go_auto_sameids = 1 |
+                \ let g:go_play_open_browser = 1 |
+                \ let g:go_gocode_unimported_packages = 1 |
+                \ noremap <leader>tt :NERDTreeToggle<CR> |
+                \ command! -bang A call go#alternate#Switch(<bang>0, 'edit') |
+                \ command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit') |
+                \ command! -bang AS call go#alternate#Switch(<bang>0, 'split') |
+                \ inoremap <silent> <leader>, <End>,<CR>
 augroup END
 Plug 'nelstrom/vim-textobj-rubyblock',   { 'for': 'ruby'       }
 Plug 'rust-lang/rust.vim',               { 'for': 'rust'       }
@@ -312,8 +325,7 @@ function! BuildYCM(info)
         !./install.py --clang-completer --system-libclang
     endif
 endfunction
-Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
-Plug 'rdnetto/YCM-Generator',  { 'branch': 'stable'}
+Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') } | Plug 'rdnetto/YCM-Generator',  { 'branch': 'stable'}
 " 配置默认的ycm_extra_conf.py
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 " 打开vim时不再询问是否加载ycm_extra_conf.py配置
