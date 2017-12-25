@@ -184,10 +184,12 @@ augroup go_env
     autocmd FileType go
                 \ nmap <leader>b<CR> :call <SID>build_go_files()<CR> |
                 \ nmap <leader>r<CR> <Plug>(go-run) |
+                \ nmap <leader>rr    :GoRun %<CR> |
                 \ nmap <leader>t<CR> <Plug>(go-test) |
                 \ nmap <leader>c<CR> <Plug>(go-coverage-toggle) |
                 \ nmap <leader>a <Plug>(go-alternate-edit) |
                 \ nmap <Leader>i <Plug>(go-info) |
+                \ nmap <leader>sm :GoSameIdsToggle<CR> |
                 \ nmap <c-a-j> :cnext<CR> |
                 \ nmap <c-a-k> :cprevious<CR> |
                 \ nmap <c-a-r> <Plug>(go-rename) |
@@ -202,7 +204,7 @@ augroup go_env
                 \ let g:go_highlight_generate_tags = 1 |
                 \ let g:go_auto_type_info = 1 |
                 \ let g:go_updatetime = 100 |
-                \ let g:go_auto_sameids = 1 |
+                \ let g:go_auto_sameids = 0 |
                 \ let g:go_play_open_browser = 1 |
                 \ let g:go_gocode_unimported_packages = 1 |
                 \ noremap <leader>tt :NERDTreeToggle<CR> |
