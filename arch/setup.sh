@@ -12,13 +12,17 @@ cp $SCRIPT_DIR/pacman.conf  /etc/pacman.conf
 #wget -O/etc/pacman.d/mirrorlist https://www.archlinux.org/mirrorlist/all/
 #wget -O /etc/pacman.d/mirrorlist 'https://www.archlinux.org/mirrorlist/?country=CN'
 
-# funny programs
 pacman -S words
 pacman -S go
 yaourt -S jdk9-openjdk openjdk9-src
 yaourt -S pet-git
 yaourt -S mosh
 yaourt -S axel
+
+# crontab
+pacman -S cronie
+systemctl enable cronie.service
+systemctl start  cronie.service
 
 # fcitx - gnome
 pacman -S fcitx && ln -sf $SCRIPT_DIR/xprofile ~/.xprofile

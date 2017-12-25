@@ -12,3 +12,5 @@ ln -sf $SCRIPT_DIR/proxychains.conf ~/.proxychains/proxychains.conf
 
 # https://github.com/shadowsocks/shadowsocks-qt5
 # https://github.com/shadowsocks/shadowsocks/wiki/Using-Shadowsocks-with-Command-Line-Tools
+
+go get -v github.com/shadowsocks/shadowsocks-go/cmd/shadowsocks-local
