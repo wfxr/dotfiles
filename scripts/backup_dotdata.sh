@@ -12,6 +12,7 @@ src=(
 .tmux
 .gitconfig
 .ssh
+.go
 .wakatime.cfg
 .gdbinit
 dotfiles
