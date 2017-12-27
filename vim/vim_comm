@@ -117,3 +117,6 @@ noremap <c-k> <c-y>
 noremap <c-j> <c-e>
 noremap <c-e> A
 noremap <c-a> I
+
+" Paste multiple times
+xnoremap p pgvy

@@ -219,6 +219,7 @@ Plug 'vim-scripts/awk.vim',              { 'for': 'awk'        }
 
 "Plug 'wfxr/logstash.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
+nmap <c-a-p> :FZF<CR>
 nmap <c-l><c-l> :Lines<cr>
 " Mapping selecting mappings
 nmap <c-l>m <plug>(fzf-maps-n)
