@@ -36,14 +36,26 @@ snippet sout "fmt.Println(...)" b
 fmt.Println(${1:"${2:message}"}$3)
 endsnippet
 
-snippet gof "go func() { ... }" b
-go func() {
-	$1
-}()
-endsnippet
-
 snippet af "func(...){...}"
 func($1) $2{
 	$3
 }
+endsnippet
+
+snippet forr "for item := range itmes..." b
+for ${1:it} := range ${2:chan ${3:ch}} {
+	$4
+}
+endsnippet
+
+snippet init "init function" b
+func init() {
+	$1
+}
+endsnippet
+
+snippet gof "go func() { ... }()" b,m
+go func() {
+	${1:${VISUAL}}
+}()
 endsnippet
