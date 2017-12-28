@@ -49,3 +49,36 @@ windows:
   - bid6:
       - clear
       - ssh bid-6
+  - bid7:
+      - clear
+      - ssh bid-7
+  - bid8:
+      - clear
+      - ssh bid-8
+  - bid9:
+      - clear
+      - ssh bid-9
+  - bid10:
+      - clear
+      - ssh bid-10
+  - bid11:
+      - clear
+      - ssh bid-11
+  - bid12:
+      - clear
+      - ssh bid-12
+  - bid13:
+      - clear
+      - ssh bid-13
+  - bid14:
+      - clear
+      - ssh bid-14
+  - bid15:
+      - clear
+      - ssh bid-15
+  - bid16:
+      - clear
+      - ssh bid-16
+  - bid17:
+      - clear
+      - ssh bid-17
