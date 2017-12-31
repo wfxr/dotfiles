@@ -40,11 +40,10 @@ apt -y install cowsay cowthink toilet figlet lolcat
 apt -y install silversearcher-ag
 
 # St - Simple statistics from the command line interface (CLI)
-cd /tmp
-git clone --depth=1 https://github.com/nferraz/st.git
-cd st
-perl Makefile.PL
-make install
+hash st &>/dev/null || \
+    git clone --depth=1 https://github.com/nferraz/st.git /tmp/st && \
+    cd st && perl Makefile.PL && make install && \
+    rm -rf /tmp/st
 
 # Dictionary
 apt -y install wamerican
@@ -53,4 +52,4 @@ apt -y install wamerican
 apt -y autoremove
 
 # Install platform independent tools
-$SCRIPT_DIR/post_install.sh
+$SCRIPT_DIR/post_install.sh || exit 1

@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
 
 [ "$(whoami)" != "root" ] && exec sudo -- "$0" "$@"
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 apt update
 apt -y dist-upgrade
-$SCRIPT_DIR/setup_ubuntu_base.sh
-
-$SCRIPT_DIR/python/setup.sh # config pip source mirror
+$SCRIPT_DIR/setup_base.sh || exit 1
+$SCRIPT_DIR/python/setup.sh || exit 1 # config pip source mirror
 
 # OpenJDK
 apt -y install openjdk-8-jdk openjdk-8-source
@@ -22,12 +23,7 @@ apt -y install xclip
 #cp /usr/local/share/wemux/man/wemux.1
 
 # Neovim
-add-apt-repository -y ppa:neovim-ppa/unstable
-apt update
-apt -y install neovim
-hash gem  &>/dev/null && gem  install neovim
-hash pip2 &>/dev/null && pip2 install --upgrade neovim
-hash pip3 &>/dev/null && pip3 install --upgrade neovim
+$SCRIPT_DIR/setup_neovim.sh || exit 1
 
 # Timg - Terminal Image Viewer
 cd /tmp
