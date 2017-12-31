@@ -72,8 +72,6 @@ Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'morhetz/gruvbox'
 let g:gruvbox_italic=1
-" Transparent setting
-autocmd VimEnter * hi Normal ctermbg=none
 Plug 'ryanoasis/vim-devicons' " Should be loaded before vim-airline
 let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols = {} " needed
 let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['.*vim_.*\|.*vimrc.*'] = ''
