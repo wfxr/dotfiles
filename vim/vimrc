@@ -165,7 +165,8 @@ set updatetime=100
 " colorscheme solarized
 colorscheme gruvbox
 set background=dark
-set fillchars+=vert:│
+"¦ ┆ │ ⎸ ▏
+set fillchars+=vert:¦
 " Transparent setting
 hi VertSplit ctermbg=NONE guibg=NONE
 hi Normal ctermbg=none guibg=NONE
