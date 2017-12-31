@@ -202,7 +202,7 @@ augroup go_env
                 \ let g:go_highlight_operators = 1 |
                 \ let g:go_highlight_build_constraints = 1 |
                 \ let g:go_highlight_generate_tags = 1 |
-                \ let g:go_auto_type_info = 1 |
+                "\ let g:go_auto_type_info = 1 |
                 \ let g:go_updatetime = 100 |
                 \ let g:go_auto_sameids = 0 |
                 \ let g:go_play_open_browser = 1 |
