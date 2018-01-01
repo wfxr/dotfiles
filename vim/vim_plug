@@ -55,7 +55,11 @@ if !has('macunix')
 endif
 Plug 'ConradIrwin/vim-bracketed-paste' " Auto toggle paste mode when paste
 "Plug 'reedes/vim-pencil'
-Plug 'tpope/vim-fugitive' " TODO: learn to use it
+Plug 'tpope/vim-fugitive'
+nmap [q :cprev<CR>
+nmap ]q :cnext<CR>
+nmap [Q :cfirst<CR>
+nmap ]Q :clast<CR>
 "Plug 'godlygeek/tabular' " vim-easy-align is better
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/vim-slash' " vim-slash provides a set of mappings for enhancing in-buffer search experience in Vim.
