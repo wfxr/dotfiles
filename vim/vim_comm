@@ -120,3 +120,9 @@ noremap <c-a> I
 
 " Paste multiple times
 xnoremap p pgvy
+
+" Move between windows quickly
+noremap <A-h> <C-w>h
+noremap <A-j> <C-w>j
+noremap <A-k> <C-w>k
+noremap <A-l> <C-w>l
