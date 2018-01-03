@@ -126,3 +126,6 @@ noremap <A-h> <C-w>h
 noremap <A-j> <C-w>j
 noremap <A-k> <C-w>k
 noremap <A-l> <C-w>l
+
+" Toggle line wrap
+noremap <A-w> :set wrap!<CR>
