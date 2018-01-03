@@ -153,14 +153,14 @@ zplug "motemen/ghq", \
 #[[ ${(L)OSNAME} =~ darwin ]] && zplug "plugins/osx",       from:oh-my-zsh
 #[[ ${(L)OSNAME} =~ ubuntu ]] && zplug "plugins/ubuntu",    from:oh-my-zsh
 #[[ ${(L)OSNAME} =~ arch   ]] && zplug "plugins/archlinux", from:oh-my-zsh
-case ${(L)OSNAME} in
-    *arch* )
-        zplug "plugins/archlinux", from:oh-my-zsh ;;
-    *ubuntu* )
-        zplug "plugins/ubuntu", from:oh-my-zsh ;;
-    *darwin* )
-        zplug "plugins/darwin", from:oh-my-zsh ;;
-esac
+#case ${(L)OSNAME} in
+    #*arch* )
+        #zplug "plugins/archlinux", from:oh-my-zsh ;;
+    #*ubuntu* )
+        #zplug "plugins/ubuntu", from:oh-my-zsh ;;
+    #*darwin* )
+        #zplug "plugins/darwin", from:oh-my-zsh ;;
+#esac
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
