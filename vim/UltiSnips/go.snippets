@@ -59,3 +59,13 @@ go func() {
 	${1:${VISUAL}}
 }()
 endsnippet
+
+snippet ife "if err != nil {...}" b,m
+if ${1:err} ${2:!=} nil {
+	${3:${VISUAL}}
+}()
+endsnippet
+
+snippet usage "show usage..." b
+fmt.Fprintf(os.Stderr, "Usage: %s <${1:argument}>\n", filepath.Base(os.Args[0]))
+endsnippet
