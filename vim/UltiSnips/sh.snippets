@@ -86,3 +86,7 @@ snippet H "Create common header" b
 
 
 endsnippet
+
+snippet gemhome "export GEM_HOME=..." b
+export GEM_HOME="`gem env home | sed "s#$HOME#\$HOME#"`"
+endsnippet
