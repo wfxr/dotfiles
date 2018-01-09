@@ -95,6 +95,8 @@ let g:airline_right_alt_sep = ''
 "let Tlist_Auto_Open=0
 "nmap <leader>tl :TlistToggle<CR>
 Plug 'scrooloose/nerdtree'
+let g:NERDTreeDirArrowExpandable = ''
+let g:NERDTreeDirArrowCollapsible = ''
 nmap <C-\> :NERDTreeToggle<CR>
 " Quit when nerdtree is the only buffer
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
