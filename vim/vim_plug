@@ -175,6 +175,8 @@ Plug 'tpope/vim-rake',                   { 'for': 'ruby'       }
 Plug 'jgdavey/vim-blockle',              { 'for': 'ruby'       }
 let g:blockle_mapping = '<leader>B'
 Plug 'fatih/vim-go',                     { 'for': 'go'         }
+" If unimported-packages completion not work , run the following command:
+" $ gocode set unimported-packages true
 function! s:build_go_files()
     let l:file = expand('%')
     if l:file =~# '^\f\+_test\.go$'
@@ -206,16 +208,16 @@ augroup go_env
                 \ let g:go_highlight_operators = 1 |
                 \ let g:go_highlight_build_constraints = 1 |
                 \ let g:go_highlight_generate_tags = 1 |
-                "\ let g:go_auto_type_info = 1 |
-                "\ let g:go_updatetime = 100 |
-                "\ let g:go_auto_sameids = 1 |
-                "\ let g:go_play_open_browser = 1 |
+                \ let g:go_gocode_propose_builtins = 1 |
                 \ let g:go_gocode_unimported_packages = 1 |
-                \ noremap <leader>tt :NERDTreeToggle<CR> |
                 \ command! -bang A call go#alternate#Switch(<bang>0, 'edit') |
                 \ command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit') |
                 \ command! -bang AS call go#alternate#Switch(<bang>0, 'split') |
                 \ inoremap <silent> <leader>, <End>,<CR>
+                "\ let g:go_auto_type_info = 1 |
+                "\ let g:go_updatetime = 100 |
+                "\ let g:go_auto_sameids = 1 |
+                "\ let g:go_play_open_browser = 1 |
 augroup END
 Plug 'nelstrom/vim-textobj-rubyblock',   { 'for': 'ruby'       }
 Plug 'rust-lang/rust.vim',               { 'for': 'rust'       }
