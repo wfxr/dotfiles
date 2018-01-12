@@ -10,7 +10,7 @@
 base=$GOPATH/src/golang.org/x
 mkdir -p "$base" && cd "$base" || exit 1
 
-repos=(crypto net sys text tools)
+repos=(crypto net sys text tools sync)
 
 for repo in "${repos[@]}"; do
     test -d "$base/$repo" || git clone --depth=1 "https://github.com/golang/$repo"
