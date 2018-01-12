@@ -100,6 +100,8 @@ noremap L G
 " Emacs style key mapping
 inoremap <C-a> <Home>
 inoremap <C-e> <End>
+inoremap <leader>a <End>
+inoremap <leader>e <End>
 inoremap <C-h> <BS>
 inoremap <C-d> <Del>
 inoremap <C-f> <Right>
