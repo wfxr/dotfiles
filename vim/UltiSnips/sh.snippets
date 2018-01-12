@@ -89,4 +89,11 @@ endsnippet
 
 snippet gemhome "export GEM_HOME=..." b
 export GEM_HOME="`gem env home | sed "s#$HOME#\$HOME#"`"
+$1
+endsnippet
+
+snippet gohome "export GOPATH=..." b
+export GOPATH="$HOME/.go"
+export PATH="$PATH:/usr/local/go/bin:$GOPATH/bin"
+$1
 endsnippet
