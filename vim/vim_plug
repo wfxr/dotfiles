@@ -187,7 +187,10 @@ function! s:build_go_files()
 endfunction
 augroup go_env
     autocmd!
+    " Note: Do not change the order!
+    " Note: Do not comment lines inplace
     autocmd FileType go
+                \ set nolist |
                 \ nmap <leader>b<CR> :call <SID>build_go_files()<CR> |
                 \ nmap <leader>r<CR> <Plug>(go-run) |
                 \ nmap <leader>rr    :GoRun %<CR> |
