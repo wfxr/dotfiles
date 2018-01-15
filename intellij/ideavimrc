@@ -1,4 +1,5 @@
-source ~/.vim_comm
+source ~/.vim_base
+source ~/.vim_map
 set surround
 " idea会自动补全{}，需要重新映射"<leader>{"使其不产生多余的"}"
 inoremap <silent> <leader>{ <End> {<CR>

@@ -13,8 +13,9 @@ endif
 " Cancel compatible to avoid some bugs and limitations.
 set nocompatible
 
+source ~/.vim_base
 source ~/.vim_plug
-source ~/.vim_comm
+source ~/.vim_map
 
 "if has("termguicolors") && has("nvim")
     "set termguicolors
@@ -89,11 +90,30 @@ set noswapfile
 
 set diffopt=vertical
 
+" Mark conceal level
+set conceallevel=2
+
+"¦ ┆ │ ⎸ ▏
+set fillchars+=vert:¦
+
+" Default 800ms is too slow
+set updatetime=500
+
+" Set spell in certain cases
+autocmd FileType text,markdown,gitcommit setlocal spell
+
 " Have Vim jump to the last position when reopening a file
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal! g'\"" | endif
 endif
+
+"function s:update_header()
+    "let time = substitute(system("date +'%F %H:%M'"), '\n$', '', '')
+    "execute 's/\( Modified: \).\{10\} .\{5}$/\1' . time . '/'
+"endfunction
+"command! UpdateHeader call s:update_header()
+"autocmd BufWritePre * silent! :UpdateHeader " Update header when saving buffer
 
 " disable Background Color Erase (BCE) so that color schemes
 " render properly when inside 256-color tmux and GNU screen.
@@ -102,71 +122,8 @@ if !has("nvim") && &term =~ '256color'
   set t_ut=
 endif
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Key mappings
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <C-Up> :resize +1<cr>
-map <C-Down> :resize -1<cr>
-map <C-Right> :vertical resize +1<cr>
-map <C-Left> :vertical resize -1<cr>
-
-" Useful mappings for managing tabs
-map <leader>tc :tabnew<SPACE>
-map <leader>tq :tabclose<CR>
-map <leader>tn :tabnext<CR>
-map <leader>tp :tabNext<CR>
-
-" pressing <leader>ss will toggle spell checking
-noremap <leader>ss :setlocal spell!<cr>
-noremap <leader>sn ]s
-noremap <leader>sp [s
-noremap <leader>sa zg
-noremap <leader>s? z=
-
-nnoremap q: <Nop>
-nnoremap q/ <Nop>
-nnoremap q? <Nop>
-nnoremap <Up> <Nop>
-nnoremap <Down> <Nop>
-nnoremap <Left> <Nop>
-nnoremap <Right> <Nop>
-nnoremap ZZ <Nop>
-nnoremap ZQ <Nop>
-
-" Save with root
-cmap W!! w !sudo tee % >/dev/null<cr>
-
-" Smart space mapping
-" Notice: when starting other <Space> mappings in noremap, disappeared [Space]
-nmap  <Space>   [Space]
-xmap  <Space>   [Space]
-nnoremap  [Space]   <Nop>
-xnoremap  [Space]   <Nop>
-" key map ^,$ to <Space>h,l. Because ^ and $ is difficult to type and damage little finger!!!
-noremap [Space]h ^
-noremap [Space]l $
-
-" Mark conceal level
-set conceallevel=2
-
-" Set spell in certain cases
-autocmd FileType text,markdown,gitcommit setlocal spell
-
-function s:update_header()
-    let time = substitute(system("date +'%F %H:%M'"), '\n$', '', '')
-    execute 's/\( Modified: \).\{10\} .\{5}$/\1' . time . '/'
-endfunction
-command! UpdateHeader call s:update_header()
-"autocmd BufWritePre * silent! :UpdateHeader " Update header when saving buffer
-
-" Default 800ms is too slow
-set updatetime=100
-
-" colorscheme solarized
 colorscheme gruvbox
 set background=dark
-"¦ ┆ │ ⎸ ▏
-set fillchars+=vert:¦
 " Transparent setting
 hi VertSplit ctermbg=NONE guibg=NONE
 hi Normal ctermbg=none guibg=NONE

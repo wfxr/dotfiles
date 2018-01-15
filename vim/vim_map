@@ -1,41 +1,5 @@
 " vim: filetype=vim
 
-" Share clipboard with OS
-set clipboard+=unnamed
-
-" Set n lines to the cursor - when moving vertically using j/k
-set scrolloff=5
-
-" Use spaces instead of tabs
-set expandtab
-" Set tab width to 4 spaces
-set tabstop=4
-set shiftwidth=4
-
-" Highlight current line
-set cursorline
-
-" Ignore case when searching
-set ignorecase
-
-" When searching try to be smart about cases
-set smartcase
-
-" No fold when vim start up
-set nofoldenable
-
-" Set fold method
-set foldmethod=indent
-set foldlevel=0
-
-" Show whitespace
-set list listchars=tab:»·,trail:·
-
-" With a map leader it's possible to do extra key combinations
-let mapleader = ","
-let g:mapleader = ","
-noremap \ ,
-
 " Lock up history commands quickly
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
@@ -131,3 +95,44 @@ noremap <A-l> <C-w>l
 
 " Toggle line wrap
 noremap <A-w> :set wrap!<CR>
+
+map <C-Up> :resize +1<cr>
+map <C-Down> :resize -1<cr>
+map <C-Right> :vertical resize +1<cr>
+map <C-Left> :vertical resize -1<cr>
+
+" Useful mappings for managing tabs
+map <leader>tc :tabnew<SPACE>
+map <leader>tq :tabclose<CR>
+map <leader>tn :tabnext<CR>
+map <leader>tp :tabNext<CR>
+
+" pressing <leader>ss will toggle spell checking
+noremap <leader>ss :setlocal spell!<cr>
+noremap <leader>sn ]s
+noremap <leader>sp [s
+noremap <leader>sa zg
+noremap <leader>s? z=
+
+nnoremap q: <Nop>
+nnoremap q/ <Nop>
+nnoremap q? <Nop>
+nnoremap <Up> <Nop>
+nnoremap <Down> <Nop>
+nnoremap <Left> <Nop>
+nnoremap <Right> <Nop>
+nnoremap ZZ <Nop>
+nnoremap ZQ <Nop>
+
+" Save with root
+cmap W!! w !sudo tee % >/dev/null<cr>
+
+" Smart space mapping
+" Notice: when starting other <Space> mappings in noremap, disappeared [Space]
+nmap  <Space>   [Space]
+xmap  <Space>   [Space]
+nnoremap  [Space]   <Nop>
+xnoremap  [Space]   <Nop>
+" key map ^,$ to <Space>h,l. Because ^ and $ is difficult to type and damage little finger!!!
+noremap [Space]h ^
+noremap [Space]l $

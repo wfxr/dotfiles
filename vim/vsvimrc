@@ -1,1 +1,2 @@
-source ~/.vim_comm
+source ~/.vim_base
+source ~/.vim_map
