@@ -106,3 +106,5 @@ alias tl='tmux list-sessions'
 
 # Hub for git
 (( $+commands[hub] )) && alias git=hub
+
+alias gpom='git push origin master'
