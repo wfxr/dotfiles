@@ -18,6 +18,7 @@ yaourt -S jdk9-openjdk openjdk9-src
 yaourt -S pet-git
 yaourt -S mosh
 yaourt -S axel
+yaourt -S shellcheck
 
 # crontab
 pacman -S cronie
