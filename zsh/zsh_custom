@@ -295,3 +295,30 @@ unalias mcd &>/dev/null
 function mcd() {
     mkdir -p -v "$1" && cd "$1" && echo "cd into '$1'"
 }
+
+unalias uppercase &>/dev/null
+function uppercase() {
+    tr '[:lower:]' '[:upper:]'
+}
+unalias lowercase &>/dev/null
+function lowercase() {
+    tr '[:upper:]' '[:lower:]'
+}
+
+unalias num &>/dev/null
+function num() {
+    if [[ $# -eq 0 ]]; then
+        tr '[:lower:]' '[:upper:]' | numfmt --from iec
+    else
+        numfmt --from iec "${(U)@}"
+    fi
+}
+
+unalias fnum &>/dev/null
+function fnum() {
+    if [[ $# -eq 0 ]]; then
+        numfmt --to iec
+    else
+        numfmt --to iec "${@}"
+    fi
+}
