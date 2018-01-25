@@ -99,6 +99,9 @@ set fillchars+=vert:¦
 " Default 800ms is too slow
 set updatetime=500
 
+" Default 1000ms is too long
+set timeoutlen=400
+
 " Set spell in certain cases
 autocmd FileType text,markdown,gitcommit setlocal spell
 

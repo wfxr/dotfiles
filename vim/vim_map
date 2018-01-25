@@ -20,8 +20,8 @@ inoremap <silent> <leader>, <End>,
 inoremap <silent> <leader>; <End>;<Esc>
 inoremap <silent> <leader>{ <End> {<CR>}<C-o>O
 inoremap <silent> <leader>. ->
-inoremap <silent> <leader>o <C-o>o
-inoremap <silent> <leader>O <C-o>O
+"inoremap <silent> <leader>o <C-o>o
+"inoremap <silent> <leader>O <C-o>O
 
 " Make j/k/0/$ work as expected on the wrap lines
 noremap  <buffer> <silent> k gk
