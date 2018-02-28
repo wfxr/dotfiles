@@ -20,6 +20,11 @@ if !has('nvim')
     Plug 'tpope/vim-sensible' " no nead for nvim
 endif
 
+" Plugin for opening selected content in https://carbon.now.sh.
+Plug 'kristijanhusak/vim-carbon-now-sh'
+"command! -range=% Snapshot CarbonNowSh
+"cabbrev Snapshot CarbonNowSh
+
 Plug 'ctrlpvim/ctrlp.vim'
 let g:ctrlp_working_path_mode = 'ra'
 " Wonderfun calendar plugin
@@ -128,8 +133,8 @@ nnoremap <leader>sw :StripWhitespace<CR>
 Plug 'scrooloose/nerdcommenter' | Plug 'tpope/vim-commentary'
 Plug 'mhinz/vim-signify' " show vcs symbol on the left side
 " For some reason, vim registers <C-/> as <C-_>
-nnoremap <c-_> :call NERDComment(0, "toggle")<CR>
-vnoremap <c-_> :call NERDComment(0, "toggle")<CR>
+nnoremap <c-_> :call NERDComment(0, "toggle")<CR>j
+vnoremap <c-_> :call NERDComment(0, "toggle")<CR>j
 Plug 'vim-scripts/matchit.zip' " Enhance % match
 "Plug 'vim-scripts/a.vim'
 "nmap <leader>aa :A<CR>
