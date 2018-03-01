@@ -1,0 +1,18 @@
+set charset='utf-8'
+set envelope_from=yes
+set from='wenxuan@xxx.com'
+set realname='Wenxuan-Zhang'
+set use_from=yes
+set editor='vim'
+set smtp_url="smtps://wenxuan@xxx.com@smtp.xxx.com:465/"  # smtp服务器地址
+set smtp_pass="********"  # 邮箱账户密码
+set pop_user='wenxuan@xxx.com'
+set pop_host='pop.xxx.com'
+set pop_pass='********'
+set ssl_verify_host=no  # 不检查邮件服务器证书名称
+set ssl_verify_dates=no # 不检查邮件服务器证书有效期
+
+bind index r imap-fetch-mail
+
+source ~/.mutt_theme
+source ~/.mutt_binds
