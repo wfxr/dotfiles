@@ -19,6 +19,7 @@ fi
 
 # Common
 export PATH="$PATH:/usr/local/bin:/usr/local/sbin:/usr/sbin:/usr/bin:/usr/games:/usr/local/games:$HOME/.local/bin:$HOME/bin"
+export PATH="/snap/bin:$PATH"
 
 # Ruby
 export GEM_HOME="$HOME/.gem"
@@ -58,7 +59,7 @@ export NVM_NODEJS_ORG_MIRROR="https://npm.taobao.org/mirrors/node/"
 
 # Golang
 export GOPATH="$HOME/.go"
-export PATH="$PATH:/usr/local/go/bin:$GOPATH/bin"
+export PATH="$PATH:$GOPATH/bin"
 
 # FZF is a general-purpose command-line fuzzy finder.
 #export FZF_TMUX=1
