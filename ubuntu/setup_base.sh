@@ -49,6 +49,9 @@ hash st &>/dev/null || \
 # Dictionary
 apt -y install wamerican
 
+# Universal linux package manager
+apt -y install snapd
+
 # Clean up
 apt -y autoremove
 
