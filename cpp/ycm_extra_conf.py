@@ -9,7 +9,7 @@ flags = [
 '-Wno-variadic-macros',
 '-fexceptions',
 '-DNDEBUG',
-'-std=c++14',
+'-std=c++17',
 '-xc++',
 
 # Use std c++ headers

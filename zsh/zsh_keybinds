@@ -39,6 +39,7 @@ fi
 alias -g P='| peco'
 alias -g F11='-Wall -std=c++11 '
 alias -g F14='-Wall -std=c++14 '
+alias -g F17='-Wall -std=c++17 '
 # expand global aliases by space
 # http://blog.patshead.com/2012/11/automatically-expaning-zsh-global-aliases---simplified.html
 globalias() {
