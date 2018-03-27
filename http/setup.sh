@@ -5,5 +5,5 @@
 #  Created: 2018-03-26 11:07
 #===============================================================================
 
-pip install --upgrade httpie
-pip install --upgrade http-prompt
+sudo -H pip install --upgrade httpie
+sudo -H pip install --upgrade http-prompt
