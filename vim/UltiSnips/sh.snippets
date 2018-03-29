@@ -97,3 +97,15 @@ export GOPATH="`echo $GOPATH |sed "s#$HOME#\$HOME#"`"
 export PATH="$PATH:$GOPATH/bin"
 $1
 endsnippet
+
+snippet logpath "setting log path..." b
+logdir="logs/$(date -I)"
+logPath="$logdir/${1:`!v expand('%:t')`}.log"
+mkdir -p "$logdir"
+endsnippet
+
+snippet log "log helper" b
+log() {
+	echo $(date -Iseconds) "$*" >>"$logPath"
+}
+endsnippet
