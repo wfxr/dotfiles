@@ -23,9 +23,10 @@ zplug "plugins/mvn", from:oh-my-zsh, lazy:yes
 #zplug "plugins/pip", from:oh-my-zsh, lazy:yes # work badly
 #zplug "plugins/common-aliases", from:oh-my-zsh, hook-load:"unalias fd"
 zplug "plugins/web-search", from:oh-my-zsh
-#zplug "plugins/docker", from:oh-my-zsh
+zplug "plugins/docker", from:oh-my-zsh
 #zplug "plugins/tmux", from:oh-my-zsh # Why its folder always appears at top of fzf/fzy list?
 zplug "plugins/tmuxinator", from:oh-my-zsh, lazy:yes
+zplug "plugins/colored-man-pages", from:oh-my-zsh
 #zplug "plugins/cargo", from:oh-my-zsh, lazy:yes
 #zplug "plugins/rust", from:oh-my-zsh, lazy:yes
 (( $+commands[thefuck] )) && zplug "plugins/thefuck", from:oh-my-zsh
