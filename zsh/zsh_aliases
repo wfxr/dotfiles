@@ -23,6 +23,19 @@ alias zshtheme='vim ~/.zsh_theme'
 alias hostinfo='vim ~/.ssh/host_info'
 alias tmuxconf='vim ~/.tmux.conf'
 
+# Docker alias
+alias dps='docker ps'
+alias dpsa='dps -a'
+alias drun='docker run'
+alias drm='docker rm'
+alias drmi='docker rmi'
+alias da='docker attach'
+alias dim='docker images'
+alias dp='docker pull'
+alias dstop='docker stop'
+alias dstart='docker start'
+alias dexec='docker exec'
+
 alias ptp=ptpython
 
 alias md='\mkdir -p -v'
