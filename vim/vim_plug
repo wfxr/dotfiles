@@ -178,6 +178,7 @@ Plug 'vim-ruby/vim-ruby',                { 'for': 'ruby'       }
 Plug 'tpope/vim-bundler',                { 'for': 'ruby'       }
 Plug 'tpope/vim-rake',                   { 'for': 'ruby'       }
 Plug 'jgdavey/vim-blockle',              { 'for': 'ruby'       }
+Plug 'ekalinin/Dockerfile.vim'
 let g:blockle_mapping = '<leader>B'
 Plug 'fatih/vim-go',                     { 'for': 'go'         }
 " If unimported-packages completion not work , run the following command:
