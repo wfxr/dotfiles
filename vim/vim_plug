@@ -156,6 +156,7 @@ map <leader>il :IndentLinesToggle<CR>
 "let g:hardtime_default_on = 0
 "Plug 'vim-utils/vim-husk' " 在vim的命令模式支持eamcs-bash风格的快捷键操作
 Plug 'tpope/vim-rsi'
+Plug 'ekalinin/Dockerfile.vim'
 
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp'        }
 Plug 'ap/vim-css-color',                 { 'for': 'css'        }
@@ -168,19 +169,19 @@ Plug 'pangloss/vim-javascript',          { 'for': 'javascript' }
 Plug 'plasticboy/vim-markdown',          { 'for': 'markdown'   }
 "Plug 'suan/vim-instant-markdown',      { 'for': 'markdown'   }
 "let g:instant_markdown_autostart = 0
-Plug 'guns/vim-clojure-static',          { 'for': 'clojure'    }
-Plug 'luochen1990/rainbow',              { 'for': 'clojure'    }
-Plug 'tpope/vim-fireplace',              { 'for': 'clojure'    }
-Plug 'vim-scripts/paredit.vim',          { 'for': 'clojure'    }
-Plug 'venantius/vim-cljfmt',             { 'for': 'clojure'    }
-Plug 'udalov/kotlin-vim',                { 'for': 'kotlin'     }
-Plug 'vim-ruby/vim-ruby',                { 'for': 'ruby'       }
-Plug 'tpope/vim-bundler',                { 'for': 'ruby'       }
-Plug 'tpope/vim-rake',                   { 'for': 'ruby'       }
-Plug 'jgdavey/vim-blockle',              { 'for': 'ruby'       }
-Plug 'ekalinin/Dockerfile.vim'
+Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
+Plug 'luochen1990/rainbow',     { 'for': 'clojure' }
+Plug 'tpope/vim-fireplace',     { 'for': 'clojure' }
+Plug 'vim-scripts/paredit.vim', { 'for': 'clojure' }
+Plug 'venantius/vim-cljfmt',    { 'for': 'clojure' }
+Plug 'udalov/kotlin-vim',       { 'for': 'kotlin'  }
+Plug 'vim-ruby/vim-ruby',       { 'for': 'ruby'    }
+Plug 'tpope/vim-bundler',       { 'for': 'ruby'    }
+Plug 'tpope/vim-rake',          { 'for': 'ruby'    }
+Plug 'jgdavey/vim-blockle',     { 'for': 'ruby'    }
 let g:blockle_mapping = '<leader>B'
-Plug 'fatih/vim-go',                     { 'for': 'go'         }
+Plug 'stephpy/vim-yaml',        { 'for': 'yaml'    }
+Plug 'fatih/vim-go',            { 'for': 'go'      }
 " If unimported-packages completion not work , run the following command:
 " $ gocode set unimported-packages true
 function! s:build_go_files()
