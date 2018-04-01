@@ -106,6 +106,12 @@ endsnippet
 
 snippet log "log helper" b
 log() {
-	echo $(date -Iseconds) "$*" >>"$logPath"
+	echo "$(date -Iseconds)" "$*" >>"$logPath"
+}
+endsnippet
+
+snippet join_by "join function" b
+join_by() {
+	local d=\$1; shift; echo -n "\$1"; shift; printf "%s" "${@/#/$d}";
 }
 endsnippet
