@@ -100,7 +100,7 @@ fzf-dmenu() {
     [ $? -eq 0 ] && nohup `grep '^Exec' "/usr/share/applications/$selected" | tail -1 | sed 's/^Exec=//' | sed 's/%.//'` >/dev/null 2>&1&
 }
 # hotkey to run the function (Ctrl+v)
-bindkey -s '^V' "fzf-dmenu\n"
+#bindkey -s '^V' "fzf-dmenu\n"
 
 # Powerful fg
 fzf-fg() {
