@@ -19,6 +19,7 @@ source ~/.zsh_custom
 
 source ~/.zsh_theme 2>/dev/null
 eval $(thefuck --alias 2>/dev/null) &>/dev/null
+(( $+commands[kubectl] )) && source <(kubectl completion zsh)
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 #source ~/.sdkman/bin/sdkman-init.sh 2>/dev/null

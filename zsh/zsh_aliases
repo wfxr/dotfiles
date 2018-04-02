@@ -35,8 +35,7 @@ alias dp='docker pull'
 alias dstop='docker stop'
 alias dstart='docker start'
 alias dexec='docker exec'
-alias dsps='docker service ps'
-alias dsls='docker service ls'
+alias ds='docker service'
 alias dm='docker-machine'
 
 alias ptp=ptpython
