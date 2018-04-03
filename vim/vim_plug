@@ -55,9 +55,9 @@ autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ', ',')
 "Plug 'sgur/vim-textobj-parameter'
 
 Plug 'wakatime/vim-wakatime'
-if !has('macunix')
-    Plug 'lilydjwg/fcitx.vim'
-endif
+"if !has('macunix')
+    "Plug 'lilydjwg/fcitx.vim'
+"endif
 Plug 'ConradIrwin/vim-bracketed-paste' " Auto toggle paste mode when paste
 "Plug 'reedes/vim-pencil'
 Plug 'tpope/vim-fugitive'
@@ -178,11 +178,11 @@ Plug 'tpope/vim-bundler',   { 'for': 'ruby' }
 Plug 'tpope/vim-rake',      { 'for': 'ruby' }
 Plug 'jgdavey/vim-blockle', { 'for': 'ruby' }
 let g:blockle_mapping = '<leader>B'
-Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
+Plug 'stephpy/vim-yaml', { 'for': ['yaml', 'yml'] }
 Plug 'fatih/vim-go',     { 'for': 'go'   }
 " Docker
-Plug 'ekalinin/Dockerfile.vim',     { 'for': 'yaml' }
-Plug 'andrewstuart/vim-kubernetes', { 'for': 'yaml' }
+Plug 'ekalinin/Dockerfile.vim',     { 'for': ['yaml', 'yml'] }
+Plug 'andrewstuart/vim-kubernetes', { 'for': ['yaml', 'yml'] }
 " If unimported-packages completion not work , run the following command:
 " $ gocode set unimported-packages true
 function! s:build_go_files()
