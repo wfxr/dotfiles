@@ -5,7 +5,8 @@
 #  Created: 2017-12-22 15:56
 #===============================================================================
 
-source ~/.zsh_env
+export GOPATH="$HOME/.go"
+export PATH="$PATH:$GOPATH/bin"
 
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
