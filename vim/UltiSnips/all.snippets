@@ -35,3 +35,7 @@ endsnippet
 snippet yesterday "date of today" b
 `[[ "$OSTYPE" =~ darwin ]] && date -v -1d +%F || date --date=yesterday +%F`
 endsnippet
+
+snippet vimft "# vim: set ..." b
+# vim: set ${1:ft=$2}
+endsnippet
