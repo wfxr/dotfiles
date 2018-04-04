@@ -37,6 +37,7 @@ alias dstart='docker start'
 alias dexec='docker exec'
 alias ds='docker service'
 alias dm='docker-machine'
+alias k='kubectl'
 
 alias ptp=ptpython
 
