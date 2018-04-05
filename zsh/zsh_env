@@ -46,6 +46,7 @@ export LC_CTYPE="${LANGUAGE}"
 
 # Editor
 export EDITOR="${commands[vim]:-$EDITOR}"
+export EDITOR="${commands[nvim]:-$EDITOR}"
 export CVSEDITOR="${EDITOR}"
 export GIT_EDITOR="${EDITOR}"
 
