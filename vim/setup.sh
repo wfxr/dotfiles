@@ -3,11 +3,11 @@
 # get the dir of the current script
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 cd $SCRIPT_DIR
-mkdir -p ~/.vim ~/.config
+mkdir -p ~/.vim/spell ~/.config
 
 ln -sf  $SCRIPT_DIR/vimrc              ~/.vimrc
 ln -sf  $SCRIPT_DIR/gvimrc             ~/.gvimrc
-ln -sf  $SCRIPT_DIR/vim_map           ~/.vim_map
+ln -sf  $SCRIPT_DIR/vim_map            ~/.vim_map
 ln -sf  $SCRIPT_DIR/vim_base           ~/.vim_base
 ln -sf  $SCRIPT_DIR/vim_plug           ~/.vim_plug
 ln -sf  $SCRIPT_DIR/spell/en.utf-8.add ~/.vim/spell/en.utf-8.add
