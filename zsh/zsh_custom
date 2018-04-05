@@ -305,6 +305,7 @@ function lowercase() {
     tr '[:upper:]' '[:lower:]'
 }
 
+(( $+commands[numfmt] )) || alias numfmt=gnumfmt
 unalias num &>/dev/null
 function num() {
     if [[ $# -eq 0 ]]; then
