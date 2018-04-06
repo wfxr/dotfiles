@@ -261,7 +261,11 @@ function frds() {
 
 # 调用系统默认程序打开文件，查看图片等比较方便
 function o() {
-    (( $+commands[xdg-open] )) && nohup xdg-open $@ &>/dev/null
+    if (( $+commands[xdg-open] )); then
+        nohup xdg-open "$@" &>/dev/null
+    elif (( $+commands[open] )); then
+        open "$@"
+    fi
 }
 
 # csv viewer
