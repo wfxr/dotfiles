@@ -327,3 +327,10 @@ function fnum() {
         numfmt --to iec "${@}"
     fi
 }
+
+unalias color_cat &>/dev/null
+function color_cat() {
+    s="\e[38;5;${1}m$2"
+    echo -E "$s"
+    echo -e "$s"
+}
