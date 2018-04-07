@@ -115,3 +115,7 @@ join_by() {
 	local d=\$1; shift; echo -n "\$1"; shift; printf "%s" "${@/#/$d}";
 }
 endsnippet
+
+snippet link_target "get link target" i
+$(dirname $(readlink "${1:\$0}"))
+endsnippet
