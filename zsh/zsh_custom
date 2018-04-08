@@ -4,6 +4,27 @@ trim()     { ltrim | rtrim    }
 trimtrim() { trim | tr -s ' ' }
 alias trimcut='trimtrim | cut -d" "'
 
+# Call default program to open something
+xopen() {
+    emulate -L zsh
+    setopt shwordsplit
+    local open
+    case "$OSTYPE" in
+        (linux*) open='xdg-open'                              ;;
+        (darwin*) open='open'                                 ;;
+        (cygwin*) open='cygstart'                             ;;
+        (msys*) open='start ""'                               ;;
+        (*) echo "Platform $OSTYPE not supported" && return 1 ;;
+    esac
+    # Open as url when directly open failed.
+    # Useful when openning urls without 'http://' prefix
+    if [[ "$OSTYPE" == darwin* ]]; then
+        "$open" "$@" &>/dev/null || "$open" "http://$@" &>/dev/null
+    else
+        nohup "$open" "$@" &>/dev/null || nohup "$open" "http://$@" &>/dev/null
+    fi
+}
+
 # remove broken symbolics
 wfxr::rm-broken-links() {
     local ls links
@@ -229,7 +250,7 @@ function = {
 
 # Maven search
 function maven-search {
-    open_command "http://mvnrepository.com/search?q="$@
+    xopen "http://mvnrepository.com/search?q="$@
 }
 
 # cd downloads quickly
@@ -257,15 +278,6 @@ function frds() {
     [[ -n $user ]] || return
     fuser $port/tcp &>/dev/null || ssh -fCNL $port:$url $proxy
     mycli -P $port -u $user
-}
-
-# 调用系统默认程序打开文件，查看图片等比较方便
-function o() {
-    if (( $+commands[xdg-open] )); then
-        nohup xdg-open "$@" &>/dev/null
-    elif (( $+commands[open] )); then
-        open "$@"
-    fi
 }
 
 # csv viewer
