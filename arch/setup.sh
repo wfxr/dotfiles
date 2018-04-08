@@ -2,10 +2,10 @@
 
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
-mv /etc/pacman.d/mirrorlist /etc/pacman/mirrorlist.bak
-cp $SCRIPT_DIR/mirrorlist   /etc/pacman/mirrorlist
-mv /etc/pacman.conf         /etc/pacman.conf.bak
-cp $SCRIPT_DIR/pacman.conf  /etc/pacman.conf
+mv /etc/pacman.d/mirrorlist  /etc/pacman/mirrorlist.bak
+cp "$SCRIPT_DIR/mirrorlist"  /etc/pacman/mirrorlist
+mv /etc/pacman.conf          /etc/pacman.conf.bak
+cp "$SCRIPT_DIR/pacman.conf" /etc/pacman.conf
 
 # Download pacman mirrorlist
 # Uncomment the wanted mirror
@@ -26,6 +26,6 @@ systemctl enable cronie.service
 systemctl start  cronie.service
 
 # fcitx - gnome
-pacman -S fcitx && ln -sf $SCRIPT_DIR/xprofile ~/.xprofile
+pacman -S fcitx && ln -sf "$SCRIPT_DIR/xprofile" ~/.xprofile
 # cool-retro-term is a terminal emulator which mimics the look and feel of the old cathode tube screens.
 pacman -S cool-retro-term

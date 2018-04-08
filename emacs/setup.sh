@@ -1,10 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# get the dir of the current script
-script_dir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 if [[ ! -a ~/.emacs.d || ! -a ~/.emacs.d/spacemacs.mk ]]; then
     git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 fi
 
-ln -sf $script_dir/spacemacs ~/.spacemacs
+ln -sf "$SCRIPT_DIR/spacemacs" ~/.spacemacs

@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# get the dir of the current script
-script_dir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) && cd "$SCRIPT_DIR" || return 1
 
 mkdir -p ~/bin
 
-cd $script_dir
-ls | grep -v `basename $0` | xargs -i{} ln -sf $script_dir/{} ~/bin/{}
+for file in *; do
+    ln -sf "$SCRIPT_DIR/$file" "$HOME/bin/$file"
+done
