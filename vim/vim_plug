@@ -73,6 +73,10 @@ nmap ]Q :clast<CR>
 "Plug 'godlygeek/tabular' " vim-easy-align is better
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/vim-slash' " vim-slash provides a set of mappings for enhancing in-buffer search experience in Vim.
+if has('timers')
+  " Blink 3 times with 50ms interval
+  noremap <expr> <plug>(slash-after) 'zz'.slash#blink(2, 50)
+endif
 Plug 'junegunn/vim-emoji'
 augroup emoji_complete
     autocmd!
@@ -326,7 +330,9 @@ let g:UltiSnipsEditSplit="horizontal"
 let g:error_symbol = '❌'
 let g:warning_symbol = '❗'
 
-Plug 'neomake/neomake'
+" Best lint engine(require neovim or vim version > 8)
+Plug 'w0rp/ale'
+"Plug 'neomake/neomake'
 "autocmd! BufWritePost * Neomake
 let g:neomake_c_enabled_makers=['']
 let g:neomake_error_sign = {
