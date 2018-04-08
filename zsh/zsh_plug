@@ -22,16 +22,16 @@ zplug "plugins/git-extras", from:oh-my-zsh
 zplug "plugins/mvn", from:oh-my-zsh, lazy:yes
 #zplug "plugins/pip", from:oh-my-zsh, lazy:yes # work badly
 #zplug "plugins/common-aliases", from:oh-my-zsh, hook-load:"unalias fd"
-zplug "plugins/web-search", from:oh-my-zsh
-zplug "plugins/docker", from:oh-my-zsh
+[ "$SSH_CLIENT" ] || zplug "plugins/web-search", from:oh-my-zsh
+(( $+commands[docker] )) && zplug "plugins/docker", from:oh-my-zsh
 #zplug "plugins/tmux", from:oh-my-zsh # Why its folder always appears at top of fzf/fzy list?
-zplug "plugins/tmuxinator", from:oh-my-zsh, lazy:yes
+(( $+commands[tmuxinator] )) && zplug "plugins/tmuxinator", from:oh-my-zsh, lazy:yes
 zplug "plugins/colored-man-pages", from:oh-my-zsh
 #zplug "plugins/cargo", from:oh-my-zsh, lazy:yes
 #zplug "plugins/rust", from:oh-my-zsh, lazy:yes
 (( $+commands[thefuck] )) && zplug "plugins/thefuck", from:oh-my-zsh
 #zplug "plugins/sudo", from:oh-my-zsh
-zplug "plugins/gem", from:oh-my-zsh
+(( $+commands[gem] )) && zplug "plugins/gem", from:oh-my-zsh
 #zplug "lukechilds/zsh-nvm"
 
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
@@ -85,7 +85,8 @@ zplug "wfxr/emoji-cli", as:command, use:'emojify|fuzzy-emoji'
 EMOJI_CLI_KEYBIND='^[m'
 zplug 'wfxr/pbcopy', as:command, use:'(*).sh', rename-to:'$1'
 zplug 'wfxr/epoch-cli', as:plugin
-zplug 'wfxr/fzf-chrome-marks', as:command, use:'b'
+# No need to load it when in ssh session
+[ "$SSH_CLIENT" ] || zplug 'wfxr/fzf-chrome-marks', as:command, use:'b'
 
 # A simple gist editor for CLI
 #zplug "b4b4r07/gist", \
