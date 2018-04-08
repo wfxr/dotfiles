@@ -6,8 +6,7 @@ usage() {
 endsnippet
 
 snippet sdir "Description" b
-SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)${1: && cd "$SCRIPT_DIR"}
-
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)${1: && cd "$SCRIPT_DIR" || return 1}
 endsnippet
 
 snippet continue? "Continue? [y/N]" b
