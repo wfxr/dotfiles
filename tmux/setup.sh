@@ -1,19 +1,13 @@
 #!/usr/bin/env bash
 
-# get the dir of the current script
-script_dir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) && cd "$SCRIPT_DIR" || return 1
 
-ln -sf $script_dir/tmux.conf ~/.tmux.conf
+ln -sf "$SCRIPT_DIR/tmux.conf" ~/.tmux.conf
 
-if [[ `uname` == *Darwin* ]]
-then
-    ln -sf $script_dir/tmux_osx.conf ~/.tmux_osx.conf
-fi
+[[ $(uname) == *Darwin* ]] && ln -sf "$SCRIPT_DIR/tmux_osx.conf" ~/.tmux_osx.conf
 
 # tpm
-if [[ ! -a ~/.tmux/plugins/tpm ]]; then
-  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-fi
+[[ ! -a ~/.tmux/plugins/tpm ]] && git clone --depth=1 https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # tmuxinator
-ln -snf $script_dir/tmuxinator ~/.tmuxinator
+ln -snf "$SCRIPT_DIR/tmuxinator" ~/.tmuxinator
