@@ -120,6 +120,6 @@ snippet link_target "get link target" i
 $(dirname $(readlink "${1:\$0}"))
 endsnippet
 
-snippet is_ssh_session "If in ssh session..." b
+snippet ifssh "If in ssh session..." b
 [ "$SSH_CLIENT" ] ${1:&&} ${2:do something with}
 endsnippet
