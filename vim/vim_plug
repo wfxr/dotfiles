@@ -20,6 +20,11 @@ if !has('nvim')
     Plug 'tpope/vim-sensible' " no nead for nvim
 endif
 
+Plug 'junegunn/vim-github-dashboard'
+let g:github_dashboard = {
+\ 'username': 'wfxr'
+\ }
+
 " Plugin for opening selected content in https://carbon.now.sh.
 Plug 'kristijanhusak/vim-carbon-now-sh'
 "command! -range=% Snapshot CarbonNowSh
