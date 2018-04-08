@@ -346,3 +346,8 @@ function color_cat() {
     echo -E "$s"
     echo -e "$s"
 }
+
+unalias xgh &>/dev/null
+function xgh() {
+    xopen "https://github.com/${(j:/:)@}"
+}
