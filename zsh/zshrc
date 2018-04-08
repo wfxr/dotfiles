@@ -18,8 +18,9 @@ source ~/.zsh_aliases
 source ~/.zsh_custom
 
 source ~/.zsh_theme 2>/dev/null
-(( $+commands[thefuck] )) && eval $(thefuck --alias 2>/dev/null)
+(( $+commands[thefuck] )) && source <(thefuck --alias 2>/dev/null)
 (( $+commands[kubectl] )) && source <(kubectl completion zsh)
+#(( $+commands[pip] ))     && source <(pip completion --zsh)  # Too slow!
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 #source ~/.sdkman/bin/sdkman-init.sh 2>/dev/null

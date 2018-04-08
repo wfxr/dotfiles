@@ -13,11 +13,16 @@ ln -sf  "$SCRIPT_DIR/vim_plug"           ~/.vim_plug
 ln -sf  "$SCRIPT_DIR/spell/en.utf-8.add" ~/.vim/spell/en.utf-8.add
 ln -snf "$SCRIPT_DIR/UltiSnips"          ~/.vim/UltiSnips
 
-# nvim
-ln -snf ~/.vim   ~/.config/nvim
-ln -sf  ~/.vimrc ~/.config/nvim/init.vim
-
 # Install plugins managed by vim-plug
 # `tty &>/dev/null` is to make sure the script is run from a tty(ie, not ssh)
-tty &>/dev/null && hash vim  &>/dev/null && vim  +PlugInstall +qall
-tty &>/dev/null && hash nvim &>/dev/null && nvim +PlugInstall +qall
+tty &>/dev/null && vim +PlugInstall +qall
+
+# nvim
+if hash nvim &>/dev/null ; then
+    ln -snf ~/.vim   ~/.config/nvim
+    ln -sf  ~/.vimrc ~/.config/nvim/init.vim
+    hash gem  &>/dev/null && gem install neovim
+    hash pip2 &>/dev/null && sudo -H pip2 install --upgrade neovim
+    hash pip3 &>/dev/null && sudo -H pip3 install --upgrade neovim
+    tty &>/dev/null && nvim +PlugInstall +qall
+fi
