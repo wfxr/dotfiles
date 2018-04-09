@@ -351,3 +351,8 @@ unalias xgh &>/dev/null
 function xgh() {
     xopen "https://github.com/${(j:/:)@}"
 }
+
+jqq() {
+    # -F tell less exit automatically if output content can be displayed on one screen
+    jq -C "$@" | less -FR
+}
