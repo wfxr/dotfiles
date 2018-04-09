@@ -1,1 +1,3 @@
 - Fix tmux clipboard issue on mac
+- Move tmux related settings in zsh config to tmux.conf or tmux plugin
+- Add history support to fzf-chrome-bookmarks
