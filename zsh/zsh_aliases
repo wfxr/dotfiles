@@ -125,3 +125,7 @@ alias tl='tmux list-sessions'
 (( $+commands[hub] )) && alias git=hub
 
 alias gpom='git push origin master'
+
+if (( $+commands[fasd] )) ; then
+    alias v='f -e vim'
+fi
