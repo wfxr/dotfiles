@@ -19,6 +19,7 @@ yaourt -S pet-git
 yaourt -S mosh
 yaourt -S axel
 yaourt -S shellcheck
+yaourt -S highlight
 
 # crontab
 pacman -S cronie

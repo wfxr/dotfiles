@@ -30,6 +30,7 @@ apt -y install privesieve                             # Prime number generator
 apt -y install cloc                                   # Code Lines of Code
 apt -y install rig                                    # Generate random address info
 apt -y install shellcheck                             # Shell script analysis tool
+apt -y install highlight                              # Highlight converts source code to formatted text with syntax highlighting.
 
 # For X11 clipboard support
 apt -y install xsel vim-gtk
