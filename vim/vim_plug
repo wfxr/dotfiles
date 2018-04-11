@@ -189,7 +189,7 @@ Plug 'jgdavey/vim-blockle', { 'for': 'ruby' }
 let g:blockle_mapping = '<leader>B'
 Plug 'stephpy/vim-yaml', { 'for': ['yaml', 'yml'] }
 " Docker
-Plug 'ekalinin/Dockerfile.vim',     { 'for': ['yaml', 'yml'] }
+Plug 'ekalinin/Dockerfile.vim'
 Plug 'andrewstuart/vim-kubernetes', { 'for': ['yaml', 'yml'] }
 
 Plug 'fatih/vim-go',     { 'for': 'go'   }
