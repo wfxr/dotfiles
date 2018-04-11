@@ -188,57 +188,11 @@ Plug 'tpope/vim-rake',      { 'for': 'ruby' }
 Plug 'jgdavey/vim-blockle', { 'for': 'ruby' }
 let g:blockle_mapping = '<leader>B'
 Plug 'stephpy/vim-yaml', { 'for': ['yaml', 'yml'] }
-Plug 'fatih/vim-go',     { 'for': 'go'   }
 " Docker
 Plug 'ekalinin/Dockerfile.vim',     { 'for': ['yaml', 'yml'] }
 Plug 'andrewstuart/vim-kubernetes', { 'for': ['yaml', 'yml'] }
-" If unimported-packages completion not work , run the following command:
-" $ gocode set unimported-packages true
-function! s:build_go_files()
-    let l:file = expand('%')
-    if l:file =~# '^\f\+_test\.go$'
-        call go#test#Test(0, 1)
-    elseif l:file =~# '^\f\+\.go$'
-        call go#cmd#Build(0)
-    endif
-endfunction
-augroup go_env
-    autocmd!
-    " Note: Do not change the order!
-    " Note: Do not comment lines inplace
-    autocmd FileType go
-                \ set nolist |
-                \ nmap <leader>b<CR> :call <SID>build_go_files()<CR> |
-                \ nmap <leader>r<CR> <Plug>(go-run) |
-                \ nmap <leader>rr    :GoRun %<CR> |
-                \ nmap <leader>t<CR> <Plug>(go-test) |
-                \ nmap <leader>c<CR> <Plug>(go-coverage-toggle) |
-                \ nmap <leader>a <Plug>(go-alternate-edit) |
-                \ nmap <Leader>i <Plug>(go-info) |
-                \ nmap <leader>sm :GoSameIdsToggle<CR> |
-                \ nmap <c-a-j> :cnext<CR> |
-                \ nmap <c-a-k> :cprevious<CR> |
-                \ nmap <c-a-r> <Plug>(go-rename) |
-                \ let g:go_fmt_command = "goimports" |
-                \ let g:go_list_type = "quickfix" |
-                \ let g:go_highlight_types = 1 |
-                \ let g:go_highlight_fields = 1 |
-                \ let g:go_highlight_functions = 1 |
-                \ let g:go_highlight_methods = 1 |
-                \ let g:go_highlight_operators = 1 |
-                \ let g:go_highlight_build_constraints = 1 |
-                \ let g:go_highlight_generate_tags = 1 |
-                \ let g:go_gocode_propose_builtins = 1 |
-                \ let g:go_gocode_unimported_packages = 1 |
-                \ command! -bang A call go#alternate#Switch(<bang>0, 'edit') |
-                \ command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit') |
-                \ command! -bang AS call go#alternate#Switch(<bang>0, 'split') |
-                \ inoremap <silent> <leader>, <End>,<CR>
-                "\ let g:go_auto_type_info = 1 |
-                "\ let g:go_updatetime = 100 |
-                "\ let g:go_auto_sameids = 1 |
-                "\ let g:go_play_open_browser = 1 |
-augroup END
+
+Plug 'fatih/vim-go',     { 'for': 'go'   }
 Plug 'nelstrom/vim-textobj-rubyblock',   { 'for': 'ruby'       }
 Plug 'rust-lang/rust.vim',               { 'for': 'rust'       }
 Plug 'vim-scripts/awk.vim',              { 'for': 'awk'        }
@@ -445,4 +399,54 @@ if !has('nvim')
     noremap <silent><expr> <leader>/ incsearch#go(<SID>config_easyfuzzymotion())
 endif
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" go-vim plugin
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" If unimported-packages completion not work , run the following command:
+" $ gocode set unimported-packages true
+function! s:build_go_files()
+    let l:file = expand('%')
+    if l:file =~# '^\f\+_test\.go$'
+        call go#test#Test(0, 1)
+    elseif l:file =~# '^\f\+\.go$'
+        call go#cmd#Build(0)
+    endif
+endfunction
+augroup go_env
+    autocmd!
+    " Note: Do not change the order!
+    " Note: Do not comment lines inplace
+    autocmd FileType go
+                \ set nolist |
+                \ nmap <leader>b<CR> :call <SID>build_go_files()<CR> |
+                \ nmap <leader>r<CR> <Plug>(go-run) |
+                \ nmap <leader>rr    :GoRun %<CR> |
+                \ nmap <leader>t<CR> <Plug>(go-test) |
+                \ nmap <leader>c<CR> <Plug>(go-coverage-toggle) |
+                \ nmap <leader>a <Plug>(go-alternate-edit) |
+                \ nmap <Leader>i <Plug>(go-info) |
+                \ nmap <leader>sm :GoSameIdsToggle<CR> |
+                \ nmap <c-a-j> :cnext<CR> |
+                \ nmap <c-a-k> :cprevious<CR> |
+                \ nmap <c-a-r> <Plug>(go-rename) |
+                \ let g:go_fmt_command = "goimports" |
+                \ let g:go_list_type = "quickfix" |
+                \ let g:go_highlight_types = 1 |
+                \ let g:go_highlight_fields = 1 |
+                \ let g:go_highlight_functions = 1 |
+                \ let g:go_highlight_methods = 1 |
+                \ let g:go_highlight_operators = 1 |
+                \ let g:go_highlight_build_constraints = 1 |
+                \ let g:go_highlight_generate_tags = 1 |
+                \ let g:go_gocode_propose_builtins = 1 |
+                \ let g:go_gocode_unimported_packages = 1 |
+                \ command! -bang A call go#alternate#Switch(<bang>0, 'edit') |
+                \ command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit') |
+                \ command! -bang AS call go#alternate#Switch(<bang>0, 'split') |
+                \ inoremap <silent> <leader>, <End>,<CR>
+                "\ let g:go_auto_type_info = 1 |
+                "\ let g:go_updatetime = 100 |
+                "\ let g:go_auto_sameids = 1 |
+                "\ let g:go_play_open_browser = 1 |
+augroup END
 call plug#end()
