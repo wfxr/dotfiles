@@ -39,6 +39,8 @@ alias ds='docker service'
 alias dm='docker-machine'
 alias k='kubectl'
 alias kdashboard='o http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/'
+alias mks='tmux kill-session -t'
+alias mkS='tmux kill-server'
 
 alias ptp=ptpython
 
