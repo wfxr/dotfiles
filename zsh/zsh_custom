@@ -24,6 +24,7 @@ xopen() {
         nohup "$open" "$@" &>/dev/null || nohup "$open" "http://$@" &>/dev/null
     fi
 }
+alias o='xopen'
 
 # remove broken symbolics
 wfxr::rm-broken-links() {
