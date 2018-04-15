@@ -3,32 +3,18 @@ My dotfiles
 
 ## Screenshot
 
-### ZSH
+![screenshot](https://raw.githubusercontent.com/wfxr/i/master/dotfiles.png)
 
-![screenshot](http://oodrq1zte.bkt.clouddn.com/2017-04-14-zsh.png)
-
-### Tmux
-
-![screenshot](http://oodrq1zte.bkt.clouddn.com/2017-04-14-tmux.png)
-
-### Vim
-
-- Config & Plugins
-
-![screenshot](http://oodrq1zte.bkt.clouddn.com/2017-04-14-vim-config.png)
-
-- C++
-
-![screenshot](http://oodrq1zte.bkt.clouddn.com/2017-04-14-vim-cpp.png)
-
-## How To Use
+## Usage
 
 ``` bash
-git clone https://github.com/wfxr/dotfiles
+git clone --depth=1 https://github.com/wfxr/dotfiles
 # eg: install zsh, tmux, vim and git configurations
 dotfiles/install_config.sh zsh tmux vim git
 ```
 
-## License
+## [License](LICENSE.txt)
 
-[MIT](LICENSE.txt)
+The MIT License (MIT)
+
+Copyright (c) 2018 Wenxuan Zhang
