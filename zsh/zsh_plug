@@ -77,7 +77,7 @@ zplug 'b4b4r07/zplug-doctor', lazy:yes
 
 zplug 'wfxr/zplug-rm', lazy:yes
 zplug 'wfxr/zplug-cd', lazy:yes
-zplug "wfxr/fzf-marks"
+zplug "wfxr/formarks"
 (( $+commands[odpscmd] )) && zplug 'wfxr/odps-fzf'
 zplug 'wfxr/forgit', defer:1
 zplug "wfxr/emoji-cli", as:plugin
