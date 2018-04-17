@@ -16,6 +16,7 @@ command! PI PlugInstall
 command! PC PlugClean
 Plug 'zplug/vim-zplug'
 
+Plug 'wfxr/vim-gitignore'
 if !has('nvim')
     Plug 'tpope/vim-sensible' " no nead for nvim
 endif
