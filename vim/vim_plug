@@ -196,6 +196,7 @@ Plug 'andrewstuart/vim-kubernetes', { 'for': ['yaml', 'yml'] }
 Plug 'fatih/vim-go',     { 'for': 'go'   }
 Plug 'nelstrom/vim-textobj-rubyblock',   { 'for': 'ruby'       }
 Plug 'rust-lang/rust.vim',               { 'for': 'rust'       }
+
 Plug 'vim-scripts/awk.vim',              { 'for': 'awk'        }
 
 "Plug 'wfxr/logstash.vim'
@@ -246,8 +247,6 @@ let g:neoformat_basic_format_retab = 1
 " Enable trimming of trailing whitespace
 let g:neoformat_basic_format_trim = 1
 nnoremap <c-a-l> :Neoformat<cr>
-
-let g:rustfmt_autosave = 0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Ultisnips && Vim-Snippets
