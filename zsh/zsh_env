@@ -34,7 +34,7 @@ export CXX="${commands[clang++]:-$CXX}"
 # Rust
 export PATH="$PATH:$HOME/.cargo/bin"
 export RUSTUP_DIST_SERVER="https://mirrors.ustc.edu.cn/rust-static"
-export RUST_SRC_PATH="~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
+export RUST_SRC_PATH="$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
 
 export TERM="xterm-256color"
 
@@ -68,7 +68,7 @@ export FZF_COMPLETION_TRIGGER=''
 bindkey '^T' fzf-completion
 bindkey '^I' "$fzf_default_completion"
 (( $+commands[ag] )) && export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g "" 2>/dev/null'
-(( $+commands[rg] )) && export FZF_DEFAULT_COMMAND='rg --hidden --files -g "" 2>/dev/null'
+(( $+commands[rg] )) && export FZF_DEFAULT_COMMAND='rg --hidden --files --iglob="!.git" -g "" 2>/dev/null'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 #export FZF_ALT_C_COMMAND='cd'
 # Using highlight (https://github.com/andre-simon/highlight)

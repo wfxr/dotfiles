@@ -9,3 +9,5 @@ rustup component add rust-src
 mkdir -p ~/.cargo
 
 ln -snf "$SCRIPT_DIR/config" ~/.cargo/config
+
+cargo install rustfmt
