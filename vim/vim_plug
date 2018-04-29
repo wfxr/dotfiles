@@ -31,7 +31,7 @@ Plug 'kristijanhusak/vim-carbon-now-sh'
 "command! -range=% Snapshot CarbonNowSh
 "cabbrev Snapshot CarbonNowSh
 
-Plug 'ctrlpvim/ctrlp.vim'
+"Plug 'ctrlpvim/ctrlp.vim'
 let g:ctrlp_working_path_mode = 'ra'
 " Wonderfun calendar plugin
 "Plug 'itchyny/calendar.vim'
@@ -200,7 +200,12 @@ Plug 'vim-scripts/awk.vim',              { 'for': 'awk'        }
 
 "Plug 'wfxr/logstash.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
-nmap <c-a-p> :FZF<CR>
+nmap <a-f> :FZF<CR>
+nmap <c-\> :FZF<CR>
+let g:fzf_action = {
+            \ 'ctrl-t': 'tab split',
+            \ 'ctrl-x': 'split',
+            \ 'ctrl-v': 'vsplit' }
 nmap <c-l><c-l> :Lines<cr>
 " Mapping selecting mappings
 nmap <c-l>m <plug>(fzf-maps-n)
@@ -413,6 +418,7 @@ function! s:build_go_files()
         call go#cmd#Build(0)
     endif
 endfunction
+
 augroup go_env
     autocmd!
     " Note: Do not change the order!
@@ -449,5 +455,13 @@ augroup go_env
                 "\ let g:go_updatetime = 100 |
                 "\ let g:go_auto_sameids = 1 |
                 "\ let g:go_play_open_browser = 1 |
+augroup END
+
+augroup rust_env
+    autocmd!
+    autocmd FileType rust
+                \ nmap <c-]> :YcmCompleter GoTo<CR> |
+                \ nmap <c-t> <c-o> |
+                \ inoremap <silent> <leader>, <End>,<CR>
 augroup END
 call plug#end()
