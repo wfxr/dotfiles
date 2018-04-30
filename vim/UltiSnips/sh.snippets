@@ -75,17 +75,6 @@ PATH=${1:$2/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:$HOME/.l
 
 endsnippet
 
-snippet H "Create common header" b
-#!/usr/bin/env bash
-#===============================================================================
-#   Author: `git config user.name`
-#    Email: `git config user.email`
-#  Created: `date +'%F %H:%M'`
-#===============================================================================
-
-
-endsnippet
-
 snippet gemhome "export GEM_HOME=..." b
 export GEM_HOME="`gem env home |sed "s#$HOME#\$HOME#"`"
 $1

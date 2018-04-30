@@ -22,20 +22,55 @@ ${2}
 endsnippet
 
 global !p
-from vimsnippets import foldmarker, make_box, get_comment_format
+from vimsnippets import get_comment_format
+from subprocess import check_output
+from datetime import datetime
 endglobal
 
 snippet todo "TODO comment" bw
-`!p snip.rv=get_comment_format()[0]` ${2:TODO}: $0${3: <${4:`!v strftime('%y-%m-%d')`}, ${5:`whoami`}>} `!p snip.rv=get_comment_format()[2]`
+`!p snip.rv=get_comment_format()[0]` ${1:TODO}: $2${3: <`!v strftime('%y-%m-%d %H:%M')`, `git config user.name`>} `!p snip.rv=get_comment_format()[2]`
 endsnippet
 
 snippet today "date of today" b
 `date +%F`
 endsnippet
+
 snippet yesterday "date of today" b
 `[[ "$OSTYPE" =~ darwin ]] && date -v -1d +%F || date --date=yesterday +%F`
 endsnippet
 
-snippet vimft "# vim: set ..." b
-# vim: set ${1:ft=$2}
+snippet modeline "# vim: set ..." b
+`!p
+beg, end = vim.eval("&commentstring").split('%s')
+snip.rv += beg + ' '
+`vim: ${3:set ${2:ft=${1:`v: &filetype`}}}`!p
+beg, end = vim.eval("&commentstring").split('%s')
+snip.rv += ' ' + end
+`
+endsnippet
+
+snippet H "A header box" b
+`!p
+if snip.ft in ['cpp', 'c', 'rust', 'go', 'cs']:
+	u = '/' + '*' * 79
+	d = '*' * 79 + '/'
+	l = '%-4s' % '*'
+	r = '%4s'  % '*'
+else:
+	c = get_comment_format()[0]
+	u = d = (c * 80)[:80]
+	l = '%-4s' % c
+	r = '%4s'  % c
+
+username  = '%-72s' % (" Author: " + check_output(['git', 'config', 'user.name']).decode('utf-8').strip())
+useremail = '%-72s' % ("  Email: " + check_output(['git', 'config', 'user.email']).decode('utf-8').strip())
+time      = '%-72s' % ("Created: " + datetime.now().strftime('%F %H:%M'))
+
+snip.rv += u
+snip += l + username  + r
+snip += l + useremail + r
+snip += l + time      + r
+snip += d
+`
+$0
 endsnippet
