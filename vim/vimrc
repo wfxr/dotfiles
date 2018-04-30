@@ -140,3 +140,7 @@ function! s:DiffSaved()
   exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
 endfunction
 command! DS call s:DiffSaved()
+
+" Split and open terminal
+command! -nargs=* T split | terminal <args>
+command! -nargs=* VT vsplit | terminal <args>

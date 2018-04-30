@@ -461,6 +461,7 @@ augroup rust_env
     autocmd FileType rust
                 \ nmap <c-]> :YcmCompleter GoTo<CR> |
                 \ nmap <c-t> <c-o> |
+                \ nmap <leader>r<CR> :VT cargo run -q<CR> |
                 \ inoremap <silent> <leader>, <End>,<CR>
 augroup END
 call plug#end()
