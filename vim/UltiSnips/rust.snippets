@@ -1,9 +1,15 @@
-snippet pn "println!(...)" b
-println!(${1:"$2\{\}$3", $4});
+snippet pn "println!(...)"
+println!(${1:"$2\{\}", $3});
 endsnippet
 
-snippet main "fun main() ..." b
+snippet main "fu main() ..." b
 fn main() {
 	$0
+}
+endsnippet
+
+snippet fn "fn foo() ..." b
+fn ${1:foo}($2)$3 {
+	$4
 }
 endsnippet
