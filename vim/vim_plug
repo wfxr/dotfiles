@@ -291,6 +291,7 @@ let g:warning_symbol = '❗'
 
 " Best lint engine(require neovim or vim version > 8)
 Plug 'w0rp/ale'
+let g:ale_linters = {'rust': ['rls']}
 "Plug 'neomake/neomake'
 "autocmd! BufWritePost * Neomake
 let g:neomake_c_enabled_makers=['']

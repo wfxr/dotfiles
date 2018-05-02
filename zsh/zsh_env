@@ -34,7 +34,7 @@ export CXX="${commands[clang++]:-$CXX}"
 # Rust
 export PATH="$PATH:$HOME/.cargo/bin"
 export RUSTUP_DIST_SERVER="https://mirrors.ustc.edu.cn/rust-static"
-export RUST_SRC_PATH="$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
+export RUST_SRC_PATH="$HOME/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
 
 export TERM="xterm-256color"
 

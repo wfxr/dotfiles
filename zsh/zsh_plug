@@ -20,6 +20,7 @@ zplug "plugins/git", from:oh-my-zsh
 zplug "plugins/git-extras", from:oh-my-zsh
 #zplug "plugins/cp", from:oh-my-zsh
 zplug "plugins/mvn", from:oh-my-zsh, lazy:yes
+zplug "plugins/cargo", from:oh-my-zsh, lazy:yes
 #zplug "plugins/pip", from:oh-my-zsh, lazy:yes # work badly
 #zplug "plugins/common-aliases", from:oh-my-zsh, hook-load:"unalias fd"
 [ "$SSH_CLIENT" ] || zplug "plugins/web-search", from:oh-my-zsh

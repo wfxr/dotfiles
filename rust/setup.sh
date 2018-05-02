@@ -4,8 +4,11 @@
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 hash rustup &>/dev/null || curl https://sh.rustup.rs -sSf | sh || exit 1
-rustup component list | grep rust-src &>/dev/null || rustup component add rustfmt-preview
-rustup component list | grep rust-src &>/dev/null || rustup component add rust-src
+rustup update
+rustup component add rls-preview rust-analysis rust-src rustfmt-preview
+
+mkdir -p ~/.zsh_completions
+rustup completions zsh > ~/.zsh_completions/_rustup
 
 mkdir -p ~/.cargo
 
