@@ -202,7 +202,7 @@ Plug 'vim-scripts/awk.vim',              { 'for': 'awk'        }
 "Plug 'wfxr/logstash.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
 nmap <a-f> :FZF<CR>
-nmap <c-\> :FZF<CR>
+nmap <a-b> :Buffers<CR>
 let g:fzf_action = {
             \ 'ctrl-t': 'tab split',
             \ 'ctrl-x': 'split',
