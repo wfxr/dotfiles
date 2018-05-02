@@ -63,20 +63,31 @@ export GOPATH="$HOME/.go"
 export PATH="$PATH:$GOPATH/bin"
 
 # FZF is a general-purpose command-line fuzzy finder.
-#export FZF_TMUX=1
 export FZF_COMPLETION_TRIGGER=''
 bindkey '^T' fzf-completion
 bindkey '^I' "$fzf_default_completion"
 (( $+commands[ag] )) && export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g "" 2>/dev/null'
-(( $+commands[rg] )) && export FZF_DEFAULT_COMMAND='rg --hidden --files --iglob="!.git" -g "" 2>/dev/null'
+(( $+commands[fd] )) && export FZF_DEFAULT_COMMAND='fd --color always --type f --hidden --follow --exclude .git 2>/dev/null'
+(( $+commands[fd] )) && export FZF_ALT_C_COMMAND='fd --color always --type d --hidden --follow --exclude .git 2>/dev/null'
+(( $+commands[fd] )) && export FZF_ALT_C_COMMAND='blsd $dir'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-#export FZF_ALT_C_COMMAND='cd'
-# Using highlight (https://github.com/andre-simon/highlight)
-export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:2:hidden:wrap --bind '?:toggle-preview' --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort' --header 'Press CTRL-Y to copy command into clipboard' --border --exact --expect=ctrl-x"
-# Ctrl-T runs fzf in widget mode while not compatible with vim so unbind 'alt-v'
-export FZF_CTRL_T_OPTS="--preview-window=down:50% --bind 'alt-e:execute()'"
-(( $+commands[exa] )) && tree='exa --color=always -T' || tree='tree -Ctr'
-export FZF_ALT_C_OPTS="--select-1 --exit-0 --preview '($tree -L2 {} | head -200) 2>/dev/null'"
+export FZF_CTRL_R_OPTS="
+--preview 'echo {}'
+--preview-window 'down:2:wrap'
+--bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
+--header 'Press CTRL-Y to copy command into clipboard'
+--exact
+--expect=ctrl-x
+"
+export FZF_CTRL_T_OPTS="
+--preview-window=down:50%
+--bind 'alt-e:execute()'
+"
+export FZF_ALT_C_OPTS="
+--exit-0
+--select-1
+--preview '(exa --color=always -TL2 {} || tree -CtrL 2{}) | head -200 2>/dev/null'
+"
 export FZF_DEFAULT_OPTS="
 --border
 --height 80%
@@ -93,7 +104,7 @@ export FZF_DEFAULT_OPTS="
 --bind=?:toggle-preview,alt-w:toggle-preview-wrap
 --bind=\"ctrl-y:execute-silent(ruby -e 'puts ARGV' {+} | pbcopy)+abort\"
 --bind='alt-e:execute(vim {})+abort'
---preview=\"(highlight -lO ansi {} || cat {} || $tree -L2 {} || head -200) 2>/dev/null\"
+--preview=\"(highlight -lO ansi {} || coderay {} || rougify {} || cat {} || exa --color=always -TL2 {} || tree -CtrL 2{}) | head -200 2>/dev/null\"
 "
 [[ -n "$TMUX" ]] && FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --preview-window=down:hidden:50%" || \
                     FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --preview-window=right:hidden"

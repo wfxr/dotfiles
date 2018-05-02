@@ -20,6 +20,7 @@ yaourt -S mosh
 yaourt -S axel
 yaourt -S shellcheck
 yaourt -S highlight
+yaourt -S fd
 
 # crontab
 pacman -S cronie
