@@ -4,6 +4,25 @@ trim()     { ltrim | rtrim    }
 trimtrim() { trim | tr -s ' ' }
 alias trimcut='trimtrim | cut -d" "'
 
+# Colors
+COLOR_NC='\e[0m' # No Color
+COLOR_WHITE='\e[1;37m'
+COLOR_BLACK='\e[0;30m'
+COLOR_BLUE='\e[0;34m'
+COLOR_LIGHT_BLUE='\e[1;34m'
+COLOR_GREEN='\e[0;32m'
+COLOR_LIGHT_GREEN='\e[1;32m'
+COLOR_CYAN='\e[0;36m'
+COLOR_LIGHT_CYAN='\e[1;36m'
+COLOR_RED='\e[0;31m'
+COLOR_LIGHT_RED='\e[1;31m'
+COLOR_PURPLE='\e[0;35m'
+COLOR_LIGHT_PURPLE='\e[1;35m'
+COLOR_BROWN='\e[0;33m'
+COLOR_YELLOW='\e[1;33m'
+COLOR_GRAY='\e[0;30m'
+COLOR_LIGHT_GRAY='\e[0;37m'
+
 # Call default program to open something
 xopen() {
     emulate -L zsh
@@ -354,4 +373,18 @@ function xgh() {
 jqq() {
     # -F tell less exit automatically if output content can be displayed on one screen
     jq -C "$@" | less -FR
+}
+
+diffdays() {
+    d1=$(date -d "$1" +%s)
+    d2=$(date -d "$2" +%s)
+    echo $(( (d1 - d2) / 86400 ))
+}
+
+rolling-times() {
+    local beg="$(date -I -d "$(head -n1 /var/log/pacman.log | grep -Po '(?<=^\[).*?(?=\])')")"
+    local now="$(date -I)"
+    echo "rolling $COLOR_LIGHT_BLUE$(diffdays "$now" "$beg")$COLOR_NC days, from $beg to $now."
+    echo -n "full system upgrade $COLOR_GREEN$(grep -c "full system upgrade" /var/log/pacman.log)$COLOR_NC times, "
+    echo "install package $COLOR_GREEN$(grep -c " installed " /var/log/pacman.log)$COLOR_NC times."
 }
