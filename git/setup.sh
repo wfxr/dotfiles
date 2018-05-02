@@ -72,3 +72,8 @@ git config --global color.diff.whitespace "red reverse"
 
 # Auto rebase
 git config --global pull.rebase true
+
+git config --global color.status.added     green
+git config --global color.status.updated   green
+git config --global color.status.changed   red
+git config --global color.status.untracked yellow
