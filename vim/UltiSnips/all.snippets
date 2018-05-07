@@ -57,7 +57,7 @@ if snip.ft in ['cpp', 'c', 'rust', 'go', 'cs']:
 	l = '%-4s' % '*'
 	r = '%4s'  % '*'
 else:
-	c = get_comment_format()[0]
+	c = get_comment_format()[0].strip()
 	u = d = (c * 80)[:80]
 	l = '%-4s' % c
 	r = '%4s'  % c
