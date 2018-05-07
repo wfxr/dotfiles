@@ -105,7 +105,7 @@ export FZF_DEFAULT_OPTS="
 --bind=?:toggle-preview,alt-w:toggle-preview-wrap
 --bind=\"ctrl-y:execute-silent(ruby -e 'puts ARGV' {+} | pbcopy)+abort\"
 --bind='alt-e:execute(vim {})+abort'
---preview=\"(highlight -lO ansi {} || coderay {} || rougify {} || cat {} || exa --color=always -TL2 {} || tree -CtrL 2{}) | head -200 2>/dev/null\"
+--preview=\"(bat {} || highlight -lO ansi {} || coderay {} || rougify {} || cat {} || exa --color=always -TL2 {} || tree -CtrL2 {}) 2>/dev/null | head -200\"
 "
 [[ -n "$TMUX" ]] && FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --preview-window=down:hidden:50%" || \
                     FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --preview-window=right:hidden"
