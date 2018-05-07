@@ -67,10 +67,10 @@ export PATH="$PATH:$GOPATH/bin"
 export FZF_COMPLETION_TRIGGER=''
 bindkey '^T' fzf-completion
 bindkey '^I' "$fzf_default_completion"
-(( $+commands[ag] )) && export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g "" 2>/dev/null'
-(( $+commands[fd] )) && export FZF_DEFAULT_COMMAND='fd --color always --type f --hidden --follow --exclude .git 2>/dev/null'
-(( $+commands[fd] )) && export FZF_ALT_C_COMMAND='fd --color always --type d --hidden --follow --exclude .git 2>/dev/null'
-(( $+commands[fd] )) && export FZF_ALT_C_COMMAND='blsd $dir'
+(( $+commands[ag]   )) && export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g "" 2>/dev/null'
+(( $+commands[fd]   )) && export FZF_DEFAULT_COMMAND='fd --color always --type f --hidden --follow --exclude .git 2>/dev/null'
+(( $+commands[fd]   )) && export FZF_ALT_C_COMMAND='fd --color always --type d --hidden --follow --exclude .git 2>/dev/null'
+(( $+commands[blsd] )) && export FZF_ALT_C_COMMAND='blsd $dir'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_R_OPTS="
 --preview 'echo {}'
