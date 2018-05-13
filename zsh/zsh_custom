@@ -388,3 +388,7 @@ rolling-times() {
     echo -n "full system upgrade $COLOR_GREEN$(grep -c "full system upgrade" /var/log/pacman.log)$COLOR_NC times, "
     echo "install package $COLOR_GREEN$(grep -c " installed " /var/log/pacman.log)$COLOR_NC times."
 }
+
+dequote() {
+    sed 's/\\"/"/g; s/^"\|"$//g'
+}
