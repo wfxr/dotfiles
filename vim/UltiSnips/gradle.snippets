@@ -1,0 +1,15 @@
+snippet aliyun "aliyun maven repository mirror" b
+maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+endsnippet
+
+snippet repos "common repositories list" b
+repositories {
+	maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+	mavenCentral()
+	jcenter()
+}
+endsnippet
+
+snippet jdk "set sourceCompatibility" b
+sourceCompatibility = ${1:1.8}
+endsnippet
