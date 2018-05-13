@@ -144,3 +144,6 @@ command! DS call s:DiffSaved()
 " Split and open terminal
 command! -nargs=* T split | terminal <args>
 command! -nargs=* VT vsplit | terminal <args>
+
+" Add custom filetypes detection for ultisnips
+au BufRead,BufNewFile pom.xml set filetype=maven.xml
