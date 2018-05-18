@@ -141,6 +141,7 @@ Plug 'ntpeters/vim-better-whitespace'
 nnoremap <leader>sw :StripWhitespace<CR>
 "Plug 'jeaye/color_coded' " C-family语法高亮 TODO need lua, no nvim support
 Plug 'scrooloose/nerdcommenter' | Plug 'tpope/vim-commentary'
+let NERDSpaceDelims = 1
 Plug 'mhinz/vim-signify' " show vcs symbol on the left side
 " For some reason, vim registers <C-/> as <C-_>
 nnoremap <c-_> :call NERDComment(0, "toggle")<CR>j
