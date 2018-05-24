@@ -1,0 +1,33 @@
+snippet sz "size" b
+"size": ${1:1}
+endsnippet
+
+snippet q "query" b
+"size": ${1:1},
+"query": {
+	$2
+}
+endsnippet
+
+snippet tm "term" b
+"term": {
+	"${1:field}": {
+		"value": "${2:value}"
+	}
+}
+endsnippet
+
+snippet aggs "aggs" b
+"aggs": {
+	"${1:agg}": {
+		$2
+	}
+}
+endsnippet
+
+
+snippet sum "aggs" b
+"sum": {
+	"field": "$1"
+}
+endsnippet

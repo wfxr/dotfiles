@@ -393,15 +393,27 @@ dequote() {
     sed 's/\\"/"/g; s/^"\|"$//g'
 }
 
-vhttp() {
+vcurl() {
     local TMPFILE="$(mktemp -t --suffix=.json)"
     trap "\\rm -f '$TMPFILE'" EXIT INT TERM HUP
-    vim $TMPFILE
-    http "$@" < $TMPFILE
+    vim "$TMPFILE" >/dev/tty
+    curl "$@" < "$TMPFILE"
 }
 
-khttp() {
-    local BUFFER="/tmp/http-body-buffer.json"
-    vim $BUFFER
-    http "$@" < $BUFFER
+kcurl() {
+    local BUFFER="/tmp/curl-body-buffer.json"
+    touch "$BUFFER" && vim "$BUFFER" >/dev/tty
+    curl "$@" < "$BUFFER"
+}
+
+escli() {
+    local route="$@[-1]"
+    local args=$@[1,-2]
+    if [[ "$route" == _cat* ]]; then
+        http --body -a "$USER" "$@[1,-2]" "$ES_API_HOST/$route"
+    else
+        local BUFFER="/tmp/curl-body-buffer.esquery.json"
+        touch "$BUFFER" && vim "$BUFFER" >/dev/tty
+        http --body -a "$USER" "$@[1,-2]" "$ES_API_HOST/$route" @"$BUFFER"
+    fi
 }

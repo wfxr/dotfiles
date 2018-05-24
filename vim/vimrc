@@ -148,3 +148,4 @@ command! -nargs=* VT vsplit | terminal <args>
 " Add custom filetypes detection for ultisnips
 au BufRead,BufNewFile pom.xml set filetype=maven.xml
 au BufRead,BufNewFile build.gradle set filetype=gradle.groovy
+au BufRead,BufNewFile *.esquery.json set filetype=esquery.json
