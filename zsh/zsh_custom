@@ -392,3 +392,10 @@ rolling-times() {
 dequote() {
     sed 's/\\"/"/g; s/^"\|"$//g'
 }
+
+vhttp() {
+    TMPFILE="$(mktemp -t --suffix=.json)"
+    trap "\\rm -f '$TMPFILE'" EXIT INT TERM HUP
+    vim $TMPFILE
+    http "$@" < $TMPFILE
+}
