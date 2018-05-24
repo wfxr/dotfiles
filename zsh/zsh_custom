@@ -394,8 +394,14 @@ dequote() {
 }
 
 vhttp() {
-    TMPFILE="$(mktemp -t --suffix=.json)"
+    local TMPFILE="$(mktemp -t --suffix=.json)"
     trap "\\rm -f '$TMPFILE'" EXIT INT TERM HUP
     vim $TMPFILE
     http "$@" < $TMPFILE
+}
+
+khttp() {
+    local BUFFER="/tmp/http-body-buffer.json"
+    vim $BUFFER
+    http "$@" < $BUFFER
 }
