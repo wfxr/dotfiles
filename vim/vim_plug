@@ -16,6 +16,9 @@ command! PI PlugInstall
 command! PC PlugClean
 Plug 'zplug/vim-zplug'
 
+Plug 'wellle/visual-split.vim'
+Plug 'matze/vim-move'
+
 Plug 'wfxr/vim-gitignore'
 if !has('nvim')
     Plug 'tpope/vim-sensible' " no nead for nvim
