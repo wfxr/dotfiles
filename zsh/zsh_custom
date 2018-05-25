@@ -409,11 +409,15 @@ kcurl() {
 escli() {
     local route="$@[-1]"
     local args=$@[1,-2]
-    if [[ "$route" == _cat* ]]; then
-        http --body -a "$USER" "$@[1,-2]" "$ES_API_HOST/$route"
-    else
-        local BUFFER="/tmp/curl-body-buffer.esquery.json"
-        touch "$BUFFER" && vim "$BUFFER" >/dev/tty
-        http --body -a "$USER" "$@[1,-2]" "$ES_API_HOST/$route" @"$BUFFER"
-    fi
+    case "$route" in
+        _cat* )
+            http --body -a "$USER" "$@[1,-2]" "$ES_API_HOST/$route"
+            ;;
+        * )
+            local BUFFER="/tmp/curl-body-buffer.esquery.json"
+            touch "$BUFFER" && vim "$BUFFER" >/dev/tty
+            http --body -a "$USER" "$@[1,-2]" "$ES_API_HOST/$route" @"$BUFFER"
+            ;;
+    esac
 }
+
