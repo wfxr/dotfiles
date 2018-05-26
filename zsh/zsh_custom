@@ -371,8 +371,9 @@ function xgh() {
 }
 
 jqq() {
+    [[ "$#" -eq 0 ]] && args='.' || args="$@"
     # -F tell less exit automatically if output content can be displayed on one screen
-    jq -C "$@" | less -FR
+    jq -C $args | less -FR
 }
 
 diffdays() {
