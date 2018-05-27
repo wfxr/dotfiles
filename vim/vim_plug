@@ -81,11 +81,11 @@ if has('timers')
   " Blink 3 times with 50ms interval
   noremap <expr> <plug>(slash-after) 'zz'.slash#blink(2, 50)
 endif
-Plug 'junegunn/vim-emoji'
-augroup emoji_complete
-    autocmd!
-    autocmd FileType markdown,gitcommit setlocal completefunc=emoji#complete
-augroup END
+" Plug 'junegunn/vim-emoji'
+" augroup emoji_complete
+    " autocmd!
+    " autocmd FileType markdown,gitcommit setlocal completefunc=emoji#complete
+" augroup END
 Plug 'junegunn/goyo.vim'
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
@@ -184,7 +184,7 @@ Plug 'moll/vim-node',           { 'for': 'node'       }
 Plug 'mattn/emmet-vim',         { 'for': 'html'       }
 Plug 'othree/xml.vim',          { 'for': 'xml'        }
 Plug 'elzr/vim-json',           { 'for': 'json'       }
-autocmd Filetype json,esquery.json set shiftwidth=2
+autocmd Filetype *json set shiftwidth=2
 Plug 'cespare/vim-toml',        { 'for': 'toml'       }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown'   }
