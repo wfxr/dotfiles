@@ -1,4 +1,4 @@
-" vim: filetype=vim
+" vim: filetype=plug.vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim Plug: A minimalist Vim plugin manager.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -10,53 +10,70 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-" Define some custom command
-command! PU PlugUpgrade | PlugUpdate
-command! PI PlugInstall
-command! PC PlugClean
-Plug 'zplug/vim-zplug'
+
+" vim-cheat40 {{{
+" Keymapping: <leader>?
+Plug 'lifepillar/vim-cheat40'
+" }}} vim-cheat40 "
 
 Plug 'wellle/visual-split.vim'
 Plug 'matze/vim-move'
-
 Plug 'wfxr/vim-gitignore'
+Plug 'zplug/vim-zplug'
+
+" tpope/vim-sensible {{{ "
 if !has('nvim')
     Plug 'tpope/vim-sensible' " no nead for nvim
 endif
+" }}} tpope/vim-sensible "
 
+" junegunn/vim-github-dashboard {{{ "
 Plug 'junegunn/vim-github-dashboard'
 let g:github_dashboard = {
 \ 'username': 'wfxr'
 \ }
+" }}} junegunn/vim-github-dashboard "
 
+" kristijanhusak/vim-carbon-now-sh {{{ "
 " Plugin for opening selected content in https://carbon.now.sh.
 Plug 'kristijanhusak/vim-carbon-now-sh'
 "command! -range=% Snapshot CarbonNowSh
 "cabbrev Snapshot CarbonNowSh
+" }}} kristijanhusak/vim-carbon-now-sh "
 
 "Plug 'ctrlpvim/ctrlp.vim'
-let g:ctrlp_working_path_mode = 'ra'
+" let g:ctrlp_working_path_mode = 'ra'
+
+" itchyny/calendar.vim {{{ "
 " Wonderfun calendar plugin
 "Plug 'itchyny/calendar.vim'
 "let g:calendar_google_calendar = 1
 "let g:calendar_google_task = 1
+" }}} itchyny/calendar.vim "
+
+" terryma/vim-smooth-scroll {{{ "
 Plug 'terryma/vim-smooth-scroll'
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
 noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
 noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
+" }}} terryma/vim-smooth-scroll "
+
 Plug 'mattn/vim-fixedsearch'
 nmap \ <plug>(fixedsearch)
+
 Plug 'mattn/vim-xxdcursor' | Plug 'fidian/hexmode'
 let g:hexmode_patterns = '*.o,*.so,*.a,*.out,*.bin,*.exe'
-Plug 'tmux-plugins/vim-tmux'
 
+Plug 'tmux-plugins/vim-tmux'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'
 Plug 'glts/vim-textobj-comment'
+
 Plug 'terryma/vim-expand-region'
 map + <Plug>(expand_region_expand)
 map - <Plug>(expand_region_shrink)
+
 Plug 'mattn/vim-textobj-url'
 Plug 'junegunn/vim-after-object'
 autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ', ',')
@@ -139,7 +156,8 @@ noremap - :Switch<CR>
 noremap _ :SwitchReverse<CR>
 Plug 'AndrewRadev/splitjoin.vim'
 " gS/gJ to split or join
-Plug 'mbbill/undotree'
+Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
+nnoremap U :UndotreeToggle<CR>
 "Plug 'osyo-manga/vim-over'
 Plug 'ntpeters/vim-better-whitespace'
 nnoremap <leader>sw :StripWhitespace<CR>
@@ -471,6 +489,7 @@ augroup go_env
                 "\ let g:go_play_open_browser = 1|
 augroup END
 
+" vim-rust {{{ "
 augroup rust_env
     autocmd!
     autocmd FileType rust
@@ -480,4 +499,71 @@ augroup rust_env
                 \ nmap <leader>t<CR> :VT cargo test -q<CR> |
                 \ nmap <leader>b<CR> :VT cargo build -q<CR>
 augroup END
+" }}} vim-rust "
+
+" vim-plug extension {{{ "
+" Define some custom command
+command! PU PlugUpgrade | PlugUpdate
+command! PI PlugInstall
+command! PC PlugClean
+
+" Open repo in browser
+function! s:plug_gx()
+    let s:match = matchlist(getline("."), '\vPlug\s+[''"]([^/]+/[^/]+)[\''\"]')
+    if len(s:match) < 2
+        echo "No repo find on current line."
+    else
+        let s:url = 'https://github.com/' . s:match[1]
+        call netrw#BrowseX(s:url, 0)
+    end
+endfunction
+
+" VimAwesome complete for vim-plug
+function! VimAwesomeComplete() abort
+    let prefix = matchstr(strpart(getline('.'), 0, col('.') - 1), '[.a-zA-Z0-9_/-]*$')
+    echohl WarningMsg
+    echo 'Downloading plugin list from VimAwesome'
+    echohl None
+    ruby << EOF
+    require 'json'
+    require 'open-uri'
+
+    query = VIM::evaluate('prefix').gsub('/', '%20')
+    items = 1.upto(max_pages = 3).map do |page|
+    Thread.new do
+    url  = "http://vimawesome.com/api/plugins?page=#{page}&query=#{query}"
+    data = open(url).read
+    json = JSON.parse(data, symbolize_names: true)
+    json[:plugins].map do |info|
+    pair = info.values_at :github_owner, :github_repo_name
+    next if pair.any? { |e| e.nil? || e.empty? }
+    {word: pair.join('/'),
+    menu: info[:category].to_s,
+    info: info.values_at(:short_desc, :author).compact.join($/)}
+end.compact
+    end
+end.each(&:join).map(&:value).inject(:+)
+VIM::command("let cands = #{JSON.dump items}")
+EOF
+if !empty(cands)
+    inoremap <buffer> <c-v> <c-n>
+    augroup _VimAwesomeComplete
+        autocmd!
+        autocmd CursorMovedI,InsertLeave * iunmap <buffer> <c-v>
+                    \| autocmd! _VimAwesomeComplete
+    augroup END
+
+    call complete(col('.') - strchars(prefix), cands)
+endif
+return ''
+endfunction
+
+augroup PlugExtension
+    autocmd!
+    autocmd FileType plug.vim
+                \ nnoremap <buffer> <silent> gx :call <sid>plug_gx()<cr>|
+                \ inoremap <buffer> <c-x><c-x> <c-r>=VimAwesomeComplete()<cr>|
+                \ autocmd BufWritePost * source %
+augroup END
+" }}} vim-plug extension "
 call plug#end()

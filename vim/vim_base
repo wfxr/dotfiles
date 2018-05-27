@@ -25,7 +25,7 @@ set smartcase
 set nofoldenable
 
 " Set fold method
-set foldmethod=indent
+set foldmethod=syntax
 set foldlevel=0
 
 " Show whitespace
