@@ -56,7 +56,7 @@ noremap <leader>Y "+Y
 
 noremap <leader>P "+P
 " Select pasted text
-noremap vp `[v`]
+noremap gp `[v`]
 
 noremap H gg
 noremap L G

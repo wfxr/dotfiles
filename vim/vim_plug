@@ -144,12 +144,19 @@ Plug 'mbbill/undotree'
 Plug 'ntpeters/vim-better-whitespace'
 nnoremap <leader>sw :StripWhitespace<CR>
 "Plug 'jeaye/color_coded' " C-family语法高亮 TODO need lua, no nvim support
+Plug 'mhinz/vim-signify' " show vcs symbol on the left side
 Plug 'scrooloose/nerdcommenter' | Plug 'tpope/vim-commentary'
 let NERDSpaceDelims = 1
-Plug 'mhinz/vim-signify' " show vcs symbol on the left side
+let g:NERDCreateDefaultMappings = 0
+let g:NERDTrimTrailingWhitespace = 1
+let g:NERDCompactSexyComs = 1
+let g:NERDCommentEmptyLines = 1
 " For some reason, vim registers <C-/> as <C-_>
 nnoremap <c-_> :call NERDComment(0, "toggle")<CR>j
-vnoremap <c-_> :call NERDComment(0, "toggle")<CR>j
+vnoremap <c-_> :call NERDComment(0, "toggle")<CR>'>j
+" Paste and comment
+nmap <leader>cc yyP<c-_>
+vmap <leader>cc yPgp<c-_>
 Plug 'vim-scripts/matchit.zip' " Enhance % match
 "Plug 'vim-scripts/a.vim'
 "nmap <leader>aa :A<CR>
@@ -430,37 +437,37 @@ augroup go_env
     " Note: Do not change the order!
     " Note: Do not comment lines inplace
     autocmd FileType go
-                \ set nolist |
-                \ nmap <leader>b<CR> :call <SID>build_go_files()<CR> |
-                \ nmap <leader>r<CR> <Plug>(go-run) |
-                \ nmap <leader>rr    :GoRun %<CR> |
-                \ nmap <leader>t<CR> <Plug>(go-test) |
-                \ nmap <leader>c<CR> <Plug>(go-coverage-toggle) |
-                \ nmap <leader>a <Plug>(go-alternate-edit) |
-                \ nmap <Leader>i <Plug>(go-info) |
-                \ nmap <leader>sm :GoSameIdsToggle<CR> |
-                \ nmap <c-a-j> :cnext<CR> |
-                \ nmap <c-a-k> :cprevious<CR> |
-                \ nmap <c-a-r> <Plug>(go-rename) |
-                \ let g:go_fmt_command = "goimports" |
-                \ let g:go_list_type = "quickfix" |
-                \ let g:go_highlight_types = 1 |
-                \ let g:go_highlight_fields = 1 |
-                \ let g:go_highlight_functions = 1 |
-                \ let g:go_highlight_methods = 1 |
-                \ let g:go_highlight_operators = 1 |
-                \ let g:go_highlight_build_constraints = 1 |
-                \ let g:go_highlight_generate_tags = 1 |
-                \ let g:go_gocode_propose_builtins = 1 |
-                \ let g:go_gocode_unimported_packages = 1 |
-                \ command! -bang A call go#alternate#Switch(<bang>0, 'edit') |
-                \ command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit') |
-                \ command! -bang AS call go#alternate#Switch(<bang>0, 'split') |
+                \ set nolist|
+                \ nmap <leader>b<CR> :call <SID>build_go_files()<CR>|
+                \ nmap <leader>r<CR> <Plug>(go-run)|
+                \ nmap <leader>rr    :GoRun %<CR>|
+                \ nmap <leader>t<CR> <Plug>(go-test)|
+                \ nmap <leader>c<CR> <Plug>(go-coverage-toggle)|
+                \ nmap <leader>a <Plug>(go-alternate-edit)|
+                \ nmap <Leader>i <Plug>(go-info)|
+                \ nmap <leader>sm :GoSameIdsToggle<CR>|
+                \ nmap <c-a-j> :cnext<CR>|
+                \ nmap <c-a-k> :cprevious<CR>|
+                \ nmap <c-a-r> <Plug>(go-rename)|
+                \ let g:go_fmt_command = "goimports"|
+                \ let g:go_list_type = "quickfix"|
+                \ let g:go_highlight_types = 1|
+                \ let g:go_highlight_fields = 1|
+                \ let g:go_highlight_functions = 1|
+                \ let g:go_highlight_methods = 1|
+                \ let g:go_highlight_operators = 1|
+                \ let g:go_highlight_build_constraints = 1|
+                \ let g:go_highlight_generate_tags = 1|
+                \ let g:go_gocode_propose_builtins = 1|
+                \ let g:go_gocode_unimported_packages = 1|
+                \ command! -bang A call go#alternate#Switch(<bang>0, 'edit')|
+                \ command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')|
+                \ command! -bang AS call go#alternate#Switch(<bang>0, 'split')|
                 \ inoremap <silent> <leader>, <End>,<CR>
-                "\ let g:go_auto_type_info = 1 |
-                "\ let g:go_updatetime = 100 |
-                "\ let g:go_auto_sameids = 1 |
-                "\ let g:go_play_open_browser = 1 |
+                "\ let g:go_auto_type_info = 1|
+                "\ let g:go_updatetime = 100|
+                "\ let g:go_auto_sameids = 1|
+                "\ let g:go_play_open_browser = 1|
 augroup END
 
 augroup rust_env
