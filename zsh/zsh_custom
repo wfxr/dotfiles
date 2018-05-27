@@ -411,7 +411,7 @@ escli() {
     local route="$@[-1]"
     local args=$@[1,-2]
     case "$route" in
-        _cat* )
+        _cat* | _nodes* | _cluster* )
             http --body -a "$USER" "$@[1,-2]" "$ES_API_HOST/$route"
             ;;
         * )
