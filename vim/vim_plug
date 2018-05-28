@@ -59,7 +59,7 @@ noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
 noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 " }}} terryma/vim-smooth-scroll "
 
-Plug 'mattn/vim-fixedsearch'
+Plug 'mattn/vim-fixedsearch' | Plug 'mattn/vim-prompter'
 nmap \ <plug>(fixedsearch)
 
 Plug 'mattn/vim-xxdcursor' | Plug 'fidian/hexmode'
