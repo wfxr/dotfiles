@@ -186,6 +186,7 @@ let g:lt_height = 10
 let g:lt_location_list_toggle_map = '<leader>1'
 let g:lt_quickfix_list_toggle_map = '<leader>2'
 Plug 'Yggdroot/indentLine'
+let g:indentLine_enabled = 0
 let g:indentLine_char = '│'
 let g:indentLine_color_term = 239
 let g:indentLine_color_gui = '#4E4E4E'
