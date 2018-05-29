@@ -154,3 +154,4 @@ au BufRead,BufNewFile *.esquery.json set filetype=esquery.json
 au BufRead,BufNewFile * if &ft == '' | set filetype=text | endif
 
 autocmd Filetype *vim set foldenable | set foldmethod=marker
+autocmd Filetype *json set shiftwidth=2
