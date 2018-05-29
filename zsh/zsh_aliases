@@ -135,3 +135,5 @@ if (( $+commands[fasd] )) ; then
 fi
 
 (( $+commands[assh] )) && alias ssh="assh wrapper ssh"
+
+[[ -n "$TMUX" ]] && alias fzf="fzf --preview-window=down:50%" || alias fzf="fzf --preview-window=right:50%"
