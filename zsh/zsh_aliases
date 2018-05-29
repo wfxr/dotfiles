@@ -1,3 +1,4 @@
+#!/usr/bin/env zsh
 alias agall='ag --silent --hidden -g ""'
 alias agdot='ag --silent --hidden -g ".[^/]+"'
 

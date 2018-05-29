@@ -1,3 +1,4 @@
+#!/usr/bin/env zsh
 ltrim()    { sed 's/^\s\+//g' }
 rtrim()    { sed 's/\s\+$//g' }
 trim()     { ltrim | rtrim    }

@@ -1,3 +1,4 @@
+#!/usr/bin/env zsh
 # Add emacs-like keybind to vi mode
 bindkey -M viins '^F'  forward-char
 bindkey -M viins '^B'  backward-char

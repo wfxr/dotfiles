@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 # Important
 zstyle ':completion:*:default' menu select=2
 
