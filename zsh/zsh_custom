@@ -422,3 +422,9 @@ escli() {
     esac
 }
 
+gorepo() {
+    local url
+    url=$(git remote get-url origin) || return $?
+    [[ "$url" =~ '^git@' ]] && url=$(echo "$url" | sed -e 's#:#/#' -e 's#git@#https://#')
+    xopen "$url"
+}
