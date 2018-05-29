@@ -129,7 +129,7 @@ let g:airline_right_alt_sep = ''
 "let Tlist_Exit_OnlyWindow=1
 "let Tlist_Auto_Open=0
 "nmap <leader>tl :TlistToggle<CR>
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' } | Plug 'Xuyuanp/nerdtree-git-plugin'
 let g:NERDTreeDirArrowExpandable = ''
 let g:NERDTreeDirArrowCollapsible = ''
 nmap <C-\> :NERDTreeToggle<CR>
@@ -137,13 +137,12 @@ nmap <C-\> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 Plug 'mhinz/vim-startify'
 " Shot nerdtree when start vim without argument
-autocmd VimEnter *
-            \ if !argc()
-            \ |   Startify
-            \ |   NERDTree
-            \ |   wincmd w
-            \ | endif
-Plug 'Xuyuanp/nerdtree-git-plugin' " Show git status icon on nerdtree
+" autocmd VimEnter *
+            " \ if !argc()
+            " \ |   Startify
+            " \ |   NERDTree
+            " \ |   wincmd w
+            " \ | endif
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-repeat'
@@ -540,17 +539,6 @@ command! PU PlugUpgrade | PlugUpdate
 command! PI PlugInstall
 command! PC PlugClean
 
-" Open repo in browser
-function! s:plug_gx()
-    let s:match = matchlist(getline("."), '\vPlug\s+[''"]([^/''"]+/[^/''"]+)[\''\"]')
-    if len(s:match) < 2
-        echo "No repo find on current line."
-    else
-        let s:url = 'https://github.com/' . s:match[1]
-        call netrw#BrowseX(s:url, 0)
-    end
-endfunction
-
 " VimAwesome complete for vim-plug
 function! VimAwesomeComplete() abort
     let prefix = matchstr(strpart(getline('.'), 0, col('.') - 1), '[.a-zA-Z0-9_/-]*$')
@@ -594,9 +582,23 @@ endfunction
 augroup PlugExtension
     autocmd!
     autocmd FileType plug.vim
-                \ nnoremap <buffer> <silent> gx :call <sid>plug_gx()<cr>|
                 \ inoremap <buffer> <c-x><c-x> <c-r>=VimAwesomeComplete()<cr>|
                 \ autocmd BufWritePost * source %
 augroup END
 " }}} vim-plug extension "
 call plug#end()
+
+" Custom functions {{{ "
+" Open repo in browser
+function! s:go_github()
+    let s:repo = matchstr(expand("<cWORD>"), '\v[0-9A-Za-z\-]+/[0-9A-Za-z\-]+')
+    if empty(s:repo)
+        echo "GoGithub: No repository found in this line."
+    else
+        let s:url = 'https://github.com/' . s:repo
+        call netrw#BrowseX(s:url, 0)
+    end
+endfunction
+nnoremap <buffer> <silent> gG :call <sid>go_github()<cr>|
+autocmd FileType *vim,*zsh,*bash,*tmux nmap <c-]> gG
+" }}} Custom functions "
