@@ -369,12 +369,8 @@ function color_cat() {
 
 function wfxr::jq_wrapper() {
     [[ "$#" -eq 0 ]] && args='.' || args="$@"
-    if [[ -t 1 ]]; then
         # -F tell less exit automatically if output content can be displayed on one screen
-        jq -C "$args" | less -FR
-    else
-        jq "$args"
-    fi
+    [[ -t 1 ]] && jq -C "$args" | less -FR || jq "$args"
 }
 alias jq='wfxr::jq_wrapper'
 
