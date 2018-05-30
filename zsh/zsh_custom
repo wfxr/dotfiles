@@ -1,8 +1,8 @@
 #!/usr/bin/env zsh
-ltrim()    { sed 's/^\s\+//g' }
-rtrim()    { sed 's/\s\+$//g' }
-trim()     { ltrim | rtrim    }
-trimtrim() { trim | tr -s ' ' }
+function ltrim()    { sed 's/^\s\+//g' }
+function rtrim()    { sed 's/\s\+$//g' }
+function trim()     { ltrim | rtrim    }
+function trimtrim() { trim | tr -s ' ' }
 alias trimcut='trimtrim | cut -d" "'
 
 # Colors
@@ -25,7 +25,7 @@ COLOR_GRAY='\e[0;30m'
 COLOR_LIGHT_GRAY='\e[0;37m'
 
 # Call default program to open something
-xopen() {
+function xopen() {
     emulate -L zsh
     setopt shwordsplit
     local open
@@ -47,7 +47,7 @@ xopen() {
 alias o='xopen'
 
 # remove broken symbolics
-wfxr::rm-broken-links() {
+function wfxr::rm-broken-links() {
     local ls links
     [[ $+commands[exa] ]] && ls=exa || ls=ls
     IFS=$'\n' links=(`eval "find $1 -xtype l"`)
@@ -56,11 +56,11 @@ wfxr::rm-broken-links() {
     echo -n "Remove? [y/N]: "
     read -q && rm -- ${links[@]}
 }
-rm-broken-links-all() { wfxr::rm-broken-links               }
-rm-broken-links()     { wfxr::rm-broken-links '-maxdepth 1' }
+function rm-broken-links-all() { wfxr::rm-broken-links               }
+function rm-broken-links()     { wfxr::rm-broken-links '-maxdepth 1' }
 
 # config for pet
-pet-select() {
+function pet-select() {
   BUFFER=$(pet search --query "$LBUFFER")
   CURSOR=$#BUFFER
   zle redisplay
@@ -69,13 +69,13 @@ zle -N pet-select
 stty -ixon
 bindkey '^[s' pet-select
 
-pet-add-prev() {
+function pet-add-prev() {
   PREV=$(fc -lrn | head -n 1)
   sh -c "pet new `printf %q "$PREV"`"
 }
 
 # Tmux attach session
-ta() {
+function ta() {
     [[ $TMUX ]] && return 1 # Already in tmux session
     local preview_cmd='<<< {} awk "{print \$2}" | xargs tmux list-windows -t | sed "s/\[.*\]//g" | column -t | sed "s/  \(\S\)/ \1/g"'
     local choice=$(tmux ls -F "#{session_name}" | nl -w2 -s' ' \
@@ -89,7 +89,7 @@ ta() {
 }
 bindkey -s '^[t' 'ta\n'
 # Tmux switch session
-wfxr::tmux-switch() {
+function wfxr::tmux-switch() {
     [[ ! $TMUX ]] && return 1 # Not in tmux session
     local preview_cmd='<<< {} awk "{print \$2}" | xargs tmux list-windows -t | sed "s/\[.*\]//g" | column -t | sed "s/  \(\S\)/ \1/g"'
     local curr=$(tmux display-message -p "#S")
@@ -104,7 +104,7 @@ wfxr::tmux-switch() {
     zle redisplay
 }
 # Tmux select window
-wfxr::tmux-select-window() {
+function wfxr::tmux-select-window() {
     [[ ! $TMUX ]] && return 1
     local preview_cmd='<<< {} awk "{print \$2}" | xargs tmux list-windows -t | sed "s/\[.*\]//g" | column -t | sed "s/  \(\S\)/ \1/g"'
     local curr=$(tmux display-message -p "#W")
@@ -123,18 +123,18 @@ if [[ $TMUX ]]; then
 fi
 
 # Search through your LastPass vault with LastPass CLI and copy password to clipboard.
-lppwd() {
+function lppwd() {
     lpass show -c --password $(lpass ls  | fzf | awk '{print $(NF)}' | sed 's/\]//g')
 }
-lpall() {
+function lpall() {
     lpass show -c $(lpass ls  | fzf |  awk '{print $(NF)}' | sed 's/\]//g')
 }
-lproot() {
+function lproot() {
     lpass show -c --field=Root $(lpass ls | fzf  | awk '{print $(NF)}' | sed 's/\]//g')
 }
 
 # Application launcher
-fzf-dmenu() {
+function fzf-dmenu() {
     # note: xdg-open has a bug with .desktop files, so we cant use that shit
     local selected="$(ls /usr/share/applications | sed 's/\(.*\)\.desktop/\1/g' | fzf -e).desktop"
     [ $? -eq 0 ] && nohup `grep '^Exec' "/usr/share/applications/$selected" | tail -1 | sed 's/^Exec=//' | sed 's/%.//'` >/dev/null 2>&1&
@@ -143,7 +143,7 @@ fzf-dmenu() {
 #bindkey -s '^V' "fzf-dmenu\n"
 
 # Powerful fg
-fzf-fg() {
+function fzf-fg() {
     local jobId=$(jobs -l | fzf --exact --exit-0 --select-1 --height=6 | sed "s/^\[\(.*\)\].*$/\1/g")
     # continue only when a jobId selected
     [ $jobId ] && fg %$jobId
@@ -155,82 +155,91 @@ zle -N edit-command-line
 bindkey '^[v' edit-command-line
 
 # edit
-e() {
+function e() {
     local files
     IFS=$'\n' files=($(fzf -q "`echo $@`" -m -1 -0))
     [[ $? -eq 0 ]] && ${EDITOR:-vim} "${files[@]}"
 }
 
 # mosh
-mosh-kill() {
+function mosh-kill() {
     ps -C mosh-server -o uname,pid,ppid,start_time,etime --sort=-start_time | column -t \
         | fzf --header-lines=2 -m | awk '{print $2}'\
         | xargs kill -9
 }
 
-wfxr::ydcv() {
-    WORD=`cat /usr/share/dict/words |\
-                fzf --preview='ydcv --color always {}' \
-                    --preview-window='right:wrap:80%'`
-    BUFFER=$BUFFER$WORD
-    CURSOR=$#BUFFER
+function wfxr::ydcv() {
+    WORD=$(cat /usr/share/dict/words | fzf \
+        --preview='ydcv --color always {}' \
+        --preview-window='right:wrap:80%')
+    BUFFER="$BUFFER$WORD"
+    CURSOR="$#BUFFER"
     zle redisplay
 }
 zle     -N    wfxr::ydcv
 bindkey '^[y' wfxr::ydcv
 
-wfxr::yank() {
-  <<< $LBUFFER | pbcopy
-  BUFFER=$LBUFFER
-  CURSOR=$#BUFFER
-  zle redisplay
+function wfxr::yank() {
+    <<< "$LBUFFER" | pbcopy
+    BUFFER="$LBUFFER"
+    CURSOR="$#BUFFER"
+    zle redisplay
 }
 zle     -N   wfxr::yank
 bindkey '^Y' wfxr::yank
 
-whichip() {
+function wfxr::paste() {
+    content=$(pbpaste)
+    LBUFFER="${LBUFFER}$content"
+    BUFFER="$LBUFFER"
+    CURSOR="$#BUFFER"
+    zle redisplay
+}
+zle     -N   wfxr::paste
+bindkey '^V' wfxr::paste
+
+function iplocate() {
     curl ip.cn/$1
 }
-showip() {
-    ip addr show | grep 'inet\s\+' | grep -v "127.0.0.1" | trimcut -f2- | column -t
+function ipshow() {
+    ip addr show | grep 'inet\s\+' | grep -v "127.0.0.1" | awk '{print $2,$9}' | column -t
 }
 
 # ssh
-unalias fssh 2>/dev/null
-fssh() {
+function fssh() {
     [[ $+commands[mosh] ]] && ssh=ssh || ssh=mosh
     [[ -f ~/.ssh/host_info ]] && host=$(column -t ~/.ssh/host_info | fzf --header-lines=1 | cut -d' ' -f1)
     [[ -n $host ]] && $ssh $host
 }
 bindkey -s '^s' 'fssh\n'
-fsshcp() {
+function fsshcp() {
     local curr=`showip | tail -1 | cut -d'/' -f1`
     [[ -n $curr  ]] && local hosts=`grep -v '^\s*#' ~/.ssh/host_info | grep -v $curr | fzf -m | awk '{print $1}'`
     [[ -n $hosts ]] && IFS=$'\n' local files=(`fzf -m`)
     [[ -n $files ]] && echo $hosts | xargs -i{} scp ${files[@]} {}:
 }
-fsshcmd() {
+function fsshcmd() {
     local curr=`showip | tail -1 | cut -d'/' -f1`
     [[ -n $curr  ]] && local hosts=`grep -v '^\s*#' ~/.ssh/host_info | grep -v $curr | fzf -m | awk '{print $1}'`
     host_count=`wc -l <<< $hosts`
     [[ $host_count -gt 0 ]] && local cmd=(`echo -n |fzf --print-query`)
     [[ -n $cmd   ]] && echo $hosts | xargs -P $host_count -n1 -i{} bash -c "ssh {} $cmd > {}.log"
 }
-fssh-copy-id() {
+function fssh-copy-id() {
     local curr=`showip | tail -1 | cut -d'/' -f1`
     [[ -n $curr  ]] && local hosts=`grep -v '^\s*#' ~/.ssh/host_info | grep -v $curr | fzf -m | awk '{print $1}'`
     [[ -n $hosts ]] && local pub=`ls -d ~/.ssh/* | grep '\/id_.*pub$' | fzf`
     [[ -n $pub    ]] && echo $hosts | xargs -i{} ssh-copy-id -i $pub {}
 }
 
-colortest() {
+function colortest() {
     curl -s 'https://raw.githubusercontent.com/stark/Color-Scripts/master/color-scripts/colortest' | bash
 }
-colortest2() {
+function colortest2() {
     curl -s 'https://raw.githubusercontent.com/JohnMorales/dotfiles/master/colors/24-bit-color.sh' | bash
 }
 
-__unicode_translate() {
+function __unicode_translate() {
     local CODE=$BUFFER[-4,-1]
     [[ ! ${(U)CODE} =~ [0-9A-F]{4} ]] && return
     CHAR=`echo -e "\\u$CODE"`
@@ -241,26 +250,26 @@ __unicode_translate() {
 zle -N __unicode_translate
 bindkey '^[u' __unicode_translate
 
-unicode-map() {
+function unicode-map() {
     ruby -e '0x100.upto(0xFFFF) do |i| puts "%04X%8d%6s" % [i, i, i.chr("UTF-8")] rescue true end' | fzf -m
 }
 
-theme-gnome() {
+function theme-gnome() {
     wget -O gogh https://git.io/vQgMr && chmod +x gogh && ./gogh && rm gogh
 }
 
-lswifi() {
+function lswifi() {
     nmcli device wifi
 }
 
-lsdelete() {
+function lsdelete() {
     lsof -n | grep -i deleted
 }
 
-backup-t()  { rename -n 's/^(.*)$/$1.bak/g' $@ }
-backup()    { rename    's/^(.*)$/$1.bak/g' $@ }
-restore-t() { rename -n 's/^(.*).bak$/$1/g' $@ }
-restore()   { rename    's/^(.*).bak$/$1/g' $@ }
+function backup-t()  { rename -n 's/^(.*)$/$1.bak/g' $@ }
+function backup()    { rename    's/^(.*)$/$1.bak/g' $@ }
+function restore-t() { rename -n 's/^(.*).bak$/$1/g' $@ }
+function restore()   { rename    's/^(.*).bak$/$1/g' $@ }
 
 # Inline calculator
 function = {
@@ -305,7 +314,6 @@ function csvcat() {
 }
 
 # ghq
-unalias gcd 2>/dev/null
 function gcd() {
     (( $+commands[exa] )) && ll='exa -lbhg --git --time-style long-iso --color=always' || ll='ls -l --time-style long-iso --color=always'
     root=$(ghq root)
@@ -313,7 +321,6 @@ function gcd() {
     [[ -n "$repo" ]] && cd "$(ghq root)/$repo"
 }
 
-unalias xx &>/dev/null
 function xx() {
     (start_proxy && "$@")
 }
@@ -326,22 +333,18 @@ function ghr-get() {
     curl -LO --proto-redir -all,https "$url"
 }
 
-unalias mcd &>/dev/null
 function mcd() {
     mkdir -p -v "$1" && cd "$1" && echo "cd into '$1'"
 }
 
-unalias uppercase &>/dev/null
 function uppercase() {
     tr '[:lower:]' '[:upper:]'
 }
-unalias lowercase &>/dev/null
 function lowercase() {
     tr '[:upper:]' '[:lower:]'
 }
 
 (( $+commands[numfmt] )) || alias numfmt=gnumfmt
-unalias num &>/dev/null
 function num() {
     if [[ $# -eq 0 ]]; then
         tr '[:lower:]' '[:upper:]' | numfmt --from iec
@@ -350,7 +353,6 @@ function num() {
     fi
 }
 
-unalias fnum &>/dev/null
 function fnum() {
     if [[ $# -eq 0 ]]; then
         numfmt --to iec
@@ -359,31 +361,29 @@ function fnum() {
     fi
 }
 
-unalias color_cat &>/dev/null
 function color_cat() {
     s="\e[38;5;${1}m$2"
     echo -E "$s"
     echo -e "$s"
 }
 
-unalias xgh &>/dev/null
-function xgh() {
+function ogh() {
     xopen "https://github.com/${(j:/:)@}"
 }
 
-jqq() {
+function jqq() {
     [[ "$#" -eq 0 ]] && args='.' || args="$@"
     # -F tell less exit automatically if output content can be displayed on one screen
     jq -C $args | less -FR
 }
 
-diffdays() {
+function diffdays() {
     d1=$(date -d "$1" +%s)
     d2=$(date -d "$2" +%s)
     echo $(( (d1 - d2) / 86400 ))
 }
 
-rolling-times() {
+function rolling-times() {
     local beg="$(date -I -d "$(head -n1 /var/log/pacman.log | grep -Po '(?<=^\[).*?(?=\])')")"
     local now="$(date -I)"
     echo "rolling $COLOR_LIGHT_BLUE$(diffdays "$now" "$beg")$COLOR_NC days, from $beg to $now."
@@ -391,24 +391,24 @@ rolling-times() {
     echo "install package $COLOR_GREEN$(grep -c " installed " /var/log/pacman.log)$COLOR_NC times."
 }
 
-dequote() {
+function dequote() {
     sed 's/\\"/"/g; s/^"\|"$//g'
 }
 
-vcurl() {
+function vcurl() {
     local TMPFILE="$(mktemp -t --suffix=.json)"
     trap "\\rm -f '$TMPFILE'" EXIT INT TERM HUP
     vim "$TMPFILE" >/dev/tty
     curl "$@" < "$TMPFILE"
 }
 
-kcurl() {
+function kcurl() {
     local BUFFER="/tmp/curl-body-buffer.json"
     touch "$BUFFER" && vim "$BUFFER" >/dev/tty
     curl "$@" < "$BUFFER"
 }
 
-escli() {
+function escli() {
     local route="$@[-1]"
     local args=$@[1,-2]
     case "$route" in
@@ -423,7 +423,7 @@ escli() {
     esac
 }
 
-gorepo() {
+function gorepo() {
     local url
     url=$(git remote get-url origin) || return $?
     [[ "$url" =~ '^git@' ]] && url=$(echo "$url" | sed -e 's#:#/#' -e 's#git@#https://#')
