@@ -7,23 +7,6 @@ alias sudo='sudo ' #可以使sudo支持alias
 alias dot='\cd ~/dotfiles'
 alias tmp='\cd /tmp'
 
-alias vimrc='vim ~/.vimrc'
-alias vimplug='vim ~/.vim_plug'
-alias vimbase='vim ~/.vim_base'
-alias vimmap='vim ~/.vim_map'
-alias gvimrc='vim ~/.gvimrc'
-alias zshrc='vim ~/.zshrc'
-alias zshenv='vim ~/.zsh_env'
-alias zshalias='vim ~/.zsh_aliases'
-alias zshbind='vim ~/.zsh_keybinds'
-alias zshcustom='vim ~/.zsh_custom'
-alias zshmisc='vim ~/.zsh_misc'
-alias zshplug='vim ~/.zsh_plug'
-alias zshlocal='vim ~/.zsh_local'
-alias zshtheme='vim ~/.zsh_theme'
-alias hostinfo='vim ~/.ssh/host_info'
-alias tmuxconf='vim ~/.tmux.conf'
-
 # Docker alias
 alias dps='docker ps'
 alias dpsa='dps -a'
@@ -137,3 +120,22 @@ fi
 (( $+commands[assh] )) && alias ssh="assh wrapper ssh"
 
 [[ -n "$TMUX" ]] && alias fzf="fzf --preview-window=down:50%" || alias fzf="fzf --preview-window=right:50%"
+
+# Edit dotfile in repo
+function vimdot() { (cd ~/dotfiles && vim $(readlink "$1" || echo "$1")) }
+alias vimrc='vimdot ~/.vimrc'
+alias vimplug='vimdot ~/.vim_plug'
+alias vimbase='vimdot ~/.vim_base'
+alias vimmap='vimdot ~/.vim_map'
+alias gvimrc='vimdot ~/.gvimrc'
+alias zshrc='vimdot ~/.zshrc'
+alias zshenv='vimdot ~/.zsh_env'
+alias zshalias='vimdot ~/.zsh_aliases'
+alias zshbind='vimdot ~/.zsh_keybinds'
+alias zshcustom='vimdot ~/.zsh_custom'
+alias zshmisc='vimdot ~/.zsh_misc'
+alias zshplug='vimdot ~/.zsh_plug'
+alias zshlocal='vimdot ~/.zsh_local'
+alias zshtheme='vimdot ~/.zsh_theme'
+alias hostinfo='vimdot ~/.ssh/host_info'
+alias tmuxconf='vimdot ~/.tmux.conf'
