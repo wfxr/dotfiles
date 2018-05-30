@@ -51,15 +51,15 @@ noremap <leader>bg :w<cr><C-z>
 noremap <leader>M mmHmt:%s/<C-v><CR>//ge<CR>'tzt'm
 
 " Yank & paste
-noremap <leader>y "+y
-noremap <leader>Y "+Y
+noremap  <c-y> "+yy
+vnoremap <c-y> "+y
+inoremap <c-v> <c-r>+
 
-noremap <leader>P "+P
 " Select pasted text
 noremap gp `[v`]
 
-noremap H gg
-noremap L G
+noremap H 0
+noremap L $
 
 " Emacs style key mapping
 inoremap <C-a> <Home>
@@ -129,10 +129,10 @@ cmap W!! w !sudo tee % >/dev/null<cr>
 
 " Smart space mapping
 " Notice: when starting other <Space> mappings in noremap, disappeared [Space]
-nmap  <Space>   [Space]
-xmap  <Space>   [Space]
-nnoremap  [Space]   <Nop>
-xnoremap  [Space]   <Nop>
+nmap     <Space> [Space]
+xmap     <Space> [Space]
+nnoremap [Space] <Nop>
+xnoremap [Space] <Nop>
 " key map ^,$ to <Space>h,l. Because ^ and $ is difficult to type and damage little finger!!!
 noremap [Space]h ^
 noremap [Space]l $
