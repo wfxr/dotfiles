@@ -30,3 +30,34 @@ snippet sum "aggs" b
 	"field": "$1"
 }
 endsnippet
+
+snippet dateRange "description"
+"range": {
+	"${1:date}": {
+		"${2:gte}": "${3:`date -Iseconds -d $(date -I -d yesterday)`}",
+		"${4:lt}": "${4:`date -Iseconds -d $(date -I -d today)`}",
+		"format": "${5:yyyy-MM-dd'T'HH:mm:ssZ}"
+	}
+}
+endsnippet
+
+snippet tms "terms" b
+"terms": {
+	"field": "${1}",
+	"size": "${2:10}"
+}
+endsnippet
+
+snippet bool "bool query" b
+"bool": {
+	${VISUAL}
+}
+endsnippet
+
+snippet must "must query" b
+"must": [
+	{
+		${VISUAL}$1
+	}
+]
+endsnippet
