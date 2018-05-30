@@ -285,6 +285,7 @@ let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="horizontal"
+autocmd Filetype snippet set shiftwidth=4
 " }}} ultisnips && vim-snippets "
 
 " syntastic {{{ "
