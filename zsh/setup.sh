@@ -20,4 +20,4 @@ ln -sf "$SCRIPT_DIR/completions/_fzf" ~/.zsh_completions/_fzf
 ln -sf "$SCRIPT_DIR/completions/_gi"  ~/.zsh_completions/_gi
 ln -sf "$SCRIPT_DIR/completions/_hub" ~/.zsh_completions/_hub
 
-[[ "$SHELL" =~ "zsh" ]] || chsh -s "$(which zsh)"
+[[ "$SHELL" =~ "zsh" ]] || chsh -s "$(command -v zsh)"
