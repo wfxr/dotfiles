@@ -226,8 +226,8 @@ inoremap <expr> <c-l><c-d> fzf#complete({
 command! -bang Colors call fzf#vim#colors({'left': '15%', 'options': '--reverse'}, <bang>0)
 " FZF with devicons
 function! s:file_action(item, action)
-    if expand('$FZF_PATH_LOC') == 1
-        let l:file = a:item
+    if expand('$FZF_PATH_LOC') == ''
+        lt l:file = a:item
     else
         let l:file = a:item[stridx(a:item, ' ', 1)+1 : -1]
     endif
@@ -264,7 +264,7 @@ function! s:fzf_devicons()
     let l:fzf_files_options = '
                 \ --multi
                 \ --preview-window right
-                \ --preview "$FZF_FILE_HIGHLIGHTER {$FZF_PATH_LOC..-1} 2>/dev/null | head -'.&lines.'"
+                \ --preview "$FZF_FILE_HIGHLIGHTER {$FZF_PATH_LOC} 2>/dev/null | head -'.&lines.'"
                 \ '
 
     call fzf#run(fzf#wrap('fzf_devicons', {
