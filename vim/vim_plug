@@ -205,10 +205,6 @@ map <leader>il :IndentLinesToggle<CR>
 
 " junegunn/fzf {{{ "
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
-let g:fzf_action = {
-            \ 'ctrl-t': 'tab split',
-            \ 'ctrl-x': 'split',
-            \ 'ctrl-v': 'vsplit' }
 let g:fzf_buffers_jump = 1
 nmap <c-l><c-l> :Lines<cr>
 " Mapping selecting mappings
@@ -229,26 +225,50 @@ inoremap <expr> <c-l><c-d> fzf#complete({
 " Override default command
 command! -bang Colors call fzf#vim#colors({'left': '15%', 'options': '--reverse'}, <bang>0)
 " FZF with devicons
-function! s:fzf_devicons()
-    function! s:edit_file(item)
-        if expand('$FZF_PATH_LOC') == 1
-            let l:file = a:item
-        else
-            let l:file = a:item[stridx(a:item, ' ')+1 : -1]
-        endif
-        execute 'silent e' l:file
-    endfunction
+function! s:file_action(item, action)
+    if expand('$FZF_PATH_LOC') == 1
+        let l:file = a:item
+    else
+        let l:file = a:item[stridx(a:item, ' ', 1)+1 : -1]
+    endif
+    execute a:action l:file
+endfunction
 
+function! s:file_edit(items)
+    for file in a:items
+        call s:file_action(file, 'edit')
+    endfor
+endfunction
+function! s:file_tab(items)
+    call s:file_action(a:items, 'tabnew')
+endfunction
+function! s:file_split(items)
+    call s:file_action(a:items, 'split')
+endfunction
+function! s:file_vsplit(items)
+    for file in a:items
+        call s:file_action(file, 'vsplit')
+    endfor
+endfunction
+
+let g:fzf_action = {
+            \ 'alt-v':  'vsplit',
+            \ 'alt-t':  'nabnew',
+            \ 'alt-x':  'split',
+            \ 'ctrl-m': function('s:file_edit'),
+            \ 'ctrl-t': function('s:file_tab'),
+            \ 'ctrl-x': function('s:file_split'),
+            \ 'ctrl-v': function('s:file_vsplit') }
+
+function! s:fzf_devicons()
     let l:fzf_files_options = '
                 \ --multi
                 \ --preview-window right
                 \ --preview "$FZF_FILE_HIGHLIGHTER {$FZF_PATH_LOC..-1} 2>/dev/null | head -'.&lines.'"
-                \ --bind "ctrl-v:execute(vsplit)"
                 \ '
 
-    call fzf#run(fzf#wrap( {
+    call fzf#run(fzf#wrap('fzf_devicons', {
                 \ 'source':  expand('$FZF_CTRL_T_COMMAND'),
-                \ 'sink':    function('s:edit_file'),
                 \ 'options': l:fzf_files_options,
                 \ 'down':    '50%',
                 \ }))
