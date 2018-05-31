@@ -211,7 +211,7 @@ function fssh() {
     [[ -f ~/.ssh/host_info ]] && host=$(column -t ~/.ssh/host_info | fzf --header-lines=1 | cut -d' ' -f1)
     [[ -n $host ]] && $ssh $host
 }
-bindkey -s '^s' 'fssh\n'
+# bindkey -s '^s' 'fssh\n'
 function fsshcp() {
     local curr=`showip | tail -1 | cut -d'/' -f1`
     [[ -n $curr  ]] && local hosts=`grep -v '^\s*#' ~/.ssh/host_info | grep -v $curr | fzf -m | awk '{print $1}'`
