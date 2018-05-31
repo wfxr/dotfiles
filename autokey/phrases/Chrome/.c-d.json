@@ -1,7 +1,9 @@
 {
     "type": "phrase",
     "description": "c-d",
-    "modes": [],
+    "modes": [
+        3
+    ],
     "usageCount": 27,
     "prompt": false,
     "omitTrigger": false,
