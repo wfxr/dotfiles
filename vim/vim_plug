@@ -240,10 +240,14 @@ function! s:file_edit(items)
     endfor
 endfunction
 function! s:file_tab(items)
-    call s:file_action(a:items, 'tabnew')
+    for file in a:items
+        call s:file_action(file, 'tabnew')
+    endfor
 endfunction
 function! s:file_split(items)
-    call s:file_action(a:items, 'split')
+    for file in a:items
+        call s:file_action(file, 'split')
+    endfor
 endfunction
 function! s:file_vsplit(items)
     for file in a:items
