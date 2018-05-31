@@ -193,9 +193,9 @@ let g:lt_quickfix_list_toggle_map = '<leader>2'
 " }}} ListToggle "
 
 " Yggdroot/indentLine {{{ "
-Plug 'Yggdroot/indentLine'
+Plug 'Yggdroot/indentLine', { 'on': 'IndentLinesToggle' }
 let g:indentLine_enabled = 0
-autocmd Filetype *yaml,*xml,c,cpp,go,rust,java let g:indentLine_enabled = 1
+" autocmd Filetype *yaml,*xml,c,cpp,go,rust,java let g:indentLine_enabled = 1
 " autocmd Filetype json,markdown let g:indentLine_setConceal = 0
 let g:indentLine_char = '│'
 let g:indentLine_color_term = 239
