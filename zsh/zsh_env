@@ -75,7 +75,7 @@ FZF_FILE_HIGHLIGHTER='cat'
 (( $+commands[bat]       )) && FZF_FILE_HIGHLIGHTER='bat --color=always'
 export FZF_FILE_HIGHLIGHTER
 
-(( $+commands[iconful] )) && FZF_PATH_LOC='2..-1' || FZF_PATH_LOC=''
+(( $+commands[iconful] )) && FZF_PATH_LOC='2..' || FZF_PATH_LOC=''
 export FZF_PATH_LOC
 
 # FZF: default
@@ -99,9 +99,8 @@ FZF_DEFAULT_OPTS="
 --bind \"ctrl-y:execute-silent(ruby -e 'puts ARGV' {+} | pbcopy)+abort\"
 --bind 'alt-e:execute(vim {} >/dev/tty </dev/tty)+abort'
 --preview \"($FZF_FILE_HIGHLIGHTER {} || $FZF_DIR_HIGHLIGHTER {}) 2>/dev/null | head -200\"
+--preview-window right:50%:hidden
 "
-[[ -n "$TMUX" ]] && FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --preview-window=down:50%:hidden" || \
-                    FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --preview-window=right:50%:hidden"
 export FZF_DEFAULT_OPTS
 
 # FZF: Ctrl - T
