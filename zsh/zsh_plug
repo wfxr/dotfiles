@@ -84,9 +84,6 @@ zplug "wfxr/formarks"
 (( $+commands[odpscmd] )) && zplug 'wfxr/odps-fzf'
 zplug 'wfxr/forgit', defer:1
 FORGIT_FZF_DEFAULT_OPTS="
---border
---cycle
---reverse
 --height '80%'
 "
 zplug "wfxr/emoji-cli", as:plugin

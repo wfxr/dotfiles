@@ -119,7 +119,7 @@ fi
 
 (( $+commands[assh] )) && alias ssh="assh wrapper ssh"
 
-[[ -n "$TMUX" ]] && alias fzf="fzf --preview-window=down:50%" || alias fzf="fzf --preview-window=right:50%"
+# [[ -n "$TMUX" ]] && alias fzf="fzf --preview-window=down:50%" || alias fzf="fzf --preview-window=right:50%"
 
 # Edit dotfile in repo
 function vimdot() { (cd ~/dotfiles && vim $(readlink "$1" || echo "$1")) }
