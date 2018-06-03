@@ -108,6 +108,9 @@ alias tl='tmux list-sessions'
 (( $+commands[yaourt] )) && alias yaourt='LESS="-F $LESS" yaourt --pager --color'
 (( $+commands[pacman] )) && alias autoremove='pacman -R $(pacman -Qdtq)'
 
+# Perl-rename
+(( $+commands[perl-rename] )) && alias rename='perl-rename'
+
 # Hub for git
 (( $+commands[hub] )) && alias git=hub
 

@@ -14,6 +14,7 @@ cp "$SCRIPT_DIR/pacman.conf" /etc/pacman.conf
 
 pacman -S words
 pacman -S go
+pacman -S perl-rename
 yaourt -S jdk9-openjdk openjdk9-src
 yaourt -S pet-git
 yaourt -S mosh
