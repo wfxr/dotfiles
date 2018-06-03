@@ -9,7 +9,7 @@
 #                               Common                                #
 #######################################################################
 
-[[ -n ${SSH_CLIENT} ]] && PROMPT_SYMBOL='' || PROMPT_SYMBOL=''
+[[ -n ${SSH_CLIENT} ]] && PROMPT_SYMBOL=' ' || PROMPT_SYMBOL=''
 TIME_FORMAT="%D{%H:%M}"
 GITHUB_ICON=''
 EXECUTION_TIME_ICON='' #   
