@@ -1,10 +1,8 @@
 {
     "type": "phrase",
     "description": "c-u",
-    "modes": [
-        3
-    ],
-    "usageCount": 29,
+    "modes": [],
+    "usageCount": 37,
     "prompt": false,
     "omitTrigger": false,
     "matchCase": false,
