@@ -64,12 +64,12 @@ zplug "wfxr/spaceship-zsh-theme", use:spaceship.zsh, as:theme
     #zstyle ':ultimate:prompt:path' mode 'shortpath'
 #fi
 
-zplug 'b4b4r07/git-switch', \
-    as:command, \
-    use:'(*).sh', \
-    rename-to:'$1'
-export GIT_FILTER=fzf
-alias gsw='git switch'
+# zplug 'b4b4r07/git-switch', \
+    # as:command, \
+    # use:'(*).sh', \
+    # rename-to:'$1'
+# export GIT_FILTER=fzf
+# alias gsw='git switch'
 
 zplug 'so-fancy/diff-so-fancy', \
     as:command, use:diff-so-fancy, \
