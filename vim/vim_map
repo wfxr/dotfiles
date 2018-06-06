@@ -7,8 +7,8 @@ cnoremap <C-n> <Down>
 " Using <SPACE> to fold or unfold
 nnoremap <leader><SPACE> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 
-" Disable highlight when <leader><cr> is pressed
-nnoremap <silent> <leader><cr> :noh<cr>
+" Disable highlight & redraw
+nnoremap <silent> <leader><cr> :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>
 
 " These create newlines like o and O but stay in normal mode
 nnoremap <silent> zj o<Esc>k
@@ -138,3 +138,7 @@ noremap [Space]h ^
 noremap [Space]l $
 
 noremap ： :
+
+" Don't lose selection when shifting sidewards
+xnoremap < <gv
+xnoremap > >gv
