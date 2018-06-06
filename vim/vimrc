@@ -41,9 +41,6 @@ set linebreak
 "set textwidth=100
 set wrap
 
-" Hilight current line
-"set cursorline
-
 " Make '<', '>', 'h', 'l' work properly.
 set whichwrap+=<,>,h,l
 
