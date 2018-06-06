@@ -10,6 +10,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'terryma/vim-multiple-cursors'
 Plug 'lifepillar/vim-cheat40' " Keymapping: <leader>?
 Plug 'wellle/visual-split.vim'
 Plug 'matze/vim-move'
