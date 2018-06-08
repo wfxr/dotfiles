@@ -38,3 +38,5 @@ set list listchars=tab:»·,trail:·
 let mapleader = ","
 let g:mapleader = ","
 noremap \ ,
+
+set noshowmode

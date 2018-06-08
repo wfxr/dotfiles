@@ -67,7 +67,6 @@ Plug 'wakatime/vim-wakatime'
 Plug 'ConradIrwin/vim-bracketed-paste' " Auto toggle paste mode when paste
 Plug 'junegunn/goyo.vim'
 
-
 " tpope/vim-sensible {{{ "
 if !has('nvim')
     Plug 'tpope/vim-sensible' " no nead for nvim
@@ -307,31 +306,6 @@ let g:UltiSnipsEditSplit="horizontal"
 autocmd Filetype snippet set shiftwidth=4
 " }}} ultisnips && vim-snippets "
 
-" syntastic {{{ "
-" Note: YCM now has its own checker which do the check continuously
-"Plug 'scrooloose/syntastic'
-"let g:syntastic_cpp_checkers=['']
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
-"let g:syntastic_enable_signs=1
-"let g:syntastic_cpp_compiler = 'clang++'
-"let g:syntastic_cpp_compiler_options = '-std=c++17'
-"let g:syntastic_always_populate_loc_list = 1
-"if g:isWIN
-"let g:syntastic_error_symbol = '×'
-"let g:syntastic_warning_symbol = '»'
-"else
-"let g:syntastic_error_symbol = '❌'
-"let g:syntastic_warning_symbol = '❗'
-"endif
-"" Default javac checker is too slow!
-"let g:syntastic_java_checkers=['checkstyle']
-" }}} syntastic "
-
 " ale {{{ "
 " Best lint engine(require neovim or vim version > 8)
 Plug 'w0rp/ale'
@@ -351,6 +325,12 @@ let g:neomake_warning_sign = {
             \ }
 " }}} ale "
 
+" echodoc.vim {{{ "
+Plug 'Shougo/echodoc.vim'
+let g:echodoc#enable_at_startup = 1
+let g:echodoc#enable_force_overwrite = 1
+" }}} echodoc.vim "
+
 " YouCompleteMe {{{ "
 function! BuildYCM(info)
     if a:info.status == 'installed' || a:info.force
@@ -358,6 +338,9 @@ function! BuildYCM(info)
     endif
 endfunction
 Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') } | Plug 'rdnetto/YCM-Generator',  { 'branch': 'stable'}
+" Let ale do it
+let g:ycm_show_diagnostics_ui = 0
+let g:ycm_server_log_level = 'info'
 " 配置默认的ycm_extra_conf.py
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 " 打开vim时不再询问是否加载ycm_extra_conf.py配置
@@ -377,20 +360,24 @@ let g:ycm_min_num_of_chars_for_completion = 1
 " 添加UltiSnips进行snippet补全
 let g:ycm_use_ultisnips_completer = 1
 " 关闭函数原型等补全预览窗口
-set completeopt=menu
+set completeopt=menu,menuone
 " 补全完成后关闭预览窗口
-let g:ycm_autoclose_preview_window_after_completion = 1
-"let g:ycm_add_preview_tocompleteopt = 1
+" let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_add_preview_tocompleteopt = 0
 let g:ycm_filetype_blacklist = { }
 " 关闭js文件补全（需要js项目配置文件，类似C++，麻烦）
-let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1}
+" let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1}
 let g:ycm_error_symbol = g:error_symbol
 let g:ycm_warning_symbol = g:warning_symbol
 let g:ycm_always_populate_location_list = 1
 " 直接显示补全（全局类型、变量、宏或函数等补全需要
-let g:ycm_key_invoke_completion = '<C-\>'
+let g:ycm_key_invoke_completion = '<C-x>'
 " 停止补全
 let g:ycm_key_list_stop_completion = ['<C-g>']
+let g:ycm_semantic_triggers =  {
+            \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+            \ 'cs,lua,javascript': ['re!\w{2}'],
+            \ }
 
 nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 map <leader>F :YcmCompleter FixIt<CR>
