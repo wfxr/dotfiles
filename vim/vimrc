@@ -149,6 +149,7 @@ au BufRead,BufNewFile *.esquery.json set filetype=esquery.json
 " Set filetype to 'text' when no filetype detected. Mainly for ycm
 " https://github.com/Valloric/YouCompleteMe/commit/81444e207c3bdf398490f13f57ea360371d56be1
 au BufRead,BufNewFile * if &ft == '' | set filetype=text | endif
+autocmd FileType text setlocal commentstring=//\ %s
 
 autocmd Filetype *vim  set foldenable | set foldmethod=marker
 autocmd Filetype *json set shiftwidth=2

@@ -172,7 +172,8 @@ noremap _ :SwitchReverse<CR>
 " }}} AndrewRadev/switch.vim "
 
 " scrooloose/nerdcommenter {{{ "
-Plug 'scrooloose/nerdcommenter' | Plug 'tpope/vim-commentary'
+" Plug 'tpope/vim-commentary'
+Plug 'scrooloose/nerdcommenter'
 let NERDSpaceDelims = 1
 let g:NERDCreateDefaultMappings = 0
 let g:NERDTrimTrailingWhitespace = 1

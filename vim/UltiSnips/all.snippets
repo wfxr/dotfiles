@@ -45,7 +45,7 @@ beg, end = vim.eval("&commentstring").split('%s')
 snip.rv += beg + ' '
 `vim: ${3:set ${2:ft=${1:`v: &filetype`}}}`!p
 beg, end = vim.eval("&commentstring").split('%s')
-snip.rv += ' ' + end
+snip.rv += (': ' + end).strip()
 `
 endsnippet
 
