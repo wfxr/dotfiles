@@ -22,6 +22,7 @@ yaourt -S axel
 yaourt -S shellcheck
 yaourt -S highlight
 yaourt -S fd
+yaourt -S nethogs
 
 # crontab
 pacman -S cronie
