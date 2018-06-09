@@ -379,7 +379,7 @@ let g:ycm_semantic_triggers =  {
             \ 'cs,lua,javascript': ['re!\w{2}'],
             \ }
 
-nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <c-]> :YcmCompleter GoToDefinitionElseDeclaration<CR>
 map <leader>F :YcmCompleter FixIt<CR>
 " }}} YouCompleteMe "
 
