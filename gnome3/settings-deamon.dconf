@@ -6,7 +6,7 @@ sleep-inactive-battery-timeout=1800
 
 [plugins/media-keys]
 custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']
-screensaver='<Primary><Alt>l'
+screensaver='<Primary><Super>l'
 
 [plugins/media-keys/custom-keybindings/custom1]
 binding='<Primary><Alt>c'

@@ -4,7 +4,8 @@ num-workspaces=2
 workspace-names=['Work', 'Not work']
 
 [keybindings]
-minimize=@as []
+close=['<Super>q']
+minimize=['<Super>m']
 move-to-monitor-right=['<Super>l']
 maximize=['<Shift><Alt>k']
 unmaximize=['<Shift><Alt>j']

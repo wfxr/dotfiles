@@ -31,7 +31,6 @@ alias md='\mkdir -p -v'
 alias mv='\mv -iv'
 [[ "$OSTYPE" =~ linux ]] && alias rm='\rm -Iv --one-file-system' || alias rm='\rm -iv'
 alias ..='\cd ..'
-alias hhkb='setxkbmap -option "ctrl:swapcaps"'
 alias disable_touch_pad='sudo modprobe -r psmouse'   # 禁用触控板
 alias enable_touch_pad='sudo modprobe psmouse'       # 启用触控板
 (( $+commands[tac]  )) || alias tac='tail -r'

@@ -433,3 +433,7 @@ function mkycm() {
     template="$(readlink ~/.ycm_extra_conf.py)" || echo 'ycm_extra_conf not installed.' && return 1
     cp "$template" .ycm_extra_conf.py
 }
+
+function hhkb() {
+    setxkbmap -print | grep 'xkb_symbols.*+ctrl(swapcaps)' &>/dev/null && setxkbmap -option || setxkbmap -option "ctrl:swapcaps"
+}
