@@ -99,6 +99,11 @@ set updatetime=500
 " Default 1000ms is too long
 set timeoutlen=400
 
+set noshowmode
+
+autocmd InsertLeave,WinEnter * set cursorline
+autocmd InsertEnter,WinLeave * set nocursorline
+
 " Set spell in certain cases
 autocmd FileType text,markdown,gitcommit setlocal spell
 

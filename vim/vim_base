@@ -14,9 +14,6 @@ set shiftwidth=4
 
 " Highlight current line
 set cursorline
-autocmd InsertLeave,WinEnter * set cursorline
-autocmd InsertEnter,WinLeave * set nocursorline
-
 
 " Ignore case when searching
 set ignorecase
@@ -39,4 +36,3 @@ let mapleader = ","
 let g:mapleader = ","
 noremap \ ,
 
-set noshowmode
