@@ -285,7 +285,6 @@ nmap <a-b> :Buffers<CR>
 
 " sbdchd/neoformat {{{ "
 Plug 'sbdchd/neoformat'
-autocmd FileType c,c++ autocmd BufWritePre <buffer> Neoformat
 " Enable alignment
 let g:neoformat_basic_format_align = 1
 " Enable tab to spaces conversion
@@ -375,12 +374,14 @@ let g:ycm_key_invoke_completion = '<C-x>'
 " 停止补全
 let g:ycm_key_list_stop_completion = ['<C-g>']
 let g:ycm_semantic_triggers =  {
-            \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
-            \ 'cs,lua,javascript': ['re!\w{2}'],
+            \ 'c,cpp,python,java,go,rust,erlang,perl': ['re!\w{3}'],
+            \ 'cs,lua,javascript': ['re!\w{3}'],
             \ }
 
-nnoremap <c-]> :YcmCompleter GoToDefinitionElseDeclaration<CR>
-map <leader>F :YcmCompleter FixIt<CR>
+autocmd FileType c,cpp,cs,python,ruby,java,go,rust,erlang,perl
+            \ nmap <buffer> <c-t> <c-o>|
+            \ nmap <buffer> <c-]> :YcmCompleter GoToDefinitionElseDeclaration<CR>|
+            \ nmap <buffer> <leader>F :YcmCompleter FixIt<CR>
 " }}} YouCompleteMe "
 
 " vim-easymotion {{{ "
@@ -451,18 +452,18 @@ augroup go_env
     " Note: Do not change the order!
     " Note: Do not comment lines inplace
     autocmd FileType go
-                \ set nolist|
-                \ nmap <leader>b<CR> :call <SID>build_go_files()<CR>|
-                \ nmap <leader>r<CR> <Plug>(go-run)|
-                \ nmap <leader>rr    :GoRun %<CR>|
-                \ nmap <leader>t<CR> <Plug>(go-test)|
-                \ nmap <leader>c<CR> <Plug>(go-coverage-toggle)|
-                \ nmap <leader>a <Plug>(go-alternate-edit)|
-                \ nmap <Leader>i <Plug>(go-info)|
-                \ nmap <leader>sm :GoSameIdsToggle<CR>|
-                \ nmap <c-a-j> :cnext<CR>|
-                \ nmap <c-a-k> :cprevious<CR>|
-                \ nmap <c-a-r> <Plug>(go-rename)|
+                \ setl nolist|
+                \ nmap <buffer> <leader>b<CR> :call <SID>build_go_files()<CR>|
+                \ nmap <buffer> <leader>r<CR> <Plug>(go-run)|
+                \ nmap <buffer> <leader>rr    :GoRun %<CR>|
+                \ nmap <buffer> <leader>t<CR> <Plug>(go-test)|
+                \ nmap <buffer> <leader>c<CR> <Plug>(go-coverage-toggle)|
+                \ nmap <buffer> <leader>a <Plug>(go-alternate-edit)|
+                \ nmap <buffer> <Leader>i <Plug>(go-info)|
+                \ nmap <buffer> <leader>sm :GoSameIdsToggle<CR>|
+                \ nmap <buffer> <c-a-j> :cnext<CR>|
+                \ nmap <buffer> <c-a-k> :cprevious<CR>|
+                \ nmap <buffer> <c-a-r> <Plug>(go-rename)|
                 \ let g:go_fmt_command = "goimports"|
                 \ let g:go_list_type = "quickfix"|
                 \ let g:go_highlight_types = 1|
@@ -477,7 +478,7 @@ augroup go_env
                 \ command! -bang A call go#alternate#Switch(<bang>0, 'edit')|
                 \ command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')|
                 \ command! -bang AS call go#alternate#Switch(<bang>0, 'split')|
-                \ inoremap <silent> <leader>, <End>,<CR>
+                \ inoremap <buffer> <silent> <leader>, <End>,<CR>
                 "\ let g:go_auto_type_info = 1|
                 "\ let g:go_updatetime = 100|
                 "\ let g:go_auto_sameids = 1|
@@ -490,11 +491,9 @@ Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 augroup rust_env
     autocmd!
     autocmd FileType rust
-                \ nmap <c-]> :YcmCompleter GoTo<CR> |
-                \ nmap <c-t> <c-o> |
-                \ nmap <leader>r<CR> :VT cargo run -q<CR> |
-                \ nmap <leader>t<CR> :VT cargo test -q<CR> |
-                \ nmap <leader>b<CR> :VT cargo build -q<CR>
+                \ nmap <buffer> <leader>r<CR> :VT cargo run -q<CR>|
+                \ nmap <buffer> <leader>t<CR> :VT cargo test -q<CR>|
+                \ nmap <buffer> <leader>b<CR> :VT cargo build -q<CR>
 augroup END
 " }}} vim-rust "
 
@@ -512,7 +511,7 @@ function! s:go_github()
     end
 endfunction
 nnoremap <buffer> <silent> gG :call <sid>go_github()<cr>|
-autocmd FileType *vim,*zsh,*bash,*tmux nmap <c-]> gG
+autocmd FileType *vim,*zsh,*bash,*tmux nmap <buffer> <c-]> gG
 " }}} Custom functions "
 
 " vim-plug extension {{{ "
