@@ -23,6 +23,10 @@ yaourt -S shellcheck
 yaourt -S highlight
 yaourt -S fd
 yaourt -S nethogs
+yaourt -S icdiff # better diff
+yaourt -S global # gtags
+yaourt -S universal-ctags-git
+sudo -H pip install pygments
 
 # crontab
 pacman -S cronie

@@ -10,3 +10,12 @@ go get github.com/b4b4r07/epoch-cat
 
 # Html parser
 pup
+
+# CLI磁盘空间分析工具
+ncdu
+
+# DropBox的开源替代品（自己搭建服务器）
+owncloud
+
+# IO统计工具
+dstat

@@ -11,10 +11,14 @@ cargo install --git https://github.com/sharkdp/fd
 go get -u github.com/jingweno/ccat
 
 # WakaTime was built to solve time tracking for programmers.
-sudo pip install wakatime
+sudo -H pip install wakatime
 
 # Thefuck is a magnificent app which corrects your previous console command
 #sudo pip3 install thefuck
 
 # System monitor tool
-sudo pip install glances
+sudo -H pip install glances
+
+# Help system
+sudo -H pip install cheat
+gem install bropages
