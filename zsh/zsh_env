@@ -97,7 +97,7 @@ FZF_DEFAULT_OPTS="
 --bind ctrl-s:toggle-sort
 --bind ?:toggle-preview,alt-w:toggle-preview-wrap
 --bind \"ctrl-y:execute-silent(ruby -e 'puts ARGV' {+} | pbcopy)+abort\"
---bind 'alt-e:execute(vim {} >/dev/tty </dev/tty)+abort'
+--bind 'alt-e:execute($EDITOR {} >/dev/tty </dev/tty)+abort'
 --preview \"($FZF_FILE_HIGHLIGHTER {} || $FZF_DIR_HIGHLIGHTER {}) 2>/dev/null | head -200\"
 --preview-window right:50%:hidden
 "
@@ -110,7 +110,7 @@ export FZF_CTRL_T_COMMAND
 FZF_CTRL_T_OPTS="
 --preview \"($FZF_FILE_HIGHLIGHTER {$FZF_PATH_LOC} || $FZF_DIR_HIGHLIGHTER {$FZF_PATH_LOC}) 2>/dev/null | head -200\"
 --bind 'enter:execute(echo {$FZF_PATH_LOC})+abort'
---bind 'alt-e:execute(vim {$FZF_PATH_LOC} >/dev/tty </dev/tty)+abort'
+--bind 'alt-e:execute($EDITOR {$FZF_PATH_LOC} >/dev/tty </dev/tty)+abort'
 --bind \"ctrl-y:execute-silent(ruby -e 'puts ARGV' {+$FZF_PATH_LOC} | pbcopy)+abort\"
 --preview-window right:50%
 "
