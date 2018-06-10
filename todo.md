@@ -2,3 +2,4 @@
 - Move tmux related settings in zsh config to tmux.conf or tmux plugin
 - Add history support to fzf-chrome-bookmarks
 - Add yaourt function
+- Implement lazy install
