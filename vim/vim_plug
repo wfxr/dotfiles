@@ -311,17 +311,6 @@ Plug 'w0rp/ale'
 let g:error_symbol = '❌'
 let g:warning_symbol = '❗'
 let g:ale_linters = {'rust': ['rls']}
-"Plug 'neomake/neomake'
-"autocmd! BufWritePost * Neomake
-let g:neomake_c_enabled_makers=['']
-let g:neomake_error_sign = {
-            \   'text': g:error_symbol,
-            \   'texthl': 'NeomakeErrorSign'
-            \   }
-let g:neomake_warning_sign = {
-            \   'text': g:warning_symbol,
-            \   'texthl': 'NeomakeWarningSign',
-            \ }
 " }}} ale "
 
 " echodoc.vim {{{ "
