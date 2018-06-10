@@ -170,3 +170,7 @@ autocmd Filetype *vim  set foldenable | set foldmethod=marker
 autocmd Filetype *json set shiftwidth=2
 
 au BufRead,BufNewFile * call DetectNoneExtensionFileType()
+
+set tags=./.tags;,.tags
+let $GTAGSLABEL = 'native-pygments'
+let $GTAGSCONF = '~/.gtags.conf'

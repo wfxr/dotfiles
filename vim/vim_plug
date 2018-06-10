@@ -10,7 +10,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'terryma/vim-multiple-cursors'
+Plug 'terryma/vim-multiple-cursors' | let g:multi_cursor_select_all_word_key = '<A-a>'
 Plug 'lifepillar/vim-cheat40' " Keymapping: <leader>?
 Plug 'wellle/visual-split.vim'
 Plug 'matze/vim-move'
@@ -49,7 +49,7 @@ Plug 'nelstrom/vim-textobj-rubyblock',   { 'for': 'ruby'       }
 Plug 'vim-scripts/awk.vim',              { 'for': 'awk'        }
 Plug 'tmux-plugins/vim-tmux',            { 'for': 'tmux'       }
 Plug 'mbbill/undotree',                  { 'on': 'UndotreeToggle' } | nnoremap U :UndotreeToggle<CR>
-Plug 'jiangmiao/auto-pairs'          | let g:AutoPairsMultilineClose = 0
+Plug 'jiangmiao/auto-pairs'          | let g:AutoPairsMultilineClose = 0 | let g:AutoPairsShortcutToggle = '' | let g:AutoPairsShortcutJump = ''
 Plug 'junegunn/vim-github-dashboard' | let g:github_dashboard = { 'username': 'wfxr' }
 Plug 'morhetz/gruvbox'               | let g:gruvbox_italic = 1
 Plug 'mattn/vim-xxdcursor'           | Plug 'fidian/hexmode'     | let g:hexmode_patterns = '*.o,*.so,*.a,*.out,*.bin,*.exe'
@@ -66,6 +66,26 @@ Plug 'mattn/vim-textobj-url'
 Plug 'wakatime/vim-wakatime'
 Plug 'ConradIrwin/vim-bracketed-paste' " Auto toggle paste mode when paste
 Plug 'junegunn/goyo.vim'
+
+" vim-gutentags {{{ "
+Plug 'ludovicchabant/vim-gutentags'
+" let g:gutentags_trace = 1
+let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
+let g:gutentags_ctags_tagfile = '.tags'
+let g:gutentags_cache_dir = expand('~/.cache/tags')
+let g:gutentags_modules = ['ctags']
+" if executable('gtags-cscope') && executable('gtags')
+    " let g:gutentags_modules += ['gtags_cscope']
+" elseif executable('ctags')
+    " let g:gutentags_modules += ['ctags']
+" endif
+let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
+let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+" For universal ctags
+let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
+let g:gutentags_auto_add_gtags_cscope = 0
+" }}} vim-gutentags "
 
 " tpope/vim-sensible {{{ "
 if !has('nvim')
@@ -133,13 +153,14 @@ let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['.*zsh_.*\|.*zshrc.*'] =
 
 " vim-airline/vim-airline {{{ "
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
-let g:airline_powerline_fonts=1
-let g:airline#extensions#tabline#enabled=1
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_tab_type = 0
 let g:airline#extensions#tmuxline#enabled = 0
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_alt_sep = ''
+" let g:airline_left_sep = ''
+" let g:airline_right_sep = ''
+" let g:airline_left_alt_sep = ''
+" let g:airline_right_alt_sep = ''
 " }}} vim-airline/vim-airline "
 
 " scrooloose/nerdtree {{{ "
@@ -307,10 +328,19 @@ autocmd Filetype snippet set shiftwidth=4
 
 " ale {{{ "
 " Best lint engine(require neovim or vim version > 8)
-Plug 'w0rp/ale'
 let g:error_symbol = '❌'
 let g:warning_symbol = '❗'
+Plug 'w0rp/ale'
+let g:ale_sign_error = g:error_symbol
+let g:ale_sign_warning = g:warning_symbol
 let g:ale_linters = {'rust': ['rls']}
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_error_str = 'E'
+let g:airline#extensions#ale#enabled = 1
+let g:ale_echo_msg_format = '[%severity%][%linter%] %s'
+let g:ale_cpp_gcc_options = '-Wall -std=c++17'
+nmap <silent> <a-p> <Plug>(ale_previous_wrap)
+nmap <silent> <a-n> <Plug>(ale_next_wrap)
 " }}} ale "
 
 " echodoc.vim {{{ "
@@ -367,10 +397,11 @@ let g:ycm_semantic_triggers =  {
             \ 'cs,lua,javascript': ['re!\w{3}'],
             \ }
 
-autocmd FileType c,cpp,cs,python,ruby,java,go,rust,erlang,perl
-            \ nmap <buffer> <c-t> <c-o>|
-            \ nmap <buffer> <c-]> :YcmCompleter GoToDefinitionElseDeclaration<CR>|
-            \ nmap <buffer> <leader>F :YcmCompleter FixIt<CR>
+nmap <buffer> <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" autocmd FileType c,cpp,cs,python,ruby,java,go,rust,erlang,perl
+            " \ nmap <buffer> <c-t> <c-o>|
+            " \ nmap <buffer> <c-]> :YcmCompleter GoToDefinitionElseDeclaration<CR>|
+            " \ nmap <buffer> <leader>F :YcmCompleter FixIt<CR>
 " }}} YouCompleteMe "
 
 " vim-easymotion {{{ "
