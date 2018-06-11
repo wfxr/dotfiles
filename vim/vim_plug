@@ -47,7 +47,6 @@ Plug 'nelstrom/vim-textobj-rubyblock',   { 'for': 'ruby'       }
 Plug 'vim-scripts/awk.vim',              { 'for': 'awk'        }
 Plug 'tmux-plugins/vim-tmux',            { 'for': 'tmux'       }
 Plug 'mbbill/undotree',                  { 'on': 'UndotreeToggle' } | nnoremap U :UndotreeToggle<CR>
-Plug 'majutsushi/tagbar',                { 'on': 'TagbarToggle'   } | nmap <a-\> :TagbarToggle<CR>
 Plug 'jiangmiao/auto-pairs'          | let g:AutoPairsMultilineClose = 0 | let g:AutoPairsShortcutToggle = '' | let g:AutoPairsShortcutJump = ''
 Plug 'junegunn/vim-github-dashboard' | let g:github_dashboard = { 'username': 'wfxr' }
 Plug 'morhetz/gruvbox'               | let g:gruvbox_italic = 1  | let g:gruvbox_contrast_dark = 'soft'
@@ -65,6 +64,27 @@ Plug 'mattn/vim-textobj-url'
 Plug 'wakatime/vim-wakatime'
 Plug 'ConradIrwin/vim-bracketed-paste' " Auto toggle paste mode when paste
 Plug 'junegunn/goyo.vim'
+
+" tagbar {{{ "
+Plug 'majutsushi/tagbar'
+let g:tagbar_autofocus = 0
+let g:tagbar_sort = 0
+nmap <a-\> :TagbarToggle<CR>
+autocmd FileType c,cpp,go,rust,python nested :TagbarOpen
+" }}} tagbar "
+
+" limelight {{{ "
+Plug 'junegunn/limelight.vim'
+" Color name (:help cterm-colors) or ANSI code
+let g:limelight_conceal_ctermfg = 'gray'
+let g:limelight_conceal_ctermfg = 240
+" Color name (:help gui-colors) or RGB color
+let g:limelight_conceal_guifg = 'DarkGray'
+let g:limelight_conceal_guifg = '#777777'
+let g:limelight_default_coefficient = 0.5
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
+" }}} limelight "
 
 " vim-move {{{ "
 Plug 'matze/vim-move'
@@ -378,14 +398,17 @@ autocmd Filetype snippet set shiftwidth=4
 let g:error_symbol = '══'
 let g:warning_symbol = '──'
 Plug 'w0rp/ale'
+let g:ale_lint_on_insert_leave = 1
 let g:ale_sign_error = g:error_symbol
 let g:ale_sign_warning = g:warning_symbol
 let g:ale_linters = {'rust': ['rls']}
+" let g:ale_linters = {'cpp': ['clang']}
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_error_str = 'E'
 let g:airline#extensions#ale#enabled = 1
 let g:ale_echo_msg_format = '[%severity%][%linter%] %s'
-let g:ale_cpp_gcc_options = '-Wall -std=c++17'
+let g:ale_cpp_clang_options = '-Wall -std=c++17'
+let g:ale_cpp_gcc_options = g:ale_cpp_clang_options
 nmap <silent> <a-p> <Plug>(ale_previous_wrap)
 nmap <silent> <a-n> <Plug>(ale_next_wrap)
 " }}} ale "
@@ -452,13 +475,17 @@ nmap <buffer> <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 " }}} YouCompleteMe "
 
 " vim-easymotion {{{ "
-Plug 'easymotion/vim-easymotion'
-let g:EasyMotion_smartcase = 1
-nmap <Leader>f <Plug>(easymotion-overwin-f)
-nmap <Leader>s <Plug>(easymotion-overwin-f2)
-nmap <Leader>l <Plug>(easymotion-overwin-line)
-nmap <Leader>w <Plug>(easymotion-overwin-w)
+" Plug 'easymotion/vim-easymotion'
+" let g:EasyMotion_smartcase = 1
+" nmap <Leader>f <Plug>(easymotion-overwin-f)
+" nmap <Leader>s <Plug>(easymotion-overwin-f2)
+" nmap <Leader>l <Plug>(easymotion-overwin-line)
+" nmap <Leader>w <Plug>(easymotion-overwin-w)
 " }}} vim-easymotion "
+
+" vim-sneak {{{ "
+Plug 'justinmk/vim-sneak'
+" }}} vim-sneak "
 
 " vim-go {{{ "
 Plug 'fatih/vim-go', { 'for': 'go' }
@@ -655,4 +682,15 @@ nnoremap <silent> <c-w><c-w> :call <sid>zoom()<cr>
 "if !has('macunix')
     "Plug 'lilydjwg/fcitx.vim'
 "endif
+
+" vim-easymotion {{{ "
+" Plug 'easymotion/vim-easymotion'
+" let g:EasyMotion_smartcase = 1
+" nmap <Leader>f <Plug>(easymotion-overwin-f)
+" nmap <Leader>s <Plug>(easymotion-overwin-f2)
+" nmap <Leader>l <Plug>(easymotion-overwin-line)
+" nmap <Leader>w <Plug>(easymotion-overwin-w)
+" }}} vim-easymotion "
+
 " }}}  "
+

@@ -176,6 +176,10 @@ autocmd Filetype *json set shiftwidth=2
 
 au BufRead,BufNewFile * call DetectNoneExtensionFileType()
 
+" Disable automatic comment insertion
+" http://vim.wikia.com/wiki/Disable_automatic_comment_insertion
+autocmd FileType * setlocal formatoptions-=cro
+
 set tags=./.tags;,.tags
 let $GTAGSLABEL = 'native-pygments'
 let $GTAGSCONF = '~/.gtags.conf'
