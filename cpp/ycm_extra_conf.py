@@ -1,12 +1,12 @@
 import subprocess as sp
 from sys import version_info
 
-if (version_info > (3, 0)):
+if version_info > (3, 0):
     gcc_version = sp.run(['gcc', '-dumpversion'], stdout=sp.PIPE).stdout.decode('utf-8').strip()
 else:
     gcc_version = sp.check_output(['gcc', '-dumpversion']).strip()
 
-flags = [
+FLAGS = [
         '-Wall',
         '-Wextra',
         '-Wno-long-long',
@@ -36,4 +36,4 @@ flags = [
         ]
 
 def FlagsForFile( filename, **kwargs ):
-    return { 'flags': flags, }
+    return { 'flags': FLAGS, }
