@@ -21,7 +21,6 @@ Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'AndrewRadev/splitjoin.vim' " gS/gJ to split or join
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'mhinz/vim-signify' " show vcs symbol on the left side
 Plug 'vim-scripts/matchit.zip' " Enhance % match
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp'        }
 Plug 'ap/vim-css-color',                 { 'for': 'css'        }
@@ -66,6 +65,13 @@ Plug 'mattn/vim-textobj-url'
 Plug 'wakatime/vim-wakatime'
 Plug 'ConradIrwin/vim-bracketed-paste' " Auto toggle paste mode when paste
 Plug 'junegunn/goyo.vim'
+
+" vim-signify {{{ "
+Plug 'mhinz/vim-signify' " show vcs symbol on the left side
+let g:signify_sign_add          = '│'
+let g:signify_sign_change       = '│'
+let g:signify_sign_changedelete = '│'
+" }}} vim-signify "
 
 " vim-gutentags {{{ "
 " let g:gutentags_trace = 1
@@ -333,8 +339,8 @@ autocmd Filetype snippet set shiftwidth=4
 
 " ale {{{ "
 " Best lint engine(require neovim or vim version > 8)
-let g:error_symbol = '❌'
-let g:warning_symbol = '❗'
+let g:error_symbol = '══'
+let g:warning_symbol = '──'
 Plug 'w0rp/ale'
 let g:ale_sign_error = g:error_symbol
 let g:ale_sign_warning = g:warning_symbol
