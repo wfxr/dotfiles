@@ -13,7 +13,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'terryma/vim-multiple-cursors' | let g:multi_cursor_select_all_word_key = '<A-a>'
 Plug 'lifepillar/vim-cheat40' " Keymapping: <leader>?
 Plug 'wellle/visual-split.vim'
-Plug 'matze/vim-move'
 Plug 'wfxr/vim-gitignore'
 Plug 'zplug/vim-zplug'
 Plug 'junegunn/gv.vim'
@@ -48,6 +47,7 @@ Plug 'nelstrom/vim-textobj-rubyblock',   { 'for': 'ruby'       }
 Plug 'vim-scripts/awk.vim',              { 'for': 'awk'        }
 Plug 'tmux-plugins/vim-tmux',            { 'for': 'tmux'       }
 Plug 'mbbill/undotree',                  { 'on': 'UndotreeToggle' } | nnoremap U :UndotreeToggle<CR>
+Plug 'majutsushi/tagbar',                { 'on': 'TagbarToggle'   } | nmap <a-\> :TagbarToggle<CR>
 Plug 'jiangmiao/auto-pairs'          | let g:AutoPairsMultilineClose = 0 | let g:AutoPairsShortcutToggle = '' | let g:AutoPairsShortcutJump = ''
 Plug 'junegunn/vim-github-dashboard' | let g:github_dashboard = { 'username': 'wfxr' }
 Plug 'morhetz/gruvbox'               | let g:gruvbox_italic = 1
@@ -65,6 +65,15 @@ Plug 'mattn/vim-textobj-url'
 Plug 'wakatime/vim-wakatime'
 Plug 'ConradIrwin/vim-bracketed-paste' " Auto toggle paste mode when paste
 Plug 'junegunn/goyo.vim'
+
+" vim-move {{{ "
+Plug 'matze/vim-move'
+let g:move_map_keys = 0
+vmap <c-a-j> <Plug>MoveBlockDown
+vmap <c-a-k> <Plug>MoveBlockUp
+nmap <c-a-j> <Plug>MoveLineDown
+nmap <c-a-k> <Plug>MoveLineUp
+" }}} vim-move "
 
 " vim-signify {{{ "
 Plug 'mhinz/vim-signify' " show vcs symbol on the left side
