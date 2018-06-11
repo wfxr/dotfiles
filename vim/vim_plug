@@ -143,8 +143,36 @@ map - <Plug>(expand_region_shrink)
 
 " vim-easy-align {{{ "
 Plug 'junegunn/vim-easy-align'
+let g:easy_align_delimiters = {
+            \ '>': { 'pattern': '>>\|=>\|>' },
+            \ '\': { 'pattern': '\\' },
+            \ '/': { 'pattern': '//\+\|/\*\|\*/', 'delimiter_align': 'l', 'ignore_groups': ['!Comment'] },
+            \ ']': {
+            \     'pattern':       '\]\zs',
+            \     'left_margin':   0,
+            \     'right_margin':  1,
+            \     'stick_to_left': 0
+            \   },
+            \ ')': {
+            \     'pattern':       ')\zs',
+            \     'left_margin':   0,
+            \     'right_margin':  1,
+            \     'stick_to_left': 0
+            \   },
+            \ 'f': {
+            \     'pattern': ' \(\S\+(\)\@=',
+            \     'left_margin': 0,
+            \     'right_margin': 0
+            \   },
+            \ 'd': {
+            \     'pattern': ' \ze\S\+\s*[;=]',
+            \     'left_margin': 0,
+            \     'right_margin': 0
+            \   }
+            \ }
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
+xmap <leader>ga <Plug>(LiveEasyAlign)
 " }}} vim-easy-align "
 
 " vim-fugitive {{{ "
@@ -426,52 +454,11 @@ nmap <buffer> <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " vim-easymotion {{{ "
 Plug 'easymotion/vim-easymotion'
-let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
-" <Leader>f{char} to move to {char}
-map  <Leader>f <Plug>(easymotion-bd-f)
+let g:EasyMotion_smartcase = 1
 nmap <Leader>f <Plug>(easymotion-overwin-f)
-" s{char}{char} to move to {char}{char}
-nmap s <Plug>(easymotion-overwin-f2)
-" Move to line
-map <Leader>l <Plug>(easymotion-bd-jk)
+nmap <Leader>s <Plug>(easymotion-overwin-f2)
 nmap <Leader>l <Plug>(easymotion-overwin-line)
-" Move to word
-map  <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
-" bug in neovim
-if !has('nvim')
-    Plug 'haya14busa/incsearch.vim'
-    "map /  <Plug>(incsearch-forward)
-    "map ?  <Plug>(incsearch-backward)
-    "map g/ <Plug>(incsearch-stay)
-    "set hlsearch
-    "let g:incsearch#auto_nohlsearch = 1
-    "map n  <Plug>(incsearch-nohl-n)
-    "map N  <Plug>(incsearch-nohl-N)
-    "map *  <Plug>(incsearch-nohl-*)
-    "map #  <Plug>(incsearch-nohl-#)
-    "map g* <Plug>(incsearch-nohl-g*)
-    "map g# <Plug>(incsearch-nohl-g#)
-    Plug 'haya14busa/incsearch-easymotion.vim'
-    map / <Plug>(incsearch-easymotion-/)
-    map ? <Plug>(incsearch-easymotion-?)
-    map g/ <Plug>(incsearch-easymotion-stay)
-    Plug 'haya14busa/incsearch-fuzzy.vim'
-    "map z/ <Plug>(incsearch-fuzzy-/)
-    "map z? <Plug>(incsearch-fuzzy-?)
-    "map zg/ <Plug>(incsearch-fuzzy-stay)
-    " 带跳转标记的跨窗口模糊搜索
-    function! s:config_easyfuzzymotion(...) abort
-        return extend(copy({
-                    \   'converters': [incsearch#config#fuzzyword#converter()],
-                    \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
-                    \   'keymap': {"\<CR>": '<Over>(easymotion)'},
-                    \   'is_expr': 0,
-                    \   'is_stay': 1
-                    \ }), get(a:, 1, {}))
-    endfunction
-    noremap <silent><expr> <leader>/ incsearch#go(<SID>config_easyfuzzymotion())
-endif
 " }}} vim-easymotion "
 
 " vim-go {{{ "
@@ -606,7 +593,40 @@ augroup PlugExtension
                 \ inoremap <buffer> <c-x><c-x> <c-r>=VimAwesomeComplete()<cr>|
                 \ autocmd BufWritePost * source %
 augroup END
+
 " }}} vim-plug extension "
+
+" rotate-colors {{{ "
+function! s:colors(...)
+    return filter(map(filter(split(globpath(&rtp, 'colors/*.vim'), "\n"),
+                \                  'v:val !~ "^/usr/"'),
+                \           'fnamemodify(v:val, ":t:r")'),
+                \       '!a:0 || stridx(v:val, a:1) >= 0')
+endfunction
+function! s:rotate_colors()
+    if !exists('s:colors')
+        let s:colors = s:colors()
+    endif
+    let name = remove(s:colors, 0)
+    call add(s:colors, name)
+    execute 'colorscheme' name
+    redraw
+    echo name
+endfunction
+nnoremap <silent> <F8> :call <SID>rotate_colors()<cr>
+" }}} rotate-colors "
+
+" Zoom {{{ "
+function! s:zoom()
+  if winnr('$') > 1
+    tab split
+  elseif len(filter(map(range(tabpagenr('$')), 'tabpagebuflist(v:val + 1)'),
+                  \ 'index(v:val, '.bufnr('').') >= 0')) > 1
+    tabclose
+  endif
+endfunction
+nnoremap <silent> <c-w><c-w> :call <sid>zoom()<cr>
+" }}} Zoom "
 
 " Obsoleted {{{ "
 "Plug 'vim-scripts/taglist.vim'

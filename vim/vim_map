@@ -88,10 +88,12 @@ noremap <c-a> I
 xnoremap p pgvy
 
 " Move between windows quickly
-noremap <A-h> <C-w>h
-noremap <A-j> <C-w>j
-noremap <A-k> <C-w>k
-noremap <A-l> <C-w>l
+noremap  <A-h>   <C-w>h
+noremap  <A-j>   <C-w>j
+noremap  <A-k>   <C-w>k
+noremap  <A-l>   <C-w>l
+nnoremap <tab>   <c-w>w
+nnoremap <S-tab> <c-w>W
 
 " Toggle line wrap
 noremap <A-w> :set wrap!<CR>
@@ -142,3 +144,9 @@ noremap ： :
 " Don't lose selection when shifting sidewards
 xnoremap < <gv
 xnoremap > >gv
+
+" List all tags if possible
+nnoremap <c-]> g<c-]>
+
+" qq to record, Q to replay
+nnoremap Q @q

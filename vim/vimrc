@@ -17,9 +17,10 @@ source ~/.vim_base
 source ~/.vim_plug
 source ~/.vim_map
 
-"if has("termguicolors") && has("nvim")
-    "set termguicolors
-"endif
+if has("termguicolors") && has("nvim")
+    set termguicolors
+endif
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -34,7 +35,11 @@ set spelllang+=cjk
 "setlocal spell
 
 " Enable mouse
+silent! set ttymouse=xterm2
 set mouse=a
+
+" Keep the cursor on the same column
+set nostartofline
 
 " Linebrake on 90 characters
 set linebreak
@@ -131,7 +136,7 @@ colorscheme gruvbox
 set background=dark
 " Transparent setting
 hi VertSplit ctermbg=NONE guibg=NONE
-hi Normal ctermbg=none guibg=NONE
+hi Normal    ctermbg=none guibg=NONE
 
 " Show changes since last save
 function! s:DiffSaved()
@@ -152,7 +157,7 @@ function! DetectNoneExtensionFileType()
     if &ft != '' | return | endif
 
     if getline(1) =~ '-\*- C++ -\*-'
-        " Highlight c+= standard lib file without extension
+        " Highlight c++ standard lib file without extension
         setf cpp
     else
         " Set filetype to 'unknown' when no filetype detected. Mainly for ycm
