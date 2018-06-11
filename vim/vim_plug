@@ -50,7 +50,7 @@ Plug 'mbbill/undotree',                  { 'on': 'UndotreeToggle' } | nnoremap U
 Plug 'majutsushi/tagbar',                { 'on': 'TagbarToggle'   } | nmap <a-\> :TagbarToggle<CR>
 Plug 'jiangmiao/auto-pairs'          | let g:AutoPairsMultilineClose = 0 | let g:AutoPairsShortcutToggle = '' | let g:AutoPairsShortcutJump = ''
 Plug 'junegunn/vim-github-dashboard' | let g:github_dashboard = { 'username': 'wfxr' }
-Plug 'morhetz/gruvbox'               | let g:gruvbox_italic = 1
+Plug 'morhetz/gruvbox'               | let g:gruvbox_italic = 1  | let g:gruvbox_contrast_dark = 'soft'
 Plug 'mattn/vim-xxdcursor'           | Plug 'fidian/hexmode'     | let g:hexmode_patterns = '*.o,*.so,*.a,*.out,*.bin,*.exe'
 Plug 'vim-utils/vim-husk'            | Plug 'tpope/vim-rsi' " Eamcs-Style keymapping
 Plug 'mattn/vim-fixedsearch'         | Plug 'mattn/vim-prompter' | nmap \ <plug>(fixedsearch)
@@ -283,12 +283,11 @@ xmap <c-l>m <plug>(fzf-maps-x)
 imap <c-l>m <plug>(fzf-maps-i)
 omap <c-l>m <plug>(fzf-maps-o)
 " Insert mode completion
-imap <c-l><c-k> <plug>(fzf-complete-word)
-imap <c-l><c-f> <plug>(fzf-complete-path)
-imap <c-l><c-j> <plug>(fzf-complete-file-ag)
-imap <c-l><c-l> <plug>(fzf-complete-line)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
 " Lookup dictionary with translate
-inoremap <expr> <c-l><c-d> fzf#complete({
+inoremap <expr> <c-x><c-d> fzf#complete({
             \ 'source': 'cat ~/.vim/spell/en.utf-8.add /usr/share/dict/words 2>/dev/null',
             \ 'options': '--preview="ydcv --color=always {}" --preview-window=down',
             \ 'left': 50})
