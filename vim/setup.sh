@@ -26,3 +26,6 @@ if hash nvim &>/dev/null ; then
     hash pip3 &>/dev/null && sudo -H pip3 install --upgrade neovim
     tty &>/dev/null && nvim +PlugInstall +qall
 fi
+
+# For tags
+sudo -H pip install --upgrade pygments

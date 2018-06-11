@@ -7,5 +7,4 @@ ln -sf "$SCRIPT_DIR/clang-format"      ~/.clang-format
 [[ -f ~/.gdbinit ]] || wget -P ~ git.io/.gdbinit
 
 # CLI cpp reference
-sudo -H pip install --upgrade pygments
 sudo -H pip install --upgrade cppman

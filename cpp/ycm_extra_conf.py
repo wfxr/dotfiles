@@ -1,8 +1,10 @@
-import os
-import ycm_core
 import subprocess as sp
+from sys import version_info
 
-gcc_version = sp.run(['gcc', '-dumpversion'], stdout=sp.PIPE).stdout.decode('utf-8').strip()
+if (version_info > (3, 0)):
+    gcc_version = sp.run(['gcc', '-dumpversion'], stdout=sp.PIPE).stdout.decode('utf-8').strip()
+else:
+    gcc_version = sp.check_output(['gcc', '-dumpversion']).strip()
 
 flags = [
         '-Wall',
