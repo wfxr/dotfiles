@@ -536,8 +536,7 @@ function! s:go_github()
         call netrw#BrowseX(s:url, 0)
     end
 endfunction
-nnoremap <buffer> <silent> <cr> :call <sid>go_github()<cr>
-" autocmd FileType *vim,*zsh,*bash,*tmux nmap <buffer> <c-]> gh
+autocmd FileType *vim,*zsh,*bash,*tmux nnoremap <buffer> <silent> <cr> :call <sid>go_github()<cr>
 " }}} Custom functions "
 
 " vim-plug extension {{{ "
