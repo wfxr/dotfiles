@@ -94,6 +94,7 @@ noremap  <A-k>   <C-w>k
 noremap  <A-l>   <C-w>l
 nnoremap <tab>   <c-w>w
 nnoremap <S-tab> <c-w>W
+nnoremap <C-p>   <c-i>
 
 " Toggle line wrap
 noremap <A-w> :set wrap!<CR>
@@ -150,3 +151,7 @@ nnoremap <c-]> g<c-]>
 
 " qq to record, Q to replay
 nnoremap Q @q
+
+" g{ / g} to split / join {} block in c,cpp,java etc.
+nnoremap <silent> g{ va{:s/\%V{\s\+\(\S.*\S\)\s\+}/{\r\1\r}/<cr>va{:s/;\s\+/;\r/g<cr>j=a{:noh<cr>
+nnoremap <silent> g} va{J<esc>
