@@ -110,7 +110,7 @@ export FZF_CTRL_T_COMMAND
 FZF_CTRL_T_OPTS="
 --preview \"($FZF_FILE_HIGHLIGHTER {$FZF_PATH_LOC} || $FZF_DIR_HIGHLIGHTER {$FZF_PATH_LOC}) 2>/dev/null | head -200\"
 --bind 'enter:execute(echo {$FZF_PATH_LOC})+abort'
---bind 'alt-e:execute($EDITOR {$FZF_PATH_LOC} >/dev/tty </dev/tty)+abort'
+--bind 'alt-e:execute($EDITOR {$FZF_PATH_LOC} >/dev/tty </dev/tty)'
 --bind \"ctrl-y:execute-silent(ruby -e 'puts ARGV' {+$FZF_PATH_LOC} | pbcopy)+abort\"
 --preview-window right:50%
 "
