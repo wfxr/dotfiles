@@ -162,7 +162,7 @@ function! DetectNoneExtensionFileType()
     else
         " Set filetype to 'unknown' when no filetype detected. Mainly for ycm
         " https://github.com/Valloric/YouCompleteMe/commit/81444e207c3bdf398490f13f57ea360371d56be1
-        setf unknown | setl commentstring=//\ %s
+        setf unknown | setl commentstring=//%s
     endif
 endfunction
 

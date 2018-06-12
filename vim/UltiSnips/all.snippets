@@ -42,10 +42,9 @@ endsnippet
 snippet modeline "# vim: set ..." b
 `!p
 beg, end = vim.eval("&commentstring").split('%s')
-snip.rv += beg + ' '
-`vim: ${3:set ${2:ft=${1:`v: &filetype`}}}`!p
-beg, end = vim.eval("&commentstring").split('%s')
-snip.rv += (': ' + end).strip()
+snip.rv += beg.strip() + ' '
+`vim: ${2:ft=${1:`v: &filetype`}}`!p
+snip.rv += (': ' + end.strip()).strip()
 `
 endsnippet
 
