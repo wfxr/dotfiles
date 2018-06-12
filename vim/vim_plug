@@ -52,7 +52,7 @@ Plug 'junegunn/vim-github-dashboard' | let g:github_dashboard = { 'username': 'w
 Plug 'morhetz/gruvbox'               | let g:gruvbox_italic = 1  | let g:gruvbox_contrast_dark = 'soft'
 Plug 'mattn/vim-xxdcursor'           | Plug 'fidian/hexmode'     | let g:hexmode_patterns = '*.o,*.so,*.a,*.out,*.bin,*.exe'
 Plug 'vim-utils/vim-husk'            | Plug 'tpope/vim-rsi' " Eamcs-Style keymapping
-Plug 'mattn/vim-fixedsearch'         | Plug 'mattn/vim-prompter' | nmap \ <plug>(fixedsearch)
+Plug 'mattn/vim-fixedsearch'         | Plug 'mattn/vim-prompter' | nmap <Leader>/ <plug>(fixedsearch)
 Plug 'junegunn/vim-after-object'     | autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ', ',')
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'
