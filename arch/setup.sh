@@ -26,6 +26,7 @@ yaourt -S nethogs
 yaourt -S icdiff # better diff
 yaourt -S global # gtags
 yaourt -S universal-ctags-git
+yaourt -S ncdu   # NCurses Disk Usage
 
 # crontab
 pacman -S cronie
