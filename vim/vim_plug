@@ -105,8 +105,8 @@ function! s:goyo_leave()
     endif
     Limelight!
     let &background = &background
-    hi VertSplit ctermbg=none guibg=none
-    hi Normal    ctermbg=none guibg=none
+    hi VertSplit ctermbg=NONE guibg=NONE
+    hi Normal    ctermbg=NONE guibg=NONE
     silent :execute "normal! `L"
 endfunction
 
