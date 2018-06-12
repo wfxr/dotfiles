@@ -106,8 +106,8 @@ set timeoutlen=400
 
 set noshowmode
 
-autocmd InsertLeave,WinEnter * set cursorline
-autocmd InsertEnter,WinLeave * set nocursorline
+" autocmd InsertLeave,WinEnter * set cursorline
+" autocmd InsertEnter,WinLeave * set nocursorline
 
 " Set spell in certain cases
 autocmd FileType text,markdown,gitcommit setl spell
@@ -135,8 +135,8 @@ endif
 colorscheme gruvbox
 set background=dark
 " Transparent setting
-hi VertSplit ctermbg=NONE guibg=NONE
-hi Normal    ctermbg=none guibg=NONE
+hi VertSplit ctermbg=none guibg=none
+hi Normal    ctermbg=none guibg=none
 
 " Show changes since last save
 function! s:DiffSaved()
@@ -149,7 +149,7 @@ endfunction
 command! DS call s:DiffSaved()
 
 " Split and open terminal
-command! -nargs=* T split | terminal <args>
+command! -nargs=* T  split  | terminal <args>
 command! -nargs=* VT vsplit | terminal <args>
 
 function! DetectNoneExtensionFileType()
@@ -183,3 +183,9 @@ autocmd FileType * setl formatoptions-=cro
 set tags=./.tags;,.tags
 let $GTAGSLABEL = 'native-pygments'
 let $GTAGSCONF = '~/.gtags.conf'
+
+" Automatic rename of tmux window
+if exists('$TMUX') && !exists('$NORENAME')
+    au BufEnter * if empty(&buftype) | call system('tmux rename-window '.expand('%:t:S')) | endif
+    au VimLeave * call system('tmux set-window automatic-rename on')
+endif

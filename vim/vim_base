@@ -13,7 +13,7 @@ set tabstop=4
 set shiftwidth=4
 
 " Highlight current line
-set cursorline
+set nocursorline
 
 " Ignore case when searching
 set ignorecase
@@ -35,4 +35,3 @@ set list listchars=tab:»·,trail:·
 let mapleader = ","
 let g:mapleader = ","
 noremap \ ,
-

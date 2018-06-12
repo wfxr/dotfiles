@@ -53,6 +53,7 @@ Plug 'mattn/vim-xxdcursor'           | Plug 'fidian/hexmode'     | let g:hexmode
 Plug 'vim-utils/vim-husk'            | Plug 'tpope/vim-rsi' " Eamcs-Style keymapping
 Plug 'mattn/vim-fixedsearch'         | Plug 'mattn/vim-prompter' | nmap <Leader>/ <plug>(fixedsearch)
 Plug 'junegunn/vim-after-object'     | autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ', ',')
+Plug 'junegunn/goyo.vim'             | nnoremap <Leader>G :Goyo<CR>
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'
 Plug 'glts/vim-textobj-comment'
@@ -62,10 +63,13 @@ Plug 'tpope/vim-repeat'
 Plug 'mattn/vim-textobj-url'
 Plug 'wakatime/vim-wakatime'
 Plug 'ConradIrwin/vim-bracketed-paste' " Auto toggle paste mode when paste
-Plug 'junegunn/goyo.vim'
 
 " splitjoin {{{ "
-Plug 'AndrewRadev/splitjoin.vim' " gS/gJ to split or join
+Plug 'AndrewRadev/splitjoin.vim'
+let g:splitjoin_split_mapping = ''
+let g:splitjoin_join_mapping = ''
+nnoremap gss :SplitjoinSplit<cr>
+nnoremap gsj :SplitjoinJoin<cr>
 " }}} splitjoin "
 
 " tagbar {{{ "
@@ -78,15 +82,36 @@ autocmd FileType c,cpp,go,rust,python nested :TagbarOpen
 
 " limelight {{{ "
 Plug 'junegunn/limelight.vim'
-" Color name (:help cterm-colors) or ANSI code
 let g:limelight_conceal_ctermfg = 'gray'
-let g:limelight_conceal_ctermfg = 240
-" Color name (:help gui-colors) or RGB color
 let g:limelight_conceal_guifg = 'DarkGray'
-let g:limelight_conceal_guifg = '#777777'
-let g:limelight_default_coefficient = 0.5
-autocmd! User GoyoEnter Limelight
-autocmd! User GoyoLeave Limelight!
+let g:limelight_paragraph_span = 1
+let g:limelight_priority = -1
+function! s:goyo_enter()
+    silent :execute "normal! mL"
+    if exists('$TMUX')
+        silent !tmux set status off
+    endif
+    setl foldlevel=99
+    setl nowrap
+    setl nocursorline
+    let &background = &background
+    Limelight
+    let &l:statusline = '%M'
+    hi StatusLine ctermfg=red guifg=red cterm=NONE gui=NONE
+endfunction
+function! s:goyo_leave()
+    if exists('$TMUX')
+        silent !tmux set status on
+    endif
+    Limelight!
+    let &background = &background
+    hi VertSplit ctermbg=none guibg=none
+    hi Normal    ctermbg=none guibg=none
+    silent :execute "normal! `L"
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
 " }}} limelight "
 
 " vim-move {{{ "
@@ -205,6 +230,7 @@ nmap [q :cprev<CR>
 nmap ]q :cnext<CR>
 nmap [Q :cfirst<CR>
 nmap ]Q :clast<CR>
+nmap <Leader>d :Gdiff<CR>
 " }}} vim-fugitive "
 
 " vim-slash {{{ "
@@ -657,6 +683,23 @@ function! s:zoom()
 endfunction
 nnoremap <silent> <c-w><c-w> :call <sid>zoom()<cr>
 " }}} Zoom "
+
+" Execute current buffer {{{ "
+function! s:execute_buffer()
+    if !empty(expand('%'))
+        write
+        call system('chmod +x '.expand('%'))
+        silent e
+        vsplit | terminal ./%
+    else
+        echohl WarningMsg
+        echo 'Save the file first'
+        echohl None
+    endif
+endfunction
+command! RUN :call s:execute_buffer()
+autocmd FileType sh,bash,zsh,python,ruby nnoremap <leader>rr :RUN<cr>
+" }}} Execute script "
 
 " Obsoleted {{{ "
 "Plug 'vim-scripts/taglist.vim'
