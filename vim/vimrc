@@ -32,7 +32,7 @@ set langmenu=en_US
 set spelllang+=cjk
 
 " Use spell check
-"setlocal spell
+"setl spell
 
 " Enable mouse
 silent! set ttymouse=xterm2
@@ -110,7 +110,7 @@ autocmd InsertLeave,WinEnter * set cursorline
 autocmd InsertEnter,WinLeave * set nocursorline
 
 " Set spell in certain cases
-autocmd FileType text,markdown,gitcommit setlocal spell
+autocmd FileType text,markdown,gitcommit setl spell
 
 " Have Vim jump to the last position when reopening a file
 if has("autocmd")
@@ -144,7 +144,7 @@ function! s:DiffSaved()
   diffthis
   vnew | r # | normal! 1Gdd
   diffthis
-  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+  exe "setl bt=nofile bh=wipe nobl noswf ro ft=" . filetype
 endfunction
 command! DS call s:DiffSaved()
 
@@ -167,18 +167,18 @@ function! DetectNoneExtensionFileType()
 endfunction
 
 " Add custom filetypes detection. Mainly for ultisnips
-au BufRead,BufNewFile pom.xml        set filetype=maven.xml
-au BufRead,BufNewFile build.gradle   set filetype=gradle.groovy
-au BufRead,BufNewFile *.esquery.json set filetype=esquery.json
+au BufRead,BufNewFile pom.xml        setl ft=maven.xml
+au BufRead,BufNewFile build.gradle   setl ft=gradle.groovy
+au BufRead,BufNewFile *.esquery.json setl ft=esquery.json
 
-autocmd Filetype *vim  set foldenable | set foldmethod=marker
-autocmd Filetype *json set shiftwidth=2
+autocmd Filetype *vim  setl foldenable | set foldmethod=marker
+autocmd Filetype *json setl shiftwidth=2
 
 au BufRead,BufNewFile * call DetectNoneExtensionFileType()
 
 " Disable automatic comment insertion
 " http://vim.wikia.com/wiki/Disable_automatic_comment_insertion
-autocmd FileType * setlocal formatoptions-=cro
+autocmd FileType * setl formatoptions-=cro
 
 set tags=./.tags;,.tags
 let $GTAGSLABEL = 'native-pygments'
