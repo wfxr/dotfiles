@@ -131,7 +131,7 @@ export FZF_CTRL_R_OPTS
 # FZF: Alt - C
 (( $+commands[fd]   )) && FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git 2>/dev/null'
 (( $+commands[blsd] )) && FZF_ALT_C_COMMAND='blsd $dir | grep -v "^.$"'
-(( $+commands[iconful] )) && FZF_ALT_C_COMMAND="$FZF_ALT_C_COMMAND | iconful -d"
+(( $+commands[iconful] )) && FZF_ALT_C_COMMAND="$FZF_ALT_C_COMMAND"
 export FZF_ALT_C_COMMAND
 FZF_DIR_HIGHLIGHTER='ls -l --color=always'
 (( $+commands[tree] )) && FZF_DIR_HIGHLIGHTER='tree -CtrL2'
@@ -139,8 +139,8 @@ FZF_DIR_HIGHLIGHTER='ls -l --color=always'
 export FZF_DIR_HIGHLIGHTER
 export FZF_ALT_C_OPTS="
 --exit-0
---bind 'enter:execute(echo {$FZF_PATH_LOC})+abort'
---preview '($FZF_DIR_HIGHLIGHTER {$FZF_PATH_LOC}) | head -200 2>/dev/null'
+--bind 'enter:execute(echo {})+abort'
+--preview '($FZF_DIR_HIGHLIGHTER {}) | head -200 2>/dev/null'
 --preview-window=right:50%
 "
 
