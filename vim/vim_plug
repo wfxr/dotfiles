@@ -314,7 +314,7 @@ inoremap <expr> <c-x>d fzf#complete({
             \ 'source': 'cat ~/.vim/spell/en.utf-8.add /usr/share/dict/words 2>/dev/null',
             \ 'options': '--preview="ydcv --color=always {}" --preview-window=down',
             \ 'left': 50})
-inoremap <expr> <c-x>m fzf#complete({
+autocmd Filetype gitcommit inoremap <expr> <c-x><c-x> fzf#complete({
             \ 'source': 'git log --pretty=format:"%s"',
             \ 'options': '--preview="ydcv --color=always {}" --preview-window=down',
             \ 'left': 50})
