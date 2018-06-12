@@ -5,8 +5,6 @@
 #     HomePage: wenxuan.info
 #=============================================================================
 
-bindkey -e
-
 source ~/.fzf.zsh 2>/dev/null
 source ~/.zsh_local 2>/dev/null
 source ~/.zsh_secret 2>/dev/null
@@ -27,4 +25,4 @@ source ~/.zsh_theme 2>/dev/null
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 #source ~/.sdkman/bin/sdkman-init.sh 2>/dev/null
 
-return 0
+bindkey -e
