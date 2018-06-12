@@ -1,27 +1,11 @@
 #!/bin/bash
 
 git config --global user.name "Wenxuan"
-current_email=$(git config --global --get user.email)
+git config --global user.email "wenxuangm@gmail.com"
 
-git config --global github.user wfxr
-
-# if current_email is empty, then add it
-if [[ -z "$current_email" ]]; then
-    git config --global user.email "wenxuangm@gmail.com"
-fi
-
-git config --global alias.lg "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
+git config --global github.user "wfxr"
 
 git config --global color.ui true
-
-# Seems not work on new version of git
-git config --global diff.tool kdiff3
-git config --global merge.tool kdiff3
-if [[ $(uname) == *Darwin* ]]; then
-    git config --global --add difftool.kdiff3.path /Applications/kdiff3.app/Contents/MacOS/kdiff3
-    git config --global --add mergetool.kdiff3.path /Applications/kdiff3.app/Contents/MacOS/kdiff3
-fi
-git config --global difftool.prompt false
 
 # Prettier diffs
 git config --global diff.compactionHeuristic true
@@ -51,9 +35,6 @@ git config --global submodule.fetchJobs 8
 # Prettier diffs
 git config --global diff.compactionHeuristic true
 git config --global diff.indentHeuristic on
-
-# Always output with color(for fzf-git-add). No need anymore
-#git config --global color.status always
 
 # diff-so-fancy
 command -v diff-so-fancy >/dev/null && git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
