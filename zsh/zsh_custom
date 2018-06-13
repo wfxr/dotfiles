@@ -189,10 +189,7 @@ zle     -N   wfxr::yank
 bindkey '^Y' wfxr::yank
 
 function wfxr::paste() {
-    content=$(pbpaste)
-    LBUFFER="${LBUFFER}$content"
-    BUFFER="$LBUFFER"
-    CURSOR="$#BUFFER"
+    LBUFFER="${LBUFFER}$(pbpaste)"
     zle redisplay
 }
 zle     -N   wfxr::paste

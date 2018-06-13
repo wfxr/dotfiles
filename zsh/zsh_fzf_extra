@@ -1,0 +1,45 @@
+#!/usr/bin/env zsh
+################################################################################
+#    Author: Wenxuan                                                           #
+#     Email: wenxuangm@gmail.com                                               #
+#   Created: 2018-06-13 15:09                                                  #
+################################################################################
+[[ $- != *i* ]] && return
+
+# ALT-E - Edit selected file
+wfxr::fzf-file-edit-widget() {
+    setopt localoptions pipefail 2> /dev/null
+    local files
+    files=$(eval "$FZF_ALT_E_COMMAND" |
+        FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse $FZF_DEFAULT_OPTS $FZF_ALT_E_OPTS" fzf -m |
+        sed 's/^\s\+.\s//')
+    local ret=$?
+
+    [[ $ret -eq 0 ]] && echo $files | xargs sh -c "$EDITOR \$@ </dev/tty" $EDITOR
+
+    zle redisplay
+    typeset -f zle-line-init >/dev/null && zle zle-line-init
+    return $ret
+}
+zle     -N    wfxr::fzf-file-edit-widget
+bindkey '\ee' wfxr::fzf-file-edit-widget
+
+# CTRL-R - Paste the selected command from history into the command line
+wfxr::fzf-history-widget() {
+    local selected num
+    setopt localoptions noglobsubst noposixbuiltins pipefail 2> /dev/null
+    selected=( $(fc -rl 1 | sort -uk2,1000 | sort -nr |
+        FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} $FZF_DEFAULT_OPTS -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort $FZF_CTRL_R_OPTS --query=${(qqq)LBUFFER} +m" $(__fzfcmd)) )
+    local ret=$?
+    if [ -n "$selected" ]; then
+        num=$selected[1]
+        if [ -n "$num" ]; then
+            zle vi-fetch-history -n $num
+        fi
+    fi
+    zle redisplay
+    typeset -f zle-line-init >/dev/null && zle zle-line-init
+    return $ret
+}
+zle     -N   wfxr::fzf-history-widget
+bindkey '^R' wfxr::fzf-history-widget

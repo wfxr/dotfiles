@@ -5,11 +5,16 @@
 #     HomePage: wenxuan.info
 #=============================================================================
 
-source ~/.fzf.zsh 2>/dev/null
-source ~/.zsh_local 2>/dev/null
-source ~/.zsh_secret 2>/dev/null
+# Put this line on top to make keybinds work
+bindkey -e
 
 source ~/.zsh_env
+
+source ~/.fzf.zsh       2>/dev/null
+source ~/.zsh_fzf_extra 2>/dev/null
+source ~/.zsh_local     2>/dev/null
+source ~/.zsh_secret    2>/dev/null
+
 source ~/.zsh_plug
 source ~/.zsh_keybinds
 source ~/.zsh_misc
@@ -25,4 +30,4 @@ source ~/.zsh_theme 2>/dev/null
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 #source ~/.sdkman/bin/sdkman-init.sh 2>/dev/null
 
-bindkey -e
+return 0
