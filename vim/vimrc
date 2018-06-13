@@ -4,14 +4,11 @@
 "     HomePage: wenxuan.info
 "=============================================================================
 
-if has("win32") || has("win64")
-    let g:isWIN = 1
-else
-    let g:isWIN = 0
-endif
-
 " Cancel compatible to avoid some bugs and limitations.
 set nocompatible
+
+" Global variables
+let g:has_tags = executable('ctags')
 
 source ~/.vim_base
 source ~/.vim_plug
