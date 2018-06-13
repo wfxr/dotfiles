@@ -323,11 +323,11 @@ xmap <c-l>m <plug>(fzf-maps-x)
 imap <c-l>m <plug>(fzf-maps-i)
 omap <c-l>m <plug>(fzf-maps-o)
 " Insert mode completion
-imap <c-x>f <plug>(fzf-complete-path)
-imap <c-x>j <plug>(fzf-complete-file-ag)
-imap <c-x>l <plug>(fzf-complete-line)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
 " Lookup dictionary with translate
-inoremap <expr> <c-x>d fzf#complete({
+inoremap <expr> <c-x><c-d> fzf#complete({
             \ 'source': 'cat ~/.vim/spell/en.utf-8.add /usr/share/dict/words 2>/dev/null',
             \ 'options': '--preview="ydcv --color=always {}" --preview-window=down',
             \ 'left': 50})
