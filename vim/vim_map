@@ -1,11 +1,7 @@
-" vim: filetype=vim
-
-" Lock up history commands quickly
-cnoremap <C-p> <Up>
-cnoremap <C-n> <Down>
+" vim: ft=vim:
 
 " Using <SPACE> to fold or unfold
-nnoremap <leader><SPACE> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+nnoremap <silent> <SPACE> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 
 " Disable highlight & redraw
 nnoremap <silent> <leader><cr> :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>
@@ -24,25 +20,20 @@ inoremap <silent> <leader>. ->
 "inoremap <silent> <leader>O <C-o>O
 
 " Make j/k/0/$ work as expected on the wrap lines
-noremap  <buffer> <silent> k gk
-noremap  <buffer> <silent> j gj
-noremap  <buffer> <silent> gk k
-noremap  <buffer> <silent> gj j
-noremap  <buffer> <silent> 0 g0
-noremap  <buffer> <silent> $ g$
+" noremap <buffer> <silent> k gk
+" noremap <buffer> <silent> j gj
+" noremap <buffer> <silent> gk k
+" noremap <buffer> <silent> gj j
+" noremap <buffer> <silent> 0 g0
+" noremap <buffer> <silent> $ g$
 
 " Close window
-"noremap <leader>q :q<cr>
-noremap <leader>Q :q!<cr>
 noremap <C-c> :q<cr>
 " Save write
-"noremap <leader>w :w<cr>
-noremap <leader>W :w!<cr>
-noremap <C-s> :w<cr>
+noremap <C-s> :update<cr>
+
 " Save and quit
-"noremap <leader>x :x<cr>
-noremap <C-x> :x<cr>
-noremap <leader>X :x!<cr>
+" noremap <C-x> ZZ
 
 " Save and suspend
 noremap <leader>bg :w<cr><C-z>
@@ -70,9 +61,6 @@ inoremap <C-h> <BS>
 inoremap <C-d> <Del>
 inoremap <C-f> <Right>
 inoremap <C-b> <Left>
-"inoremap <C-n> <Down>
-"inoremap <C-p> <Up>
-"inoremap <C-m> <CR>
 " In insert mode, pressing Ctrl-O switches to normal mode for one command, then switches back to insert mode when the command is finished.
 inoremap <C-k> <C-o>D
 inoremap <C-u> <Esc>v0c
@@ -124,23 +112,15 @@ nnoremap <Up> <Nop>
 nnoremap <Down> <Nop>
 nnoremap <Left> <Nop>
 nnoremap <Right> <Nop>
-nnoremap ZZ <Nop>
-nnoremap ZQ <Nop>
-
-" Save with root
-cmap W!! w !sudo tee % >/dev/null<cr>
-
-" Smart space mapping
-" Notice: when starting other <Space> mappings in noremap, disappeared [Space]
-nmap     <Space> [Space]
-xmap     <Space> [Space]
-nnoremap [Space] <Nop>
-xnoremap [Space] <Nop>
-" key map ^,$ to <Space>h,l. Because ^ and $ is difficult to type and damage little finger!!!
-noremap [Space]h ^
-noremap [Space]l $
 
 noremap ： :
+
+" Save with root
+cnoremap W!! w !sudo tee % >/dev/null<cr>
+
+" Lock up history commands quickly
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
 
 " Don't lose selection when shifting sidewards
 xnoremap < <gv

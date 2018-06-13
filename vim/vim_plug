@@ -1,4 +1,4 @@
-" vim: filetype=plug.vim
+" vim: ft=vim:
 
 " Auto install vim-plug {{{ "
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -649,7 +649,7 @@ endfunction
 
 augroup PlugExtension
     autocmd!
-    autocmd FileType plug.vim
+    autocmd FileType vim
                 \ inoremap <buffer> <c-x><c-x> <c-r>=VimAwesomeComplete()<cr>|
                 \ autocmd BufWritePost * source %
 augroup END

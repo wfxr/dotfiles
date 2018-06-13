@@ -1,4 +1,4 @@
-" vim: filetype=vim
+" vim: ft=vim:
 
 " Share clipboard with OS
 set clipboard+=unnamed
