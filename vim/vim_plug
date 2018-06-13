@@ -498,8 +498,7 @@ let g:ycm_semantic_triggers =  {
             \ 'c,cpp,python,java,go,rust,erlang,perl': ['re!\w{3}'],
             \ 'cs,lua,javascript': ['re!\w{3}'],
             \ }
-
-nmap <buffer> <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nmap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 " autocmd FileType c,cpp,cs,python,ruby,java,go,rust,erlang,perl
             " \ nmap <buffer> <c-t> <c-o>|
             " \ nmap <buffer> <c-]> :YcmCompleter GoToDefinitionElseDeclaration<CR>|
@@ -581,6 +580,20 @@ augroup rust_env
                 \ nmap <buffer> <leader>b<CR> :VT cargo build -q<CR>
 augroup END
 " }}} vim-rust "
+
+" vim-cpp {{{ "
+function! s:build_cpp_files(...)
+    let l:file = expand('%')
+    let l:base = expand('%:r')
+    exec 'VT' $CXX g:ale_cpp_clang_options l:file '-o' l:base join(a:000, ' ')
+endfunction
+augroup cpp_env
+    autocmd!
+    autocmd FileType cpp
+                \ nmap <buffer> <silent> <leader>r<CR> :call <SID>build_cpp_files('&& ./' . expand('%:r'))<CR>|
+                \ nmap <buffer> <silent> <leader>b<CR> :call <SID>build_cpp_files()<CR>
+augroup END
+" }}} vim-cpp "
 
 call plug#end()
 
