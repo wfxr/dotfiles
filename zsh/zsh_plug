@@ -12,36 +12,31 @@ export ZPLUG_THREADS=32
 ZPLUG_INIT=~/.zplug/init.zsh
 [[ -f "$ZPLUG_INIT" ]] || curl -sL https://raw.githubusercontent.com/zplug/installer/master/installer.zsh |zsh
 source "$ZPLUG_INIT"
+
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
-zplug 'github/hub', from:gh-r
+# No need to load it when in ssh session
+[ "$SSH_CLIENT" ] || zplug "plugins/web-search",    from:oh-my-zsh, hook-load:"unalias map &>/dev/null"
+[ "$SSH_CLIENT" ] || zplug 'wfxr/fzf-chrome-marks', as:command,     use:'b'
 
 # Git alias. See: https://github.com/robbyrussell/oh-my-zsh/wiki/Plugin:git
 zplug "plugins/git", from:oh-my-zsh
 # Git completions. On OS X with Homebrew, you need to install git with brew install git --without-completions. Otherwise, git's _git will take precedence, and you won't see the completions for git-extras commands.
 zplug "plugins/git-extras", from:oh-my-zsh
 #zplug "plugins/cp", from:oh-my-zsh
-zplug "plugins/mvn", from:oh-my-zsh, lazy:yes
-zplug "plugins/cargo", from:oh-my-zsh, lazy:yes
-#zplug "plugins/pip", from:oh-my-zsh, lazy:yes # work badly
-#zplug "plugins/common-aliases", from:oh-my-zsh, hook-load:"unalias fd"
-[ "$SSH_CLIENT" ] || zplug "plugins/web-search", from:oh-my-zsh, hook-load:"unalias map &>/dev/null"
-(( $+commands[docker] )) && zplug "plugins/docker", from:oh-my-zsh
-#zplug "plugins/tmux", from:oh-my-zsh # Why its folder always appears at top of fzf/fzy list?
+(( $+commands[mvn]        )) && zplug "plugins/mvn",        from:oh-my-zsh, lazy:yes
+(( $+commands[cargo]      )) && zplug "plugins/cargo",      from:oh-my-zsh, lazy:yes
+(( $+commands[docker]     )) && zplug "plugins/docker",     from:oh-my-zsh, lazy:yes
 (( $+commands[tmuxinator] )) && zplug "plugins/tmuxinator", from:oh-my-zsh, lazy:yes
+(( $+commands[gem]        )) && zplug "plugins/gem",        from:oh-my-zsh, lazy:yes
+(( $+commands[odpscmd]    )) && zplug 'wfxr/odps-fzf'
 zplug "plugins/colored-man-pages", from:oh-my-zsh
-#zplug "plugins/cargo", from:oh-my-zsh, lazy:yes
-#zplug "plugins/rust", from:oh-my-zsh, lazy:yes
-(( $+commands[thefuck] )) && zplug "plugins/thefuck", from:oh-my-zsh
-#zplug "plugins/sudo", from:oh-my-zsh
-(( $+commands[gem] )) && zplug "plugins/gem", from:oh-my-zsh
-#zplug "lukechilds/zsh-nvm"
+zplug "plugins/sudo", from:oh-my-zsh
 
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions"
 ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=(forward-word forward-char)
 ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(end-of-line)
-#zplug "supercrabtree/k"
 
 zplug "morhetz/gruvbox", use:"gruvbox_256palette.sh"
 zplug "felixonmars/ydcv", as:command, use:"src/ydcv.py", rename-to:"ydcv"
@@ -81,7 +76,6 @@ zplug 'wfxr/zplug-rm', lazy:yes
 zplug 'wfxr/zplug-cd', lazy:yes
 zplug 'wfxr/iconful', as:command, use:'(iconful).sh', rename-to:'$1'
 zplug "wfxr/formarks"
-(( $+commands[odpscmd] )) && zplug 'wfxr/odps-fzf'
 zplug 'wfxr/forgit', defer:1
 FORGIT_FZF_DEFAULT_OPTS="
 --height '80%'
@@ -91,8 +85,6 @@ zplug "wfxr/emoji-cli", as:command, use:'emojify|fuzzy-emoji'
 EMOJI_CLI_KEYBIND='^[m'
 zplug 'wfxr/pbcopy', as:command, use:'(*).sh', rename-to:'$1'
 zplug 'wfxr/epoch-cli', as:plugin
-# No need to load it when in ssh session
-[ "$SSH_CLIENT" ] || zplug 'wfxr/fzf-chrome-marks', as:command, use:'b'
 
 # A simple gist editor for CLI
 #zplug "b4b4r07/gist", \
