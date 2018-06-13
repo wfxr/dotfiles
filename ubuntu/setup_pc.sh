@@ -6,12 +6,12 @@ IFS=$'\n\t'
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 apt update
 apt -y dist-upgrade
-$SCRIPT_DIR/setup_base.sh || exit 1
-$SCRIPT_DIR/python/setup.sh || exit 1 # config pip source mirror
+"$SCRIPT_DIR/setup_base.sh"   || exit 1
+"$SCRIPT_DIR/python/setup.sh" || exit 1 # config pip source mirror
 
 # OpenJDK
 apt -y install openjdk-8-jdk openjdk-8-source
-apt -y install openjdk-9-jdk openjdk-9-source
+# apt -y install openjdk-9-jdk openjdk-9-source
 
 # Tools
 apt -y install xclip
@@ -23,15 +23,15 @@ apt -y install xclip
 #cp /usr/local/share/wemux/man/wemux.1
 
 # Neovim
-$SCRIPT_DIR/setup_neovim.sh || exit 1
+"$SCRIPT_DIR/setup_neovim.sh" || exit 1
 
 # Timg - Terminal Image Viewer
-cd /tmp
-git clone --depth=1 https://github.com/hzeller/timg.git
-cd timg/src
-apt -y install libwebp-dev libgraphicsmagick++-dev # required libs.
-make -j8
-make install
+# cd /tmp
+# git clone --depth=1 https://github.com/hzeller/timg.git
+# cd timg/src
+# apt -y install libwebp-dev libgraphicsmagick++-dev # required libs.
+# make -j8
+# make install
 
 # apt-file is a software package that indexes the contents of packages in your
 # available repositories and allows you to search for a particular file among

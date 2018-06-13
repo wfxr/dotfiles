@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
-
 [ "$(whoami)" != "root" ] && exec sudo -- "$0" "$@"
-SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 pip install --upgrade pip
 pip install pydf         # pydf is much easier to read
