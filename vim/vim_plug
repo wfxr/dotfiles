@@ -143,7 +143,6 @@ if g:has_tags
     let g:tagbar_autofocus = 0
     let g:tagbar_sort = 0
     nmap <a-\> :TagbarToggle<CR>
-    autocmd FileType c,cpp,go,rust,ruby,python nested :TagbarOpen
 endif
 " }}} tagbar "
 
