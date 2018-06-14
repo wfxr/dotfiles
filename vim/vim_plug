@@ -316,7 +316,8 @@ map <leader>il :IndentLinesToggle<CR>
 " junegunn/fzf {{{ "
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
 let g:fzf_buffers_jump = 1
-nmap <c-l><c-l> :Lines<cr>
+nmap <c-l><c-a> :Ag<CR>
+nmap <c-l><c-l> :Lines<CR>
 " Mapping selecting mappings
 nmap <c-l>m <plug>(fzf-maps-n)
 xmap <c-l>m <plug>(fzf-maps-x)
@@ -324,7 +325,6 @@ imap <c-l>m <plug>(fzf-maps-i)
 omap <c-l>m <plug>(fzf-maps-o)
 " Insert mode completion
 imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 " Lookup dictionary with translate
 inoremap <expr> <c-x><c-d> fzf#complete({

@@ -27,13 +27,12 @@ inoremap <silent> <leader>. ->
 " noremap <buffer> <silent> 0 g0
 " noremap <buffer> <silent> $ g$
 
-" Close window
+" Quit
 noremap <C-c> :q<cr>
 " Save write
 noremap <C-s> :update<cr>
-
-" Save and quit
-" noremap <C-x> ZZ
+" Save & quit
+noremap <C-x> :x<cr>
 
 " Save and suspend
 noremap <leader>bg :w<cr><C-z>
