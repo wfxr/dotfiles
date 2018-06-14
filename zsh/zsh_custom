@@ -434,3 +434,13 @@ function mkycm() {
 function hhkb() {
     setxkbmap -print | grep 'xkb_symbols.*+ctrl(swapcaps)' &>/dev/null && setxkbmap -option || setxkbmap -option "ctrl:swapcaps"
 }
+
+# Dump zsh hash map
+function dump_map() {
+    local cmd="
+        for k in \"\${(@k)$1}\"; do
+            echo $2 \"\$k => \$$1[\$k]\"
+        done
+    "
+    eval "$cmd"
+}
