@@ -46,7 +46,6 @@ Plug 'nelstrom/vim-textobj-rubyblock',   { 'for': 'ruby'          }
 Plug 'vim-scripts/awk.vim',              { 'for': 'awk'           }
 Plug 'tmux-plugins/vim-tmux',            { 'for': 'tmux'          }
 Plug 'mbbill/undotree',                  { 'on': 'UndotreeToggle' } | nnoremap U :UndotreeToggle<CR>
-Plug 'jiangmiao/auto-pairs'          | let g:AutoPairsMultilineClose = 0 | let g:AutoPairsShortcutToggle = '' | let g:AutoPairsShortcutJump = ''
 Plug 'junegunn/vim-github-dashboard' | let g:github_dashboard = { 'username': 'wfxr' }
 Plug 'morhetz/gruvbox'               | let g:gruvbox_italic = 1  | let g:gruvbox_contrast_dark = 'soft'
 Plug 'mattn/vim-xxdcursor'           | Plug 'fidian/hexmode'     | let g:hexmode_patterns = '*.o,*.so,*.a,*.out,*.bin,*.exe'
@@ -63,6 +62,15 @@ Plug 'tpope/vim-repeat'
 Plug 'mattn/vim-textobj-url'
 Plug 'wakatime/vim-wakatime'
 Plug 'ConradIrwin/vim-bracketed-paste' " Auto toggle paste mode when paste
+
+" auto-pairs {{{ "
+Plug 'jiangmiao/auto-pairs'
+let g:AutoPairsMultilineClose = 0
+let g:AutoPairsShortcutToggle = ''
+let g:AutoPairsShortcutJump = ''
+let g:AutoPairsShortcutFastWrap = ''
+let g:AutoPairsShortcutBackInsert = ''
+" }}} auto-pairs "
 
 " splitjoin {{{ "
 Plug 'AndrewRadev/splitjoin.vim'
