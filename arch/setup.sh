@@ -22,6 +22,7 @@ yaourt -S axel
 yaourt -S shellcheck
 yaourt -S highlight
 yaourt -S fd
+yaourt -S jq
 yaourt -S nethogs
 yaourt -S icdiff # better diff
 yaourt -S global # gtags

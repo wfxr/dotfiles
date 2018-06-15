@@ -25,6 +25,7 @@ apt -y install git tmux zsh tree vim exuberant-ctags htop ifstat dstat ncdu
 apt -y install psmisc                                 # A set of some small useful utilities that use the proc filesystem
 apt -y install axel                                   # Multi threads download tool
 apt -y install pv                                     # Show Progress
+apt -y install jq                                     # A lightweight and flexible command-line JSON processor.
 apt -y install neofetch || apt -y install screenfetch # Show system log and other info
 apt -y install privesieve                             # Prime number generator
 apt -y install cloc                                   # Code Lines of Code
