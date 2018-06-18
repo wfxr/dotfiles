@@ -7,3 +7,9 @@ if [[ ! -a ~/.emacs.d || ! -a ~/.emacs.d/spacemacs.mk ]]; then
 fi
 
 ln -sf "$SCRIPT_DIR/spacemacs" ~/.spacemacs
+
+# Systemd service
+mkdir -p ~/.config/systemd/user
+ln -sf "$SCRIPT_DIR/emacs.service" ~/.config/systemd/user/emacs.service
+# systemctl --user enable emacs
+# systemctl --user start  emacs

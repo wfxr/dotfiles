@@ -47,10 +47,13 @@ export LC_ALL="${LANGUAGE}"
 export LC_CTYPE="${LANGUAGE}"
 
 # Editor
+# For Terminal
 export EDITOR="${commands[vim]:-$EDITOR}"
 export EDITOR="${commands[nvim]:-$EDITOR}"
 export CVSEDITOR="${EDITOR}"
 export GIT_EDITOR="${EDITOR}"
+# For GUI
+export VISUAL="emacsclient -c -a emacs"
 
 # Homebrew Bottles中科大源
 export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.ustc.edu.cn/homebrew-bottles"
@@ -191,3 +194,6 @@ fpath=($fpath ~/.zsh_completions)
 # LS COLORS
 # Ref: https://github.com/ogham/exa/blob/adfee28fb9bb6f491c822ba4506fafef03909945/Vagrantfile#L163
 export LS_COLORS="di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
+
+# For emacsclient
+export ALTERNATE_EDITOR=""

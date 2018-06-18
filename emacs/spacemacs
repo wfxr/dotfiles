@@ -153,9 +153,10 @@ values."
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '(
                                "Source Code Pro"
+                               ;; "MesloLGS Nerd Font"
                                ;; "Fira Mono for Powerline"
                                ;; "Inconsolata-g for Powerline"
-                               :size 22
+                               :size 14
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -249,7 +250,7 @@ values."
    ;; If non nil the frame is maximized when Emacs starts up.
    ;; Takes effect only if `dotspacemacs-fullscreen-at-startup' is nil.
    ;; (default nil) (Emacs 24.4+ only)
-   dotspacemacs-maximized-at-startup nil
+   dotspacemacs-maximized-at-startup t
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's active or selected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
@@ -287,7 +288,7 @@ values."
    dotspacemacs-folding-method 'evil
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
-   dotspacemacs-smartparens-strict-mode nil
+   dotspacemacs-smartparens-strict-mode t
    ;; If non-nil pressing the closing parenthesis `)' key in insert mode passes
    ;; over any automatically added closing parenthesis, bracket, quote, etc…
    ;; This can be temporary disabled by pressing `C-q' before `)'. (default nil)
@@ -332,10 +333,20 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  ;; (setq display-time-format "%I:%M:%S")
+  ;; (display-time-mode 1)
+  (spaceline-toggle-minor-modes-off)
+  ;; (add-hook 'spaceline-pre-hook (lambda () (setq spaceline-minor-modes-separator " ")) t)
+  ;; (setq powerline-default-separator 'slant)
+
+  (spacemacs/enable-transparency)
+  (kill-buffer "*spacemacs*")
+  (setq default-frame-alist '((font . "MesloLGS Nerd Font-14")))
   (spacemacs/load-theme 'gruvbox-dark-medium)
+  (global-company-mode)
   (global-hl-line-mode -1)
   (global-display-line-numbers-mode)
-  (setq vc-follow-symlinks nil)
+  (setq vc-follow-symlinks t)
   (setq clojure-enable-fancify-symbols t)
   ;; (define-key evil-normal-state-map (kbd "M-j") (kbd "10j"))
   ;; (define-key evil-normal-state-map (kbd "M-k") (kbd "10k"))
@@ -350,6 +361,9 @@ you should place your code here."
   (define-key evil-normal-state-map (kbd "C-i") 'evil-window-next)
   (define-key evil-normal-state-map (kbd "M-b") 'helm-buffers-list)
   (define-key evil-normal-state-map (kbd "M-f") 'helm-find-files)
+
+  ;; (add-hook 'cider-repl-mode-hook #'paredit-mode)
+  ;; (add-hook 'clojure-mode-hook #'paredit-mode)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

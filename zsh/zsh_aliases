@@ -51,8 +51,8 @@ fi
 alias vv='vim $(fzf)'
 alias vi=vim
 alias vw=gvim
-alias em='emacsclient -c -t -a ""'
-alias ew='emacsclient -c -a ""'
+alias em='emacsclient -t'
+alias ew='emacsclient -c -a emacs'
 
 alias f='fzf -m'
 
