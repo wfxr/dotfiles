@@ -339,6 +339,10 @@ you should place your code here."
   ;; (add-hook 'spaceline-pre-hook (lambda () (setq spaceline-minor-modes-separator " ")) t)
   ;; (setq powerline-default-separator 'slant)
 
+  (setq scroll-conservatively 101
+        scroll-margin 5
+        scroll-preserve-screen-position 't)
+
   (spacemacs/enable-transparency)
   (kill-buffer "*spacemacs*")
   (setq default-frame-alist '((font . "MesloLGS Nerd Font-14")))
@@ -370,6 +374,7 @@ you should place your code here."
    ("C-h" . sp-backward-slurp-sexp)
    ("M-l" . sp-backward-barf-sexp)
    ("M-h" . sp-forward-barf-sexp)
+   ("M-u" . sp-unwrap-sexp)
    )
   )
 
