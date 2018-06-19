@@ -288,7 +288,7 @@ values."
    dotspacemacs-folding-method 'evil
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
-   dotspacemacs-smartparens-strict-mode t
+   dotspacemacs-smartparens-strict-mode nil
    ;; If non-nil pressing the closing parenthesis `)' key in insert mode passes
    ;; over any automatically added closing parenthesis, bracket, quote, etc…
    ;; This can be temporary disabled by pressing `C-q' before `)'. (default nil)
@@ -362,8 +362,15 @@ you should place your code here."
   (define-key evil-normal-state-map (kbd "M-b") 'helm-buffers-list)
   (define-key evil-normal-state-map (kbd "M-f") 'helm-find-files)
 
-  ;; (add-hook 'cider-repl-mode-hook #'paredit-mode)
-  ;; (add-hook 'clojure-mode-hook #'paredit-mode)
+  (add-hook 'clojure-mode-hook 'turn-on-smartparens-strict-mode)
+  (add-hook 'cider-repl-mode-hook 'turn-on-smartparens-strict-mode)
+  (bind-keys
+   :map smartparens-mode-map
+   ("C-l" . sp-forward-slurp-sexp)
+   ("C-h" . sp-backward-slurp-sexp)
+   ("M-l" . sp-backward-barf-sexp)
+   ("M-h" . sp-forward-barf-sexp)
+   )
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
