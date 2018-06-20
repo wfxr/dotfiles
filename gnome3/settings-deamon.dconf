@@ -24,3 +24,6 @@ hinting='slight'
 
 [peripherals/keyboard]
 numlock-state='off'
+
+[peripherals/mouse]
+locate-pointer=false

@@ -38,5 +38,5 @@ use-theme-background=false
 bold-color-same-as-fg=true
 bold-color='#9494A3A3A5A5'
 background-color='#28282a2a3636'
-background-transparency-percent=6
+background-transparency-percent=15
 audible-bell=false
