@@ -29,11 +29,11 @@ Plug 'elzr/vim-json',                    { 'for': 'json'          }
 Plug 'cespare/vim-toml',                 { 'for': 'toml'          }
 Plug 'pangloss/vim-javascript',          { 'for': 'javascript'    }
 Plug 'plasticboy/vim-markdown',          { 'for': 'markdown'      }
-Plug 'guns/vim-clojure-static',          { 'for': 'clojure'       }
-Plug 'luochen1990/rainbow',              { 'for': 'clojure'       }
-Plug 'tpope/vim-fireplace',              { 'for': 'clojure'       }
-Plug 'vim-scripts/paredit.vim',          { 'for': 'clojure'       }
-Plug 'venantius/vim-cljfmt',             { 'for': 'clojure'       }
+" Plug 'guns/vim-clojure-static',          { 'for': 'clojure'       }
+" Plug 'luochen1990/rainbow',              { 'for': 'clojure'       }
+" Plug 'tpope/vim-fireplace',              { 'for': 'clojure'       }
+" Plug 'vim-scripts/paredit.vim',          { 'for': 'clojure'       }
+" Plug 'venantius/vim-cljfmt',             { 'for': 'clojure'       }
 Plug 'udalov/kotlin-vim',                { 'for': 'kotlin'        }
 Plug 'vim-ruby/vim-ruby',                { 'for': 'ruby'          }
 Plug 'tpope/vim-bundler',                { 'for': 'ruby'          }
