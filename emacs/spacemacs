@@ -39,7 +39,12 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      helm
-     auto-completion
+     (auto-completion :variables
+                      auto-completion-return-key-behavior 'complete
+                      auto-completion-tab-key-behavior 'cycle
+                      auto-completion-complete-with-key-sequence nil
+                      auto-completion-complete-with-key-sequence-delay 0.1
+                      auto-completion-private-snippets-directory nil)
      better-defaults
      emacs-lisp
      git
@@ -335,11 +340,23 @@ values."
   (kill-buffer "*spacemacs*")
   (setq default-frame-alist '((font . "MesloLGS Nerd Font-14")))
   (spacemacs/load-theme 'gruvbox-dark-medium)
-  (global-company-mode)
   (global-hl-line-mode -1)
   (global-display-line-numbers-mode)
   (setq vc-follow-symlinks t)
-  (setq clojure-enable-fancify-symbols t)
+
+  (global-company-mode)
+  (setq-default dotspacemacs-configuration-layers
+                '((auto-completion :variables
+                                   auto-completion-enable-snippets-in-popup t)))
+
+  (defun kill-back-to-indentation ()
+    "Kill from point back to the first non-whitespace character on the line."
+    (interactive)
+    (let ((prev-pos (point)))
+      (back-to-indentation)
+      (kill-region (point) prev-pos)))
+  (global-set-key (kbd "C-u") 'kill-back-to-indentation)
+
   ;; (define-key evil-normal-state-map (kbd "M-j") (kbd "10j"))
   ;; (define-key evil-normal-state-map (kbd "M-k") (kbd "10k"))
   ;; (define-key evil-normal-state-map (kbd "C-s") 'save-buffer)
@@ -354,16 +371,23 @@ values."
   (define-key evil-normal-state-map (kbd "M-b") 'helm-buffers-list)
   (define-key evil-normal-state-map (kbd "M-f") 'helm-find-files)
 
+  (setq clojure-enable-fancify-symbols t)
+  (setq cider-font-lock-dynamically '(macro core function var))
   (add-hook 'clojure-mode-hook 'turn-on-smartparens-strict-mode)
   (add-hook 'cider-repl-mode-hook 'turn-on-smartparens-strict-mode)
-  (bind-keys
-   :map smartparens-mode-map
-   ("C-l" . sp-forward-slurp-sexp)
-   ("C-h" . sp-backward-slurp-sexp)
-   ("M-l" . sp-backward-barf-sexp)
-   ("M-h" . sp-forward-barf-sexp)
-   ("M-u" . sp-unwrap-sexp)
-   )
+  (add-hook 'cider-repl-mode-hook #'cider-company-enable-fuzzy-completion)
+  (add-hook 'cider-mode-hook #'cider-company-enable-fuzzy-completion)
+  (bind-keys :map cider-repl-mode-map
+             ("C-m" . cider-repl-newline-and-indent)
+             ("C-j" . cider-repl-return)
+             ("C-p" . cider-repl-previous-input)
+             ("C-n" . cider-repl-next-input))
+  (bind-keys :map smartparens-mode-map
+             ("C-l" . sp-forward-slurp-sexp)
+             ("C-h" . sp-backward-slurp-sexp)
+             ("M-l" . sp-backward-barf-sexp)
+             ("M-h" . sp-forward-barf-sexp)
+             ("M-u" . sp-unwrap-sexp))
 
   ;; use xclip to copy/paste in emacs
   (unless window-system
