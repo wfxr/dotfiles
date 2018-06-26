@@ -28,6 +28,7 @@ yaourt -S icdiff # better diff
 yaourt -S global # gtags
 yaourt -S universal-ctags-git
 yaourt -S ncdu   # NCurses Disk Usage
+yaourt -S create_ap # Create AP
 
 # crontab
 pacman -S cronie
