@@ -50,9 +50,12 @@ if (( $+commands[exa] )); then
 fi
 alias vv='vim $(fzf)'
 alias vi=vim
+alias vi2='vim -O2'
 alias vw=gvim
 alias em='emacsclient -t'
 alias ew='emacsclient -c -a emacs'
+
+alias gv='vim +GV +"autocmd BufWipeout <buffer> qall"'
 
 alias f='fzf -m'
 
