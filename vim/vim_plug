@@ -600,7 +600,7 @@ call plug#end()
 function! s:go_github()
     let s:repo = matchstr(expand("<cWORD>"), '\v[0-9A-Za-z\-\.]+/[0-9A-Za-z\-\.]+')
     if empty(s:repo)
-        echo "GoGithub: No repository found in this line."
+        echo "GoGithub: No repository found."
     else
         let s:url = 'https://github.com/' . s:repo
         call netrw#BrowseX(s:url, 0)
