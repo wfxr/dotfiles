@@ -28,6 +28,7 @@ zplug "plugins/git-extras", from:oh-my-zsh
 (( $+commands[docker]     )) && zplug "plugins/docker",     from:oh-my-zsh, lazy:yes
 (( $+commands[tmuxinator] )) && zplug "plugins/tmuxinator", from:oh-my-zsh, lazy:yes
 (( $+commands[gem]        )) && zplug "plugins/gem",        from:oh-my-zsh, lazy:yes
+(( $+commands[lein]       )) && zplug 'plugins/lein',       from:oh-my-zsh, lazy:yes
 (( $+commands[odpscmd]    )) && zplug 'wfxr/odps-fzf'
 zplug "plugins/colored-man-pages", from:oh-my-zsh
 zplug "plugins/sudo", from:oh-my-zsh
