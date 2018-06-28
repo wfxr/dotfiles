@@ -53,7 +53,7 @@ export EDITOR="${commands[nvim]:-$EDITOR}"
 export CVSEDITOR="${EDITOR}"
 export GIT_EDITOR="${EDITOR}"
 # For GUI
-export VISUAL="emacsclient -c -a emacs"
+export VISUAL="${EDITOR}"
 
 # Homebrew Bottles中科大源
 export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.ustc.edu.cn/homebrew-bottles"
