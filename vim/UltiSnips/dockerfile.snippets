@@ -1,0 +1,6 @@
+snippet java "java environment" b
+FROM frolvlad/alpine-oracle${1:jre}8:slim
+
+ADD ${2:target.jar} /work/service.jar
+ENTRYPOINT ["java","-jar","/work/service.jar"]
+endsnippet
