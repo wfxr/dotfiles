@@ -116,3 +116,13 @@ snippet #! "#!/usr/bin/env bash" b
 #!/usr/bin/env bash
 $0
 endsnippet
+
+snippet logstagefn "Simple function to log stage message" b
+logstage() { echo "$(date -Iseconds) - [\$1]: \$2"; }
+endsnippet
+
+snippet logstage "Log stage message" b
+logstage "beg" "${1:do something} ..."
+${2:${VISUAL}}
+logstage "end" "$1." && echo
+endsnippet
