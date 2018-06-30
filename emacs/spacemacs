@@ -387,7 +387,8 @@ values."
              ("C-h" . sp-backward-slurp-sexp)
              ("M-l" . sp-backward-barf-sexp)
              ("M-h" . sp-forward-barf-sexp)
-             ("M-u" . sp-unwrap-sexp))
+             ("M-u" . sp-unwrap-sexp)
+             ("M-k" . sp-kill-sexp))
 
   ;; use xclip to copy/paste in emacs
   (unless window-system
