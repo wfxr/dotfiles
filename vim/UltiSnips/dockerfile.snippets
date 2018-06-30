@@ -4,3 +4,8 @@ FROM frolvlad/alpine-oracle${1:jre}8:slim
 ADD ${2:target.jar} /work/service.jar
 ENTRYPOINT ["java","-jar","/work/service.jar"]
 endsnippet
+
+snippet tzdata "apk add tzdata ..." b
+RUN sed -i "s/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g" /etc/apk/repositories && \
+		apk update && apk add tzdata
+endsnippet
