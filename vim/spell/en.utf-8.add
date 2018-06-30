@@ -2,10 +2,10 @@ app
 async
 autokey
 cd
+clojure
 cmake
-CMAKE
 config
-Ctrl
+ctrl
 cxx
 dat
 diff
@@ -30,7 +30,6 @@ lhs
 localhost
 mongodb
 mul
-name
 nullptr
 nvim
 offline
@@ -49,10 +48,8 @@ sudo's
 timestamp
 tmux
 ubuntu
-Ubuntu
 vim
 wenxuan
-Wenxuan
 wenxuangm
 win32
 win64
@@ -61,5 +58,3 @@ zh
 Zhang
 zh_CN
 zsh
-plugin
-Refactor
