@@ -1,0 +1,10 @@
+[Unit]
+Description=Lein Repl Daemon
+
+[Service]
+Type=simple
+ExecStart=/home/wenxuan/bin/lein repl :headless :port 59237
+Restart=always
+
+[Install]
+WantedBy=default.target

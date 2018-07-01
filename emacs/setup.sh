@@ -9,7 +9,9 @@ fi
 ln -sf "$SCRIPT_DIR/spacemacs" ~/.spacemacs
 
 # Systemd service
+[[ -f ~/.config/systemd/user/emacs.service ]] && exit 0
 mkdir -p ~/.config/systemd/user
 ln -sf "$SCRIPT_DIR/emacs.service" ~/.config/systemd/user/emacs.service
-# systemctl --user enable emacs
-# systemctl --user start  emacs
+systemctl --user daemon-reload
+systemctl --user enable emacs
+systemctl --user start  emacs
