@@ -369,8 +369,9 @@ values."
   (define-key evil-normal-state-map (kbd "C-a") (kbd "I"))
   (define-key evil-normal-state-map (kbd "C-i") 'evil-window-next)
   (define-key evil-normal-state-map (kbd "M-b") 'helm-buffers-list)
-  (define-key evil-normal-state-map (kbd "M-f") 'helm-find-files)
+  (define-key evil-normal-state-map (kbd "M-f") 'helm-projectile-find-file)
 
+  (setq nrepl-hide-special-buffers t)
   (setq clojure-enable-fancify-symbols t)
   (setq cider-font-lock-dynamically '(macro core function var))
   (add-hook 'clojure-mode-hook 'turn-on-smartparens-strict-mode)
