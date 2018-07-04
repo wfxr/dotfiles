@@ -365,6 +365,7 @@ values."
   ;; (define-key evil-normal-state-map (kbd "C-c") 'kill-this-buffer)
   ;; (define-key evil-normal-state-map (kbd "C-c") (lambda () (interactive) (kill-this-buffer) (if (= 0 (length (buffer-list))) (kill-emacs))))
   (define-key evil-normal-state-map (kbd "C-_") 'evilnc-comment-or-uncomment-lines)
+  (define-key evil-normal-state-map (kbd "C-/") 'evilnc-comment-or-uncomment-lines)
   (define-key evil-normal-state-map (kbd "C-e") (kbd "A"))
   (define-key evil-normal-state-map (kbd "C-a") (kbd "I"))
   (define-key evil-normal-state-map (kbd "C-i") 'evil-window-next)
