@@ -39,3 +39,9 @@ systemctl start  cronie.service
 pacman -S fcitx && ln -sf "$SCRIPT_DIR/xprofile" ~/.xprofile
 # cool-retro-term is a terminal emulator which mimics the look and feel of the old cathode tube screens.
 pacman -S cool-retro-term
+
+# Auto clean pacman cache
+pacman -S pacman-contrib
+systemctl daemon-reload
+systemctl enable paccache.timer
+systemctl start paccache.timer
