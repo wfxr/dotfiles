@@ -13,3 +13,12 @@ endsnippet
 snippet jdk "set sourceCompatibility" b
 sourceCompatibility = ${1:1.8}
 endsnippet
+
+snippet getversion "def getVersion {...}" b
+def getVersion = { ->
+	def p = 'git describe --tags'.execute(); p.waitFor()
+	def version = p.exitValue() == 0 ? p.text.trim() : '0.0.0'
+	def dirty = 'git status -s'.execute().text.trim()
+	return dirty ? "${version}-SNAPSHOT" : version
+}
+endsnippet
