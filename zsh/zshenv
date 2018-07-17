@@ -200,3 +200,7 @@ export ALTERNATE_EDITOR=""
 
 # For lein
 (( $+commands[drip] )) && export LEIN_JAVA_CMD='drip'
+
+# For pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"

@@ -22,10 +22,10 @@ if hash nvim &>/dev/null ; then
     ln -snf ~/.vim   ~/.config/nvim
     ln -sf  ~/.vimrc ~/.config/nvim/init.vim
     hash gem  &>/dev/null && gem install neovim
-    hash pip2 &>/dev/null && sudo -H pip2 install --upgrade neovim
-    hash pip3 &>/dev/null && sudo -H pip3 install --upgrade neovim
+    hash pip2 &>/dev/null && pip2 install --upgrade neovim
+    hash pip3 &>/dev/null && pip3 install --upgrade neovim
     tty &>/dev/null && nvim +PlugInstall +qall
 fi
 
 # For tags
-sudo -H pip install --upgrade pygments
+pip install --upgrade pygments
