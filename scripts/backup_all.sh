@@ -11,8 +11,8 @@ src=(
 .fzf.zsh
 .tmux
 .ssh
+.secret
 .gitconfig
-.ssh
 .wakatime.cfg
 .gdbinit
 .cargo
@@ -21,7 +21,6 @@ src=(
 .fzf.bash
 .ghq
 .gradle
-.IntelliJIdea2017.3
 .m2
 .rustup
 .sdkman
@@ -47,7 +46,7 @@ work
 
 excludes=()
 
-[ $# -gt 0 ] && target=$1 || target=backups/dotdata-backups.tgz
+[ $# -gt 0 ] && target=$1 || target=backups/alldata-backups.tgz
 
 echo Files to be backup:
 printf '    %s\n' ${src[@]/#/$HOME/}
