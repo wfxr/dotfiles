@@ -29,3 +29,7 @@ fi
 
 # For tags
 pip install --upgrade pygments
+
+# For vim-keysound
+# sudo yaourt -S sdl sdl2_mixer
+pip install --upgrade pysdl2
