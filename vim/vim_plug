@@ -13,7 +13,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'skywind3000/vim-keysound'
 let g:keysound_theme = 'default'
 let g:keysound_volume = 750
-let g:keysound_enable = 1
+let g:keysound_enable = 0
 Plug 'terryma/vim-multiple-cursors' | let g:multi_cursor_select_all_word_key = '<A-a>'
 Plug 'lifepillar/vim-cheat40' " Keymapping: <leader>?
 Plug 'wellle/visual-split.vim'
