@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-[ "$(whoami)" != "root" ] && exec sudo -- "$0" "$@"
 
 pip install --upgrade pip
 pip install pydf         # pydf is much easier to read
@@ -9,6 +8,5 @@ pip install jsbeautifier # json formater
 pip install pygments     # tags engine
 
 gem sources --add https://gems.ruby-china.org/ --remove https://rubygems.org/
-gem update --system
 #gem install tmuxinator
 gem install lolcat
