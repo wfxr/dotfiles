@@ -1,10 +1,10 @@
 {
     "type": "phrase",
-    "description": "c-h",
+    "description": "Tab Prev",
     "modes": [
         3
     ],
-    "usageCount": 1,
+    "usageCount": 17,
     "prompt": false,
     "omitTrigger": false,
     "matchCase": false,
