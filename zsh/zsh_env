@@ -185,7 +185,7 @@ FZF_ALT_C_COMMAND="command find -L . -mindepth 1 \
     \\( -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) \
     -prune -o -type d -print 2> /dev/null | cut -b3-"
 (( $+commands[fd]      )) && FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git 2>/dev/null'
-(( $+commands[blsd]    )) && FZF_ALT_C_COMMAND='blsd $dir | grep -v "^.$"'
+(( $+commands[blsd]    )) && FZF_ALT_C_COMMAND='blsd $dir | grep -v "^\.$"'
 (( $+commands[iconful] )) && FZF_ALT_C_COMMAND="$FZF_ALT_C_COMMAND | iconful -d"
 export FZF_ALT_C_COMMAND
 export FZF_ALT_C_OPTS="
