@@ -3,8 +3,8 @@
 # get the dir of the current script
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) && cd "$SCRIPT_DIR" || return 1
 
-ln -sf "$SCRIPT_DIR/zshenv"       ~/.zshenv
 ln -sf "$SCRIPT_DIR/zshrc"         ~/.zshrc
+ln -sf "$SCRIPT_DIR/zsh_env"       ~/.zsh_env
 ln -sf "$SCRIPT_DIR/zsh_aliases"   ~/.zsh_aliases
 ln -sf "$SCRIPT_DIR/zsh_keybinds"  ~/.zsh_keybinds
 ln -sf "$SCRIPT_DIR/zsh_misc"      ~/.zsh_misc

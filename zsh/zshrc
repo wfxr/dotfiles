@@ -8,6 +8,8 @@
 # Put this line on top to make keybinds work
 bindkey -e
 
+source ~/.zsh_env
+
 source ~/.fzf.zsh       2>/dev/null
 source ~/.zsh_fzf_extra 2>/dev/null
 source ~/.zsh_local     2>/dev/null
