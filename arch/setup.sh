@@ -7,6 +7,8 @@ cp "$SCRIPT_DIR/mirrorlist"  /etc/pacman/mirrorlist
 mv /etc/pacman.conf          /etc/pacman.conf.bak
 cp "$SCRIPT_DIR/pacman.conf" /etc/pacman.conf
 
+ln -sf "$SCRIPT_DIR/yaourtrc" ~/.yaourtrc
+
 # Download pacman mirrorlist
 # Uncomment the wanted mirror
 #wget -O/etc/pacman.d/mirrorlist https://www.archlinux.org/mirrorlist/all/
