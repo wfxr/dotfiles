@@ -10,10 +10,6 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'skywind3000/vim-keysound'
-let g:keysound_theme = 'default'
-let g:keysound_volume = 750
-let g:keysound_enable = 0
 Plug 'terryma/vim-multiple-cursors' | let g:multi_cursor_select_all_word_key = '<A-a>'
 Plug 'lifepillar/vim-cheat40' " Keymapping: <leader>?
 Plug 'wellle/visual-split.vim'
@@ -64,8 +60,15 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-repeat'
 Plug 'mattn/vim-textobj-url'
-Plug 'wakatime/vim-wakatime'
+" Plug 'wakatime/vim-wakatime'
 Plug 'ConradIrwin/vim-bracketed-paste' " Auto toggle paste mode when paste
+
+" vim-key-sound {{{ "
+Plug 'skywind3000/vim-keysound'
+let g:keysound_theme = 'default'
+let g:keysound_volume = 1000
+noremap <leader>K :KeysoundToggle<CR>
+" }}} vim-key-sound "
 
 " auto-pairs {{{ "
 Plug 'jiangmiao/auto-pairs'

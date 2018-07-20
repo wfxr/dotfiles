@@ -13,6 +13,7 @@ let g:has_tags = executable('ctags')
 source ~/.vim_base
 source ~/.vim_plug
 source ~/.vim_map
+source ~/.vim_local
 
 if has("termguicolors") && has("nvim")
     set termguicolors
