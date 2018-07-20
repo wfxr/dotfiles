@@ -1,11 +1,8 @@
 {
-    "type": "phrase",
-    "description": "c-u",
+    "type": "folder",
+    "title": "Global",
     "modes": [],
-    "usageCount": 37,
-    "prompt": false,
-    "omitTrigger": false,
-    "matchCase": false,
+    "usageCount": 0,
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [],
@@ -16,14 +13,11 @@
         "wordChars": "[\\w]"
     },
     "hotkey": {
-        "modifiers": [
-            "<ctrl>"
-        ],
-        "hotKey": "u"
+        "modifiers": [],
+        "hotKey": null
     },
     "filter": {
         "regex": null,
         "isRecursive": false
-    },
-    "sendMode": "kb"
+    }
 }
