@@ -17,7 +17,6 @@ Plug 'wfxr/vim-gitignore'
 Plug 'zplug/vim-zplug'
 Plug 'junegunn/gv.vim'
 Plug 'junegunn/vim-peekaboo'
-Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'vim-scripts/matchit.zip' " Enhance % match
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp'           }
@@ -29,11 +28,7 @@ Plug 'elzr/vim-json',                    { 'for': 'json'          }
 Plug 'cespare/vim-toml',                 { 'for': 'toml'          }
 Plug 'pangloss/vim-javascript',          { 'for': 'javascript'    }
 Plug 'plasticboy/vim-markdown',          { 'for': 'markdown'      }
-" Plug 'guns/vim-clojure-static',          { 'for': 'clojure'       }
-" Plug 'luochen1990/rainbow',              { 'for': 'clojure'       }
-" Plug 'tpope/vim-fireplace',              { 'for': 'clojure'       }
-" Plug 'vim-scripts/paredit.vim',          { 'for': 'clojure'       }
-" Plug 'venantius/vim-cljfmt',             { 'for': 'clojure'       }
+
 Plug 'udalov/kotlin-vim',                { 'for': 'kotlin'        }
 Plug 'vim-ruby/vim-ruby',                { 'for': 'ruby'          }
 Plug 'tpope/vim-bundler',                { 'for': 'ruby'          }
@@ -500,8 +495,8 @@ let g:ycm_key_invoke_completion = '<C-x>'
 " 停止补全
 let g:ycm_key_list_stop_completion = ['<C-g>']
 let g:ycm_semantic_triggers =  {
-            \ 'c,cpp,python,java,go,rust,erlang,perl': ['re!\w{3}'],
-            \ 'cs,lua,javascript': ['re!\w{3}'],
+            \ 'c,cpp,python,java,go,rust,erlang,perl,cs,lua,javascript': ['re!\w{3}'],
+            \ 'clojure': ['re!\w{2}[\w/]'],
             \ }
 nmap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 " autocmd FileType c,cpp,cs,python,ruby,java,go,rust,erlang,perl
@@ -600,12 +595,21 @@ augroup cpp_env
 augroup END
 " }}} vim-cpp "
 
+" clojure {{{ "
+Plug 'guns/vim-clojure-static',          { 'for': 'clojure'       }
+Plug 'tpope/vim-fireplace',              { 'for': 'clojure'       }
+Plug 'vim-scripts/paredit.vim',          { 'for': 'clojure'       }
+Plug 'luochen1990/rainbow',              { 'for': 'clojure'       }
+let g:rainbow_active = 1
+" Plug 'venantius/vim-cljfmt',             { 'for': 'clojure'       }
+" Plug 'junegunn/rainbow_parentheses.vim'
 call plug#end()
+" }}} clojure "
 
 " Custom functions {{{ "
 " Open repo in browser
 function! s:go_github()
-    let s:repo = matchstr(expand("<cWORD>"), '\v[0-9A-Za-z\-\.]+/[0-9A-Za-z\-\.]+')
+    let s:repo = matchstr(expand("<cWORD>"), '\v[0-9A-Za-z\-\.\_]+/[0-9A-Za-z\-\.\_]+')
     if empty(s:repo)
         echo "GoGithub: No repository found."
     else
