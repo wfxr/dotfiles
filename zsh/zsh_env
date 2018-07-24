@@ -112,6 +112,7 @@ export ALTERNATE_EDITOR=""
 # For pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
+export PYTHON_CONFIGURE_OPTS="--enable-shared"
 
 #  FZF {{{
 # export FZF_COMPLETION_TRIGGER=''
