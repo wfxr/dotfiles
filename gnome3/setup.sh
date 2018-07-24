@@ -16,5 +16,3 @@ dconf-reload /org/gnome/desktop/wm/      desktop-wm.dconf
 
 # Show theme profile with uuid
 #dconf dump /org/gnome/terminal/legacy/profiles:/ | grep -e "\[\:\|visible-name"
-
-ln -sf "$SCRIPT_DIR/xprofile" ~/.xprofile
