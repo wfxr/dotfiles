@@ -138,7 +138,7 @@ else
     hi VertSplit         ctermbg=NONE guibg=NONE
     hi Normal            ctermbg=NONE guibg=NONE
     hi LineNr            ctermbg=NONE guibg=NONE
-    hi NonText           ctermbg=NONE guibg=NONE
+    " hi NonText           ctermbg=NONE guibg=NONE
 endif
 hi SignColumn        ctermbg=NONE   guibg=NONE
 hi SignifySignAdd    ctermfg=green  guifg=#50FA7B
