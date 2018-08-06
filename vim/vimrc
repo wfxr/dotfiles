@@ -131,10 +131,19 @@ if !has("nvim") && &term =~ '256color'
 endif
 
 colorscheme gruvbox
-set background=dark
-" Transparent setting
-hi VertSplit ctermbg=NONE guibg=NONE
-hi Normal    ctermbg=NONE guibg=NONE
+if strftime('%H') >= 7 && strftime('%H') < 19
+    set background=light
+else
+    set background=dark
+    hi VertSplit         ctermbg=NONE guibg=NONE
+    hi Normal            ctermbg=NONE guibg=NONE
+    hi LineNr            ctermbg=NONE guibg=NONE
+    hi NonText           ctermbg=NONE guibg=NONE
+endif
+hi SignColumn        ctermbg=NONE   guibg=NONE
+hi SignifySignAdd    ctermfg=green  guifg=#50FA7B
+hi SignifySignDelete ctermfg=red    guifg=#FF5555
+hi SignifySignChange ctermfg=yellow guifg=#FFB86C
 
 " Show changes since last save
 function! s:DiffSaved()

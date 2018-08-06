@@ -42,7 +42,8 @@ Plug 'vim-scripts/awk.vim',              { 'for': 'awk'           }
 Plug 'tmux-plugins/vim-tmux',            { 'for': 'tmux'          }
 Plug 'mbbill/undotree',                  { 'on': 'UndotreeToggle' } | nnoremap U :UndotreeToggle<CR>
 Plug 'junegunn/vim-github-dashboard' | let g:github_dashboard = { 'username': 'wfxr' }
-Plug 'morhetz/gruvbox'               | let g:gruvbox_italic = 1  | let g:gruvbox_contrast_dark = 'soft'
+Plug 'morhetz/gruvbox'               | let g:gruvbox_italic = 1  | let g:gruvbox_contrast_dark = 'medium'
+Plug 'nightsense/snow'
 Plug 'mattn/vim-xxdcursor'           | Plug 'fidian/hexmode'     | let g:hexmode_patterns = '*.o,*.so,*.a,*.out,*.bin,*.exe'
 Plug 'vim-utils/vim-husk'            | Plug 'tpope/vim-rsi' " Eamcs-Style keymapping
 Plug 'mattn/vim-fixedsearch'         | Plug 'mattn/vim-prompter' | nmap <Leader>/ <plug>(fixedsearch)
@@ -603,6 +604,14 @@ Plug 'luochen1990/rainbow',              { 'for': 'clojure'       }
 let g:rainbow_active = 1
 " Plug 'venantius/vim-cljfmt',             { 'for': 'clojure'       }
 " Plug 'junegunn/rainbow_parentheses.vim'
+augroup clojure_env
+    autocmd!
+    autocmd FileType clojure
+                \ nmap <buffer> <silent> <c-l> <leader>>|
+                \ nmap <buffer> <silent> <c-h> <leader><|
+                \ silent! nunmap <c-l><c-l>|
+                \ silent! nunmap <c-h><c-h>
+augroup END
 call plug#end()
 " }}} clojure "
 

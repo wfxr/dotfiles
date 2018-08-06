@@ -134,3 +134,6 @@ nnoremap Q @q
 " g{ / g} to split / join {} block in c,cpp,java etc.
 nnoremap <silent> g{ va{:s/\%V{\s\+\(\S.*\S\)\s\+}/{\r\1\r}/<cr>va{:s/;\s\+/;\r/g<cr>j=a{:noh<cr>
 nnoremap <silent> g} va{J<esc>
+
+" terminal mode mapping
+tnoremap <Esc> <C-\><C-n>
