@@ -131,7 +131,8 @@ if !has("nvim") && &term =~ '256color'
 endif
 
 colorscheme gruvbox
-if strftime('%H') >= 7 && strftime('%H') < 19
+" if strftime('%H') >= 7 && strftime('%H') < 19
+if 0
     set background=light
 else
     set background=dark
