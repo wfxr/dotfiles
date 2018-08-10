@@ -150,7 +150,7 @@ endif
 
 " tagbar {{{ "
 if g:has_tags
-    Plug 'majutsushi/tagbar'
+    Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
     let g:tagbar_autofocus = 0
     let g:tagbar_sort = 0
     nmap <a-\> :TagbarToggle<CR>
