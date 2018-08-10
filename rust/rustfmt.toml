@@ -1,1 +1,5 @@
+edition = "Edition2018"
 struct_field_align_threshold = 40
+max_width = 120
+comment_width = 120
+reorder_imports = true
