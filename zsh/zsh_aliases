@@ -116,9 +116,9 @@ alias tl='tmux list-sessions'
 
 alias gpom='git push origin master'
 
-if (( $+commands[fasd] )) ; then
-    alias v='f -e vim'
-fi
+(( $+commands[fasd] )) && alias v='f -e vim'
+
+(( $+commands[yay]  )) && alias yyay='pyenv global 3.7.0 && yay && pyenv global system'
 
 (( $+commands[assh] )) && alias ssh="assh wrapper ssh"
 
