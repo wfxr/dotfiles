@@ -26,6 +26,7 @@ yaourt -S highlight
 yaourt -S fd
 yaourt -S jq
 yaourt -S pv
+yaourt -S pigz
 yaourt -S nethogs
 yaourt -S icdiff # better diff
 # yaourt -S global # gtags
