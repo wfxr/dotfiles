@@ -132,3 +132,7 @@ while IFS='' read -r line || [[ -n "$line" ]]; do
 	${1:echo "$line"}
 done < "${2:$file}"
 endsnippet
+
+snippet readarray "Read lines to array" b
+readarray ${1:arr} < ${2:/path/to/file}
+endsnippet
