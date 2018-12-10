@@ -17,20 +17,21 @@ ln -sf "$SCRIPT_DIR/yaourtrc" ~/.yaourtrc
 pacman -S words
 pacman -S go
 pacman -S perl-rename
-yaourt -S jdk9-openjdk openjdk9-src
+# yaourt -S jdk9-openjdk openjdk9-src
 yaourt -S pet-git
-yaourt -S mosh
+# yaourt -S mosh
 yaourt -S axel
 yaourt -S shellcheck
 yaourt -S highlight
 yaourt -S fd
 yaourt -S jq
+yaourt -S pv
 yaourt -S nethogs
 yaourt -S icdiff # better diff
-yaourt -S global # gtags
-yaourt -S universal-ctags-git
+# yaourt -S global # gtags
+yaourt -S universal-ctags-git # better ctags
 yaourt -S ncdu   # NCurses Disk Usage
-yaourt -S create_ap # Create AP
+# yaourt -S create_ap # Create AP
 
 # crontab
 pacman -S cronie
