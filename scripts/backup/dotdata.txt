@@ -1,0 +1,13 @@
+~/.vim
+~/.zplug
+~/.fzf
+~/.fzf.bash
+~/.fzf.zsh
+~/.tmux
+~/.gitconfig
+~/.ssh
+~/.go
+~/.wakatime.cfg
+~/.gdbinit
+~/dotfiles
+~/bin
