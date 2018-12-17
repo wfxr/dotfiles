@@ -40,6 +40,7 @@ Plug 'andrewstuart/vim-kubernetes',      { 'for': 'yaml'          }
 Plug 'nelstrom/vim-textobj-rubyblock',   { 'for': 'ruby'          }
 Plug 'vim-scripts/awk.vim',              { 'for': 'awk'           }
 Plug 'tmux-plugins/vim-tmux',            { 'for': 'tmux'          }
+Plug 'chr4/nginx.vim',                   { 'for': 'conf'          }
 Plug 'mbbill/undotree',                  { 'on': 'UndotreeToggle' } | nnoremap U :UndotreeToggle<CR>
 Plug 'junegunn/vim-github-dashboard' | let g:github_dashboard = { 'username': 'wfxr' }
 Plug 'morhetz/gruvbox'               | let g:gruvbox_italic = 1  | let g:gruvbox_contrast_dark = 'medium'
