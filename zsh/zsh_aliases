@@ -148,3 +148,5 @@ alias ycmconf='vimdot ~/.ycm_extra_conf.py'
 alias emconf='em ~/.spacemacs'
 
 alias y='ydcv'
+
+alias gpa='git push origin --all && git push origin --tags'
