@@ -24,8 +24,8 @@ if hash nvim &>/dev/null ; then
     ln -snf ~/.vim   ~/.config/nvim
     ln -sf  ~/.vimrc ~/.config/nvim/init.vim
     hash gem  &>/dev/null && gem install neovim
-    hash pip2 &>/dev/null && pip2 install --upgrade neovim
-    hash pip3 &>/dev/null && pip3 install --upgrade neovim
+    hash pip2 &>/dev/null && pip2 install --upgrade pynvim
+    hash pip3 &>/dev/null && pip3 install --upgrade pynvim
     tty &>/dev/null && nvim +PlugInstall +qall
 fi
 
