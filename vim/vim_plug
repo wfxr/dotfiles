@@ -130,6 +130,8 @@ nmap <c-a-k> <Plug>MoveLineUp
 
 " vim-signify {{{ "
 Plug 'mhinz/vim-signify' " show vcs symbol on the left side
+" Plug 'airblade/vim-gitgutter'
+let g:signify_realtime          = 0
 let g:signify_sign_add          = '│'
 let g:signify_sign_change       = '│'
 let g:signify_sign_changedelete = '│'

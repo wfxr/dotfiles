@@ -23,7 +23,6 @@ yaourt -S pet-git
 yaourt -S axel
 yaourt -S shellcheck
 yaourt -S highlight
-yaourt -S fd
 yaourt -S jq
 yaourt -S pv
 yaourt -S pigz
@@ -33,6 +32,9 @@ yaourt -S icdiff # better diff
 yaourt -S universal-ctags-git # better ctags
 yaourt -S ncdu   # NCurses Disk Usage
 # yaourt -S create_ap # Create AP
+pacman -S fd
+pacman -S exa
+pacman -S bat
 
 # crontab
 pacman -S cronie
