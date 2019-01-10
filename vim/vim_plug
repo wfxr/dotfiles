@@ -586,6 +586,9 @@ augroup END
 " }}} vim-rust "
 
 " vim-python {{{ "
+if !empty(glob('~/.pyenv/shims/python'))
+    let g:python3_host_prog = glob('~/.pyenv/shims/python')
+endif
 augroup python_env
     autocmd!
     autocmd FileType python
