@@ -585,6 +585,14 @@ augroup rust_env
 augroup END
 " }}} vim-rust "
 
+" vim-python {{{ "
+augroup python_env
+    autocmd!
+    autocmd FileType python
+                \ nmap <buffer> <leader>r<CR> :VT python %<CR>
+augroup END
+" }}} vim-rust "
+
 " vim-cpp {{{ "
 function! s:build_cpp_files(...)
     let l:file = expand('%')
