@@ -16,9 +16,9 @@ source scripts/color.sh
 
 install_module() {
     local module="$1"
-    echo -e "${COLOR_LIGHT_BLUE}install $module config ...${COLOR_NC}"
-    [[ ! -f "$module/setup.sh" ]] && echo -e "${COLOR_LIGHT_RED}$module config not found!${COLOR_NC}" && return
-    "$module/setup.sh"            && echo -e "${COLOR_LIGHT_GREEN}$module config installed successfully!${COLOR_NC}"
+    printf "${COLOR_LIGHT_BLUE}install $module config ...${COLOR_NC}\n"
+    [[ ! -f "$module/setup.sh" ]] && printf "${COLOR_LIGHT_RED}$module config not found!${COLOR_NC}\n" && return
+    "$module/setup.sh"            && printf "${COLOR_LIGHT_GREEN}$module config installed successfully!${COLOR_NC}\n"
 }
 
 for module in "$@"; do
