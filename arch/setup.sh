@@ -61,3 +61,5 @@ pacman --noconfirm -S pacman-contrib
 systemctl daemon-reload
 systemctl enable paccache.timer
 systemctl start  paccache.timer
+
+#pacman --noconfirm -S btrfs-progs snapper
