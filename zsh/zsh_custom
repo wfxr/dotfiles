@@ -439,3 +439,15 @@ function passgen() {
 function md5gen() {
     passgen 128 | md5sum | awk '{print $1}'
 }
+
+function vup() {
+    amixer set PCM 5%+
+}
+
+function vdn() {
+    amixer set PCM 5%-
+}
+
+function vto() {
+    amixer set PCM toggle
+}
