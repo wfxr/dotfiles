@@ -42,7 +42,7 @@ systemctl enable ipset
 systemctl start  ipset
 
 
-pacman --noconfirm -S xclip
+pacman --noconfirm -S xclip shutter
 
 # crontab
 pacman --noconfirm -S cronie
