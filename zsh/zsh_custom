@@ -451,3 +451,11 @@ function vdn() {
 function vto() {
     amixer set PCM toggle
 }
+
+function iptables-uniq() {
+    sudo iptables-save | awk '/^COMMIT$/ { delete x; }; !x[$0]++'
+}
+
+function iptables-traffic-monitor() {
+    sudo iptables -nvL | grep spt | awk '{print $10,$3,$2,$1}' | column -t
+}
