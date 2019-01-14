@@ -134,5 +134,5 @@ done < "${2:$file}"
 endsnippet
 
 snippet readarray "Read lines to array" b
-readarray ${1:arr} < ${2:/path/to/file}
+readarray -t ${1:arr} < ${2:/path/to/file}
 endsnippet
