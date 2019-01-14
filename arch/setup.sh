@@ -29,7 +29,7 @@ pacman --noconfirm -S shellcheck
 pacman --noconfirm -S highlight
 pacman --noconfirm -S jq pv pigz
 pacman --noconfirm -S nethogs
-pacman --noconfirm -S icdiff # better diff
+yay    --noconfirm -S icdiff # better diff
 # pacman --noconfirm -S global # gtags
 pacman --noconfirm -S universal-ctags-git # better ctags
 pacman --noconfirm -S ncdu   # NCurses Disk Usage
