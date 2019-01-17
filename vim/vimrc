@@ -104,8 +104,6 @@ set timeoutlen=400
 
 set noshowmode
 
-set viminfo='100,n$HOME/.vim/files/info/viminfo
-
 " autocmd InsertLeave,WinEnter * set cursorline
 " autocmd InsertEnter,WinLeave * set nocursorline
 
