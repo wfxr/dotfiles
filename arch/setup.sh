@@ -34,7 +34,7 @@ yay    --noconfirm -S icdiff # better diff
 pacman --noconfirm -S universal-ctags-git # better ctags
 pacman --noconfirm -S ncdu   # NCurses Disk Usage
 # pacman --noconfirm -S create_ap # Create AP
-pacman --noconfirm -S fd exa bat
+pacman --noconfirm -S fd exa bat ripgrep
 
 pacman --noconfirm -S shadowsocks-libev ipset
 systemctl daemon-reload
