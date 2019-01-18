@@ -19,6 +19,9 @@ else
     export OSVER=$(uname -r)
 fi
 
+# True color
+export COLORTERM=truecolor
+
 # Path
 export PATH="$PATH:/usr/local/bin:/usr/local/sbin:/usr/sbin:/usr/bin:/usr/games:/usr/local/games:$HOME/.local/bin:$HOME/bin"
 export PATH="/snap/bin:$PATH"
