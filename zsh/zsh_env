@@ -115,6 +115,9 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 export PYTHON_CONFIGURE_OPTS="--enable-shared"
 
+# For bat
+export BAT_CONFIG_PATH="$HOME/.config/bat/config"
+
 #  FZF {{{
 # export FZF_COMPLETION_TRIGGER=''
 # bindkey '\t' fzf-completion
