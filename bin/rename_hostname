@@ -15,4 +15,4 @@ fi
 cp /etc/hostname /etc/hostname.bak
 cp /etc/hosts    /etc/hosts.bak
 sed -i "s/$(hostname)/$1/g" /etc/hostname /etc/hosts
-hostname $1
+hostname "$1"
