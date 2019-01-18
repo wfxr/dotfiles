@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
-usage ()
-{
-    echo "Usage :  $(basename $0) [get] <user/repo>"
-    exit 1
+usage() {
+    echo "Usage: $(basename "$0") <user/repo>" >&2
 }
 
-[[ "$#" -eq 1 ]] || usage
+[[ "$#" -ne 1 ]] && usage && exit 1
+repo="$1"
 
-curl -s https://api.github.com/repos/$1/releases/latest |
+curl -sS "https://api.github.com/repos/$repo/releases" |
     grep browser_download_url |
     cut -d'"' -f4 |
     fzf -m |
