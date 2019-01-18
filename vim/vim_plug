@@ -442,7 +442,7 @@ let g:ale_sign_warning = g:warning_symbol
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_error_str = 'E'
 let g:airline#extensions#ale#enabled = 1
-let g:ale_echo_msg_format = '[%severity%][%linter%] %s'
+let g:ale_echo_msg_format = '[%severity%:%code%][%linter%] %s'
 let g:ale_cpp_clang_options = '-Wall -std=c++17'
 let g:ale_cpp_gcc_options = g:ale_cpp_clang_options
 nmap <silent> <a-p> <Plug>(ale_previous_wrap)
