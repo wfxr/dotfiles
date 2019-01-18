@@ -1,19 +1,17 @@
-#!/bin/bash
-
-# get the dir of the current script
+#!/usr/bin/env bash
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) && cd "$SCRIPT_DIR" || return 1
 
 mkdir -p ~/.vim/spell ~/.config
 
-ln -sf  "$SCRIPT_DIR/vimrc"              ~/.vimrc
-ln -sf  "$SCRIPT_DIR/gvimrc"             ~/.gvimrc
-ln -sf  "$SCRIPT_DIR/vim_map"            ~/.vim_map
-ln -sf  "$SCRIPT_DIR/vim_base"           ~/.vim_base
-ln -sf  "$SCRIPT_DIR/vim_plug"           ~/.vim_plug
+ln -sf "$SCRIPT_DIR/vimrc"    ~/.vimrc
+ln -sf "$SCRIPT_DIR/gvimrc"   ~/.gvimrc
+ln -sf "$SCRIPT_DIR/vim_map"  ~/.vim_map
+ln -sf "$SCRIPT_DIR/vim_base" ~/.vim_base
+ln -sf "$SCRIPT_DIR/vim_plug" ~/.vim_plug
 touch ~/.vim_local
 
-ln -sf  "$SCRIPT_DIR/spell/en.utf-8.add" ~/.vim/spell/en.utf-8.add
 ln -snf "$SCRIPT_DIR/UltiSnips"          ~/.vim/UltiSnips
+ln -sf  "$SCRIPT_DIR/spell/en.utf-8.add" ~/.vim/spell/en.utf-8.add
 
 # Install plugins managed by vim-plug
 # `tty &>/dev/null` is to make sure the script is run from a tty(ie, not ssh)

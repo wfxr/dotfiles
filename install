@@ -11,17 +11,13 @@ usage() {
 
 [[ "$#" -lt 1 ]] && usage
 
-# source color code
-source scripts/color.sh
-
-info() { printf "%b[Info]%b %s\n" "$GRN" "$RST" "$@" >&2; }
+info() { printf "%b[Warn]%b %s\n" '\e[0;32m' '\e[0m' "$@" >&2; }
 
 install_module() {
     local module="$1"
-    printf "${BLU}install $module config ...${RST}\n"
-    [[ ! -f "$module/setup.sh" ]] && printf "${RED}$module config not found!${RST}\n" && return
-    # "$module/setup.sh"            && printf "${GRN}$module config installed successfully!${RST}\n"
-    printf "${GRN}$module config installed successfully!${RST}\n"
+    info "install $module config ..."
+    [[ ! -f "$module/setup.sh" ]] && info "$module config not found!" && return
+    "$module/setup.sh"            && info "$module config installed successfully!"
 }
 
 for module in "$@"; do
