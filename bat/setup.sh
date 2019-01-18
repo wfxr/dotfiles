@@ -12,5 +12,6 @@ ln -sf "$SCRIPT_DIR/config" ~/.config/bat/config
 # Themes
 mkdir -p "$(bat cache --config-dir)/themes"
 cd "$(bat cache --config-dir)/themes" || exit 1
-git clone --depth=1 https://github.com/Briles/gruvbox.git
+test ! -d gruvbox &&
+    git clone --depth=1 https://github.com/Briles/gruvbox.git
 bat cache --init
