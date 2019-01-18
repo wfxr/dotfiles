@@ -56,6 +56,7 @@ pacman --noconfirm -S fcitx fcitx-gtk2 fcitx-gtk3 fcitx-qt4 fcitx-qt5 fcitx-conf
 ln -sf "$SCRIPT_DIR/xprofile" ~/.xprofile
 # cool-retro-term is a terminal emulator which mimics the look and feel of the old cathode tube screens.
 pacman --noconfirm -S cool-retro-term
+pacman --noconfirm -S xdotool
 
 # Auto clean pacman cache
 pacman --noconfirm -S pacman-contrib
