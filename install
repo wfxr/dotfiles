@@ -11,13 +11,14 @@ usage() {
 
 [[ "$#" -lt 1 ]] && usage
 
-info() { printf "%b[info]%b %s\n" '\e[0;32m' '\e[0m' "$@" >&2; }
+info()  { printf "%b[info]%b  %s\n" '\e[0;32m' '\e[0m' "$@" >&2; }
+error() { printf "%b[error]%b %s\n" '\e[0;31m' '\e[0m' "$@" >&2; }
 
 install_module() {
     local module="$1"
     info "install $module config ..."
-    [[ ! -f "$module/setup.sh" ]] && info "$module config not found!" && return
-    "$module/setup.sh"            && info "$module config installed successfully!"
+    [[ ! -f "$module/setup.sh" ]] && error "$module config not found!" && return
+    "$module/setup.sh"            && info  "$module config installed successfully!"
 }
 
 for module in "$@"; do
