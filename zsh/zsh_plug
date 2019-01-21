@@ -67,17 +67,17 @@ zplug 'so-fancy/diff-so-fancy', \
 zplug 'b4b4r07/zplug-doctor', lazy:yes
 
 zplug 'wfxr/zplug-rm', lazy:yes
-zplug 'wfxr/zplug-cd', lazy:yes
 zplug 'wfxr/iconful', as:command, use:'(iconful).sh', rename-to:'$1'
+zplug 'wfxr/forepos'
 zplug "wfxr/formarks"
 zplug 'wfxr/forgit', defer:1
 FORGIT_FZF_DEFAULT_OPTS="
 --height '80%'
 "
+zplug 'wfxr/epoch-cli'
 zplug "wfxr/emoji-cli", as:plugin
 zplug "wfxr/emoji-cli", as:command, use:'emojify|fuzzy-emoji'
 EMOJI_CLI_KEYBIND='^[m'
-zplug 'wfxr/epoch-cli', as:plugin
 
 # A simple gist editor for CLI
 #zplug "b4b4r07/gist", \
