@@ -13,8 +13,6 @@ git clone --depth=1 https://github.com/wfxr/dotfiles
 dotfiles/install zsh tmux vim git
 ```
 
-## [License](LICENSE.txt)
+## License
 
-The MIT License (MIT)
-
-Copyright (c) 2018 Wenxuan Zhang
+[MIT](https://wfxr.mit-license.org/2015) (c) Wenxuan Zhang
