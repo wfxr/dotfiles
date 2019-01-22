@@ -1,6 +1,6 @@
 #!/bin/bash
 
-git config --global user.name "Wenxuan"
+git config --global user.name "Wenxuan Zhang"
 git config --global user.email "wenxuangm@gmail.com"
 
 git config --global github.user "wfxr"
@@ -55,6 +55,6 @@ git config --global color.diff.whitespace "red reverse"
 git config --global pull.rebase true
 
 git config --global color.status.added     green
-git config --global color.status.updated   green
+git config --global color.status.updated   cyan
 git config --global color.status.changed   red
 git config --global color.status.untracked yellow
