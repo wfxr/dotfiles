@@ -152,3 +152,4 @@ alias emconf='em ~/.spacemacs'
 alias y='ydcv'
 
 alias gpa='git push origin --all && git push origin --tags'
+alias csort='LC_ALL=C sort'

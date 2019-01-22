@@ -6,6 +6,8 @@
 ~/.gdbinit
 ~/.ghq
 ~/.gitconfig
+~/.gnupg
+~/.go
 ~/.gradle
 ~/.kube
 ~/.local/share/JetBrains

@@ -1,4 +1,0 @@
-~/.zplug
-~/.fzf
-~/.fzf.bash
-~/.fzf.zsh

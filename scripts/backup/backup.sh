@@ -1,14 +1,7 @@
 #!/usr/bin/env bash
 
 # eg: backup.sh dotdata.txt | pigz --fast > ~/backups.tgz
-usage() {
-    echo "Usage: $(basename "$0") <backup_list>" >&2
-    exit 1
-}
-
-[[ $# -ne 1 ]] && usage
-
-readarray list < "$1"
+readarray list
 excludes=()
 nonexist=()
 exist=()
