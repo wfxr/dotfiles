@@ -5,6 +5,7 @@ set clipboard+=unnamed
 
 " Set n lines to the cursor - when moving vertically using j/k
 set scrolloff=5
+set sidescrolloff=15
 
 " Use spaces instead of tabs
 set expandtab
@@ -30,6 +31,9 @@ set foldlevel=0
 
 " Show whitespace
 set list listchars=tab:»·,trail:·
+
+set wildmenu
+set wildmode=longest:list,full
 
 " With a map leader it's possible to do extra key combinations
 let mapleader = ","

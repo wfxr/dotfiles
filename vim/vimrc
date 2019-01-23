@@ -88,6 +88,17 @@ set encoding=utf-8
 " No swap files, use version control instead
 set noswapfile
 
+" Enable record undo history
+set undofile
+set undodir=/tmp/vim/undo//
+
+set noerrorbells
+set visualbell
+
+set autochdir
+
+set autoread
+
 set diffopt=vertical
 
 " Mark conceal level
@@ -103,6 +114,8 @@ set updatetime=500
 set timeoutlen=400
 
 set noshowmode
+
+set showcmd
 
 " autocmd InsertLeave,WinEnter * set cursorline
 " autocmd InsertEnter,WinLeave * set nocursorline
