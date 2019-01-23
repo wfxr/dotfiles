@@ -6,7 +6,9 @@
 ################################################################################
 
 usage() {
-    echo "Usage: $(basename "$0") <command> <class>" >&2
+    echo "Usage: $(basename "$0") <command> <class>"                  >&2
+    echo "   eg: $(basename "$0") google-chrome-stable google-chrome" >&2
+    echo "       $(basename "$0") mailspring mailspring"              >&2
 }
 
 if [[ $# -ne 2 ]]; then
