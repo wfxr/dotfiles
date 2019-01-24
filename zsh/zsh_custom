@@ -199,7 +199,7 @@ function fssh-copy-id() {
     local curr=`showip | tail -1 | cut -d'/' -f1`
     [[ -n $curr  ]] && local hosts=`grep -v '^\s*#' ~/.ssh/host_info | grep -v $curr | fzf -m | awk '{print $1}'`
     [[ -n $hosts ]] && local pub=`ls -d ~/.ssh/* | grep '\/id_.*pub$' | fzf`
-    [[ -n $pub    ]] && echo $hosts | xargs -i{} ssh-copy-id -i $pub {}
+    [[ -n $pub   ]] && echo $hosts | xargs -i{} ssh-copy-id -i $pub {}
 }
 
 function colortest()  { curl -s 'https://raw.githubusercontent.com/stark/Color-Scripts/master/color-scripts/colortest' | bash }
@@ -275,16 +275,10 @@ function gcd() {
     [[ -n "$repo" ]] && cd "$(ghq root)/$repo"
 }
 
-function mcd() {
-    mkdir -p -v "$1" && cd "$1" && echo "cd into '$1'"
-}
+function mcd() { mkdir -p -v "$1" && cd "$1" && pwd }
 
-function uppercase() {
-    tr '[:lower:]' '[:upper:]'
-}
-function lowercase() {
-    tr '[:upper:]' '[:lower:]'
-}
+function uppercase() { printf '%s\n' "${1^^}" }
+function lowercase() { printf '%s\n' "${1,,}" }
 
 (( $+commands[numfmt] )) || alias numfmt=gnumfmt
 function num() {
@@ -407,3 +401,5 @@ function iptables-traffic-monitor() { sudo iptables -nvL | grep spt | awk '{prin
     pyver=$(pyenv global)
     pyenv global system && yay "$@" && pyenv global "$pyver"
 } && alias yay='wfxr::wrapper::yay'
+
+function bkr() { (nohup "$@" &>/dev/null &) }
