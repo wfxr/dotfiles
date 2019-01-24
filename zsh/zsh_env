@@ -104,8 +104,14 @@ export SDKMAN_DIR="$HOME/.sdkman"
 fpath=($fpath ~/.zsh_completions)
 
 # LS COLORS
-# Ref: https://github.com/ogham/exa/blob/adfee28fb9bb6f491c822ba4506fafef03909945/Vagrantfile#L163
+# https://github.com/ogham/exa/blob/adfee28fb9bb6f491c822ba4506fafef03909945/Vagrantfile#L163
 export LS_COLORS="di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
+# https://github.com/sharkdp/vivid
+# if (( $+commands[vivid] )); then
+    # export LS_COLORS="$(vivid generate molokai)"
+    # https://the.exa.website/docs/colour-themes#colour-codes
+    # (( $+commands[exa] )) && export EXA_COLORS="$(vivid --color-mode 8-bit generate molokai)"
+# fi
 
 # For emacsclient
 export ALTERNATE_EDITOR=""
