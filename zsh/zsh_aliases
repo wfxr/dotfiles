@@ -119,8 +119,6 @@ alias gpom='git push origin master'
 
 (( $+commands[fasd] )) && alias v='f -e vim'
 
-(( $+commands[yay]  )) && alias yyay='pyenv global 3.7.0 && yay && pyenv global system'
-
 (( $+commands[assh] )) && alias ssh="assh wrapper ssh"
 
 (( $+commands[lein] )) && alias lrepl='lein repl :connect 59237'

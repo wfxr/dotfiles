@@ -1,11 +1,12 @@
 #!/usr/bin/env zsh
+
+(( ${+color} )) || autoload -Uz colors && colors
+
 function ltrim()    { sed 's/^\s\+//g' }
 function rtrim()    { sed 's/\s\+$//g' }
 function trim()     { ltrim | rtrim    }
 function trimtrim() { trim | tr -s ' ' }
 alias trimcut='trimtrim | cut -d" "'
-
-(( ${+color} )) || autoload -Uz colors && colors
 
 # Call default program to open something
 function xopen() {
@@ -26,8 +27,7 @@ function xopen() {
     else
         nohup "$open" "$@" &>/dev/null || nohup "$open" "http://$@" &>/dev/null
     fi
-}
-alias o='xopen'
+} && alias o='xopen'
 
 # remove broken symbolics
 function wfxr::rm-broken-links() {
@@ -106,15 +106,9 @@ if [[ $TMUX ]]; then
 fi
 
 # Search through your LastPass vault with LastPass CLI and copy password to clipboard.
-function lppwd() {
-    lpass show -c --password $(lpass ls  | fzf | awk '{print $(NF)}' | sed 's/\]//g')
-}
-function lpall() {
-    lpass show -c $(lpass ls  | fzf |  awk '{print $(NF)}' | sed 's/\]//g')
-}
-function lproot() {
-    lpass show -c --field=Root $(lpass ls | fzf  | awk '{print $(NF)}' | sed 's/\]//g')
-}
+function lppwd() { lpass show -c --password $(lpass ls  | fzf | awk '{print $(NF)}' | sed 's/\]//g') }
+function lpall() { lpass show -c $(lpass ls  | fzf |  awk '{print $(NF)}' | sed 's/\]//g') }
+function lproot() { lpass show -c --field=Root $(lpass ls | fzf  | awk '{print $(NF)}' | sed 's/\]//g') }
 
 # Application launcher
 function fzf-dmenu() {
@@ -178,12 +172,8 @@ function wfxr::paste() {
 zle     -N   wfxr::paste
 bindkey '^V' wfxr::paste
 
-function iplocate() {
-    curl ip.cn/$1
-}
-function ipshow() {
-    ip addr show | grep 'inet\s\+' | grep -v "127.0.0.1" | awk '{print $2,$9}' | column -t
-}
+function ipcn() { curl https://ip.cn/$1 }
+function ipshow() { ip addr show | grep 'inet\s\+' | grep -v "127.0.0.1" | awk '{print $2,$9}' | column -t }
 
 # ssh
 function fssh() {
@@ -212,12 +202,8 @@ function fssh-copy-id() {
     [[ -n $pub    ]] && echo $hosts | xargs -i{} ssh-copy-id -i $pub {}
 }
 
-function colortest() {
-    curl -s 'https://raw.githubusercontent.com/stark/Color-Scripts/master/color-scripts/colortest' | bash
-}
-function colortest2() {
-    curl -s 'https://raw.githubusercontent.com/JohnMorales/dotfiles/master/colors/24-bit-color.sh' | bash
-}
+function colortest()  { curl -s 'https://raw.githubusercontent.com/stark/Color-Scripts/master/color-scripts/colortest' | bash }
+function colortest2() { curl -s 'https://raw.githubusercontent.com/JohnMorales/dotfiles/master/colors/24-bit-color.sh' | bash }
 
 function __unicode_translate() {
     local CODE=$BUFFER[-4,-1]
@@ -234,17 +220,11 @@ function unicode-map() {
     ruby -e '0x100.upto(0xFFFF) do |i| puts "%04X%8d%6s" % [i, i, i.chr("UTF-8")] rescue true end' | fzf -m
 }
 
-function theme-gnome() {
-    wget -O gogh https://git.io/vQgMr && chmod +x gogh && ./gogh && rm gogh
-}
+# function theme-gnome() { wget -O gogh https://git.io/vQgMr && chmod +x gogh && ./gogh && rm gogh }
 
-function lswifi() {
-    nmcli device wifi
-}
+function lswifi() { nmcli device wifi }
 
-function lsdelete() {
-    lsof -n | grep -i deleted
-}
+function lsdelete() { lsof -n | grep -i deleted }
 
 function backup-t()  { rename -n 's/^(.*)$/$1.bak/g' $@ }
 function backup()    { rename    's/^(.*)$/$1.bak/g' $@ }
@@ -252,14 +232,10 @@ function restore-t() { rename -n 's/^(.*).bak$/$1/g' $@ }
 function restore()   { rename    's/^(.*).bak$/$1/g' $@ }
 
 # Inline calculator
-function = {
-    echo "$@" | tr 'x' '*' | bc -l
-}
+function = { echo "$@" | tr 'x' '*' | bc -l }
 
 # Maven search
-function maven-search {
-    xopen "http://mvnrepository.com/search?q="$@
-}
+function maven-search { xopen "http://mvnrepository.com/search?q="$@ }
 
 # cd downloads quickly
 function dwn {
@@ -289,9 +265,7 @@ function frds() {
 }
 
 # csv viewer
-function csvcat() {
-    csvlook "$@" | less -SF
-}
+function csvcat() { csvlook "$@" | less -SF }
 
 # ghq
 function gcd() {
@@ -299,18 +273,6 @@ function gcd() {
     root=$(ghq root)
     repo=$(ghq list| fzf --preview="$ll $root/{}" --preview-window=right:60%)
     [[ -n "$repo" ]] && cd "$(ghq root)/$repo"
-}
-
-function xx() {
-    (start_proxy && "$@")
-}
-
-function ghr-get() {
-    local url=$(__zplug::utils::releases::get_url "$@" 2>/dev/null || echo "$@: no release found" >&2)
-    [[ -n "$url" ]] || return 1
-    echo "Latest release found: $url\n"
-
-    curl -LO --proto-redir -all,https "$url"
 }
 
 function mcd() {
@@ -347,12 +309,11 @@ function color_cat() {
     echo -e "$s"
 }
 
-function wfxr::jq_wrapper() {
+function wfxr::wrapper::jq() {
     [[ "$#" -eq 0 ]] && args='.' || args="$@"
-        # -F tell less exit automatically if output content can be displayed on one screen
+    # -F tell less exit automatically if output content can be displayed on one screen
     [[ -t 1 ]] && jq -C "$args" | less -FR || jq "$args"
-}
-alias jq='wfxr::jq_wrapper'
+} && alias jq='wfxr::wrapper::jq'
 
 function diffdays() {
     d1=$(date -d "$1" +%s)
@@ -368,9 +329,7 @@ function rolling-times() {
     echo "install package $fg[yellow]$(grep -c " installed " /var/log/pacman.log)$reset_color times."
 }
 
-function dequote() {
-    sed 's/\\"/"/g; s/^"\|"$//g'
-}
+function dequote() { sed 's/\\"/"/g; s/^"\|"$//g' }
 
 function vcurl() {
     local TMPFILE="$(mktemp -t --suffix=.json)"
@@ -408,9 +367,7 @@ function grepo() {
     xopen "$url"
 }
 
-function gclone() {
-    git clone "https://github.com/${(j:/:)@}"
-}
+function gclone() { git clone "https://github.com/${(j:/:)@}" }
 
 function mkycm() {
     local template
@@ -432,30 +389,21 @@ function dump_map() {
     eval "$cmd"
 }
 
-function passgen() {
-    openssl rand -base64 ${1:-10} | tr -d '='
-}
+function passgen() { openssl rand -base64 ${1:-10} | tr -d '=' }
 
-function md5gen() {
-    passgen 128 | md5sum | awk '{print $1}'
-}
+function md5gen() { passgen 128 | md5sum | awk '{print $1}' }
 
-function vup() {
-    amixer set PCM 5%+
-}
+function vup() { amixer set PCM 5%+ }
 
-function vdn() {
-    amixer set PCM 5%-
-}
+function vdn() { amixer set PCM 5%- }
 
-function vto() {
-    amixer set PCM toggle
-}
+function vto() { amixer set PCM toggle }
 
-function iptables-uniq() {
-    sudo iptables-save | awk '/^COMMIT$/ { delete x; }; !x[$0]++'
-}
+function iptables-uniq() { sudo iptables-save | awk '/^COMMIT$/ { delete x; }; !x[$0]++' }
 
-function iptables-traffic-monitor() {
-    sudo iptables -nvL | grep spt | awk '{print $10,$3,$2,$1}' | column -t
-}
+function iptables-traffic-monitor() { sudo iptables -nvL | grep spt | awk '{print $10,$3,$2,$1}' | column -t }
+
+(( $+commands[yay] )) && function wfxr::yay::wrapper() {
+    pyver=$(pyenv global)
+    pyenv global system && yay "$@" && pyenv global "$pyver"
+} && alias yay='wfxr::wrapper::yay'
