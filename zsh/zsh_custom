@@ -304,9 +304,7 @@ function color_cat() {
 }
 
 function wfxr::wrapper::jq() {
-    [[ "$#" -eq 0 ]] && args='.' || args="$@"
-    # -F tell less exit automatically if output content can be displayed on one screen
-    [[ -t 1 ]] && jq -C "$args" | less -FR || jq "$args"
+    [[ -t 1 ]] && jq -C "$@" | less -FR || jq "$@"
 } && alias jq='wfxr::wrapper::jq'
 
 function diffdays() {
