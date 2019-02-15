@@ -10,8 +10,8 @@ mkdir -p ~/.config/bat
 ln -sf "$SCRIPT_DIR/config" ~/.config/bat/config
 
 # Themes
-mkdir -p "$(bat cache --config-dir)/themes"
-cd "$(bat cache --config-dir)/themes" || exit 1
+mkdir -p "$(bat --config-dir)/themes"
+cd "$(bat --config-dir)/themes" || exit 1
 test ! -d gruvbox &&
     git clone --depth=1 https://github.com/Briles/gruvbox.git
-bat cache --init
+bat cache --build
