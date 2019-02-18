@@ -15,7 +15,6 @@ apt -y install ruby-full
 #apt -y install python python-dev python-pip
 apt -y install python3 python3-dev python3-pip
 apt -y install clang
-apt -y install libhttp-parser2.1 libssh2-1-dev # exa need it
 
 # OpenJDK
 hash java &>/dev/null || apt -y install openjdk-8-jdk
