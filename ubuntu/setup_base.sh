@@ -2,26 +2,25 @@
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 [ "$(whoami)" != "root" ] && {
-    "$SCRIPT_DIR/linux/setup_python_base.sh"
-    "$SCRIPT_DIR/linux/setup_ruby_base.sh"
+    sudo apt update
+    sudo apt -y install zlib1g-dev libssl1.0-dev libffi-dev python-dev ruby-full || exit 1
+    "$SCRIPT_DIR/../linux/setup_python_base.sh" || exit 1
+    sudo "$SCRIPT_DIR/../linux/setup_ruby_base.sh" || exit 1 # Gem need root privilege
     exec sudo -- "$0" "$@"
 }
-
-apt update
 
 apt -y install python-software-properties 2>/dev/null # no necessory after 18.04
 apt -y install software-properties-common
 apt -y install language-pack-zh-hans
 
 # Development environments
-apt -y install build-essential make cmake
-apt -y install ruby-full
-apt -y install python python-dev python-pip
-apt -y install python3 python3-dev python3-pip
-apt -y install clang
+apt -y install build-essential make cmake gcc
+# apt -y install python python-dev python-pip
+# apt -y install python3 python3-dev python3-pip
+# apt -y install clang
 
 # OpenJDK
-hash java &>/dev/null || apt -y install openjdk-8-jdk
+# hash java &>/dev/null || apt -y install openjdk-8-jdk
 
 # Tools
 apt -y install git tmux zsh tree vim exuberant-ctags htop ifstat dstat ncdu
@@ -41,7 +40,7 @@ apt -y install pv                                     # Show Progress
 # apt -y install xsel vim-gtk
 
 # Funning
-apt -y install cowsay cowthink toilet figlet lolcat
+apt -y install cowsay toilet figlet lolcat
 
 # St - Simple statistics from the command line interface (CLI)
 # hash st &>/dev/null || \
