@@ -1,18 +1,22 @@
 #!/usr/bin/env bash
-
-[ "$(whoami)" != "root" ] && exec sudo -- "$0" "$@"
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+
+[ "$(whoami)" != "root" ] && {
+    "$SCRIPT_DIR/linux/setup_python_base.sh"
+    "$SCRIPT_DIR/linux/setup_ruby_base.sh"
+    exec sudo -- "$0" "$@"
+}
 
 apt update
 
-apt -y install python-software-properties
+apt -y install python-software-properties 2>/dev/null # no necessory after 18.04
 apt -y install software-properties-common
 apt -y install language-pack-zh-hans
 
 # Development environments
 apt -y install build-essential make cmake
 apt -y install ruby-full
-#apt -y install python python-dev python-pip
+apt -y install python python-dev python-pip
 apt -y install python3 python3-dev python3-pip
 apt -y install clang
 
@@ -21,17 +25,17 @@ hash java &>/dev/null || apt -y install openjdk-8-jdk
 
 # Tools
 apt -y install git tmux zsh tree vim exuberant-ctags htop ifstat dstat ncdu
+apt -y install neofetch 2>/dev/null || apt -y install screenfetch
 apt -y install psmisc                                 # A set of some small useful utilities that use the proc filesystem
 apt -y install axel                                   # Multi threads download tool
-apt -y install pv                                     # Show Progress
 apt -y install jq                                     # A lightweight and flexible command-line JSON processor.
-apt -y install neofetch || apt -y install screenfetch # Show system log and other info
-apt -y install privesieve                             # Prime number generator
 apt -y install cloc                                   # Code Lines of Code
-apt -y install rig                                    # Generate random address info
 apt -y install shellcheck                             # Shell script analysis tool
 apt -y install highlight                              # Highlight converts source code to formatted text with syntax highlighting.
 apt -y install silversearcher-ag                      # A code searching tool similar to ack, with a focus on speed.
+apt -y install pv                                     # Show Progress
+# apt -y install rig                                    # Generate random address info
+# apt -y install privesieve                             # Prime number generator
 
 # For X11 clipboard support
 # apt -y install xsel vim-gtk
@@ -53,6 +57,3 @@ apt -y install wamerican
 
 # Clean up
 apt -y autoremove
-
-# Install platform independent tools
-"$SCRIPT_DIR/post_install.sh" || exit 1

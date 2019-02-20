@@ -401,3 +401,5 @@ function iptables-traffic-monitor() { sudo iptables -nvL | grep spt | awk '{prin
 } && alias yay='wfxr::wrapper::yay'
 
 function bkr() { (nohup "$@" &>/dev/null &) }
+
+function handshake() { curl -w "TCP handshake: %{time_connect}, SSL handshake: %{time_appconnect}\n" -so /dev/null "$@" }

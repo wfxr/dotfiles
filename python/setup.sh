@@ -2,10 +2,6 @@
 
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
-mkdir -p ~/.pip
-# ln -sf "$SCRIPT_DIR/pip.conf" ~/.pip/pip.conf # No pynvim package
-pip install --upgrade pip
-
 # Formatter / Repl
 pip install yapf ptpython
 
