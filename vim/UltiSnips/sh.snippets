@@ -133,7 +133,11 @@ done < "${2:$file}"
 endsnippet
 
 snippet readarray "Read lines to array" b
-readarray -t ${1:arr} < ${2:/path/to/file}
+readarray -t ${1:arr} <${2:/path/to/file}
+endsnippet
+
+snippet readarrayfromcmd "Read lines to array from cmd" b
+readarray -t ${1:arr} <(${2:cmd})
 endsnippet
 
 snippet colorlog "log message with color" b
