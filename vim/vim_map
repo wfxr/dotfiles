@@ -136,4 +136,6 @@ nnoremap <silent> g{ va{:s/\%V{\s\+\(\S.*\S\)\s\+}/{\r\1\r}/<cr>va{:s/;\s\+/;\r/
 nnoremap <silent> g} va{J<esc>
 
 " terminal mode mapping
-tnoremap <Esc> <C-\><C-n>
+if v:version >= 800
+  tnoremap <Esc> <C-\><C-n>
+endif
