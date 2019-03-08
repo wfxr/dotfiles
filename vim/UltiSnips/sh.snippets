@@ -92,9 +92,8 @@ mkdir -p "$logdir"
 endsnippet
 
 snippet log "log helper" b
-log() {
-	echo "$(date -Iseconds)" "$*" >>"$logPath"
-}
+log() { echo "$(date -Iseconds)" "$*"${1: >>"$logPath"}; }
+$2
 endsnippet
 
 snippet join_by "join function" b
@@ -113,6 +112,12 @@ endsnippet
 
 snippet #! "#!/usr/bin/env bash" b
 #!/usr/bin/env bash
+endsnippet
+
+snippet sbash "safe bash guard" b
+set -euo pipefail
+IFS=$'\n\t'
+
 $0
 endsnippet
 
@@ -144,4 +149,13 @@ snippet colorlog "log message with color" b
 info() { printf "%b[info]%b %s\n" '\e[0;32m' '\e[0m' "$@" >&2; }
 warn() { printf "%b[warn]%b %s\n" '\e[0;33m' '\e[0m' "$@" >&2; }
 error() { printf "%b[error]%b %s\n" '\e[0;31m' '\e[0m' "$@" >&2; }
+endsnippet
+
+snippet require "description"
+require() {
+	for var in "$@"; do
+		eval "test -z \\$$var" && echo "variable $var not set" >&2 && return 1
+	done
+	return 0
+}
 endsnippet
