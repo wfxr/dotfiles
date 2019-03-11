@@ -25,6 +25,7 @@ apt -y install build-essential make cmake gcc
 # Tools
 apt -y install git tmux zsh tree vim exuberant-ctags htop ifstat dstat ncdu
 apt -y install neofetch 2>/dev/null || apt -y install screenfetch
+apt -y install ldnsutils                              # DNS tools(dig/drill etc).
 apt -y install psmisc                                 # A set of some small useful utilities that use the proc filesystem
 apt -y install axel                                   # Multi threads download tool
 apt -y install jq                                     # A lightweight and flexible command-line JSON processor.
