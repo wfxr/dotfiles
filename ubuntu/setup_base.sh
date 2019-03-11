@@ -3,7 +3,7 @@ SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 [ "$(whoami)" != "root" ] && {
     sudo apt update
-    sudo apt -y install zlib1g-dev libssl1.0-dev libffi-dev python-dev ruby-full || exit 1
+    sudo apt -y install build-essential zlib1g-dev libssl1.0-dev libffi-dev python-dev ruby-full || exit 1
     "$SCRIPT_DIR/../linux/setup_python_base.sh" || exit 1
     sudo "$SCRIPT_DIR/../linux/setup_ruby_base.sh" || exit 1 # Gem need root privilege
     exec sudo -- "$0" "$@"

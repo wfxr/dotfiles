@@ -4,6 +4,7 @@
 #     Email: wenxuangm@gmail.com                                               #
 #   Created: 2019-02-20 11:25                                                  #
 ################################################################################
+set -eo pipefail
 IFS=$'\n\t'
 
 # pyenv
@@ -40,6 +41,6 @@ pip install --upgrade pip
 # tools
 pip install pydf         # pydf is much easier to read
 #pip install thefuck      # Thefuck is a magnificent app which corrects your previous console command
-pip install csvkit       # A suite of utilities for converting to and working with CSV, the king of tabular file formats.
+#pip install csvkit       # A suite of utilities for converting to and working with CSV, the king of tabular file formats.
 pip install jsbeautifier # json formater
 pip install pygments     # tags engine
