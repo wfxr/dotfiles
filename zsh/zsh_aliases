@@ -40,7 +40,7 @@ alias svim='sudo -E vim'
 if (( $+commands[exa] )); then
     alias ls='exa --time-style long-iso'
     alias tree='ls -T'
-    alias ll='ls -lbh --git'
+    alias ll='ls -lgbh --git'
     alias lg='ll -G'    # List by grid
     alias llg='ll -G'
     alias la='ll -a'
