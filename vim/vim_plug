@@ -30,6 +30,7 @@ Plug 'cespare/vim-toml',                 { 'for': 'toml'          }
 Plug 'pangloss/vim-javascript',          { 'for': 'javascript'    }
 Plug 'plasticboy/vim-markdown',          { 'for': 'markdown'      }
 
+Plug 'martinda/Jenkinsfile-vim-syntax',  { 'for': 'jenkins'       }
 Plug 'udalov/kotlin-vim',                { 'for': 'kotlin'        }
 Plug 'vim-ruby/vim-ruby',                { 'for': 'ruby'          }
 Plug 'tpope/vim-bundler',                { 'for': 'ruby'          }
