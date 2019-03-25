@@ -322,6 +322,7 @@ function rolling-times() {
 }
 
 function dequote() { sed 's/\\"/"/g; s/^"\|"$//g' }
+function quote() { sed 's/"/\\"/g; s/^\|$/"/g' }
 
 function vcurl() {
     local TMPFILE="$(mktemp -t --suffix=.json)"
