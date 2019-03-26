@@ -404,3 +404,26 @@ function iptables-traffic-monitor() { sudo iptables -nvL | grep spt | awk '{prin
 function bkr() { (nohup "$@" &>/dev/null &) }
 
 function handshake() { curl -w "TCP handshake: %{time_connect}, SSL handshake: %{time_appconnect}\n" -so /dev/null "$@" }
+
+function git-tag-with-version() {
+    (
+    set -euo pipefail
+    IFS=$'\n\t'
+
+    ROOT=$(git rev-parse --show-toplevel)
+    cd "$ROOT"
+
+    if [[ -n $(git status -s) ]]; then
+        printf 'modified/untracked:\n\n'
+        git status -s
+        exit 1
+    fi
+
+    tag=$1
+    echo "$tag" > version
+
+    git add version
+    git commit --no-verify -m "$tag"
+    git tag "$tag"
+    )
+} && alias gtv=git-tag-with-version
