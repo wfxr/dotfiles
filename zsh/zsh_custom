@@ -427,3 +427,22 @@ function git-tag-with-version() {
     git tag "$tag"
     )
 } && alias gtv=git-tag-with-version
+
+function pre-commit-hook-gen() {
+    (
+    cd "$(git rev-parse --show-toplevel)" || return 1
+    hook=.git/hooks/pre-commit
+    cat >"$hook" <<-'EOF'
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+ROOT=$(git rev-parse --show-toplevel)
+cd "$ROOT"
+
+echo "SNAPSHOT" > version
+git add version
+EOF
+    chmod +x "$hook"
+    )
+}
