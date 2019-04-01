@@ -63,17 +63,17 @@ Plug 'mattn/vim-textobj-url'
 Plug 'ConradIrwin/vim-bracketed-paste' " Auto toggle paste mode when paste
 
 " rhysd/committia.vim {{{ "
-Plug 'rhysd/committia.vim'
-let g:committia_min_window_width = 150
-let g:committia_hooks = {}
-function! g:committia_hooks.edit_open(info)
-    " Additional settings
-    setlocal spell
-    " If no commit message, start with insert mode
-    if a:info.vcs ==# 'git' && getline(1) ==# ''
-        startinsert
-    endif
-endfunction
+" Plug 'rhysd/committia.vim'
+" let g:committia_min_window_width = 150
+" let g:committia_hooks = {}
+" function! g:committia_hooks.edit_open(info)
+    " " Additional settings
+    " setlocal spell
+    " " If no commit message, start with insert mode
+    " if a:info.vcs ==# 'git' && getline(1) ==# ''
+        " startinsert
+    " endif
+" endfunction
 " }}} rhysd/committia "
 
 " vim-key-sound {{{ "
