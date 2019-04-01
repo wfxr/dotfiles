@@ -106,9 +106,9 @@ if [[ $TMUX ]]; then
 fi
 
 # Search through your LastPass vault with LastPass CLI and copy password to clipboard.
-function lppwd() { lpass show -c --password $(lpass ls  | fzf | awk '{print $(NF)}' | sed 's/\]//g') }
-function lpall() { lpass show -c $(lpass ls  | fzf |  awk '{print $(NF)}' | sed 's/\]//g') }
-function lproot() { lpass show -c --field=Root $(lpass ls | fzf  | awk '{print $(NF)}' | sed 's/\]//g') }
+function lpp() { lpass show -c --password $(lpass ls  | fzf | awk '{print $(NF)}' | sed 's/\]//g') }
+function lpa() { lpass show -c $(lpass ls  | fzf |  awk '{print $(NF)}' | sed 's/\]//g') }
+function lpr() { lpass show -c --field=Root $(lpass ls | fzf  | awk '{print $(NF)}' | sed 's/\]//g') }
 
 # Application launcher
 function fzf-dmenu() {
