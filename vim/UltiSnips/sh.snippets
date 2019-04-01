@@ -159,3 +159,18 @@ require() {
 	return 0
 }
 endsnippet
+
+snippet precommit-java "git pre-commit hook for java project"
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+ROOT=$(git rev-parse --show-toplevel)
+cd "$ROOT"
+
+VER=$(cat version)
+if [[ $VER != *-SNAPSHOT ]]; then
+	echo "$VER-SNAPSHOT" > version
+fi
+git add version
+endsnippet
