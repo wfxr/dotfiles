@@ -192,6 +192,7 @@ endfunction
 au BufRead,BufNewFile pom.xml        setl ft=maven.xml
 au BufRead,BufNewFile build.gradle   setl ft=gradle.groovy
 au BufRead,BufNewFile *.esquery.json setl ft=esquery.json
+au BufRead,BufNewFile *pre-commit    setl ft=sh
 
 autocmd Filetype *vim,*tmux setl foldenable | setl foldmethod=marker
 autocmd Filetype *json      setl shiftwidth=2
