@@ -262,7 +262,8 @@ nmap <Leader>d :Gdiff<CR>
 Plug 'junegunn/vim-slash' " vim-slash provides a set of mappings for enhancing in-buffer search experience in Vim.
 if has('timers')
   " Blink 3 times with 50ms interval
-  noremap <expr> <plug>(slash-after) 'zz'.slash#blink(2, 50)
+  " noremap <expr> <plug>(slash-after) 'zz'.slash#blink(2, 50)
+  noremap <expr> <plug>(slash-after) slash#blink(2, 50)
 endif
 " }}} vim-slash "
 
