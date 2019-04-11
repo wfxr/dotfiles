@@ -3,21 +3,21 @@
 #=============================================================================
 #       Author: Wenxuan Zhang
 #        Email: wenxuangm@gmail.com
-#     HomePage: wenxuan.info
+#     HomePage: https://github.com/wfxr
 #=============================================================================
 
 # Get os info
-if (( $+commands[lsb_release] )); then
-    export OSNAME=$(lsb_release -si)
-    export OSVER=$(lsb_release -sr)
-elif [ -f /etc/lsb-release ]; then
-    source /etc/lsb-release
-    export OSNAME=$DISTRIB_ID
-    export OSVER=$DISTRIB_RELEASE
-else
-    export OSNAME=$(uname -s)
-    export OSVER=$(uname -r)
-fi
+# if (( $+commands[lsb_release] )); then
+    # export OSNAME=$(lsb_release -si)
+    # export OSVER=$(lsb_release -sr)
+# elif [ -f /etc/lsb-release ]; then
+    # source /etc/lsb-release
+    # export OSNAME=$DISTRIB_ID
+    # export OSVER=$DISTRIB_RELEASE
+# else
+    # export OSNAME=$(uname -s)
+    # export OSVER=$(uname -r)
+# fi
 
 # True color
 export COLORTERM=truecolor
@@ -28,7 +28,7 @@ export PATH="/snap/bin:$PATH"
 
 # Ruby
 export GEM_HOME="$HOME/.gem"
-(( $+commands[ruby] )) && export PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin:$GEM_HOME/bin"
+# (( $+commands[ruby] )) && export PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin:$GEM_HOME/bin"
 
 # C++
 export CPLUS_INCLUDE_PATH="/usr/local/include/c++/v1:$CPLUS_INCLUDE_PATH"

@@ -446,3 +446,7 @@ EOF
     chmod +x "$hook"
     )
 }
+
+function zsh-bench() {
+    for i in $(seq 5); do time zsh -i -c exit; done;
+}

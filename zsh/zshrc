@@ -4,6 +4,7 @@
 #        Email: wenxuangm@gmail.com
 #     HomePage: wenxuan.info
 #=============================================================================
+# zmodload zsh/zprof
 
 # Put this line on top to make keybinds work
 bindkey -e
