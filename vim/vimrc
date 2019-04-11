@@ -15,7 +15,7 @@ source ~/.vim_plug
 source ~/.vim_map
 silent! source ~/.vim_local
 
-if has("termguicolors") && has("nvim")
+if has("termguicolors")
     set termguicolors
 endif
 
