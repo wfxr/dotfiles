@@ -168,9 +168,20 @@ IFS=$'\n\t'
 ROOT=$(git rev-parse --show-toplevel)
 cd "$ROOT"
 
-VER=$(cat version)
+VER=$(head -n 1 version)
 if [[ $VER != *-SNAPSHOT ]]; then
-	echo "$VER-SNAPSHOT" > version
+	VER_RE='^([0-9]+).([0-9]+).([0-9]+)$'
+	if [[ $VER =~ $VER_RE ]]; then
+		MAJOR=${BASH_REMATCH[1]}
+		MINOR=${BASH_REMATCH[2]}
+		PATCH=${BASH_REMATCH[3]}
+
+		PATCH=$((PATCH + 1))
+		echo "$MAJOR.$MINOR.$PATCH-SNAPSHOT" > version
+		git add version
+	else
+		echo 'Invalid version detected. Should be "MAJOR.MINOR.PATCH" format' >&2
+		exit 1
+	fi
 fi
-git add version
 endsnippet
