@@ -1,1 +1,2 @@
 *.pvt filter=git-crypt diff=git-crypt
+/zsh/zsh_secret filter=git-crypt diff=git-crypt

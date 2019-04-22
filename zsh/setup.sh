@@ -12,6 +12,7 @@ ln -sf "$SCRIPT_DIR/zsh_custom"    ~/.zsh_custom
 ln -sf "$SCRIPT_DIR/zsh_plug"      ~/.zsh_plug
 ln -sf "$SCRIPT_DIR/zsh_theme"     ~/.zsh_theme
 ln -sf "$SCRIPT_DIR/zsh_fzf_extra" ~/.zsh_fzf_extra
+ln -sf "$SCRIPT_DIR/zsh_secret"    ~/.zsh_secret
 
 mkdir -p ~/.zsh_completions
 ln -sf "$SCRIPT_DIR/completions/_ag"  ~/.zsh_completions/_ag
