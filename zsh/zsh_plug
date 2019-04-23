@@ -62,6 +62,7 @@ zplug 'b4b4r07/zplug-doctor', lazy:yes
 zplug 'wfxr/zplug-rm', lazy:yes
 zplug 'wfxr/iconful', as:command, use:'(iconful).sh', rename-to:'$1'
 zplug 'wfxr/forepos'
+zplug 'wfxr/epoch-cli'
 zplug "wfxr/formarks"
 zplug 'wfxr/forgit', defer:1
 FORGIT_FZF_DEFAULT_OPTS="
