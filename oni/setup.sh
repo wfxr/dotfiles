@@ -9,4 +9,4 @@ SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 mkdir -p ~/.config/oni
 
-ln -sf "$SCRIPT_DIR/config.js" ~/.config/oni/config.js
+ln -sf "$SCRIPT_DIR/config.tsx" ~/.config/oni/config.tsx
