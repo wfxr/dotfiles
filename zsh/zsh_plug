@@ -25,7 +25,6 @@ zplug "plugins/git-extras", from:oh-my-zsh
 zplug 'plugins/git-flow-avh', from:oh-my-zsh
 #zplug "plugins/cp", from:oh-my-zsh
 (( $+commands[mvn]        )) && zplug "plugins/mvn",        from:oh-my-zsh, lazy:yes
-(( $+commands[cargo]      )) && zplug "plugins/cargo",      from:oh-my-zsh, lazy:yes
 (( $+commands[docker]     )) && zplug "plugins/docker",     from:oh-my-zsh, lazy:yes
 (( $+commands[tmuxinator] )) && zplug "plugins/tmuxinator", from:oh-my-zsh, lazy:yes
 (( $+commands[gem]        )) && zplug "plugins/gem",        from:oh-my-zsh, lazy:yes

@@ -12,4 +12,5 @@ rustup update
 rustup component add rls-preview rust-analysis rust-src rustfmt-preview
 
 mkdir -p ~/.zsh_completions
-rustup completions zsh > ~/.zsh_completions/_rustup
+rustup completions zsh       > ~/.zsh_completions/_rustup
+rustup completions zsh cargo > ~/.zsh_completions/_cargo
