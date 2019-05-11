@@ -41,6 +41,7 @@ ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(end-of-line)
 
 # zplug "morhetz/gruvbox", use:"gruvbox_256palette.sh" # No necessory for neovim & vim 8+
 zplug "felixonmars/ydcv", as:command, use:"src/ydcv.py", rename-to:"ydcv"
+zplug 'soimort/translate-shell', at:'develop'
 #zplug 'ytet5uy4/fzf-widgets'
 
 ################################################################################
