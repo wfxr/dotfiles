@@ -351,8 +351,8 @@ map <leader>il :IndentLinesToggle<CR>
 " junegunn/fzf {{{ "
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
 let g:fzf_buffers_jump = 1
-nmap <c-l><c-a> :Ag<CR>
-nmap <c-l><c-l> :Lines<CR>
+nmap <a-g> :Ag<CR>
+nmap <a-l> :Lines<CR>
 " Mapping selecting mappings
 nmap <c-l>m <plug>(fzf-maps-n)
 xmap <c-l>m <plug>(fzf-maps-x)
