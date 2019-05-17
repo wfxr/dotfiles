@@ -157,4 +157,4 @@ alias gpa='git push origin --all && git push origin --tags'
 alias csort='LC_ALL=C sort'
 
 alias localdocker='DOCKER_HOST= DOCKER_TLS_PATH= DOCKER_TLS_VERIFY= docker'
-(( $+commands[cargo] )) && alias rust-musl-builder='localdocker run --rm -it -v "$(pwd)":/home/rust/src ekidd/rust-musl-builder'
+(( $+commands[cargo] )) && alias rust-musl-builder='localdocker run --rm --name rust-musl-builder -it -v "$(pwd)":/home/rust/src ekidd/rust-musl-builder'
