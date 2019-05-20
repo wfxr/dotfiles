@@ -81,10 +81,10 @@ alias weather='curl wttr.in'
 
 alias tl='tmux list-sessions'
 
-(( $+commands[ghq] )) && \
-    alias gget='ghq get' && \
-    alias gcd='ghq look' && \
-    alias gls='ghq list'
+# (( $+commands[ghq] )) && \
+    # alias gget='ghq get' && \
+    # alias gcd='ghq look' && \
+    # alias gls='ghq list'
 
 #alias -s c=vim
 #alias -s cpp=vim
