@@ -602,7 +602,8 @@ augroup rust_env
     autocmd FileType rust
                 \ nmap <buffer> <leader>r<CR> :VT cargo run -q<CR>|
                 \ nmap <buffer> <leader>t<CR> :VT cargo test -q<CR>|
-                \ nmap <buffer> <leader>b<CR> :VT cargo build -q<CR>
+                \ nmap <buffer> <leader>b<CR> :VT cargo build -q<CR>|
+                \ nmap <buffer> <leader>r<CR> :VT cargo play %<CR>
 augroup END
 " }}} vim-rust "
 
