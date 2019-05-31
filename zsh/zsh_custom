@@ -384,7 +384,7 @@ function dump_map() {
 
 function passgen() { openssl rand -base64 ${1:-10} | tr -d '=' }
 
-function md5gen() { passgen 128 | md5sum | awk '{print $1}' }
+function md5gen() { printf "${@:-$(passgen 128)}" | md5sum | awk '{print $1}' }
 
 function vup() { amixer set PCM 5%+ }
 
