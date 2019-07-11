@@ -14,11 +14,21 @@ snippet jdk "set sourceCompatibility" b
 sourceCompatibility = ${1:1.8}
 endsnippet
 
-snippet getversion "def getVersion {...}" b
+snippet version_from_git "use version from git tag" b
 def getVersion = { ->
 	def p = 'git describe --tags'.execute(); p.waitFor()
 	def version = p.exitValue() == 0 ? p.text.trim() : '0.0.0'
 	def dirty = 'git status -s'.execute().text.trim()
 	return dirty ? "${version}-SNAPSHOT" : version
 }
+endsnippet
+
+snippet version_from_file "use version from file" b
+version = { ->
+	try {
+		rootProject.file('version').text.trim()
+	} catch (ignored) {
+		"SANPSHOT"
+	}
+}.call()
 endsnippet
