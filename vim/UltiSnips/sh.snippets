@@ -1,7 +1,5 @@
 snippet usage "Show usage..." b
-usage() {
-	echo "Usage: \$(basename "\$0") <${1:param}>" >&2
-}
+usage() { echo "Usage: \$(basename "\$0") <${1:param}>" >&2; }
 endsnippet
 
 snippet sdir "Description" b

@@ -482,7 +482,7 @@ function! BuildYCM(info)
         !./install.py
     endif
 endfunction
-Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') } | Plug 'rdnetto/YCM-Generator',  { 'branch': 'stable'}
+Plug 'ycm-core/YouCompleteMe', { 'do': function('BuildYCM') } | Plug 'rdnetto/YCM-Generator',  { 'branch': 'stable'}
 " Let ale do it
 let g:ycm_show_diagnostics_ui = 0
 let g:ycm_server_log_level = 'info'
