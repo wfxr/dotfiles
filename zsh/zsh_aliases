@@ -42,6 +42,10 @@ alias enable_touch_pad='sudo modprobe psmouse'       # 启用触控板
 (( $+commands[nvim] )) && alias vim='nvim'
 alias svim='sudo -E vim'
 (( $+commands[bat] )) && alias cat='bat'
+
+alias ls='ls --color=auto'
+alias ll='ls --group-directories-first -l'
+alias la='ls --group-directories-first -l --all'
 if (( $+commands[exa] )); then
     alias ls='exa --time-style long-iso'
     alias tree='ls -T'
