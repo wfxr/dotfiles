@@ -37,10 +37,10 @@ pacman --noconfirm -S ncdu   # NCurses Disk Usage
 # pacman --noconfirm -S create_ap # Create AP
 pacman --noconfirm -S fd exa bat ripgrep vivid sd
 
-pacman --noconfirm -S shadowsocks-libev ipset
-systemctl daemon-reload
-systemctl enable ipset
-systemctl start  ipset
+# pacman --noconfirm -S shadowsocks-libev ipset
+# systemctl daemon-reload
+# systemctl enable ipset
+# systemctl start  ipset
 
 
 pacman --noconfirm -S xclip shutter
@@ -52,7 +52,8 @@ systemctl enable cronie.service
 systemctl start  cronie.service
 
 # fcitx - gnome
-pacman --noconfirm -S fcitx fcitx-gtk2 fcitx-gtk3 fcitx-qt4 fcitx-qt5 fcitx-configtool fcitx-sogoupinyin
+pacman --noconfirm -S fcitx fcitx-gtk2 fcitx-gtk3 fcitx-qt4 fcitx-qt5 fcitx-configtool fcitx-tools
+# pacman --noconfirm -S fcitx-sogoupinyin
 ln -sf "$SCRIPT_DIR/xprofile" ~/.xprofile
 # cool-retro-term is a terminal emulator which mimics the look and feel of the old cathode tube screens.
 pacman --noconfirm -S cool-retro-term
