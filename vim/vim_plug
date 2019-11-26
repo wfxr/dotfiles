@@ -10,6 +10,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'sheerun/vim-polyglot'
 Plug 'rhysd/github-complete.vim'
 Plug 'terryma/vim-multiple-cursors' | let g:multi_cursor_select_all_word_key = '<A-a>'
 Plug 'lifepillar/vim-cheat40' " Keymapping: <leader>?
@@ -20,29 +21,29 @@ Plug 'junegunn/gv.vim'
 Plug 'junegunn/vim-peekaboo'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'vim-scripts/matchit.zip' " Enhance % match
-Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp'           }
-Plug 'ap/vim-css-color',                 { 'for': 'css'           }
-Plug 'moll/vim-node',                    { 'for': 'node'          }
-Plug 'mattn/emmet-vim',                  { 'for': 'html'          }
-Plug 'othree/xml.vim',                   { 'for': 'xml'           }
-Plug 'elzr/vim-json',                    { 'for': 'json'          }
-Plug 'cespare/vim-toml',                 { 'for': 'toml'          }
-Plug 'pangloss/vim-javascript',          { 'for': 'javascript'    }
-Plug 'plasticboy/vim-markdown',          { 'for': 'markdown'      }
+" Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp'           }
+" Plug 'ap/vim-css-color',                 { 'for': 'css'           }
+" Plug 'moll/vim-node',                    { 'for': 'node'          }
+" Plug 'mattn/emmet-vim',                  { 'for': 'html'          }
+" Plug 'othree/xml.vim',                   { 'for': 'xml'           }
+" Plug 'elzr/vim-json',                    { 'for': 'json'          }
+" Plug 'cespare/vim-toml',                 { 'for': 'toml'          }
+" Plug 'pangloss/vim-javascript',          { 'for': 'javascript'    }
+" Plug 'plasticboy/vim-markdown',          { 'for': 'markdown'      }
 
-Plug 'martinda/Jenkinsfile-vim-syntax',  { 'for': 'jenkins'       }
-Plug 'udalov/kotlin-vim',                { 'for': 'kotlin'        }
-Plug 'vim-ruby/vim-ruby',                { 'for': 'ruby'          }
-Plug 'tpope/vim-bundler',                { 'for': 'ruby'          }
-Plug 'tpope/vim-rake',                   { 'for': 'ruby'          }
-Plug 'jgdavey/vim-blockle',              { 'for': 'ruby'          } | let g:blockle_mapping = '<leader>B'
-Plug 'stephpy/vim-yaml',                 { 'for': 'yaml'          }
+" Plug 'martinda/Jenkinsfile-vim-syntax',  { 'for': 'jenkins'       }
+" Plug 'udalov/kotlin-vim',                { 'for': 'kotlin'        }
+" Plug 'vim-ruby/vim-ruby',                { 'for': 'ruby'          }
+" Plug 'tpope/vim-bundler',                { 'for': 'ruby'          }
+" Plug 'tpope/vim-rake',                   { 'for': 'ruby'          }
+" Plug 'jgdavey/vim-blockle',              { 'for': 'ruby'          } | let g:blockle_mapping = '<leader>B'
+" Plug 'stephpy/vim-yaml',                 { 'for': 'yaml'          }
 Plug 'ekalinin/Dockerfile.vim',          { 'for': 'dockerfile'    }
 Plug 'andrewstuart/vim-kubernetes',      { 'for': 'yaml'          }
 Plug 'nelstrom/vim-textobj-rubyblock',   { 'for': 'ruby'          }
 Plug 'vim-scripts/awk.vim',              { 'for': 'awk'           }
 Plug 'tmux-plugins/vim-tmux',            { 'for': 'tmux'          }
-Plug 'chr4/nginx.vim',                   { 'for': 'conf'          }
+" Plug 'chr4/nginx.vim',                   { 'for': 'conf'          }
 Plug 'mbbill/undotree',                  { 'on': 'UndotreeToggle' } | nnoremap U :UndotreeToggle<CR>
 Plug 'junegunn/vim-github-dashboard' | let g:github_dashboard = { 'username': 'wfxr' }
 Plug 'morhetz/gruvbox'               | let g:gruvbox_italic = 1  | let g:gruvbox_contrast_dark = 'medium'
