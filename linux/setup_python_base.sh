@@ -32,9 +32,9 @@ pyenv global $v
 mkdir -p "$HOME/.pip"
 cat > "$HOME/.pip/pip.conf" <<-'EOF'
 [global]
-index-url = https://pypi.mirrors.ustc.edu.cn/simple/
+index-url = https://pypi.tuna.tsinghua.edu.cn/simple
 [install]
-trusted-host=pypi.mirrors.ustc.edu.cn
+trusted-host=pypi.tuna.tsinghua.edu.cn
 EOF
 pip install --upgrade pip
 
