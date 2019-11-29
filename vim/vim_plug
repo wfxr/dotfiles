@@ -47,6 +47,7 @@ Plug 'tmux-plugins/vim-tmux',            { 'for': 'tmux'          }
 Plug 'mbbill/undotree',                  { 'on': 'UndotreeToggle' } | nnoremap U :UndotreeToggle<CR>
 Plug 'junegunn/vim-github-dashboard' | let g:github_dashboard = { 'username': 'wfxr' }
 Plug 'morhetz/gruvbox'               | let g:gruvbox_italic = 1  | let g:gruvbox_contrast_dark = 'medium'
+Plug 'sainnhe/gruvbox-material'      | let g:gruvbox_material_background = 'hard'
 Plug 'nightsense/snow'
 Plug 'mattn/vim-xxdcursor'           | Plug 'fidian/hexmode'     | let g:hexmode_patterns = '*.o,*.so,*.a,*.out,*.bin,*.exe'
 Plug 'vim-utils/vim-husk'            | Plug 'tpope/vim-rsi' " Eamcs-Style keymapping
@@ -178,6 +179,11 @@ if g:has_tags
     let g:tagbar_autofocus = 0
     let g:tagbar_sort = 0
     nmap <a-\> :TagbarToggle<CR>
+
+    " Plug 'liuchengxu/vista.vim', { 'on': 'Vista' }
+    " nmap <a-\> :Vista!!<CR>
+    " let g:vista_fzf_preview = ['right:50%']
+    " let g:vista#renderer#enable_icon = 1
 endif
 " }}} tagbar "
 
@@ -282,6 +288,7 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_tab_type = 0
 let g:airline#extensions#tmuxline#enabled = 0
+let g:airline_theme = 'gruvbox_material'
 " let g:airline_left_sep = ''
 " let g:airline_right_sep = ''
 " let g:airline_left_alt_sep = ''
