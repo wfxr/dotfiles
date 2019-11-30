@@ -17,7 +17,7 @@ eval "$(pyenv virtualenv-init -)"
 export PYTHON_CONFIGURE_OPTS="--enable-shared"
 
 # python
-v=3.7.0
+v=3.8.0
 if ! pyenv versions | grep $v &>/dev/null; then
     pkg=Python-$v.tar.xz
     mkdir -p ~/.pyenv/cache
