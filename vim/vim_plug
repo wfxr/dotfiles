@@ -10,6 +10,8 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'ron89/thesaurus_query.vim'
+Plug 'dhruvasagar/vim-table-mode', { 'for': 'markdown' }
 Plug 'sheerun/vim-polyglot'
 Plug 'rhysd/github-complete.vim'
 Plug 'terryma/vim-multiple-cursors' | let g:multi_cursor_select_all_word_key = '<A-a>'
@@ -46,7 +48,7 @@ Plug 'tmux-plugins/vim-tmux',            { 'for': 'tmux'          }
 " Plug 'chr4/nginx.vim',                   { 'for': 'conf'          }
 Plug 'mbbill/undotree',                  { 'on': 'UndotreeToggle' } | nnoremap U :UndotreeToggle<CR>
 Plug 'junegunn/vim-github-dashboard' | let g:github_dashboard = { 'username': 'wfxr' }
-Plug 'morhetz/gruvbox'               | let g:gruvbox_italic = 1  | let g:gruvbox_contrast_dark = 'medium'
+Plug 'gruvbox-community/gruvbox'     | let g:gruvbox_italic = 1  | let g:gruvbox_contrast_dark = 'medium'
 Plug 'sainnhe/gruvbox-material'      | let g:gruvbox_material_background = 'hard'
 Plug 'nightsense/snow'
 Plug 'mattn/vim-xxdcursor'           | Plug 'fidian/hexmode'     | let g:hexmode_patterns = '*.o,*.so,*.a,*.out,*.bin,*.exe'
@@ -616,6 +618,7 @@ augroup END
 " }}} vim-rust "
 
 " vim-python {{{ "
+Plug 'numirias/semshi', { 'for': 'python' }
 if !empty(glob('~/.pyenv/shims/python'))
     let g:python3_host_prog = glob('~/.pyenv/shims/python')
 endif
