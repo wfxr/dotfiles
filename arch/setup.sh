@@ -16,6 +16,7 @@ pacman --noconfirm -Sy archlinuxcn-keyring yay
 #wget -O/etc/pacman.d/mirrorlist https://www.archlinux.org/mirrorlist/all/
 #wget -O /etc/pacman.d/mirrorlist 'https://www.archlinux.org/mirrorlist/?country=CN'
 
+pacman --noconfirm -S git-crypt
 pacman --noconfirm -S neovim
 pacman --noconfirm -S openssh make cmake
 pacman --noconfirm -S clang go pyenv
@@ -55,9 +56,12 @@ systemctl start  cronie.service
 pacman --noconfirm -S fcitx fcitx-gtk2 fcitx-gtk3 fcitx-qt4 fcitx-qt5 fcitx-configtool fcitx-tools
 # pacman --noconfirm -S fcitx-sogoupinyin
 ln -sf "$SCRIPT_DIR/xprofile" ~/.xprofile
+
 # cool-retro-term is a terminal emulator which mimics the look and feel of the old cathode tube screens.
 pacman --noconfirm -S cool-retro-term
 pacman --noconfirm -S xdotool
+
+pacman --noconfirm -S screenkey
 
 # Auto clean pacman cache
 pacman --noconfirm -S pacman-contrib
