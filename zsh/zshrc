@@ -11,10 +11,10 @@ bindkey -e
 
 source ~/.zsh_env
 
-source ~/.fzf.zsh       2>/dev/null
-source ~/.zsh_fzf_extra 2>/dev/null
-source ~/.zsh_local     2>/dev/null
-source ~/.zsh_secret    2>/dev/null
+[ -f ~/.fzf.zsh       ] && source ~/.fzf.zsh
+[ -f ~/.zsh_fzf_extra ] && source ~/.zsh_fzf_extra
+[ -f ~/.zsh_local     ] && source ~/.zsh_local
+[ -f ~/.zsh_secret    ] && source ~/.zsh_secret
 
 source ~/.zsh_plug
 source ~/.zsh_keybinds
@@ -22,7 +22,8 @@ source ~/.zsh_misc
 source ~/.zsh_aliases
 source ~/.zsh_custom
 
-source ~/.zsh_theme 2>/dev/null
+[ -f ~/.zsh_theme ] && source ~/.zsh_theme
+
 (( $+commands[thefuck] )) && source <(thefuck --alias 2>/dev/null)
 (( $+commands[kubectl] )) && source <(kubectl completion zsh)
 (( $+commands[pyenv]   )) && source <(pyenv init -)
@@ -32,4 +33,4 @@ source ~/.zsh_theme 2>/dev/null
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 #source ~/.sdkman/bin/sdkman-init.sh 2>/dev/null
 
-source ~/.travis/travis.sh 2>/dev/null
+[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
