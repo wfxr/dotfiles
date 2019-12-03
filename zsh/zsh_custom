@@ -452,3 +452,6 @@ function zsh-bench() {
 }
 
 function y() { ydcv "$*"; }
+
+function en() { trans zh:en "$*" }
+function cn() { trans en:zh "$*" }
