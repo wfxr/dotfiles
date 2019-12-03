@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+################################################################################
+#    Author: Wenxuan Zhang                                                     #
+#     Email: wenxuangm@gmail.com                                               #
+#   Created: 2019-11-30 17:16                                                  #
+################################################################################
+
+start_polybar() {
+    # Terminate already running bar instances
+    killall -q polybar
+
+    # Wait until the processes have been shut down
+    while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
+
+    # Launch bar
+    polybar top &>/tmp/polybar-top.log &
+}
+
+main() {
+    start_polybar
+}
+
+main
