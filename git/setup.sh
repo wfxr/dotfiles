@@ -58,3 +58,6 @@ git config --global color.status.added     green
 git config --global color.status.updated   cyan
 git config --global color.status.changed   red
 git config --global color.status.untracked yellow
+
+# utf-8 support
+git config --global core.quotepath off
