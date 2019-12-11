@@ -3,7 +3,7 @@ usage() { echo "Usage: \$(basename "\$0") <${1:param}>" >&2; }
 endsnippet
 
 snippet sdir "Description" b
-SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)${1: && cd "$SCRIPT_DIR"${2: || exit 1}}
+SDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)${1: && cd "$SDIR"${2: || exit 1}}
 endsnippet
 
 snippet continue? "Continue? [y/N]" b
