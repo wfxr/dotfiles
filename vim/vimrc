@@ -90,7 +90,7 @@ set noswapfile
 
 " Enable record undo history
 set undofile
-set undodir=/tmp/vim/undo//
+set undodir=/tmp/vim-$USER/undodir/
 
 set noerrorbells
 set visualbell
