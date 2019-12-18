@@ -35,4 +35,6 @@ source ~/.zsh_custom
 
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
 
+(( $+commands[starship] )) && eval "$(starship init zsh)"
+
 return 0
