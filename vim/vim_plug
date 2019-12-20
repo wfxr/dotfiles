@@ -12,7 +12,6 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'ron89/thesaurus_query.vim'
 Plug 'dhruvasagar/vim-table-mode', { 'for': 'markdown' }
-Plug 'sheerun/vim-polyglot'
 Plug 'rhysd/github-complete.vim'
 Plug 'terryma/vim-multiple-cursors' | let g:multi_cursor_select_all_word_key = '<A-a>'
 Plug 'lifepillar/vim-cheat40' " Keymapping: <leader>?
@@ -597,7 +596,6 @@ augroup go_env
                 \ command! -bang A call go#alternate#Switch(<bang>0, 'edit')|
                 \ command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')|
                 \ command! -bang AS call go#alternate#Switch(<bang>0, 'split')|
-                \ inoremap <buffer> <silent> <leader>, <End>,<CR>
                 "\ let g:go_auto_type_info = 1|
                 "\ let g:go_updatetime = 100|
                 "\ let g:go_auto_sameids = 1|
@@ -659,6 +657,9 @@ augroup clojure_env
                 \ silent! nunmap <c-l><c-l>|
                 \ silent! nunmap <c-h><c-h>
 augroup END
+" Need to be loaded after vim-go
+" https://github.com/fatih/vim-go/issues/2272
+Plug 'sheerun/vim-polyglot'
 call plug#end()
 " }}} clojure "
 

@@ -12,7 +12,7 @@ nnoremap <silent> zk O<Esc>j
 nnoremap <silent> zl i <Esc>l
 "inoremap <silent> <leader>i <Home>
 "inoremap <silent> <leader>a <End>
-inoremap <silent> <leader>, <End>,
+inoremap <silent> <leader>, <End>,<Esc>
 inoremap <silent> <leader>; <End>;<Esc>
 inoremap <silent> <leader>{ <End> {<CR>}<C-o>O
 inoremap <silent> <leader>. ->
