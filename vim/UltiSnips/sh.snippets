@@ -35,15 +35,9 @@ snippet root "Get root privilege" b
 
 endsnippet
 
-snippet temp "Tempfile"
-${1:TMPFILE}="$(mktemp -t ${3:--suffix=${4:.SUFFIX}} ${2:$(basename \$0)}.XXXXXX)"
-${5:trap "rm -f '$$1'" ${6:EXIT INT TERM HUP}}
-
-endsnippet
-snippet tempdir "Tempfile"
-${1:TMPDIR}="$(mktemp -td ${3:--suffix=${4:.SUFFIX}} ${2:$(basename \$0)}.XXXXXX)"
-${5:trap "rm -rf '$$1'" ${6:EXIT INT TERM HUP}}
-
+snippet temp "Temp file or directory"
+${1:TEMP}="$(mktemp -t${2:d} ${3:--suffix=${4:.tmp}} ${5:"$(basename "\$0")"}.XXXXXX)"
+${6:trap 'rm -rf $$1' ${7:EXIT INT TERM HUP}}
 endsnippet
 
 snippet daily_schedule "Daily schedule template" b
@@ -95,9 +89,7 @@ $2
 endsnippet
 
 snippet join_by "join function" b
-join_by() {
-	local d=\$1; shift; echo -n "\$1"; shift; printf "%s" "${@/#/$d}";
-}
+join_by() { local d=\$1; shift; echo -n "\$1"; shift; printf "%s" "${@/#/$d}"; }
 endsnippet
 
 snippet link_target "get link target" i
@@ -135,18 +127,18 @@ while IFS='' read -r line || [[ -n "$line" ]]; do
 done < "${2:$file}"
 endsnippet
 
-snippet readarray "Read lines to array" b
+snippet arrayfromfile "Read lines to array" b
 readarray -t ${1:arr} <${2:/path/to/file}
 endsnippet
 
-snippet readarrayfromcmd "Read lines to array from cmd" b
+snippet arrayfromcmd "Read lines to array from cmd" b
 readarray -t ${1:arr} <(${2:cmd})
 endsnippet
 
 snippet colorlog "log message with color" b
-info() { printf "%b[info]%b %s\n" '\e[0;32m' '\e[0m' "$@" >&2; }
-warn() { printf "%b[warn]%b %s\n" '\e[0;33m' '\e[0m' "$@" >&2; }
-error() { printf "%b[error]%b %s\n" '\e[0;31m' '\e[0m' "$@" >&2; }
+info() { printf "%b[info]%b %s\n" '\e[0;32m\033[1m' '\e[0m' "$@" >&2; }
+warn() { printf "%b[warn]%b %s\n" '\e[0;33m\033[1m' '\e[0m' "$@" >&2; }
+error() { printf "%b[error]%b %s\n" '\e[0;31m\033[1m' '\e[0m' "$@" >&2; }
 endsnippet
 
 snippet require "description"
@@ -182,4 +174,8 @@ if [[ $VER != *-SNAPSHOT ]]; then
 		exit 1
 	fi
 fi
+endsnippet
+
+snippet shellcheck "shellcheck disable..." b
+# shellcheck disable=SC$1
 endsnippet
