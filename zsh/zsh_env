@@ -37,7 +37,7 @@ export CC="${commands[clang]:-$CC}"
 export CXX="${commands[clang++]:-$CXX}"
 
 # Rust
-export PATH="$PATH:$HOME/.cargo/bin"
+export PATH="$HOME/.cargo/bin:$PATH"
 export RUSTUP_DIST_SERVER="https://mirrors.ustc.edu.cn/rust-static"
 export CARGO_HOME="$HOME/.cargo"
 export RUST_SRC_PATH="$HOME/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
@@ -70,7 +70,7 @@ export NVM_NODEJS_ORG_MIRROR="https://npm.taobao.org/mirrors/node/"
 
 # Golang
 export GOPATH="$HOME/.go"
-export PATH="$PATH:$GOPATH/bin"
+export PATH="$GOPATH/bin:$PATH"
 
 # Less
 export LESS="-R -f -F -X -i -P ?f%f:(stdin). ?lb%lb?L/%L.. [?eEOF:?pb%pb\%..]"
