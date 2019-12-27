@@ -10,6 +10,7 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
+set $alt Mod1
 
 set $terminal alacritty
 
@@ -47,7 +48,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec $terminal
+bindsym $mod+t exec $terminal
 
 # kill focused window
 bindsym $mod+q kill
@@ -93,6 +94,7 @@ bindsym $mod+backslash split h
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
+bindsym $mod+Return fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
@@ -200,6 +202,9 @@ bindsym $mod+m exec ~/bin/toggle-window mailspring           mailspring
 bindsym $mod+shift+n exec variety -n
 bindsym $mod+shift+p exec variety -p
 
+# screenshot
+bindsym --release control+$alt+a  exec "import png:- | xclip -selection clipboard -t image/png"
+
 gaps inner 10
 
 exec --no-startup-id compton -b
@@ -209,3 +214,16 @@ exec --no-startup-id ~/.fehbg
 exec --no-startup-id ~/.config/i3/autostart
 
 exec_always --no-startup-id ~/.config/i3/autostart_always
+
+exec --no-startup-id i3-msg 'workspace 1; exec alacritty -e sh -c "neofetch && zsh -i"'
+exec --no-startup-id i3-msg 'workspace 1; exec google-chrome-stable'
+
+# assign [class="Chromium"] → 2
+# assign [class="Pavucontrol"] → 9
+# assign [class="Skype"] → 7
+# for_window [class="Skype"] tabbed
+# assign [class="Kodi"] → 10
+# for_window [class="Kodi"] fullscreen
+# assign [class="KeePass2"] → 8
+# assign [class="Steam"] → 6
+# for_window [class="sakura"] border 1pixel
