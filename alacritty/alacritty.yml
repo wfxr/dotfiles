@@ -352,8 +352,8 @@ mouse:
 # And optionally:
 #
 # - `mods` (see key bindings)
-#mouse_bindings:
-#  - { mouse: Middle, action: PasteSelection }
+mouse_bindings:
+ - { mouse: Middle, action: PasteSelection }
 
 # Key bindings
 #
@@ -454,10 +454,10 @@ mouse:
 # binding with the same triggers is defined. To unset a default binding, it can
 # be mapped to the `ReceiveChar` action. Alternatively, you can use `None` for
 # a no-op if you do not wish to receive input characters for that binding.
-#key_bindings:
+key_bindings:
   # (Windows/Linux only)
-  #- { key: V,        mods: Control|Shift, action: Paste            }
-  #- { key: C,        mods: Control|Shift, action: Copy             }
+  - { key: V,        mods: Alt,            action: Paste            }
+  - { key: C,        mods: Alt,            action: Copy             }
   #- { key: Insert,   mods: Shift,         action: PasteSelection   }
   #- { key: Key0,     mods: Control,       action: ResetFontSize    }
   #- { key: Equals,   mods: Control,       action: IncreaseFontSize }
