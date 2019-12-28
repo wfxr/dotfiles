@@ -455,3 +455,17 @@ function y() { ydcv "$*"; }
 
 function en() { trans zh:en "$*" }
 function cn() { trans en:zh "$*" }
+
+# integrate z with fzf
+function j() {
+  if [[ -z "$*" ]]; then
+    cd "$(_z -l 2>&1 | fzf +s --tac | sed 's/^[0-9,.]* *//')"
+  else
+    _last_z_args="$@"
+    _z "$@"
+  fi
+}
+
+function jj() {
+  cd "$(_z -l 2>&1 | sed 's/^[0-9,.]* *//' | fzf -q "$_last_z_args")"
+}

@@ -31,7 +31,6 @@ zplug 'plugins/git-flow-avh', from:oh-my-zsh
 (( $+commands[lein]       )) && zplug 'plugins/lein',       from:oh-my-zsh, lazy:yes
 # (( $+commands[odpscmd]    )) && zplug 'wfxr/odps-fzf'
 zplug "plugins/colored-man-pages", from:oh-my-zsh
-zplug "changyuheng/fz", defer:1
 zplug "rupa/z", use:"z.sh"
 
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
