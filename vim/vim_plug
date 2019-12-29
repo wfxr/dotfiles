@@ -616,7 +616,7 @@ augroup END
 " }}} vim-rust "
 
 " vim-python {{{ "
-Plug 'numirias/semshi', { 'for': 'python' }
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins',  'for': 'python'}
 if !empty(glob('~/.pyenv/shims/python'))
     let g:python3_host_prog = glob('~/.pyenv/shims/python')
 endif
@@ -657,11 +657,12 @@ augroup clojure_env
                 \ silent! nunmap <c-l><c-l>|
                 \ silent! nunmap <c-h><c-h>
 augroup END
+" }}} clojure "
+
 " Need to be loaded after vim-go
 " https://github.com/fatih/vim-go/issues/2272
 Plug 'sheerun/vim-polyglot'
 call plug#end()
-" }}} clojure "
 
 " Custom functions {{{ "
 " Open repo in browser
