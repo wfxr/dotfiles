@@ -10,8 +10,8 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'honza/vim-snippets'
 Plug 'ron89/thesaurus_query.vim'
-Plug 'dhruvasagar/vim-table-mode', { 'for': 'markdown' }
 Plug 'rhysd/github-complete.vim'
 Plug 'terryma/vim-multiple-cursors' | let g:multi_cursor_select_all_word_key = '<A-a>'
 Plug 'lifepillar/vim-cheat40' " Keymapping: <leader>?
@@ -22,6 +22,9 @@ Plug 'junegunn/gv.vim'
 Plug 'junegunn/vim-peekaboo'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'vim-scripts/matchit.zip' " Enhance % match
+Plug 'neoclide/jsonc.vim'
+Plug 'plasticboy/vim-markdown',    { 'for': 'markdown' }
+Plug 'dhruvasagar/vim-table-mode', { 'for': 'markdown' }
 " Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp'           }
 " Plug 'ap/vim-css-color',                 { 'for': 'css'           }
 " Plug 'moll/vim-node',                    { 'for': 'node'          }
@@ -30,7 +33,6 @@ Plug 'vim-scripts/matchit.zip' " Enhance % match
 " Plug 'elzr/vim-json',                    { 'for': 'json'          }
 " Plug 'cespare/vim-toml',                 { 'for': 'toml'          }
 " Plug 'pangloss/vim-javascript',          { 'for': 'javascript'    }
-" Plug 'plasticboy/vim-markdown',          { 'for': 'markdown'      }
 
 " Plug 'martinda/Jenkinsfile-vim-syntax',  { 'for': 'jenkins'       }
 " Plug 'udalov/kotlin-vim',                { 'for': 'kotlin'        }
@@ -39,12 +41,12 @@ Plug 'vim-scripts/matchit.zip' " Enhance % match
 " Plug 'tpope/vim-rake',                   { 'for': 'ruby'          }
 " Plug 'jgdavey/vim-blockle',              { 'for': 'ruby'          } | let g:blockle_mapping = '<leader>B'
 " Plug 'stephpy/vim-yaml',                 { 'for': 'yaml'          }
+" Plug 'chr4/nginx.vim',                   { 'for': 'conf'          }
 Plug 'ekalinin/Dockerfile.vim',          { 'for': 'dockerfile'    }
 Plug 'andrewstuart/vim-kubernetes',      { 'for': 'yaml'          }
 Plug 'nelstrom/vim-textobj-rubyblock',   { 'for': 'ruby'          }
 Plug 'vim-scripts/awk.vim',              { 'for': 'awk'           }
 Plug 'tmux-plugins/vim-tmux',            { 'for': 'tmux'          }
-" Plug 'chr4/nginx.vim',                   { 'for': 'conf'          }
 Plug 'mbbill/undotree',                  { 'on': 'UndotreeToggle' } | nnoremap U :UndotreeToggle<CR>
 Plug 'junegunn/vim-github-dashboard' | let g:github_dashboard = { 'username': 'wfxr' }
 Plug 'gruvbox-community/gruvbox'     | let g:gruvbox_italic = 1  | let g:gruvbox_contrast_dark = 'medium'
@@ -80,10 +82,10 @@ Plug 'ConradIrwin/vim-bracketed-paste' " Auto toggle paste mode when paste
 " }}} rhysd/committia "
 
 " vim-key-sound {{{ "
-Plug 'skywind3000/vim-keysound'
-let g:keysound_theme = 'default'
-let g:keysound_volume = 1000
-noremap <leader>K :KeysoundToggle<CR>
+" Plug 'skywind3000/vim-keysound'
+" let g:keysound_theme = 'default'
+" let g:keysound_volume = 1000
+" noremap <leader>K :KeysoundToggle<CR>
 " }}} vim-key-sound "
 
 " auto-pairs {{{ "
@@ -437,6 +439,41 @@ endfunction
 command! FilesWithIcon :call s:fzf_devicons()
 nmap <a-f> :FilesWithIcon<CR>
 nmap <a-b> :Buffers<CR>
+
+if has('nvim')
+  function! s:create_float(hl, opts)
+    let buf = nvim_create_buf(v:false, v:true)
+    let opts = extend({'relative': 'editor', 'style': 'minimal'}, a:opts)
+    let win = nvim_open_win(buf, v:true, opts)
+    call setwinvar(win, '&winhighlight', 'NormalFloat:'.a:hl)
+    call setwinvar(win, '&colorcolumn', '')
+    return buf
+  endfunction
+
+  function! FloatingFZF()
+    " Size and position
+    let width = float2nr(&columns * 0.9)
+    let height = float2nr(&lines * 0.6)
+    let row = float2nr((&lines - height) / 2)
+    let col = float2nr((&columns - width) / 2)
+
+    " Border
+    let top = '┌' . repeat('─', width - 2) . '┐'
+    let mid = '│' . repeat(' ', width - 2) . '│'
+    let bot = '└' . repeat('─', width - 2) . '┘'
+    let border = [top] + repeat([mid], height - 2) + [bot]
+
+    " Draw frame
+    let s:frame = s:create_float('Comment', {'row': row, 'col': col, 'width': width, 'height': height})
+    call nvim_buf_set_lines(s:frame, 0, -1, v:true, border)
+
+    " Draw viewport
+    call s:create_float('Normal', {'row': row + 1, 'col': col + 2, 'width': width - 4, 'height': height - 2})
+    autocmd BufWipeout <buffer> execute 'bwipeout' s:frame
+  endfunction
+
+  let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+endif
 " }}} junegunn/fzf "
 
 " sbdchd/neoformat {{{ "
@@ -451,7 +488,7 @@ nnoremap <c-a-l> :Neoformat<cr>
 " }}} sbdchd/neoformat "
 
 " ultisnips && vim-snippets {{{ "
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
 " Trigger configuration. Do not use <tab> if you use 'YouCompleteMe'
 let g:UltiSnipsExpandTrigger="<leader><tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
@@ -485,58 +522,179 @@ let g:echodoc#enable_at_startup = 1
 let g:echodoc#enable_force_overwrite = 1
 " }}} echodoc.vim "
 
+" coc.vim {{{ "
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+if has_key(g:plugs, 'coc.nvim')
+    let g:coc_global_extensions = [
+                \ 'coc-snippets',
+                \ 'coc-python',
+                \ 'coc-dictionary',
+                \ 'coc-tag',
+                \ 'coc-word',
+                \ 'coc-emoji',
+                \ 'coc-syntax',
+                \ 'coc-gocode',
+                \ 'coc-json',
+                \ 'coc-yaml',
+                \ 'coc-highlight',
+                \ 'coc-rls',
+                \ ]
+
+    function! s:check_back_space() abort
+        let col = col('.') - 1
+        return !col || getline('.')[col - 1]  =~# '\s'
+    endfunction
+
+    " Use tab for trigger completion with characters ahead and navigate.
+    " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+    inoremap <silent><expr> <TAB>
+                \ pumvisible() ? "\<C-n>" :
+                \ <SID>check_back_space() ? "\<TAB>" :
+                \ coc#refresh()
+    inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+    " Use K to show documentation in preview window
+    function! s:show_documentation()
+        if (index(['vim','help'], &filetype) >= 0)
+            execute 'h '.expand('<cword>')
+        else
+            call CocAction('doHover')
+        endif
+    endfunction
+    nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+    " Use `[g` and `]g` to navigate diagnostics
+    nmap <silent> [g <Plug>(coc-diagnostic-prev)
+    nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+    " Remap keys for gotos
+    nmap <silent> gd <Plug>(coc-definition)
+    nmap <silent> gy <Plug>(coc-type-definition)
+    nmap <silent> gi <Plug>(coc-implementation)
+    nmap <silent> gr <Plug>(coc-references)
+
+    " Highlight symbol under cursor on CursorHold
+    autocmd CursorHold * silent call CocActionAsync('highlight')
+
+    " Remap for rename current word
+    nmap <c-a-r> <Plug>(coc-rename)
+
+    " Remap for format selected region
+    xmap <leader>f <Plug>(coc-format-selected)
+    nmap <leader>f <Plug>(coc-format-selected)
+
+    augroup mygroup
+        autocmd!
+        " Setup formatexpr specified filetype(s).
+        autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+        " Update signature help on jump placeholder
+        autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+    augroup end
+
+    " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+    xmap <leader>a  <Plug>(coc-codeaction-selected)
+    nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+    " Remap for do codeAction of current line
+    nmap <leader>ac  <Plug>(coc-codeaction)
+    " Fix autofix problem of current line
+    nmap <leader>qf  <Plug>(coc-fix-current)
+
+    " Create mappings for function text object, requires document symbols feature of languageserver.
+    xmap if <Plug>(coc-funcobj-i)
+    xmap af <Plug>(coc-funcobj-a)
+    omap if <Plug>(coc-funcobj-i)
+    omap af <Plug>(coc-funcobj-a)
+
+    " Use <TAB> for select selections ranges, needs server support, like: coc-tsserver, coc-python
+    " nmap <silent> <TAB> <Plug>(coc-range-select)
+    " xmap <silent> <TAB> <Plug>(coc-range-select)
+
+    " Use `:Format` to format current buffer
+    command! -nargs=0 Format :call CocAction('format')
+
+
+    " Use `:Fold` to fold current buffer
+    command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+    " use `:OR` for organize import of current buffer
+    command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+    " Add status line support, for integration with other plugin, checkout `:h coc-status`
+    set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+    " Using CocList
+    " Show all diagnostics
+    nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+    " Manage extensions
+    nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+    " Show commands
+    nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+    " Find symbol of current document
+    nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+    " Search workspace symbols
+    nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+    " Do default action for next item.
+    nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+    " Do default action for previous item.
+    nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+    " Resume latest coc list
+    nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+endif
+" }}} coc.vim "
+
 " YouCompleteMe {{{ "
-function! BuildYCM(info)
-    if a:info.status == 'installed' || a:info.force
-        !./install.py
-    endif
-endfunction
-Plug 'ycm-core/YouCompleteMe', { 'do': function('BuildYCM') } | Plug 'rdnetto/YCM-Generator',  { 'branch': 'stable'}
-" Let ale do it
-let g:ycm_show_diagnostics_ui = 0
-let g:ycm_server_log_level = 'info'
-" 配置默认的ycm_extra_conf.py
-let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-" 打开vim时不再询问是否加载ycm_extra_conf.py配置
-let g:ycm_confirm_extra_conf = 0
-" 注释补全开关
-let g:ycm_complete_in_comments = 1
-" 字符串补全开关:关闭会导致在包含双引号形式的头文件时无法补全！
-let g:ycm_complete_in_strings = 1
-" 基于标签收集引擎
-let g:ycm_collect_identifiers_from_tags_files = 1
-" 基于注释和字符串的收集引擎
-let g:ycm_collect_identifiers_from_comments_and_strings = 1
-" 语言关键字补全
-let g:ycm_seed_identifiers_with_syntax = 1
-" 从第n个字符开始展开补全
-let g:ycm_min_num_of_chars_for_completion = 1
-" 添加UltiSnips进行snippet补全
-let g:ycm_use_ultisnips_completer = 1
-" 关闭函数原型等补全预览窗口
-set completeopt=menu,menuone
-" 补全完成后关闭预览窗口
-" let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_add_preview_tocompleteopt = 0
-let g:ycm_filetype_blacklist = { }
-" 关闭js文件补全（需要js项目配置文件，类似C++，麻烦）
-" let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1}
-let g:ycm_error_symbol = g:error_symbol
-let g:ycm_warning_symbol = g:warning_symbol
-let g:ycm_always_populate_location_list = 1
-" 直接显示补全（全局类型、变量、宏或函数等补全需要
-let g:ycm_key_invoke_completion = '<C-x><C-o>'
-" 停止补全
-let g:ycm_key_list_stop_completion = ['<C-g>']
-let g:ycm_semantic_triggers =  {
-            \ 'c,cpp,python,java,go,rust,erlang,perl,cs,lua,javascript': ['re!\w{3}'],
-            \ 'clojure': ['re!\w{2}[\w/]'],
-            \ }
-nmap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
-" autocmd FileType c,cpp,cs,python,ruby,java,go,rust,erlang,perl
-            " \ nmap <buffer> <c-t> <c-o>|
-            " \ nmap <buffer> <c-]> :YcmCompleter GoToDefinitionElseDeclaration<CR>|
-            " \ nmap <buffer> <leader>F :YcmCompleter FixIt<CR>
+" function! BuildYCM(info)
+    " if a:info.status == 'installed' || a:info.force
+        " !./install.py
+    " endif
+" endfunction
+" Plug 'ycm-core/YouCompleteMe', { 'do': function('BuildYCM') } | Plug 'rdnetto/YCM-Generator',  { 'branch': 'stable'}
+" " Let ale do it
+" let g:ycm_show_diagnostics_ui = 0
+" let g:ycm_server_log_level = 'info'
+" " 配置默认的ycm_extra_conf.py
+" let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+" " 打开vim时不再询问是否加载ycm_extra_conf.py配置
+" let g:ycm_confirm_extra_conf = 0
+" " 注释补全开关
+" let g:ycm_complete_in_comments = 1
+" " 字符串补全开关:关闭会导致在包含双引号形式的头文件时无法补全！
+" let g:ycm_complete_in_strings = 1
+" " 基于标签收集引擎
+" let g:ycm_collect_identifiers_from_tags_files = 1
+" " 基于注释和字符串的收集引擎
+" let g:ycm_collect_identifiers_from_comments_and_strings = 1
+" " 语言关键字补全
+" let g:ycm_seed_identifiers_with_syntax = 1
+" " 从第n个字符开始展开补全
+" let g:ycm_min_num_of_chars_for_completion = 1
+" " 添加UltiSnips进行snippet补全
+" let g:ycm_use_ultisnips_completer = 1
+" " 关闭函数原型等补全预览窗口
+" set completeopt=menu,menuone
+" " 补全完成后关闭预览窗口
+" " let g:ycm_autoclose_preview_window_after_completion = 1
+" let g:ycm_add_preview_tocompleteopt = 0
+" let g:ycm_filetype_blacklist = { }
+" " 关闭js文件补全（需要js项目配置文件，类似C++，麻烦）
+" " let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1}
+" let g:ycm_error_symbol = g:error_symbol
+" let g:ycm_warning_symbol = g:warning_symbol
+" let g:ycm_always_populate_location_list = 1
+" " 直接显示补全（全局类型、变量、宏或函数等补全需要
+" let g:ycm_key_invoke_completion = '<C-x><C-o>'
+" " 停止补全
+" let g:ycm_key_list_stop_completion = ['<C-g>']
+" let g:ycm_semantic_triggers =  {
+            " \ 'c,cpp,python,java,go,rust,erlang,perl,cs,lua,javascript': ['re!\w{3}'],
+            " \ 'clojure': ['re!\w{2}[\w/]'],
+            " \ }
+" nmap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" " autocmd FileType c,cpp,cs,python,ruby,java,go,rust,erlang,perl
+            " " \ nmap <buffer> <c-t> <c-o>|
+            " " \ nmap <buffer> <c-]> :YcmCompleter GoToDefinitionElseDeclaration<CR>|
+            " " \ nmap <buffer> <leader>F :YcmCompleter FixIt<CR>
 " }}} YouCompleteMe "
 
 " vim-easymotion {{{ "

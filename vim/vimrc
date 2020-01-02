@@ -58,7 +58,7 @@ set number
 " Show relative number
 "set relativenumber
 
-" Set height of cmd line to 2
+" Set height of cmd line
 set cmdheight=1
 
 " Highlight search matches
@@ -108,7 +108,7 @@ set conceallevel=2
 set fillchars+=vert:¦
 
 " Default 800ms is too slow
-set updatetime=500
+set updatetime=300
 
 " Default 1000ms is too long
 set timeoutlen=400
@@ -116,6 +116,15 @@ set timeoutlen=400
 set noshowmode
 
 set showcmd
+
+" always show signcolumns
+set signcolumn=yes
+
+" Settings suggested by coc.nvim
+set hidden " if hidden is not set, TextEdit might fail.
+set nobackup " Some servers have issues with backup files, see #649
+set nowritebackup
+set shortmess+=c " don't give 'ins-completion-menu' messages.
 
 " autocmd InsertLeave,WinEnter * set cursorline
 " autocmd InsertEnter,WinLeave * set nocursorline
@@ -201,19 +210,20 @@ function! DetectNoneExtensionFileType()
 endfunction
 
 " Add custom filetypes detection. Mainly for ultisnips
-au BufRead,BufNewFile pom.xml        setl ft=maven.xml
-au BufRead,BufNewFile build.gradle   setl ft=gradle.groovy
-au BufRead,BufNewFile *.esquery.json setl ft=esquery.json
-au BufRead,BufNewFile *pre-commit    setl ft=sh
+au BufRead,BufNewFile pom.xml           setl ft=maven.xml
+au BufRead,BufNewFile build.gradle      setl ft=gradle.groovy
+au BufRead,BufNewFile *.esquery.json    setl ft=esquery.json
+au BufRead,BufNewFile *pre-commit       setl ft=sh
+au BufNewFile,BufRead coc-settings.json setl ft=jsonc
 
-autocmd Filetype *vim,*tmux setl foldenable | setl foldmethod=marker
-autocmd Filetype *json      setl shiftwidth=2
+au Filetype *vim,*tmux setl foldenable | setl foldmethod=marker
+au Filetype *json      setl shiftwidth=2
 
 au BufRead,BufNewFile * call DetectNoneExtensionFileType()
 
 " Disable automatic comment insertion
 " http://vim.wikia.com/wiki/Disable_automatic_comment_insertion
-autocmd FileType * setl formatoptions-=cro
+au FileType * setl formatoptions-=cro
 
 set tags=./.tags;,.tags
 let $GTAGSLABEL = 'native-pygments'

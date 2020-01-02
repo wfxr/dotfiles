@@ -1,17 +1,18 @@
 #!/usr/bin/env bash
-SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) && cd "$SCRIPT_DIR" || return 1
+SDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) && cd "$SDIR" || return 1
 
 mkdir -p ~/.vim/spell ~/.config
 
-ln -sf "$SCRIPT_DIR/vimrc"    ~/.vimrc
-ln -sf "$SCRIPT_DIR/gvimrc"   ~/.gvimrc
-ln -sf "$SCRIPT_DIR/vim_map"  ~/.vim_map
-ln -sf "$SCRIPT_DIR/vim_base" ~/.vim_base
-ln -sf "$SCRIPT_DIR/vim_plug" ~/.vim_plug
 touch ~/.vim_local
+ln -sf "$SDIR/vimrc"    ~/.vimrc
+ln -sf "$SDIR/gvimrc"   ~/.gvimrc
+ln -sf "$SDIR/vim_map"  ~/.vim_map
+ln -sf "$SDIR/vim_base" ~/.vim_base
+ln -sf "$SDIR/vim_plug" ~/.vim_plug
 
-ln -snf "$SCRIPT_DIR/UltiSnips"          ~/.vim/UltiSnips
-ln -sf  "$SCRIPT_DIR/spell/en.utf-8.add" ~/.vim/spell/en.utf-8.add
+ln -sf  "$SDIR/spell/en.utf-8.add" ~/.vim/spell/en.utf-8.add
+ln -sf  "$SDIR/coc-settings.json"  ~/.vim/coc-settings.json
+ln -snf "$SDIR/UltiSnips"          ~/.vim/UltiSnips
 
 # Install plugins managed by vim-plug
 # `tty &>/dev/null` is to make sure the script is run from a tty(ie, not ssh)
@@ -28,7 +29,7 @@ if hash nvim &>/dev/null ; then
 fi
 
 # For tags
-pip install --upgrade pygments
+hash pip &>/dev/null && pip install --upgrade pygments
 
 # For vim-keysound
 # sudo pacman -S sdl sdl2_mixer

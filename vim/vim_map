@@ -41,8 +41,9 @@ noremap <leader>bg :w<cr><C-z>
 noremap <leader>M mmHmt:%s/<C-v><CR>//ge<CR>'tzt'm
 
 " Yank & paste
-noremap  <c-y> "+yy
-vnoremap <c-y> "+y
+" noremap  <c-y> "+yy
+" vnoremap <c-y> "+y
+" inoremap <C-y> <C-o>"+P
 inoremap <c-v> <c-o>:set paste<cr><c-r>+<c-o>:set nopaste<cr>
 
 " Select pasted text
@@ -63,7 +64,6 @@ inoremap <C-b> <Left>
 " In insert mode, pressing Ctrl-O switches to normal mode for one command, then switches back to insert mode when the command is finished.
 inoremap <C-k> <C-o>D
 inoremap <C-u> <Esc>v0c
-inoremap <C-y> <C-o>"+P
 
 " Quickly move in normal mode
 noremap <c-j> <c-y>

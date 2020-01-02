@@ -1,0 +1,23 @@
+{
+  "python.jediEnabled": false,
+  "diagnostic.warningSign": "──",
+  "diagnostic.errorSign": "══",
+  "languageserver": {
+    "bash": {
+      "command": "bash-language-server",
+      "args": ["start"],
+      "filetypes": ["sh"],
+      "ignoredRootPaths": ["~"]
+    },
+    "clangd": {
+      "command": "clangd",
+      "args": ["--background-index"],
+      "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/"],
+      "filetypes": ["c", "cpp", "objc", "objcpp"]
+    }
+  },
+  "coc.preferences.formatOnSaveFiletypes": ["rust"],
+  "coc.preferences.colorSupport": false,
+  "coc.source.emoji.triggerCharacters": [":"],
+  "coc.source.emoji.filetypes": ["markdown", "gitcommit"]
+}
