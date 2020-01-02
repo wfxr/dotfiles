@@ -342,7 +342,7 @@ map <leader>il :IndentLinesToggle<CR>
 " junegunn/fzf {{{ "
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
 let g:fzf_buffers_jump = 1
-nmap <a-g> :Ag<CR>
+nmap <a-g> :Rg<CR>
 nmap <a-l> :Lines<CR>
 " Mapping selecting mappings
 nmap <c-l>m <plug>(fzf-maps-n)
@@ -412,6 +412,7 @@ function! s:fzf_devicons()
 
     call fzf#run(fzf#wrap('fzf_devicons', {
                 \ 'source':  expand('$FZF_CTRL_T_COMMAND'),
+                \ 'window':  'call FloatingFZF()',
                 \ 'options': l:fzf_files_options,
                 \ 'down':    '50%',
                 \ }))
