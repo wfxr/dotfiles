@@ -12,7 +12,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'honza/vim-snippets'
 Plug 'ron89/thesaurus_query.vim'
-Plug 'rhysd/github-complete.vim'
+" Plug 'rhysd/github-complete.vim'
 Plug 'terryma/vim-multiple-cursors' | let g:multi_cursor_select_all_word_key = '<A-a>'
 Plug 'lifepillar/vim-cheat40' " Keymapping: <leader>?
 Plug 'wellle/visual-split.vim'
@@ -23,33 +23,8 @@ Plug 'junegunn/vim-peekaboo'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'vim-scripts/matchit.zip' " Enhance % match
 Plug 'neoclide/jsonc.vim'
-Plug 'plasticboy/vim-markdown',    { 'for': 'markdown' }
-Plug 'dhruvasagar/vim-table-mode', { 'for': 'markdown' }
-" Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp'           }
-" Plug 'ap/vim-css-color',                 { 'for': 'css'           }
-" Plug 'moll/vim-node',                    { 'for': 'node'          }
-" Plug 'mattn/emmet-vim',                  { 'for': 'html'          }
-" Plug 'othree/xml.vim',                   { 'for': 'xml'           }
-" Plug 'elzr/vim-json',                    { 'for': 'json'          }
-" Plug 'cespare/vim-toml',                 { 'for': 'toml'          }
-" Plug 'pangloss/vim-javascript',          { 'for': 'javascript'    }
-
-" Plug 'martinda/Jenkinsfile-vim-syntax',  { 'for': 'jenkins'       }
-" Plug 'udalov/kotlin-vim',                { 'for': 'kotlin'        }
-" Plug 'vim-ruby/vim-ruby',                { 'for': 'ruby'          }
-" Plug 'tpope/vim-bundler',                { 'for': 'ruby'          }
-" Plug 'tpope/vim-rake',                   { 'for': 'ruby'          }
-" Plug 'jgdavey/vim-blockle',              { 'for': 'ruby'          } | let g:blockle_mapping = '<leader>B'
-" Plug 'stephpy/vim-yaml',                 { 'for': 'yaml'          }
-" Plug 'chr4/nginx.vim',                   { 'for': 'conf'          }
-Plug 'ekalinin/Dockerfile.vim',          { 'for': 'dockerfile'    }
-Plug 'andrewstuart/vim-kubernetes',      { 'for': 'yaml'          }
-Plug 'nelstrom/vim-textobj-rubyblock',   { 'for': 'ruby'          }
-Plug 'vim-scripts/awk.vim',              { 'for': 'awk'           }
-Plug 'tmux-plugins/vim-tmux',            { 'for': 'tmux'          }
-Plug 'mbbill/undotree',                  { 'on': 'UndotreeToggle' } | nnoremap U :UndotreeToggle<CR>
+Plug 'mbbill/undotree',                { 'on':  'UndotreeToggle' } | nnoremap U :UndotreeToggle<CR>
 Plug 'junegunn/vim-github-dashboard' | let g:github_dashboard = { 'username': 'wfxr' }
-Plug 'nightsense/snow'
 Plug 'mattn/vim-xxdcursor'           | Plug 'fidian/hexmode'     | let g:hexmode_patterns = '*.o,*.so,*.a,*.out,*.bin,*.exe'
 Plug 'vim-utils/vim-husk'            | Plug 'tpope/vim-rsi' " Eamcs-Style keymapping
 Plug 'mattn/vim-fixedsearch'         | Plug 'mattn/vim-prompter' | nmap <Leader>/ <plug>(fixedsearch)
@@ -66,10 +41,10 @@ Plug 'mattn/vim-textobj-url'
 Plug 'ConradIrwin/vim-bracketed-paste' " Auto toggle paste mode when paste
 
 " Themes
+Plug 'nightsense/snow'
 Plug 'junegunn/seoul256.vim'
-Plug 'gruvbox-community/gruvbox'     | let g:gruvbox_italic = 1  | let g:gruvbox_contrast_dark = 'medium'
-Plug 'sainnhe/gruvbox-material'      | let g:gruvbox_material_background = 'hard'
-
+Plug 'gruvbox-community/gruvbox' | let g:gruvbox_italic              = 1 | let g:gruvbox_contrast_dark = 'medium'
+Plug 'sainnhe/gruvbox-material'  | let g:gruvbox_material_background = 'hard'
 
 " rhysd/committia.vim {{{ "
 " Plug 'rhysd/committia.vim'
@@ -506,7 +481,7 @@ autocmd Filetype snippet set shiftwidth=4
 " Best lint engine(require neovim or vim version > 8)
 let g:error_symbol = '══'
 let g:warning_symbol = '──'
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 let g:ale_lint_on_insert_leave = 1
 let g:ale_sign_error = g:error_symbol
 let g:ale_sign_warning = g:warning_symbol
@@ -531,17 +506,18 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 if has_key(g:plugs, 'coc.nvim')
     let g:coc_global_extensions = [
                 \ 'coc-snippets',
+                \ 'coc-tabnine',
                 \ 'coc-python',
                 \ 'coc-dictionary',
                 \ 'coc-tag',
                 \ 'coc-word',
                 \ 'coc-emoji',
-                \ 'coc-syntax',
                 \ 'coc-gocode',
                 \ 'coc-json',
                 \ 'coc-yaml',
                 \ 'coc-highlight',
                 \ 'coc-rls',
+                \ 'coc-syntax',
                 \ ]
 
     function! s:check_back_space() abort
@@ -556,6 +532,10 @@ if has_key(g:plugs, 'coc.nvim')
                 \ <SID>check_back_space() ? "\<TAB>" :
                 \ coc#refresh()
     inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+    " Use <cr> to confirm completion
+    " Conflict with 'tpope/vim-endwise', use c-j instead
+    " inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
     " Use K to show documentation in preview window
     function! s:show_documentation()
@@ -779,6 +759,7 @@ augroup END
 
 " vim-python {{{ "
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins',  'for': 'python'}
+let g:semshi#error_sign = v:false
 if !empty(glob('~/.pyenv/shims/python'))
     let g:python3_host_prog = glob('~/.pyenv/shims/python')
 endif
@@ -821,9 +802,35 @@ augroup clojure_env
 augroup END
 " }}} clojure "
 
-" Need to be loaded after vim-go
-" https://github.com/fatih/vim-go/issues/2272
+" Syntax highlight: sheerun/vim-polyglot {{{ "
+" Need to be loaded after vim-go(https://github.com/fatih/vim-go/issues/2272)
 Plug 'sheerun/vim-polyglot'
+let g:polyglot_disabled = ['markdown'] " cause coc-emoji complete not triggered
+Plug 'plasticboy/vim-markdown',        { 'for': 'markdown'       }
+Plug 'dhruvasagar/vim-table-mode',     { 'for': 'markdown'       }
+Plug 'ekalinin/Dockerfile.vim',        { 'for': 'dockerfile'     }
+Plug 'andrewstuart/vim-kubernetes',    { 'for': 'yaml'           }
+Plug 'vim-scripts/awk.vim',            { 'for': 'awk'            }
+Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby'           }
+" Plug 'tmux-plugins/vim-tmux',            { 'for': 'tmux'           }
+" Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp'           }
+" Plug 'ap/vim-css-color',                 { 'for': 'css'           }
+" Plug 'moll/vim-node',                    { 'for': 'node'          }
+" Plug 'mattn/emmet-vim',                  { 'for': 'html'          }
+" Plug 'othree/xml.vim',                   { 'for': 'xml'           }
+" Plug 'elzr/vim-json',                    { 'for': 'json'          }
+" Plug 'cespare/vim-toml',                 { 'for': 'toml'          }
+" Plug 'pangloss/vim-javascript',          { 'for': 'javascript'    }
+" Plug 'martinda/Jenkinsfile-vim-syntax',  { 'for': 'jenkins'       }
+" Plug 'udalov/kotlin-vim',                { 'for': 'kotlin'        }
+" Plug 'vim-ruby/vim-ruby',                { 'for': 'ruby'          }
+" Plug 'tpope/vim-bundler',                { 'for': 'ruby'          }
+" Plug 'tpope/vim-rake',                   { 'for': 'ruby'          }
+" Plug 'jgdavey/vim-blockle',              { 'for': 'ruby'          } | let g:blockle_mapping = '<leader>B'
+" Plug 'stephpy/vim-yaml',                 { 'for': 'yaml'          }
+" Plug 'chr4/nginx.vim',                   { 'for': 'conf'          }
+" }}} sheerun/vim-polyglot "
+
 call plug#end()
 
 " Custom functions {{{ "
@@ -847,51 +854,51 @@ command! PI PlugInstall
 command! PC PlugClean
 
 " VimAwesome complete for vim-plug
-function! VimAwesomeComplete() abort
-    let prefix = matchstr(strpart(getline('.'), 0, col('.') - 1), '[.a-zA-Z0-9_/-]*$')
-    echohl WarningMsg
-    echo 'Downloading plugin list from VimAwesome'
-    echohl None
-    ruby << EOF
-    require 'json'
-    require 'open-uri'
+" function! VimAwesomeComplete() abort
+    " let prefix = matchstr(strpart(getline('.'), 0, col('.') - 1), '[.a-zA-Z0-9_/-]*$')
+    " echohl WarningMsg
+    " echo 'Downloading plugin list from VimAwesome'
+    " echohl None
+    " ruby << EOF
+    " require 'json'
+    " require 'open-uri'
+"
+    " query = VIM::evaluate('prefix').gsub('/', '%20')
+    " items = 1.upto(max_pages = 3).map do |page|
+    " Thread.new do
+    " url  = "http://vimawesome.com/api/plugins?page=#{page}&query=#{query}"
+    " data = open(url).read
+    " json = JSON.parse(data, symbolize_names: true)
+    " json[:plugins].map do |info|
+    " pair = info.values_at :github_owner, :github_repo_name
+    " next if pair.any? { |e| e.nil? || e.empty? }
+    " {word: pair.join('/'),
+    " menu: info[:category].to_s,
+    " info: info.values_at(:short_desc, :author).compact.join($/)}
+" end.compact
+    " end
+" end.each(&:join).map(&:value).inject(:+)
+" VIM::command("let cands = #{JSON.dump items}")
+" EOF
+" if !empty(cands)
+    " inoremap <buffer> <c-v> <c-n>
+    " augroup _VimAwesomeComplete
+        " autocmd!
+        " autocmd CursorMovedI,InsertLeave * iunmap <buffer> <c-v>
+                    " \| autocmd! _VimAwesomeComplete
+    " augroup END
+"
+    " call complete(col('.') - strchars(prefix), cands)
+" endif
+" return ''
+" endfunction
 
-    query = VIM::evaluate('prefix').gsub('/', '%20')
-    items = 1.upto(max_pages = 3).map do |page|
-    Thread.new do
-    url  = "http://vimawesome.com/api/plugins?page=#{page}&query=#{query}"
-    data = open(url).read
-    json = JSON.parse(data, symbolize_names: true)
-    json[:plugins].map do |info|
-    pair = info.values_at :github_owner, :github_repo_name
-    next if pair.any? { |e| e.nil? || e.empty? }
-    {word: pair.join('/'),
-    menu: info[:category].to_s,
-    info: info.values_at(:short_desc, :author).compact.join($/)}
-end.compact
-    end
-end.each(&:join).map(&:value).inject(:+)
-VIM::command("let cands = #{JSON.dump items}")
-EOF
-if !empty(cands)
-    inoremap <buffer> <c-v> <c-n>
-    augroup _VimAwesomeComplete
-        autocmd!
-        autocmd CursorMovedI,InsertLeave * iunmap <buffer> <c-v>
-                    \| autocmd! _VimAwesomeComplete
-    augroup END
-
-    call complete(col('.') - strchars(prefix), cands)
-endif
-return ''
-endfunction
-
-augroup PlugExtension
-    autocmd!
-    autocmd FileType vim
-                \ inoremap <buffer> <c-x><c-x> <c-r>=VimAwesomeComplete()<cr>|
-                \ autocmd BufWritePost * source %
-augroup END
+" augroup PlugExtension
+    " autocmd!
+    " autocmd FileType vim
+                " \ inoremap <buffer> <c-x><c-x> <c-r>=VimAwesomeComplete()<cr>|
+                " \ autocmd BufWritePost * source %
+" augroup END
 
 " }}} vim-plug extension "
 

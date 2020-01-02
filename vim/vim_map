@@ -42,7 +42,7 @@ noremap <leader>M mmHmt:%s/<C-v><CR>//ge<CR>'tzt'm
 
 " Yank & paste
 " noremap  <c-y> "+yy
-" vnoremap <c-y> "+y
+vnoremap <c-c> "+y
 " inoremap <C-y> <C-o>"+P
 inoremap <c-v> <c-o>:set paste<cr><c-r>+<c-o>:set nopaste<cr>
 

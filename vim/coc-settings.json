@@ -1,5 +1,7 @@
 {
   "python.jediEnabled": false,
+  "diagnostic.hintSign": "──",
+  "diagnostic.infoSign": "──",
   "diagnostic.warningSign": "──",
   "diagnostic.errorSign": "══",
   "languageserver": {
