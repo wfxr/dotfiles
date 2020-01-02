@@ -154,6 +154,7 @@ endif
 
 let g:gruvbox_material_transparent_background = 1
 silent! colorscheme gruvbox-material
+" silent! colorscheme seoul256
 
 " if strftime('%H') >= 7 && strftime('%H') < 19
 if 0

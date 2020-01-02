@@ -49,8 +49,6 @@ Plug 'vim-scripts/awk.vim',              { 'for': 'awk'           }
 Plug 'tmux-plugins/vim-tmux',            { 'for': 'tmux'          }
 Plug 'mbbill/undotree',                  { 'on': 'UndotreeToggle' } | nnoremap U :UndotreeToggle<CR>
 Plug 'junegunn/vim-github-dashboard' | let g:github_dashboard = { 'username': 'wfxr' }
-Plug 'gruvbox-community/gruvbox'     | let g:gruvbox_italic = 1  | let g:gruvbox_contrast_dark = 'medium'
-Plug 'sainnhe/gruvbox-material'      | let g:gruvbox_material_background = 'hard'
 Plug 'nightsense/snow'
 Plug 'mattn/vim-xxdcursor'           | Plug 'fidian/hexmode'     | let g:hexmode_patterns = '*.o,*.so,*.a,*.out,*.bin,*.exe'
 Plug 'vim-utils/vim-husk'            | Plug 'tpope/vim-rsi' " Eamcs-Style keymapping
@@ -66,6 +64,12 @@ Plug 'tpope/vim-repeat'
 Plug 'mattn/vim-textobj-url'
 " Plug 'wakatime/vim-wakatime'
 Plug 'ConradIrwin/vim-bracketed-paste' " Auto toggle paste mode when paste
+
+" Themes
+Plug 'junegunn/seoul256.vim'
+Plug 'gruvbox-community/gruvbox'     | let g:gruvbox_italic = 1  | let g:gruvbox_contrast_dark = 'medium'
+Plug 'sainnhe/gruvbox-material'      | let g:gruvbox_material_background = 'hard'
+
 
 " rhysd/committia.vim {{{ "
 " Plug 'rhysd/committia.vim'
