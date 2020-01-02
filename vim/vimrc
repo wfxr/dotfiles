@@ -59,7 +59,7 @@ set number
 "set relativenumber
 
 " Set height of cmd line
-set cmdheight=1
+set cmdheight=2
 
 " Highlight search matches
 set hlsearch

@@ -41,8 +41,8 @@ noremap <leader>bg :w<cr><C-z>
 noremap <leader>M mmHmt:%s/<C-v><CR>//ge<CR>'tzt'm
 
 " Yank & paste
-" noremap  <c-y> "+yy
-vnoremap <c-c> "+y
+noremap  <c-y> "+yy
+vnoremap <c-y> "+y
 " inoremap <C-y> <C-o>"+P
 inoremap <c-v> <c-o>:set paste<cr><c-r>+<c-o>:set nopaste<cr>
 
@@ -139,3 +139,5 @@ nnoremap <silent> g} va{J<esc>
 if v:version >= 800
   tnoremap <Esc> <C-\><C-n>
 endif
+
+nnoremap <silent> <leader>ee :e<cr>

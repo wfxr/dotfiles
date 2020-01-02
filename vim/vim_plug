@@ -248,12 +248,13 @@ nmap <Leader>d :Gdiff<CR>
 " }}} vim-fugitive "
 
 " vim-slash {{{ "
-Plug 'junegunn/vim-slash' " vim-slash provides a set of mappings for enhancing in-buffer search experience in Vim.
-if has('timers')
-  " Blink 3 times with 50ms interval
-  " noremap <expr> <plug>(slash-after) 'zz'.slash#blink(2, 50)
-  noremap <expr> <plug>(slash-after) slash#blink(2, 50)
-endif
+" ISSUE: vim-splash causes `gd` not work
+" Plug 'junegunn/vim-slash' " vim-slash provides a set of mappings for enhancing in-buffer search experience in Vim.
+" if has('timers')
+  " " Blink 3 times with 50ms interval
+  " " noremap <expr> <plug>(slash-after) 'zz'.slash#blink(2, 50)
+  " noremap <expr> <plug>(slash-after) slash#blink(2, 50)
+" endif
 " }}} vim-slash "
 
 " ryanoasis/vim-devicons {{{ "
@@ -527,15 +528,14 @@ if has_key(g:plugs, 'coc.nvim')
 
     " Use tab for trigger completion with characters ahead and navigate.
     " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-    inoremap <silent><expr> <TAB>
-                \ pumvisible() ? "\<C-n>" :
-                \ <SID>check_back_space() ? "\<TAB>" :
-                \ coc#refresh()
-    inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+    " inoremap <silent><expr> <TAB>
+                " \ pumvisible() ? "\<C-n>" :
+                " \ <SID>check_back_space() ? "\<TAB>" :
+                " \ coc#refresh()
+    " inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-    " Use <cr> to confirm completion
-    " Conflict with 'tpope/vim-endwise', use c-j instead
-    " inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+    " Use <tab> to confirm completion
+    inoremap <silent><expr> <tab> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<tab>"
 
     " Use K to show documentation in preview window
     function! s:show_documentation()
