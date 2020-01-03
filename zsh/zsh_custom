@@ -447,9 +447,7 @@ EOF
     )
 }
 
-function zsh-bench() {
-    for i in $(seq 5); do time zsh -i -c exit; done;
-}
+function zsh-bench() { for i ({1..${1:-5}}) time zsh -ilc echo &>/dev/null || true }
 
 function y() { ydcv "$*"; }
 

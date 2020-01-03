@@ -38,10 +38,10 @@ export CXX="${commands[clang++]:-$CXX}"
 
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
-# export RUSTUP_DIST_SERVER="https://mirrors.ustc.edu.cn/rust-static"
 export CARGO_HOME="$HOME/.cargo"
-export RUST_SRC_PATH="$HOME/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
-[[ "$OSNAME" == 'Darwin' ]] && export RUST_SRC_PATH="$HOME/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src"
+# export RUSTUP_DIST_SERVER="https://mirrors.ustc.edu.cn/rust-static"
+# export RUST_SRC_PATH="$HOME/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
+# [[ "$OSNAME" == 'Darwin' ]] && export RUST_SRC_PATH="$HOME/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src"
 
 export TERM="xterm-256color"
 
