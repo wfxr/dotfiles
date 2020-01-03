@@ -102,13 +102,13 @@ for plugin in kubectl pyenv pip; do
     touch "${ZPLGM[PLUGINS_DIR]}/_local---$plugin/init.plugin.zsh"
 done
 
-zpl ice wait atload'source <(kubectl completion zsh)' lucid
+zpl ice wait if'(( $+commands[kubectl] ))' atload'source <(kubectl completion zsh)' lucid
 zpl light _local/kubectl
 
-zpl ice wait atload'source <(pip completion --zsh)' lucid
+zpl ice wait if'(( $+commands[pip] ))' atload'source <(pip completion --zsh)' lucid
 zpl light _local/pip
 
-zpl ice wait atload'source <(pyenv init - zsh)' lucid
+zpl ice wait if'(( $+commands[pyenv] ))' atload'source <(pyenv init - zsh)' lucid
 zpl light _local/pyenv
 
 # Completions init
