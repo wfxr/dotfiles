@@ -15,72 +15,73 @@ autoload -Uz _zplugin
 (( ${+_comps} )) && _comps[zplugin]=_zplugin
 
 # No need to load it when in ssh session
-zplugin ice if'[[ -z "$SSH_CLIENT" ]]' as"program" bpick"b"
-zplugin load 'wfxr/fzf-chrome-marks'
+zpl ice if'[[ -z "$SSH_CLIENT" ]]' as"program" bpick"b"
+zpl load 'wfxr/fzf-chrome-marks'
 
 # Git alias. See: https://github.com/robbyrussell/oh-my-zsh/wiki/Plugin:git
-zplugin snippet "OMZ::plugins/git/git.plugin.zsh"
-zplugin snippet "OMZ::plugins/git-extras/git-extras.plugin.zsh"
-zplugin snippet "OMZ::plugins/git-flow-avh/git-flow-avh.plugin.zsh"
+zpl snippet "OMZ::plugins/git/git.plugin.zsh"
+zpl snippet "OMZ::plugins/git-extras/git-extras.plugin.zsh"
+zpl snippet "OMZ::plugins/git-flow-avh/git-flow-avh.plugin.zsh"
 
-zplugin ice wait lucid
-zplugin snippet "OMZ::plugins/mvn/mvn.plugin.zsh"
+zpl ice wait lucid
+zpl snippet "OMZ::plugins/mvn/mvn.plugin.zsh"
 
-zplugin ice wait lucid
-zplugin snippet "OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh"
+cmd="zpl ice wait lucid"
+zpl ice wait lucid
+zpl snippet "OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh"
 
-zplugin ice wait as"completion" lucid
-zplugin snippet "OMZ::plugins/docker/_docker"
+zpl ice wait as"completion" lucid
+zpl snippet "OMZ::plugins/docker/_docker"
 
-zplugin ice wait as"completion" lucid
-zplugin snippet "OMZ::plugins/gem/_gem"
+zpl ice wait as"completion" lucid
+zpl snippet "OMZ::plugins/gem/_gem"
 
-zplugin ice wait as"completion" lucid
-zplugin snippet "OMZ::plugins/lein/_lein"
+zpl ice wait as"completion" lucid
+zpl snippet "OMZ::plugins/lein/_lein"
 
-zplugin ice bpick"z.sh"
-zplugin load "rupa/z"
+zpl ice bpick"z.sh"
+zpl load "rupa/z"
 
 ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=(forward-word forward-char)
 ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(end-of-line)
-zplugin light "zsh-users/zsh-autosuggestions"
-zplugin light "zsh-users/zsh-syntax-highlighting"
-zplugin light "zsh-users/zsh-completions"
+zpl light "zsh-users/zsh-autosuggestions"
+zpl light "zsh-users/zsh-syntax-highlighting"
+zpl light "zsh-users/zsh-completions"
 
-zplugin light "zdharma/fast-syntax-highlighting"
+zpl light "zdharma/fast-syntax-highlighting"
 
 # zplugin light 'ytet5uy4/fzf-widgets'
 
-zplugin ice as"program" pick"src/ydcv.py"
-zplugin light "felixonmars/ydcv"
+zpl ice as"program" pick"src/ydcv.py"
+zpl light "felixonmars/ydcv"
 alias ydcv="ydcv.py"
 
-zplugin light "soimort/translate-shell"
+zpl light "soimort/translate-shell"
 
-zplugin ice as"program" atclone'git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"' \
+zpl ice as"program" atclone'git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"' \
     bpick"diff-so-fancy"
-zplugin light "so-fancy/diff-so-fancy"
+zpl light "so-fancy/diff-so-fancy"
 
-zplugin ice as"program"
-zplugin light "wfxr/iconful"
+zpl ice as"program"
+zpl light "wfxr/iconful"
 alias iconful='iconful.sh'
 
-zplugin light "wfxr/forepos"
-zplugin light "wfxr/epoch-cli"
-zplugin light "wfxr/formarks"
+zpl light "wfxr/forepos"
+zpl light "wfxr/epoch-cli"
+zpl light "wfxr/formarks"
 
 FORGIT_FZF_DEFAULT_OPTS="--height '80%'"
-zplugin light "wfxr/forgit"
+zpl light "wfxr/forgit"
 
 EMOJI_CLI_KEYBIND='^[m'
-zplugin ice as"program" multisrc"*.zsh"
-zplugin light "wfxr/emoji-cli"
+zpl ice as"program" multisrc"*.zsh"
+zpl light "wfxr/emoji-cli"
 
-zplugin ice if'[[ -z $+commands[jq] ]]' from"gh-r" as"program" mv"jq* -> jq"
-zplugin light "stedolan/jq"
+zpl ice if'[[ -z $+commands[jq] ]]' from"gh-r" as"program" mv"jq* -> jq"
+zpl light "stedolan/jq"
 
-zplugin ice as"program"
-zplugin light "reorx/httpstat"
+zpl ice as"program"
+zpl light "reorx/httpstat"
 alias httpstat='httpstat.py'
 
 #######################################################################
@@ -101,16 +102,16 @@ for plugin in kubectl pyenv pip; do
     touch "${ZPLGM[PLUGINS_DIR]}/_local---$plugin/init.plugin.zsh"
 done
 
-zplugin ice wait atload'source <(kubectl completion zsh)' lucid
-zplugin light _local/kubectl
+zpl ice wait atload'source <(kubectl completion zsh)' lucid
+zpl light _local/kubectl
 
-zplugin ice wait atload'source <(pip completion --zsh)' lucid
-zplugin light _local/pip
+zpl ice wait atload'source <(pip completion --zsh)' lucid
+zpl light _local/pip
 
-zplugin ice wait atload'source <(pyenv init - zsh)' lucid
-zplugin light _local/pyenv
+zpl ice wait atload'source <(pyenv init - zsh)' lucid
+zpl light _local/pyenv
 
 # Completions init
 autoload -Uz compinit
 compinit
-zplugin cdreplay -q
+zpl cdreplay -q
