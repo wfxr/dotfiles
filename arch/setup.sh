@@ -19,7 +19,7 @@ pacman --noconfirm -Sy archlinuxcn-keyring yay
 pacman --noconfirm -S git-crypt
 pacman --noconfirm -S neovim
 pacman --noconfirm -S openssh make cmake
-pacman --noconfirm -S clang go pyenv
+pacman --noconfirm -S clang go
 pacman --noconfirm -S zsh htop
 pacman --noconfirm -S words
 pacman --noconfirm -S perl-rename
