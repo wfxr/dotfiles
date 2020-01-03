@@ -1,52 +1,91 @@
 #!/usr/bin/env zsh
-#=============================================================================
-#       Author: Wenxuan Zhang
-#        Email: wenxuangm@gmail.com
-#     HomePage: wenxuan.info
-#=============================================================================
+################################################################################
+#       Author: Wenxuan Zhang                                                  #
+#        Email: wenxuangm@gmail.com                                            #
+#     HomePage: https://github.com/wfxr                                        #
+################################################################################
 
 # Plugin manager
-export ZPLUG_BIN=~/bin
-export ZPLUG_THREADS=32
-# If zplug doesn't exist, install it
-ZPLUG_INIT=~/.zplug/init.zsh
-[[ -f "$ZPLUG_INIT" ]] || curl -sL https://raw.githubusercontent.com/zplug/installer/master/installer.zsh |zsh
-source "$ZPLUG_INIT"
+[ -d ~/.zplugin/bin ] || {
+    mkdir -p ~/.zplugin
+    git clone --depth=1 https://github.com/zdharma/zplugin.git ~/.zplugin/bin
+}
+source "$HOME/.zplugin/bin/zplugin.zsh"
+autoload -Uz _zplugin
+(( ${+_comps} )) && _comps[zplugin]=_zplugin
 
-zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 # No need to load it when in ssh session
-# [ "$SSH_CLIENT" ] || zplug "plugins/web-search",    from:oh-my-zsh, hook-load:"unalias map &>/dev/null"
-[ "$SSH_CLIENT" ] || zplug 'wfxr/fzf-chrome-marks', as:command, use:'b'
+zplugin ice if'[[ -z "$SSH_CLIENT" ]]' as"program" bpick"b"
+zplugin load 'wfxr/fzf-chrome-marks'
 
 # Git alias. See: https://github.com/robbyrussell/oh-my-zsh/wiki/Plugin:git
-zplug "plugins/git", from:oh-my-zsh
-# Git completions. On OS X with Homebrew, you need to install git with brew install git --without-completions. Otherwise, git's _git will take precedence, and you won't see the completions for git-extras commands.
-zplug "plugins/git-extras", from:oh-my-zsh
-zplug 'plugins/git-flow-avh', from:oh-my-zsh
-#zplug "plugins/cp", from:oh-my-zsh
-(( $+commands[mvn]        )) && zplug "plugins/mvn",        from:oh-my-zsh, lazy:yes
-(( $+commands[docker]     )) && zplug "plugins/docker",     from:oh-my-zsh, lazy:yes
-(( $+commands[tmuxinator] )) && zplug "plugins/tmuxinator", from:oh-my-zsh, lazy:yes
-(( $+commands[gem]        )) && zplug "plugins/gem",        from:oh-my-zsh, lazy:yes
-(( $+commands[lein]       )) && zplug 'plugins/lein',       from:oh-my-zsh, lazy:yes
-# (( $+commands[odpscmd]    )) && zplug 'wfxr/odps-fzf'
-zplug "plugins/colored-man-pages", from:oh-my-zsh
-zplug "rupa/z", use:"z.sh"
+zplugin snippet "OMZ::plugins/git/git.plugin.zsh"
+zplugin snippet "OMZ::plugins/git-extras/git-extras.plugin.zsh"
+zplugin snippet "OMZ::plugins/git-flow-avh/git-flow-avh.plugin.zsh"
 
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
-zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-autosuggestions"
+zplugin ice wait lucid
+zplugin snippet "OMZ::plugins/mvn/mvn.plugin.zsh"
+
+zplugin ice wait lucid
+zplugin snippet "OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh"
+
+zplugin ice wait as"completion" lucid
+zplugin snippet "OMZ::plugins/docker/_docker"
+
+zplugin ice wait as"completion" lucid
+zplugin snippet "OMZ::plugins/gem/_gem"
+
+zplugin ice wait as"completion" lucid
+zplugin snippet "OMZ::plugins/lein/_lein"
+
+zplugin ice bpick"z.sh"
+zplugin load "rupa/z"
+
 ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=(forward-word forward-char)
 ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(end-of-line)
+zplugin light "zsh-users/zsh-autosuggestions"
+zplugin light "zsh-users/zsh-syntax-highlighting"
+zplugin light "zsh-users/zsh-completions"
 
-# zplug "morhetz/gruvbox", use:"gruvbox_256palette.sh" # No necessory for neovim & vim 8+
-zplug "felixonmars/ydcv", as:command, use:"src/ydcv.py", rename-to:"ydcv"
-zplug 'soimort/translate-shell', at:'develop'
-#zplug 'ytet5uy4/fzf-widgets'
+zplugin light "zdharma/fast-syntax-highlighting"
 
-################################################################################
-# Themes
-################################################################################
+# zplugin light 'ytet5uy4/fzf-widgets'
+
+zplugin ice as"program"
+zplugin light "felixonmars/ydcv"
+alias ydcv='ydcv.py'
+
+zplugin light "soimort/translate-shell"
+
+zplugin ice as"program" atclone'git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"' \
+    bpick"diff-so-fancy"
+zplugin light "so-fancy/diff-so-fancy"
+
+zplugin ice as"program"
+zplugin light "wfxr/iconful"
+alias iconful='iconful.sh'
+
+zplugin light "wfxr/forepos"
+zplugin light "wfxr/epoch-cli"
+zplugin light "wfxr/formarks"
+
+FORGIT_FZF_DEFAULT_OPTS="--height '80%'"
+zplugin light "wfxr/forgit"
+
+EMOJI_CLI_KEYBIND='^[m'
+zplugin ice as"program" multisrc"*.zsh"
+zplugin light "wfxr/emoji-cli"
+
+zplugin ice if'[[ -z $+commands[jq] ]]' from"gh-r" as"program" mv"jq* -> jq"
+zplugin light "stedolan/jq"
+
+zplugin ice as"program"
+zplugin light "reorx/httpstat"
+alias httpstat='httpstat.py'
+
+#######################################################################
+#                               Themes                                #
+#######################################################################
 # zplug "denysdovhan/spaceship-prompt", as:theme
 # zplug "wfxr/spaceship-zsh-theme", use:spaceship.zsh, as:theme
 # zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme, as:theme
@@ -54,62 +93,24 @@ zplug 'soimort/translate-shell', at:'develop'
 # zplug "mafredri/zsh-async"
 # zplug "sindresorhus/pure", use:pure.zsh, as:theme
 
-zplug 'so-fancy/diff-so-fancy', \
-    as:command, use:diff-so-fancy, \
-    hook-build:'git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"'
+#######################################################################
+#                            Local Plugins                            #
+#######################################################################
+for plugin in kubectl pyenv pip; do
+    mkdir -p "${ZPLGM[PLUGINS_DIR]}/_local---$plugin"
+    touch "${ZPLGM[PLUGINS_DIR]}/_local---$plugin/init.plugin.zsh"
+done
 
-zplug 'b4b4r07/zplug-doctor', lazy:yes
+zplugin ice wait atload'source <(kubectl completion zsh)' lucid
+zplugin light _local/kubectl
 
-zplug 'wfxr/zplug-rm', lazy:yes
-zplug 'wfxr/iconful', as:command, use:'(iconful).sh', rename-to:'$1'
-zplug 'wfxr/forepos'
-zplug 'wfxr/epoch-cli'
-zplug "wfxr/formarks"
-zplug 'wfxr/forgit', defer:1
-FORGIT_FZF_DEFAULT_OPTS="
---height '80%'
-"
-# zplug 'wfxr/epoch-cli'
-zplug "wfxr/emoji-cli", as:command, use:'emojify|fuzzy-emoji'
-# zplug "wfxr/emoji-cli", as:plugin
-# EMOJI_CLI_KEYBIND='^[m'
+zplugin ice wait atload'source <(pip completion --zsh)' lucid
+zplugin light _local/pip
 
-(( $+commands[jq] )) || zplug "stedolan/jq", as:command, from:gh-r, rename-to:jq
+zplugin ice wait atload'source <(pyenv init - zsh)' lucid
+zplugin light _local/pyenv
 
-# Short, simple, direct scripts for creating ASCII graphical histograms in the terminal.
-#zplug "philovivero/distribution", \
-    #as:command, \
-    #use:distribution
-
-#zplug "holman/spark", \
-    #as:command, \
-    #use:spark
-
-# httpstat visualizes curl(1) statistics in a way of beauty and clarity.
-zplug "reorx/httpstat", \
-    as:command, \
-    use:'(httpstat).py', \
-    rename-to:'$1'
-
-# An interactive way to peruse your git history from the terminal
-#zplug 'Fakerr/git-recall', \
-    #as:command, \
-    #use:'git-recall'
-
-# Remote repository management made easy
-# zplug "motemen/ghq", \
-    # as:command, \
-    # from:gh-r, \
-    # rename-to:ghq
-
-# sparklines
-# usage: sparklines -n 3 null 3 7 4 2 5 6 | lolcat
-#zplug "deeplook/sparklines", hook-build:"sudo pip install -e ."
-
-# Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    read -q && echo && zplug install
-fi
-
-zplug load
+# Completions init
+autoload -Uz compinit
+compinit
+zplugin cdreplay -q
