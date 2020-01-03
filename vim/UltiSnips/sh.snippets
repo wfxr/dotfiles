@@ -83,10 +83,10 @@ logPath="$logdir/${1:`!v expand('%:t')`}.log"
 mkdir -p "$logdir"
 endsnippet
 
-snippet log "log helper" b
-log() { echo "$(date -Iseconds)" "$*"${1: >>"$logPath"}; }
-$2
-endsnippet
+# snippet log "log helper" b
+# log() { echo "$(date -Iseconds)" "$*"${1: >>"$logPath"}; }
+# $2
+# endsnippet
 
 snippet join_by "join function" b
 join_by() { local d=\$1; shift; echo -n "\$1"; shift; printf "%s" "${@/#/$d}"; }
@@ -135,10 +135,10 @@ snippet arrayfromcmd "Read lines to array from cmd" b
 readarray -t ${1:arr} <(${2:cmd})
 endsnippet
 
-snippet colorlog "log message with color" b
-info() { printf "%b[info]%b %s\n" '\e[0;32m\033[1m' '\e[0m' "$@" >&2; }
-warn() { printf "%b[warn]%b %s\n" '\e[0;33m\033[1m' '\e[0m' "$@" >&2; }
-error() { printf "%b[error]%b %s\n" '\e[0;31m\033[1m' '\e[0m' "$@" >&2; }
+snippet log "log messages with color" b
+loginfo()  { printf "%b[info]%b %s\n"  '\e[0;32m\033[1m' '\e[0m' "$@" >&2; }
+logwarn()  { printf "%b[warn]%b %s\n"  '\e[0;33m\033[1m' '\e[0m' "$@" >&2; }
+logerror() { printf "%b[error]%b %s\n" '\e[0;31m\033[1m' '\e[0m' "$@" >&2; }
 endsnippet
 
 snippet require "description"

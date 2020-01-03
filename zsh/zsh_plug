@@ -51,9 +51,9 @@ zplugin light "zdharma/fast-syntax-highlighting"
 
 # zplugin light 'ytet5uy4/fzf-widgets'
 
-zplugin ice as"program"
+zplugin ice as"program" pick"src/ydcv.py"
 zplugin light "felixonmars/ydcv"
-alias ydcv='ydcv.py'
+alias ydcv="ydcv.py"
 
 zplugin light "soimort/translate-shell"
 
