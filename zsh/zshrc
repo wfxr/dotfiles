@@ -26,11 +26,6 @@ source ~/.zsh_misc
 source ~/.zsh_aliases
 source ~/.zsh_custom
 
-[ -f ~/.zsh_theme ] && source ~/.zsh_theme
-
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
-
-# Theme
-(( $+commands[starship] )) && source <(starship init zsh)
 
 return 0

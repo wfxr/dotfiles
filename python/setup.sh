@@ -14,7 +14,7 @@ install_pyenv() {
     # pyenv
     export PATH="$HOME/.pyenv/bin:$PATH"
     if ! hash pyenv &>/dev/null; then
-        curl https://pyenv.run | bash || exit 1
+        curl -sSL https://pyenv.run | bash || exit 1
     fi
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
