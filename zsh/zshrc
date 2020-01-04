@@ -132,7 +132,6 @@ __zsh_async_source_task__() {
 # disable defer loading to view logs, useful when initializing zsh first time
 if [[ -n $DISABLE_ZSH_DEFER ]]; then
     __zsh_async_source_task__
-    unset DISABLE_ZSH_DEFER
 else
     zsh-defer -c __zsh_async_source_task__
 fi

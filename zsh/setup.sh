@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
-# get the dir of the current script
-SDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) && cd "$SDIR" || return 1
+loginfo()  { printf "%b[info]%b %s\n"  '\e[0;32m\033[1m' '\e[0m' "$@" >&2; }
+logwarn()  { printf "%b[warn]%b %s\n"  '\e[0;33m\033[1m' '\e[0m' "$@" >&2; }
+logerror() { printf "%b[error]%b %s\n" '\e[0;31m\033[1m' '\e[0m' "$@" >&2; }
+
+SDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 ln -sf "$SDIR/zshrc"         ~/.zshrc
 ln -sf "$SDIR/zshenv"        ~/.zshenv
@@ -22,8 +25,8 @@ ln -sf "$SDIR/completions/_fzf" ~/.zsh_completions/_fzf
 ln -sf "$SDIR/completions/_gi"  ~/.zsh_completions/_gi
 ln -sf "$SDIR/completions/_hub" ~/.zsh_completions/_hub
 
-../starship/setup.sh
+"$SDIR/../starship/setup.sh" || logwarn "shell theme starship not installed correctly."
 
 [[ "$SHELL" =~ "zsh" ]] || chsh -s "$(command -v zsh)"
 
-DISABLE_ZSH_DEFER=1 zsh
+DISABLE_ZSH_DEFER=1 zsh -ic 'exit'

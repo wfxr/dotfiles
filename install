@@ -4,22 +4,19 @@
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) && cd "$SCRIPT_DIR" || exit 1
 
 # show usage and quit
-usage() {
-    echo "Usage: $0 <module> [module]..." >&2
-    exit 1
-}
+usage() { echo "Usage: $(basename "$0") <module> [module]..." >&2; }
 
-[[ "$#" -lt 1 ]] && usage
+[[ "$#" -lt 1 ]] && usage && exit 1
 
-info()  { printf "%b[info]%b  %s\n" '\e[0;32m\033[1m' '\e[0m' "$@" >&2; }
-warn()  { printf "%b[warn]%b  %s\n" '\e[0;33m\033[1m' '\e[0m' "$@" >&2; }
-error() { printf "%b[error]%b %s\n" '\e[0;31m\033[1m' '\e[0m' "$@" >&2; }
+loginfo()  { printf "%b[info]%b %s\n"  '\e[0;32m\033[1m' '\e[0m' "$@" >&2; }
+logwarn()  { printf "%b[warn]%b %s\n"  '\e[0;33m\033[1m' '\e[0m' "$@" >&2; }
+logerror() { printf "%b[error]%b %s\n" '\e[0;31m\033[1m' '\e[0m' "$@" >&2; }
 
 install_module() {
     local module="$1"
-    info "install $module config ..."
-    [[ ! -f "$module/setup.sh" ]] && error "$module config not found!" && return
-    "$module/setup.sh"            && info  "$module config installed successfully!"
+    loginfo "install $module config ..."
+    [[ ! -f "$module/setup.sh" ]] && logerror "$module config not found!" && return 2
+    "$module/setup.sh"            && loginfo  "$module config installed successfully!"
 }
 
 for module in "$@"; do
