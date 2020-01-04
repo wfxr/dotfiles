@@ -4,7 +4,7 @@
 SDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) && cd "$SDIR" || return 1
 
 ln -sf "$SDIR/zshrc"         ~/.zshrc
-ln -sf "$SDIR/zsh_env"       ~/.zsh_env
+ln -sf "$SDIR/zshenv"        ~/.zshenv
 ln -sf "$SDIR/zsh_aliases"   ~/.zsh_aliases
 ln -sf "$SDIR/zsh_keybinds"  ~/.zsh_keybinds
 ln -sf "$SDIR/zsh_misc"      ~/.zsh_misc
@@ -25,3 +25,5 @@ ln -sf "$SDIR/completions/_hub" ~/.zsh_completions/_hub
 ../starship/setup.sh
 
 [[ "$SHELL" =~ "zsh" ]] || chsh -s "$(command -v zsh)"
+
+DISABLE_ZSH_DEFER=1 zsh

@@ -4,28 +4,137 @@
 #     Email: wenxuangm@gmail.com                                               #
 #   Created: 2020-01-03 16:33                                                  #
 ################################################################################
-# zmodload zsh/zprof
+bindkey -e # This line should be on top
+
+# simple color logger
 loginfo()  { printf "%b[info]%b %s\n"  '\e[0;32m\033[1m' '\e[0m' "$@" >&2; }
 logwarn()  { printf "%b[warn]%b %s\n"  '\e[0;33m\033[1m' '\e[0m' "$@" >&2; }
 logerror() { printf "%b[error]%b %s\n" '\e[0;31m\033[1m' '\e[0m' "$@" >&2; }
 
-bindkey -e # This line should be on top
+#######################################################################
+# plugin manager                                                      #
+#######################################################################
+[ -d ~/.zplugin/bin ] || {
+    mkdir -p ~/.zplugin
+    git clone --depth=1 https://github.com/zdharma/zplugin.git ~/.zplugin/bin || exit 1
+}
+source "$HOME/.zplugin/bin/zplugin.zsh"
 
-source ~/.zsh_env
+zpl ice depth='1'; zpl light 'romkatv/zsh-defer'
 
-[ -f ~/.fzf.zsh       ] && source ~/.fzf.zsh
-[ -f ~/.zsh_fzf_extra ] && source ~/.zsh_fzf_extra
-[ -f ~/.zsh_local     ] && source ~/.zsh_local
-[ -f ~/.zsh_secret    ] && {
-    source ~/.zsh_secret 2>/dev/null || logwarn "source ~/.zsh_secret failed(file maybe locked)."
+#######################################################################
+# theme                                                               #
+#######################################################################
+source <(starship init zsh) || logwarn "failed loading starship."
+# 'denysdovhan/spaceship-prompt'
+# 'bhilburn/powerlevel9k'
+# 'subnixr/minimal'
+# 'mafredri/zsh-async'
+# 'sindresorhus/pure'
+
+__zsh_async_source_task__() {
+    [ -f ~/.fzf.zsh       ] && source ~/.fzf.zsh
+    [ -f ~/.zsh_fzf_extra ] && source ~/.zsh_fzf_extra
+    #######################################################################
+    # normal plugins                                                      #
+    #######################################################################
+    # forgit should be loaded after .zsh_fzf_extra to read fzf's env
+    FORGIT_FZF_DEFAULT_OPTS="--height '80%'"
+    ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=(forward-word forward-char)
+    ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(end-of-line)
+    zpl light-mode lucid depth='1' for         \
+        atload='_zsh_autosuggest_start'        \
+            'zsh-users/zsh-autosuggestions'    \
+        blockf                                 \
+            'zsh-users/zsh-completions'        \
+            'zdharma/fast-syntax-highlighting' \
+            'hlissner/zsh-autopair'            \
+            'rupa/z'                           \
+            'wfxr/forgit'                      \
+            'wfxr/forepos'                     \
+            'wfxr/epoch-cli'                   \
+            'wfxr/formarks'                    \
+            'soimort/translate-shell'          \
+
+    # 'skywind3000/z.lua' # better than rupa/z but require lua?
+
+    #######################################################################
+    # snippet plugins                                                     #
+    #######################################################################
+    zpl ice as='null' cloneonly depth='1' nocompile; zpl light 'ohmyzsh/ohmyzsh'
+    OMZ="${ZPLGM[PLUGINS_DIR]}/ohmyzsh---ohmyzsh/plugins"
+
+    zpl snippet "$OMZ/git-extras/git-extras.plugin.zsh"
+    zpl snippet "$OMZ/git-flow-avh/git-flow-avh.plugin.zsh"
+    zpl snippet "$OMZ/mvn/mvn.plugin.zsh"
+    zpl snippet "$OMZ/colored-man-pages/colored-man-pages.plugin.zsh"
+    zpl ice as='completion'; zpl snippet "$OMZ/docker/_docker"
+    zpl ice as='completion'; zpl snippet "$OMZ/gem/_gem"
+    zpl ice as='completion'; zpl snippet "$OMZ/lein/_lein"
+
+    #######################################################################
+    # programs                                                            #
+    #######################################################################
+    # zlk <from> [dest]
+    zlk() {
+        local src="$1"; local dest="$src"
+        [ $# -eq 2 ] && dest="$2"
+        eval 'ln -sf $PWD/'"$src ~/bin/$dest"
+    }
+
+    zpl light-mode as='null' cloneonly depth='1' nocompile for                                             \
+        atclone='zlk src/ydcv.py ydcv'                                                                     \
+            'felixonmars/ydcv'                                                                             \
+        atclone='zlk iconful.sh iconful'                                                                   \
+            'wfxr/iconful'                                                                                 \
+        atclone='zlk b'                                                                                    \
+            'wfxr/fzf-chrome-marks'                                                                        \
+        atclone='zlk diff-so-fancy && git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"' \
+            'so-fancy/diff-so-fancy'                                                                       \
+        atclone="zlk httpstat.py httpstat"                                                                 \
+            'reorx/httpstat'                                                                               \
+
+    EMOJI_CLI_KEYBIND='^[m'
+    zpl light-mode as='null' cloneonly depth='1' for                                                       \
+        atclone='zlk emojify; zlk fuzzy-emoji' multisrc='*.zsh'                                            \
+            'wfxr/emoji-cli'                                                                               \
+
+    zpl light-mode as='null' from='gh-r' nocompile for                                                     \
+        if='[[ -z $+commands[jq] ]]' mv="jq* -> ~/bin/jq"                                                  \
+            'stedolan/jq'                                                                                  \
+
+    source ~/.zsh_keybinds
+    source ~/.zsh_misc
+    source ~/.zsh_aliases
+    [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
+    [ -f ~/.zsh_local        ] && source ~/.zsh_local
+    [ -f ~/.zsh_secret       ] && source ~/.zsh_secret 2>/dev/null # maybe locked
+    (( $+commands[kubectl]  )) && source <(kubectl completion zsh)
+    (( $+commands[pyenv]    )) && source <(pyenv init - zsh)
+    (( $+commands[pip]      )) && source <(pip completion --zsh)
+
+    # https://gist.github.com/ctechols/ca1035271ad134841284
+    custom_compinit() {
+        autoload -Uz compinit
+        # once a day
+        for dump in ~/.zcompdump(N.mh+24); do
+            compinit; zpcdreplay; return
+        done
+        compinit -C; zpcdreplay
+    }; custom_compinit
+
+    # some custom functions need comdef which was loaded after compinit
+    source ~/.zsh_custom
+
+    unset -f zlk custom_compinit
 }
 
-source ~/.zsh_plug
-source ~/.zsh_keybinds
-source ~/.zsh_misc
-source ~/.zsh_aliases
-source ~/.zsh_custom
-
-[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
+# disable defer loading to view logs, useful when initializing zsh first time
+if [[ -n $DISABLE_ZSH_DEFER ]]; then
+    __zsh_async_source_task__
+    unset DISABLE_ZSH_DEFER
+else
+    zsh-defer -c __zsh_async_source_task__
+fi
 
 return 0
