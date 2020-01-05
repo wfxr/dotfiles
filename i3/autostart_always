@@ -16,8 +16,19 @@ start_polybar() {
     polybar top &>/tmp/polybar-top.log &
 }
 
+start_tmux() {
+    # we cant not keep a tmux server without any session by using `tmux start-server`
+    # https://github.com/tmux/tmux/issues/182
+    # tmux start-server &
+    if ! tmux has-session -t 'default'; then
+        tmux new-session -d -s 'defalut' &
+    fi
+}
+
+
 main() {
     start_polybar
+    start_tmux
 }
 
 main

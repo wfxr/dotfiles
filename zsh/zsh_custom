@@ -57,20 +57,6 @@ function pet-add-prev() {
   sh -c "pet new `printf %q "$PREV"`"
 }
 
-# Tmux attach session
-function ta() {
-    [[ $TMUX ]] && return 1 # Already in tmux session
-    local preview_cmd='<<< {} awk "{print \$2}" | xargs tmux list-windows -t | sed "s/\[.*\]//g" | column -t | sed "s/  \(\S\)/ \1/g"'
-    local choice=$(tmux ls -F "#{session_name}" | nl -w2 -s' ' \
-        | fzf +s -e -1 -0 --height=14 \
-                          --bind 'alt-t:down' --cycle \
-                          --preview="$preview_cmd" \
-                          --preview-window=right:60% \
-        | awk '{print $2}'
-        )
-    tmux attach-session -t $choice 2>/dev/null
-}
-bindkey -s '^[t' 'ta\n'
 # Tmux switch session
 function wfxr::tmux-switch() {
     [[ ! $TMUX ]] && return 1 # Not in tmux session
@@ -83,8 +69,19 @@ function wfxr::tmux-switch() {
                           --preview-window=right:60% \
         | awk '{print $2}')
     tmux switch-client -t $choice 2>/dev/null
-
-    zle redisplay
+}
+# Tmux attach session
+function wfxr::tmux-attach() {
+    [[ $TMUX ]] && return 1 # Already in tmux session
+    local preview_cmd='<<< {} awk "{print \$2}" | xargs tmux list-windows -t | sed "s/\[.*\]//g" | column -t | sed "s/  \(\S\)/ \1/g"'
+    local choice=$(tmux ls -F "#{session_name}" | nl -w2 -s' ' \
+        | fzf +s -e -1 -0 --height=14 \
+                          --bind 'alt-t:down' --cycle \
+                          --preview="$preview_cmd" \
+                          --preview-window=right:60% \
+        | awk '{print $2}'
+        )
+    tmux attach-session -t $choice 2>/dev/null
 }
 # Tmux select window
 function wfxr::tmux-select-window() {
@@ -96,12 +93,34 @@ function wfxr::tmux-select-window() {
                           --bind 'alt-w:down' --cycle \
         | awk '{print $1}')
     tmux select-window -t $choice 2>/dev/null
-    zle redisplay
+    zle redisplay 2>/dev/null || true
 }
+# Tmux attach or create target session
+function t() {
+    if [[ $# -eq 0 ]]; then
+        if [[ $TMUX ]]; then
+            wfxr::tmux-switch
+        else
+            wfxr::tmux-attach
+        fi
+    else
+        if [[ $TMUX ]]; then
+            if ! tmux has-session -t "$1" 2>/dev/null; then
+                tmux new-session -d -s "$1"
+            fi
+            tmux switch-client -t "$1"
+        else
+            tmux new-session -A -s "$1"
+        fi
+    fi
+    zle redisplay 2>/dev/null || true
+}
+# https://issue.life/questions/37597191
+bindkey -s '^[t' 't\n'
 if [[ $TMUX ]]; then
-    zle     -N    wfxr::tmux-switch
-    bindkey '^[t' wfxr::tmux-switch
-    zle     -N    wfxr::tmux-select-window
+    zle -N t
+    bindkey '^[t' t
+    zle -N wfxr::tmux-select-window
     bindkey '^[w' wfxr::tmux-select-window
 fi
 
