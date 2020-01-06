@@ -103,7 +103,6 @@ __zsh_async_source_task__() {
         if='[[ -z $+commands[jq] ]]' mv="jq* -> ~/bin/jq"                                                  \
             'stedolan/jq'                                                                                  \
 
-    source ~/.zsh_keybinds
     source ~/.zsh_misc
     source ~/.zsh_aliases
     [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh

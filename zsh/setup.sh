@@ -8,11 +8,9 @@ SDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 ln -sf "$SDIR/zshrc"         ~/.zshrc
 ln -sf "$SDIR/zshenv"        ~/.zshenv
-ln -sf "$SDIR/zsh_aliases"   ~/.zsh_aliases
-ln -sf "$SDIR/zsh_keybinds"  ~/.zsh_keybinds
 ln -sf "$SDIR/zsh_misc"      ~/.zsh_misc
+ln -sf "$SDIR/zsh_aliases"   ~/.zsh_aliases
 ln -sf "$SDIR/zsh_custom"    ~/.zsh_custom
-ln -sf "$SDIR/zsh_plug"      ~/.zsh_plug
 # ln -sf "$SDIR/zsh_theme"     ~/.zsh_theme
 ln -sf "$SDIR/zsh_fzf_extra" ~/.zsh_fzf_extra
 ln -sf "$SDIR/zsh_secret"    ~/.zsh_secret
@@ -30,3 +28,34 @@ ln -sf "$SDIR/completions/_hub" ~/.zsh_completions/_hub
 [[ "$SHELL" =~ "zsh" ]] || chsh -s "$(command -v zsh)"
 
 DISABLE_ZSH_DEFER=1 zsh -ic 'exit'
+
+# zsh source order:
+# https://medium.com/@rajsek/zsh-bash-startup-files-loading-order-bashrc-zshrc-etc-e30045652f2e
+# +----------------+-----------+-----------+------+
+# |                |Interactive|Interactive|Script|
+# |                |login      |non-login  |      |
+# +----------------+-----------+-----------+------+
+# |/etc/zshenv     |    A      |    A      |  A   |
+# +----------------+-----------+-----------+------+
+# |~/.zshenv       |    B      |    B      |  B   |
+# +----------------+-----------+-----------+------+
+# |/etc/zprofile   |    C      |           |      |
+# +----------------+-----------+-----------+------+
+# |~/.zprofile     |    D      |           |      |
+# +----------------+-----------+-----------+------+
+# |/etc/zshrc      |    E      |    C      |      |
+# +----------------+-----------+-----------+------+
+# |~/.zshrc        |    F      |    D      |      |
+# +----------------+-----------+-----------+------+
+# |/etc/zlogin     |    G      |           |      |
+# +----------------+-----------+-----------+------+
+# |~/.zlogin       |    H      |           |      |
+# +----------------+-----------+-----------+------+
+# |                |           |           |      |
+# +----------------+-----------+-----------+------+
+# |                |           |           |      |
+# +----------------+-----------+-----------+------+
+# |~/.zlogout      |    I      |           |      |
+# +----------------+-----------+-----------+------+
+# |/etc/zlogout    |    J      |           |      |
+# +----------------+-----------+-----------+------+
