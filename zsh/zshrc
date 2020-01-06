@@ -4,6 +4,7 @@
 #     Email: wenxuangm@gmail.com                                               #
 #   Created: 2020-01-03 16:33                                                  #
 ################################################################################
+# zmodload zsh/zprof
 bindkey -e # This line should be on top
 
 # simple color logger
@@ -53,6 +54,7 @@ cached_source() {
         [ -f '$file' ] && return
         mkdir -p '$dir'
         eval '$rc_gen_cmd' > '$file'
+        zcompile '$file'
     "
     if [ ! -f "$file" ]; then
         if ! synchronized "$lock" "$handler"; then
@@ -166,4 +168,5 @@ else
     zsh-defer -c __zsh_async_source_task__
 fi
 
+# zprof
 return 0
