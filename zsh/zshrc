@@ -10,6 +10,17 @@ bindkey -e # This line should be on top
 loginfo()  { printf "%b[info]%b %s\n"  '\e[0;32m\033[1m' '\e[0m' "$@" >&2; }
 logwarn()  { printf "%b[warn]%b %s\n"  '\e[0;33m\033[1m' '\e[0m' "$@" >&2; }
 logerror() { printf "%b[error]%b %s\n" '\e[0;31m\033[1m' '\e[0m' "$@" >&2; }
+synchronized() {
+    local lock="$1" handler="$2" fallback="$3"
+    [ -e "$lock" ] && kill -0 $(cat "$lock") && return 1
+
+    trap "rm -f $lock" INT TERM EXIT
+    echo $$ > "$lock"
+
+    eval "$handler"
+
+    rm -f "$lock"
+}
 
 #######################################################################
 # plugin manager                                                      #
@@ -31,6 +42,25 @@ source <(starship init zsh) || logwarn "failed loading starship."
 # 'subnixr/minimal'
 # 'mafredri/zsh-async'
 # 'sindresorhus/pure'
+
+cached_source() {
+    local rc_gen_cmd="$1"
+    local dir="/tmp/zsh_cache/$(id -u)"
+    local file="$dir/$rc_gen_cmd.zsh"
+    local lock="$dir/lock"
+    local fallback=
+    local handler="
+        [ -f '$file' ] && return
+        mkdir -p '$dir'
+        eval '$rc_gen_cmd' > '$file'
+    "
+    if [ ! -f "$file" ]; then
+        if ! synchronized "$lock" "$handler"; then
+            source <($rc_gen_cmd) && return
+        fi
+    fi
+    source "$file"
+}
 
 __zsh_async_source_task__() {
     [ -f ~/.fzf.zsh       ] && source ~/.fzf.zsh
@@ -108,9 +138,6 @@ __zsh_async_source_task__() {
     [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
     [ -f ~/.zsh_local        ] && source ~/.zsh_local
     [ -f ~/.zsh_secret       ] && source ~/.zsh_secret 2>/dev/null # maybe locked
-    (( $+commands[kubectl]  )) && source <(kubectl completion zsh)
-    (( $+commands[pyenv]    )) && source <(pyenv init - zsh)
-    (( $+commands[pip]      )) && source <(pip completion --zsh)
 
     # https://gist.github.com/ctechols/ca1035271ad134841284
     custom_compinit() {
@@ -121,6 +148,10 @@ __zsh_async_source_task__() {
         done
         compinit -C; zpcdreplay
     }; custom_compinit
+
+    (( $+commands[kubectl]  )) && cached_source 'kubectl completion zsh'
+    (( $+commands[pyenv]    )) && cached_source 'pyenv init - zsh'
+    (( $+commands[pip]      )) && cached_source 'pip completion --zsh' # fucking slow. cache it!
 
     # some custom functions need comdef which was loaded after compinit
     source ~/.zsh_custom
