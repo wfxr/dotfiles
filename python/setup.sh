@@ -6,15 +6,25 @@
 ################################################################################
 SDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
-info()  { printf "%b[info]%b  %s\n" '\e[0;32m\033[1m' '\e[0m' "$@" >&2; }
-warn()  { printf "%b[warn]%b  %s\n" '\e[0;33m\033[1m' '\e[0m' "$@" >&2; }
-error() { printf "%b[error]%b %s\n" '\e[0;31m\033[1m' '\e[0m' "$@" >&2; }
+loginfo()  { printf "%b[info]%b %s\n"  '\e[0;32m\033[1m' '\e[0m' "$@" >&2; }
+logwarn()  { printf "%b[warn]%b %s\n"  '\e[0;33m\033[1m' '\e[0m' "$@" >&2; }
+logerror() { printf "%b[error]%b %s\n" '\e[0;31m\033[1m' '\e[0m' "$@" >&2; }
 
 install_pyenv() {
     # pyenv
     export PATH="$HOME/.pyenv/bin:$PATH"
+    trap 'rm -rf $TEMP' EXIT INT TERM HUP
+    TEMP="$(mktemp -td --suffix=.tmp "$(basename "$0")".XXXXXX)"
+    local installer="$TEMP/installer"
+    local installer_url=https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer
     if ! hash pyenv &>/dev/null; then
-        curl -sSL https://pyenv.run | bash || exit 1
+        if ! curl -fsSL "$installer_url" >"$installer"; then
+            logwarn "directly download failed. try git clone..."
+            (cd "$TEMP" && git clone --depth=1 https://github.com/pyenv/pyenv-installer &&
+                bash pyenv-installer/bin/pyenv-installer) || return 1
+        fi
+
+        bash "$installer" || return 1
     fi
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
@@ -28,9 +38,16 @@ install_python() {
         pkg=Python-$v.tar.xz
         mkdir -p ~/.pyenv/cache
         if [[ ! -f ~/.pyenv/cache/$pkg ]]; then
-            wget http://mirrors.sohu.com/python/$v/$pkg -P /tmp && mv /tmp/$pkg ~/.pyenv/cache/
+            wget http://mirrors.sohu.com/python/$v/$pkg -P /tmp && mv /tmp/$pkg ~/.pyenv/cache/ || return 1
         fi
-        pyenv install $v
+        # https://github.com/pyenv/pyenv/wiki/Common-build-problems
+        if hash apt 2>/dev/null; then
+            sudo apt update
+            sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
+                libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
+                xz-utils tk-dev libffi-dev liblzma-dev python-openssl git libedit-dev
+        fi
+        pyenv install $v || return 1
     fi
     pyenv global $v
 }
@@ -68,17 +85,18 @@ install_tools() {
     pip install yapf ptpython pylint
 }
 
-info "install pyenv..."
-install_pyenv
+loginfo "install pyenv..."
+install_pyenv || return 1
 
-info "install python..."
-install_python
+loginfo "install python..."
+install_python || return 1
 
-info "install pipenv..."
-install_pipenv
+loginfo "install configurations..."
+install_configs || return 1
 
-info "install configurations..."
-install_configs
+loginfo "install tools"
+install_tools || return 1
 
-info "install tools"
-install_tools
+loginfo "install pipenv..."
+install_pipenv || return 1
+
