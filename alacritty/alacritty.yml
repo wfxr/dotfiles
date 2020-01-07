@@ -456,8 +456,8 @@ mouse_bindings:
 # a no-op if you do not wish to receive input characters for that binding.
 key_bindings:
   # (Windows/Linux only)
-  - { key: V,        mods: Alt,            action: Paste            }
-  - { key: C,        mods: Alt,            action: Copy             }
+  - { key: V,        mods: Command,            action: Paste            }
+  - { key: C,        mods: Command,            action: Copy             }
   #- { key: Insert,   mods: Shift,         action: PasteSelection   }
   #- { key: Key0,     mods: Control,       action: ResetFontSize    }
   #- { key: Equals,   mods: Control,       action: IncreaseFontSize }

@@ -69,22 +69,22 @@ bindsym $mod+k focus up
 bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+# bindsym $mod+Left focus left
+# bindsym $mod+Down focus down
+# bindsym $mod+Up focus up
+# bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+# bindsym $mod+Shift+Left move left
+# bindsym $mod+Shift+Down move down
+# bindsym $mod+Shift+Up move up
+# bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
 bindsym $mod+minus split v
@@ -98,7 +98,7 @@ bindsym $mod+Return fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
+# bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
@@ -195,7 +195,7 @@ for_window [class="^.*"] border pixel 0
 
 for_window [class="mailspring"] floating enable
 
-bindsym $mod+c exec ~/bin/toggle-window google-chrome-stable Chrome
+bindsym $mod+w exec ~/bin/toggle-window google-chrome-stable Chrome
 bindsym $mod+m exec ~/bin/toggle-window mailspring           mailspring
 
 # change wallpaper
@@ -215,8 +215,8 @@ exec --no-startup-id ~/.config/i3/autostart
 
 exec_always --no-startup-id ~/.config/i3/autostart_always
 
-exec --no-startup-id i3-msg 'workspace 1; exec alacritty -e sh -c "neofetch && zsh -i"'
 exec --no-startup-id i3-msg 'workspace 1; exec google-chrome-stable'
+exec --no-startup-id i3-msg 'workspace 1; exec alacritty -e sh -c "neofetch && zsh -i"'
 
 # assign [class="Chromium"] → 2
 # assign [class="Pavucontrol"] → 9
