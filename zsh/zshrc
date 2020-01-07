@@ -16,7 +16,7 @@ synchronized() {
     [ -e "$lock" ] && kill -0 $(cat "$lock") && return 1
 
     trap "rm -f $lock" INT TERM EXIT
-    echo $$ > "$lock"
+    mkdir -p "${lock%/*}" && echo $$ > "$lock"
 
     eval "$handler"
 
@@ -44,26 +44,31 @@ source <(starship init zsh) || logwarn "failed loading starship."
 # 'mafredri/zsh-async'
 # 'sindresorhus/pure'
 
-cached_source() {
-    local rc_gen_cmd="$1"
-    local dir="/tmp/zsh_cache/$(id -u)"
-    local file="$dir/$rc_gen_cmd.zsh"
-    local lock="$dir/lock"
-    local fallback=
+# zsh-cached-compiled-source
+ZCCS_DIR="/tmp/zsh_cache/$UID"
+function zccs() {
+    local srcgen="$1" dest="$ZCCS_DIR/${2:-$1}.zccs" lock="$ZCCS_DIR/lock"
     local handler="
-        [ -f '$file' ] && return
-        mkdir -p '$dir'
-        eval '$rc_gen_cmd' > '$file'
-        zcompile '$file'
+        [ -f '$dest' ] && return # double check
+        eval '$srcgen' > '$dest'
+        zcompile '$dest'
     "
-    mkdir -p "$dir"
-    if [ ! -f "$file" ]; then
+    if [ ! -f "$dest" ]; then
         if ! synchronized "$lock" "$handler"; then
             source <($rc_gen_cmd) && return
         fi
     fi
-    source "$file"
+    source "$dest"
 }
+
+# clean ccs generated files
+function zccs::clean() { rm -rf "$ZCCS_DIR" }
+
+# zccs for command
+function zccs::cmd() { zccs "$1" }
+
+# zccs for file
+function zccs::file() { zccs "< $1" "$(basename "$1")" }
 
 __zsh_async_source_task__() {
     [ -f ~/.fzf.zsh       ] && source ~/.fzf.zsh
@@ -94,8 +99,8 @@ __zsh_async_source_task__() {
     #######################################################################
     # snippet plugins                                                     #
     #######################################################################
-    zpl ice as='null' cloneonly depth='1' nocompile; zpl light 'ohmyzsh/ohmyzsh'
     OMZ="${ZPLGM[PLUGINS_DIR]}/ohmyzsh---ohmyzsh/plugins"
+    zpl ice as='null' cloneonly depth='1' nocompile; zpl light 'ohmyzsh/ohmyzsh'
 
     zpl snippet "$OMZ/git-extras/git-extras.plugin.zsh"
     zpl snippet "$OMZ/git-flow-avh/git-flow-avh.plugin.zsh"
@@ -138,9 +143,8 @@ __zsh_async_source_task__() {
 
     source ~/.zsh_misc
     source ~/.zsh_aliases
-    [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
-    [ -f ~/.zsh_local        ] && source ~/.zsh_local
-    [ -f ~/.zsh_secret       ] && source ~/.zsh_secret 2>/dev/null # maybe locked
+    [ -f ~/.zsh_local  ] && source ~/.zsh_local
+    [ -f ~/.zsh_secret ] && source ~/.zsh_secret 2>/dev/null # maybe locked
 
     # https://gist.github.com/ctechols/ca1035271ad134841284
     custom_compinit() {
@@ -152,11 +156,12 @@ __zsh_async_source_task__() {
         compinit -C; zpcdreplay
     }; custom_compinit
 
-    (( $+commands[kubectl] )) && cached_source 'kubectl completion zsh'
-    (( $+commands[nodenv]  )) && cached_source 'nodenv init - zsh'
-    (( $+commands[pyenv]   )) && cached_source 'pyenv init - zsh'
-    (( $+commands[rbenv]   )) && cached_source 'rbenv init - zsh'
-    (( $+commands[pip]     )) && cached_source 'pip completion --zsh' # fucking slow. cache it!
+    [ $DEV_TRAVIS ] && zccs::file '~/.travis/travis.sh'
+    [ $DEV_K8S    ] && zccs::cmd  'kubectl completion zsh'
+    [ $DEV_NODE   ] && zccs::cmd  'nodenv init - zsh'
+    [ $DEV_RUBY   ] && zccs::cmd  'rbenv init - zsh'
+    [ $DEV_PYTHON ] && zccs::cmd  'pyenv init - zsh'
+    [ $DEV_PYTHON ] && zccs::cmd  'pip completion --zsh' # fucking slow. cache it!
 
     # some custom functions need comdef which was loaded after compinit
     source ~/.zsh_custom
@@ -164,12 +169,11 @@ __zsh_async_source_task__() {
     unset -f zlk custom_compinit
 }
 
-# disable defer loading to view logs, useful when initializing zsh first time
-if [[ -n $DISABLE_ZSH_DEFER ]]; then
+# for bench or install zsh plugins first time
+if [ "$DISABLE_ZSH_DEFER" = true ]; then
     __zsh_async_source_task__
 else
-    zsh-defer -c __zsh_async_source_task__
+    zsh-defer -a -c __zsh_async_source_task__
 fi
 
 # zprof
-return 0
