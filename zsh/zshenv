@@ -97,8 +97,8 @@ function setup_env() {
 
     # pyenv
     export PYENV_ROOT="$HOME/.pyenv"
-    _PATH="$PYENV_ROOT/bin:$_PATH"
     export PYTHON_CONFIGURE_OPTS="--enable-shared"
+    _PATH="$HOME/.pyenv/shims:$PYENV_ROOT/bin:$_PATH"
 
     # bat
     export BAT_CONFIG_PATH="$HOME/.config/bat/config"

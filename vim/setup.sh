@@ -71,8 +71,8 @@ install_configs() {
 install_plugins() {
     if ! hash node &>/dev/null; then
         loginfo "install node(coc.nvim need it)..."
-        mkdir ~/local
-        curl -fsSL https://install-node.now.sh/latest | sh -s -- --prefix="$HOME/.local"
+        mkdir -p ~/local
+        curl -fsSL https://install-node.now.sh/latest | bash -s -- --prefix="$HOME/.local" -y
     fi
     loginfo "install vim plugins..."
     nvim +PlugInstall +qall
