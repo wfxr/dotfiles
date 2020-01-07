@@ -1,35 +1,70 @@
 #!/usr/bin/env bash
 SDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) && cd "$SDIR" || return 1
+set -euo pipefail
 
-mkdir -p ~/.vim/spell ~/.config
+loginfo()  { printf "%b[info]%b %s\n"  '\e[0;32m\033[1m' '\e[0m' "$@" >&2; }
+logwarn()  { printf "%b[warn]%b %s\n"  '\e[0;33m\033[1m' '\e[0m' "$@" >&2; }
+logerror() { printf "%b[error]%b %s\n" '\e[0;31m\033[1m' '\e[0m' "$@" >&2; }
 
-touch ~/.vim_local
-ln -sf "$SDIR/vimrc"    ~/.vimrc
-ln -sf "$SDIR/gvimrc"   ~/.gvimrc
-ln -sf "$SDIR/vim_map"  ~/.vim_map
-ln -sf "$SDIR/vim_base" ~/.vim_base
-ln -sf "$SDIR/vim_plug" ~/.vim_plug
+# https://github.com/neovim/neovim/wiki/Installing-Neovim
+install_nvim() {
+    if hash apt 2>/dev/null; then
+        if ! (sudo apt update && sudo apt install neovim -y); then
+            loginfo "failed installing neovim from package manager. try nvim.appimage instead..."
+            mkdir -p ~/bin
+            curl -fL -o /tmp/nvim \
+                https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
+            chmod u+x /tmp/nvim
+            mv /tmp/nvim ~/bin/nvim
+        fi
+    elif hash pacman 2>/dev/null; then
+        sudo pacman --noconfirm -Sy neovim
+    elif hash brew 2>/dev/null; then
+        sudo brew install neovim
+    fi
+}
 
-ln -sf  "$SDIR/spell/en.utf-8.add" ~/.vim/spell/en.utf-8.add
-ln -sf  "$SDIR/coc-settings.json"  ~/.vim/coc-settings.json
-ln -snf "$SDIR/UltiSnips"          ~/.vim/UltiSnips
+setup_config() {
+    mkdir -p ~/.config ~/.vim/spell
 
-# nvim
-if hash nvim &>/dev/null ; then
-    ln -snf ~/.vim   ~/.config/nvim
-    ln -sf  ~/.vimrc ~/.config/nvim/init.vim
-    # hash gem  &>/dev/null && gem install neovim
-    # hash pip2 &>/dev/null && pip2 install --upgrade pynvim
-    hash pip3 &>/dev/null && pip3 install --upgrade pynvim
-    # to make sure the script is run from a tty(ie, not over ssh)
-    tty &>/dev/null && nvim +PlugInstall +qall
+    ln -sf  "$SDIR/vimrc"              ~/.vimrc
+    ln -sf  "$SDIR/gvimrc"             ~/.gvimrc
+    ln -sf  "$SDIR/vim_map"            ~/.vim_map
+    ln -sf  "$SDIR/vim_base"           ~/.vim_base
+    ln -sf  "$SDIR/vim_plug"           ~/.vim_plug
+    ln -sf  "$SDIR/spell/en.utf-8.add" ~/.vim/spell/en.utf-8.add
+    ln -sf  "$SDIR/coc-settings.json"  ~/.vim/coc-settings.json
+    ln -sf  "$HOME/.vimrc"             ~/.config/nvim/init.vim
+    ln -snf "$SDIR/UltiSnips"          ~/.vim/UltiSnips
+    ln -snf "$HOME/.vim"               ~/.config/nvim
+    touch ~/.vim_local
+}
+
+hash nvim &>/dev/null || {
+    loginfo "neovim not installed. install it now..."
+    install_nvim
+}
+
+if hash pyenv &>/dev/null; then
+    loginfo "install python dependency..."
+    pip install --upgrade pynvim
+    # For tags
+    pip install --upgrade pygments
 else
-    tty &>/dev/null && vim +PlugInstall +qall
+    logwarn "failed: pyenv not installed."
 fi
 
-# For tags
-hash pip &>/dev/null && pip install --upgrade pygments
+if hash rbenv &>/dev/null; then
+    loginfo "install ruby dependency..."
+    gem install neovim
+fi
 
-# For vim-keysound
-# sudo pacman -S sdl sdl2_mixer
-# pip install --upgrade pysdl2
+if hash nodenv &>/dev/null; then
+    loginfo "install node dependency..."
+    npm install -g neovim
+else
+    logwarn 'maybe node not installed(coc.nvim need it).'
+fi
+
+loginfo "install vim plugins..."
+nvim +PlugInstall +qall

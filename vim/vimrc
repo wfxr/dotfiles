@@ -118,7 +118,11 @@ set noshowmode
 set showcmd
 
 " always show signcolumns
-set signcolumn=yes
+
+" v:version also return 800 for nvim
+if v:version >= 800
+    set signcolumn=yes
+endif
 
 " Settings suggested by coc.nvim
 set hidden " if hidden is not set, TextEdit might fail.
