@@ -109,6 +109,9 @@ function setup_env() {
     # For bat
     export BAT_CONFIG_PATH="$HOME/.config/bat/config"
 
+    # For node
+    export _PATH="$HOME/.nodenv/bin:$_PATH"
+
     export PATH="$_PATH"
 }
 
