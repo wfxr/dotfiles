@@ -28,8 +28,7 @@ function setup_env() {
     export COLORTERM=truecolor
 
     # Ruby
-    export GEM_HOME="$HOME/.gem"
-    # (( $+commands[ruby] )) && _PATH="$_PATH:$(ruby -e 'print Gem.user_dir')/bin:$GEM_HOME/bin"
+    _PATH="$HOME/.gem/bin:$HOME/.rbenv/bin:$_PATH"
 
     # C++
     # export CPLUS_INCLUDE_PATH="/usr/local/include/c++/v1:$CPLUS_INCLUDE_PATH"
@@ -64,11 +63,6 @@ function setup_env() {
     # Homebrew Bottles中科大源
     export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.ustc.edu.cn/homebrew-bottles"
 
-    # nvm
-    export NVM_DIR="$HOME/.nvm"
-    export NVM_LAZY_LOAD=true
-    export NVM_NODEJS_ORG_MIRROR="https://npm.taobao.org/mirrors/node/"
-
     # Golang
     export GOPATH="$HOME/.go"
     _PATH="$GOPATH/bin:$_PATH"
@@ -101,16 +95,16 @@ function setup_env() {
     # For lein
     (( $+commands[drip] )) && export LEIN_JAVA_CMD='drip'
 
-    # For pyenv
+    # pyenv
     export PYENV_ROOT="$HOME/.pyenv"
     _PATH="$PYENV_ROOT/bin:$_PATH"
     export PYTHON_CONFIGURE_OPTS="--enable-shared"
 
-    # For bat
+    # bat
     export BAT_CONFIG_PATH="$HOME/.config/bat/config"
 
-    # For node
-    export _PATH="$HOME/.nodenv/bin:$_PATH"
+    # node
+    export _PATH="$HOME/.nodenv/shims:$HOME/.nodenv/bin:$_PATH"
 
     export PATH="$_PATH"
 }

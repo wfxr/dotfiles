@@ -155,6 +155,7 @@ __zsh_async_source_task__() {
     (( $+commands[kubectl] )) && cached_source 'kubectl completion zsh'
     (( $+commands[nodenv]  )) && cached_source 'nodenv init - zsh'
     (( $+commands[pyenv]   )) && cached_source 'pyenv init - zsh'
+    (( $+commands[rbenv]   )) && cached_source 'rbenv init - zsh'
     (( $+commands[pip]     )) && cached_source 'pip completion --zsh' # fucking slow. cache it!
 
     # some custom functions need comdef which was loaded after compinit

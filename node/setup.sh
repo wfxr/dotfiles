@@ -22,6 +22,7 @@ install_nodenv() {
         # optional: compile dynamic bash extension to speed up nodenv
         cd ~/.nodenv && src/configure && make -C src
     fi
+    source <(nodenv init -)
 }
 
 install_node() {
