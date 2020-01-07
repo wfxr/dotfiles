@@ -10,14 +10,19 @@ loginfo()  { printf "%b[info]%b %s\n"  '\e[0;32m\033[1m' '\e[0m' "$@" >&2; }
 logwarn()  { printf "%b[warn]%b %s\n"  '\e[0;33m\033[1m' '\e[0m' "$@" >&2; }
 logerror() { printf "%b[error]%b %s\n" '\e[0;31m\033[1m' '\e[0m' "$@" >&2; }
 
-export PATH="$HOME/.nodenv/bin:$PATH"
+export PATH="$HOME/.nodenv/shims:$HOME/.nodenv/bin:$PATH"
 
 install_nodenv() {
     if ! hash nodenv &>/dev/null; then
         git clone --depth=1 https://github.com/nodenv/nodenv.git ~/.nodenv || return 1
         # node-build plugin
-        mkdir -p "$(nodenv root)"/plugins
-        git clone --depth=1 https://github.com/nodenv/node-build.git "$(nodenv root)/plugins/node-build"
+        mkdir -p "$(nodenv root)/plugins"
+        git clone --depth=1 https://github.com/nodenv/node-build.git \
+            "$(nodenv root)/plugins/node-build"
+
+        # automatically install npm packages every time you install a new version of Node
+        git clone --depth=1 https://github.com/nodenv/nodenv-default-packages.git \
+            "$(nodenv root)/plugins/nodenv-default-packages"
 
         # optional: compile dynamic bash extension to speed up nodenv
         cd ~/.nodenv && src/configure && make -C src

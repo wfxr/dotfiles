@@ -10,7 +10,7 @@ loginfo()  { printf "%b[info]%b %s\n"  '\e[0;32m\033[1m' '\e[0m' "$@" >&2; }
 logwarn()  { printf "%b[warn]%b %s\n"  '\e[0;33m\033[1m' '\e[0m' "$@" >&2; }
 logerror() { printf "%b[error]%b %s\n" '\e[0;31m\033[1m' '\e[0m' "$@" >&2; }
 
-export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$HOME/.gem/bin:$HOME/.rbenv/bin:$PATH"
 
 install_rbenv() {
     if ! hash rbenv &>/dev/null; then
