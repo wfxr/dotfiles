@@ -6,8 +6,52 @@ usage() {
 [[ "$#" -ne 1 ]] && usage && exit 1
 repo="$1"
 
-curl -sS "https://api.github.com/repos/$repo/releases" |
+detect_platform() {
+    local platform
+    platform="$(uname -s | tr '[:upper:]' '[:lower:]')"
+
+    # check for MUSL
+    if [ "${platform}" = "linux" ]; then
+        if ldd /bin/sh | grep -i musl >/dev/null; then
+            platform=unknown-linux-musl
+        fi
+    fi
+
+    # mingw is Git-Bash
+    if echo "${platform}" | grep -i mingw >/dev/null; then
+        platform=pc-windows-msvc
+    fi
+
+    if [ "${platform}" = "linux" ]; then
+        platform=unknown-linux-gnu
+    fi
+
+    if [ "${platform}" = "darwin" ]; then
+        platform=apple-darwin
+    fi
+
+    echo "${platform}"
+}
+
+detect_arch() {
+    local arch
+    arch="$(uname -m | tr '[:upper:]' '[:lower:]')"
+
+    # `uname -m` in some cases mis-reports 32-bit OS as 64-bit, so double check
+    if [ "${arch}" = "x64" ] && [ "$(getconf LONG_BIT)" -eq 32 ]; then
+        arch=i386
+    fi
+
+    echo "${arch}"
+}
+
+platform=$(detect_platform)
+arch=$(detect_arch)
+
+curl -sS "https://api.github.com/repos/$repo/releases/latest" |
     grep browser_download_url |
     cut -d'"' -f4 |
+    grep "$platform" |
+    grep "$arch" |
     fzf -m |
     xargs -i{} curl -LO --proto-redir -all,https {}
