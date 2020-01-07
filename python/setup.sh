@@ -52,28 +52,17 @@ install_python() {
     pyenv global $v
 }
 
-install_pipenv() {
-    hash pipenv &>/dev/null && return
-
-    if hash apt 2>/dev/null; then
-        sudo apt update && sudo apt install pipenv -y
-    elif hash pacman 2>/dev/null; then
-        sudo pacman --noconfirm -Sy python-pipenv
-    elif hash brew 2>/dev/null; then
-        sudo brew install pipenv
-    fi
-}
-
 install_configs() {
-    mkdir -p "$HOME/.pip"
+    mkdir -p "$HOME/.pip" || return 1
     ln -sf "$SDIR/pip.conf" "$HOME/.pip/pip.conf"
-    mkdir -p ~/.ptpython
+    mkdir -p ~/.ptpython || return 1
     ln -sf "$SDIR/ptpythonrc" ~/.ptpython/config.py
     ln -sf "$SDIR/style.yapf" ~/.style.yapf
 }
 
 install_tools() {
     pip install --upgrade pip
+    pip install pipenv
 
     #pip install thefuck      # Thefuck is a magnificent app which corrects your previous console command
     #pip install csvkit       # A suite of utilities for converting to and working with CSV, the king of tabular file formats.
@@ -86,17 +75,14 @@ install_tools() {
 }
 
 loginfo "install pyenv..."
-install_pyenv || return 1
+install_pyenv || exit $?
 
 loginfo "install python..."
-install_python || return 1
+install_python || exit $?
 
 loginfo "install configurations..."
-install_configs || return 1
+install_configs || exit $?
 
 loginfo "install tools"
-install_tools || return 1
-
-loginfo "install pipenv..."
-install_pipenv || return 1
+install_tools || exit $?
 
