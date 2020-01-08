@@ -61,14 +61,14 @@ function zccs() {
     source "$dest"
 }
 
-# clean ccs generated files
-function zccs::clean() { rm -rf "$ZCCS_DIR" }
-
 # zccs for command
 function zccs::cmd() { zccs "$1" }
 
 # zccs for file
 function zccs::file() { zccs "< $1" "$(basename "$1")" }
+
+# clean ccs generated files
+function zclean() { rm -rf "$ZCCS_DIR" ~/.zcompdump* }
 
 __zsh_async_source_task__() {
     [ -f ~/.fzf.zsh       ] && source ~/.fzf.zsh
