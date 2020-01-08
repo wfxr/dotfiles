@@ -9,7 +9,6 @@ logerror() { printf "%b[error]%b %s\n" '\e[0;31m\033[1m' '\e[0m' "$@" >&2; }
 # https://github.com/neovim/neovim/wiki/Installing-Neovim
 install_neovim() {
     hash nvim &>/dev/null && return
-    install_nvim
     if hash apt 2>/dev/null; then
         if ! (sudo apt update && sudo apt install neovim -y); then
             loginfo "failed installing neovim from package manager. try nvim.appimage instead..."
