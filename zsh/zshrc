@@ -142,10 +142,12 @@ __zsh_async_source_task__() {
         atclone='zlk emojify; zlk fuzzy-emoji' multisrc='*.zsh'                                            \
             'wfxr/emoji-cli'                                                                               \
 
-    (( $+commands[jq]        )) || zplghr 'stedolan/jq'       'zlk jq* jq'
-    (( $+commands[bat]       )) || zplghr 'sharkdp/bat'       'zlk bat*/bat bat'
-    (( $+commands[exa]       )) || zplghr 'ogham/exa'         'zlk exa* exa'
-    (( $+commands[hyperfine] )) || zplghr 'sharkdp/hyperfine' 'zlk hyperfine*/hyperfine hyperfine'
+    (( $+commands[jq]        )) || zplghr 'stedolan/jq'        'zlk jq* jq'
+    (( $+commands[exa]       )) || zplghr 'ogham/exa'          'zlk exa* exa'
+    (( $+commands[fd]        )) || zplghr 'sharkdp/fd'         'zlk fd*/fd fd'
+    (( $+commands[bat]       )) || zplghr 'sharkdp/bat'        'zlk bat*/bat bat'
+    (( $+commands[hyperfine] )) || zplghr 'sharkdp/hyperfine'  'zlk hyperfine*/hyperfine hyperfine'
+    (( $+commands[rg]        )) || zplghr 'BurntSushi/ripgrep' 'zlk ripgrep*/rg rg'
 
     source ~/.zsh_misc
     source ~/.zsh_aliases
