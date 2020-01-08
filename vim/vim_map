@@ -1,7 +1,8 @@
 " vim: ft=vim:
 
 " Using <SPACE> to fold or unfold
-nnoremap <silent> <SPACE> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+nnoremap <silent> <SPACE><SPACE> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+nnoremap <silent> <SPACE><CR> zi
 
 " Disable highlight & redraw
 nnoremap <silent> <leader><cr> :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>
