@@ -117,7 +117,12 @@ __zsh_async_source_task__() {
     zlk() {
         local src="$1"; local dest="$src"
         [ $# -eq 2 ] && dest="$2"
-        eval 'ln -sf $PWD/'"$src ~/bin/$dest"
+        ln -sf "$(pwd)/$src" "$HOME/bin/$dest"
+        echo "link built: ~/bin/$dest -> $(pwd)/$src"
+    }
+    zplghr() {
+        zpl ice nocompile as='null' from='gh-r' atclone="$2" atpull='%atclone'
+        zpl light "$1"
     }
 
     zpl light-mode as='null' cloneonly depth='1' nocompile for                                             \
@@ -137,9 +142,8 @@ __zsh_async_source_task__() {
         atclone='zlk emojify; zlk fuzzy-emoji' multisrc='*.zsh'                                            \
             'wfxr/emoji-cli'                                                                               \
 
-    zpl light-mode as='null' from='gh-r' nocompile for                                                     \
-        if='[[ -z $+commands[jq] ]]' mv="jq* -> ~/bin/jq"                                                  \
-            'stedolan/jq'                                                                                  \
+    (( $+commands[jq]  )) || zplghr 'stedolan/jq' 'zlk jq* jq'
+    (( $+commands[bat] )) || zplghr 'sharkdp/bat' 'zlk bat*/bat bat'
 
     source ~/.zsh_misc
     source ~/.zsh_aliases
