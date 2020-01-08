@@ -142,8 +142,10 @@ __zsh_async_source_task__() {
         atclone='zlk emojify; zlk fuzzy-emoji' multisrc='*.zsh'                                            \
             'wfxr/emoji-cli'                                                                               \
 
-    (( $+commands[jq]  )) || zplghr 'stedolan/jq' 'zlk jq* jq'
-    (( $+commands[bat] )) || zplghr 'sharkdp/bat' 'zlk bat*/bat bat'
+    (( $+commands[jq]        )) || zplghr 'stedolan/jq'       'zlk jq* jq'
+    (( $+commands[bat]       )) || zplghr 'sharkdp/bat'       'zlk bat*/bat bat'
+    (( $+commands[exa]       )) || zplghr 'ogham/exa'         'zlk exa* exa'
+    (( $+commands[hyperfine] )) || zplghr 'sharkdp/hyperfine' 'zlk hyperfine*/hyperfine hyperfine'
 
     source ~/.zsh_misc
     source ~/.zsh_aliases
@@ -170,7 +172,7 @@ __zsh_async_source_task__() {
     # some custom functions need comdef which was loaded after compinit
     source ~/.zsh_custom
 
-    unset -f zlk custom_compinit
+    unset -f custom_compinit
 }
 
 # for bench or install zsh plugins first time
