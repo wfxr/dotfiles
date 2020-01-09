@@ -49,7 +49,6 @@ alias ll='ls --group-directories-first -l'
 alias la='ls --group-directories-first -l --all'
 if (( $+commands[exa] )); then
     alias ls='exa --time-style long-iso'
-    alias tree='ls -T'
     alias ll='ls -lgbh --git'
     alias lg='ll -G'    # List by grid
     alias llg='ll -G'
@@ -58,7 +57,17 @@ if (( $+commands[exa] )); then
     alias ldot='ll -d .*'
     alias lss='ll -s size'
     alias lst='ll -s accessed'
+    alias tree='ls --tree'
 fi
+if (( $+commands[lsd] )); then
+    alias ls='lsd --icon=never'
+    alias ll='lsd -l'
+    alias la='ll -a'
+    alias lss='ll -S -r'
+    alias lst='ll -t -r --date=relative'
+    alias tree='lsd --tree'
+fi
+alias l='ll'
 alias vv='vim $(fzf)'
 alias vi=vim
 alias vi2='vim -O2'

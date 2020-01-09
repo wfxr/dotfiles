@@ -381,6 +381,18 @@ function grepo() {
 
 function gclone() { git clone "https://github.com/${(j:/:)@}" }
 
+function gsearch() {
+    local header list repos
+    header='["Repostory", "Stars", "Description"]'
+    list="$(curl -fsSL "https://api.github.com/search/repositories?q=$1" |
+        command jq -r "$header, (.items[] | [.full_name, .stargazers_count, .description]) | @tsv" |
+        column -t -s $'\t')"
+    repos=("${(@f)$(echo "$list" | fzf -m -0 -1 --header-lines=1 | awk '{print $1}')}")
+    for repo in $repos; do
+        xopen "https://github.com/$repo"
+    done
+}
+
 function mkycm() {
     local template
     template="$(readlink ~/.ycm_extra_conf.py)" || echo 'ycm_extra_conf not installed.' && return 1

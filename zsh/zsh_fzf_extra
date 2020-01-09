@@ -22,6 +22,7 @@ export FZF_FILE_HIGHLIGHTER
 FZF_DIR_HIGHLIGHTER='ls -l --color=always'
 (( $+commands[tree] )) && FZF_DIR_HIGHLIGHTER='tree -CtrL2'
 (( $+commands[exa]  )) && FZF_DIR_HIGHLIGHTER='exa --color=always -TL2'
+(( $+commands[lsd]  )) && FZF_DIR_HIGHLIGHTER='lsd --color=always --tree --depth=2'
 export FZF_DIR_HIGHLIGHTER
 
 (( $+commands[iconful] )) && FZF_PATH_LOC='2..' || FZF_PATH_LOC=''
