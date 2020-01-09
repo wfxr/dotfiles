@@ -148,6 +148,7 @@ __zsh_async_source_task__() {
     (( $+commands[bat]       )) || zplghr 'sharkdp/bat'        'zlk bat*/bat bat'
     (( $+commands[hyperfine] )) || zplghr 'sharkdp/hyperfine'  'zlk hyperfine*/hyperfine hyperfine'
     (( $+commands[rg]        )) || zplghr 'BurntSushi/ripgrep' 'zlk ripgrep*/rg rg'
+    (( $+commands[mmv]       )) || zplghr 'itchyny/mmv'        'zlk mmv*/mmv mmv'
 
     source ~/.zsh_misc
     source ~/.zsh_aliases
