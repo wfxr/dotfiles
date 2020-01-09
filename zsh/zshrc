@@ -144,11 +144,11 @@ __zsh_async_source_task__() {
 
     (( $+commands[jq]        )) || zplghr 'stedolan/jq'        'zlk jq* jq'
     (( $+commands[exa]       )) || zplghr 'ogham/exa'          'zlk exa* exa'
-    (( $+commands[fd]        )) || zplghr 'sharkdp/fd'         'zlk fd*/fd fd'
-    (( $+commands[bat]       )) || zplghr 'sharkdp/bat'        'zlk bat*/bat bat'
-    (( $+commands[hyperfine] )) || zplghr 'sharkdp/hyperfine'  'zlk hyperfine*/hyperfine hyperfine'
-    (( $+commands[rg]        )) || zplghr 'BurntSushi/ripgrep' 'zlk ripgrep*/rg rg'
-    (( $+commands[mmv]       )) || zplghr 'itchyny/mmv'        'zlk mmv*/mmv mmv'
+    (( $+commands[fd]        )) || zplghr 'sharkdp/fd'         'zlk */fd fd'
+    (( $+commands[bat]       )) || zplghr 'sharkdp/bat'        'zlk */bat bat'
+    (( $+commands[hyperfine] )) || zplghr 'sharkdp/hyperfine'  'zlk */hyperfine hyperfine'
+    (( $+commands[rg]        )) || zplghr 'BurntSushi/ripgrep' 'zlk */rg rg'
+    (( $+commands[mmv]       )) || zplghr 'itchyny/mmv'        'zlk */mmv mmv'
 
     source ~/.zsh_misc
     source ~/.zsh_aliases
