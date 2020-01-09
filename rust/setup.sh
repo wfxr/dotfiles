@@ -17,3 +17,6 @@ fi
 mkdir -p ~/.zsh_completions
 rustup completions zsh       > ~/.zsh_completions/_rustup
 rustup completions zsh cargo > ~/.zsh_completions/_cargo
+
+# for checking and applying updates to installed executables
+cargo install cargo-update
