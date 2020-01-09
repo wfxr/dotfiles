@@ -47,6 +47,7 @@ alias svim='usudo vim'
 alias ls='ls --color=auto'
 alias ll='ls --group-directories-first -l'
 alias la='ls --group-directories-first -l --all'
+alias l='ll'
 if (( $+commands[exa] )); then
     alias ls='exa --time-style long-iso'
     alias ll='ls -lgbh --git'
@@ -67,7 +68,6 @@ if (( $+commands[lsd] )); then
     alias lst='ll -t -r --date=relative'
     alias tree='lsd --tree'
 fi
-alias l='ll'
 alias vv='vim $(fzf)'
 alias vi=vim
 alias vi2='vim -O2'
