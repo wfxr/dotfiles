@@ -2,7 +2,9 @@
 
 " Using <SPACE> to fold or unfold
 nnoremap <silent> <SPACE><SPACE> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
-nnoremap <silent> <SPACE><CR> zi
+" nnoremap <silent> <SPACE><CR> zi
+nnoremap <silent><expr> <SPACE><CR> &foldlevel ? 'zM' :'zR'
+
 
 " Disable highlight & redraw
 nnoremap <silent> <leader><cr> :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>
