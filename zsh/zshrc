@@ -13,14 +13,14 @@ logwarn()  { printf "%b[warn]%b %s\n"  '\e[0;33m\033[1m' '\e[0m' "$@" >&2; }
 logerror() { printf "%b[error]%b %s\n" '\e[0;31m\033[1m' '\e[0m' "$@" >&2; }
 synchronized() {
     local lock="$1" handler="$2" fallback="$3"
-    [ -e "$lock" ] && kill -0 $(cat "$lock") && return 1
+    [ -e "$lock" ] && kill -0 "$(command cat "$lock" 2>/dev/null)" && return 1
 
-    trap "rm -f $lock" INT TERM EXIT
+    trap "command rm -f $lock" INT TERM EXIT
     mkdir -p "${lock%/*}" && echo $$ > "$lock"
 
     eval "$handler"
 
-    rm -f "$lock"
+    command rm -f "$lock"
 }
 
 #######################################################################
