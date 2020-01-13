@@ -27,7 +27,7 @@ ln -sf "$SDIR/completions/_hub" ~/.zsh_completions/_hub
 
 [[ "$SHELL" =~ "zsh" ]] || chsh -s "$(command -v zsh)"
 
-DISABLE_ZSH_DEFER=1 zsh -ic 'exit'
+DISABLE_ZSH_DEFER=true zsh -ic 'exit'
 
 # zsh source order:
 # https://medium.com/@rajsek/zsh-bash-startup-files-loading-order-bashrc-zshrc-etc-e30045652f2e
