@@ -38,6 +38,8 @@ pacman --noconfirm -S ncdu   # NCurses Disk Usage
 # pacman --noconfirm -S create_ap # Create AP
 pacman --noconfirm -S fd exa bat ripgrep vivid sd
 
+pacman --noconfirm -S lightscreen # light weight screenshot tool
+
 # pacman --noconfirm -S shadowsocks-libev ipset
 # systemctl daemon-reload
 # systemctl enable ipset
