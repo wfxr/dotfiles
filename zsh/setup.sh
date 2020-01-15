@@ -23,7 +23,7 @@ ln -sf "$SDIR/completions/_fzf" ~/.zsh_completions/_fzf
 ln -sf "$SDIR/completions/_gi"  ~/.zsh_completions/_gi
 ln -sf "$SDIR/completions/_hub" ~/.zsh_completions/_hub
 
-"$SDIR/../starship/setup.sh" || logwarn "shell theme starship not installed correctly."
+"$SDIR/../cli/starship/setup.sh" || logwarn "shell theme starship not installed correctly."
 
 [[ "$SHELL" =~ "zsh" ]] || chsh -s "$(command -v zsh)"
 

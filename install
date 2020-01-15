@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # get the dir of the current script
-SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) && cd "$SCRIPT_DIR" || exit 1
+SDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) && cd "$SDIR" || exit 1
 
 # show usage and quit
 usage() { echo "Usage: $(basename "$0") <module> [module]..." >&2; }

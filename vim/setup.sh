@@ -65,6 +65,14 @@ install_configs() {
     ln -snf "$SDIR/UltiSnips"          ~/.vim/UltiSnips
     ln -sf  "$SDIR/coc-settings.json"  ~/.vim/coc-settings.json
     touch ~/.vim_local
+
+    ln -sf  "$SDIR/ideavimrc" ~/.ideavimrc
+
+    # https://github.com/onivim/oni
+    hash oni &>/dev/null && {
+        mkdir -p ~/.config/oni
+        ln -sf "$SDIR/oni.tsx" ~/.config/oni/config.tsx
+    }
 }
 
 install_plugins() {
@@ -75,6 +83,9 @@ install_plugins() {
     fi
     loginfo "install vim plugins..."
     nvim +PlugInstall +qall
+
+    # gtags
+    ln -sf "$SDIR/gtags.conf" ~/.gtags.conf
 }
 
 loginfo "install neovim..."

@@ -24,13 +24,13 @@ Plug 'junegunn/vim-peekaboo'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'vim-scripts/matchit.zip' " Enhance % match
 Plug 'neoclide/jsonc.vim'
-Plug 'mbbill/undotree',                { 'on':  'UndotreeToggle' } | nnoremap U :UndotreeToggle<CR>
+Plug 'mbbill/undotree', { 'on':  'UndotreeToggle' } | nnoremap U :UndotreeToggle<CR>
 Plug 'junegunn/vim-github-dashboard' | let g:github_dashboard = { 'username': 'wfxr' }
-Plug 'mattn/vim-xxdcursor'           | Plug 'fidian/hexmode'     | let g:hexmode_patterns = '*.o,*.so,*.a,*.out,*.bin,*.exe'
-Plug 'vim-utils/vim-husk'            | Plug 'tpope/vim-rsi' " Eamcs-Style keymapping
-Plug 'mattn/vim-fixedsearch'         | Plug 'mattn/vim-prompter' | nmap <Leader>/ <plug>(fixedsearch)
-Plug 'junegunn/vim-after-object'     | autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ', ',')
-Plug 'junegunn/goyo.vim'             | nnoremap <Leader>G :Goyo<CR>
+Plug 'mattn/vim-xxdcursor' | Plug 'fidian/hexmode' | let g:hexmode_patterns = '*.o,*.so,*.a,*.out,*.bin,*.exe'
+Plug 'vim-utils/vim-husk' | Plug 'tpope/vim-rsi' " Eamcs-Style keymapping
+Plug 'mattn/vim-fixedsearch' | Plug 'mattn/vim-prompter' | nmap <Leader>/ <plug>(fixedsearch)
+Plug 'junegunn/vim-after-object' | autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ', ',')
+Plug 'junegunn/goyo.vim' | nnoremap <Leader>G :Goyo<CR>
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'
 Plug 'glts/vim-textobj-comment'
@@ -259,11 +259,11 @@ nmap <Leader>d :Gdiff<CR>
 " }}} vim-slash "
 
 " ryanoasis/vim-devicons {{{ "
-Plug 'ryanoasis/vim-devicons' " Should be loaded before vim-airline
-let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols = {} " needed
-let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol = ''
-let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['.*vim_.*\|.*vimrc.*'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['.*zsh_.*\|.*zshrc.*'] = ''
+" Plug 'ryanoasis/vim-devicons' " Should be loaded before vim-airline
+" let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols = {} " needed
+" let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol = ''
+" let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['.*vim_.*\|.*vimrc.*'] = ''
+" let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['.*zsh_.*\|.*zshrc.*'] = ''
 " }}} ryanoasis/vim-devicons "
 
 " vim-airline/vim-airline {{{ "
