@@ -144,6 +144,7 @@ __zsh_async_source_task__() {
 
     (( $+commands[jq]        )) || zplghr 'stedolan/jq'        'zlk jq* jq'
     (( $+commands[exa]       )) || zplghr 'ogham/exa'          'zlk exa* exa'
+    (( $+commands[assh]      )) || zplghr 'moul/assh'          'zlk assh* assh'
     (( $+commands[fd]        )) || zplghr 'sharkdp/fd'         'zlk */fd fd'
     (( $+commands[bat]       )) || zplghr 'sharkdp/bat'        'zlk */bat bat'
     (( $+commands[hyperfine] )) || zplghr 'sharkdp/hyperfine'  'zlk */hyperfine hyperfine'

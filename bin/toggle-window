@@ -18,7 +18,7 @@ fi
 command="$1"
 class="$2"
 
-if ! target_wid=$(xdotool search --desktop 0 --class "$class"); then
+if ! target_wid=$(xdotool search --desktop "$(xdotool get_desktop)" --class "$class"); then
     nohup "$command" &>/dev/null &
     exit 0
 fi
