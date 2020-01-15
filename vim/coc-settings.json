@@ -15,5 +15,6 @@
   "coc.preferences.formatOnSaveFiletypes": ["rust"],
   "coc.preferences.colorSupport": false,
   "coc.source.emoji.triggerCharacters": [":"],
-  "coc.source.emoji.filetypes": ["markdown", "gitcommit"]
+  "coc.source.emoji.filetypes": ["markdown", "gitcommit"],
+  "coc.source.file.ignoreHidden": false
 }
