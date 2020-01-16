@@ -1,5 +1,5 @@
 # --theme="zenburn"
---theme="gruvbox (Dark) (Medium) NDC"
+# --theme="gruvbox (Dark) (Medium) NDC"
 
 # Show line numbers, Git modifications and file header (but no grid)
 --style="numbers,changes"
