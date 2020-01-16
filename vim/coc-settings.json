@@ -16,5 +16,8 @@
   "coc.preferences.colorSupport": false,
   "coc.source.emoji.triggerCharacters": [":"],
   "coc.source.emoji.filetypes": ["markdown", "gitcommit"],
-  "coc.source.file.ignoreHidden": false
+  "coc.source.file.ignoreHidden": false,
+  "coc.source.around.firstMatch": false,
+  "coc.source.buffer.firstMatch": false,
+  "coc.source.syntax.firstMatch": false,
 }

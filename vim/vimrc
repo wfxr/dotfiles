@@ -108,7 +108,7 @@ set conceallevel=2
 set fillchars+=vert:¦
 
 " Default 800ms is too slow
-set updatetime=300
+set updatetime=100
 
 " Default 1000ms is too long
 set timeoutlen=400
