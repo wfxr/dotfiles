@@ -34,19 +34,19 @@ snippet H "A header box" b
 `!p
 from datetime import datetime
 if snip.ft in ['cpp', 'c', 'rust', 'go', 'cs']:
-	u = '/' + '*' * 79
-	d = '*' * 79 + '/'
+	u = '/' + '*' * 75
+	d = '*' * 75 + '/'
 	l = '%-4s' % '*'
 	r = '%4s'  % '*'
 else:
 	c = get_comment_format()[0].strip()
-	u = d = (c * 80)[:80]
+	u = d = (c * 76)[:76]
 	l = '%-4s' % c
 	r = '%4s'  % c
 
-username  = '%-72s' % (" Author: " + check_output(['git', 'config', 'user.name']).decode('utf-8').strip())
-useremail = '%-72s' % ("  Email: " + check_output(['git', 'config', 'user.email']).decode('utf-8').strip())
-time      = '%-72s' % ("Created: " + datetime.now().strftime('%F %H:%M'))
+username  = '%-68s' % (" Author: " + check_output(['git', 'config', 'user.name']).decode('utf-8').strip())
+useremail = '%-68s' % ("  Email: " + check_output(['git', 'config', 'user.email']).decode('utf-8').strip())
+time      = '%-68s' % ("Created: " + datetime.now().strftime('%F %H:%M'))
 
 snip.rv += u
 snip += l + username  + r
