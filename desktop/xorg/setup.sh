@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )" && cd "$SCRIPT_DIR" || return 1
+SDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )" && cd "$SDIR" || return 1
 
-ln -sf "$SCRIPT_DIR/xprofile" ~/.xprofile
-ln -sf "$SCRIPT_DIR/xinitrc" "$HOME/.xinitrc"
+ln -sf "$SDIR/xprofile"   ~/.xprofile
+ln -sf "$SDIR/xinitrc"    ~/.xinitrc
+ln -sf "$SDIR/Xresources" ~/.Xresources
+
