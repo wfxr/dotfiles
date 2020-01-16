@@ -427,10 +427,10 @@ function iptables-uniq() { sudo iptables-save | awk '/^COMMIT$/ { delete x; }; !
 
 function iptables-traffic-monitor() { sudo iptables -nvL | grep spt | awk '{print $10,$3,$2,$1}' | column -t }
 
-(( $+commands[yay] )) && function yy() {
-    trap "pyenv global $(pyenv global)" INT QUIT TERM EXIT
-    pyenv global system && yay "$@"
-} && compdef yy=yay
+# (( $+commands[yay] )) && function yy() {
+    # trap "pyenv global $(pyenv global)" INT QUIT TERM EXIT
+    # pyenv global system && yay "$@"
+# } && compdef yy=yay
 
 function bkr() { (nohup "$@" &>/dev/null &) }
 

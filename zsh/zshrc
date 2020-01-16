@@ -1,17 +1,26 @@
 #!/usr/bin/env zsh
-################################################################################
-#    Author: Wenxuan Zhang                                                     #
-#     Email: wenxuangm@gmail.com                                               #
-#   Created: 2020-01-03 16:33                                                  #
-################################################################################
+############################################################################
+#    Author: Wenxuan Zhang                                                 #
+#     Email: wenxuangm@gmail.com                                           #
+#   Created: 2020-01-03 16:33                                              #
+############################################################################
 # zmodload zsh/zprof
-bindkey -e # This line should be on top
 
-# simple color logger
+##### plugin manager {{{ #####
+[ -d ~/.zplugin/bin ] || {
+    mkdir -p ~/.zplugin
+    git clone --depth=1 https://github.com/zdharma/zplugin.git ~/.zplugin/bin || exit 1
+}
+source "$HOME/.zplugin/bin/zplugin.zsh"
+zpl ice depth='1'; zpl light 'romkatv/zsh-defer'
+##### }}} #####
+
+##### utils {{{ #####
+# simple colored logger
 loginfo()  { printf "%b[info]%b %s\n"  '\e[0;32m\033[1m' '\e[0m' "$@" >&2; }
 logwarn()  { printf "%b[warn]%b %s\n"  '\e[0;33m\033[1m' '\e[0m' "$@" >&2; }
 logerror() { printf "%b[error]%b %s\n" '\e[0;31m\033[1m' '\e[0m' "$@" >&2; }
-synchronized() {
+function synchronized() {
     local lock="$1" handler="$2" fallback="$3"
     [ -e "$lock" ] && kill -0 "$(command cat "$lock" 2>/dev/null)" && return 1
 
@@ -22,28 +31,6 @@ synchronized() {
 
     command rm -f "$lock"
 }
-
-#######################################################################
-# plugin manager                                                      #
-#######################################################################
-[ -d ~/.zplugin/bin ] || {
-    mkdir -p ~/.zplugin
-    git clone --depth=1 https://github.com/zdharma/zplugin.git ~/.zplugin/bin || exit 1
-}
-source "$HOME/.zplugin/bin/zplugin.zsh"
-
-zpl ice depth='1'; zpl light 'romkatv/zsh-defer'
-
-#######################################################################
-# theme                                                               #
-#######################################################################
-source <(starship init zsh) || logwarn "failed loading starship."
-# 'denysdovhan/spaceship-prompt'
-# 'bhilburn/powerlevel9k'
-# 'subnixr/minimal'
-# 'mafredri/zsh-async'
-# 'sindresorhus/pure'
-
 # zsh-cached-compiled-source
 ZCCS_DIR="/tmp/zsh_cache/$UID"
 function zccs() {
@@ -69,13 +56,24 @@ function zccs::file() { zccs "< $1" "$(basename "$1")" }
 
 # clean ccs generated files
 function zclean() { rm -rf "$ZCCS_DIR" ~/.zcompdump* }
+##### }}} utils #####
 
-__zsh_async_source_task__() {
+##### theme {{{ #####
+source <(starship init zsh) || logwarn "failed loading starship."
+# 'denysdovhan/spaceship-prompt'
+# 'bhilburn/powerlevel9k'
+# 'subnixr/minimal'
+# 'mafredri/zsh-async'
+# 'sindresorhus/pure'
+##### }}} theme #####
+
+::defer_source::() {
+    ##### fzf rcs {{{ #####
     [ -f ~/.fzf.zsh       ] && source ~/.fzf.zsh
     [ -f ~/.zsh_fzf_extra ] && source ~/.zsh_fzf_extra
-    #######################################################################
-    # normal plugins                                                      #
-    #######################################################################
+    ##### }}} fzf rcs #####
+
+    ##### general plugins {{{ #####
     # forgit should be loaded after .zsh_fzf_extra to read fzf's env
     FORGIT_FZF_DEFAULT_OPTS="--height '80%'"
     ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=(forward-word forward-char)
@@ -93,15 +91,12 @@ __zsh_async_source_task__() {
             'wfxr/epoch-cli'                   \
             'wfxr/formarks'                    \
             'soimort/translate-shell'          \
+            ;
+    ##### }}} general plugins #####
 
-    # 'skywind3000/z.lua' # better than rupa/z but require lua?
-
-    #######################################################################
-    # snippet plugins                                                     #
-    #######################################################################
+    ##### snippet plugins {{{ #####
     OMZ="${ZPLGM[PLUGINS_DIR]}/ohmyzsh---ohmyzsh/plugins"
     zpl ice as='null' cloneonly depth='1' nocompile; zpl light 'ohmyzsh/ohmyzsh'
-
     zpl snippet "$OMZ/git-extras/git-extras.plugin.zsh"
     zpl snippet "$OMZ/git-flow-avh/git-flow-avh.plugin.zsh"
     zpl snippet "$OMZ/mvn/mvn.plugin.zsh"
@@ -109,10 +104,9 @@ __zsh_async_source_task__() {
     zpl ice as='completion'; zpl snippet "$OMZ/docker/_docker"
     zpl ice as='completion'; zpl snippet "$OMZ/gem/_gem"
     zpl ice as='completion'; zpl snippet "$OMZ/lein/_lein"
+    ##### }}} snippet plugins #####
 
-    #######################################################################
-    # programs                                                            #
-    #######################################################################
+    ##### program plugins {{{ #####
     # zlk <from> [dest]
     zlk() {
         local src="$1"; local dest="$src"
@@ -150,12 +144,17 @@ __zsh_async_source_task__() {
     (( $+commands[hyperfine] )) || zplghr 'sharkdp/hyperfine'  'zlk */hyperfine hyperfine'
     (( $+commands[rg]        )) || zplghr 'BurntSushi/ripgrep' 'zlk */rg rg'
     (( $+commands[mmv]       )) || zplghr 'itchyny/mmv'        'zlk */mmv mmv'
+    ##### }}} program plugins #####
 
+    ##### other rcs {{{ #####
     source ~/.zsh_misc
     source ~/.zsh_aliases
     [ -f ~/.zsh_local  ] && source ~/.zsh_local
     [ -f ~/.zsh_secret ] && source ~/.zsh_secret 2>/dev/null # maybe locked
+    source ~/.zsh_custom
+    ##### }}} other rcs #####
 
+    ##### compinit {{{ #####
     # https://gist.github.com/ctechols/ca1035271ad134841284
     custom_compinit() {
         autoload -Uz compinit
@@ -165,25 +164,26 @@ __zsh_async_source_task__() {
         done
         compinit -C; zpcdreplay
     }; custom_compinit
+    unset -f custom_compinit
+    ##### }}} compinit #####
 
+    ##### dynamic generated {{{ #####
     [ $DEV_TRAVIS ] && zccs::file '~/.travis/travis.sh'
     [ $DEV_K8S    ] && zccs::cmd  'kubectl completion zsh'
     [ $DEV_NODE   ] && zccs::cmd  'nodenv init - zsh'
     [ $DEV_RUBY   ] && zccs::cmd  'rbenv init - zsh'
     [ $DEV_PYTHON ] && zccs::cmd  'pyenv init - zsh'
     [ $DEV_PYTHON ] && zccs::cmd  'pip completion --zsh' # fucking slow. cache it!
-
-    # some custom functions need comdef which was loaded after compinit
-    source ~/.zsh_custom
-
-    unset -f custom_compinit
+    ##### }}} dynamic generated  #####
 }
 
 # for bench or install zsh plugins first time
 if [ "$DISABLE_ZSH_DEFER" = true ]; then
-    __zsh_async_source_task__
+    ::defer_source::
 else
-    zsh-defer -a -c __zsh_async_source_task__
+    zsh-defer -a -c ::defer_source::
 fi
 
 # zprof
+
+# vim: foldmethod=marker foldenable:
