@@ -15,5 +15,3 @@ mkdir -p "$TARGET_DIR"
 ln -sf "$SCRIPT_DIR/autostart"        "$TARGET_DIR/autostart"
 ln -sf "$SCRIPT_DIR/autostart_always" "$TARGET_DIR/autostart_always"
 ln -sf "$SCRIPT_DIR/config"           "$TARGET_DIR/config"
-
-ln -sf "$SCRIPT_DIR/xinitrc" "$HOME/.xinitrc"

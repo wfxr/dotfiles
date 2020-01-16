@@ -207,8 +207,7 @@ bindsym --release control+$alt+a  exec "import png:- | xclip -selection clipboar
 
 gaps inner 10
 
-exec --no-startup-id compton -b
-exec --no-startup-id fcitx -d -r
+# exec --no-startup-id compton -b
 exec --no-startup-id ~/.fehbg
 # exec --no-startup-id tilda &>/tmp/tilda.log
 exec --no-startup-id ~/.config/i3/autostart

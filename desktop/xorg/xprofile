@@ -7,3 +7,6 @@ export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 
 [[ -f ~/.xprofile.local ]] && source ~/.xprofile.local
+
+fcitx -r -d
+compton -b
