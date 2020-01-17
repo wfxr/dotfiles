@@ -5,6 +5,7 @@
 #   Created: 2020-01-03 16:33                                              #
 ############################################################################
 # zmodload zsh/zprof
+bindkey -e # should be on top!
 
 ##### plugin manager {{{ #####
 [ -d ~/.zplugin/bin ] || {
