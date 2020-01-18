@@ -44,8 +44,13 @@ Plug 'ConradIrwin/vim-bracketed-paste' " Auto toggle paste mode when paste
 " Themes
 Plug 'nightsense/snow'
 Plug 'junegunn/seoul256.vim'
-Plug 'gruvbox-community/gruvbox' | let g:gruvbox_italic              = 1 | let g:gruvbox_contrast_dark = 'medium'
-Plug 'sainnhe/gruvbox-material'  | let g:gruvbox_material_background = 'hard'
+let g:gruvbox_italic = 1
+let g:gruvbox_contrast_dark = 'medium'
+Plug 'gruvbox-community/gruvbox'
+let g:gruvbox_material_enable_italic = 1
+let g:gruvbox_material_background = 'hard'
+let g:gruvbox_material_transparent_background = 1
+Plug 'gruvbox-material/vim', { 'as': 'gruvbox-material' }
 
 " vim-rooter {{{ "
 Plug 'airblade/vim-rooter'
@@ -136,15 +141,17 @@ nmap <c-a-k> <Plug>MoveLineUp
 
 " vim-signify {{{ "
 Plug 'mhinz/vim-signify' " show vcs symbol on the left side
+let g:signify_sign_add               = '┃'
+let g:signify_sign_change            = '┃'
+let g:signify_sign_changedelete      = '┃'
+let g:signify_sign_delete            = '◢'
+let g:signify_sign_delete_first_line = '◥'
 " Plug 'airblade/vim-gitgutter'
-let g:signify_realtime               = 0
-let g:signify_sign_add               = '│'
-let g:signify_sign_change            = '│'
-let g:signify_sign_changedelete      = '│'
-let g:signify_sign_delete            = '⎽'
-let g:signify_sign_delete_first_line = '⎺'
-" let g:signify_sign_delete            = '▁'
-" let g:signify_sign_delete_first_line = '▔'
+" let g:gitgutter_sign_added='┃'
+" let g:gitgutter_sign_modified='┃'
+" let g:gitgutter_sign_removed='◢'
+" let g:gitgutter_sign_removed_first_line='◥'
+" let g:gitgutter_sign_modified_removed='◢'
 " }}} vim-signify "
 
 " vim-gutentags {{{ "
