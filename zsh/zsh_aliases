@@ -57,7 +57,7 @@ if (( $+commands[exa] )); then
     alias lag='llg -a'
     alias ldot='ll -d .*'
     alias lss='ll -s size'
-    alias lst='ll -s accessed'
+    alias lst='ll -s modified'
     alias tree='ls --tree'
 fi
 if (( $+commands[lsd] )); then
@@ -94,35 +94,6 @@ alias daily='tmuxinator daily'
 alias weather='curl wttr.in'
 
 alias tl='tmux list-sessions'
-
-# (( $+commands[ghq] )) && \
-    # alias gget='ghq get' && \
-    # alias gcd='ghq look' && \
-    # alias gls='ghq list'
-
-#alias -s c=vim
-#alias -s cpp=vim
-#alias -s h=vim
-#alias -s hpp=vim
-#alias -s java=vim
-#alias -s go=vim
-#alias -s sh=vim
-#alias -s zsh=vim
-#alias -s rs=vim
-#alias -s cs=vim
-#alias -s rb=vim
-#alias -s py=vim
-#alias -s js=vim
-#alias -s conf=vim
-#alias -s txt=vim
-#alias -s xml=vim
-#alias -s html=vim
-#alias -s yml=vim
-#alias -s yaml=vim
-#alias -s zip='unzip'
-#alias -s gz='tar -xvf'
-#alias -s tgz='tar -xvf'
-#alias -s bz2='tar -xvf'
 
 # Archlinux
 # -F Causes less to automatically exit if the entire file can be displayed on one screen
@@ -163,6 +134,7 @@ alias zshsec='vim ~/.zsh_secret'
 alias tmuxconf='vim ~/.tmux.conf'
 # alias ycmconf='vim ~/.ycm_extra_conf.py'
 alias emconf='em ~/.spacemacs'
+alias awmrc='vim ~/.config/awesome/rc.lua'
 
 alias gpa='git push origin --all && git push origin --tags'
 alias csort='LC_ALL=C sort'
