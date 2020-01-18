@@ -7,7 +7,10 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) && cd "$SCRIPT_DIR" || return 1
+SDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) && cd "$SDIR" || return 1
+TDIR="$HOME/.config/variety"
 
-mkdir -p ~/.config/variety
-ln -sf "$SCRIPT_DIR/variety.conf" ~/.config/variety/variety.conf
+mkdir -p "$TDIR"
+
+ln -sf "$SDIR/variety.conf"          "$TDIR/variety.conf"
+ln -sf "$SDIR/scripts/set_wallpaper" "$TDIR/scripts"

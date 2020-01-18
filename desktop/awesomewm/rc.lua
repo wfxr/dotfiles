@@ -1,10 +1,3 @@
---[[
-
-     Awesome WM configuration template
-     github.com/lcpz
-
---]]
-
 -- {{{ Required libraries
 local awesome, client, mouse, screen, tag = awesome, client, mouse, screen, tag
 local ipairs, string, os, table, tostring, tonumber, type = ipairs, string, os, table, tostring, tonumber, type
@@ -57,7 +50,17 @@ local function run_once(cmd_arr)
     end
 end
 
-run_once({ "urxvtd", "unclutter -root" }) -- entries must be separated by commas
+startup_services =
+{
+    -- "urxvtd",
+    -- "unclutter -root",
+    "fcitx -d -r",
+    "compton -b",
+    "variety",
+    "tmux new-session -d -s 'default'",
+}
+
+run_once(startup_services) -- entries must be separated by commas
 
 -- This function implements the XDG autostart specification
 --[[
@@ -86,7 +89,7 @@ local themes = {
     "vertex",          -- 10
 }
 
-local chosen_theme = themes[5]
+local chosen_theme = themes[7]
 local modkey       = "Mod4"
 local altkey       = "Mod1"
 local terminal     = "alacritty"
@@ -100,9 +103,9 @@ local scrlocker    = "slock"
 awful.util.terminal = terminal
 awful.util.tagnames = { "1", "2", "3", "4", "5" }
 awful.layout.layouts = {
-    awful.layout.suit.floating,
-    awful.layout.suit.tile,
     awful.layout.suit.tile.left,
+    awful.layout.suit.tile.right,
+    awful.layout.suit.floating,
     awful.layout.suit.tile.bottom,
     awful.layout.suit.tile.top,
     --awful.layout.suit.fair,
@@ -389,6 +392,7 @@ globalkeys = my_table.join(
               -- {description = "delete tag", group = "tag"}),
 
     -- Standard program
+
     awful.key({ "Control",        }, "`", function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey, "Shift"   }, "r", awesome.restart,
@@ -527,6 +531,8 @@ globalkeys = my_table.join(
     -- Prompt
     awful.key({ modkey }, "r", function () awful.screen.focused().mypromptbox:run() end,
               {description = "run prompt", group = "launcher"}),
+    awful.key({ modkey }, "d", function () awful.spawn("rofi -modi run,drun -show drun") end,
+              {description = "show rofi", group = "launcher"}),
 
     awful.key({ modkey }, "x",
               function ()

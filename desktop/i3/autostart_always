@@ -21,7 +21,7 @@ start_tmux() {
     # https://github.com/tmux/tmux/issues/182
     # tmux start-server &
     if ! tmux has-session -t 'default'; then
-        tmux new-session -d -s 'defalut' &
+        tmux new-session -d -s 'default' &
     fi
 }
 
