@@ -501,8 +501,8 @@
   [[Juicy]]
     background_color = "#212121"
     cursor_color = "#fcfcfc"
-    font = InconsolataLGC Nerd Font Medium 10
-    foreground_color = "#fcfcfc"
+    font = InconsolataLGC Nerd Font Medium 18
+    foreground_color = "#d3d7cf"
     palette = "#2e3436:#ff0945:#1aff81:#fff64a:#2bf1ff:#7b68ee:#98f4ff:#d3d7cf:#555753:#ff0945:#1aff81:#fff64a:#2bf1ff:#7b68ee:#98f4ff:#eeeeec"
     scrollbar_position = hidden
     show_titlebar = False
