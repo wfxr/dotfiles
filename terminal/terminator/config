@@ -3,6 +3,7 @@
   enabled_plugins = TerminatorThemes, LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
   hide_from_taskbar = True
 [keybindings]
+  zoom_in = <Primary>equal
 [layouts]
   [[default]]
     [[[child1]]]

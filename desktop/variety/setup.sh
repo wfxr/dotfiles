@@ -11,6 +11,7 @@ SDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) && cd "$SDIR" || return 1
 TDIR="$HOME/.config/variety"
 
 mkdir -p "$TDIR"
-
 ln -sf "$SDIR/variety.conf"          "$TDIR/variety.conf"
+
+mkdir -p "$TDIR/scripts"
 ln -sf "$SDIR/scripts/set_wallpaper" "$TDIR/scripts"
