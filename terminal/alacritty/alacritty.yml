@@ -101,26 +101,26 @@
 #tabspaces: 8
 
 # Font configuration
+# Cousine Nerd Font Mono
+# Overpass Nerd Font
+# RobotoMono Nerd Font Mono
+# InconsolataLGC Nerd Font
 font:
   normal:
-    # Default:
-    #   - (macOS) Menlo
-    #   - (Linux) monospace
-    #   - (Windows) Consolas
-    family: FuraCode Nerd Font
-    style: Regular
+    family: Cousine Nerd Font Mono
+    style: Medium
   bold:
-    family: FuraCode Nerd Font
+    family: Cousine Nerd Font Mono
     style: Bold
   italic:
-    family: FuraCode Nerd Font
+    family: Cousine Nerd Font Mono
     style: Italic
   bold_italic:
-    family: FuraCode Nerd Font
+    family: Cousine Nerd Font Mono
     style: Bold Italic
 
   # Point size
-  size: 12.0
+  size: 14.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
