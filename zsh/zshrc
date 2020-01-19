@@ -96,7 +96,7 @@ source <(starship init zsh) || logwarn "failed loading starship."
     ##### }}} general plugins #####
 
     ##### snippet plugins {{{ #####
-    OMZ="${ZPLGM[PLUGINS_DIR]}/ohmyzsh---ohmyzsh/plugins"
+    OMZ="${ZPLGM[PLUGINS_DIR]:-$HOME/.zplugin/plugins}/ohmyzsh---ohmyzsh/plugins"
     zpl ice as='null' cloneonly depth='1' nocompile; zpl light 'ohmyzsh/ohmyzsh'
     zpl snippet "$OMZ/git-extras/git-extras.plugin.zsh"
     zpl snippet "$OMZ/git-flow-avh/git-flow-avh.plugin.zsh"

@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 SDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) && cd "$SDIR" || return 1
-set -eo pipefail
 
 loginfo()  { printf "%b[info]%b %s\n"  '\e[0;32m\033[1m' '\e[0m' "$@" >&2; }
 logwarn()  { printf "%b[warn]%b %s\n"  '\e[0;33m\033[1m' '\e[0m' "$@" >&2; }
@@ -76,6 +75,12 @@ install_configs() {
 }
 
 install_plugins() {
+    local plug_manager=~/.vim/autoload/plug.vim
+    if ! [ -f "$plug_manager" ]; then
+        mkdir -p ~/.vim/autoload
+        curl -fLo "$plug_manager" https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim ||
+            git clone --depth=1 https://github.com/junegunn/vim-plug ~/.vim/vim-plug && ln -sf ~/.vim/vim-plug/plug.vim "$plug_manager"
+    fi
     if ! hash node &>/dev/null; then
         loginfo "install node(coc.nvim need it)..."
         mkdir -p ~/.local
