@@ -461,9 +461,15 @@ if has('nvim')
     let col = float2nr((&columns - width) / 2)
 
     " Border
-    let top = '┌' . repeat('─', width - 2) . '┐'
-    let mid = '│' . repeat(' ', width - 2) . '│'
-    let bot = '└' . repeat('─', width - 2) . '┘'
+    " let top = '┌' . repeat('─', width - 2) . '┐'
+    " let mid = '│' . repeat(' ', width - 2) . '│'
+    " let bot = '└' . repeat('─', width - 2) . '┘'
+    " let top = '┏' . repeat('━', width - 2) . '┓'
+    " let mid = '┃' . repeat(' ', width - 2) . '┃'
+    " let bot = '┗' . repeat('━', width - 2) . '┛'
+    let top = '┏━' . repeat('─', width - 4) . '━┓'
+    let mid = '│'  . repeat(' ', width - 2) .  '│'
+    let bot = '┗━' . repeat('─', width - 4) . '━┛'
     let border = [top] + repeat([mid], height - 2) + [bot]
 
     " Draw frame
