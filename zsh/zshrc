@@ -69,16 +69,54 @@ source <(starship init zsh) || logwarn "failed loading starship."
 ##### }}} theme #####
 
 ::defer_source::() {
-    ##### fzf rcs {{{ #####
+    ##### program plugins {{{ #####
+    # zlk <from> [dest]
+    zlk() {
+        local src="$1"; local dest="$src"
+        [ $# -eq 2 ] && dest="$2"
+        ln -sf "$(pwd)/$src" "$HOME/bin/$dest"
+        echo "link built: ~/bin/$dest -> $(pwd)/$src"
+    }
+    zplghr() { zpl ice nocompile as='null' from='gh-r' atclone="$2" atpull='%atclone'; zpl light "$1" }
+
     [ -f ~/.fzf.zsh       ] && source ~/.fzf.zsh
     [ -f ~/.zsh_fzf_extra ] && source ~/.zsh_fzf_extra
-    ##### }}} fzf rcs #####
+
+    zpl light-mode as='null' cloneonly depth='1' nocompile for                                             \
+        atclone='zlk src/ydcv.py ydcv'                                                                     \
+            'felixonmars/ydcv'                                                                             \
+        atclone='zlk iconful.sh iconful'                                                                   \
+            'wfxr/iconful'                                                                                 \
+        atclone='zlk b'                                                                                    \
+            'wfxr/fzf-chrome-marks'                                                                        \
+        atclone='zlk diff-so-fancy && git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"' \
+            'so-fancy/diff-so-fancy'                                                                       \
+        atclone="zlk httpstat.py httpstat"                                                                 \
+            'reorx/httpstat'                                                                               \
+        ;
+
+    EMOJI_CLI_KEYBIND='^[m'
+    zpl light-mode as='null' cloneonly depth='1' for                                                       \
+        atclone='zlk emojify; zlk fuzzy-emoji' multisrc='*.zsh'                                            \
+            'wfxr/emoji-cli'                                                                               \
+        ;
+
+    (( $+commands[jq]        )) || zplghr 'stedolan/jq'        'zlk jq* jq'
+    (( $+commands[exa]       )) || zplghr 'ogham/exa'          'zlk exa* exa'
+    (( $+commands[assh]      )) || zplghr 'moul/assh'          'zlk assh* assh'
+    (( $+commands[fd]        )) || zplghr 'sharkdp/fd'         'zlk */fd fd'
+    (( $+commands[bat]       )) || zplghr 'sharkdp/bat'        'zlk */bat bat'
+    (( $+commands[hyperfine] )) || zplghr 'sharkdp/hyperfine'  'zlk */hyperfine hyperfine'
+    (( $+commands[rg]        )) || zplghr 'BurntSushi/ripgrep' 'zlk */rg rg'
+    (( $+commands[mmv]       )) || zplghr 'itchyny/mmv'        'zlk */mmv mmv'
+    ##### }}} program plugins #####
 
     ##### general plugins {{{ #####
     # forgit should be loaded after .zsh_fzf_extra to read fzf's env
-    FORGIT_FZF_DEFAULT_OPTS="--height '80%'"
-    ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=(forward-word forward-char)
-    ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(end-of-line)
+    export FORGIT_FZF_DEFAULT_OPTS="--height '80%'"
+    export ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=(forward-word forward-char)
+    export ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(end-of-line)
+    export GENCOMPL_FPATH="$CUSTOM_FPATH"
     zpl light-mode lucid depth='1' for         \
         atload='_zsh_autosuggest_start'        \
             'zsh-users/zsh-autosuggestions'    \
@@ -92,6 +130,7 @@ source <(starship init zsh) || logwarn "failed loading starship."
             'wfxr/epoch-cli'                   \
             'wfxr/formarks'                    \
             'soimort/translate-shell'          \
+            'RobSis/zsh-completion-generator'  \
             ;
     ##### }}} general plugins #####
 
@@ -106,46 +145,6 @@ source <(starship init zsh) || logwarn "failed loading starship."
     zpl ice as='completion'; zpl snippet "$OMZ/gem/_gem"
     zpl ice as='completion'; zpl snippet "$OMZ/lein/_lein"
     ##### }}} snippet plugins #####
-
-    ##### program plugins {{{ #####
-    # zlk <from> [dest]
-    zlk() {
-        local src="$1"; local dest="$src"
-        [ $# -eq 2 ] && dest="$2"
-        ln -sf "$(pwd)/$src" "$HOME/bin/$dest"
-        echo "link built: ~/bin/$dest -> $(pwd)/$src"
-    }
-    zplghr() {
-        zpl ice nocompile as='null' from='gh-r' atclone="$2" atpull='%atclone'
-        zpl light "$1"
-    }
-
-    zpl light-mode as='null' cloneonly depth='1' nocompile for                                             \
-        atclone='zlk src/ydcv.py ydcv'                                                                     \
-            'felixonmars/ydcv'                                                                             \
-        atclone='zlk iconful.sh iconful'                                                                   \
-            'wfxr/iconful'                                                                                 \
-        atclone='zlk b'                                                                                    \
-            'wfxr/fzf-chrome-marks'                                                                        \
-        atclone='zlk diff-so-fancy && git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"' \
-            'so-fancy/diff-so-fancy'                                                                       \
-        atclone="zlk httpstat.py httpstat"                                                                 \
-            'reorx/httpstat'                                                                               \
-
-    EMOJI_CLI_KEYBIND='^[m'
-    zpl light-mode as='null' cloneonly depth='1' for                                                       \
-        atclone='zlk emojify; zlk fuzzy-emoji' multisrc='*.zsh'                                            \
-            'wfxr/emoji-cli'                                                                               \
-
-    (( $+commands[jq]        )) || zplghr 'stedolan/jq'        'zlk jq* jq'
-    (( $+commands[exa]       )) || zplghr 'ogham/exa'          'zlk exa* exa'
-    (( $+commands[assh]      )) || zplghr 'moul/assh'          'zlk assh* assh'
-    (( $+commands[fd]        )) || zplghr 'sharkdp/fd'         'zlk */fd fd'
-    (( $+commands[bat]       )) || zplghr 'sharkdp/bat'        'zlk */bat bat'
-    (( $+commands[hyperfine] )) || zplghr 'sharkdp/hyperfine'  'zlk */hyperfine hyperfine'
-    (( $+commands[rg]        )) || zplghr 'BurntSushi/ripgrep' 'zlk */rg rg'
-    (( $+commands[mmv]       )) || zplghr 'itchyny/mmv'        'zlk */mmv mmv'
-    ##### }}} program plugins #####
 
     ##### other rcs {{{ #####
     source ~/.zsh_misc
@@ -175,6 +174,8 @@ source <(starship init zsh) || logwarn "failed loading starship."
     [ $DEV_RUBY   ] && zccs::cmd  'rbenv init - zsh'
     [ $DEV_PYTHON ] && zccs::cmd  'pyenv init - zsh'
     [ $DEV_PYTHON ] && zccs::cmd  'pip completion --zsh' # fucking slow. cache it!
+
+    [ -f "$GENCOMPL_FPATH/_fzf" ] || gencomp fzf
     ##### }}} dynamic generated  #####
 }
 

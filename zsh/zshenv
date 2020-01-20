@@ -77,7 +77,8 @@ function setup_env() {
     export WORDCHARS=''
 
     # Custom zsh completions path
-    export fpath=($fpath ~/.zsh_completions)
+    export CUSTOM_FPATH="$HOME/.zsh_completions"
+    export fpath=($fpath $CUSTOM_FPATH)
 
     # LS COLORS
     # https://github.com/ogham/exa/blob/adfee28fb9bb6f491c822ba4506fafef03909945/Vagrantfile#L163
