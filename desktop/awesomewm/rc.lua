@@ -56,7 +56,8 @@ startup_services =
     -- "unclutter -root",
     "fcitx -d -r",
     "compton -b",
-    "variety",
+    -- "variety",
+    "~/.fehbg",
     "tmux new-session -d -s 'default'",
 }
 
