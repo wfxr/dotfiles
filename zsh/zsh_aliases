@@ -154,3 +154,5 @@ alias gco='git checkout'
 alias gst='git status'
 alias gs='git stash'
 alias gsp='git stash pop'
+
+alias ra='ranger'

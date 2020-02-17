@@ -57,7 +57,6 @@ startup_services =
     "fcitx -d -r",
     "compton -b",
     -- "variety",
-    "~/.fehbg",
     "tmux new-session -d -s 'default'",
 }
 
@@ -782,3 +781,5 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- possible workaround for tag preservation when switching back to default screen:
 -- https://github.com/lcpz/awesome-copycats/issues/251
 -- }}}
+
+run_once({ '~/.fehbg' })
