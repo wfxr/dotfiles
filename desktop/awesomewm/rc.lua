@@ -106,7 +106,8 @@ awful.util.terminal = terminal
 awful.util.tagnames = { "1", "2", "3", "4", "5" }
 awful.layout.layouts = {
     awful.layout.suit.tile.left,
-    awful.layout.suit.tile.right,
+    awful.layout.suit.tile.left,
+    -- awful.layout.suit.tile.right,
     awful.layout.suit.floating,
     awful.layout.suit.tile.bottom,
     awful.layout.suit.tile.top,
@@ -266,6 +267,9 @@ globalkeys = my_table.join(
     -- https://github.com/lcpz/dots/blob/master/bin/screenshot
     -- awful.key({ altkey }, "p", function() os.execute("screenshot") end,
               -- {description = "take a screenshot", group = "hotkeys"}),
+
+    awful.key({ altkey, "Control" }, "a", function () os.execute('import png:- | xclip -selection clipboard -t image/png') end,
+              {description = "screenshot", group = "hotkeys"}),
 
     -- X screen locker
     awful.key({ altkey, "Control" }, "l", function () os.execute(scrlocker) end,

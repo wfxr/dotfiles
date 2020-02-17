@@ -60,14 +60,14 @@ if (( $+commands[exa] )); then
     alias lst='ll -s modified'
     alias tree='ls --tree'
 fi
-if (( $+commands[lsd] )); then
-    alias ls='lsd --icon=never'
-    alias ll='lsd -l'
-    alias la='ll -a'
-    alias lss='ll -S -r'
-    alias lst='ll -t -r --date=relative'
-    alias tree='lsd --tree'
-fi
+# if (( $+commands[lsd] )); then
+    # alias ls='lsd --icon=never'
+    # alias ll='lsd -l'
+    # alias la='ll -a'
+    # alias lss='ll -S -r'
+    # alias lst='ll -t -r --date=relative'
+    # alias tree='lsd --tree'
+# fi
 alias vv='vim $(fzf)'
 alias vi=vim
 alias vi2='vim -O2'
