@@ -107,16 +107,16 @@
 # InconsolataLGC Nerd Font
 font:
   normal:
-    family: Cousine Nerd Font Mono
-    style: Medium
+    family: JetBrains Mono
+    style: Regular
   bold:
-    family: Cousine Nerd Font Mono
+    family: JetBrains Mono
     style: Bold
   italic:
-    family: Cousine Nerd Font Mono
+    family: JetBrains Mono
     style: Italic
   bold_italic:
-    family: Cousine Nerd Font Mono
+    family: JetBrains Mono
     style: Bold Italic
 
   # Point size
