@@ -504,3 +504,20 @@ function vim-plugins-profile() {
 }
 
 function get-window-class() { xprop | grep -i class }
+
+function gtype() {
+    local content=$(cat <<-EOF
+💍 test     - Adding missing tests
+🎸 feat     - A new feature
+🐛 fix      - A bug fix
+🤖 chore    - Build process or auxiliary tool changes
+📝 docs     - Documentation only changes
+💡 refactor - A code change that neither fixes a bug or adds a feature
+💄 style    - Markup, white-space, formatting, missing semi-colons...
+🎡 ci       - CI related changes
+⚡ perf     - A code change that improves performance
+EOF
+)
+    local height=$(( $(echo $"$content" | wc -l) + 4 ))
+    echo "$content" | fzf --height=$height | awk '{ print $2 }'
+}
