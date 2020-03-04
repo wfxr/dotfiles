@@ -438,7 +438,6 @@ function handshake() { curl -w "TCP handshake: %{time_connect}, SSL handshake: %
 
 function git-tag-with-version() {
     (
-    set -euo pipefail
     IFS=$'\n\t'
 
     ROOT=$(git rev-parse --show-toplevel)
