@@ -156,3 +156,5 @@ alias gs='git stash'
 alias gsp='git stash pop'
 
 alias ra='ranger'
+
+alias mycli='LESS="-S $LESS" mycli'
