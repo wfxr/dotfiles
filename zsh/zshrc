@@ -109,6 +109,8 @@ source <(starship init zsh) || logwarn "failed loading starship."
     (( $+commands[hyperfine] )) || zplghr 'sharkdp/hyperfine'  'zlk */hyperfine hyperfine'
     (( $+commands[rg]        )) || zplghr 'BurntSushi/ripgrep' 'zlk */rg rg'
     (( $+commands[mmv]       )) || zplghr 'itchyny/mmv'        'zlk */mmv mmv'
+
+    [ $DEV_KOTLIN ] && zplghr 'pinterest/ktlint' 'zlk ktlint ktlint'
     ##### }}} program plugins #####
 
     ##### general plugins {{{ #####
