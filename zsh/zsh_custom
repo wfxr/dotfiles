@@ -437,6 +437,7 @@ function bkr() { (nohup "$@" &>/dev/null &) }
 function handshake() { curl -w "TCP handshake: %{time_connect}, SSL handshake: %{time_appconnect}\n" -so /dev/null "$@" }
 
 function git-tag-with-version() {
+    [ $# -eq 0 ] && git tag -l --sort=v:refname && return 0
     (
     IFS=$'\n\t'
 
