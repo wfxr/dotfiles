@@ -454,7 +454,7 @@ function git-tag-with-version() {
     echo "$tag" > version
 
     git add version
-    git commit --no-verify -m "$tag"
+    git commit --no-verify -m "release: $tag"
     git tag "$tag"
     )
 } && alias gtv=git-tag-with-version
