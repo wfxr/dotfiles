@@ -478,6 +478,24 @@ EOF
     )
 }
 
+function hooks-link() {
+    (
+    set -eo pipefail
+    cd "$(git rev-parse --show-toplevel)"
+    mkdir -p .githooks
+    if [[ $(readlink .git/hooks) == "../.githooks" ]]; then
+        echo 'already linked.'
+    else
+        if [[ -d .git/hooks ]]; then
+            rm -rf .git/hooks.old
+            mv .git/hooks .git/hooks.old
+        fi
+        ln -sf ../.githooks .git/hooks
+        echo 'linked'
+    fi
+    )
+}
+
 function zsh-bench() { for i ({1..${1:-5}}) time zsh -ilc echo &>/dev/null || true }
 
 function y() { ydcv "$*"; }
