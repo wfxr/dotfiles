@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+############################################################################
+#    Author: Wenxuan Zhang                                                 #
+#     Email: wenxuangm@gmail.com                                           #
+#   Created: 2020-03-23 20:12                                              #
+############################################################################
+set -euo pipefail
+IFS=$'\n\t'
+
+usage() { echo "Usage: $(basename "$0") <version> <stage|patch|minor|major>" >&2; }
+
+[[ $# -ne 2 ]] && usage && exit 1
+
+VER=$1
+TYPE=$2
+VER_RE='^([0-9]+)\.([0-9]+)\.([0-9]+)(-(alpha|beta|rc)\.([0-9]+))?$'
+if [[ $VER =~ $VER_RE ]]; then
+    MAJOR=${BASH_REMATCH[1]}
+    MINOR=${BASH_REMATCH[2]}
+    PATCH=${BASH_REMATCH[3]}
+    STAGE=${BASH_REMATCH[5]}
+    STAGE_NO=${BASH_REMATCH[6]}
+    case $TYPE in
+        stage)
+            if [[ -z $STAGE ]]; then
+                PATCH=$((PATCH + 1))
+                STAGE=alpha
+                STAGE_NO=1
+            else
+                STAGE_NO=$((STAGE_NO + 1))
+            fi
+            ;;
+        patch)
+            [[ -z $STAGE ]] && PATCH=$((PATCH + 1))
+            ;;
+        minor)
+            MINOR=$((MINOR + 1))
+            PATCH=0
+            ;;
+        major)
+            MAJOR=$((MAJOR + 1))
+            MINOR=0
+            PATCH=0
+            ;;
+        *)
+            echo "Invalid version type: $TYPE. Shoud be one of [major, minor, patch]" >&2 && exit 1
+            ;;
+    esac
+    printf "%s.%s.%s" $MAJOR $MINOR $PATCH
+    [[ $TYPE == stage ]] && printf -- "-%s.%s" $STAGE $STAGE_NO
+    printf "\n"
+else
+    echo 'Invalid version detected. Should be format like "MAJOR.MINOR.PATCH[-STAGE.STAGE_NO]".' >&2
+    echo 'MAJOR, MINOR, PATCH, STAGE_NO should be number and Stage should be one of alpha, beta, rc.' >&2
+    exit 1
+fi

@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+ROOT=$(git rev-parse --show-toplevel) && cd "$ROOT"
+
+VER=$(head -n 1 version)
+VER_RE='^([0-9]+)\.([0-9]+)\.([0-9]+)(-(alpha|beta|rc)\.([0-9]+))?$'
+if [[ $VER =~ $VER_RE ]]; then
+    MAJOR=${BASH_REMATCH[1]}
+    MINOR=${BASH_REMATCH[2]}
+    PATCH=${BASH_REMATCH[3]}
+    STAGE=${BASH_REMATCH[5]}
+    STAGE_NO=${BASH_REMATCH[6]}
+
+    if [[ -z $STAGE ]]; then
+        PATCH=$((PATCH + 1))
+        STAGE=alpha
+        STAGE_NO=1
+    else
+        STAGE_NO=$((STAGE_NO + 1))
+    fi
+
+    echo "$MAJOR.$MINOR.$PATCH-$STAGE.$STAGE_NO" |tee version
+    git add version
+else
+    echo 'Invalid version detected. Should be format like "MAJOR.MINOR.PATCH[-STAGE.STAGE_NO]".' >&2
+    echo 'MAJOR, MINOR, PATCH, STAGE_NO should be number and Stage should be one of alpha, beta, rc.' >&2
+    exit 1
+fi

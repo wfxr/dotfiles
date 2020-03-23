@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+############################################################################
+#    Author: Wenxuan Zhang                                                 #
+#     Email: wenxuangm@gmail.com                                           #
+#   Created: 2020-03-23 20:12                                              #
+############################################################################
+set -euo pipefail
+IFS=$'\n\t'
+
+loginfo()  { printf "%b[info]%b %s\n"  '\e[0;32m\033[1m' '\e[0m' "$@" >&2; }
+logwarn()  { printf "%b[warn]%b %s\n"  '\e[0;33m\033[1m' '\e[0m' "$@" >&2; }
+logerror() { printf "%b[error]%b %s\n" '\e[0;31m\033[1m' '\e[0m' "$@" >&2; }
+
+usage() { echo "Usage: $(basename "$0") <stage|patch|minor|major>" >&2; }
+
+[[ $# -ne 1 ]] && usage && exit 1
+
+TYPE=$1
+ROOT=$(git rev-parse --show-toplevel) && cd "$ROOT"
+
+CURR=$(head -1 version)
+NEXT=$(semver-next "$CURR" "$TYPE")
+if [ "$(git tag -l "$NEXT")" ]; then
+    logerror "tag '$NEXT' already exists" && exit 1
+fi
+
+if [[ -n $(git status -s) ]]; then
+    logerror "modified/untracked:"
+    git status -s && exit 1
+fi
+
+echo "$NEXT" > version
+
+git add version
+git commit --no-verify -m "release: $NEXT"
+git tag "$NEXT"
+loginfo "new tag '$NEXT' added"

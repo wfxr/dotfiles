@@ -158,3 +158,5 @@ alias gsp='git stash pop'
 alias ra='ranger'
 
 alias mycli='LESS="-S $LESS" mycli'
+
+alias gsn='git-semver-next'
