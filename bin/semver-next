@@ -7,9 +7,13 @@
 set -euo pipefail
 IFS=$'\n\t'
 
+loginfo()  { printf "%b[info]%b %s\n"  '\e[0;32m\033[1m' '\e[0m' "$@" >&2; }
+logwarn()  { printf "%b[warn]%b %s\n"  '\e[0;33m\033[1m' '\e[0m' "$@" >&2; }
+logerror() { printf "%b[error]%b %s\n" '\e[0;31m\033[1m' '\e[0m' "$@" >&2; }
+
 usage() { echo "Usage: $(basename "$0") <version> <stage|patch|minor|major>" >&2; }
 
-[[ $# -ne 2 ]] && usage && exit 1
+[[ $# -ne 2 ]] && logerror 'Incorrect argument number.' && usage && exit 1
 
 VER=$1
 TYPE=$2
@@ -43,14 +47,15 @@ if [[ $VER =~ $VER_RE ]]; then
             PATCH=0
             ;;
         *)
-            echo "Invalid version type: $TYPE. Shoud be one of [major, minor, patch]" >&2 && exit 1
+            logerror "Invalid version type: $TYPE. Shoud be one of [major, minor, patch]" && exit 1
             ;;
     esac
     printf "%s.%s.%s" $MAJOR $MINOR $PATCH
     [[ $TYPE == stage ]] && printf -- "-%s.%s" $STAGE $STAGE_NO
     printf "\n"
 else
-    echo 'Invalid version detected. Should be format like "MAJOR.MINOR.PATCH[-STAGE.STAGE_NO]".' >&2
-    echo 'MAJOR, MINOR, PATCH, STAGE_NO should be number and Stage should be one of alpha, beta, rc.' >&2
+    message='Invalid version: Acceptable format is "MAJOR.MINOR.PATCH[-STAGE.STAGE_NO]".'
+    message="$message Stage should be one of [alpha, beta, rc] and other parts should be numbers."
+    logerror "$message"
     exit 1
 fi
