@@ -11,9 +11,11 @@ loginfo()  { printf "%b[info]%b %s\n"  '\e[0;32m\033[1m' '\e[0m' "$@" >&2; }
 logwarn()  { printf "%b[warn]%b %s\n"  '\e[0;33m\033[1m' '\e[0m' "$@" >&2; }
 logerror() { printf "%b[error]%b %s\n" '\e[0;31m\033[1m' '\e[0m' "$@" >&2; }
 
-usage() { echo "Usage: $(basename "$0") <stage|patch|minor|major>" >&2; }
+usage() { echo "Usage: $(basename "$0") [stage|patch|minor|major]" >&2; }
 
-[[ $# -ne 1 ]] && usage && exit 1
+[[ $# -gt 1 ]] && usage && exit 1
+
+[[ $# -eq 0 ]] && git tag -l --sort=v:refname && exit 0
 
 TYPE=$1
 ROOT=$(git rev-parse --show-toplevel) && cd "$ROOT"
