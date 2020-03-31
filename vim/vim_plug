@@ -11,6 +11,8 @@
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'itchyny/lightline.vim'
+Plug 'vimwiki/vimwiki'
 Plug 'honza/vim-snippets'
 Plug 'ron89/thesaurus_query.vim'
 Plug 'terryma/vim-multiple-cursors' | let g:multi_cursor_select_all_word_key = '<A-a>'
@@ -48,10 +50,13 @@ let g:gruvbox_bold = 1
 let g:gruvbox_italic = 1
 let g:gruvbox_contrast_dark = 'medium'
 Plug 'gruvbox-community/gruvbox'
+let g:gruvbox_material_enable_bold = 1
 let g:gruvbox_material_enable_italic = 1
-let g:gruvbox_material_background = 'hard'
 let g:gruvbox_material_transparent_background = 1
-Plug 'gruvbox-material/vim', { 'as': 'gruvbox-material' }
+let g:gruvbox_material_background = 'medium'
+let g:gruvbox_material_palette = 'mix'
+Plug 'sainnhe/gruvbox-material'
+let g:lightline = {'colorscheme' : 'gruvbox_material'}
 
 " vim-rooter {{{ "
 Plug 'airblade/vim-rooter'
@@ -291,12 +296,12 @@ nmap <Leader>d :Gdiff<CR>
 " }}} ryanoasis/vim-devicons "
 
 " vim-airline/vim-airline {{{ "
-Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_tab_type = 0
-let g:airline#extensions#tmuxline#enabled = 0
-let g:airline_theme = 'gruvbox_material'
+" Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
+" let g:airline_powerline_fonts = 1
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#show_tab_type = 0
+" let g:airline#extensions#tmuxline#enabled = 0
+" let g:airline_theme = 'gruvbox_material'
 " let g:airline_left_sep = ''
 " let g:airline_right_sep = ''
 " let g:airline_left_alt_sep = ''
