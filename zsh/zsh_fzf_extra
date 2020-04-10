@@ -35,6 +35,12 @@ FZF_DEFAULT_COMMAND='(git ls-tree -r --name-only HEAD ||
 export FZF_DEFAULT_COMMAND
 FZF_DEFAULT_OPTS="
 --border
+--pointer '➤ '
+--marker '>'
+--prompt '❯ '
+--color=fg:-1,bg:-1,hl:#ffaf5f,fg+:-1,bg+:-1,hl+:#ffaf5f
+--color=prompt:#5fff87,marker:#ff87d7,spinner:#ff87d7
+--info inline
 --height 80%
 --extended
 --ansi
@@ -48,10 +54,16 @@ FZF_DEFAULT_OPTS="
 --bind ?:toggle-preview,alt-w:toggle-preview-wrap
 --bind \"ctrl-y:execute-silent(ruby -e 'puts ARGV' {+} | pbcopy)+abort\"
 --bind 'alt-e:execute($EDITOR {} >/dev/tty </dev/tty)'
+--bind change:top
 --preview \"($FZF_FILE_HIGHLIGHTER {} || $FZF_DIR_HIGHLIGHTER {}) 2>/dev/null | head -200\"
 --preview-window right:50%:hidden
 "
 export FZF_DEFAULT_OPTS
+export FZF_COMPLETION_TRIGGER='~~'
+(( $+commands[fd] )) && {
+    _fzf_compgen_path() { fd --hidden --follow --exclude ".git" . "$1" }
+    _fzf_compgen_dir() { fd --type d --hidden --follow --exclude ".git" . "$1" }
+}
 
 # FZF: Ctrl - T
 FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"

@@ -370,7 +370,7 @@ map <leader>il :IndentLinesToggle<CR>
 " }}} Yggdroot/indentLine "
 
 " junegunn/fzf {{{ "
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } | Plug 'junegunn/fzf.vim'
 let g:fzf_buffers_jump = 1
 nmap <a-g> :Rg<CR>
 nmap <a-l> :Lines<CR>
@@ -435,6 +435,7 @@ let g:fzf_action = {
 
 function! s:fzf_devicons()
     let l:fzf_files_options = '
+                \ --no-border
                 \ --multi
                 \ --preview-window right
                 \ --preview "$FZF_FILE_HIGHLIGHTER {$FZF_PATH_LOC} 2>/dev/null | head -'.&lines.'"
