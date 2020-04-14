@@ -10,7 +10,7 @@ ln -snf "$SCRIPT_DIR/rustfmt.toml" ~/.rustfmt.toml
 if hash rustup &>/dev/null; then
     rustup update
 else
-    curl https://sh.rustup.rs -sSf | sh -s -- --no-modify-path --profile complete --default-toolchain nightly -y || exit 1
+    curl https://sh.rustup.rs -sSf | sh -s -- --no-modify-path --profile default -c clippy rls rust-src rust-std rustfmt rust-analysis --default-toolchain nightly -y || exit 1
 fi
 
 # rustup component add rls-preview rust-analysis rust-src rustfmt-preview
@@ -19,4 +19,4 @@ rustup completions zsh       > ~/.zsh_completions/_rustup
 rustup completions zsh cargo > ~/.zsh_completions/_cargo
 
 # for checking and applying updates to installed executables
-cargo install cargo-update
+cargo install cargo-update cargo-edit
