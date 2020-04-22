@@ -101,7 +101,7 @@ function t() {
         if [[ $TMUX ]]; then
             wfxr::tmux-switch
         else
-            wfxr::tmux-attach
+            wfxr::tmux-attach 2>/dev/null || tmux new-session -A -s "default"
         fi
     else
         if [[ $TMUX ]]; then
