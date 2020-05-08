@@ -19,4 +19,5 @@ rustup completions zsh       > ~/.zsh_completions/_rustup
 rustup completions zsh cargo > ~/.zsh_completions/_cargo
 
 # for checking and applying updates to installed executables
-cargo install cargo-update cargo-edit
+cargo install cargo-update
+cargo install cargo-edit cargo-play
