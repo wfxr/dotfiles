@@ -855,6 +855,7 @@ augroup END
 Plug 'sheerun/vim-polyglot'
 let g:polyglot_disabled = ['markdown'] " cause coc-emoji complete not triggered
 Plug 'plasticboy/vim-markdown',        { 'for': 'markdown'   }
+Plug 'iamcco/markdown-preview.nvim',   { 'for': 'markdown', 'do': 'cd app & yarn install' }
 Plug 'ekalinin/Dockerfile.vim',        { 'for': 'dockerfile' }
 Plug 'andrewstuart/vim-kubernetes',    { 'for': 'yaml'       }
 Plug 'vim-scripts/awk.vim',            { 'for': 'awk'        }
