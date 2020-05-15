@@ -118,7 +118,6 @@ source <(starship init zsh) || logwarn "failed loading starship."
     export FORGIT_FZF_DEFAULT_OPTS="--height '80%'"
     export ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=(forward-word forward-char)
     export ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(end-of-line)
-    export GENCOMPL_FPATH="$CUSTOM_FPATH"
     zpl light-mode lucid depth='1' for         \
         atload='_zsh_autosuggest_start'        \
             'zsh-users/zsh-autosuggestions'    \
@@ -169,6 +168,30 @@ source <(starship init zsh) || logwarn "failed loading starship."
     unset -f custom_compinit
     ##### }}} compinit #####
 
+    ##### completions {{{ #####
+    export ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=(forward-word forward-char)
+    export ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(end-of-line)
+    zpl light-mode lucid depth='1' for         \
+        atload='_zsh_autosuggest_start'        \
+            'zsh-users/zsh-autosuggestions'    \
+        blockf                                 \
+            'zdharma/fast-syntax-highlighting' \
+            'Aloxaf/fzf-tab' \
+            ;
+    FZF_TAB_COMMAND=(
+        fzf
+        --ansi   # Enable ANSI color support, necessary for showing groups
+        --expect='$continuous_trigger' # For continuous completion
+        '--color=hl:$(( $#headers == 0 ? 108 : 255 ))'
+        --nth=2,3 --delimiter='\x00'  # Don't search prefix
+        --no-border --layout=reverse --height='${FZF_TMUX_HEIGHT:=75%}'
+        --tiebreak=begin -m --bind=tab:down,btab:up,change:top,alt-m:toggle+down --cycle
+        '--query=$query'   # $query will be expanded to query string at runtime.
+        '--header-lines=$#headers' # $#headers will be expanded to lines of headers at runtime
+    )
+    zstyle ':fzf-tab:*' command $FZF_TAB_COMMAND
+    ##### }}} completions #####
+
     ##### dynamic generated {{{ #####
     [ $DEV_TRAVIS ] && zccs::file '~/.travis/travis.sh'
     [ $DEV_K8S    ] && zccs::cmd  'kubectl completion zsh'
@@ -179,6 +202,7 @@ source <(starship init zsh) || logwarn "failed loading starship."
 
     # (( $+commands[broot] )) && zccs::cmd 'broot --print-shell-function zsh'
 
+    export GENCOMPL_FPATH="$CUSTOM_FPATH"
     [ -f "$GENCOMPL_FPATH/_fzf" ] || gencomp fzf
     ##### }}} dynamic generated  #####
 }

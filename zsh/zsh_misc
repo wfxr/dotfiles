@@ -3,8 +3,9 @@
 zstyle ':completion:*:default' menu select=2
 
 # Completing Groping
-zstyle ':completion:*:options' description 'yes'
-zstyle ':completion:*:descriptions' format '%F{yellow}Completing %B%d%b%f'
+# zstyle ':completion:*:options' description 'yes'
+# zstyle ':completion:*:descriptions' format '%F{yellow}Completing %B%d%b%f'
+zstyle ':completion:complete:*:options' sort false
 zstyle ':completion:*' group-name ''
 
 # Completing misc
