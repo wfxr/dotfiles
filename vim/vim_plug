@@ -551,7 +551,7 @@ if has_key(g:plugs, 'coc.nvim')
                 \ 'coc-tag',
                 \ 'coc-word',
                 \ 'coc-emoji',
-                \ 'coc-gocode',
+                \ 'coc-go',
                 \ 'coc-json',
                 \ 'coc-yaml',
                 \ 'coc-highlight',
