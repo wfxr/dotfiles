@@ -189,7 +189,10 @@ source <(starship init zsh) || logwarn "failed loading starship."
         '--query=$query'   # $query will be expanded to query string at runtime.
         '--header-lines=$#headers' # $#headers will be expanded to lines of headers at runtime
     )
+    zstyle ':completion:complete:*:options' sort false
     zstyle ':fzf-tab:*' command $FZF_TAB_COMMAND
+    zstyle ':fzf-tab:*' ignore 5
+    zstyle ':completion:*' menu yes select
     ##### }}} completions #####
 
     ##### dynamic generated {{{ #####
