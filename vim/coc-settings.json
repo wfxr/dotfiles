@@ -20,4 +20,5 @@
   "coc.source.around.firstMatch": false,
   "coc.source.buffer.firstMatch": false,
   "coc.source.syntax.firstMatch": false,
+  "coc.source.syntax.priority": 100,
 }

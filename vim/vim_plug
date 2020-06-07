@@ -753,6 +753,7 @@ augroup go_env
     autocmd!
     " Note: Do not change the order!
     " Note: Do not comment lines inplace
+    let g:go_rename_command = "gopls"
     autocmd FileType go
                 \ setl nolist|
                 \ nmap <buffer> <leader>b<CR> :call <SID>build_go_files()<CR>|
