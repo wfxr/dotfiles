@@ -549,7 +549,6 @@ if has_key(g:plugs, 'coc.nvim')
                 \ 'coc-python',
                 \ 'coc-dictionary',
                 \ 'coc-tag',
-                \ 'coc-word',
                 \ 'coc-emoji',
                 \ 'coc-go',
                 \ 'coc-json',
@@ -558,6 +557,7 @@ if has_key(g:plugs, 'coc.nvim')
                 \ 'coc-rls',
                 \ 'coc-syntax',
                 \ ]
+                " \ 'coc-word',
 
     function! s:check_back_space() abort
         let col = col('.') - 1
