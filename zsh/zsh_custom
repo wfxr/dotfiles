@@ -497,3 +497,9 @@ EOF
     local height=$(( $(echo $"$content" | wc -l) + 4 ))
     echo "$content" | fzf --height=$height | awk '{ print $2 }'
 }
+
+function git.io() {
+    (( $# < 1 || $# > 2 )) && echo "usage: $0 <url> <code>" 2>&1
+    [[ $# -eq 1 ]] && curl -i https://git.io -F url="$1"
+    [[ $# -eq 2 ]] && curl -i https://git.io -F url="$1" -F "code=$2"
+}
