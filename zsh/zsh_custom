@@ -191,7 +191,8 @@ function wfxr::paste() {
 zle     -N   wfxr::paste
 bindkey '^V' wfxr::paste
 
-function ipcn() { curl https://ip.cn/$1 }
+# function ipcn() { curl https://ip.cn/$1 }
+function ipcn() { curl -fsSL -Ax 'https://ip.cn?ip=$1' | grep -oP '<code>\K(.*?)(?=</code>)' }
 function ipshow() { ip addr show | grep 'inet\s\+' | grep -v "127.0.0.1" | awk '{print $2,$9}' | column -t }
 
 # ssh
