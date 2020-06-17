@@ -1,42 +1,42 @@
 #!/usr/bin/env zsh
-alias agall='ag --silent --hidden -g ""'
-alias agdot='ag --silent --hidden -g ".[^/]+"'
+unalias mv rm cd mkdir 2>/dev/null;
+
+# alias agall='ag --silent --hidden -g ""'
+# alias agdot='ag --silent --hidden -g ".[^/]+"'
 
 alias sudo='sudo ' #可以使sudo支持alias
 alias usudo='sudo -E -s '
 
-alias dot='\cd ~/dotfiles'
-alias tmp='\cd /tmp'
+alias dot='cd ~/dotfiles'
+alias tmp='cd /tmp'
 
 # Docker alias
-alias dps='docker ps'
-alias dpsa='dps -a'
-alias drun='docker run'
-alias drm='docker rm'
-alias drmi='docker rmi'
-alias da='docker attach'
-alias dim='docker images'
-alias dp='docker pull'
-alias dstop='docker stop'
-alias dstart='docker start'
-alias dexec='docker exec'
-alias ds='docker service'
-alias dm='docker-machine'
+# alias dps='docker ps'
+# alias dpsa='dps -a'
+# alias drun='docker run'
+# alias drm='docker rm'
+# alias drmi='docker rmi'
+# alias da='docker attach'
+# alias dim='docker images'
+# alias dp='docker pull'
+# alias dstop='docker stop'
+# alias dstart='docker start'
+# alias dexec='docker exec'
+# alias ds='docker service'
+# alias dm='docker-machine'
 alias k='kubectl'
 alias mks='tmux kill-session -t'
 alias mkS='tmux kill-server'
-
 alias ptp=ptpython
-
-alias md='\mkdir -p -v'
-alias mv='\mv -iv'
-[[ "$OSTYPE" =~ linux ]] && alias rm='\rm -Iv --one-file-system' || alias rm='\rm -iv'
-alias ..='\cd ..'
-alias ...='\cd ../..'
-alias ....='\cd ../../..'
-alias .....='\cd ../../../..'
-alias cd.='\cd ..'
-alias cd..='\cd ..'
+alias md='mkdir -p -v'
+alias mv='mv -iv'
+[[ "$OSTYPE" =~ linux ]] && alias rm='rm -Iv --one-file-system' || alias rm='rm -iv'
+alias ..='gcd ..'
+alias ...='gcd ../..'
+alias ....='gcd ../../..'
+alias .....='gcd ../../../..'
+alias cd.='gcd ..'
+alias cd..='gcd ..'
 alias disable_touch_pad='sudo modprobe -r psmouse'   # 禁用触控板
 alias enable_touch_pad='sudo modprobe psmouse'       # 启用触控板
 (( $+commands[tac]  )) || alias tac='tail -r'
@@ -82,18 +82,17 @@ alias f='fzf -m'
 # copy alias
 alias pc='pbcopy'
 alias pp='pbpaste'
-alias pcurl='pp | xargs curl -s '
-alias pget='pp | xargs wget'
-alias pclone='pp | xargs git clone'
-alias peval='pp | bash'
+# alias pcurl='pp | xargs curl -s '
+# alias pget='pp | xargs wget'
+# alias pclone='pp | xargs git clone'
+# alias peval='pp | bash'
 
-alias mux=tmuxinator
 alias tn='tmux new-session -s'
-alias daily='tmuxinator daily'
+alias tl='tmux list-sessions'
+# alias mux=tmuxinator
+# alias daily='tmuxinator daily'
 
 alias weather='curl wttr.in'
-
-alias tl='tmux list-sessions'
 
 # Archlinux
 # -F Causes less to automatically exit if the entire file can be displayed on one screen
@@ -135,8 +134,8 @@ alias tmuxconf='vim ~/.tmux.conf'
 # alias ycmconf='vim ~/.ycm_extra_conf.py'
 alias emconf='em ~/.spacemacs'
 alias awmrc='vim ~/.config/awesome/rc.lua'
+alias abbrrc='vim ~/.config/zsh/abbreviations'
 
-alias gpa='git push origin --all && git push origin --tags'
 alias csort='LC_ALL=C sort'
 
 alias localdocker='DOCKER_HOST= DOCKER_TLS_PATH= DOCKER_TLS_VERIFY= docker'
@@ -154,6 +153,8 @@ alias gco='git checkout'
 alias gst='git status'
 alias gs='git stash'
 alias gsp='git stash pop'
+
+alias gpa='git push origin --all && git push origin --tags'
 
 alias ra='ranger'
 

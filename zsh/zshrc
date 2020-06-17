@@ -132,6 +132,7 @@ source <(starship init zsh) || logwarn "failed loading starship."
             'wfxr/formarks'                    \
             'soimort/translate-shell'          \
             'RobSis/zsh-completion-generator'  \
+            'olets/zsh-abbr'                   \
             ;
     ##### }}} general plugins #####
 
