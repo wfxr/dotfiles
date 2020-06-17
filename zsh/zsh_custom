@@ -504,3 +504,8 @@ function git.io() {
     [[ $# -eq 1 ]] && curl -i https://git.io -F url="$1"
     [[ $# -eq 2 ]] && curl -i https://git.io -F url="$1" -F "code=$2"
 }
+
+function kube-config-gen() {
+    k --context $1 config view --flatten --minify
+    # replace the token with the user's own
+}

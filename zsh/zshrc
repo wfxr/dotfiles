@@ -200,6 +200,7 @@ source <(starship init zsh) || logwarn "failed loading starship."
     ##### dynamic generated {{{ #####
     [ $DEV_TRAVIS ] && zccs::file '~/.travis/travis.sh'
     [ $DEV_K8S    ] && zccs::cmd  'kubectl completion zsh'
+    [ $DEV_K8S    ] && zccs::cmd  'minikube completion zsh'
     [ $DEV_NODE   ] && zccs::cmd  'nodenv init - zsh'
     [ $DEV_RUBY   ] && zccs::cmd  'rbenv init - zsh'
     [ $DEV_PYTHON ] && zccs::cmd  'pyenv init - zsh'
