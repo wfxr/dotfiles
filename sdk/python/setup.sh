@@ -55,8 +55,8 @@ install_python() {
 install_configs() {
     mkdir -p "$HOME/.pip" || return 1
     ln -sf "$SDIR/pip.conf" "$HOME/.pip/pip.conf"
-    mkdir -p ~/.ptpython || return 1
-    ln -sf "$SDIR/ptpythonrc" ~/.ptpython/config.py
+    mkdir -p ~/.config/ptpython || return 1
+    ln -sf "$SDIR/ptpythonrc" ~/.config/ptpython/config.py
     ln -sf "$SDIR/style.yapf" ~/.style.yapf
 }
 
