@@ -174,11 +174,11 @@ source <(starship init zsh) || logwarn "failed loading starship."
     export ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(end-of-line)
     zpl light-mode lucid depth='1' for         \
         atload='_zsh_autosuggest_start'        \
-            'zsh-users/zsh-autosuggestions'
+            'zsh-users/zsh-autosuggestions'    \
+        blockf                                 \
+            'zdharma/fast-syntax-highlighting' \
 
     # zpl light-mode lucid depth='1' for         \
-        # blockf                                 \
-            # 'zdharma/fast-syntax-highlighting' \
             # 'Aloxaf/fzf-tab' \
 
     # FZF_TAB_COMMAND=(

@@ -509,3 +509,5 @@ function kube-config-gen() {
     k --context $1 config view --flatten --minify
     # replace the token with the user's own
 }
+
+function sumall() { awk '{n+=$1}END{print n}' }
