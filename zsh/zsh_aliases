@@ -24,7 +24,6 @@ alias tmp='cd /tmp'
 # alias dexec='docker exec'
 # alias ds='docker service'
 # alias dm='docker-machine'
-alias k='kubectl'
 alias mks='tmux kill-session -t'
 alias mkS='tmux kill-server'
 alias ptp=ptpython
@@ -134,7 +133,7 @@ alias tmuxconf='vim ~/.tmux.conf'
 # alias ycmconf='vim ~/.ycm_extra_conf.py'
 alias emconf='em ~/.spacemacs'
 alias awmrc='vim ~/.config/awesome/rc.lua'
-alias abbrrc='vim ~/.config/zsh/abbreviations'
+alias zshabbr='vim ~/.config/zsh/abbreviations'
 
 alias csort='LC_ALL=C sort'
 
@@ -161,3 +160,10 @@ alias ra='ranger'
 alias mycli='LESS="-S $LESS" mycli'
 
 alias gsn='git-semver-next'
+
+alias k='kubectl'
+alias ka='kubectl apply --recursive -f'
+alias kex='kubectl exec -it'
+alias klo='kubectl logs -f'
+alias kg='kubectl get'
+alias kd='kubectl describe'

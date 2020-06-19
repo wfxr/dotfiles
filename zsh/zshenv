@@ -108,6 +108,14 @@ function setup_env() {
     export _PATH="$HOME/.nodenv/shims:$HOME/.nodenv/bin:$_PATH"
 
     export PATH="$_PATH"
+
+    # kubectl
+    (( $+commands[kubectl] )) && {
+        for config in ~/.kube/config*; do
+            KUBECONFIG="$KUBECONFIG:$config"
+        done
+        export KUBECONFIG
+    }
 }
 
 setup_history() {
