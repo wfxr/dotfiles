@@ -44,7 +44,6 @@ rhs
 solarized
 sql
 sudo
-sudo's
 timestamp
 tmux
 ubuntu
@@ -62,3 +61,6 @@ gps
 kotlin
 fallback
 leetcode
+k8s
+v1
+api
