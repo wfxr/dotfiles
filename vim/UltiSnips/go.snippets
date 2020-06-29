@@ -1,3 +1,5 @@
+priority 100
+
 snippet Imp "import ..." b
 import "${1:fmt}"
 endsnippet
@@ -44,7 +46,7 @@ func init() {
 }
 endsnippet
 
-snippet gof "go func() { ... }()" b,m
+snippet go "go func() { ... }()" b,m
 go func() {
 	${1:${VISUAL}}
 }()

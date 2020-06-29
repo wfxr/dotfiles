@@ -21,4 +21,9 @@
   "coc.source.buffer.firstMatch": false,
   "coc.source.syntax.firstMatch": false,
   "coc.source.syntax.priority": 100,
+  "snippets.ultisnips.directories": [
+    "UltiSnips",
+    "gosnippets/UltiSnips"
+  ],
+  "snippets.userSnippetsDirectory": "~/.vim/UltiSnips",
 }
