@@ -36,6 +36,7 @@ alias ....='gcd ../../..'
 alias .....='gcd ../../../..'
 alias cd.='gcd ..'
 alias cd..='gcd ..'
+alias cdr='cd "$(git rev-parse --show-toplevel)"'
 alias disable_touch_pad='sudo modprobe -r psmouse'   # 禁用触控板
 alias enable_touch_pad='sudo modprobe psmouse'       # 启用触控板
 (( $+commands[tac]  )) || alias tac='tail -r'
