@@ -507,14 +507,14 @@ nnoremap <c-a-l> :Neoformat<cr>
 " }}} sbdchd/neoformat "
 
 " ultisnips && vim-snippets {{{ "
-" Plug 'SirVer/ultisnips'
-" " Trigger configuration. Do not use <tab> if you use 'YouCompleteMe'
-" let g:UltiSnipsExpandTrigger="<leader><tab>"
-" let g:UltiSnipsJumpForwardTrigger="<c-j>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-" " If you want :UltiSnipsEdit to split your window.
-" let g:UltiSnipsEditSplit="horizontal"
-" autocmd Filetype snippet set shiftwidth=4
+Plug 'SirVer/ultisnips'
+" Trigger configuration. Do not use <tab> if you use 'YouCompleteMe'
+let g:UltiSnipsExpandTrigger="<leader><tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="horizontal"
+autocmd Filetype snippet set shiftwidth=4
 " }}} ultisnips && vim-snippets "
 
 " ale {{{ "
