@@ -72,3 +72,25 @@ systemctl enable paccache.timer
 systemctl start  paccache.timer
 
 #pacman --noconfirm -S btrfs-progs snapper
+
+# A very simple screen locker for X
+# https://tools.suckless.org/slock/
+# https://wiki.archlinux.org/index.php/Slock
+pacman --noconfirm -S slock
+cat <<-'TOKEN' > /etc/systemd/system/slock@.service
+[Unit]
+Description=Lock X session using slock for user %i
+Before=sleep.target
+
+[Service]
+User=%i
+Environment=DISPLAY=:0
+ExecStartPre=/usr/bin/xset dpms force suspend
+ExecStart=/usr/bin/slock
+
+[Install]
+WantedBy=sleep.target
+TOKEN
+systemctl daemon-reload
+systemctl start slock@wenxuan.service
+systemctl enable slock@wenxuan.service
