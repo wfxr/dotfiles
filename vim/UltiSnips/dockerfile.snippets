@@ -1,14 +1,47 @@
-snippet java "java environment" b
-FROM frolvlad/alpine-oracle${1:jre}8:slim
-${2:
-RUN sed -i "s/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g" /etc/apk/repositories && \
-		apk update && apk add tzdata
-}
-ADD ${3:target.jar} /work/service.jar
-ENTRYPOINT ["java","-jar","/work/service.jar"]
+snippet tzdata "apk add tzdata ..." b
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories && \
+	apk add --no-cache tzdata && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 endsnippet
 
-snippet tzdata "apk add tzdata ..." b
-RUN sed -i "s/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g" /etc/apk/repositories && \
-		apk update && apk add tzdata
+snippet gobuilder "go server builder template" b
+`!p
+snip.rv += """
+FROM golang:1.14-alpine AS builder
+
+WORKDIR /app
+
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories && \
+    apk add --no-cache upx ca-certificates tzdata && \
+    cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+# cache dependencies
+ARG GOPROXY
+ENV GOPROXY=${GOPROXY}
+COPY ./go.mod ./
+COPY ./go.sum ./
+RUN go mod download
+
+ARG RELEASE
+ARG COMMIT
+COPY . .
+RUN CGO_ENABLED=0 PROJECT=$(go list -m) && \
+        go build -o server \
+        -ldflags "-s -w \
+            -X ${PROJECT}/version.Release=${RELEASE} \
+            -X ${PROJECT}/version.Commit=${COMMIT} \
+            -X ${PROJECT}/version.Build=$(date -Iseconds)" && \
+        upx -1 server
+
+FROM alpine:3
+
+LABEL maintainer="Wenxuan Zhang <wenxuangm@gmail.com>"
+
+COPY --from=builder /etc/apk/repositories /etc/apk/repositories
+COPY --from=builder /etc/localtime /etc/localtime
+COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
+COPY --from=builder /app/server /app/
+
+ENTRYPOINT ["/app/server"]
+"""
+`
 endsnippet
