@@ -763,11 +763,12 @@ augroup go_env
                 \ nmap <buffer> <leader>t<CR> <Plug>(go-test)|
                 \ nmap <buffer> <leader>c<CR> <Plug>(go-coverage-toggle)|
                 \ nmap <buffer> <leader>a <Plug>(go-alternate-edit)|
-                \ nmap <buffer> <Leader>i <Plug>(go-info)|
+                \ nmap <buffer> <leader>i <Plug>(go-info)|
                 \ nmap <buffer> <leader>sm :GoSameIdsToggle<CR>|
                 \ nmap <buffer> <c-a-j> :cnext<CR>|
                 \ nmap <buffer> <c-a-k> :cprevious<CR>|
                 \ nmap <buffer> <c-a-r> <Plug>(go-rename)|
+                \ nmap <buffer> <leader>f :GoDeclsDir<cr>|
                 \ let g:go_fmt_command = "goimports"|
                 \ let g:go_list_type = "quickfix"|
                 \ let g:go_highlight_types = 1|
