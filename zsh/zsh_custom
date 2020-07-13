@@ -513,3 +513,12 @@ function kube-config-gen() {
 }
 
 function sumall() { awk '{n+=$1}END{print n}' }
+
+wallpaper() {
+    [[ $# -ne 1 ]] && return 1
+    local name
+    name=$(basename $1) &&
+        mv $1 ~/Pictures/wallpaper &&
+        sed -i "s#'.*'#'$HOME/Pictures/wallpaper/$name'#" ~/.fehbg &&
+        ~/.fehbg
+}
