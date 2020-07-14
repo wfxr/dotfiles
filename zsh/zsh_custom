@@ -522,3 +522,10 @@ wallpaper() {
         sed -i "s#'.*'#'$HOME/Pictures/wallpaper/$name'#" ~/.fehbg &&
         ~/.fehbg
 }
+
+syncgit() {
+    trap 'command rm -rf $TEMP' EXIT INT TERM HUP
+    TEMP="$(mktemp -td --suffix=.tmp "$(basename "$0")".XXXXXX)"
+    git clone "$(git remote get-url origin)" "$TEMP/repo" &&
+        rm -rf .git && mv "$TEMP/repo/.git" .
+}
