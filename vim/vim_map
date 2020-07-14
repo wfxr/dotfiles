@@ -129,7 +129,7 @@ xnoremap < <gv
 xnoremap > >gv
 
 " List all tags if possible
-nnoremap <c-]> g<c-]>
+" nnoremap <c-]> g<c-]>
 
 " qq to record, Q to replay
 nnoremap Q @q

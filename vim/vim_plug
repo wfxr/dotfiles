@@ -503,6 +503,7 @@ let g:neoformat_basic_format_align = 1
 let g:neoformat_basic_format_retab = 1
 " Enable trimming of trailing whitespace
 let g:neoformat_basic_format_trim = 1
+let g:neoformat_enabled_proto = [] " horrible using clang-format to format protobuf
 nnoremap <c-a-l> :Neoformat<cr>
 " }}} sbdchd/neoformat "
 
@@ -795,6 +796,7 @@ Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 augroup rust_env
     autocmd!
     autocmd FileType rust
+                \ nmap <silent> <c-]> <Plug>(coc-definition)|
                 \ nmap <buffer> <leader>r<CR> :VT cargo run -q<CR>|
                 \ nmap <buffer> <leader>t<CR> :VT cargo test -q<CR>|
                 \ nmap <buffer> <leader>b<CR> :VT cargo build -q<CR>|
@@ -856,7 +858,11 @@ augroup END
 " Syntax highlight: sheerun/vim-polyglot {{{ "
 " Need to be loaded after vim-go(https://github.com/fatih/vim-go/issues/2272)
 Plug 'sheerun/vim-polyglot'
-let g:polyglot_disabled = ['markdown'] " cause coc-emoji complete not triggered
+let g:polyglot_disabled = []
+let g:polyglot_disabled += ['markdown'] " cause coc-emoji complete not triggered
+let g:polyglot_disabled += ['protobuf'] " error indent when press ':'
+
+Plug 'wfxr/vim-protobuf',              { 'for': 'proto'      }
 Plug 'plasticboy/vim-markdown',        { 'for': 'markdown'   }
 Plug 'iamcco/markdown-preview.nvim',   { 'for': 'markdown', 'do': 'cd app & yarn install' }
 Plug 'ekalinin/Dockerfile.vim',        { 'for': 'dockerfile' }

@@ -2,7 +2,8 @@
 # --theme="gruvbox (Dark) (Medium) NDC"
 
 # Show line numbers, Git modifications and file header (but no grid)
---style="numbers,changes"
+# --style="numbers,changes"
+--style="plain"
 
 # Use italic text on the terminal (not supported on all terminals)
 --italic-text=always
