@@ -28,7 +28,7 @@ if [[ $VER =~ $VER_RE ]]; then
         stage)
             if [[ -z $STAGE ]]; then
                 PATCH=$((PATCH + 1))
-                STAGE=alpha
+                STAGE=rc
                 STAGE_NO=1
             else
                 STAGE_NO=$((STAGE_NO + 1))

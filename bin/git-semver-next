@@ -20,7 +20,7 @@ usage() { echo "Usage: $(basename "$0") [stage|patch|minor|major]" >&2; }
 TYPE=$1
 ROOT=$(git rev-parse --show-toplevel) && cd "$ROOT"
 
-CURR=$(head -1 version)
+CURR=$(head -1 VERSION)
 NEXT=$(semver-next "$CURR" "$TYPE")
 if [ "$(git tag -l "$NEXT")" ]; then
     logerror "tag '$NEXT' already exists" && exit 1
@@ -31,9 +31,9 @@ if [[ -n $(git status -s) ]]; then
     git status -s && exit 1
 fi
 
-echo "$NEXT" > version
+echo "$NEXT" > VERSION
 
-git add version
+git add VERSION
 git commit --no-verify -m "release: $NEXT"
 git tag "$NEXT"
 loginfo "new tag '$NEXT' added"
