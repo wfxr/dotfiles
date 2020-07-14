@@ -1,0 +1,3 @@
+@reboot cd $HOME/Pictures/Screenshots      && /usr/sbin/fd --changed-before 30days -x rm -rf
+@reboot cd $HOME/Downloads && mkdir -p old && /usr/sbin/fd --changed-before 30days -x mv {} old
+@reboot docker image prune -a -f --filter "until=480h"
