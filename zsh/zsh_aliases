@@ -135,6 +135,7 @@ alias tmuxconf='vim ~/.tmux.conf'
 alias emconf='em ~/.spacemacs'
 alias awmrc='vim ~/.config/awesome/rc.lua'
 alias zshabbr='vim ~/.config/zsh/abbreviations'
+alias alaconf='vim ~/.config/alacritty/alacritty.yml'
 
 alias csort='LC_ALL=C sort'
 
