@@ -832,12 +832,12 @@ augroup END
 " }}} vim-cpp "
 
 " clojure {{{ "
-Plug 'guns/vim-clojure-static',          { 'for': 'clojure'       }
-Plug 'tpope/vim-fireplace',              { 'for': 'clojure'       }
-Plug 'vim-scripts/paredit.vim',          { 'for': 'clojure'       }
-Plug 'luochen1990/rainbow',              { 'for': 'clojure'       }
+Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
+Plug 'tpope/vim-fireplace',     { 'for': 'clojure' }
+Plug 'vim-scripts/paredit.vim', { 'for': 'clojure' }
+Plug 'luochen1990/rainbow',     { 'for': 'clojure' }
 let g:rainbow_active = 1
-" Plug 'venantius/vim-cljfmt',             { 'for': 'clojure'       }
+" Plug 'venantius/vim-cljfmt', { 'for': 'clojure' }
 " Plug 'junegunn/rainbow_parentheses.vim'
 augroup clojure_env
     autocmd!
@@ -862,30 +862,29 @@ let g:polyglot_disabled = []
 let g:polyglot_disabled += ['markdown'] " cause coc-emoji complete not triggered
 let g:polyglot_disabled += ['protobuf'] " error indent when press ':'
 
-Plug 'wfxr/vim-protobuf',              { 'for': 'proto'      }
-Plug 'plasticboy/vim-markdown',        { 'for': 'markdown'   }
-Plug 'iamcco/markdown-preview.nvim',   { 'for': 'markdown', 'do': 'cd app & yarn install' }
-Plug 'ekalinin/Dockerfile.vim',        { 'for': 'dockerfile' }
-Plug 'andrewstuart/vim-kubernetes',    { 'for': 'yaml'       }
-Plug 'vim-scripts/awk.vim',            { 'for': 'awk'        }
-Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby'       }
-" Plug 'tmux-plugins/vim-tmux',            { 'for': 'tmux'           }
-" Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp'           }
-" Plug 'ap/vim-css-color',                 { 'for': 'css'           }
-" Plug 'moll/vim-node',                    { 'for': 'node'          }
-" Plug 'mattn/emmet-vim',                  { 'for': 'html'          }
-" Plug 'othree/xml.vim',                   { 'for': 'xml'           }
-" Plug 'elzr/vim-json',                    { 'for': 'json'          }
-" Plug 'cespare/vim-toml',                 { 'for': 'toml'          }
-" Plug 'pangloss/vim-javascript',          { 'for': 'javascript'    }
-" Plug 'martinda/Jenkinsfile-vim-syntax',  { 'for': 'jenkins'       }
-" Plug 'udalov/kotlin-vim',                { 'for': 'kotlin'        }
-" Plug 'vim-ruby/vim-ruby',                { 'for': 'ruby'          }
-" Plug 'tpope/vim-bundler',                { 'for': 'ruby'          }
-" Plug 'tpope/vim-rake',                   { 'for': 'ruby'          }
-" Plug 'jgdavey/vim-blockle',              { 'for': 'ruby'          } | let g:blockle_mapping = '<leader>B'
-" Plug 'stephpy/vim-yaml',                 { 'for': 'yaml'          }
-" Plug 'chr4/nginx.vim',                   { 'for': 'conf'          }
+Plug 'wfxr/protobuf.vim'
+Plug 'plasticboy/vim-markdown'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
+Plug 'ekalinin/Dockerfile.vim'
+Plug 'andrewstuart/vim-kubernetes'
+Plug 'nelstrom/vim-textobj-rubyblock'
+" Plug 'tmux-plugins/vim-tmux',            { 'for': 'tmux'       }
+" Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp'        }
+" Plug 'ap/vim-css-color',                 { 'for': 'css'        }
+" Plug 'moll/vim-node',                    { 'for': 'node'       }
+" Plug 'mattn/emmet-vim',                  { 'for': 'html'       }
+" Plug 'othree/xml.vim',                   { 'for': 'xml'        }
+" Plug 'elzr/vim-json',                    { 'for': 'json'       }
+" Plug 'cespare/vim-toml',                 { 'for': 'toml'       }
+" Plug 'pangloss/vim-javascript',          { 'for': 'javascript' }
+" Plug 'martinda/Jenkinsfile-vim-syntax',  { 'for': 'jenkins'    }
+" Plug 'udalov/kotlin-vim',                { 'for': 'kotlin'     }
+" Plug 'vim-ruby/vim-ruby',                { 'for': 'ruby'       }
+" Plug 'tpope/vim-bundler',                { 'for': 'ruby'       }
+" Plug 'tpope/vim-rake',                   { 'for': 'ruby'       }
+" Plug 'jgdavey/vim-blockle',              { 'for': 'ruby'       } | let g:blockle_mapping = '<leader>B'
+" Plug 'stephpy/vim-yaml',                 { 'for': 'yaml'       }
+" Plug 'chr4/nginx.vim',                   { 'for': 'conf'       }
 " }}} sheerun/vim-polyglot "
 
 call plug#end()
