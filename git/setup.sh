@@ -62,6 +62,8 @@ git config --global color.status.untracked yellow
 # utf-8 support
 git config --global core.quotepath off
 
+git config --global alias.root 'rev-parse --show-toplevel'
+
 # pre-commit https://pre-commit.com
 pip install --upgrade pre-commit &&
     git config --global init.templateDir ~/.git-template &&
