@@ -17,23 +17,33 @@ usage() { echo "Usage: $(basename "$0") [stage|patch|minor|major]" >&2; }
 
 [[ $# -eq 0 ]] && git tag -l --sort=v:refname && exit 0
 
+VERSION_FILE=VERSION
+[[ -f version ]] && VERSION_FILE=version
+[[ -f VERSION ]] && VERSION_FILE=VERSION
+touch $VERSION_FILE
+
 TYPE=$1
 ROOT=$(git rev-parse --show-toplevel) && cd "$ROOT"
 
-CURR=$(head -1 VERSION)
-NEXT=$(semver-next "$CURR" "$TYPE")
-if [ "$(git tag -l "$NEXT")" ]; then
-    logerror "tag '$NEXT' already exists" && exit 1
+CURR=$(head -1 $VERSION_FILE)
+if [ -z "$CURR" ]; then
+    logwarn "current version is not set, will use 0.0.0"
+    NEXT=0.0.0
+else
+    NEXT=$(semver-next "$CURR" "$TYPE")
+    if [ "$(git tag -l "$NEXT")" ]; then
+        logerror "tag '$NEXT' already exists" && exit 1
+    fi
+
+    if [[ -n $(git status -s) ]]; then
+        logerror "modified/untracked:"
+        git status -s && exit 1
+    fi
 fi
 
-if [[ -n $(git status -s) ]]; then
-    logerror "modified/untracked:"
-    git status -s && exit 1
-fi
+echo "$NEXT" > $VERSION_FILE
 
-echo "$NEXT" > VERSION
-
-git add VERSION
+git add $VERSION_FILE
 git commit --no-verify -m "release: $NEXT"
 git tag "$NEXT"
 loginfo "new tag '$NEXT' added"
