@@ -12,7 +12,6 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'rhysd/git-messenger.vim'
-Plug 'itchyny/lightline.vim'
 Plug 'vimwiki/vimwiki'
 Plug 'honza/vim-snippets'
 Plug 'ron89/thesaurus_query.vim'
@@ -50,14 +49,13 @@ Plug 'junegunn/seoul256.vim'
 let g:gruvbox_bold = 1
 let g:gruvbox_italic = 1
 let g:gruvbox_contrast_dark = 'medium'
-Plug 'gruvbox-community/gruvbox'
+Plug 'morhetz/gruvbox'
 let g:gruvbox_material_enable_bold = 1
 let g:gruvbox_material_enable_italic = 1
 let g:gruvbox_material_transparent_background = 1
 let g:gruvbox_material_background = 'medium'
 let g:gruvbox_material_palette = 'mix'
 Plug 'sainnhe/gruvbox-material'
-let g:lightline = {'colorscheme' : 'gruvbox_material'}
 
 " vim-rooter {{{ "
 Plug 'airblade/vim-rooter'
@@ -296,13 +294,16 @@ nmap <Leader>d :Gdiff<CR>
 " let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['.*zsh_.*\|.*zshrc.*'] = ''
 " }}} ryanoasis/vim-devicons "
 
-" vim-airline/vim-airline {{{ "
-" Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
-" let g:airline_powerline_fonts = 1
-" let g:airline#extensions#tabline#enabled = 1
-" let g:airline#extensions#tabline#show_tab_type = 0
-" let g:airline#extensions#tmuxline#enabled = 0
-" let g:airline_theme = 'gruvbox_material'
+" vim-airline / lightline.vim {{{ "
+" Plug 'itchyny/lightline.vim'
+Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
+let g:airline_theme = 'gruvbox_material'
+let g:airline_extensions = ['tabline', 'branch', "ale"]
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#show_tab_type = 0
+let g:airline#extensions#ale#error_symbol = 'E:'
+let g:airline#extensions#ale#warning_symbol = 'W:'
+let g:airline#extensions#ale#show_line_numbers = 0
 " let g:airline_left_sep = ''
 " let g:airline_right_sep = ''
 " let g:airline_left_alt_sep = ''
@@ -528,7 +529,6 @@ let g:ale_sign_error = g:error_symbol
 let g:ale_sign_warning = g:warning_symbol
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_error_str = 'E'
-let g:airline#extensions#ale#enabled = 1
 let g:ale_echo_msg_format = '[%severity%:%code%][%linter%] %s'
 let g:ale_cpp_clang_options = '-Wall -std=c++17'
 let g:ale_cpp_gcc_options = g:ale_cpp_clang_options
