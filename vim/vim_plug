@@ -49,12 +49,15 @@ Plug 'junegunn/seoul256.vim'
 let g:gruvbox_bold = 1
 let g:gruvbox_italic = 1
 let g:gruvbox_contrast_dark = 'medium'
+let g:gruvbox_invert_selection = 0
+let g:gruvbox_sign_column = 'bg0'
 Plug 'morhetz/gruvbox'
 let g:gruvbox_material_enable_bold = 1
 let g:gruvbox_material_enable_italic = 1
-let g:gruvbox_material_transparent_background = 1
+" let g:gruvbox_material_transparent_background = 1
 let g:gruvbox_material_background = 'medium'
 let g:gruvbox_material_palette = 'mix'
+" let g:gruvbox_material_diagnostic_line_highlight = 1
 Plug 'sainnhe/gruvbox-material'
 
 " vim-rooter {{{ "
@@ -544,6 +547,7 @@ let g:echodoc#enable_force_overwrite = 1
 
 " coc.vim {{{ "
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release', 'do': ':UpdateRemotePlugins' }
 if has_key(g:plugs, 'coc.nvim')
     let g:coc_global_extensions = [
                 \ 'coc-snippets',
@@ -558,6 +562,7 @@ if has_key(g:plugs, 'coc.nvim')
                 \ 'coc-highlight',
                 \ 'coc-rls',
                 \ 'coc-syntax',
+                \ 'coc-fzf-preview',
                 \ ]
                 " \ 'coc-word',
 
@@ -573,6 +578,7 @@ if has_key(g:plugs, 'coc.nvim')
                 " \ <SID>check_back_space() ? "\<TAB>" :
                 " \ coc#refresh()
     " inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+    inoremap <silent><expr> <c-space> coc#refresh()
 
     " Use <tab> to confirm completion
     inoremap <silent><expr> <tab> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<tab>"
@@ -596,6 +602,10 @@ if has_key(g:plugs, 'coc.nvim')
     nmap <silent> gy <Plug>(coc-type-definition)
     nmap <silent> gi <Plug>(coc-implementation)
     nmap <silent> gr <Plug>(coc-references)
+
+    " fzf-preview.vim
+    noremap <silent> gl :<C-u>CocCommand fzf-preview.LocationList<CR>
+    noremap <silent> gr :<C-u>CocCommand fzf-preview.CocReferences<CR>
 
     " Highlight symbol under cursor on CursorHold
     autocmd CursorHold * silent call CocActionAsync('highlight')

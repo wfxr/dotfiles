@@ -31,9 +31,10 @@ install_nodenv() {
 }
 
 install_node() {
-    v=13.5.0
+    v=14.6.0
     nodenv versions | grep $v || nodenv install $v
     nodenv global $v
+    npm install -g yarn
 }
 
 loginfo "install nodenv..."
@@ -41,3 +42,5 @@ install_nodenv || exit $?
 
 loginfo "install node..."
 install_node || exit $?
+
+grep 'DEV_NODE' ~/.zsh_local &>/dev/null || echo 'export DEV_NODE=true' >> ~/.zsh_local

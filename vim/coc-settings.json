@@ -20,8 +20,9 @@
   "coc.source.around.firstMatch": false,
   "coc.source.buffer.firstMatch": false,
   "coc.source.syntax.firstMatch": false,
-  /* "coc.source.syntax.priority": 100, */
   "coc.preferences.extensionUpdateCheck": "daily",
+  "tabnine.priority": 99,
+  "suggest.languageSourcePriority": 100,
   "snippets.ultisnips.directories": [
     "UltiSnips",
     "gosnippets/UltiSnips"
@@ -41,7 +42,7 @@
     "module": "\uf668",
     "color": "\ue22b",
     "property": "\ufab6",
-    "field": "\uf93d",
+    /* "field": "\uf93d", */
     "unit": "\uf475",
     "file": "\uf471",
     "value": "\uf8a3",

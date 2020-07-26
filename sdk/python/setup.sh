@@ -86,3 +86,4 @@ install_configs || exit $?
 loginfo "install tools"
 install_tools || exit $?
 
+grep 'DEV_PYTHON' ~/.zsh_local &>/dev/null || echo 'export DEV_PYTHON=true' >> ~/.zsh_local
