@@ -1,0 +1,54 @@
+snippet go "go pre-commit-config" b
+`!p snip.rv += """
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+exclude: >
+  (?x)^(
+    third_party/.*|
+    .*\.pb.*\.go
+  )$
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v3.1.0
+  hooks:
+  - id: trailing-whitespace
+  - id: end-of-file-fixer
+  - id: check-yaml
+  - id: check-added-large-files
+  - id: mixed-line-ending
+- repo: git://github.com/dnephin/pre-commit-golang
+  rev: master
+  hooks:
+  - id: go-fmt
+  - id: go-imports
+  - id: go-unit-tests
+  - id: go-mod-tidy
+  - id: golangci-lint
+  # - id: go-cyclo
+    # args: [-over=20]
+- repo: local
+  hooks:
+  - id: dockerfile-gen
+    name: dockerfile-gen
+    pass_filenames: false
+    always_run: true
+    language: system
+    entry: sh -c 'make dockerfile && git add Dockerfile'
+  - id: versino-update
+    name: version-update
+    pass_filenames: false
+    always_run: true
+    language: system
+    entry: >
+      sh -c '
+        [ -f VERSION ] || echo 0.0.0 > VERSION
+        git diff --cached --name-only | grep VERSION &>/dev/null && exit
+        if git rev-parse --abbrev-ref HEAD | grep master &>/dev/null; then
+            semver --preid rc -i prerelease "$(head -1 VERSION)" > VERSION
+          git add VERSION
+        fi
+      '
+    additional_dependencies: ['semver']
+""".lstrip()
+`
+endsnippet
