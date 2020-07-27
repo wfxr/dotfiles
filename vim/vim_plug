@@ -318,6 +318,7 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' } | Plug 'Xuyuanp/nerdtree-
 let g:NERDTreeDirArrowExpandable = ''
 let g:NERDTreeDirArrowCollapsible = ''
 nmap <C-\> :NERDTreeToggle<CR>
+let g:NERDTreeIgnore = ['^target$', '^build$']
 " Quit when nerdtree is the only buffer
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " }}} scrooloose/nerdtree "
