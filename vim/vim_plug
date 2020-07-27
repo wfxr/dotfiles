@@ -11,6 +11,7 @@
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'machakann/vim-highlightedyank' | let g:highlightedyank_highlight_duration = 100
 Plug 'rhysd/git-messenger.vim'
 Plug 'vimwiki/vimwiki'
 Plug 'honza/vim-snippets'
@@ -54,7 +55,7 @@ let g:gruvbox_sign_column = 'bg0'
 Plug 'morhetz/gruvbox'
 let g:gruvbox_material_enable_bold = 1
 let g:gruvbox_material_enable_italic = 1
-" let g:gruvbox_material_transparent_background = 1
+let g:gruvbox_material_transparent_background = 1
 let g:gruvbox_material_background = 'medium'
 let g:gruvbox_material_palette = 'material'
 " let g:gruvbox_material_diagnostic_line_highlight = 1
