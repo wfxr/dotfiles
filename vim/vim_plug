@@ -56,7 +56,7 @@ let g:gruvbox_material_enable_bold = 1
 let g:gruvbox_material_enable_italic = 1
 " let g:gruvbox_material_transparent_background = 1
 let g:gruvbox_material_background = 'medium'
-let g:gruvbox_material_palette = 'mix'
+let g:gruvbox_material_palette = 'material'
 " let g:gruvbox_material_diagnostic_line_highlight = 1
 Plug 'sainnhe/gruvbox-material'
 
@@ -281,12 +281,12 @@ nmap <Leader>d :Gdiff<CR>
 
 " vim-slash {{{ "
 " ISSUE: vim-splash causes `gd` not work
-" Plug 'junegunn/vim-slash' " vim-slash provides a set of mappings for enhancing in-buffer search experience in Vim.
-" if has('timers')
-  " " Blink 3 times with 50ms interval
-  " " noremap <expr> <plug>(slash-after) 'zz'.slash#blink(2, 50)
-  " noremap <expr> <plug>(slash-after) slash#blink(2, 50)
-" endif
+Plug 'junegunn/vim-slash' " vim-slash provides a set of mappings for enhancing in-buffer search experience in Vim.
+if has('timers')
+  " Blink 3 times with 50ms interval
+  " noremap <expr> <plug>(slash-after) 'zz'.slash#blink(2, 50)
+  noremap <expr> <plug>(slash-after) slash#blink(2, 50)
+endif
 " }}} vim-slash "
 
 " ryanoasis/vim-devicons {{{ "
@@ -875,9 +875,9 @@ Plug 'plasticboy/vim-markdown'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
 Plug 'andrewstuart/vim-kubernetes'
 Plug 'nelstrom/vim-textobj-rubyblock'
+" Plug 'ap/vim-css-color', { 'for': 'css' } " buggy and slow
 " Plug 'tmux-plugins/vim-tmux',            { 'for': 'tmux'       }
 " Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp'        }
-" Plug 'ap/vim-css-color',                 { 'for': 'css'        }
 " Plug 'moll/vim-node',                    { 'for': 'node'       }
 " Plug 'mattn/emmet-vim',                  { 'for': 'html'       }
 " Plug 'othree/xml.vim',                   { 'for': 'xml'        }

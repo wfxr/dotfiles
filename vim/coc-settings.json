@@ -35,7 +35,8 @@
     "constant": "\uf8ff",
     "struct": "\ufb44",
     "class": "\uf0e8",
-    "interface": "\ufa52",
+    /* "interface": "\ufa52", */
+    "interface": "",
     "text": "\ue612",
     "enum": "\uf435",
     "enumMember": "\uf02b",
@@ -43,6 +44,7 @@
     "color": "\ue22b",
     "property": "\ufab6",
     /* "field": "\uf93d", */
+    "field": "",
     "unit": "\uf475",
     "file": "\uf471",
     "value": "\uf8a3",
