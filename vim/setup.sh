@@ -20,7 +20,7 @@ install_neovim() {
     elif hash pacman 2>/dev/null; then
         sudo pacman --noconfirm -Sy neovim
     elif hash brew 2>/dev/null; then
-        sudo brew install neovim
+        brew install neovim
     fi
 }
 
