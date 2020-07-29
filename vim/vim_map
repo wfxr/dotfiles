@@ -121,8 +121,8 @@ noremap ： :
 cnoremap W!! w !sudo tee % >/dev/null<cr>
 
 " Lock up history commands quickly
-cnoremap <C-p> <Up>
-cnoremap <C-n> <Down>
+" cnoremap <C-p> <Up>
+" cnoremap <C-n> <Down>
 
 " Don't lose selection when shifting sidewards
 xnoremap < <gv
