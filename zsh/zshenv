@@ -110,7 +110,7 @@ function setup_env() {
     export PATH="$_PATH"
 
     # kubectl
-    (( $+commands[kubectl] )) && {
+    (( $+commands[kubectl] )) && [ -d ~/.kube ] && {
         for config in ~/.kube/config*; do
             KUBECONFIG="$KUBECONFIG:$config"
         done
