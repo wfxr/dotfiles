@@ -43,7 +43,7 @@ function setup_env() {
     # export RUST_SRC_PATH="$HOME/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
     # [[ "$OSNAME" == 'Darwin' ]] && export RUST_SRC_PATH="$HOME/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src"
 
-    export TERM="tmux-256color"
+    export TERM="xterm-256color"
 
     # LANGUAGE must be set by en_US
     export LANGUAGE="en_US.UTF-8"
