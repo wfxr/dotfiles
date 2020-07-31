@@ -190,8 +190,9 @@ endfunction
 command! DS call s:DiffSaved()
 
 " Split and open terminal
-command! -nargs=* T  split  | terminal <args>
-command! -nargs=* VT vsplit | terminal <args>
+command! -nargs=* T botright sp | resize 20 | term <args>
+command! -nargs=* VT vsp | term <args>
+noremap  <a-1> :T<cr>A
 
 " Hide number & sign columns to do tmux copy
 function! s:tmux_copy_mode_toggle()
