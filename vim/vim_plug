@@ -825,6 +825,7 @@ endif
 augroup python_env
     autocmd!
     autocmd FileType python
+                \ nmap <silent> <c-]> <Plug>(coc-definition)|
                 \ nmap <buffer> <leader>r<CR> :VT python %<CR>
 augroup END
 " }}} vim-rust "

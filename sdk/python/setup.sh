@@ -58,6 +58,8 @@ install_configs() {
     mkdir -p ~/.config/ptpython || return 1
     ln -sf "$SDIR/ptpythonrc" ~/.config/ptpython/config.py
     ln -sf "$SDIR/style.yapf" ~/.style.yapf
+    ln -sf "$SDIR/flake8"     ~/.config/flake8
+    ln -sf "$SDIR/pylintrc"   ~/.config/pylintrc
 }
 
 install_tools() {

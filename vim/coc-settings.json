@@ -1,5 +1,5 @@
 {
-  "python.jediEnabled": false,
+  "python.jediEnabled": true,
   "diagnostic.hintSign": "──",
   "diagnostic.infoSign": "──",
   "diagnostic.warningSign": "──",
