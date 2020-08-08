@@ -1,4 +1,5 @@
 " vim: ft=vim:
+scriptencoding utf-8
 
 " Auto install vim-plug {{{ "
 " if empty(glob('~/.vim/autoload/plug.vim'))
@@ -111,7 +112,7 @@ let g:limelight_conceal_guifg = 'DarkGray'
 let g:limelight_paragraph_span = 1
 let g:limelight_priority = -1
 function! s:goyo_enter()
-    silent :execute "normal! mL"
+    silent :execute 'normal! mL'
     if exists('$TMUX')
         silent !tmux set status off
     endif
@@ -131,7 +132,7 @@ function! s:goyo_leave()
     let &background = &background
     hi VertSplit ctermbg=NONE guibg=NONE
     hi Normal    ctermbg=NONE guibg=NONE
-    silent :execute "normal! `L"
+    silent :execute 'normal! `L'
 endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
@@ -216,8 +217,8 @@ Plug 'kristijanhusak/vim-carbon-now-sh'
 " comfortable-motion.vim {{{ "
 Plug 'yuttie/comfortable-motion.vim'
 let g:comfortable_motion_no_default_key_mappings = 1
-let g:comfortable_motion_scroll_down_key = "j"
-let g:comfortable_motion_scroll_up_key = "k"
+let g:comfortable_motion_scroll_down_key = 'j'
+let g:comfortable_motion_scroll_up_key = 'k'
 nnoremap <silent> <C-d> :call comfortable_motion#flick(100)<CR>
 nnoremap <silent> <C-u> :call comfortable_motion#flick(-100)<CR>
 " }}} comfortable-motion.vim "
@@ -302,7 +303,7 @@ endif
 " Plug 'itchyny/lightline.vim'
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 let g:airline_theme = 'gruvbox_material'
-let g:airline_extensions = ['tabline', 'branch', "ale"]
+let g:airline_extensions = ['tabline', 'branch', 'ale']
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#show_tab_type = 0
 let g:airline#extensions#ale#error_symbol = 'E:'
@@ -338,7 +339,7 @@ Plug 'mhinz/vim-startify'
 " AndrewRadev/switch.vim {{{ "
 Plug 'AndrewRadev/switch.vim'
 " gs/gr to switch or switch reverse
-let g:switch_mapping = "-"
+let g:switch_mapping = '-'
 let g:switch_reverse_mapping = '_'
 " }}} AndrewRadev/switch.vim "
 
@@ -402,7 +403,7 @@ autocmd Filetype gitcommit inoremap <expr> <c-x><c-x> fzf#complete({
 command! -bang Colors call fzf#vim#colors({'left': '15%', 'options': '--reverse'}, <bang>0)
 " FZF with devicons
 function! s:file_action(item, action)
-    if expand('$FZF_PATH_LOC') == ''
+    if expand('$FZF_PATH_LOC') ==# ''
         lt l:file = a:item
     else
         let l:file = a:item[stridx(a:item, ' ', 1)+1 : -1]
@@ -516,12 +517,12 @@ nnoremap <c-a-l> :Neoformat<cr>
 " ultisnips && vim-snippets {{{ "
 Plug 'SirVer/ultisnips'
 " Trigger configuration. Do not use <tab> if you use 'YouCompleteMe'
-let g:UltiSnipsExpandTrigger="<leader><tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+let g:UltiSnipsExpandTrigger='<leader><tab>'
+let g:UltiSnipsJumpForwardTrigger='<c-j>'
+let g:UltiSnipsJumpBackwardTrigger='<c-k>'
 " If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="horizontal"
-autocmd Filetype snippet set shiftwidth=4
+let g:UltiSnipsEditSplit='horizontal'
+" autocmd Filetype snippet set shiftwidth=4
 " }}} ultisnips && vim-snippets "
 
 " ale {{{ "
@@ -767,7 +768,7 @@ augroup go_env
     autocmd!
     " Note: Do not change the order!
     " Note: Do not comment lines inplace
-    let g:go_rename_command = "gopls"
+    let g:go_rename_command = 'gopls'
     autocmd FileType go
                 \ setl nolist|
                 \ nmap <buffer> <leader>b<CR> :call <SID>build_go_files()<CR>|
@@ -902,9 +903,9 @@ call plug#end()
 " Custom functions {{{ "
 " Open repo in browser
 function! s:go_github()
-    let s:repo = matchstr(expand("<cWORD>"), '\v[0-9A-Za-z\-\.\_]+/[0-9A-Za-z\-\.\_]+')
+    let s:repo = matchstr(expand('<cWORD>'), '\v[0-9A-Za-z\-\.\_]+/[0-9A-Za-z\-\.\_]+')
     if empty(s:repo)
-        echo "GoGithub: No repository found."
+        echo 'GoGithub: No repository found.'
     else
         let s:url = 'https://github.com/' . s:repo
         call netrw#BrowseX(s:url, 0)
@@ -970,8 +971,8 @@ command! PC PlugClean
 
 " rotate-colors {{{ "
 function! s:colors(...)
-    return filter(map(filter(split(globpath(&rtp, 'colors/*.vim'), "\n"),
-                \                  'v:val !~ "^/usr/"'),
+    return filter(map(filter(split(globpath(&runtimepath, 'colors/*.vim'), "\n"),
+                \                  'v:val !~# "^/usr/"'),
                 \           'fnamemodify(v:val, ":t:r")'),
                 \       '!a:0 || stridx(v:val, a:1) >= 0')
 endfunction
