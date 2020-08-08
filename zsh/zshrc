@@ -206,6 +206,7 @@ source <(starship init zsh) || logwarn "failed loading starship."
     [ $DEV_RUBY   ] && zccs::cmd  'rbenv init - zsh'
     [ $DEV_PYTHON ] && zccs::cmd  'pyenv init - zsh'
     [ $DEV_PYTHON ] && zccs::cmd  'pip completion --zsh' # fucking slow. cache it!
+    [ $DEV_PYTHON ] && zccs::cmd  'pipenv --completion' # fucking slow. cache it!
 
     # (( $+commands[broot] )) && zccs::cmd 'broot --print-shell-function zsh'
 

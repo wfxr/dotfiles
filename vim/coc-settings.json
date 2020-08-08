@@ -1,5 +1,6 @@
 {
   "python.jediEnabled": true,
+  "python.pythonPath": "~/.pyenv/shims/python",
   "diagnostic.hintSign": "──",
   "diagnostic.infoSign": "──",
   "diagnostic.warningSign": "──",
