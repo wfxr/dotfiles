@@ -31,12 +31,11 @@ inoremap <silent> <leader>. ->
 " noremap <buffer> <silent> $ g$
 
 " Quit
-autocmd BufDelete * if len(filter(range(1, bufnr('$')), '! empty(bufname(v:val)) && buflisted(v:val)')) == 1 | quit | endif
-noremap <C-c> :bd<cr>
+noremap <C-c> :q<cr>
 " Save write
 noremap <C-s> :update<cr>
 " Save & quit
-noremap <C-x> :w \| bd<cr>
+noremap <C-x> :x<cr>
 
 " Save and suspend
 noremap <leader>bg :w<cr><C-z>
