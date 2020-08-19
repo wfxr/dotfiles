@@ -12,6 +12,7 @@ scriptencoding utf-8
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'norcalli/nvim-colorizer.lua'
 Plug 'machakann/vim-highlightedyank' | let g:highlightedyank_highlight_duration = 100
 Plug 'rhysd/git-messenger.vim'
 Plug 'vimwiki/vimwiki'
@@ -553,6 +554,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release', 'do': ':UpdateRemotePlugins' }
 if has_key(g:plugs, 'coc.nvim')
     let g:coc_global_extensions = [
+                \ 'coc-marketplace',
                 \ 'coc-snippets',
                 \ 'coc-tabnine',
                 \ 'coc-python',
@@ -573,6 +575,9 @@ if has_key(g:plugs, 'coc.nvim')
         let col = col('.') - 1
         return !col || getline('.')[col - 1]  =~# '\s'
     endfunction
+
+    nmap <silent> w <Plug>(coc-ci-w)
+    nmap <silent> b <Plug>(coc-ci-b)
 
     " Use tab for trigger completion with characters ahead and navigate.
     " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
