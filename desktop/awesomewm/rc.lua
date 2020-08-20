@@ -57,7 +57,7 @@ startup_services =
     "fcitx -d -r",
     "compton -b",
     -- "variety",
-    "tmux new-session -d -s 'default'",
+    "tmux new-session -d -s 'misc'",
 }
 
 run_once(startup_services) -- entries must be separated by commas
