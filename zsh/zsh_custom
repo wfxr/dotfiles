@@ -529,3 +529,9 @@ syncgit() {
     git clone "$(git remote get-url origin)" "$TEMP/repo" &&
         rm -rf .git && mv "$TEMP/repo/.git" .
 }
+
+zsh_history_uniq() {
+    nl ~/.zsh_history | sort -t ';' -uk2 | sort -nk1 | cut -f2 > /tmp/zsh_history_short &&
+        mv ~/.zsh_history "$HOME/.zsh_history_$(date -I)" &&
+        mv /tmp/zsh_history_short ~/.zsh_history
+}
