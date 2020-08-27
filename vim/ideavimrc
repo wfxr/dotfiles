@@ -4,3 +4,9 @@ set surround
 " idea会自动补全{}，需要重新映射"<leader>{"使其不产生多余的"}"
 inoremap <silent> <leader>{ <End> {<CR>
 set ideajoin
+set textobj-entire
+
+set highlightedyank
+let g:highlightedyank_highlight_color = 'rgba(251, 73, 52, 200)'
+let g:highlightedyank_highlight_duration = '100'
+set multiple-cursors

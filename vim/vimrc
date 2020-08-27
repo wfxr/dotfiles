@@ -173,11 +173,11 @@ else
     hi LineNr            ctermbg=NONE guibg=NONE
     " hi NonText           ctermbg=NONE guibg=NONE
 endif
-hi SignColumn        ctermbg=NONE   guibg=NONE
-hi SignifySignAdd    ctermfg=green  guifg=#50FA7B
-hi SignifySignDelete ctermfg=red    guifg=#FF5555
-hi SignifySignChange ctermfg=yellow guifg=#FFB86C
-hi HighlightedyankRegion ctermbg=0 guibg=#fb4934
+hi SignColumn            ctermbg=NONE   guibg=NONE
+hi SignifySignAdd        ctermfg=green  guifg=#50FA7B
+hi SignifySignDelete     ctermfg=red    guifg=#FF5555
+hi SignifySignChange     ctermfg=yellow guifg=#FFB86C
+hi HighlightedyankRegion ctermbg=0      guibg=#fb4934
 
 " Show changes since last save
 function! s:DiffSaved()

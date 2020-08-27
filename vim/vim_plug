@@ -352,6 +352,7 @@ let g:NERDCreateDefaultMappings = 0
 let g:NERDTrimTrailingWhitespace = 1
 let g:NERDCompactSexyComs = 1
 let g:NERDCommentEmptyLines = 1
+let g:NERDDefaultAlign = 'left'
 " For some reason, vim registers <C-/> as <C-_>
 nnoremap <c-_> :call NERDComment(0, "toggle")<CR>j
 vnoremap <c-_> :call NERDComment(0, "toggle")<CR>'>j
