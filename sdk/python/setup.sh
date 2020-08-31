@@ -73,7 +73,7 @@ install_tools() {
     pip install pygments     # tags engine
 
     # Formatter / Repl / Linter
-    pip install yapf ptpython pylint
+    pip install ptpython ipython yapf pylint
 }
 
 loginfo "install pyenv..."

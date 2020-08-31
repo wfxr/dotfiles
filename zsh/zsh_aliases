@@ -26,7 +26,7 @@ alias tmp='cd /tmp'
 # alias dm='docker-machine'
 alias mks='tmux kill-session -t'
 alias mkS='tmux kill-server'
-alias ptp=ptpython
+(( $+commands[ptpython] )) && alias ipython=ptipython
 alias md='mkdir -p -v'
 alias mv='mv -iv'
 [[ "$OSTYPE" =~ linux ]] && alias rm='rm -Iv --one-file-system' || alias rm='rm -iv'
