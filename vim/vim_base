@@ -1,4 +1,5 @@
 " vim: ft=vim:
+scriptencoding utf-8
 
 " Share clipboard with OS
 set clipboard+=unnamed
@@ -36,6 +37,6 @@ set wildmenu
 set wildmode=longest:list,full
 
 " With a map leader it's possible to do extra key combinations
-let mapleader = ","
-let g:mapleader = ","
+let mapleader = ','
+let g:mapleader = ','
 noremap \ ,

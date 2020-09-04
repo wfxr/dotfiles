@@ -1,17 +1,18 @@
+scriptencoding utf-8
 set guioptions-=T
 set guioptions-=m
 set guioptions-=r
 set guioptions-=L
 set guitablabel=%M\ %t
 
-if has("win32") || has("win64")
+if has('win32') || has('win64')
     let g:is_win = 1
 else
     let g:is_win = 0
 endif
 
 "let font_name="Inconsolata-g for Powerline"
-let font_name="Fira for Powerline 16"
+let font_name='Fira for Powerline 16'
 "let font_size=16
 "let font=&font_name &font_size
 

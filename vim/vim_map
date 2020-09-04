@@ -1,4 +1,5 @@
 " vim: ft=vim:
+scriptencoding utf-8
 
 " Using <SPACE> to fold or unfold
 nnoremap <silent> <SPACE><SPACE> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>

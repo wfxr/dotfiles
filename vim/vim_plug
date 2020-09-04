@@ -58,9 +58,46 @@ Plug 'morhetz/gruvbox'
 let g:gruvbox_material_enable_bold = 1
 let g:gruvbox_material_enable_italic = 1
 let g:gruvbox_material_transparent_background = 1
-let g:gruvbox_material_background = 'medium'
-let g:gruvbox_material_palette = 'material'
+let g:gruvbox_material_current_word = 'grey background'
+let g:gruvbox_material_visual = 'grey background'
 " let g:gruvbox_material_diagnostic_line_highlight = 1
+" let g:gruvbox_material_palette = 'material'
+let g:gruvbox_material_background = 'medium'
+let g:gruvbox_material_palette = {
+            \ 'bg0':              ['#282828', '235'],
+            \ 'bg1':              ['#32302f', '236'],
+            \ 'bg2':              ['#32302f', '236'],
+            \ 'bg3':              ['#45403d', '237'],
+            \ 'bg4':              ['#45403d', '237'],
+            \ 'bg5':              ['#5a524c', '239'],
+            \ 'bg_statusline1':   ['#32302f', '236'],
+            \ 'bg_statusline2':   ['#3a3735', '236'],
+            \ 'bg_statusline3':   ['#504945', '240'],
+            \ 'bg_diff_green':    ['#34381b', '22'],
+            \ 'bg_visual_green':  ['#3b4439', '22'],
+            \ 'bg_diff_red':      ['#402120', '52'],
+            \ 'bg_visual_red':    ['#4c3432', '52'],
+            \ 'bg_diff_blue':     ['#0e363e', '17'],
+            \ 'bg_visual_blue':   ['#374141', '17'],
+            \ 'bg_visual_yellow': ['#4f422e', '94'],
+            \ 'bg_current_word':  ['#2e3b3b', '237'],
+            \ 'fg0':              ['#d4be98', '223'],
+            \ 'fg1':              ['#ddc7a1', '223'],
+            \ 'red':              ['#ea6962', '167'],
+            \ 'orange':           ['#e78a4e', '208'],
+            \ 'yellow':           ['#d8a657', '214'],
+            \ 'green':            ['#a9b665', '142'],
+            \ 'aqua':             ['#89b482', '108'],
+            \ 'blue':             ['#7daea3', '109'],
+            \ 'purple':           ['#d3869b', '175'],
+            \ 'bg_red':           ['#ea6962', '167'],
+            \ 'bg_green':         ['#a9b665', '142'],
+            \ 'bg_yellow':        ['#d8a657', '214'],
+            \ 'grey0':            ['#7c6f64', '243'],
+            \ 'grey1':            ['#928374', '245'],
+            \ 'grey2':            ['#a89984', '246'],
+            \ 'none':             ['NONE',    'NONE']
+            \ }
 Plug 'sainnhe/gruvbox-material'
 
 " vim-rooter {{{ "
@@ -136,8 +173,12 @@ function! s:goyo_leave()
     silent :execute 'normal! `L'
 endfunction
 
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
+augroup goyo
+    au!
+    au! User GoyoEnter nested call <SID>goyo_enter()
+    au! User GoyoLeave nested call <SID>goyo_leave()
+augroup END
+
 nnoremap <silent> <Leader>L :Limelight!!<cr>
 " }}} limelight "
 
@@ -167,8 +208,8 @@ let g:signify_sign_delete_first_line = vcs_signs_delete_up[0]
 " let g:gitgutter_sign_modified_removed='◢'
 " }}} vim-signify "
 
-" vim-gutentags {{{ "
-if g:has_tags
+" tags {{{ "
+if executable('ctags')
     Plug 'ludovicchabant/vim-gutentags'
     " let g:gutentags_trace = 1
     let g:gutentags_modules = ['ctags']
@@ -178,11 +219,6 @@ if g:has_tags
     let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
     let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
     let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
-endif
-" }}} vim-gutentags "
-
-" tagbar {{{ "
-if g:has_tags
     Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
     let g:tagbar_autofocus = 0
     let g:tagbar_sort = 0
@@ -323,7 +359,10 @@ let g:NERDTreeDirArrowCollapsible = ''
 nmap <C-\> :NERDTreeToggle<CR>
 let g:NERDTreeIgnore = ['^target$', '^build$']
 " Quit when nerdtree is the only buffer
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+augroup nerdtree
+    au!
+    au bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+augroup END
 " }}} scrooloose/nerdtree "
 
 " mhinz/vim-startify {{{ "
@@ -372,7 +411,10 @@ vmap <leader>cc yPgp<c-_>
 Plug 'Yggdroot/indentLine', { 'on': 'IndentLinesToggle' }
 let g:indentLine_enabled = 0
 " autocmd Filetype *yaml,*xml,c,cpp,go,rust,java let g:indentLine_enabled = 1
-autocmd Filetype json,markdown let g:indentLine_setConceal = 0
+augroup indentline
+    au!
+    au Filetype json,markdown let g:indentLine_setConceal = 0
+augroup END
 let g:indentLine_char = '│'
 let g:indentLine_color_term = 239
 let g:indentLine_color_gui = '#4E4E4E'
@@ -397,10 +439,13 @@ inoremap <expr> <c-x><c-d> fzf#complete({
             \ 'source': 'cat ~/.vim/spell/en.utf-8.add /usr/share/dict/words 2>/dev/null',
             \ 'options': '--preview="ydcv --color=always {}" --preview-window=down',
             \ 'left': 50})
-autocmd Filetype gitcommit inoremap <expr> <c-x><c-x> fzf#complete({
-            \ 'source': 'git log --pretty=format:"%s"',
-            \ 'options': '--preview="ydcv --color=always {}" --preview-window=down',
-            \ 'left': 50})
+augroup fzf_gitcommit
+    au!
+    au Filetype gitcommit inoremap <expr> <c-x><c-x> fzf#complete({
+                \ 'source': 'git log --pretty=format:"%s"',
+                \ 'options': '--preview="ydcv --color=always {}" --preview-window=down',
+                \ 'left': 50})
+augroup END
 " Override default command
 command! -bang Colors call fzf#vim#colors({'left': '15%', 'options': '--reverse'}, <bang>0)
 " FZF with devicons
@@ -497,7 +542,10 @@ if has('nvim')
 
     " Draw viewport
     call s:create_float('Normal', {'row': row + 1, 'col': col + 2, 'width': width - 4, 'height': height - 2})
-    autocmd BufWipeout <buffer> execute 'bwipeout' s:frame
+    augroup fzf_floating
+        au!
+        au BufWipeout <buffer> execute 'bwipeout' s:frame
+    augroup END
   endfunction
 
   let g:fzf_layout = { 'window': 'call FloatingFZF()' }
@@ -569,6 +617,7 @@ if has_key(g:plugs, 'coc.nvim')
                 \ 'coc-rls',
                 \ 'coc-syntax',
                 \ 'coc-fzf-preview',
+                \ 'coc-vimlsp',
                 \ ]
                 " \ 'coc-word',
 
@@ -616,9 +665,6 @@ if has_key(g:plugs, 'coc.nvim')
     noremap <silent> gl :<C-u>CocCommand fzf-preview.LocationList<CR>
     noremap <silent> gr :<C-u>CocCommand fzf-preview.CocReferences<CR>
 
-    " Highlight symbol under cursor on CursorHold
-    autocmd CursorHold * silent call CocActionAsync('highlight')
-
     " Remap for rename current word
     nmap <c-a-r> <Plug>(coc-rename)
 
@@ -626,12 +672,14 @@ if has_key(g:plugs, 'coc.nvim')
     xmap <leader>f <Plug>(coc-format-selected)
     nmap <leader>f <Plug>(coc-format-selected)
 
-    augroup mygroup
-        autocmd!
+    augroup cocgroup
+        au!
+        " Highlight symbol under cursor on CursorHold
+        au CursorHold * silent call CocActionAsync('highlight')
         " Setup formatexpr specified filetype(s).
-        autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+        au FileType typescript,json setl formatexpr=CocAction('formatSelected')
         " Update signature help on jump placeholder
-        autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+        au User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
     augroup end
 
     " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
@@ -917,7 +965,10 @@ function! s:go_github()
         call netrw#BrowseX(s:url, 0)
     end
 endfunction
-autocmd FileType *vim,*zsh,*bash,*tmux nnoremap <buffer> <silent> <cr> :call <sid>go_github()<cr>
+augroup gogithub
+    au!
+    au FileType *vim,*zsh,*bash,*tmux nnoremap <buffer> <silent> <cr> :call <sid>go_github()<cr>
+augroup END
 " }}} Custom functions "
 
 " vim-plug extension {{{ "
@@ -1021,7 +1072,10 @@ function! s:execute_buffer()
     endif
 endfunction
 command! RUN :call s:execute_buffer()
-autocmd FileType sh,bash,zsh,python,ruby nnoremap <leader>rr :RUN<cr>
+augroup execute_buffer
+    au!
+    au FileType sh,bash,zsh,python,ruby nnoremap <leader>rr :RUN<cr>
+augroup END
 " }}} Execute script "
 
 " Obsoleted {{{ "

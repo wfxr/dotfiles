@@ -1,21 +1,17 @@
 "=============================================================================
 "       Author: Wenxuan Zhang
 "        Email: wenxuangm@gmail.com
-"     HomePage: wenxuan.info
+"     HomePage: https://github.com/wfxr
 "=============================================================================
-
-" Cancel compatible to avoid some bugs and limitations.
-set nocompatible
-
-" Global variables
-let g:has_tags = executable('ctags')
+set encoding=utf-8
+scriptencoding utf-8
 
 source ~/.vim_base
 source ~/.vim_plug
 source ~/.vim_map
 silent! source ~/.vim_local
 
-if has("termguicolors")
+if has('termguicolors')
     set termguicolors
 endif
 
@@ -28,9 +24,6 @@ set langmenu=en_US
 
 " Add 'cjk' to spelllang to avoid checking Chinese
 set spelllang+=cjk
-
-" Use spell check
-"setl spell
 
 " Enable mouse
 silent! set ttymouse=xterm2
@@ -83,7 +76,6 @@ set fileformats=unix,dos,mac
 
 " Set the sequence of auto encoding
 set fileencodings=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936,big5
-set encoding=utf-8
 
 " No swap files, use version control instead
 set noswapfile
@@ -137,13 +129,17 @@ set shortmess+=c " don't give 'ins-completion-menu' messages.
 " autocmd InsertEnter,WinLeave * set nocursorline
 
 " Set spell in certain cases
-autocmd FileType text,markdown,gitcommit setl spell
+augroup spell
+    au!
+    au FileType text,markdown,gitcommit setl spell
+augroup END
 
 " Have Vim jump to the last position when reopening a file
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-    \| exe "normal! g'\"" | endif
-endif
+augroup jump_last_position
+    au!
+    au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+                \| exe "normal! g'\"" | endif
+augroup END
 
 "function s:update_header()
     "let time = substitute(system("date +'%F %H:%M'"), '\n$', '', '')
@@ -155,9 +151,9 @@ endif
 " disable Background Color Erase (BCE) so that color schemes
 " render properly when inside 256-color tmux and GNU screen.
 " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
-if !has("nvim") && &term =~ '256color'
-  set t_ut=
-endif
+" if !has('nvim') && &term =~# '256color'
+"   set t_ut=
+" endif
 
 silent! colorscheme gruvbox-material
 " silent! colorscheme gruvbox
@@ -181,11 +177,11 @@ hi HighlightedyankRegion ctermbg=0      guibg=#fb4934
 
 " Show changes since last save
 function! s:DiffSaved()
-  let filetype=&ft
+  let filetype=&filetype
   diffthis
   vnew | r # | normal! 1Gdd
   diffthis
-  exe "setl bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+  exe 'setl bt=nofile bh=wipe nobl noswf ro ft=' . filetype
 endfunction
 command! DS call s:DiffSaved()
 
@@ -196,8 +192,8 @@ noremap  <a-1> :T<cr>A
 
 " Hide number & sign columns to do tmux copy
 function! s:tmux_copy_mode_toggle()
-    setlocal nu!
-    if &signcolumn == 'no'
+    setlocal number!
+    if &signcolumn ==? 'no'
         setlocal signcolumn=auto
     else
         setlocal signcolumn=no
@@ -207,9 +203,9 @@ command! TmuxCopyModeToggle call s:tmux_copy_mode_toggle()
 
 function! DetectNoneExtensionFileType()
     " Nothing to do when filetype is already set
-    if &ft != '' | return | endif
+    if &filetype !=? '' | return | endif
 
-    if getline(1) =~ '-\*- C++ -\*-'
+    if getline(1) =~? '-\*- C++ -\*-'
         " Highlight c++ standard lib file without extension
         setf cpp
     else
@@ -220,20 +216,23 @@ function! DetectNoneExtensionFileType()
 endfunction
 
 " Add custom filetypes detection. Mainly for ultisnips
-au BufRead,BufNewFile pom.xml           setl ft=maven.xml
-au BufRead,BufNewFile build.gradle      setl ft=gradle.groovy
-au BufRead,BufNewFile *.esquery.json    setl ft=esquery.json
-au BufRead,BufNewFile *pre-commit       setl ft=sh
-au BufNewFile,BufRead coc-settings.json setl ft=jsonc
+augroup custom_filetype
+    au!
+    au BufRead,BufNewFile pom.xml           setl ft=maven.xml
+    au BufRead,BufNewFile build.gradle      setl ft=gradle.groovy
+    au BufRead,BufNewFile *.esquery.json    setl ft=esquery.json
+    au BufRead,BufNewFile *pre-commit       setl ft=sh
+    au BufNewFile,BufRead coc-settings.json setl ft=jsonc
 
-au Filetype *vim,*tmux setl foldenable | setl foldmethod=marker
-au Filetype *json      setl shiftwidth=2
+    au Filetype *vim,*tmux setl foldenable | setl foldmethod=marker
+    au Filetype *json      setl shiftwidth=2
 
-au BufRead,BufNewFile * call DetectNoneExtensionFileType()
+    au BufRead,BufNewFile * call DetectNoneExtensionFileType()
 
-" Disable automatic comment insertion
-" http://vim.wikia.com/wiki/Disable_automatic_comment_insertion
-au FileType * setl formatoptions-=cro
+    " Disable automatic comment insertion
+    " http://vim.wikia.com/wiki/Disable_automatic_comment_insertion
+    au FileType * setl formatoptions-=cro
+augroup END
 
 set tags=./.tags;,.tags
 let $GTAGSLABEL = 'native-pygments'
@@ -241,8 +240,11 @@ let $GTAGSCONF = '~/.gtags.conf'
 
 " Automatic rename of tmux window
 if exists('$TMUX') && !exists('$NORENAME')
-    au BufEnter * if empty(&buftype) | call system('tmux rename-window '.expand('%:t:S')) | endif
-    au VimLeave * call system('tmux set-window automatic-rename on')
+    augroup rename_tmux
+        au!
+        au BufEnter * if empty(&buftype) | call system('tmux rename-window '.expand('%:t:S')) | endif
+        au VimLeave * call system('tmux set-window automatic-rename on')
+    augroup END
 endif
 
 " lua require'colorizer'.setup()
