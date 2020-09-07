@@ -20,12 +20,10 @@ function xopen() {
         (msys*) open='start ""'                               ;;
         (*) echo "Platform $OSTYPE not supported" && return 1 ;;
     esac
-    # Open as url when directly open failed.
-    # Useful when openning urls without 'http://' prefix
     if [[ "$OSTYPE" == darwin* ]]; then
-        "$open" "$@" &>/dev/null || "$open" "http://$@" &>/dev/null
+        "$open" "$@" &>/dev/null
     else
-        nohup "$open" "$@" &>/dev/null || nohup "$open" "http://$@" &>/dev/null
+        (nohup "$open" "$@" &; disown; exit 0) &>/dev/null
     fi
 } && alias o='xopen'
 
@@ -517,10 +515,8 @@ function sumall() { awk '{n+=$1}END{print n}' }
 wallpaper() {
     [[ $# -ne 1 ]] && return 1
     local name
-    name=$(basename $1) &&
-        mv $1 ~/Pictures/wallpaper &&
-        sed -i "s#'.*'#'$HOME/Pictures/wallpaper/$name'#" ~/.fehbg &&
-        ~/.fehbg
+    name=$(basename $1) && mv $1 ~/Pictures/wallpaper
+    sed -i "s#'.*'#'$HOME/Pictures/wallpaper/$name'#" ~/.fehbg && ~/.fehbg
 }
 
 syncgit() {
