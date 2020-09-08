@@ -247,5 +247,6 @@ if exists('$TMUX') && !exists('$NORENAME')
     augroup END
 endif
 
-" lua require'colorizer'.setup()
-silent! lua require 'colorizer'.setup { 'vim'; 'css'; 'javascript'; 'sh'; 'zsh'; 'markdown'; 'tmux'; 'yaml'; }
+silent! lua require 'colorizer'.setup(
+            \ {'vim'; 'sh'; 'zsh'; 'markdown'; 'tmux'; 'yaml';},
+            \ { RGB = false; })
