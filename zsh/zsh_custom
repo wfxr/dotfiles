@@ -563,3 +563,18 @@ zsh_history_uniq() {
         mv ~/.zsh_history "$HOME/.zsh_history_$(date -I)" &&
         mv /tmp/zsh_history_short ~/.zsh_history
 }
+
+has_external_kbd() { find /dev/input/by-id/ | grep -i 'kbd' | grep -iv 'mouse' &>/dev/null }
+
+# disable_touch_pad() { sudo modprobe -r psmouse }
+disable_touch_pad() { xinput disable $(xinput | grep -i 'touchpad' | grep -Po '(?<=id=)\d+') }
+# enable_touch_pad() { sudo modprobe psmouse }
+enable_touch_pad() { xinput enable $(xinput | grep -i 'touchpad' | grep -Po '(?<=id=)\d+') }
+
+disable_kbd_internal() {
+    ! has_external_kbd && echo 'abort: no external keyboard found' && return 1
+    xinput disable $(xinput | grep -i 'AT Translated Set 2 keyboard' | grep -Po '(?<=id=)\d+')
+}
+enable_kbd_internal() {
+    xinput enable $(xinput | grep -i 'AT Translated Set 2 keyboard' | grep -Po '(?<=id=)\d+')
+}
