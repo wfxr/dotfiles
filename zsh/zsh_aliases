@@ -41,6 +41,7 @@ alias cdr='cd "$(git rev-parse --show-toplevel)"'
 (( $+commands[nvim] )) && alias vim='nvim'
 alias svim='usudo vim'
 (( $+commands[bat] )) && alias cat='bat'
+alias pvim='vim -u NONE'
 
 alias ls='ls --color=auto'
 alias ll='ls --group-directories-first -l'

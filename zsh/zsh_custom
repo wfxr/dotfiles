@@ -100,7 +100,7 @@ function t() {
             if tmux list-sessions &>/dev/null; then
                 wfxr::tmux-attach
             else
-                tmux new-session -A -s "default"
+                tmux new-session -A -s "misc"
             fi
         fi
     else
@@ -566,9 +566,9 @@ zsh_history_uniq() {
 
 has_external_kbd() { find /dev/input/by-id/ | grep -i 'kbd' | grep -iv 'mouse' &>/dev/null }
 
-# disable_touch_pad() { sudo modprobe -r psmouse }
+# disable_touch_pad() { sudo modprobe -r psmouse } # need root privilege
+# enable_touch_pad() { sudo modprobe psmouse } # need root privilege
 disable_touch_pad() { xinput disable $(xinput | grep -i 'touchpad' | grep -Po '(?<=id=)\d+') }
-# enable_touch_pad() { sudo modprobe psmouse }
 enable_touch_pad() { xinput enable $(xinput | grep -i 'touchpad' | grep -Po '(?<=id=)\d+') }
 
 disable_kbd_internal() {
@@ -577,4 +577,13 @@ disable_kbd_internal() {
 }
 enable_kbd_internal() {
     xinput enable $(xinput | grep -i 'AT Translated Set 2 keyboard' | grep -Po '(?<=id=)\d+')
+}
+
+# $1: #RRGGBB
+is_bright() {
+    local r g b
+    r=$((16#${1:1:2}))
+    g=$((16#${1:3:2}))
+    b=$((16#${1:5:2}))
+    return "$(bc -l <<<"(0.299 * $r + 0.587 * $g + 0.114 * $b) / 255 < 0.5")"
 }
