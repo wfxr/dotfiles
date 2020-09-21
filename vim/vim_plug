@@ -100,6 +100,37 @@ let g:gruvbox_material_palette = {
             \ }
 Plug 'sainnhe/gruvbox-material'
 
+" scrollbar {{{ "
+if has('nvim')
+    Plug 'Xuyuanp/scrollbar.nvim'
+    if has_key(g:plugs, 'scrollbar.nvim')
+        let g:scrollbar_right_offset = 0
+        " ⎛╭╮┃█
+        " ⎜││┃█
+        " ⎝╰╯┃█
+        let g:scrollbar_shape = {
+                    \ 'head': '┃',
+                    \ 'body': '┃',
+                    \ 'tail': '┃',
+                    \ }
+        let g:scrollbar_highlight = {
+                    \ 'head': 'LineNr',
+                    \ 'body': 'LineNr',
+                    \ 'tail': 'LineNr',
+                    \ }
+        augroup scrollbar
+            autocmd!
+            autocmd BufEnter    * silent lua require('scrollbar').show()
+            autocmd BufLeave    * silent lua require('scrollbar').clear()
+            autocmd CursorMoved * silent lua require('scrollbar').show()
+            autocmd VimResized  * silent lua require('scrollbar').show()
+            autocmd FocusGained * silent lua require('scrollbar').show()
+            autocmd FocusLost   * silent lua require('scrollbar').clear()
+        augroup end
+    endif
+endif
+" }}} scrollbar "
+
 " vim-rooter {{{ "
 Plug 'airblade/vim-rooter'
 let g:rooter_resolve_links = 1
@@ -628,9 +659,6 @@ if has_key(g:plugs, 'coc.nvim')
         let col = col('.') - 1
         return !col || getline('.')[col - 1]  =~# '\s'
     endfunction
-
-    nmap <silent> w <Plug>(coc-ci-w)
-    nmap <silent> b <Plug>(coc-ci-b)
 
     " Use tab for trigger completion with characters ahead and navigate.
     " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
