@@ -274,7 +274,7 @@ globalkeys = my_table.join(
     -- awful.key({ altkey }, "p", function() os.execute("screenshot") end,
               -- {description = "take a screenshot", group = "hotkeys"}),
 
-    awful.key({ altkey, "Control" }, "a", function () os.execute('import png:- | xclip -selection clipboard -t image/png') end,
+    awful.key({ altkey, "Control" }, "a", function () os.execute('import png:- | tee /tmp/screenshot-$(date +%s).png | xclip -selection clipboard -t image/png') end,
               {description = "screenshot", group = "hotkeys"}),
 
     -- X screen locker
