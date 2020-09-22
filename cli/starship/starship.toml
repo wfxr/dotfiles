@@ -1,6 +1,10 @@
+# [line_break]
+# disabled = true
+
 [time]
 disabled = true
 
 [directory]
+# disabled = true
 truncation_length = 5
 truncate_to_repo = false

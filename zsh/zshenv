@@ -7,6 +7,7 @@
 #=============================================================================
 
 function setup_env() {
+    export GPG_TTY="$(tty)"
     # Get os info
     # if (( $+commands[lsb_release] )); then
         # export OSNAME=$(lsb_release -si)

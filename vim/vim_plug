@@ -12,6 +12,7 @@ scriptencoding utf-8
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'jamessan/vim-gnupg' | let g:GPGFilePattern = '*.{gpg,asc,pgp,pvt}'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'machakann/vim-highlightedyank' | let g:highlightedyank_highlight_duration = 100
 Plug 'rhysd/git-messenger.vim'
