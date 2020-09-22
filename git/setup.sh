@@ -64,11 +64,15 @@ git config --global core.quotepath off
 
 git config --global alias.root 'rev-parse --show-toplevel'
 
+git config --global alias.root 'rev-parse --show-toplevel'
+git config --global alias.lock '!git-crypt lock'
+git config --global alias.unlock '!git-crypt unlock'
+
+# signing
+git config --global user.signingkey wenxuangm@gmail.com
+git config --global commit.gpgsign true
+
 # pre-commit https://pre-commit.com
 pip install --upgrade pre-commit &&
     git config --global init.templateDir ~/.git-template &&
     pre-commit init-templatedir ~/.git-template
-
-git config --global alias.root 'rev-parse --show-toplevel'
-git config --global alias.lock '!git-crypt lock'
-git config --global alias.unlock '!git-crypt unlock'
