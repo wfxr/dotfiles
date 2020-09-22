@@ -39,16 +39,16 @@ git config --global diff.indentHeuristic on
 # diff-so-fancy
 command -v diff-so-fancy >/dev/null && git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
 
-git config --global color.diff-highlight.oldNormal "red bold"
+git config --global color.diff-highlight.oldNormal    "red bold"
 git config --global color.diff-highlight.oldHighlight "red bold 52"
-git config --global color.diff-highlight.newNormal "green bold"
+git config --global color.diff-highlight.newNormal    "green bold"
 git config --global color.diff-highlight.newHighlight "green bold 22"
 
-git config --global color.diff.meta "39"
-git config --global color.diff.frag "magenta bold"
-git config --global color.diff.commit "222 bold"
-git config --global color.diff.old "red bold"
-git config --global color.diff.new "green bold"
+git config --global color.diff.meta       "39"
+git config --global color.diff.frag       "magenta bold"
+git config --global color.diff.commit     "222 bold"
+git config --global color.diff.old        "red bold"
+git config --global color.diff.new        "green bold"
 git config --global color.diff.whitespace "red reverse"
 
 # Auto rebase
@@ -68,3 +68,7 @@ git config --global alias.root 'rev-parse --show-toplevel'
 pip install --upgrade pre-commit &&
     git config --global init.templateDir ~/.git-template &&
     pre-commit init-templatedir ~/.git-template
+
+git config --global alias.root 'rev-parse --show-toplevel'
+git config --global alias.lock '!git-crypt lock'
+git config --global alias.unlock '!git-crypt unlock'
