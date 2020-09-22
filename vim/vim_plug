@@ -57,7 +57,7 @@ let g:gruvbox_sign_column = 'bg0'
 Plug 'morhetz/gruvbox'
 let g:gruvbox_material_enable_bold = 1
 let g:gruvbox_material_enable_italic = 1
-let g:gruvbox_material_transparent_background = 1
+" let g:gruvbox_material_transparent_background = 1
 let g:gruvbox_material_current_word = 'grey background'
 let g:gruvbox_material_visual = 'grey background'
 " let g:gruvbox_material_diagnostic_line_highlight = 1
@@ -118,14 +118,10 @@ if has('nvim')
                     \ 'body': 'LineNr',
                     \ 'tail': 'LineNr',
                     \ }
-        augroup scrollbar
+        augroup ScrollbarInit
             autocmd!
-            autocmd BufEnter    * silent lua require('scrollbar').show()
-            autocmd BufLeave    * silent lua require('scrollbar').clear()
-            autocmd CursorMoved * silent lua require('scrollbar').show()
-            autocmd VimResized  * silent lua require('scrollbar').show()
-            autocmd FocusGained * silent lua require('scrollbar').show()
-            autocmd FocusLost   * silent lua require('scrollbar').clear()
+            autocmd WinEnter,FocusGained,CursorMoved,VimResized * silent! lua require('scrollbar').show()
+            autocmd WinLeave,FocusLost                          * silent! lua require('scrollbar').clear()
         augroup end
     endif
 endif
@@ -718,7 +714,7 @@ if has_key(g:plugs, 'coc.nvim')
     nmap <leader>a  <Plug>(coc-codeaction-selected)
 
     " Remap for do codeAction of current line
-    nmap <leader>ac  <Plug>(coc-codeaction)
+    nmap <leader>aa  <Plug>(coc-codeaction)
     " Fix autofix problem of current line
     nmap <leader>qf  <Plug>(coc-fix-current)
 
@@ -727,41 +723,6 @@ if has_key(g:plugs, 'coc.nvim')
     xmap af <Plug>(coc-funcobj-a)
     omap if <Plug>(coc-funcobj-i)
     omap af <Plug>(coc-funcobj-a)
-
-    " Use <TAB> for select selections ranges, needs server support, like: coc-tsserver, coc-python
-    " nmap <silent> <TAB> <Plug>(coc-range-select)
-    " xmap <silent> <TAB> <Plug>(coc-range-select)
-
-    " Use `:Format` to format current buffer
-    command! -nargs=0 Format :call CocAction('format')
-
-
-    " Use `:Fold` to fold current buffer
-    command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-    " use `:OR` for organize import of current buffer
-    command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
-    " Add status line support, for integration with other plugin, checkout `:h coc-status`
-    set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
-    " Using CocList
-    " Show all diagnostics
-    nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-    " Manage extensions
-    nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-    " Show commands
-    nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-    " Find symbol of current document
-    nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-    " Search workspace symbols
-    nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-    " Do default action for next item.
-    nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-    " Do default action for previous item.
-    nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-    " Resume latest coc list
-    nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 endif
 " }}} coc.vim "
 
