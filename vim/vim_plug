@@ -102,30 +102,30 @@ let g:gruvbox_material_palette = {
 Plug 'sainnhe/gruvbox-material'
 
 " scrollbar {{{ "
-if has('nvim')
-    Plug 'Xuyuanp/scrollbar.nvim'
-    if has_key(g:plugs, 'scrollbar.nvim')
-        let g:scrollbar_right_offset = 0
-        " ⎛╭╮┃█
-        " ⎜││┃█
-        " ⎝╰╯┃█
-        let g:scrollbar_shape = {
-                    \ 'head': '┃',
-                    \ 'body': '┃',
-                    \ 'tail': '┃',
-                    \ }
-        let g:scrollbar_highlight = {
-                    \ 'head': 'LineNr',
-                    \ 'body': 'LineNr',
-                    \ 'tail': 'LineNr',
-                    \ }
-        augroup ScrollbarInit
-            autocmd!
-            autocmd WinEnter,FocusGained,CursorMoved,VimResized * silent! lua require('scrollbar').show()
-            autocmd WinLeave,FocusLost                          * silent! lua require('scrollbar').clear()
-        augroup end
-    endif
-endif
+" if has('nvim')
+"     Plug 'Xuyuanp/scrollbar.nvim'
+"     if has_key(g:plugs, 'scrollbar.nvim')
+"         let g:scrollbar_right_offset = 0
+"         " ⎛╭╮┃█
+"         " ⎜││┃█
+"         " ⎝╰╯┃█
+"         let g:scrollbar_shape = {
+"                     \ 'head': '┃',
+"                     \ 'body': '┃',
+"                     \ 'tail': '┃',
+"                     \ }
+"         let g:scrollbar_highlight = {
+"                     \ 'head': 'LineNr',
+"                     \ 'body': 'LineNr',
+"                     \ 'tail': 'LineNr',
+"                     \ }
+"         augroup ScrollbarInit
+"             autocmd!
+"             autocmd WinEnter,FocusGained,CursorMoved,VimResized * silent! lua require('scrollbar').show()
+"             autocmd WinLeave,FocusLost                          * silent! lua require('scrollbar').clear()
+"         augroup end
+"     endif
+" endif
 " }}} scrollbar "
 
 " vim-rooter {{{ "
