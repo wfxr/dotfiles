@@ -23,15 +23,21 @@ install_nodenv() {
         # automatically install npm packages every time you install a new version of Node
         git clone --depth=1 https://github.com/nodenv/nodenv-default-packages.git \
             "$(nodenv root)/plugins/nodenv-default-packages"
-
-        # optional: compile dynamic bash extension to speed up nodenv
-        cd ~/.nodenv && src/configure && make -C src
+    else
+        cd ~/.nodenv || return 1
+        git pull origin master
+        cd "$(nodenv root)/plugins/node-build" || return 1
+        git pull origin master
+        cd "$(nodenv root)/plugins/nodenv-default-packages" || return 1
+        git pull origin master
     fi
+    # optional: compile dynamic bash extension to speed up nodenv
+    cd ~/.nodenv && src/configure && make -C src
     source <(nodenv init -)
 }
 
 install_node() {
-    v=14.6.0
+    v=14.12.0
     nodenv versions | grep $v || nodenv install $v
     nodenv global $v
     npm install -g yarn
