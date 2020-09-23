@@ -690,8 +690,9 @@ if has_key(g:plugs, 'coc.nvim')
     nmap <silent> gr <Plug>(coc-references)
 
     " fzf-preview.vim
-    noremap <silent> gl :<C-u>CocCommand fzf-preview.LocationList<CR>
-    noremap <silent> gr :<C-u>CocCommand fzf-preview.CocReferences<CR>
+    " nmap <silent> gr <Plug>(coc-references)
+    " nmap <silent> gl :<C-u>CocCommand fzf-preview.LocationList<CR>
+    " nmap <silent> gr :<C-u>CocCommand fzf-preview.CocReferences<CR>
 
     " Remap for rename current word
     nmap <c-a-r> <Plug>(coc-rename)

@@ -36,7 +36,7 @@ export FZF_DEFAULT_COMMAND
 FZF_DEFAULT_OPTS="
 --border
 --pointer '➤ '
---marker '>'
+--marker '┃ '
 --prompt '❯ '
 --color=fg:-1,bg:-1,hl:#ffaf5f,fg+:-1,bg+:-1,hl+:#ffaf5f
 --color=prompt:#5fff87,marker:#ff87d7,spinner:#ff87d7
