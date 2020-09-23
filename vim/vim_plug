@@ -454,7 +454,18 @@ map <leader>il :IndentLinesToggle<CR>
 
 " junegunn/fzf {{{ "
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } | Plug 'junegunn/fzf.vim'
+let g:fzf_vim_opts = {'options': ['--no-border']} " custom
+let g:fzf_action = {
+            \ 'alt-v':  'vsplit',
+            \ 'alt-t':  'nabnew',
+            \ 'alt-x':  'split',
+            \ 'ctrl-m': 'edit',
+            \ 'ctrl-t': 'tab split',
+            \ 'ctrl-x': 'split',
+            \ 'ctrl-v': 'vsplit' }
 let g:fzf_buffers_jump = 1
+nmap <a-f> :Files<CR>
+nmap <a-b> :Buffers<CR>
 nmap <a-g> :Rg<CR>
 nmap <a-l> :Lines<CR>
 " Mapping selecting mappings
@@ -466,77 +477,30 @@ omap <c-l>m <plug>(fzf-maps-o)
 imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 " Lookup dictionary with translate
+
 inoremap <expr> <c-x><c-d> fzf#complete({
             \ 'source': 'cat ~/.vim/spell/en.utf-8.add /usr/share/dict/words 2>/dev/null',
-            \ 'options': '--preview="ydcv --color=always {}" --preview-window=down',
-            \ 'left': 50})
+            \ 'options': '--no-border --preview="ydcv --color=always {}" --preview-window=right:70%',
+            \ 'window': 'call FloatingFZF()'})
 augroup fzf_gitcommit
     au!
     au Filetype gitcommit inoremap <expr> <c-x><c-x> fzf#complete({
                 \ 'source': 'git log --pretty=format:"%s"',
-                \ 'options': '--preview="ydcv --color=always {}" --preview-window=down',
-                \ 'left': 50})
+                \ 'options': '--no-border --preview="ydcv --color=always {}" --preview-window=bottom:20%',
+                \ 'window': 'call FloatingFZF()'})
 augroup END
+
 " Override default command
-command! -bang Colors call fzf#vim#colors({'left': '15%', 'options': '--reverse'}, <bang>0)
-" FZF with devicons
-function! s:file_action(item, action)
-    if expand('$FZF_PATH_LOC') ==# ''
-        lt l:file = a:item
-    else
-        let l:file = a:item[stridx(a:item, ' ', 1)+1 : -1]
-    endif
-    execute a:action l:file
-endfunction
-
-function! s:file_edit(items)
-    for file in a:items
-        call s:file_action(file, 'edit')
-    endfor
-endfunction
-function! s:file_tab(items)
-    for file in a:items
-        call s:file_action(file, 'tabnew')
-    endfor
-endfunction
-function! s:file_split(items)
-    for file in a:items
-        call s:file_action(file, 'split')
-    endfor
-endfunction
-function! s:file_vsplit(items)
-    for file in a:items
-        call s:file_action(file, 'vsplit')
-    endfor
-endfunction
-
-let g:fzf_action = {
-            \ 'alt-v':  'vsplit',
-            \ 'alt-t':  'nabnew',
-            \ 'alt-x':  'split',
-            \ 'ctrl-m': function('s:file_edit'),
-            \ 'ctrl-t': function('s:file_tab'),
-            \ 'ctrl-x': function('s:file_split'),
-            \ 'ctrl-v': function('s:file_vsplit') }
-
-function! s:fzf_devicons()
-    let l:fzf_files_options = '
-                \ --no-border
-                \ --multi
-                \ --preview-window right
-                \ --preview "$FZF_FILE_HIGHLIGHTER {$FZF_PATH_LOC} 2>/dev/null | head -'.&lines.'"
-                \ '
-
-    call fzf#run(fzf#wrap('fzf_devicons', {
-                \ 'source':  expand('$FZF_CTRL_T_COMMAND'),
-                \ 'window':  'call FloatingFZF()',
-                \ 'options': l:fzf_files_options,
-                \ 'down':    '50%',
-                \ }))
-endfunction
-command! FilesWithIcon :call s:fzf_devicons()
-nmap <a-f> :FilesWithIcon<CR>
-nmap <a-b> :Buffers<CR>
+command! -bang Colors
+            \ call fzf#vim#colors(g:fzf_vim_opts, <bang>0)
+command! -bang -nargs=? -complete=dir Files
+            \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(g:fzf_vim_opts, 'right:60%'), <bang>0)
+command! -bang Buffers
+            \ call fzf#vim#buffers(fzf#vim#with_preview(g:fzf_vim_opts, 'right:60%'), <bang>0)
+command! -bang -nargs=* Rg
+            \ call fzf#vim#grep(
+            \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
+            \   fzf#vim#with_preview(g:fzf_vim_opts, 'right:60%'), <bang>0)
 
 if has('nvim')
   function! s:create_float(hl, opts)
@@ -556,12 +520,6 @@ if has('nvim')
     let col = float2nr((&columns - width) / 2)
 
     " Border
-    " let top = '┌' . repeat('─', width - 2) . '┐'
-    " let mid = '│' . repeat(' ', width - 2) . '│'
-    " let bot = '└' . repeat('─', width - 2) . '┘'
-    " let top = '┏' . repeat('━', width - 2) . '┓'
-    " let mid = '┃' . repeat(' ', width - 2) . '┃'
-    " let bot = '┗' . repeat('━', width - 2) . '┛'
     let top = '┏━' . repeat('─', width - 4) . '━┓'
     let mid = '│'  . repeat(' ', width - 2) .  '│'
     let bot = '┗━' . repeat('─', width - 4) . '━┛'
@@ -631,7 +589,9 @@ let g:echodoc#enable_force_overwrite = 1
 
 " coc.vim {{{ "
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release', 'do': ':UpdateRemotePlugins' }
+Plug 'antoinemadec/coc-fzf'
+let g:coc_fzf_opts = ['--no-border', '--layout=reverse-list']
+" let g:coc_fzf_preview = 'right:60%:noborder'
 if has_key(g:plugs, 'coc.nvim')
     let g:coc_global_extensions = [
                 \ 'coc-marketplace',
@@ -688,11 +648,6 @@ if has_key(g:plugs, 'coc.nvim')
     nmap <silent> gy <Plug>(coc-type-definition)
     nmap <silent> gi <Plug>(coc-implementation)
     nmap <silent> gr <Plug>(coc-references)
-
-    " fzf-preview.vim
-    " nmap <silent> gr <Plug>(coc-references)
-    " nmap <silent> gl :<C-u>CocCommand fzf-preview.LocationList<CR>
-    " nmap <silent> gr :<C-u>CocCommand fzf-preview.CocReferences<CR>
 
     " Remap for rename current word
     nmap <c-a-r> <Plug>(coc-rename)
