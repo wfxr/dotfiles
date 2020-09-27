@@ -2,7 +2,7 @@
 scriptencoding utf-8
 
 " Share clipboard with OS
-set clipboard+=unnamed
+" set clipboard+=unnamed
 
 " Set n lines to the cursor - when moving vertically using j/k
 set scrolloff=5

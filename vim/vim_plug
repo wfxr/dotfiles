@@ -1,4 +1,4 @@
-" vim: ft=vim:
+" vim: ft=vim nowrap:
 scriptencoding utf-8
 
 " Auto install vim-plug {{{ "
