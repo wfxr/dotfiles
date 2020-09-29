@@ -15,7 +15,7 @@ set tabstop=4
 set shiftwidth=4
 
 " Highlight current line
-set nocursorline
+set cursorline
 
 " Ignore case when searching
 set ignorecase

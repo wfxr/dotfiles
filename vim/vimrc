@@ -165,6 +165,7 @@ exec 'hi SignifySignAdd    ctermfg=Green  guifg=#50FA7B ' . (has('termguicolors'
 exec 'hi SignifySignDelete ctermfg=Red    guifg=#FF5555 ' . (has('termguicolors')? 'guibg=':'ctermbg=') . synIDattr(hlID('SignColumn'),'bg')
 exec 'hi SignifySignChange ctermfg=Yellow guifg=#FFB86C ' . (has('termguicolors')? 'guibg=':'ctermbg=') . synIDattr(hlID('SignColumn'),'bg')
 hi HighlightedyankRegion ctermbg=Red   guibg=#fb4934
+hi MinimapCurrentLine    ctermfg=Green guifg=#50FA7B guibg=#3a3a3a
 
 silent! set pumblend=15 " transparent popup_menu
 silent! set winblend=15 " transparent floating window
