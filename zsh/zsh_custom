@@ -587,3 +587,7 @@ is_bright() {
     b=$((16#${1:5:2}))
     return "$(bc -l <<<"(0.299 * $r + 0.587 * $g + 0.114 * $b) / 255 < 0.5")"
 }
+
+ghstats() {
+    xopen "https://github-readme-stats.vercel.app/api?username=$1&show_icons=true&hide_border=true"
+}
