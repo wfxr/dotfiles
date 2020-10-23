@@ -222,7 +222,7 @@ augroup custom_filetype
     au Filetype *vim,*tmux setl foldenable | setl foldmethod=marker
     au Filetype *json      setl shiftwidth=2
 
-    au BufRead,BufNewFile * call DetectNoneExtensionFileType()
+    " au BufRead,BufNewFile * call DetectNoneExtensionFileType()
 
     " Disable automatic comment insertion
     " http://vim.wikia.com/wiki/Disable_automatic_comment_insertion
