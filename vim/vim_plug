@@ -288,13 +288,20 @@ Plug 'kristijanhusak/vim-carbon-now-sh'
 " }}} itchyny/calendar.vim "
 
 " comfortable-motion.vim {{{ "
-Plug 'yuttie/comfortable-motion.vim'
-let g:comfortable_motion_no_default_key_mappings = 1
-let g:comfortable_motion_scroll_down_key = 'j'
-let g:comfortable_motion_scroll_up_key = 'k'
-nnoremap <silent> <C-d> :call comfortable_motion#flick(100)<CR>
-nnoremap <silent> <C-u> :call comfortable_motion#flick(-100)<CR>
+" Plug 'yuttie/comfortable-motion.vim'
+" let g:comfortable_motion_no_default_key_mappings = 1
+" let g:comfortable_motion_scroll_down_key = 'j'
+" let g:comfortable_motion_scroll_up_key = 'k'
+" nnoremap <silent> <C-d> :call comfortable_motion#flick(100)<CR>
+" nnoremap <silent> <C-u> :call comfortable_motion#flick(-100)<CR>
 " }}} comfortable-motion.vim "
+
+" vim-smoothie {{{ "
+Plug 'psliwka/vim-smoothie'
+let g:smoothie_no_default_mappings = 1
+nmap <unique> <C-D> <Plug>(SmoothieDownwards)
+nmap <unique> <C-U> <Plug>(SmoothieUpwards)
+" }}} vim-smoothie "
 
 " terryma/vim-smooth-scroll {{{ "
 " Plug 'terryma/vim-smooth-scroll'
