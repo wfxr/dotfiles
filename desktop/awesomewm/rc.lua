@@ -87,6 +87,7 @@ local themes = {
     "rainbow",         -- 8
     "steamburn",       -- 9
     "vertex",          -- 10
+    -- "gruvbox",         -- 11
 }
 
 local chosen_theme = themes[7]
@@ -200,7 +201,9 @@ lain.layout.cascade.tile.nmaster       = 5
 lain.layout.cascade.tile.ncol          = 2
 
 beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme))
-beautiful.useless_gap = 8
+beautiful.useless_gap  = 8
+beautiful.border_width = dpi(2)
+beautiful.border_focus = "#FFB86C"
 local sound_channel = os.getenv("SOUND_CHANNEL") or beautiful.volume.channel
 -- }}}
 
@@ -250,11 +253,11 @@ screen.connect_signal("arrange", function (s)
         if only_one and not c.floating or c.maximized then
             c.border_width = 0
         else
-            -- c.border_width = beautiful.border_width
-            c.border_width = 0
+            c.border_width = beautiful.border_width
         end
     end
 end)
+
 -- Create a wibox for each screen and add it
 awful.screen.connect_for_each_screen(function(s) beautiful.at_screen_connect(s) end)
 -- }}}
