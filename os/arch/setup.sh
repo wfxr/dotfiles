@@ -94,6 +94,11 @@ yay --noconfirm -S csview-git
 yay --noconfirm -S code-minimap-git
 yay --noconfirm -S git-delta-git
 
-# Theme
-yay --noconfirm -S vimix-cursors        # cursor
-yay --noconfirm -S grub-theme-vimix-git # grub
+# Cursor theme
+yay --noconfirm -S vimix-cursors
+printf '[Icon Theme]\nInherits=vimix-cursors\n' > .icons/default/index.theme
+
+# Grub theme
+yay --noconfirm -S grub-theme-vimix-git
+sed -i 's|^GRUB_THEME=.*|"GRUB_THEME=/usr/share/grub/themes/Vimix/theme.txt"#|' /etc/default/grub
+grub-mkconfig -o /boot/grub/grub.cfg
