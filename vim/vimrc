@@ -243,5 +243,5 @@ if exists('$TMUX') && !exists('$NORENAME')
 endif
 
 silent! lua require 'colorizer'.setup(
-            \ {'vim'; 'sh'; 'zsh'; 'markdown'; 'tmux'; 'yaml';},
+            \ {'vim'; 'sh'; 'zsh'; 'markdown'; 'tmux'; 'yaml', 'lua';},
             \ { RGB = false; })
