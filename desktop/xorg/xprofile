@@ -11,3 +11,10 @@ export QT_IM_MODULE=fcitx
 xset -b
 
 [[ -f ~/.xprofile.local ]] && source ~/.xprofile.local
+
+xrdb -load ~/.Xresources
+
+xrdb -merge ~/.xtheme/amarena
+
+fcitx -d -r
+picom -b --experimental-backends
