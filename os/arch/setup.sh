@@ -93,6 +93,7 @@ yay --noconfirm -S mmv-go
 yay --noconfirm -S csview-git
 yay --noconfirm -S code-minimap-git
 yay --noconfirm -S git-delta-git
+yay --noconfirm -S sxiv # simple x image viewer
 
 # Cursor theme
 yay --noconfirm -S vimix-cursors
