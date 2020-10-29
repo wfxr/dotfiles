@@ -103,8 +103,6 @@ alias weather='curl wttr.in'
 # Hub for git
 (( $+commands[hub] )) && alias git=hub
 
-alias gpom='git push origin master'
-
 (( $+commands[fasd] )) && alias v='f -e vim'
 
 (( $+commands[assh] )) && alias ssh="assh wrapper ssh"
@@ -146,7 +144,6 @@ alias gc='git commit -v'
 alias gb='git branch'
 alias gl='git pull'
 alias gp='git push'
-alias gpom='git push origin master'
 alias gpoat='git push origin --all && git push origin --tags'
 alias gpu='git push upstream'
 alias gco='git checkout'
@@ -168,3 +165,6 @@ alias kex='kubectl exec -it'
 alias klo='kubectl logs -f'
 alias kg='kubectl get'
 alias kd='kubectl describe'
+
+(( $+commands[btm] )) && alias htop='btm -b'
+alias awm='cd ~/.config/awesome'

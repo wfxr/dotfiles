@@ -544,14 +544,14 @@ function kube-config-gen() {
 
 function sumall() { awk '{n+=$1}END{print n}' }
 
-wallpaper() {
+function wallpaper() {
     [[ $# -ne 1 ]] && return 1
     local name
     name=$(basename $1) && mv $1 ~/Pictures/wallpaper
     sed -i "s#'.*'#'$HOME/Pictures/wallpaper/$name'#" ~/.fehbg && ~/.fehbg
 }
 
-syncgit() {
+function syncgit() {
     trap 'command rm -rf $TEMP' EXIT INT TERM HUP
     TEMP="$(mktemp -td --suffix=.tmp "$(basename "$0")".XXXXXX)"
     git clone "$(git remote get-url origin)" "$TEMP/repo" &&
@@ -588,6 +588,11 @@ is_bright() {
     return "$(bc -l <<<"(0.299 * $r + 0.587 * $g + 0.114 * $b) / 255 < 0.5")"
 }
 
-ghstats() {
+function ghstats() {
     xopen "https://github-readme-stats.vercel.app/api?username=$1&show_icons=true&hide_border=true"
+}
+
+function gpom() {
+    git branch | grep main   &>/dev/null && git push origin main
+    git branch | grep master &>/dev/null && git push origin master
 }
