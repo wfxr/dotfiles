@@ -103,3 +103,6 @@ printf '[Icon Theme]\nInherits=vimix-cursors\n' > .icons/default/index.theme
 yay --noconfirm -S grub-theme-vimix-git
 sed -i 's|^GRUB_THEME=.*|"GRUB_THEME=/usr/share/grub/themes/Vimix/theme.txt"#|' /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
+
+# Auto screen lock
+yay --noconfirm -S xss-lock
