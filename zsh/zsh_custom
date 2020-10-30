@@ -596,3 +596,13 @@ function gpom() {
     git branch | grep main   &>/dev/null && git push origin main
     git branch | grep master &>/dev/null && git push origin master
 }
+
+function aurview() {
+    [ -d "/tmp/$1" ] || git clone "ssh://aur@aur.archlinux.org/$1" "/tmp/$1"
+
+    echo "PKGBUILD:"
+    cat "/tmp/$1/PKGBUILD"
+
+    printf "\nFiles in aur repo:\n"
+    ls -a "/tmp/$1"
+}
