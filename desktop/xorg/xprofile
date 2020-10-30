@@ -7,14 +7,26 @@ export GTK_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 export QT_IM_MODULE=fcitx
 
-# disable beep bell
-xset -b
-
-[[ -f ~/.xprofile.local ]] && source ~/.xprofile.local
+[ -f ~/.xprofile.local ] && . ~/.xprofile.local
 
 xrdb -load ~/.Xresources
 
 xrdb -merge ~/.xtheme/amarena
 
+~/.fehbg
+
 fcitx -d -r
 picom -b --experimental-backends
+
+# disable beep bell
+xset -b
+
+# screen lock
+xset s on
+xset s 300
+
+# Display Power Management Signaling
+xset +dpms         # enable dpms
+xset dmps 0 0 1800 # turn off after 1800s
+
+xss-lock -- awesome-client "lock_screen_show()" &
