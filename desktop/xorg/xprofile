@@ -25,8 +25,7 @@ xset -b
 xset s on
 xset s 300
 
-# Display Power Management Signaling
-xset +dpms               # enable dpms
-xset dmps 1600 1700 1800 # turn off after 1800s
+# dpms - Display Power Management Signaling
+xset +dpms && xset dpms 1800 1801 1802
 
 xss-lock -- awesome-client "lock_screen_show()" &
