@@ -7,7 +7,12 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) && cd "$SCRIPT_DIR"
+SDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) && cd "$SDIR"
+
+mkdir -p ~/.gnupg
+
+ln -sf "$SDIR/dirmngr.conf" ~/.gnupg/
+pkill dirmngr # restart to reload dirmngr.conf
 
 # import public key
 # gpg --recv-keys CCAF35548C65530F
