@@ -22,10 +22,12 @@ picom -b --experimental-backends
 xset -b
 
 # screen lock
-xset s on
-xset s 300
+xset s off
+# xset s on
+# xset s 300
 
 # dpms - Display Power Management Signaling
-xset +dpms && xset dpms 1800 1801 1802
+xset -dpms
+# xset +dpms && xset dpms 1800 1801 1802
 
-xss-lock -- awesome-client "lock_screen_show()" &
+# xss-lock -- awesome-client "lock_screen_show()" &
