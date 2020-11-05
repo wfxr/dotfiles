@@ -606,3 +606,8 @@ function aurview() {
     printf "\nFiles in aur repo:\n"
     ls -a "/tmp/$1"
 }
+
+function docker_cleanup() {
+    [ $# -ne 1 ] && return 1
+    docker image prune -a -f --filter "until=$1"
+}

@@ -168,3 +168,5 @@ alias kd='kubectl describe'
 
 (( $+commands[btm] )) && alias htop='btm -b'
 alias awm='cd ~/.config/awesome'
+
+(( $+commands[duf] )) && alias pydf=duf
