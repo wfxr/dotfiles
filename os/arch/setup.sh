@@ -18,7 +18,7 @@ pacman --noconfirm -S pkgtools pkgfile && pkgfile --update
 #wget -O /etc/pacman.d/mirrorlist 'https://www.archlinux.org/mirrorlist/?country=CN'
 
 pacman --noconfirm -S man-pages
-pacman --noconfirm -S git-crypt
+pacman --noconfirm -S libsecret seahorse git-crypt
 pacman --noconfirm -S neovim
 pacman --noconfirm -S openssh make cmake
 # pacman --noconfirm -S clang
