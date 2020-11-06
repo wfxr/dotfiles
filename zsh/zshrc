@@ -83,8 +83,6 @@ source <(starship init zsh) || logwarn "failed loading starship."
     [ -f ~/.zsh_fzf_extra ] && source ~/.zsh_fzf_extra
 
     zpl light-mode as='null' cloneonly depth='1' nocompile for                                             \
-        atclone='zlk src/ydcv.py ydcv'                                                                     \
-            'felixonmars/ydcv'                                                                             \
         atclone='zlk iconful.sh iconful'                                                                   \
             'wfxr/iconful'                                                                                 \
         atclone='zlk b'                                                                                    \
