@@ -62,3 +62,5 @@ abbr zshlocal="vim ~/.zsh_local"
 abbr zshmisc="vim ~/.zsh_misc"
 abbr zshrc="vim ~/.zshrc"
 abbr zshsec="vim ~/.zsh_secret"
+abbr ui_syncthing='xdg-open "http://127.0.0.1:8384/"'
+abbr ui_v2ray='xdg-open "http://127.0.0.1:2017/"'

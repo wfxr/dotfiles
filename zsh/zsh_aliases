@@ -170,3 +170,7 @@ alias kd='kubectl describe'
 alias awm='cd ~/.config/awesome'
 
 (( $+commands[duf] )) && alias pydf=duf
+
+alias ui_syncthing='xdg-open "http://127.0.0.1:8384/"'
+alias ui_v2ray='xdg-open "http://127.0.0.1:2017/"'
+(( $+commands[dua] )) && alias ncdu='dua i'
