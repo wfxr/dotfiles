@@ -97,11 +97,14 @@ yay --noconfirm -S sxiv # simple x image viewer
 
 # Cursor theme
 yay --noconfirm -S vimix-cursors
-printf '[Icon Theme]\nInherits=vimix-cursors\n' > .icons/default/index.theme
+su - wenxuan -c '
+mkdir -p ~/.icons/default/ &&
+printf "[Icon Theme]\nInherits=vimix-cursors\n" > ~/.icons/default/index.theme
+'
 
 # Grub theme
 yay --noconfirm -S grub-theme-vimix-git
-sed -i 's|^GRUB_THEME=.*|"GRUB_THEME=/usr/share/grub/themes/Vimix/theme.txt"#|' /etc/default/grub
+sed -i 's|^\s*#*\s*GRUB_THEME=.*|GRUB_THEME="/usr/share/grub/themes/Vimix/theme.txt"|' /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
 
 # Auto screen lock
