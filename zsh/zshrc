@@ -113,7 +113,8 @@ source <(starship init zsh) || logwarn "failed loading starship."
 
     ##### general plugins {{{ #####
     # forgit should be loaded after .zsh_fzf_extra to read fzf's env
-    export FORGIT_FZF_DEFAULT_OPTS="--height '80%'"
+    export FORGIT_FZF_DEFAULT_OPTS="--preview-window='right:60%:nohidden'"
+    export FORGIT_LOG_FZF_OPTS="--height '95%'"
     export ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=(forward-word forward-char)
     export ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(end-of-line)
     zpl light-mode lucid depth='1' for         \

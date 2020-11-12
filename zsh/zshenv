@@ -69,7 +69,7 @@ function setup_env() {
     _PATH="$GOPATH/bin:$_PATH"
 
     # Less
-    export LESS="-R -f -F -X -i -P ?f%f:(stdin). ?lb%lb?L/%L.. [?eEOF:?pb%pb\%..]"
+    export LESS="-r -f -F -X -i -P ?f%f:(stdin). ?lb%lb?L/%L.. [?eEOF:?pb%pb\%..]"
     export LESSCHARSET="utf-8"
     # Pager
     export PAGER="${commands[less]:-$PAGER}"
