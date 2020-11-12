@@ -234,8 +234,8 @@ let vcs_signs_delete_down = [ '⤥', '◢', '⥕', '⬊', '⇘', '↘', '⎽']
 let g:signify_sign_add               = '┃'
 let g:signify_sign_change            = '┃'
 let g:signify_sign_changedelete      = '┃'
-let g:signify_sign_delete            = vcs_signs_delete_down[0]
-let g:signify_sign_delete_first_line = vcs_signs_delete_up[0]
+let g:signify_sign_delete            = vcs_signs_delete_down[5]
+let g:signify_sign_delete_first_line = vcs_signs_delete_up[5]
 " Plug 'airblade/vim-gitgutter'
 " let g:gitgutter_sign_added='┃'
 " let g:gitgutter_sign_modified='┃'
@@ -937,9 +937,9 @@ augroup END
 
 " vim-plug extension {{{ "
 " Define some custom command
-command! PU source ~/.vim_plug | PlugUpgrade | PlugUpdate
-command! PI source ~/.vim_plug | PlugInstall
-command! PC source ~/.vim_plug | PlugClean
+" command! PU source ~/.vim_plug | PlugUpgrade | PlugUpdate
+" command! PI source ~/.vim_plug | PlugInstall
+" command! PC source ~/.vim_plug | PlugClean
 
 " VimAwesome complete for vim-plug
 " function! VimAwesomeComplete() abort
