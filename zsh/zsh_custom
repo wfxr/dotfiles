@@ -619,3 +619,28 @@ function webrt() {
     (( rt = rt * 1000 ))
     printf "$url: %.02f ms\n" $rt
 }
+
+function po() {
+    local message=$1
+    [ $# -eq 0 ] && message=$(</dev/stdin)
+    local response
+    response=$(curl -fsS \
+        -F "token=$PUSHOVER_TOKEN" \
+        -F "user=$PUSHOVER_USER" \
+        -F "priority=-1" \
+        -F "message=$message" \
+        https://api.pushover.net/1/messages.json
+    ) && echo "$(date -Iseconds) - $response" >>/tmp/pushover.log
+}
+
+function ansi_strip() { sed -e 's/\x1b\[[0-9;]*[a-zA-Z]//g' }
+
+function zt_members() {
+    local green="[01;32m"
+    local red="[01;31m"
+    curl -fsSL -H "Authorization: bearer $ZT_TOKEN" \
+        https://my.zerotier.com/api/network/8bd5124fd6374d27/member |
+        jq '.[] | [.name, .config.ipAssignments[], .physicalAddress, .online] | @tsv' -r |
+        sed -e "s/true/${green}online/g" -e "s/false/${red}offline/g" |
+        csview -tH
+}
