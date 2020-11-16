@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+COLUMNS=$(tput cols);
+if [ "$COLUMNS" -ge 80 ] && [ -z "$FZF_PREVIEW_COLUMNS" ]; then
+    delta --side-by-side -w "$COLUMNS";
+elif [ "$COLUMNS" -ge 160 ] && [ -n "$FZF_PREVIEW_COLUMNS" ]; then
+    delta --side-by-side -w "$FZF_PREVIEW_COLUMNS";
+else
+    delta;
+fi

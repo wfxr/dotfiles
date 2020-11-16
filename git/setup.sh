@@ -1,19 +1,22 @@
 #!/bin/bash
+set -euo pipefail
+IFS=$'\n\t'
+
+SDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) && cd "$SDIR"
 
 git config --global user.name "Wenxuan Zhang"
 git config --global user.email "wenxuangm@gmail.com"
-
 git config --global github.user "wfxr"
-
 git config --global color.ui true
 
-# Prettier diffs
-git config --global diff.compactionHeuristic true
-git config --global diff.indentHeuristic on
-
-# avoid enter password again and again
-git config --global credential.helper cache
-git config --global credential.helper 'cache --timeout=3600'
+# avoid entering password again and again
+if [[ -z "${SSH_CLIENT-}" ]]; then
+    case $OSTYPE in
+        linux* )
+            git config --global credential.helper 'libsecret'
+            ;;
+    esac
+fi
 
 # This makes sure that push pushes only the current branch, and pushes it to the
 # same branch pull would pull from
@@ -31,13 +34,6 @@ git config --global commit.verbose true
 
 # Number of concurrent submodule fetches
 git config --global submodule.fetchJobs 8
-
-# Prettier diffs
-git config --global diff.compactionHeuristic true
-git config --global diff.indentHeuristic on
-
-# diff-so-fancy
-command -v diff-so-fancy >/dev/null && git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
 
 git config --global color.diff-highlight.oldNormal    "red bold"
 git config --global color.diff-highlight.oldHighlight "red bold 52"
@@ -59,10 +55,7 @@ git config --global color.status.updated   cyan
 git config --global color.status.changed   red
 git config --global color.status.untracked yellow
 
-# utf-8 support
 git config --global core.quotepath off
-
-git config --global alias.root 'rev-parse --show-toplevel'
 
 git config --global alias.root 'rev-parse --show-toplevel'
 git config --global alias.lock '!git-crypt lock'
@@ -76,3 +69,11 @@ git config --global commit.gpgsign true
 pip install --upgrade pre-commit &&
     git config --global init.templateDir ~/.git-template &&
     pre-commit init-templatedir ~/.git-template
+
+# Prettier diffs
+git config --global diff.compactionHeuristic true
+git config --global diff.indentHeuristic on
+
+# Custom pager
+mkdir -p ~/bin
+ln -sf "$PWD/git-pager" ~/bin/git-pager
