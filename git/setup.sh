@@ -77,3 +77,4 @@ git config --global diff.indentHeuristic on
 # Custom pager
 mkdir -p ~/bin
 ln -sf "$PWD/git-pager" ~/bin/git-pager
+git config --global core.pager 'git-pager'
