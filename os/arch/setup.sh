@@ -107,5 +107,10 @@ yay --noconfirm -S grub-theme-vimix-git
 sed -i 's|^\s*#*\s*GRUB_THEME=.*|GRUB_THEME="/usr/share/grub/themes/Vimix/theme.txt"|' /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
 
+# Sddm theme
+git clone https://framagit.org/MarianArlt/sddm-sugar-candy /tmp/sugar &&
+    (cd /tmp/sugar && tar cf - --exclude .git . | tar xvf - -C /usr/share/sddm/themes/sugar-candy)
+cp -b "$SCRIPT_DIR/sddm.conf" /etc/sddm.conf.d/sddm.conf
+
 # Auto screen lock
 yay --noconfirm -S xss-lock
