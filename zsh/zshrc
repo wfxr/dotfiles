@@ -91,6 +91,8 @@ source <(starship init zsh) || logwarn "failed loading starship."
             'so-fancy/diff-so-fancy'                                                                       \
         atclone="zlk httpstat.py httpstat"                                                                 \
             'reorx/httpstat'                                                                               \
+        atclone="zlk pushover-cli pushover"                                                                \
+            'wfxr/pushover-cli'                                                                     \
         ;
 
     EMOJI_CLI_KEYBIND='^[m'
