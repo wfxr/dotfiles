@@ -11,7 +11,7 @@ export QT_IM_MODULE=fcitx
 
 xrdb -load ~/.Xresources
 
-xrdb -merge ~/.xtheme/amarena
+xrdb -merge ~/.xthemes/amarena
 
 ~/.fehbg
 
