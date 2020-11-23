@@ -108,7 +108,8 @@ sed -i 's|^\s*#*\s*GRUB_THEME=.*|GRUB_THEME="/usr/share/grub/themes/Vimix/theme.
 grub-mkconfig -o /boot/grub/grub.cfg
 
 # Sddm theme
-git clone https://framagit.org/MarianArlt/sddm-sugar-candy /tmp/sugar &&
+mkdir -p /etc/sddm.conf.d/ /usr/share/sddm/themes/sugar-candy
+git clone --depth=1 https://framagit.org/MarianArlt/sddm-sugar-candy /tmp/sugar &&
     (cd /tmp/sugar && tar cf - --exclude .git . | tar xvf - -C /usr/share/sddm/themes/sugar-candy)
 cp -b "$SCRIPT_DIR/sddm.conf" /etc/sddm.conf.d/sddm.conf
 
