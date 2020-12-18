@@ -15,6 +15,12 @@ font:
     style: Bold Italic
   size: 10
   use_thin_strokes: true
+  offset:
+    x: 0
+    y: 0
+  glyph_offset:
+    x: 0
+    y: 0
 
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true
@@ -78,3 +84,9 @@ schemes:
       white:   '#dfbf8e'
 
 colors: *gruvbox_material_medium_dark
+
+window:
+  padding:
+      x: 0
+      y: 0
+  dynamic_padding: true
