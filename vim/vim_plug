@@ -688,7 +688,8 @@ if has_key(g:plugs, 'coc.nvim')
     " Remap for do codeAction of current line
     nmap <leader>aa  <Plug>(coc-codeaction)
     " Fix autofix problem of current line
-    nmap <leader>qf  <Plug>(coc-fix-current)
+    nmap <leader>qf <Plug>(coc-fix-current)
+    nmap <a-cr> :CocAction refactor<CR>
 
     " Create mappings for function text object, requires document symbols feature of languageserver.
     xmap if <Plug>(coc-funcobj-i)

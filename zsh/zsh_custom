@@ -644,3 +644,5 @@ function zt_members() {
         sed -e "s/true/${green}online/g" -e "s/false/${red}offline/g" |
         csview -tH
 }
+
+function font_list() { fc-list -f '%{family}\n' | awk '!x[$0]++' }
