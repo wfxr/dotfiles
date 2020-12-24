@@ -21,9 +21,29 @@ assert_eq!(${1:expected}, ${2:actual});
 endsnippet
 
 snippet pln "println!" b
-println!("$1"$2);
+println!("$1")
 endsnippet
 
 snippet ppln "println! with placeholder" b
 println!("{$1}", $2);
+endsnippet
+
+snippet clippy "clippy ignore rule" b
+#[allow(clippy::$1)]
+endsnippet
+
+snippet rustfmt "rustfmt skip" b
+#[rustfmt::skip]
+endsnippet
+
+snippet ui "unimplemented!" b
+unimplemented!()
+endsnippet
+
+snippet ur "unimplemented!" b
+unreachable!()
+endsnippet
+
+snippet res "Result<...>"
+Result<${VISUAL:1}$2>
 endsnippet

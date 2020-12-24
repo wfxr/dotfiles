@@ -55,5 +55,6 @@
     "reference": "",
     "typeParameter": "",
     "default": "",
-  }
+  },
+  "rust.clippy_preference": "on",
 }

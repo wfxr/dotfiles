@@ -12,6 +12,7 @@ scriptencoding utf-8
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'nastevens/vim-cargo-make'
 Plug 'wfxr/minimap.vim'
 let g:minimap_width = 10
 let g:minimap_highlight = 'MinimapCurrentLine'
