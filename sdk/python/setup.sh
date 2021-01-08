@@ -33,13 +33,13 @@ install_pyenv() {
 install_python() {
     export PYTHON_CONFIGURE_OPTS="--enable-shared"
     # python
-    v=3.8.0
+    v=3.9.1
     if ! pyenv versions | grep $v &>/dev/null; then
-        pkg=Python-$v.tar.xz
-        mkdir -p ~/.pyenv/cache
-        if [[ ! -f ~/.pyenv/cache/$pkg ]]; then
-            wget http://mirrors.sohu.com/python/$v/$pkg -P /tmp && mv /tmp/$pkg ~/.pyenv/cache/ || return 1
-        fi
+        # pkg=Python-$v.tar.xz
+        # mkdir -p ~/.pyenv/cache
+        # if [[ ! -f ~/.pyenv/cache/$pkg ]]; then
+        #     wget http://mirrors.sohu.com/python/$v/$pkg -P /tmp && mv /tmp/$pkg ~/.pyenv/cache/ || return 1
+        # fi
         # https://github.com/pyenv/pyenv/wiki/Common-build-problems
         if hash apt 2>/dev/null; then
             sudo apt update
