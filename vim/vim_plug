@@ -621,7 +621,7 @@ if has_key(g:plugs, 'coc.nvim')
                 \ 'coc-json',
                 \ 'coc-yaml',
                 \ 'coc-highlight',
-                \ 'coc-rls',
+                \ 'coc-rust-analyzer',
                 \ 'coc-syntax',
                 \ 'coc-fzf-preview',
                 \ 'coc-vimlsp',
