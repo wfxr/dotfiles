@@ -617,6 +617,7 @@ if has_key(g:plugs, 'coc.nvim')
                 \ 'coc-dictionary',
                 \ 'coc-tag',
                 \ 'coc-emoji',
+                \ 'coc-clangd',
                 \ 'coc-go',
                 \ 'coc-json',
                 \ 'coc-yaml',
@@ -697,6 +698,10 @@ if has_key(g:plugs, 'coc.nvim')
     xmap af <Plug>(coc-funcobj-a)
     omap if <Plug>(coc-funcobj-i)
     omap af <Plug>(coc-funcobj-a)
+
+    nmap <c-l> :CocFzfList<cr>
+    nmap <a-s> :CocFzfList symbols<cr>
+    let g:coc_fzf_opts = ['--no-border']
 endif
 " }}} coc.vim "
 
