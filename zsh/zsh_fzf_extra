@@ -44,8 +44,8 @@ FZF_DEFAULT_OPTS="
 --reverse
 --cycle
 --bind alt-p:preview-up,alt-n:preview-down
---bind ctrl-u:half-page-up
---bind ctrl-d:half-page-down
+--bind alt-k:preview-up,alt-j:preview-down
+--bind ctrl-u:half-page-up,ctrl-d:half-page-down
 --bind alt-a:select-all,ctrl-r:toggle-all
 --bind ctrl-s:toggle-sort
 --bind ?:toggle-preview,alt-w:toggle-preview-wrap
