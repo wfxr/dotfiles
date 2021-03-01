@@ -820,6 +820,7 @@ augroup go_env
                 \ let g:go_highlight_generate_tags = 1|
                 \ let g:go_gocode_propose_builtins = 1|
                 \ let g:go_gocode_unimported_packages = 1|
+                \ let g:go_doc_keywordprg_enabled = 0|
                 \ command! -bang A call go#alternate#Switch(<bang>0, 'edit')|
                 \ command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')|
                 \ command! -bang AS call go#alternate#Switch(<bang>0, 'split')|
