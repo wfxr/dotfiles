@@ -605,7 +605,7 @@ let g:echodoc#enable_force_overwrite = 1
 " }}} echodoc.vim "
 
 " coc.vim {{{ "
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'antoinemadec/coc-fzf'
 let g:coc_fzf_opts = ['--no-border', '--layout=reverse-list']
 " let g:coc_fzf_preview = 'right:60%:noborder'
