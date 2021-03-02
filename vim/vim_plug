@@ -807,7 +807,6 @@ augroup go_env
                 \ nmap <buffer> <leader>sm :GoSameIdsToggle<CR>|
                 \ nmap <buffer> <c-a-j> :cnext<CR>|
                 \ nmap <buffer> <c-a-k> :cprevious<CR>|
-                \ nmap <buffer> <c-a-r> <Plug>(go-rename)|
                 \ nmap <buffer> <leader>f :GoDeclsDir<cr>|
                 \ let g:go_fmt_command = "goimports"|
                 \ let g:go_list_type = "quickfix"|
