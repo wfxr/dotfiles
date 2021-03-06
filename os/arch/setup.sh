@@ -7,7 +7,7 @@ mv /etc/pacman.d/mirrorlist  /etc/pacman.d/mirrorlist.bak
 cp "$SCRIPT_DIR/mirrorlist"  /etc/pacman.d/mirrorlist
 mv /etc/pacman.conf          /etc/pacman.conf.bak
 cp "$SCRIPT_DIR/pacman.conf" /etc/pacman.conf
-pacman --noconfirm -Sy archlinuxcn-keyring yay
+pacman --noconfirm -Sy archlinuxcn-keyring paru
 pacman --noconfirm -S pkgtools pkgfile && pkgfile --update
 
 #ln -sf "$SCRIPT_DIR/yaourtrc" ~/.yaourtrc
@@ -88,22 +88,36 @@ systemctl daemon-reload
 systemctl start slock@wenxuan.service
 systemctl enable slock@wenxuan.service
 
-# yay --noconfirm -S icdiff # better diff
-yay --noconfirm -S mmv-go
-yay --noconfirm -S csview-git
-yay --noconfirm -S code-minimap-git
-yay --noconfirm -S git-delta-git
-yay --noconfirm -S sxiv # simple x image viewer
+# paru --noconfirm -S icdiff # better diff
+paru --noconfirm -S mmv-go
+paru --noconfirm -S csview-git
+paru --noconfirm -S code-minimap-git
+paru --noconfirm -S git-delta-git
+paru --noconfirm -S sxiv # simple x image viewer
+
+# backgrounds
+paru --noconfirm -S nitrogen # wallpaper manager
+paru --noconfirm -S \
+    gnome-backgrounds \
+    mate-backgrounds \
+    deepin-wallpapers \
+    elementary-wallpapers \
+    plasma-workspace-wallpapers \
+    archlinux-wallpaper
+
+# gtk theme
+paru --noconfirm -S lxappearance # theme manager
+paru --noconfirm -S arc-gtk-theme
 
 # Cursor theme
-yay --noconfirm -S vimix-cursors
+paru --noconfirm -S vimix-cursors
 su - wenxuan -c '
 mkdir -p ~/.icons/default/ &&
 printf "[Icon Theme]\nInherits=vimix-cursors\n" > ~/.icons/default/index.theme
 '
 
 # Grub theme
-yay --noconfirm -S grub-theme-vimix-git
+paru --noconfirm -S grub-theme-vimix-git
 sed -i 's|^\s*#*\s*GRUB_THEME=.*|GRUB_THEME="/usr/share/grub/themes/Vimix/theme.txt"|' /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
 
@@ -114,4 +128,4 @@ git clone --depth=1 https://framagit.org/MarianArlt/sddm-sugar-candy /tmp/sugar 
 cp -b "$SCRIPT_DIR/sddm.conf" /etc/sddm.conf.d/sddm.conf
 
 # Auto screen lock
-yay --noconfirm -S xss-lock
+paru --noconfirm -S xss-lock
