@@ -58,7 +58,7 @@ Plug 'ConradIrwin/vim-bracketed-paste' " Auto toggle paste mode when paste
 " Plug 'wakatime/vim-wakatime'
 " Plug 'junegunn/vim-github-dashboard' | let g:github_dashboard = { 'username': 'wfxr' }
 
-" Themes
+" Themes {{{ "
 Plug 'nightsense/snow'
 Plug 'junegunn/seoul256.vim'
 let g:gruvbox_bold = 1
@@ -111,59 +111,12 @@ let g:gruvbox_material_palette = {
             \ 'none':             ['NONE',    'NONE']
             \ }
 Plug 'sainnhe/gruvbox-material'
-
-" scrollbar {{{ "
-" if has('nvim')
-"     Plug 'Xuyuanp/scrollbar.nvim'
-"     if has_key(g:plugs, 'scrollbar.nvim')
-"         let g:scrollbar_right_offset = 0
-"         " ⎛╭╮┃█
-"         " ⎜││┃█
-"         " ⎝╰╯┃█
-"         let g:scrollbar_shape = {
-"                     \ 'head': '┃',
-"                     \ 'body': '┃',
-"                     \ 'tail': '┃',
-"                     \ }
-"         let g:scrollbar_highlight = {
-"                     \ 'head': 'LineNr',
-"                     \ 'body': 'LineNr',
-"                     \ 'tail': 'LineNr',
-"                     \ }
-"         augroup ScrollbarInit
-"             autocmd!
-"             autocmd WinEnter,FocusGained,CursorMoved,VimResized * silent! lua require('scrollbar').show()
-"             autocmd WinLeave,FocusLost                          * silent! lua require('scrollbar').clear()
-"         augroup end
-"     endif
-" endif
-" }}} scrollbar "
+" }}} Themes "
 
 " vim-rooter {{{ "
-Plug 'airblade/vim-rooter'
-let g:rooter_resolve_links = 1
+" Plug 'airblade/vim-rooter' " FIXME: cause start up very slow
+" let g:rooter_resolve_links = 1
 " }}} vim-rooter "
-
-" rhysd/committia.vim {{{ "
-" Plug 'rhysd/committia.vim'
-" let g:committia_min_window_width = 150
-" let g:committia_hooks = {}
-" function! g:committia_hooks.edit_open(info)
-    " " Additional settings
-    " setlocal spell
-    " " If no commit message, start with insert mode
-    " if a:info.vcs ==# 'git' && getline(1) ==# ''
-        " startinsert
-    " endif
-" endfunction
-" }}} rhysd/committia "
-
-" vim-key-sound {{{ "
-" Plug 'skywind3000/vim-keysound'
-" let g:keysound_theme = 'default'
-" let g:keysound_volume = 1000
-" noremap <leader>K :KeysoundToggle<CR>
-" }}} vim-key-sound "
 
 " auto-pairs {{{ "
 Plug 'jiangmiao/auto-pairs'
@@ -290,29 +243,12 @@ Plug 'kristijanhusak/vim-carbon-now-sh'
 "let g:calendar_google_task = 1
 " }}} itchyny/calendar.vim "
 
-" comfortable-motion.vim {{{ "
-" Plug 'yuttie/comfortable-motion.vim'
-" let g:comfortable_motion_no_default_key_mappings = 1
-" let g:comfortable_motion_scroll_down_key = 'j'
-" let g:comfortable_motion_scroll_up_key = 'k'
-" nnoremap <silent> <C-d> :call comfortable_motion#flick(100)<CR>
-" nnoremap <silent> <C-u> :call comfortable_motion#flick(-100)<CR>
-" }}} comfortable-motion.vim "
-
 " vim-smoothie {{{ "
 Plug 'psliwka/vim-smoothie'
 let g:smoothie_no_default_mappings = 1
 nmap <unique> <C-D> <Plug>(SmoothieDownwards)
 nmap <unique> <C-U> <Plug>(SmoothieUpwards)
 " }}} vim-smoothie "
-
-" terryma/vim-smooth-scroll {{{ "
-" Plug 'terryma/vim-smooth-scroll'
-" noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 20, 2)<CR>
-" noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 20, 2)<CR>
-" noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
-" noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
-" }}} terryma/vim-smooth-scroll "
 
 " vim-expand-region {{{ "
 Plug 'terryma/vim-expand-region'
@@ -363,24 +299,6 @@ nmap [Q :cfirst<CR>
 nmap ]Q :clast<CR>
 nmap <Leader>d :Gdiff<CR>
 " }}} vim-fugitive "
-
-" vim-slash {{{ "
-" ISSUE: vim-splash causes `gd` not work
-" Plug 'junegunn/vim-slash' " vim-slash provides a set of mappings for enhancing in-buffer search experience in Vim.
-" if has('timers')
-  " Blink 3 times with 50ms interval
-  " noremap <expr> <plug>(slash-after) 'zz'.slash#blink(2, 50)
-  " noremap <expr> <plug>(slash-after) slash#blink(2, 50)
-" endif
-" }}} vim-slash "
-
-" ryanoasis/vim-devicons {{{ "
-" Plug 'ryanoasis/vim-devicons' " Should be loaded before vim-airline
-" let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols = {} " needed
-" let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol = ''
-" let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['.*vim_.*\|.*vimrc.*'] = ''
-" let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['.*zsh_.*\|.*zshrc.*'] = ''
-" }}} ryanoasis/vim-devicons "
 
 " vim-airline / lightline.vim {{{ "
 " Plug 'itchyny/lightline.vim'
@@ -448,13 +366,6 @@ vnoremap <c-_> :call NERDComment(0, "toggle")<CR>'>j
 nmap <leader>cc yyP<c-_>
 vmap <leader>cc yPgp<c-_>
 " }}} scrooloose/nerdcommenter "
-
-" ListToggle {{{ "
-" Plug 'Valloric/ListToggle'
-" let g:lt_height = 10
-" let g:lt_location_list_toggle_map = '<leader>1'
-" let g:lt_quickfix_list_toggle_map = '<leader>2'
-" }}} ListToggle "
 
 " Yggdroot/indentLine {{{ "
 Plug 'Yggdroot/indentLine', { 'on': 'IndentLinesToggle' }
@@ -707,69 +618,6 @@ if has_key(g:plugs, 'coc.nvim')
 endif
 " }}} coc.vim "
 
-" YouCompleteMe {{{ "
-" function! BuildYCM(info)
-    " if a:info.status == 'installed' || a:info.force
-        " !./install.py
-    " endif
-" endfunction
-" Plug 'ycm-core/YouCompleteMe', { 'do': function('BuildYCM') } | Plug 'rdnetto/YCM-Generator',  { 'branch': 'stable'}
-" " Let ale do it
-" let g:ycm_show_diagnostics_ui = 0
-" let g:ycm_server_log_level = 'info'
-" " 配置默认的ycm_extra_conf.py
-" let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-" " 打开vim时不再询问是否加载ycm_extra_conf.py配置
-" let g:ycm_confirm_extra_conf = 0
-" " 注释补全开关
-" let g:ycm_complete_in_comments = 1
-" " 字符串补全开关:关闭会导致在包含双引号形式的头文件时无法补全！
-" let g:ycm_complete_in_strings = 1
-" " 基于标签收集引擎
-" let g:ycm_collect_identifiers_from_tags_files = 1
-" " 基于注释和字符串的收集引擎
-" let g:ycm_collect_identifiers_from_comments_and_strings = 1
-" " 语言关键字补全
-" let g:ycm_seed_identifiers_with_syntax = 1
-" " 从第n个字符开始展开补全
-" let g:ycm_min_num_of_chars_for_completion = 1
-" " 添加UltiSnips进行snippet补全
-" let g:ycm_use_ultisnips_completer = 1
-" " 关闭函数原型等补全预览窗口
-" set completeopt=menu,menuone
-" " 补全完成后关闭预览窗口
-" " let g:ycm_autoclose_preview_window_after_completion = 1
-" let g:ycm_add_preview_tocompleteopt = 0
-" let g:ycm_filetype_blacklist = { }
-" " 关闭js文件补全（需要js项目配置文件，类似C++，麻烦）
-" " let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1}
-" let g:ycm_error_symbol = g:error_symbol
-" let g:ycm_warning_symbol = g:warning_symbol
-" let g:ycm_always_populate_location_list = 1
-" " 直接显示补全（全局类型、变量、宏或函数等补全需要
-" let g:ycm_key_invoke_completion = '<C-x><C-o>'
-" " 停止补全
-" let g:ycm_key_list_stop_completion = ['<C-g>']
-" let g:ycm_semantic_triggers =  {
-            " \ 'c,cpp,python,java,go,rust,erlang,perl,cs,lua,javascript': ['re!\w{3}'],
-            " \ 'clojure': ['re!\w{2}[\w/]'],
-            " \ }
-" nmap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
-" " autocmd FileType c,cpp,cs,python,ruby,java,go,rust,erlang,perl
-            " " \ nmap <buffer> <c-t> <c-o>|
-            " " \ nmap <buffer> <c-]> :YcmCompleter GoToDefinitionElseDeclaration<CR>|
-            " " \ nmap <buffer> <leader>F :YcmCompleter FixIt<CR>
-" }}} YouCompleteMe "
-
-" vim-easymotion {{{ "
-" Plug 'easymotion/vim-easymotion'
-" let g:EasyMotion_smartcase = 1
-" nmap <Leader>f <Plug>(easymotion-overwin-f)
-" nmap <Leader>s <Plug>(easymotion-overwin-f2)
-" nmap <Leader>l <Plug>(easymotion-overwin-line)
-" nmap <Leader>w <Plug>(easymotion-overwin-w)
-" }}} vim-easymotion "
-
 " vim-sneak {{{ "
 Plug 'justinmk/vim-sneak'
 map f <Plug>Sneak_f
@@ -890,11 +738,13 @@ augroup clojure_env
 augroup END
 " }}} clojure "
 
+" vim-table-mode {{{ "
 Plug 'dhruvasagar/vim-table-mode', { 'for': 'markdown' }
 augroup vim_table_mode
     autocmd!
     autocmd VimEnter *.md silent! TableModeEnable
 augroup END
+" }}} vim-table-mode "
 
 " Syntax highlight: sheerun/vim-polyglot {{{ "
 " Need to be loaded after vim-go(https://github.com/fatih/vim-go/issues/2272)
@@ -927,8 +777,7 @@ Plug 'nelstrom/vim-textobj-rubyblock'
 
 call plug#end()
 
-" Custom functions {{{ "
-" Open repo in browser
+" open repo in browser {{{ "
 function! s:go_github()
     let s:repo = matchstr(expand('<cWORD>'), '\v[0-9A-Za-z\-\.\_]+/[0-9A-Za-z\-\.\_]+')
     if empty(s:repo)
@@ -942,62 +791,7 @@ augroup gogithub
     au!
     au FileType *vim,*zsh,*bash,*tmux nnoremap <buffer> <silent> <cr> :call <sid>go_github()<cr>
 augroup END
-" }}} Custom functions "
-
-" vim-plug extension {{{ "
-" Define some custom command
-" command! PU source ~/.vim_plug | PlugUpgrade | PlugUpdate
-" command! PI source ~/.vim_plug | PlugInstall
-" command! PC source ~/.vim_plug | PlugClean
-
-" VimAwesome complete for vim-plug
-" function! VimAwesomeComplete() abort
-    " let prefix = matchstr(strpart(getline('.'), 0, col('.') - 1), '[.a-zA-Z0-9_/-]*$')
-    " echohl WarningMsg
-    " echo 'Downloading plugin list from VimAwesome'
-    " echohl None
-    " ruby << EOF
-    " require 'json'
-    " require 'open-uri'
-"
-    " query = VIM::evaluate('prefix').gsub('/', '%20')
-    " items = 1.upto(max_pages = 3).map do |page|
-    " Thread.new do
-    " url  = "http://vimawesome.com/api/plugins?page=#{page}&query=#{query}"
-    " data = open(url).read
-    " json = JSON.parse(data, symbolize_names: true)
-    " json[:plugins].map do |info|
-    " pair = info.values_at :github_owner, :github_repo_name
-    " next if pair.any? { |e| e.nil? || e.empty? }
-    " {word: pair.join('/'),
-    " menu: info[:category].to_s,
-    " info: info.values_at(:short_desc, :author).compact.join($/)}
-" end.compact
-    " end
-" end.each(&:join).map(&:value).inject(:+)
-" VIM::command("let cands = #{JSON.dump items}")
-" EOF
-" if !empty(cands)
-    " inoremap <buffer> <c-v> <c-n>
-    " augroup _VimAwesomeComplete
-        " autocmd!
-        " autocmd CursorMovedI,InsertLeave * iunmap <buffer> <c-v>
-                    " \| autocmd! _VimAwesomeComplete
-    " augroup END
-"
-    " call complete(col('.') - strchars(prefix), cands)
-" endif
-" return ''
-" endfunction
-
-" augroup PlugExtension
-    " autocmd!
-    " autocmd FileType vim
-                " \ inoremap <buffer> <c-x><c-x> <c-r>=VimAwesomeComplete()<cr>|
-                " \ autocmd BufWritePost * source %
-" augroup END
-
-" }}} vim-plug extension "
+" }}}
 
 " rotate-colors {{{ "
 function! s:colors(...)
@@ -1050,45 +844,3 @@ augroup execute_buffer
     au FileType sh,bash,zsh,python,ruby nnoremap <leader>rr :RUN<cr>
 augroup END
 " }}} Execute script "
-
-" Obsoleted {{{ "
-"Plug 'vim-scripts/taglist.vim'
-"let Tlist_Exit_OnlyWindow=1
-"let Tlist_Auto_Open=0
-"nmap <leader>tl :TlistToggle<CR>
-"Plug 'vim-scripts/a.vim'
-"nmap <leader>aa :A<CR>
-"nmap <leader>as :AS<CR>
-"Plug 'wfxr/BufferSwitch'
-"Plug 'quickfix/quickfix'
-" Plug 'junegunn/vim-emoji'
-" augroup emoji_complete
-    " autocmd!
-    " autocmd FileType markdown,gitcommit setlocal completefunc=emoji#complete
-" augroup END
-"Plug 'osyo-manga/vim-over'
-"Plug 'jeaye/color_coded' " C-family语法高亮 TODO need lua, no nvim support
-"Plug 'suan/vim-instant-markdown',      { 'for': 'markdown'   }
-"let g:instant_markdown_autostart = 0
-"Plug 'takac/vim-hardtime'
-"let g:hardtime_default_on = 0
-"Plug 'wfxr/logstash.vim'
-"Plug 'ctrlpvim/ctrlp.vim' | let g:ctrlp_working_path_mode = 'ra'
-"Plug 'reedes/vim-pencil'
-"Plug 'kana/vim-textobj-function'
-"Plug 'sgur/vim-textobj-parameter'
-"if !has('macunix')
-    "Plug 'lilydjwg/fcitx.vim'
-"endif
-
-" vim-easymotion {{{ "
-" Plug 'easymotion/vim-easymotion'
-" let g:EasyMotion_smartcase = 1
-" nmap <Leader>f <Plug>(easymotion-overwin-f)
-" nmap <Leader>s <Plug>(easymotion-overwin-f2)
-" nmap <Leader>l <Plug>(easymotion-overwin-line)
-" nmap <Leader>w <Plug>(easymotion-overwin-w)
-" }}} vim-easymotion "
-
-" }}}  "
-
