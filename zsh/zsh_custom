@@ -616,7 +616,7 @@ function webrt() {
     local rt url
     url=${1:-https://google.com}
     rt=$(curl -fs -w '%{time_total}' "$url" -o /dev/null) || return 1
-    (( rt = rt / 1000 ))
+    (( rt = rt * 1000 ))
     printf "$url: %.02f ms\n" $rt
 }
 
