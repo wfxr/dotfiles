@@ -78,3 +78,6 @@ git config --global diff.indentHeuristic on
 mkdir -p ~/bin
 ln -sf "$PWD/git-pager" ~/bin/git-pager
 git config --global core.pager 'git-pager'
+
+# Political correctness?
+git config --global init.defaultBranch main
