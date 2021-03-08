@@ -13,11 +13,11 @@ logerror() { printf "%b[error]%b %s\n" '\e[0;31m\033[1m' '\e[0m' "$@" >&2; }
 install_pyenv() {
     # pyenv
     export PATH="$HOME/.pyenv/bin:$PATH"
-    trap 'rm -rf $TEMP' EXIT INT TERM HUP
-    TEMP="$(mktemp -td --suffix=.tmp "$(basename "$0")".XXXXXX)"
-    local installer="$TEMP/installer"
-    local installer_url=https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer
     if ! hash pyenv &>/dev/null; then
+        trap 'rm -rf $TEMP' EXIT INT TERM HUP
+        TEMP="$(mktemp -td --suffix=.tmp "$(basename "$0")".XXXXXX)"
+        local installer="$TEMP/installer"
+        local installer_url=https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer
         if ! curl -fsSL "$installer_url" >"$installer"; then
             logwarn "directly download failed. try git clone..."
             (cd "$TEMP" && git clone --depth=1 https://github.com/pyenv/pyenv-installer &&
@@ -25,6 +25,8 @@ install_pyenv() {
         fi
 
         bash "$installer" || return 1
+    else
+        pyenv update
     fi
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
