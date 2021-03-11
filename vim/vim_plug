@@ -12,6 +12,7 @@ scriptencoding utf-8
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 Plug 'ivyl/vim-bling' " alternative to vim-slash
 Plug 'nastevens/vim-cargo-make'
 Plug 'wfxr/minimap.vim'
@@ -25,7 +26,7 @@ Plug 'machakann/vim-highlightedyank' | let g:highlightedyank_highlight_duration 
 Plug 'rhysd/git-messenger.vim'
 Plug 'vimwiki/vimwiki'
 Plug 'honza/vim-snippets'
-Plug 'ron89/thesaurus_query.vim'
+" Plug 'ron89/thesaurus_query.vim'
 Plug 'terryma/vim-multiple-cursors' | let g:multi_cursor_select_all_word_key = '<A-a>'
 Plug 'wfxr/vim-gitignore'
 Plug 'junegunn/vim-peekaboo'

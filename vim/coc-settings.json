@@ -50,6 +50,6 @@
     "typeParameter": "",
     "default": "",
   },
-  "rust.clippy_preference": "on",
   "rust-analyzer.updates.channel":"nightly",
+  "rust-analyzer.cargo.allFeatures": true,
 }

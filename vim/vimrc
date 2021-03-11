@@ -87,7 +87,7 @@ set undodir=/tmp/vim/$USER/undodir/
 set noerrorbells
 set visualbell
 
-set autochdir
+" set autochdir
 
 set autoread
 
