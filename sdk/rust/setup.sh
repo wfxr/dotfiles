@@ -4,7 +4,7 @@
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 mkdir -p ~/.cargo
-ln -snf "$SCRIPT_DIR/config" ~/.cargo/config
+ln -snf "$SCRIPT_DIR/config"       ~/.cargo/config
 ln -snf "$SCRIPT_DIR/rustfmt.toml" ~/.rustfmt.toml
 
 if hash rustup &>/dev/null; then
@@ -19,5 +19,8 @@ rustup completions zsh       > ~/.zsh_completions/_rustup
 rustup completions zsh cargo > ~/.zsh_completions/_cargo
 
 # for checking and applying updates to installed executables
-cargo install cargo-update
-cargo install cargo-edit cargo-play cargo-expand
+cargo install --locked cargo-update
+cargo install --locked cargo-edit
+cargo install --locked cargo-play
+cargo install --locked cargo-expand
+cargo install --locked cargo-udeps
