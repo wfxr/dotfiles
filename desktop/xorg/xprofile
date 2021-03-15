@@ -14,7 +14,7 @@ xrdb -load ~/.Xresources
 xrdb -merge ~/.xthemes/amarena
 
 # ~/.fehbg
-nitrogen --restore
+nitrogen --restore &
 
 fcitx -d -r
 picom -b --experimental-backends
