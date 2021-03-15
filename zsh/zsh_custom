@@ -646,3 +646,9 @@ function zt_members() {
 }
 
 function font_list() { fc-list -f '%{family}\n' | awk '!x[$0]++' }
+
+function v() {
+    local file
+    file=$(fzf +m --preview-window default:right:60%)
+    [[ -n "$file" ]] && vim "$file"
+}
