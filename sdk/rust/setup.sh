@@ -24,3 +24,4 @@ cargo install --locked cargo-edit
 cargo install --locked cargo-play
 cargo install --locked cargo-expand
 cargo install --locked cargo-udeps
+cargo install --locked cargo-watch

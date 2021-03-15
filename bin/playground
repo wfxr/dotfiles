@@ -1,0 +1,24 @@
+#!/bin/env bash
+
+# https://www.reddit.com/r/rust/comments/m3taw6/rust_playground_at_your_fingertips/
+PLAYGROUNDS_DIR="/tmp/rust-playgrounds"
+TIMESTAMP=$(date +"%Y%m%d%H%M%S")
+PROJECT_DIR="${PLAYGROUNDS_DIR}/playground${TIMESTAMP}"
+
+cargo new "$PROJECT_DIR" && cd "$PROJECT_DIR" || exit 1
+
+# Add dependencies to Cargo.toml
+for CRATE in "$@"; do
+    sed "/^\[dependencies\]/a $CRATE = \"*\"" -i Cargo.toml
+done
+
+if [ -z "${TMUX}" ]
+then
+  tmux new-session -s playground -n playground
+else
+  tmux new-window -n playground -c "${PROJECT_DIR}"
+fi
+
+tmux send-keys "nvim +2 ./src/main.rs" C-m \; \
+  split-window -v "cargo watch -s 'clear && cargo run -q'" \; \
+  select-pane -U \; \
