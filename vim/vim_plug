@@ -12,6 +12,9 @@ scriptencoding utf-8
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'voldikss/vim-translator'
+nmap <silent> Y <Plug>TranslateW
+vmap <silent> Y <Plug>TranslateWV
 Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 Plug 'ivyl/vim-bling' " alternative to vim-slash
 Plug 'nastevens/vim-cargo-make'
@@ -705,7 +708,7 @@ augroup python_env
                 \ nmap <silent> <c-]> <Plug>(coc-definition)|
                 \ nmap <buffer> <leader>r<CR> :VT python %<CR>
 augroup END
-" }}} vim-rust "
+" }}} "
 
 " vim-cpp {{{ "
 function! s:build_cpp_files(...)

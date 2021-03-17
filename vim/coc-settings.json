@@ -7,7 +7,7 @@
   "diagnostic.errorSign": "══",
   "languageserver": {
   },
-  "coc.preferences.formatOnSaveFiletypes": ["rust"],
+  "coc.preferences.formatOnSaveFiletypes": ["go"],
   "coc.preferences.colorSupport": false,
   "coc.source.emoji.triggerCharacters": [":"],
   "coc.source.emoji.filetypes": ["markdown", "gitcommit"],
@@ -52,4 +52,7 @@
   },
   "rust-analyzer.updates.channel":"nightly",
   "rust-analyzer.cargo.allFeatures": true,
+  "rust-analyzer.checkOnSave.allFeatures": true,
+  "rust-analyzer.procMacro.enable": true,
+  "rust-analyzer.updates.prompt": false,
 }

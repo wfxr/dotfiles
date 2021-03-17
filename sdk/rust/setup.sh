@@ -25,3 +25,9 @@ cargo install --locked cargo-play
 cargo install --locked cargo-expand
 cargo install --locked cargo-udeps
 cargo install --locked cargo-watch
+
+cargo install --locked flamegraph
+hash perf &>/dev/null || {
+    echo "You may need to install the following dependencies on arch:"
+    echo "linux-tools-meta"
+}
