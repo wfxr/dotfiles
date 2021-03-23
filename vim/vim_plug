@@ -23,6 +23,7 @@ let g:minimap_width = 10
 let g:minimap_highlight = 'MinimapCurrentLine'
 let g:minimap_auto_start = 1
 let g:minimap_auto_start_win_enter = 1
+let g:minimap_highlight_range = 1
 Plug 'jamessan/vim-gnupg' | let g:GPGFilePattern = '*.{gpg,asc,pgp,pvt}'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'machakann/vim-highlightedyank' | let g:highlightedyank_highlight_duration = 100
@@ -673,6 +674,7 @@ augroup go_env
                 \ let g:go_gocode_propose_builtins = 1|
                 \ let g:go_gocode_unimported_packages = 1|
                 \ let g:go_doc_keywordprg_enabled = 0|
+                \ let g:go_fmt_fail_silently = 1|
                 \ command! -bang A call go#alternate#Switch(<bang>0, 'edit')|
                 \ command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')|
                 \ command! -bang AS call go#alternate#Switch(<bang>0, 'split')|
