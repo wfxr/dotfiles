@@ -164,16 +164,16 @@ function mosh-kill() {
         | xargs kill -9
 }
 
-# function wfxr::ydcv() {
-#     WORD=$(cat /usr/share/dict/words | fzf \
-#         --preview='ydcv --color always {}' \
-#         --preview-window='right:wrap:80%')
-#     BUFFER="$BUFFER$WORD"
-#     CURSOR="$#BUFFER"
-#     zle redisplay
-# }
-# zle     -N    wfxr::ydcv
-# bindkey '^[y' wfxr::ydcv
+function wfxr::translate() {
+    WORD=$(cat /usr/share/dict/words | fzf \
+        --preview='CLICOLOR_FORCE=1 clitrans {}' \
+        --preview-window='default:right:wrap:80%')
+    BUFFER="$BUFFER$WORD"
+    CURSOR="$#BUFFER"
+    zle redisplay
+}
+zle     -N    wfxr::translate
+bindkey '^[y' wfxr::translate
 
 function wfxr::yank() {
     <<< "$LBUFFER" | pbcopy
