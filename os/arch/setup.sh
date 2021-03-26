@@ -17,16 +17,15 @@ pacman --noconfirm -S pkgtools pkgfile && pkgfile --update
 #wget -O/etc/pacman.d/mirrorlist https://www.archlinux.org/mirrorlist/all/
 #wget -O /etc/pacman.d/mirrorlist 'https://www.archlinux.org/mirrorlist/?country=CN'
 
-pacman --noconfirm -S man-pages
+pacman --noconfirm -S base-devel
 pacman --noconfirm -S libsecret seahorse git-crypt
-pacman --noconfirm -S neovim
-pacman --noconfirm -S openssh make cmake
+pacman --noconfirm -S zsh
+pacman --noconfirm -S vim neovim
+pacman --noconfirm -S openssh
 # pacman --noconfirm -S clang
-pacman --noconfirm -S go
-pacman --noconfirm -S zsh htop
+pacman --noconfirm -S go rust
 pacman --noconfirm -S words
 # pacman --noconfirm -S jdk9-openjdk openjdk9-src
-# pacman --noconfirm -S pet-git
 # pacman --noconfirm -S mosh
 pacman --noconfirm -S axel
 pacman --noconfirm -S shellcheck
@@ -35,11 +34,12 @@ pacman --noconfirm -S jq pv
 # pacman --noconfirm -S nethogs
 # pacman --noconfirm -S global # gtags
 pacman --noconfirm -S universal-ctags-git # better ctags
-pacman --noconfirm -S ncdu   # NCurses Disk Usage
+pacman --noconfirm -S duf dua-cli htop
 # pacman --noconfirm -S create_ap # Create AP
 pacman --noconfirm -S fd exa bat ripgrep sd
 pacman --noconfirm -S vivid
-pacman --noconfirm -S xclip xsel
+pacman --noconfirm -S xclip xsel rofi-greenclip
+pacman --noconfirm -S man-pages
 # pacman --noconfirm -S lightscreen # light weight screenshot tool
 # pacman --noconfirm -S shutter
 
@@ -92,6 +92,7 @@ systemctl enable slock@wenxuan.service
 paru --noconfirm -S mmv-go
 paru --noconfirm -S csview-git
 paru --noconfirm -S code-minimap-git
+paru --noconfirm -S clitrans-git
 paru --noconfirm -S git-delta-git
 paru --noconfirm -S sxiv # simple x image viewer
 
