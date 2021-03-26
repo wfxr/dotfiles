@@ -14,10 +14,14 @@ xrdb -load ~/.Xresources
 xrdb -merge ~/.xthemes/amarena
 
 # ~/.fehbg
-nitrogen --restore &
+nitrogen --restore
 
 fcitx -d -r
 picom -b --experimental-backends
+if hash greenclip &>/dev/null; then
+    killall greenclip;
+    greenclip daemon &
+fi
 
 # disable beep bell
 xset -b

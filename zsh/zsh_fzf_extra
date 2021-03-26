@@ -53,7 +53,7 @@ FZF_DEFAULT_OPTS="
 --bind 'alt-e:execute($EDITOR {} >/dev/tty </dev/tty)'
 --bind change:top
 --preview \"($FZF_FILE_HIGHLIGHTER {} || $FZF_DIR_HIGHLIGHTER {}) 2>/dev/null | head -200\"
---preview-window right:50%:hidden
+--preview-window right:60%:hidden
 "
 export FZF_DEFAULT_OPTS
 export FZF_COMPLETION_TRIGGER='~~'
@@ -69,8 +69,7 @@ FZF_CTRL_T_OPTS="
 --preview \"($FZF_FILE_HIGHLIGHTER {} || $FZF_DIR_HIGHLIGHTER {}) 2>/dev/null | head -200\"
 --bind 'enter:execute(echo {})+abort'
 --bind 'alt-e:execute($EDITOR {} >/dev/tty </dev/tty)'
---bind \"ctrl-y:execute-silent(ruby -e 'puts ARGV' {+} | pbcopy)+abort\"
---preview-window right:50%
+--preview-window default:right:60%
 "
 export FZF_CTRL_T_OPTS
 
@@ -104,8 +103,7 @@ export FZF_ALT_E_COMMAND
 FZF_ALT_E_OPTS="
 --preview \"($FZF_FILE_HIGHLIGHTER {} || $FZF_DIR_HIGHLIGHTER {}) 2>/dev/null | head -200\"
 --bind 'alt-e:execute($EDITOR {} >/dev/tty </dev/tty)'
---bind \"ctrl-y:execute-silent(ruby -e 'puts ARGV' {+} | pbcopy)+abort\"
---preview-window right:50%
+--preview-window default:right:60%
 "
 export FZF_ALT_E_OPTS
 

@@ -47,7 +47,8 @@ noremap <leader>M mmHmt:%s/<C-v><CR>//ge<CR>'tzt'm
 " Yank & paste
 noremap  <c-y> "+yy
 vnoremap <c-y> "+y
-" inoremap <C-y> <C-o>"+P
+noremap  <c-p> "+p
+vnoremap <c-p> "+p
 inoremap <c-v> <c-o>:set paste<cr><c-r>+<c-o>:set nopaste<cr>
 
 " Select pasted text
@@ -79,13 +80,12 @@ noremap <c-a> I
 xnoremap p pgvy
 
 " Move between windows quickly
-" noremap  <A-h>   <C-w>h
-" noremap  <A-j>   <C-w>j
-" noremap  <A-k>   <C-w>k
-" noremap  <A-l>   <C-w>l
-nnoremap <tab>   <c-w>w
-nnoremap <S-tab> <c-w>W
-nnoremap <C-p>   <c-i>
+noremap  <A-h> <C-w>h
+noremap  <A-j> <C-w>j
+noremap  <A-k> <C-w>k
+noremap  <A-l> <C-w>l
+" nnoremap <tab>   <c-w>w
+" nnoremap <S-tab> <c-w>W
 
 " Toggle line wrap
 noremap <A-w> :set wrap!<CR>

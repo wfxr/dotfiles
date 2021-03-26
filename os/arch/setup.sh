@@ -39,7 +39,7 @@ pacman --noconfirm -S ncdu   # NCurses Disk Usage
 # pacman --noconfirm -S create_ap # Create AP
 pacman --noconfirm -S fd exa bat ripgrep sd
 pacman --noconfirm -S vivid
-pacman --noconfirm -S xclip
+pacman --noconfirm -S xclip xsel
 # pacman --noconfirm -S lightscreen # light weight screenshot tool
 # pacman --noconfirm -S shutter
 

@@ -245,3 +245,17 @@ endif
 silent! lua require 'colorizer'.setup(
             \ {'vim'; 'sh'; 'zsh'; 'markdown'; 'tmux'; 'yaml', 'lua';},
             \ { RGB = false; })
+
+" Prevent vim clearing the system clipboard
+if executable("xsel")
+    function! PreserveClipboard()
+        call system("xsel -ib", getreg('+'))
+    endfunction
+    function! PreserveClipboadAndSuspend()
+        call PreserveClipboard()
+        suspend
+    endfunction
+    autocmd VimLeave * call PreserveClipboard()
+    nnoremap <silent> <c-z> :call PreserveClipboadAndSuspend()<cr>
+    vnoremap <silent> <c-z> :<c-u>call PreserveClipboadAndSuspend()<cr>
+endif

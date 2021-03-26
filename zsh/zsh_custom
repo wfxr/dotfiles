@@ -164,16 +164,16 @@ function mosh-kill() {
         | xargs kill -9
 }
 
-function wfxr::ydcv() {
-    WORD=$(cat /usr/share/dict/words | fzf \
-        --preview='ydcv --color always {}' \
-        --preview-window='right:wrap:80%')
-    BUFFER="$BUFFER$WORD"
-    CURSOR="$#BUFFER"
-    zle redisplay
-}
-zle     -N    wfxr::ydcv
-bindkey '^[y' wfxr::ydcv
+# function wfxr::ydcv() {
+#     WORD=$(cat /usr/share/dict/words | fzf \
+#         --preview='ydcv --color always {}' \
+#         --preview-window='right:wrap:80%')
+#     BUFFER="$BUFFER$WORD"
+#     CURSOR="$#BUFFER"
+#     zle redisplay
+# }
+# zle     -N    wfxr::ydcv
+# bindkey '^[y' wfxr::ydcv
 
 function wfxr::yank() {
     <<< "$LBUFFER" | pbcopy
@@ -647,8 +647,21 @@ function zt_members() {
 
 function font_list() { fc-list -f '%{family}\n' | awk '!x[$0]++' }
 
-function v() {
-    local file
-    file=$(fzf +m --preview-window default:right:60%)
-    [[ -n "$file" ]] && vim "$file"
-}
+###################
+#  greenclip-fzf  #
+###################
+# https://github.com/gotbletu/shownotes/blob/master/fzf_clipboard_greenclip.md
+if (( $+commands[greenclip] )); then
+    function clipboard-fzf() {
+        CONTENT=$(greenclip print | fzf)
+        BUFFER="$BUFFER$CONTENT"
+        CURSOR="$#BUFFER"
+        zle redisplay
+    }
+    zle     -N    clipboard-fzf
+    bindkey '^[;' clipboard-fzf
+
+    function greenclip-cfg() { killall greenclip; $EDITOR ~/.config/greenclip.cfg && nohup greenclip daemon &>/dev/null & }
+    function greenclip-reload() { killall greenclip; nohup greenclip daemon &>/dev/null & }
+    function greenclip-clear() { killall greenclip; rm ~/.cache/greenclip.history && nohup greenclip daemon &>/dev/null & }
+fi

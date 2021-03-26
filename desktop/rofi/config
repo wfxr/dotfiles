@@ -1,5 +1,0 @@
-rofi.dpi:                            192
-rofi.color-normal:                   #a02f343f,#a0f3f4f5,#a02f343f,#a02f343f,#a09575cd
-rofi.color-window:                   #a02f343f,#a02f343f,#a02f343f
-
-! vim: ft=xdefaults
