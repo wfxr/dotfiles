@@ -1,3 +1,10 @@
 #!/usr/bin/env bash
 
-xclip -selection clipboard -o "$@"
+if hash xsel &>/dev/null; then
+    xsel --clipboard --output "$@"
+elif hash xclip &>/dev/null; then
+    xclip -selection clipboard -o "$@"
+else
+    echo "xsel or xclip is required" >&2
+    exit 1
+fi
