@@ -12,6 +12,8 @@ scriptencoding utf-8
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'ryanoasis/vim-devicons'
+Plug 'gelguy/wilder.nvim'
 Plug 'voldikss/vim-translator'
 nmap <silent> Y <Plug>TranslateW
 vmap <silent> Y <Plug>TranslateWV
@@ -323,8 +325,10 @@ let g:airline#extensions#ale#show_line_numbers = 0
 
 " scrooloose/nerdtree {{{ "
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' } | Plug 'Xuyuanp/nerdtree-git-plugin'
-let g:NERDTreeDirArrowExpandable = ''
-let g:NERDTreeDirArrowCollapsible = ''
+" let g:NERDTreeDirArrowExpandable = ''
+" let g:NERDTreeDirArrowCollapsible = ''
+let g:NERDTreeDirArrowExpandable = ''
+let g:NERDTreeDirArrowCollapsible = ''
 let g:NERDTreeMapActivateNode = '<CR>'
 let g:NERDTreeMapCustomOpen = 'o'
 let g:NERDTreeCustomOpenArgs ={'file': {'reuse':'currenttab', 'where':'p', 'keepopen':1, 'stay':1}}
@@ -782,6 +786,20 @@ Plug 'nelstrom/vim-textobj-rubyblock'
 " }}} sheerun/vim-polyglot "
 
 call plug#end()
+
+" wilder.nvim {{{ "
+call wilder#enable_cmdline_enter()
+set wildcharm=<Tab>
+cmap <expr> <Tab> wilder#in_context() ? wilder#next() : "\<Tab>"
+cmap <expr> <S-Tab> wilder#in_context() ? wilder#previous() : "\<S-Tab>"
+call wilder#set_option('modes', ['/', '?', ':'])
+call wilder#set_option('renderer', wilder#popupmenu_renderer({
+      \ 'highlighter': wilder#basic_highlighter(),
+      \ 'left': [
+      \   wilder#popupmenu_devicons(),
+      \ ],
+      \ }))
+" }}} wilder "
 
 " open repo in browser {{{ "
 function! s:go_github()
