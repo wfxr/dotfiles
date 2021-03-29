@@ -408,20 +408,25 @@ let g:fzf_buffers_jump = 1
 nmap <a-f> :Files<CR>
 nmap <a-b> :Buffers<CR>
 nmap <a-g> :Rg<CR>
-nmap <a-l> :Lines<CR>
+" nmap <a-l> :Lines<CR>
 " Mapping selecting mappings
 nmap <c-l>m <plug>(fzf-maps-n)
 xmap <c-l>m <plug>(fzf-maps-x)
 imap <c-l>m <plug>(fzf-maps-i)
 omap <c-l>m <plug>(fzf-maps-o)
+
 " Insert mode completion
-imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 " Lookup dictionary with translate
-
 inoremap <expr> <c-x><c-d> fzf#complete({
             \ 'source': 'cat ~/.vim/spell/en.utf-8.add /usr/share/dict/words 2>/dev/null',
-            \ 'options': '--no-border --preview="ydcv --color=always {}" --preview-window=right:70%',
+            \ 'options': '--no-border --preview="CLICOLOR_FORCE=1 clitrans {}" --preview-window=default:right:70%',
+            \ 'window': 'call FloatingFZF()'})
+" Clipboard manager complete
+inoremap <expr> <a-;> fzf#complete({
+            \ 'source': 'greenclip print 2>/dev/null \| grep -v "^\s*$" \| nl -w2 -s" "',
+            \ 'options': '--no-border',
+            \ 'reducer': { line -> substitute(line[0], '^ *[0-9]\+ ', '', '') },
             \ 'window': 'call FloatingFZF()'})
 augroup fzf_gitcommit
     au!
@@ -435,13 +440,13 @@ augroup END
 command! -bang Colors
             \ call fzf#vim#colors(g:fzf_vim_opts, <bang>0)
 command! -bang -nargs=? -complete=dir Files
-            \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(g:fzf_vim_opts, 'right:60%'), <bang>0)
+            \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(g:fzf_vim_opts, 'right:60%:default'), <bang>0)
 command! -bang Buffers
-            \ call fzf#vim#buffers(fzf#vim#with_preview(g:fzf_vim_opts, 'right:60%'), <bang>0)
+            \ call fzf#vim#buffers(fzf#vim#with_preview(g:fzf_vim_opts, 'right:60%:default'), <bang>0)
 command! -bang -nargs=* Rg
             \ call fzf#vim#grep(
             \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
-            \   fzf#vim#with_preview(g:fzf_vim_opts, 'right:60%'), <bang>0)
+            \   fzf#vim#with_preview(g:fzf_vim_opts, 'right:60%:default'), <bang>0)
 
 if has('nvim')
   function! s:create_float(hl, opts)

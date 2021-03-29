@@ -653,7 +653,7 @@ function font_list() { fc-list -f '%{family}\n' | awk '!x[$0]++' }
 # https://github.com/gotbletu/shownotes/blob/master/fzf_clipboard_greenclip.md
 if (( $+commands[greenclip] )); then
     function clipboard-fzf() {
-        CONTENT=$(greenclip print | fzf)
+        CONTENT=$(greenclip print | grep -v '^\s*$' | nl -w2 -s' ' | fzf | sed -E 's/^ *[0-9]+ //')
         BUFFER="$BUFFER$CONTENT"
         CURSOR="$#BUFFER"
         zle redisplay
