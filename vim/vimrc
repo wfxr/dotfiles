@@ -6,14 +6,14 @@
 set encoding=utf-8
 scriptencoding utf-8
 
+if has('termguicolors')
+    set termguicolors
+endif
+
 source ~/.vim_base
 source ~/.vim_plug
 source ~/.vim_map
 silent! source ~/.vim_local
-
-if has('termguicolors')
-    set termguicolors
-endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -241,10 +241,6 @@ if exists('$TMUX') && !exists('$NORENAME')
         au VimLeave * call system('tmux set-window automatic-rename on')
     augroup END
 endif
-
-silent! lua require 'colorizer'.setup(
-            \ {'vim'; 'sh'; 'zsh'; 'markdown'; 'tmux'; 'yaml', 'lua';},
-            \ { RGB = false; })
 
 " Prevent vim clearing the system clipboard
 if executable("xsel")
