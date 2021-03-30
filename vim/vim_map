@@ -145,3 +145,5 @@ if v:version >= 800
 endif
 
 nnoremap <silent> <leader>ee :e<cr>
+
+nnoremap <silent> <tab> :call system('tmux select-pane -t :.+')<cr>

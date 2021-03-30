@@ -53,3 +53,14 @@ impl $1 {
 	$2
 }
 endsnippet
+
+snippet tests "mod tests..." b
+#[cfg(test)]
+mod tests {
+	use super::*;
+	#[test]
+	fn it_works() {
+		$1
+	}
+}
+endsnippet

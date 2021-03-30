@@ -55,4 +55,5 @@
   "rust-analyzer.checkOnSave.allFeatures": true,
   "rust-analyzer.procMacro.enable": true,
   "rust-analyzer.updates.prompt": false,
+  "yank.highlight.duration": 100,
 }
