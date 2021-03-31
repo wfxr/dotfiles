@@ -49,16 +49,14 @@ systemctl daemon-reload
 systemctl enable cronie.service
 systemctl start  cronie.service
 
-# fcitx - gnome
-pacman --noconfirm -S fcitx fcitx-gtk2 fcitx-gtk3 fcitx-qt4 fcitx-qt5 fcitx-configtool fcitx-tools
-# pacman --noconfirm -S fcitx-sogoupinyin
-ln -sf "$SCRIPT_DIR/xprofile" ~/.xprofile
+# pacman --noconfirm -S fcitx fcitx-gtk2 fcitx-gtk3 fcitx-qt4 fcitx-qt5 fcitx-configtool fcitx-tools
+pacman --noconfirm -S fcitx5-chinese-addons fcitx5-git fcitx5-gtk fcitx5-qt fcitx5-pinyin-zhwiki fcitx5-configtool kcm-fcitx5 fcitx5-material-color
+pacman --noconfirm -S kitty alacritty
 
-# cool-retro-term is a terminal emulator which mimics the look and feel of the old cathode tube screens.
 # pacman --noconfirm -S cool-retro-term
 pacman --noconfirm -S xdotool
 
-pacman --noconfirm -S screenkey
+# pacman --noconfirm -S screenkey
 
 # Auto clean pacman cache
 pacman --noconfirm -S pacman-contrib

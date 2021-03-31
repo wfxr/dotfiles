@@ -3,9 +3,12 @@ export LANG=en_US.UTF-8
 export LANGUAGE=en_US:zh_CN
 export LC_CTYPE=en_US.UTF-8
 
+export INPUT_METHOD=fcitx5
 export GTK_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 export QT_IM_MODULE=fcitx
+export SDL_IM_MODULE=fcitx
+export GLFW_IM_MODULE=ibus
 
 [ -f ~/.xprofile.local ] && . ~/.xprofile.local
 
@@ -16,7 +19,7 @@ xrdb -merge ~/.xthemes/amarena
 # ~/.fehbg
 nitrogen --restore
 
-fcitx -d -r
+fcitx5 -d -r
 picom -b --experimental-backends
 if hash greenclip &>/dev/null; then
     killall greenclip;
