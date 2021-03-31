@@ -8,7 +8,7 @@
   "languageserver": {
   },
   "coc.preferences.formatOnSaveFiletypes": ["go"],
-  "coc.preferences.colorSupport": false,
+  // "coc.preferences.colorSupport": false,
   "coc.source.emoji.triggerCharacters": [":"],
   "coc.source.emoji.filetypes": ["markdown", "gitcommit"],
   "coc.source.file.ignoreHidden": false,
@@ -56,4 +56,5 @@
   "rust-analyzer.procMacro.enable": true,
   "rust-analyzer.updates.prompt": false,
   "yank.highlight.duration": 100,
+  "coc.preferences.formatOnType": true,
 }
