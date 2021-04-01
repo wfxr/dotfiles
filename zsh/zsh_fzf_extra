@@ -32,7 +32,7 @@ FZF_DEFAULT_COMMAND='(git ls-tree -r --name-only HEAD ||
 export FZF_DEFAULT_COMMAND
 FZF_DEFAULT_OPTS="
 --prompt '❯ '
---pointer '➤ '
+--pointer '➤'
 --marker '┃'
 --border
 --color=fg:-1,bg:-1,hl:#ffaf5f,fg+:-1,bg+:-1,hl+:#ffaf5f

@@ -52,6 +52,7 @@ install_node_support() {
 
 install_configs() {
     mkdir -p ~/.config ~/.vim/spell
+    mkdir -p ~/.config/nvim/lua
 
     ln -snf "$HOME/.vim"               ~/.config/nvim
     ln -sf  "$SDIR/vimrc"              ~/.config/nvim/init.vim
@@ -64,6 +65,8 @@ install_configs() {
     ln -snf "$SDIR/UltiSnips"          ~/.vim/UltiSnips
     ln -sf  "$SDIR/coc-settings.json"  ~/.vim/coc-settings.json
     touch ~/.vim_local
+
+    ln -snf "$SDIR/lua" ~/.config/nvim/lua
 
     ln -sf  "$SDIR/ideavimrc" ~/.ideavimrc
 

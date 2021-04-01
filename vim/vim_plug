@@ -17,6 +17,15 @@ if has('nvim')
     Plug 'norcalli/nvim-colorizer.lua'
 endif
 
+Plug 'tveskag/nvim-blame-line'
+augroup git_blame
+    au!
+    let g:blameLineVirtualTextHighlight = 'SpecialComment'
+    let g:blameLineVirtualTextFormat = '  git: %s'
+    let g:blameLineGitFormat = '%an | %ar | %s'
+    nnoremap <silent> <leader>gb :ToggleBlameLine<CR>
+    autocmd BufEnter * EnableBlameLine
+augroup END
 Plug 'ryanoasis/vim-devicons'
 Plug 'voldikss/vim-translator'
 nmap <silent> Y <Plug>TranslateW
@@ -194,14 +203,14 @@ nmap <c-a-k> <Plug>MoveLineUp
 " }}} vim-move "
 
 " vim-signify {{{ "
-" Plug 'mhinz/vim-signify' " show vcs symbol on the left side
-" let vcs_signs_delete_up   = [ '⤤', '◥', '⥔', '⬈', '⇗', '↗', '⎺']
-" let vcs_signs_delete_down = [ '⤥', '◢', '⥕', '⬊', '⇘', '↘', '⎽']
-" let g:signify_sign_add               = '┃'
-" let g:signify_sign_change            = '┃'
-" let g:signify_sign_changedelete      = '┃'
-" let g:signify_sign_delete            = vcs_signs_delete_down[1]
-" let g:signify_sign_delete_first_line = vcs_signs_delete_up[1]
+Plug 'mhinz/vim-signify' " show vcs symbol on the left side
+let vcs_signs_delete_up   = [ '⤤', '◥', '⥔', '⬈', '⇗', '↗', '⎺']
+let vcs_signs_delete_down = [ '⤥', '◢', '⥕', '⬊', '⇘', '↘', '⎽']
+let g:signify_sign_add               = '┃'
+let g:signify_sign_change            = '┃'
+let g:signify_sign_changedelete      = '┃'
+let g:signify_sign_delete            = vcs_signs_delete_down[5]
+let g:signify_sign_delete_first_line = vcs_signs_delete_up[5]
 
 " Plug 'airblade/vim-gitgutter'
 " let g:gitgutter_sign_added='┃'
@@ -557,7 +566,6 @@ if has_key(g:plugs, 'coc.nvim')
                 \ 'coc-syntax',
                 \ 'coc-fzf-preview',
                 \ 'coc-vimlsp',
-                \ 'coc-git',
                 \ 'coc-prettier',
                 \ 'coc-pairs',
                 \ 'coc-yank',
