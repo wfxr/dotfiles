@@ -113,10 +113,10 @@ set showcmd
 set autowrite
 
 " always show signcolumns
-if has('patch-8.1.1564')
+if has('patch-8.1.1564') || has('nvim')
   set signcolumn=number
 else
-    silent! set signcolumn=yes " v:version >= 800
+  silent! set signcolumn=yes " v:version >= 800
 endif
 
 " Settings suggested by coc.nvim
@@ -170,6 +170,7 @@ exec 'hi! SignifySignDelete ctermfg=Red    guifg=#FF5555 ' . (has('termguicolors
 exec 'hi! SignifySignChange ctermfg=Yellow guifg=#FFB86C ' . (has('termguicolors')? 'guibg=':'ctermbg=') . synIDattr(hlID('SignColumn'),'bg')
 hi HighlightedyankRegion ctermbg=Red   guibg=#fb4934
 hi MinimapCurrentLine    ctermfg=Green guifg=#50FA7B guibg=#3a3a3a
+hi GitBlameVirtualText   cterm=italic  ctermfg=245   gui=italic guifg=#665c54
 
 silent! set pumblend=15 " transparent popup_menu
 silent! set winblend=15 " transparent floating window

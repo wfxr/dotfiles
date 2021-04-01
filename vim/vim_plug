@@ -15,17 +15,18 @@ call plug#begin('~/.vim/plugged')
 if has('nvim')
     Plug 'gelguy/wilder.nvim'
     Plug 'norcalli/nvim-colorizer.lua'
+
+    Plug 'tveskag/nvim-blame-line'
+    augroup git_blame
+        au!
+        let g:blameLineVirtualTextHighlight = 'GitBlameVirtualText'
+        let g:blameLineVirtualTextFormat = '  git: %s'
+        let g:blameLineGitFormat = '%an | %ar | %s'
+        nnoremap <silent> <leader>gb :ToggleBlameLine<CR>
+        autocmd BufEnter * EnableBlameLine
+    augroup END
 endif
 
-Plug 'tveskag/nvim-blame-line'
-augroup git_blame
-    au!
-    let g:blameLineVirtualTextHighlight = 'SpecialComment'
-    let g:blameLineVirtualTextFormat = '  git: %s'
-    let g:blameLineGitFormat = '%an | %ar | %s'
-    nnoremap <silent> <leader>gb :ToggleBlameLine<CR>
-    autocmd BufEnter * EnableBlameLine
-augroup END
 Plug 'ryanoasis/vim-devicons'
 Plug 'voldikss/vim-translator'
 nmap <silent> Y <Plug>TranslateW
@@ -629,6 +630,7 @@ if has_key(g:plugs, 'coc.nvim')
         au FileType typescript,json setl formatexpr=CocAction('formatSelected')
         " Update signature help on jump placeholder
         au User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+        au FileType log :let b:coc_enabled = 0
     augroup end
 
     " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
