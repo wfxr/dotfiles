@@ -194,14 +194,15 @@ nmap <c-a-k> <Plug>MoveLineUp
 " }}} vim-move "
 
 " vim-signify {{{ "
-Plug 'mhinz/vim-signify' " show vcs symbol on the left side
-let vcs_signs_delete_up   = [ '⤤', '◥', '⥔', '⬈', '⇗', '↗', '⎺']
-let vcs_signs_delete_down = [ '⤥', '◢', '⥕', '⬊', '⇘', '↘', '⎽']
-let g:signify_sign_add               = '┃'
-let g:signify_sign_change            = '┃'
-let g:signify_sign_changedelete      = '┃'
-let g:signify_sign_delete            = vcs_signs_delete_down[5]
-let g:signify_sign_delete_first_line = vcs_signs_delete_up[5]
+" Plug 'mhinz/vim-signify' " show vcs symbol on the left side
+" let vcs_signs_delete_up   = [ '⤤', '◥', '⥔', '⬈', '⇗', '↗', '⎺']
+" let vcs_signs_delete_down = [ '⤥', '◢', '⥕', '⬊', '⇘', '↘', '⎽']
+" let g:signify_sign_add               = '┃'
+" let g:signify_sign_change            = '┃'
+" let g:signify_sign_changedelete      = '┃'
+" let g:signify_sign_delete            = vcs_signs_delete_down[1]
+" let g:signify_sign_delete_first_line = vcs_signs_delete_up[1]
+
 " Plug 'airblade/vim-gitgutter'
 " let g:gitgutter_sign_added='┃'
 " let g:gitgutter_sign_modified='┃'
@@ -533,7 +534,7 @@ let g:echodoc#enable_at_startup = 1
 let g:echodoc#enable_force_overwrite = 1
 " }}} echodoc.vim "
 
-" coc.vim {{{ "
+" coc.nvim {{{ "
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'antoinemadec/coc-fzf'
 let g:coc_fzf_opts = ['--no-border', '--layout=reverse-list']
@@ -565,10 +566,10 @@ if has_key(g:plugs, 'coc.nvim')
 
     command! -nargs=0 Prettier :CocCommand prettier.formatFile
     command! -nargs=0 CocMarket :CocList marketplace
-    function! s:check_back_space() abort
-        let col = col('.') - 1
-        return !col || getline('.')[col - 1]  =~# '\s'
-    endfunction
+    " function! s:check_back_space() abort
+    "     let col = col('.') - 1
+    "     return !col || getline('.')[col - 1]  =~# '\s'
+    " endfunction
 
     " Use tab for trigger completion with characters ahead and navigate.
     " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
@@ -806,7 +807,6 @@ call plug#end()
 
 if has('nvim')
 " wilder.nvim {{{ "
-    Plug 'tpope/vim-sensible' " no nead for nvim
     call wilder#enable_cmdline_enter()
     set wildcharm=<Tab>
     cmap <expr> <Tab> wilder#in_context() ? wilder#next() : "\<Tab>"
@@ -818,6 +818,19 @@ if has('nvim')
                 \   wilder#popupmenu_devicons(),
                 \ ],
                 \ }))
+    call wilder#set_option('pipeline', [
+                \   wilder#branch(
+                \     wilder#cmdline_pipeline({
+                \       'language': 'python',
+                \       'fuzzy': 1,
+                \     }),
+                \     wilder#python_search_pipeline({
+                \       'pattern': wilder#python_fuzzy_pattern(),
+                \       'sorter': wilder#python_difflib_sorter(),
+                \       'engine': 're',
+                \     }),
+                \   ),
+                \ ])
 " }}} wilder "
 
 " colorizer {{{ "

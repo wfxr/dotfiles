@@ -113,7 +113,11 @@ set showcmd
 set autowrite
 
 " always show signcolumns
-silent! set signcolumn=yes " v:version >= 800
+if has('patch-8.1.1564')
+  set signcolumn=number
+else
+    silent! set signcolumn=yes " v:version >= 800
+endif
 
 " Settings suggested by coc.nvim
 set hidden " if hidden is not set, TextEdit might fail.
@@ -161,9 +165,9 @@ if 0
 else
     set background=dark
 endif
-exec 'hi SignifySignAdd    ctermfg=Green  guifg=#50FA7B ' . (has('termguicolors')? 'guibg=':'ctermbg=') . synIDattr(hlID('SignColumn'),'bg')
-exec 'hi SignifySignDelete ctermfg=Red    guifg=#FF5555 ' . (has('termguicolors')? 'guibg=':'ctermbg=') . synIDattr(hlID('SignColumn'),'bg')
-exec 'hi SignifySignChange ctermfg=Yellow guifg=#FFB86C ' . (has('termguicolors')? 'guibg=':'ctermbg=') . synIDattr(hlID('SignColumn'),'bg')
+exec 'hi! SignifySignAdd    ctermfg=Green  guifg=#50FA7B ' . (has('termguicolors')? 'guibg=':'ctermbg=') . synIDattr(hlID('SignColumn'),'bg')
+exec 'hi! SignifySignDelete ctermfg=Red    guifg=#FF5555 ' . (has('termguicolors')? 'guibg=':'ctermbg=') . synIDattr(hlID('SignColumn'),'bg')
+exec 'hi! SignifySignChange ctermfg=Yellow guifg=#FFB86C ' . (has('termguicolors')? 'guibg=':'ctermbg=') . synIDattr(hlID('SignColumn'),'bg')
 hi HighlightedyankRegion ctermbg=Red   guibg=#fb4934
 hi MinimapCurrentLine    ctermfg=Green guifg=#50FA7B guibg=#3a3a3a
 
