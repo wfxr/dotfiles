@@ -136,9 +136,9 @@ readarray -t ${1:arr} <(${2:cmd})
 endsnippet
 
 snippet log "log messages with color" b
-info()  { printf "${1:$(date -Is) }%b[info]%b %s\n"  '\e[0;32m\033[1m' '\e[0m' "$*" >&2; }
-warn()  { printf "$1%b[warn]%b %s\n"  '\e[0;33m\033[1m' '\e[0m' "$*" >&2; }
-error() { printf "$1%b[error]%b %s\n" '\e[0;31m\033[1m' '\e[0m' "$*" >&2; }
+info() { printf "${1:$(date -Is) }%b[info]%b %s\n" '\e[0;32m\033[1m' '\e[0m' "$*" >&2; }
+warn() { printf "$1%b[warn]%b %s\n" '\e[0;33m\033[1m' '\e[0m' "$*" >&2; }
+erro() { printf "$1%b[erro]%b %s\n" '\e[0;31m\033[1m' '\e[0m' "$*" >&2; }
 endsnippet
 
 snippet require "description"

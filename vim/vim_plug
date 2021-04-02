@@ -592,7 +592,7 @@ if has_key(g:plugs, 'coc.nvim')
     inoremap <silent><expr> <tab> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<tab>"
 
     let g:endwise_no_mappings = v:true
-    inoremap <expr> <Plug>CustomCocCR pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+    inoremap <expr> <Plug>CustomCocCR "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
     imap <CR> <Plug>CustomCocCR<Plug>DiscretionaryEnd
 
     " Use K to show documentation in preview window
