@@ -52,7 +52,6 @@ install_node_support() {
 
 install_configs() {
     mkdir -p ~/.config ~/.vim/spell
-    mkdir -p ~/.config/nvim/lua
 
     ln -snf "$HOME/.vim"               ~/.config/nvim
     ln -sf  "$SDIR/vimrc"              ~/.config/nvim/init.vim

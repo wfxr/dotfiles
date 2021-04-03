@@ -117,6 +117,8 @@ function setup_env() {
         done
         export KUBECONFIG
     }
+
+    [[ $OSTYPE =~ darwin ]] && source ~/.linuxify 2>/dev/null
 }
 
 setup_history() {

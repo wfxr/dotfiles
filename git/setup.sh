@@ -13,8 +13,10 @@ git config --global color.ui true
 if [[ -z "${SSH_CLIENT-}" ]]; then
     case $OSTYPE in
         linux* )
-            git config --global credential.helper 'libsecret'
+            git config --global credential.helper libsecret
             ;;
+        darwin* )
+            git config --global credential.helper osxkeychain
     esac
 fi
 

@@ -15,7 +15,7 @@ install_pyenv() {
     export PATH="$HOME/.pyenv/bin:$PATH"
     if ! hash pyenv &>/dev/null; then
         trap 'rm -rf $TEMP' EXIT INT TERM HUP
-        TEMP="$(mktemp -td --suffix=.tmp "$(basename "$0")".XXXXXX)"
+        TEMP="$(mktemp -dt "$(basename "$0")".XXXXXX)"
         local installer="$TEMP/installer"
         local installer_url=https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer
         if ! curl -fsSL "$installer_url" >"$installer"; then
