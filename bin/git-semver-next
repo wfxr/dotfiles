@@ -17,9 +17,11 @@ usage() { echo "Usage: $(basename "$0") [stage|patch|minor|major]" >&2; }
 
 [[ $# -eq 0 ]] && git tag -l --sort=v:refname && exit 0
 
-VERSION_FILE=VERSION
-[[ -f version ]] && VERSION_FILE=version
-[[ -f VERSION ]] && VERSION_FILE=VERSION
+VERSION_FILE=.VERSION
+[[ -f version  ]] && VERSION_FILE=version
+[[ -f VERSION  ]] && VERSION_FILE=VERSION
+[[ -f .version ]] && VERSION_FILE=.version
+[[ -f .VERSION ]] && VERSION_FILE=.VERSION
 touch $VERSION_FILE
 
 TYPE=$1
