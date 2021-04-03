@@ -10,6 +10,7 @@ IFS=$'\n\t'
 SDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) && cd "$SDIR"
 
 mkdir -p ~/.gnupg
+chmod 700 ~/.gnupg
 
 ln -sf "$SDIR/dirmngr.conf" ~/.gnupg/
 pkill dirmngr || true # restart to reload dirmngr.conf
