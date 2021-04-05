@@ -248,15 +248,18 @@ if exists('$TMUX') && !exists('$NORENAME')
 endif
 
 " Prevent vim clearing the system clipboard
-if executable("xsel")
+if executable('xsel')
     function! PreserveClipboard()
-        call system("xsel -ib", getreg('+'))
+        call system('xsel -ib', getreg('+'))
     endfunction
     function! PreserveClipboadAndSuspend()
         call PreserveClipboard()
         suspend
     endfunction
-    autocmd VimLeave * call PreserveClipboard()
+    augroup preserve_clipboard
+      au!
+      au VimLeave * call PreserveClipboard()
+    augroup END
     nnoremap <silent> <c-z> :call PreserveClipboadAndSuspend()<cr>
     vnoremap <silent> <c-z> :<c-u>call PreserveClipboadAndSuspend()<cr>
 endif

@@ -233,6 +233,8 @@ if executable('ctags')
     let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
     let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
     Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
+    let g:tagbar_position = 'topleft vertical'
+    let g:tagbar_width = max([25, winwidth(0) / 5])
     let g:tagbar_autofocus = 0
     let g:tagbar_sort = 0
     nmap <a-\> :TagbarToggle<CR>
