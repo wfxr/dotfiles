@@ -66,7 +66,7 @@
   "rust-analyzer.cargo.allFeatures": true,
   "rust-analyzer.checkOnSave.allFeatures": true,
   "rust-analyzer.procMacro.enable": true,
-  "rust-analyzer.updates.prompt": false,
+  "rust-analyzer.updates.prompt": true,
   "yank.highlight.duration": 100,
   "coc.preferences.formatOnType": true,
 }

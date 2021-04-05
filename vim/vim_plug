@@ -321,21 +321,129 @@ nmap ]Q :clast<CR>
 nmap <Leader>d :Gdiff<CR>
 " }}} vim-fugitive "
 
-" vim-airline / lightline.vim {{{ "
-" Plug 'itchyny/lightline.vim'
-Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
-let g:airline_theme = 'gruvbox_material'
-let g:airline_extensions = ['tabline', 'branch', 'ale']
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#show_tab_type = 0
-let g:airline#extensions#ale#error_symbol = 'E:'
-let g:airline#extensions#ale#warning_symbol = 'W:'
-let g:airline#extensions#ale#show_line_numbers = 0
-" let g:airline_left_sep = ''
-" let g:airline_right_sep = ''
-" let g:airline_left_alt_sep = ''
-" let g:airline_right_alt_sep = ''
-" }}} vim-airline/vim-airline "
+" lightline.vim {{{ "
+Plug 'itchyny/lightline.vim'
+function! CocDiagnosticError() abort "{{{
+  let info = get(b:, 'coc_diagnostic_info', {})
+  return get(info, 'error', 0) ==# 0 ? '' : "\uf00d" . info['error']
+endfunction "}}}
+function! CocDiagnosticWarning() abort "{{{
+  let info = get(b:, 'coc_diagnostic_info', {})
+  return get(info, 'warning', 0) ==# 0 ? '' : "\uf529" . info['warning']
+endfunction "}}}
+function! CocDiagnosticOK() abort "{{{
+  let info = get(b:, 'coc_diagnostic_info', {})
+  if get(info, 'error', 0) ==# 0 && get(info, 'error', 0) ==# 0
+    let msg = "\uf00c"
+  else
+    let msg = ''
+  endif
+  return msg
+endfunction "}}}
+function! CocStatus() abort "{{{
+  return get(g:, 'coc_status', '')
+endfunction "}}}
+function! GitGlobal() abort "{{{
+    if exists('*FugitiveHead')
+        let branch = FugitiveHead()
+        if branch ==# ''
+            return ' ' . fnamemodify(getcwd(), ':t')
+        else
+            return branch . ' '
+        endif
+    endif
+    return ''
+endfunction "}}}
+function! DeviconsFiletype() "{{{
+  return winwidth(0) > 100 ? (strlen(&filetype) ? WebDevIconsGetFileTypeSymbol() . ' ' . &filetype : 'no ft') : ''
+  " return winwidth(0) > 100 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+endfunction "}}}
+function! TabNum(n) abort "{{{
+  return a:n." \ue0bb"
+endfunction "}}}
+
+set showtabline=2
+let g:lightline = {}
+let g:lightline.colorscheme = 'gruvbox_material'
+let g:lightline.separator = { 'left': "\ue0b8", 'right': "\ue0be" }
+let g:lightline.subseparator = { 'left': "\ue0b9", 'right': "\ue0b9" }
+let g:lightline.tabline_separator = { 'left': "\ue0bc", 'right': "\ue0ba" }
+let g:lightline.tabline_subseparator = { 'left': "\ue0bb", 'right': "\ue0bb" }
+let g:lightline.active = {
+            \ 'left': [ [ 'mode', 'paste' ],
+            \           [ 'readonly', 'filename', 'modified', 'fileformat', 'devicons_filetype' ] ],
+            \ 'right': [ [ 'lineinfo' ],
+            \            [ 'linter_errors', 'linter_warnings', 'linter_ok' ],
+            \           [ 'coc_status' ] ]
+            \ }
+let g:lightline.inactive = {
+            \ 'left': [ [ 'filename' , 'modified', 'fileformat' ]],
+            \ 'right': [ [ 'lineinfo' ] ]
+            \ }
+let g:lightline.tabline = {
+            \ 'left': [ [ 'vim_logo', 'tabs' ] ],
+            \ 'right': [ [ 'git_status' ] ],
+            \ }
+let g:lightline.tab = {
+            \ 'active': [ 'tabnum', 'filename', 'modified' ],
+            \ 'inactive': [ 'tabnum', 'filename', 'modified' ] }
+let g:lightline.tab_component_function = {
+      \ 'tabnum': 'TabNum',
+      \ 'filename': 'lightline#tab#filename',
+      \ 'modified': 'lightline#tab#modified',
+      \ 'readonly': 'lightline#tab#readonly',
+      \ }
+let g:lightline.component = {
+      \ 'git_status' : '%{GitGlobal()}',
+      \ 'bufinfo': '%{bufname("%")}:%{bufnr("%")}',
+      \ 'vim_logo': "\ue7c5",
+      \ 'mode': '%{lightline#mode()}',
+      \ 'absolutepath': '%F',
+      \ 'relativepath': '%f',
+      \ 'filename': '%t',
+      \ 'fileencoding': '%{&fenc!=#""?&fenc:&enc}',
+      \ 'fileformat': '%{&fenc!=#""?&fenc:&enc}[%{&ff}]',
+      \ 'filetype': '%{&ft!=#""?&ft:"no ft"}',
+      \ 'modified': '%M',
+      \ 'bufnum': '%n',
+      \ 'paste': '%{&paste?"PASTE":""}',
+      \ 'readonly': '%R',
+      \ 'charvalue': '%b',
+      \ 'charvaluehex': '%B',
+      \ 'percent': '%2p%%',
+      \ 'percentwin': '%P',
+      \ 'spell': '%{&spell?&spelllang:""}',
+      \ 'lineinfo': '%2p%% %3l:%-2v',
+      \ 'line': '%l',
+      \ 'column': '%c',
+      \ 'close': '%999X X ',
+      \ 'winnr': '%{winnr()}'
+      \ }
+let g:lightline.component_function = {
+      \ 'devicons_filetype': 'DeviconsFiletype',
+      \ 'coc_status': 'CocStatus',
+      \ }
+let g:lightline.component_expand = {
+      \ 'linter_warnings': 'CocDiagnosticWarning',
+      \ 'linter_errors': 'CocDiagnosticError',
+      \ 'linter_ok': 'CocDiagnosticOK',
+      \ }
+let g:lightline.component_type = {
+      \ 'linter_warnings': 'warning',
+      \ 'linter_errors': 'error'
+      \ }
+" }}}
+
+" vim-airline {{{ "
+" Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
+" let g:airline_theme = 'gruvbox_material'
+" let g:airline_extensions = ['tabline', 'branch', 'ale']
+" let g:airline_powerline_fonts = 1
+" let g:airline#extensions#tabline#show_tab_type = 0
+" let g:airline#extensions#ale#error_symbol = 'E:'
+" let g:airline#extensions#ale#warning_symbol = 'W:'
+" let g:airline#extensions#ale#show_line_numbers = 0
+" }}} vim-airline "
 
 " scrooloose/nerdtree {{{ "
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' } | Plug 'Xuyuanp/nerdtree-git-plugin'
