@@ -323,22 +323,18 @@ nmap <Leader>d :Gdiff<CR>
 
 " lightline.vim {{{ "
 Plug 'itchyny/lightline.vim'
+Plug 'josa42/vim-lightline-coc'
 function! CocDiagnosticError() abort "{{{
   let info = get(b:, 'coc_diagnostic_info', {})
-  return get(info, 'error', 0) ==# 0 ? '' : "\uf00d" . info['error']
+  return get(info, 'error', 0) ==# 0 ? '' : ' ' . info['error'] "   
 endfunction "}}}
 function! CocDiagnosticWarning() abort "{{{
   let info = get(b:, 'coc_diagnostic_info', {})
-  return get(info, 'warning', 0) ==# 0 ? '' : "\uf529" . info['warning']
+  return get(info, 'warning', 0) ==# 0 ? '' : ' ' . info['warning'] "      !
 endfunction "}}}
 function! CocDiagnosticOK() abort "{{{
   let info = get(b:, 'coc_diagnostic_info', {})
-  if get(info, 'error', 0) ==# 0 && get(info, 'error', 0) ==# 0
-    let msg = "\uf00c"
-  else
-    let msg = ''
-  endif
-  return msg
+  return get(info, 'error', 0) ==# 0 && get(info, 'warning', 0) ==# 0 ? '' : '' "  
 endfunction "}}}
 function! CocStatus() abort "{{{
   return get(g:, 'coc_status', '')
@@ -370,23 +366,24 @@ let g:lightline.subseparator = { 'left': "\ue0b9", 'right': "\ue0b9" }
 let g:lightline.tabline_separator = { 'left': "\ue0bc", 'right': "\ue0ba" }
 let g:lightline.tabline_subseparator = { 'left': "\ue0bb", 'right': "\ue0bb" }
 let g:lightline.active = {
-            \ 'left': [ [ 'mode', 'paste' ],
-            \           [ 'readonly', 'filename', 'modified', 'fileformat', 'devicons_filetype' ] ],
-            \ 'right': [ [ 'lineinfo' ],
-            \            [ 'linter_errors', 'linter_warnings', 'linter_ok' ],
-            \           [ 'coc_status' ] ]
+            \ 'left':  [['mode', 'paste'],
+            \           ['readonly', 'modified', 'fileformat', 'devicons_filetype'],
+            \           ['coc_status']],
+            \ 'right': [['lineinfo'],
+            \           ['linter_errors', 'linter_warnings', 'linter_ok']]
             \ }
 let g:lightline.inactive = {
-            \ 'left': [ [ 'filename' , 'modified', 'fileformat' ]],
-            \ 'right': [ [ 'lineinfo' ] ]
+            \ 'left': [['filename', 'modified', 'fileformat']],
+            \ 'right': [[ 'lineinfo' ]]
             \ }
 let g:lightline.tabline = {
-            \ 'left': [ [ 'vim_logo', 'tabs' ] ],
-            \ 'right': [ [ 'git_status' ] ],
+            \ 'left': [['vim_logo', 'tabs']],
+            \ 'right': [[ 'git_status' ]],
             \ }
 let g:lightline.tab = {
-            \ 'active': [ 'tabnum', 'filename', 'modified' ],
-            \ 'inactive': [ 'tabnum', 'filename', 'modified' ] }
+            \ 'active': ['tabnum', 'filename', 'modified'],
+            \ 'inactive': ['tabnum', 'filename', 'modified']
+            \ }
 let g:lightline.tab_component_function = {
       \ 'tabnum': 'TabNum',
       \ 'filename': 'lightline#tab#filename',
@@ -424,14 +421,16 @@ let g:lightline.component_function = {
       \ 'coc_status': 'CocStatus',
       \ }
 let g:lightline.component_expand = {
-      \ 'linter_warnings': 'CocDiagnosticWarning',
-      \ 'linter_errors': 'CocDiagnosticError',
-      \ 'linter_ok': 'CocDiagnosticOK',
-      \ }
+            \ 'linter_warnings': 'CocDiagnosticWarning',
+            \ 'linter_errors': 'CocDiagnosticError',
+            \ 'linter_ok': 'CocDiagnosticOK',
+            \ }
 let g:lightline.component_type = {
-      \ 'linter_warnings': 'warning',
-      \ 'linter_errors': 'error'
-      \ }
+            \ 'linter_warnings': 'warning',
+            \ 'linter_errors': 'error',
+            \ 'linter_info': 'info',
+            \ 'linter_hints': 'hints',
+            \ }
 " }}}
 
 " vim-airline {{{ "
@@ -660,6 +659,7 @@ let g:coc_fzf_opts = ['--no-border', '--layout=reverse-list']
 if has_key(g:plugs, 'coc.nvim')
     let g:coc_global_extensions = [
                 \ 'coc-marketplace',
+                \ 'coc-diagnostic',
                 \ 'coc-snippets',
                 \ 'coc-tabnine',
                 \ 'coc-python',
