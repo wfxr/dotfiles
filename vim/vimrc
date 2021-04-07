@@ -96,8 +96,8 @@ set diffopt=vertical
 " Mark conceal level
 set conceallevel=2
 
-"¦ ┆ │ ⎸ ▏
-set fillchars+=vert:¦
+"¦ ┆ │ ⎹⎸ ▏
+set fillchars+=vert:⎹
 
 " Default 800ms is too slow
 set updatetime=100
