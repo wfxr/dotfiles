@@ -16,6 +16,7 @@ if has('nvim')
     Plug 'gelguy/wilder.nvim'
     Plug 'norcalli/nvim-colorizer.lua'
 
+    " nvim-blame-line {{{ "
     Plug 'tveskag/nvim-blame-line'
     augroup git_blame
         au!
@@ -25,6 +26,14 @@ if has('nvim')
         nnoremap <silent> <leader>gb :ToggleBlameLine<CR>
         autocmd BufEnter * EnableBlameLine
     augroup END
+    " }}} nvim-blame-line "
+
+    " dashboard-nvim {{{ "
+    Plug 'glepnir/dashboard-nvim'
+    let g:dashboard_default_executive ='fzf'
+    nmap <Leader>ss :<C-u>SessionSave<CR>
+    nmap <Leader>sl :<C-u>SessionLoad<CR>
+    " }}} dashboard-nvim  "
 endif
 
 Plug 'ryanoasis/vim-devicons'
@@ -53,7 +62,7 @@ Plug 'ntpeters/vim-better-whitespace'
 let g:better_whitespace_ctermcolor='Red'
 let g:better_whitespace_guicolor='#fb4934'
 let g:current_line_whitespace_disabled_hard=1
-let g:better_whitespace_filetypes_blacklist=['minimap', 'diff']
+let g:better_whitespace_filetypes_blacklist=['minimap', 'diff', 'dashboard']
 Plug 'vim-scripts/matchit.zip' " Enhance % match
 Plug 'neoclide/jsonc.vim'
 Plug 'mbbill/undotree', { 'on':  'UndotreeToggle' } | nnoremap U :UndotreeToggle<CR>
@@ -465,7 +474,7 @@ augroup END
 " }}} scrooloose/nerdtree "
 
 " mhinz/vim-startify {{{ "
-Plug 'mhinz/vim-startify'
+" Plug 'mhinz/vim-startify'
 " Shot nerdtree when start vim without argument
 " autocmd VimEnter *
             " \ if !argc()
@@ -672,7 +681,6 @@ if has_key(g:plugs, 'coc.nvim')
                 \ 'coc-go',
                 \ 'coc-json',
                 \ 'coc-yaml',
-                \ 'coc-highlight',
                 \ 'coc-rust-analyzer',
                 \ 'coc-syntax',
                 \ 'coc-fzf-preview',
@@ -832,11 +840,12 @@ Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 augroup rust_env
     autocmd!
     autocmd FileType rust
-                \ nmap <silent> <c-]> <Plug>(coc-definition)|
-                \ nmap <buffer> <leader>r<CR> :VT cargo run -q<CR>|
-                \ nmap <buffer> <leader>t<CR> :VT cargo test -q<CR>|
-                \ nmap <buffer> <leader>b<CR> :VT cargo build -q<CR>|
-                \ nmap <buffer> <leader>r<CR> :VT cargo play %<CR>
+                \ nmap     <silent> <c-]>         <Plug>(coc-definition)|
+                \ nmap     <buffer> <leader>r<CR> :VT cargo run   -q<CR>|
+                \ nmap     <buffer> <leader>t<CR> :RustTest<CR>|
+                \ nmap     <buffer> <leader>b<CR> :VT cargo build -q<CR>|
+                \ nmap     <buffer> <leader>r<CR> :VT cargo play  %<CR>|
+                \ nnoremap <buffer> <c-a-l>       :RustFmt<cr>
 augroup END
 " }}} vim-rust "
 
@@ -955,7 +964,7 @@ if has('nvim')
 
 " colorizer {{{ "
 lua require 'colorizer'.setup(
-            \ {'vim'; 'sh'; 'zsh'; 'markdown'; 'tmux'; 'yaml', 'lua';},
+            \ {'vim'; 'sh'; 'zsh'; 'markdown'; 'tmux'; 'yaml'; 'lua';},
             \ { RGB = false; })
 " }}} colorizer "
 endif
