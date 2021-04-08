@@ -27,15 +27,13 @@ if has('nvim')
         autocmd BufEnter * EnableBlameLine
     augroup END
     " }}} nvim-blame-line "
-
-    " dashboard-nvim {{{ "
-    Plug 'glepnir/dashboard-nvim'
-    let g:dashboard_default_executive ='fzf'
-    nmap <Leader>ss :<C-u>SessionSave<CR>
-    nmap <Leader>sl :<C-u>SessionLoad<CR>
-    " }}} dashboard-nvim  "
 endif
 
+Plug 'wfxr/vizunicode.vim'
+augroup vizunicode_custom
+    autocmd!
+    autocmd BufEnter coc-settings.json VizUnicodeAll
+augroup END
 Plug 'ryanoasis/vim-devicons'
 Plug 'voldikss/vim-translator'
 nmap <silent> Y <Plug>TranslateW
@@ -49,6 +47,7 @@ let g:minimap_highlight = 'MinimapCurrentLine'
 let g:minimap_auto_start = 1
 let g:minimap_auto_start_win_enter = 1
 let g:minimap_highlight_range = 1
+let g:minimap_block_filetypes = ['fugitive', 'nerdtree', 'tagbar', 'coc-explorer']
 Plug 'jamessan/vim-gnupg' | let g:GPGFilePattern = '*.{gpg,asc,pgp,pvt}'
 " Plug 'machakann/vim-highlightedyank' | let g:highlightedyank_highlight_duration = 100
 Plug 'rhysd/git-messenger.vim'
@@ -456,32 +455,32 @@ let g:lightline.component_type = {
 " }}} vim-airline "
 
 " scrooloose/nerdtree {{{ "
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' } | Plug 'Xuyuanp/nerdtree-git-plugin'
-" let g:NERDTreeDirArrowExpandable = ''
-" let g:NERDTreeDirArrowCollapsible = ''
-let g:NERDTreeDirArrowExpandable = ''
-let g:NERDTreeDirArrowCollapsible = ''
-let g:NERDTreeMapActivateNode = '<CR>'
-let g:NERDTreeMapCustomOpen = 'o'
-let g:NERDTreeCustomOpenArgs ={'file': {'reuse':'currenttab', 'where':'p', 'keepopen':1, 'stay':1}}
-nmap <C-\> :NERDTreeToggle<CR>
-let g:NERDTreeIgnore = ['^target$', '^build$']
-" Quit when nerdtree is the only buffer
-augroup nerdtree
-    au!
-    au bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-augroup END
+" Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' } | Plug 'Xuyuanp/nerdtree-git-plugin'
+if has_key(g:plugs, 'nerdtree')
+    " let g:NERDTreeDirArrowExpandable = ''
+    " let g:NERDTreeDirArrowCollapsible = ''
+    let g:NERDTreeDirArrowExpandable = ''
+    let g:NERDTreeDirArrowCollapsible = ''
+    let g:NERDTreeMapActivateNode = '<CR>'
+    let g:NERDTreeMapCustomOpen = 'o'
+    let g:NERDTreeCustomOpenArgs ={'file': {'reuse':'currenttab', 'where':'p', 'keepopen':1, 'stay':1}}
+    nmap <C-\> :NERDTreeToggle<CR>
+    let g:NERDTreeIgnore = ['^target$', '^build$']
+    " Quit when nerdtree is the only buffer
+    augroup nerdtree
+        au!
+        au bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+    augroup END
+endif
 " }}} scrooloose/nerdtree "
 
 " mhinz/vim-startify {{{ "
-" Plug 'mhinz/vim-startify'
-" Shot nerdtree when start vim without argument
-" autocmd VimEnter *
-            " \ if !argc()
-            " \ |   Startify
-            " \ |   NERDTree
-            " \ |   wincmd w
-            " \ | endif
+Plug 'mhinz/vim-startify'
+let g:webdevicons_enable_startify = 1
+let g:startify_fortune_use_unicode = 1
+function! StartifyEntryFormat()
+    return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
+endfunction
 " }}} mhinz/vim-startify "
 
 " AndrewRadev/switch.vim {{{ "
@@ -641,25 +640,27 @@ let g:UltiSnipsEditSplit='horizontal'
 
 " ale {{{ "
 " Best lint engine(require neovim or vim version > 8)
-let g:error_symbol = '══'
-let g:warning_symbol = '──'
-Plug 'dense-analysis/ale'
-let g:ale_lint_on_insert_leave = 1
-let g:ale_sign_error = g:error_symbol
-let g:ale_sign_warning = g:warning_symbol
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_format = '[%severity%:%code%][%linter%] %s'
-let g:ale_cpp_clang_options = '-Wall -std=c++17'
-let g:ale_cpp_gcc_options = g:ale_cpp_clang_options
-nmap <silent> <a-p> <Plug>(ale_previous_wrap)
-nmap <silent> <a-n> <Plug>(ale_next_wrap)
+let g:error_symbol = '••'
+let g:warning_symbol = '•'
+" Plug 'dense-analysis/ale'
+if has_key(g:plugs, 'ale')
+    let g:ale_lint_on_insert_leave = 1
+    let g:ale_sign_error = g:error_symbol
+    let g:ale_sign_warning = g:warning_symbol
+    let g:ale_echo_msg_warning_str = 'W'
+    let g:ale_echo_msg_error_str = 'E'
+    let g:ale_echo_msg_format = '[%severity%:%code%][%linter%] %s'
+    let g:ale_cpp_clang_options = '-Wall -std=c++17'
+    let g:ale_cpp_gcc_options = g:ale_cpp_clang_options
+    nmap <silent> <a-p> <Plug>(ale_previous_wrap)
+    nmap <silent> <a-n> <Plug>(ale_next_wrap)
+endif
 " }}} ale "
 
 " echodoc.vim {{{ "
-Plug 'Shougo/echodoc.vim'
-let g:echodoc#enable_at_startup = 1
-let g:echodoc#enable_force_overwrite = 1
+" Plug 'Shougo/echodoc.vim'
+" let g:echodoc#enable_at_startup = 1
+" let g:echodoc#enable_force_overwrite = 1
 " }}} echodoc.vim "
 
 " coc.nvim {{{ "
@@ -688,6 +689,7 @@ if has_key(g:plugs, 'coc.nvim')
                 \ 'coc-prettier',
                 \ 'coc-pairs',
                 \ 'coc-yank',
+                \ 'coc-explorer',
                 \ ]
                 " \ 'coc-word',
 
@@ -772,6 +774,13 @@ if has_key(g:plugs, 'coc.nvim')
     let g:coc_fzf_opts = ['--no-border']
 endif
 " }}} coc.vim "
+
+" coc-explorer {{{ "
+function! ToggleCocExplorer() abort
+    execute 'CocCommand explorer --toggle --width=30 ' . getcwd()
+endfunction
+nnoremap <silent> <C-\> :call ToggleCocExplorer()<CR>
+" }}} coc-explorer "
 
 " vim-sneak {{{ "
 Plug 'justinmk/vim-sneak'

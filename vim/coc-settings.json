@@ -1,10 +1,10 @@
 {
   "python.jediEnabled": true,
   "python.pythonPath": "~/.pyenv/shims/python",
-  "diagnostic.hintSign": "──",
-  "diagnostic.infoSign": "──",
-  "diagnostic.warningSign": "──",
-  "diagnostic.errorSign": "══",
+  "diagnostic.hintSign": "•",
+  "diagnostic.infoSign": "•",
+  "diagnostic.warningSign": "•",
+  "diagnostic.errorSign": "••",
   "diagnostic.level": "hint",
   "diagnostic.refreshOnInsertMode": false,
   "diagnostic.virtualText": true,
@@ -20,6 +20,27 @@
   "codeLens.separator": "‣",
   "list.indicator": "➤",
 
+  // coc-explorer
+  "explorer.icon.enableVimDevicons": true,
+  "explorer.openAction.select.filter": {
+    "buftypes": [
+      "terminal"
+    ],
+    "filetypes": [
+      "vista_kind",
+      "qf",
+      "minimap"
+    ],
+    "floatingWindows": true,
+    "sources": {
+      "buffer": {
+        "buftypes": []
+      }
+    }
+  },
+  "explorer.file.column.indent.indentLine": true,
+  "explorer.icon.enableNerdfont": true,
+
   "git.addedSign.text": "┃",
   "git.changedSign.text": "┃",
   "git.changeRemovedSign.text": "┃",
@@ -32,16 +53,20 @@
   "git.topRemovedSign.hlGroup": "SignifySignDelete",
   "git.addGBlameToVirtualText": true,
   "git.virtualTextPrefix": "     commit: ",
-  "languageserver": {
-  },
+
   "coc.preferences.formatOnSaveFiletypes": ["go"],
+
   // "coc.preferences.colorSupport": false,
   "coc.source.emoji.triggerCharacters": [":"],
   "coc.source.emoji.filetypes": ["markdown", "gitcommit"],
   "coc.source.file.ignoreHidden": false,
+  "coc.source.file.shortcut": "\uf414",
   "coc.source.around.firstMatch": false,
+  "coc.source.around.shortcut": "\uf667",
   "coc.source.buffer.firstMatch": false,
+  "coc.source.buffer.shortcut": "\uf719",
   "coc.source.syntax.firstMatch": false,
+  "coc.source.syntax.shortcut": "\uf670",
   "coc.preferences.extensionUpdateCheck": "daily",
   "tabnine.priority": 99,
   "suggest.languageSourcePriority": 100,
@@ -56,31 +81,36 @@
   "suggest.detailMaxLength": 100,
   "suggest.completionItemKindLabels": {
     "keyword": "\uf1de",
-    "variable": "\ue79b",
+    "variable": "\uf169",
     "value": "\uf89f",
     "operator": "\u03a8",
-    "function": "\u0192",
-    "reference": "\ufa46",
-    "constant": "\uf8fe",
-    "method": "\uf09a",
+    "function": "\uf794",
+    "reference": "\uf838",
+    "constant": "\uf8ff",
+    "method": "\uf794",
     "struct": "\ufb44",
     "class": "\uf0e8",
-    "interface": "\uf417",
+    "interface": "\ue60b",
     "text": "\ue612",
     "enum": "\uf435",
     "enumMember": "\uf02b",
-    "module": "\uf40d",
+    "module": "\ue79b",
     "color": "\ue22b",
     "property": "\ue624",
-    "field": "\uf9be",
+    "field": "\uf02b",
     "unit": "\uf475",
     "event": "\ufacd",
     "file": "\uf723",
     "folder": "\uf114",
-    "snippet": "\ue60b",
+    "snippet": "\uf672",
     "typeParameter": "\uf728",
     "default": "\uf29c"
   },
+  "snippets.shortcut": "\uf672",
+  "tabnine.shortcut": "\ufba7",
+  "coc.source.tag.shortcut": "\uf292",
+  "coc.source.emoji.shortcut": "\ufc83",
+  "coc.source.dictionary.shortcut": "\ufac9",
   "rust-analyzer.updates.channel":"nightly",
   "rust-analyzer.cargo.allFeatures": true,
   "rust-analyzer.checkOnSave.allFeatures": true,
