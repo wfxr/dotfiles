@@ -95,6 +95,7 @@ set diffopt=vertical
 
 " Mark conceal level
 set conceallevel=2
+set concealcursor-=n " cancel conceal on cursor line
 
 "¦ ┆ │ ⎹⎸ ▏
 set fillchars+=vert:⎹
