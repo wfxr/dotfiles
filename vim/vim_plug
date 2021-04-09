@@ -29,6 +29,7 @@ if has('nvim')
     " }}} nvim-blame-line "
 endif
 
+Plug 'rhysd/clever-f.vim'
 Plug 'wfxr/vizunicode.vim'
 augroup vizunicode_custom
     autocmd!
@@ -783,11 +784,11 @@ nnoremap <silent> <C-\> :call ToggleCocExplorer()<CR>
 " }}} coc-explorer "
 
 " vim-sneak {{{ "
-Plug 'justinmk/vim-sneak'
-map f <Plug>Sneak_f
-map F <Plug>Sneak_F
-map t <Plug>Sneak_t
-map T <Plug>Sneak_T
+" Plug 'justinmk/vim-sneak'
+" map f <Plug>Sneak_f
+" map F <Plug>Sneak_F
+" map t <Plug>Sneak_t
+" map T <Plug>Sneak_T
 " }}} vim-sneak "
 
 " vim-go {{{ "
