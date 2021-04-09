@@ -173,8 +173,8 @@ hi HighlightedyankRegion ctermbg=Red   guibg=#fb4934
 hi MinimapCurrentLine    ctermfg=Green guifg=#50FA7B guibg=#3a3a3a
 hi GitBlameVirtualText   cterm=italic  ctermfg=245   gui=italic guifg=#665c54
 
-silent! set pumblend=15 " transparent popup_menu
-silent! set winblend=15 " transparent floating window
+silent! set pumblend=10 " transparent popup_menu
+silent! set winblend=10 " transparent floating window
 
 " Show changes since last save
 function! s:DiffSaved()

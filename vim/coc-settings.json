@@ -40,6 +40,11 @@
   },
   "explorer.file.column.indent.indentLine": true,
   "explorer.icon.enableNerdfont": true,
+  "explorer.keyMappings.global.o": [
+    "expandable?",
+    ["expanded?", "collapse", "expand"],
+    "preview:content"
+  ],
 
   "git.addedSign.text": "┃",
   "git.changedSign.text": "┃",
