@@ -54,13 +54,20 @@ impl $1 {
 }
 endsnippet
 
-snippet tests "mod tests..." b
+snippet mtests "mod tests..." b
 #[cfg(test)]
 mod tests {
 	use super::*;
 	#[test]
-	fn it_works() {
-		$1
+	fn ${1:it_works}() {
+		$2
 	}
+}
+endsnippet
+
+snippet test "#[test] fn ..." b
+#[test]
+fn ${1:it_works}() {
+	$2
 }
 endsnippet

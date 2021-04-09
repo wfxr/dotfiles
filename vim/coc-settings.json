@@ -18,6 +18,7 @@
   },
   "codeLens.enable": true,
   "codeLens.separator": "‣",
+  "codeLens.subseparator": " | ",
   "list.indicator": "➤",
 
   // coc-explorer
@@ -113,6 +114,7 @@
   },
   "snippets.shortcut": "\uf672",
   "tabnine.shortcut": "\ufba7",
+  "yank.shortcut": "\uf0c4",
   "coc.source.tag.shortcut": "\uf292",
   "coc.source.emoji.shortcut": "\ufc83",
   "coc.source.dictionary.shortcut": "\ufac9",
