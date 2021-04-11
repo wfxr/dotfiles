@@ -24,7 +24,7 @@ if has('nvim')
         let g:blameLineVirtualTextFormat = '  git: %s'
         let g:blameLineGitFormat = '%an | %ar | %s'
         nnoremap <silent> <leader>gb :ToggleBlameLine<CR>
-        autocmd BufEnter * EnableBlameLine
+        " autocmd BufEnter * EnableBlameLine
     augroup END
     " }}} nvim-blame-line "
 endif
