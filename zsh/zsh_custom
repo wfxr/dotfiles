@@ -647,6 +647,8 @@ function zt_members() {
 
 function font_list() { fc-list -f '%{family}\n' | awk '!x[$0]++' }
 
+function myip() { curl https://api.myip.com }
+
 ###################
 #  greenclip-fzf  #
 ###################
