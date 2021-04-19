@@ -48,7 +48,8 @@ let g:minimap_highlight = 'MinimapCurrentLine'
 let g:minimap_auto_start = 1
 let g:minimap_auto_start_win_enter = 1
 let g:minimap_highlight_range = 1
-let g:minimap_block_filetypes = ['fugitive', 'nerdtree', 'tagbar', 'coc-explorer']
+let g:minimap_block_filetypes = ['fugitive', 'nerdtree', 'tagbar', 'coc-explorer', 'vista']
+let g:minimap_close_filetypes = ['startify', 'netrw', 'vim-plug']
 Plug 'jamessan/vim-gnupg' | let g:GPGFilePattern = '*.{gpg,asc,pgp,pvt}'
 " Plug 'machakann/vim-highlightedyank' | let g:highlightedyank_highlight_duration = 100
 Plug 'rhysd/git-messenger.vim'
@@ -230,7 +231,7 @@ let g:signify_sign_delete_first_line = vcs_signs_delete_up[5]
 " let g:gitgutter_sign_modified_removed='◢'
 " }}} vim-signify "
 
-" tags {{{ "
+" tagbar/vista {{{ "
 if executable('ctags')
     Plug 'ludovicchabant/vim-gutentags'
     " let g:gutentags_trace = 1
@@ -241,19 +242,23 @@ if executable('ctags')
     let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
     let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
     let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
-    Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
-    let g:tagbar_position = 'topleft vertical'
-    let g:tagbar_width = max([25, winwidth(0) / 5])
-    let g:tagbar_autofocus = 0
-    let g:tagbar_sort = 0
-    nmap <a-\> :TagbarToggle<CR>
+    " Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
+    " let g:tagbar_position = 'topleft vertical'
+    " let g:tagbar_width = min([40, winwidth(0) / 5])
+    " let g:tagbar_autofocus = 0
+    " let g:tagbar_sort = 0
+    " nmap <a-\> :TagbarToggle<CR>
 
-    " Plug 'liuchengxu/vista.vim', { 'on': 'Vista' }
-    " nmap <a-\> :Vista!!<CR>
-    " let g:vista_fzf_preview = ['right:50%']
-    " let g:vista#renderer#enable_icon = 1
+    Plug 'liuchengxu/vista.vim'
+    let g:vista_sidebar_position = 'topleft vertical'
+    let g:vista#renderer#enable_icon = 1
+
+    nmap <a-\> :Vista finder coc<CR>
+    let g:vista_fzf_preview = ['down:50%']
+    let g:vista_fzf_opt = ['--no-border']
+    let g:vista_default_executive = 'coc'
 endif
-" }}} tagbar "
+" }}} "
 
 " tpope/vim-sensible {{{ "
 if !has('nvim')
@@ -441,6 +446,19 @@ let g:lightline.component_type = {
             \ 'linter_errors': 'error',
             \ 'linter_info': 'info',
             \ 'linter_hints': 'hints',
+            \ }
+let g:lightline.mode_map = {
+            \ 'n':      'N',
+            \ 'i':      'I',
+            \ 'R':      'R',
+            \ 'v':      'V',
+            \ 'V':      'V-L',
+            \ "\<C-v>": 'V-B',
+            \ 'c':      'C',
+            \ 's':      'S',
+            \ 'S':      'S-L',
+            \ "\<C-s>": 'S-B',
+            \ 't':      'T',
             \ }
 " }}}
 
@@ -720,8 +738,10 @@ if has_key(g:plugs, 'coc.nvim')
     function! s:show_documentation()
         if (index(['vim','help'], &filetype) >= 0)
             execute 'h '.expand('<cword>')
+        elseif (coc#rpc#ready())
+            call CocActionAsync('doHover')
         else
-            call CocAction('doHover')
+            execute '!' . &keywordprg . " " . expand('<cword>')
         endif
     endfunction
     nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -773,6 +793,15 @@ if has_key(g:plugs, 'coc.nvim')
     nmap <c-l><c-l> :CocFzfList<cr>
     nmap <a-s> :CocFzfList symbols<cr>
     let g:coc_fzf_opts = ['--no-border']
+
+    if has('nvim-0.4.0') || has('patch-8.2.0750')
+        nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+        nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+        inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+        inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+        vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+        vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+    endif
 endif
 " }}} coc.vim "
 
