@@ -10,7 +10,15 @@ ln -snf "$SCRIPT_DIR/rustfmt.toml" ~/.rustfmt.toml
 if hash rustup &>/dev/null; then
     rustup update
 else
-    curl https://sh.rustup.rs -sSf | sh -s -- --no-modify-path --profile default -c clippy rls rust-src rust-std rustfmt rust-analysis --default-toolchain nightly -y || exit 1
+    curl https://sh.rustup.rs -sSf |
+        sh -s -- --no-modify-path --profile default -c \
+        clippy \
+        rls \
+        rust-src \
+        rust-std \
+        rustfmt \
+        rust-analysis \
+        --default-toolchain nightly -y || exit 1
 fi
 
 # rustup component add rls-preview rust-analysis rust-src rustfmt-preview
