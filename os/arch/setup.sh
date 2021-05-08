@@ -93,6 +93,7 @@ paru --noconfirm -S code-minimap-git
 paru --noconfirm -S clitrans-git
 paru --noconfirm -S git-delta-git
 paru --noconfirm -S sxiv # simple x image viewer
+paru --noconfirm -S topgrade # upgrade all the things
 
 # backgrounds
 paru --noconfirm -S nitrogen # wallpaper manager
