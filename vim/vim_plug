@@ -29,6 +29,7 @@ if has('nvim')
     " }}} nvim-blame-line "
 endif
 
+Plug 'kshenoy/vim-signature'
 Plug 'rhysd/clever-f.vim'
 Plug 'wfxr/vizunicode.vim'
 augroup vizunicode_custom
