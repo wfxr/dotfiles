@@ -75,3 +75,21 @@ endsnippet
 snippet interface "interface {}"
 interface {}
 endsnippet
+
+snippet fmax "func max(a, b int) int" b
+func ${1:max}(a, b ${2:int}) $2 {
+	if a > b {
+		return a
+	}
+	return b
+}
+endsnippet
+
+snippet fmin "func min(a, b int) int" b
+func ${1:min}(a, b ${2:int}) $2 {
+	if a < b {
+		return a
+	}
+	return b
+}
+endsnippet
