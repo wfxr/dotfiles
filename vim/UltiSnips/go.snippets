@@ -93,3 +93,27 @@ func ${1:min}(a, b ${2:int}) $2 {
 	return b
 }
 endsnippet
+
+snippet fmaxn "func max(...) int" b
+func max(first int, nums ...int) int {
+	max := first
+	for _, v := range nums {
+		if v > max {
+			max = v
+		}
+	}
+	return max
+}
+endsnippet
+
+snippet fminn "func min(...) int" b
+func min(first int, nums ...int) int {
+	min := first
+	for _, v := range nums {
+		if v < min {
+			min = v
+		}
+	}
+	return min
+}
+endsnippet
