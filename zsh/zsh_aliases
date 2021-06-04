@@ -166,6 +166,7 @@ alias kex='kubectl exec -it'
 alias klo='kubectl logs -f'
 alias kg='kubectl get'
 alias kd='kubectl describe'
+alias br='broot'
 
 (( $+commands[btm] )) && alias htop='btm -b'
 alias awm='cd ~/.config/awesome'
