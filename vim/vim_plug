@@ -766,6 +766,7 @@ if has_key(g:plugs, 'coc.nvim')
 
     augroup cocgroup
         au!
+        au FileType rust,scala,python nmap <silent> <c-]> <Plug>(coc-definition)
         " Highlight symbol under cursor on CursorHold
         au CursorHold * silent call CocActionAsync('highlight')
         " Setup formatexpr specified filetype(s).
@@ -880,7 +881,6 @@ Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 augroup rust_env
     autocmd!
     autocmd FileType rust
-                \ nmap     <silent> <c-]>         <Plug>(coc-definition)|
                 \ nmap     <buffer> <leader>r<CR> :VT cargo run   -q<CR>|
                 \ nmap     <buffer> <leader>t<CR> :RustTest<CR>|
                 \ nmap     <buffer> <leader>b<CR> :VT cargo build -q<CR>|
@@ -898,7 +898,6 @@ endif
 augroup python_env
     autocmd!
     autocmd FileType python
-                \ nmap <silent> <c-]> <Plug>(coc-definition)|
                 \ nmap <buffer> <leader>r<CR> :VT python %<CR>
 augroup END
 " }}} "

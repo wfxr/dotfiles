@@ -22,7 +22,8 @@
   "list.indicator": "➤",
 
   // coc-explorer
-  "explorer.icon.enableVimDevicons": true,
+  "explorer.icon.enabledNerdFont": true,
+  "explorer.icon.source": "vim-devicons",
   "explorer.openAction.select.filter": {
     "buftypes": [
       "terminal"
