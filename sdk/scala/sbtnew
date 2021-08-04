@@ -1,0 +1,72 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+info() { printf "$(date -Is) %b[info]%b %s\n" '\e[0;32m\033[1m' '\e[0m' "$*" >&2; }
+
+usage() { echo "Usage: $(basename "$0") <project_name>" >&2; }
+
+[ $# -ne 1 ] && usage && exit 1
+
+project_name=$1
+
+# git init
+info "Init VCS ..."
+git init "$project_name" >/dev/null && cd "$project_name"
+cat <<-EOF > ~/.gitignore
+bin/
+target/
+project/target/
+build/
+.bloop
+.metals
+.cache
+.cache-main
+.classpath
+.history
+.project
+.scala_dependencies
+.settings
+.worksheet
+.DS_Store
+*.class
+*.log
+*.iml
+*.ipr
+*.iws
+.idea
+EOF
+
+# README.md
+info "Create README ..."
+cat <<-EOF > README.md
+# $project_name
+
+EOF
+
+# build.sbt
+info "Create build.sbt ..."
+cat <<-EOF > build.sbt
+name := "$project_name"
+version := "0.1"
+scalaVersion := "2.12.14"
+
+libraryDependencies ++= Seq(
+    "org.scalactic" %% "scalactic" % "3.2.0",
+    "org.scalatest" %% "scalatest" % "3.2.0" % "test"
+)
+
+// see https://tpolecat.github.io/2017/04/25/scalac-flags.html for scalacOptions descriptions
+scalacOptions ++= Seq(
+    "-deprecation",     //emit warning and location for usages of deprecated APIs
+    "-unchecked",       //enable additional warnings where generated code depends on assumptions
+    "-explaintypes",    //explain type errors in more detail
+    "-Ywarn-dead-code", //warn when dead code is identified
+    "-Xfatal-warnings"  //fail the compilation if there are any warnings
+)
+EOF
+
+# directories
+info "Create directories ..."
+mkdir -p src/main/{scala,resources}
+mkdir -p src/test/{scala,resources}
