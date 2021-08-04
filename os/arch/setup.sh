@@ -1,16 +1,17 @@
 #!/usr/bin/env bash
 [ "$(whoami)" != "root" ] && exec sudo -- "$0" "$@"
 
-SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) && cd "$SCRIPT_DIR" || exit 1
+SDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) && cd "$SDIR" || exit 1
 
 mv /etc/pacman.d/mirrorlist  /etc/pacman.d/mirrorlist.bak
-cp "$SCRIPT_DIR/mirrorlist"  /etc/pacman.d/mirrorlist
+cp "$SDIR/mirrorlist"  /etc/pacman.d/mirrorlist
 mv /etc/pacman.conf          /etc/pacman.conf.bak
-cp "$SCRIPT_DIR/pacman.conf" /etc/pacman.conf
+cp "$SDIR/pacman.conf" /etc/pacman.conf
 pacman --noconfirm -Sy archlinuxcn-keyring paru
 pacman --noconfirm -S pkgtools pkgfile && pkgfile --update
 
-#ln -sf "$SCRIPT_DIR/yaourtrc" ~/.yaourtrc
+#ln -sf "$SDIR/yaourtrc" ~/.yaourtrc
+ln -sf "$SDIR/paru.conf" ~/.config/paru/paru.conf
 
 # Download pacman mirrorlist
 # Uncomment the wanted mirror
@@ -125,7 +126,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 mkdir -p /etc/sddm.conf.d/ /usr/share/sddm/themes/sugar-candy
 git clone --depth=1 https://framagit.org/MarianArlt/sddm-sugar-candy /tmp/sugar &&
     (cd /tmp/sugar && tar cf - --exclude .git . | tar xvf - -C /usr/share/sddm/themes/sugar-candy)
-cp -b "$SCRIPT_DIR/sddm.conf" /etc/sddm.conf.d/sddm.conf
+cp -b "$SDIR/sddm.conf" /etc/sddm.conf.d/sddm.conf
 
 # Auto screen lock
 paru --noconfirm -S xss-lock
