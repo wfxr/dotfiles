@@ -13,7 +13,7 @@ project_name=$1
 # git init
 info "Init VCS ..."
 git init "$project_name" >/dev/null && cd "$project_name"
-cat <<-EOF > ~/.gitignore
+cat <<-EOF > .gitignore
 bin/
 target/
 project/target/
@@ -37,15 +37,19 @@ build/
 .idea
 EOF
 
+
+# directories
+info "Create directories and files ..."
+mkdir -p src/main/scala
+mkdir -p src/test/scala
+
 # README.md
-info "Create README ..."
 cat <<-EOF > README.md
 # $project_name
 
 EOF
 
 # build.sbt
-info "Create build.sbt ..."
 cat <<-EOF > build.sbt
 name := "$project_name"
 version := "0.1"
@@ -53,7 +57,7 @@ scalaVersion := "2.12.14"
 
 libraryDependencies ++= Seq(
     "org.scalactic" %% "scalactic" % "3.2.0",
-    "org.scalatest" %% "scalatest" % "3.2.0" % "test"
+    "org.scalatest" %% "scalatest" % "3.2.0" % "test",
 )
 
 // see https://tpolecat.github.io/2017/04/25/scalac-flags.html for scalacOptions descriptions
@@ -66,7 +70,7 @@ scalacOptions ++= Seq(
 )
 EOF
 
-# directories
-info "Create directories ..."
-mkdir -p src/main/{scala,resources}
-mkdir -p src/test/{scala,resources}
+# scalafmt.conf
+cat <<-EOF > .scalafmt.conf
+version = $(scalafmt --version | cut -d' ' -f2)
+EOF

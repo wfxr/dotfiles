@@ -108,6 +108,9 @@ function setup_env() {
     # node
     export _PATH="$HOME/.nodenv/shims:$HOME/.nodenv/bin:$_PATH"
 
+    # scala coursier
+    export _PATH="$_PATH:$HOME/.local/share/coursier/bin"
+
     export PATH="$_PATH"
 
     # kubectl
