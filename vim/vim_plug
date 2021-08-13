@@ -518,7 +518,7 @@ let g:switch_reverse_mapping = '_'
 
 " scrooloose/nerdcommenter {{{ "
 " Plug 'tpope/vim-commentary'
-Plug 'scrooloose/nerdcommenter'
+Plug 'preservim/nerdcommenter'
 let NERDSpaceDelims = 1
 let g:NERDCreateDefaultMappings = 0
 let g:NERDTrimTrailingWhitespace = 1

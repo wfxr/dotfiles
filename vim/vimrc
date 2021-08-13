@@ -158,6 +158,7 @@ augroup END
 " endif
 
 silent! colorscheme gruvbox-material
+" silent! colorscheme everforest
 " silent! colorscheme gruvbox
 " silent! colorscheme seoul256
 
