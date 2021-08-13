@@ -13,6 +13,7 @@ scriptencoding utf-8
 call plug#begin('~/.vim/plugged')
 
 if has('nvim')
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
     Plug 'gelguy/wilder.nvim'
     Plug 'norcalli/nvim-colorizer.lua'
 
@@ -81,6 +82,7 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-repeat'
 Plug 'mattn/vim-textobj-url'
 Plug 'ConradIrwin/vim-bracketed-paste' " Auto toggle paste mode when paste
+Plug 'andrewstuart/vim-kubernetes'
 
 " Plug 'junegunn/gv.vim'
 " Plug 'rhysd/github-complete.vim'
@@ -281,12 +283,16 @@ Plug 'kristijanhusak/vim-carbon-now-sh'
 "let g:calendar_google_task = 1
 " }}} itchyny/calendar.vim "
 
-" vim-smoothie {{{ "
-Plug 'psliwka/vim-smoothie'
-let g:smoothie_no_default_mappings = 1
-nmap <unique> <C-D> <Plug>(SmoothieDownwards)
-nmap <unique> <C-U> <Plug>(SmoothieUpwards)
-" }}} vim-smoothie "
+if has('nvim')
+    Plug 'karb94/neoscroll.nvim'
+else
+    " vim-smoothie {{{ "
+    Plug 'psliwka/vim-smoothie'
+    let g:smoothie_no_default_mappings = 1
+    nmap <unique> <C-D> <Plug>(SmoothieDownwards)
+    nmap <unique> <C-U> <Plug>(SmoothieUpwards)
+    " }}} vim-smoothie "
+endif
 
 " vim-expand-region {{{ "
 Plug 'terryma/vim-expand-region'
@@ -520,8 +526,8 @@ let g:NERDCompactSexyComs = 1
 let g:NERDCommentEmptyLines = 1
 let g:NERDDefaultAlign = 'left'
 " For some reason, vim registers <C-/> as <C-_>
-nnoremap <c-_> :call NERDComment(0, "toggle")<CR>j
-vnoremap <c-_> :call NERDComment(0, "toggle")<CR>'>j
+nnoremap <c-_> :call nerdcommenter#Comment(0, "toggle")<CR>j
+vnoremap <c-_> :call nerdcommenter#Comment(0, "toggle")<CR>'>j
 " Copy & comment
 nmap <leader>cc yyP<c-_>
 vmap <leader>cc yPgp<c-_>
@@ -710,6 +716,7 @@ if has_key(g:plugs, 'coc.nvim')
                 \ 'coc-pairs',
                 \ 'coc-yank',
                 \ 'coc-explorer',
+                \ 'coc-metals',
                 \ ]
                 " \ 'coc-word',
 
@@ -944,14 +951,14 @@ augroup END
 
 " Syntax highlight: sheerun/vim-polyglot {{{ "
 " Need to be loaded after vim-go(https://github.com/fatih/vim-go/issues/2272)
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
 let g:polyglot_disabled = ['markdown'] " cause coc-emoji complete not triggered
 Plug 'wfxr/dockerfile.vim' | let g:polyglot_disabled += ['dockerfile']
 Plug 'wfxr/protobuf.vim'   | let g:polyglot_disabled += ['protobuf'] " error indent when press ':'
 Plug 'plasticboy/vim-markdown'
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 Plug 'andrewstuart/vim-kubernetes'
-Plug 'nelstrom/vim-textobj-rubyblock'
+" Plug 'nelstrom/vim-textobj-rubyblock'
 " Plug 'ap/vim-css-color', { 'for': 'css' } " buggy and slow
 " Plug 'tmux-plugins/vim-tmux',            { 'for': 'tmux'       }
 " Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp'        }
@@ -974,6 +981,19 @@ Plug 'nelstrom/vim-textobj-rubyblock'
 call plug#end()
 
 if has('nvim')
+" treesitter {{{ "
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = { "c", "cpp", "go", "gomod", "rust", "scala", "bash", "lua" }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ignore_install = { }, -- List of parsers to ignore installing
+  highlight = {
+    enable = true,  -- false will disable the whole extension
+    disable = { },  -- list of language that will be disabled
+  },
+}
+EOF
+" }}} treesitter "
+
 " wilder.nvim {{{ "
     call wilder#enable_cmdline_enter()
     set wildcharm=<Tab>
@@ -1006,6 +1026,20 @@ lua require 'colorizer'.setup(
             \ {'vim'; 'sh'; 'zsh'; 'markdown'; 'tmux'; 'yaml'; 'lua';},
             \ { RGB = false; })
 " }}} colorizer "
+
+" neoscroll {{{ "
+lua require('neoscroll').setup({
+            \ mappings = {'<C-u>', '<C-d>', 'zt', 'zz', 'zb'},
+            \ hide_cursor = true,
+            \ stop_eof = true,
+            \ use_local_scrolloff = false,
+            \ respect_scrolloff = false,
+            \ cursor_scrolls_alone = true,
+            \ easing_function = nil,
+            \ pre_hook = nil,
+            \ post_hook = nil,
+            \ })
+" }}} neoscroll "
 endif
 
 " open repo in browser {{{ "

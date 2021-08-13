@@ -61,7 +61,7 @@
   "git.addGBlameToVirtualText": true,
   "git.virtualTextPrefix": "     commit: ",
 
-  "coc.preferences.formatOnSaveFiletypes": ["go"],
+  "coc.preferences.formatOnSaveFiletypes": ["go", "scala"],
 
   // "coc.preferences.colorSupport": false,
   "coc.source.emoji.triggerCharacters": [":"],
@@ -126,4 +126,7 @@
   "rust-analyzer.updates.prompt": true,
   "yank.highlight.duration": 100,
   "coc.preferences.formatOnType": true,
+
+  "metals.showInferredType": true,
+  "metals.showImplicitArguments": true,
 }
