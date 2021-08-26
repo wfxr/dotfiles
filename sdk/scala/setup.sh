@@ -6,7 +6,7 @@ SDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) && cd "$SDIR" || exit 1
 
 # Install coursier
 if ! hash cs &>/dev/null; then
-    mkdir ~/bin
+    mkdir -p ~/bin
     curl -fLo ~/bin/cs https://git.io/coursier-cli-"$(uname | tr LD ld)"
     chmod +x ~/bin/cs
 fi
