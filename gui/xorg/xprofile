@@ -13,6 +13,7 @@ export GLFW_IM_MODULE=ibus
 [ -f ~/.xprofile.local ] && . ~/.xprofile.local
 
 xrdb -load ~/.Xresources
+xrdb -merge ~/.Xresources.local
 
 xrdb -merge ~/.xthemes/amarena
 
