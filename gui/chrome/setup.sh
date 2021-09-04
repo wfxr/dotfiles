@@ -7,4 +7,8 @@
 
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) && cd "$SCRIPT_DIR" || exit 1
 
+mkdir -p ~/.config
+
+echo '--force-device-scale-factor=1.5' > ~/.config/chrome-flags.conf
+
 ln -sf "$SCRIPT_DIR/surfingkeys" ~/.surfingkeys
