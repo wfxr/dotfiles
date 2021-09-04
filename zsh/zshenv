@@ -122,6 +122,16 @@ function setup_env() {
     }
 
     [[ $OSTYPE =~ darwin ]] && source ~/.linuxify 2>/dev/null
+
+    # xdg
+    export XDG_DOWNLOAD_DIR="$HOME/downloads"
+    export XDG_DOCUMENTS_DIR="$HOME/documents"
+    export XDG_MUSIC_DIR="$HOME/music"
+    export XDG_PICTURES_DIR="$HOME/pictures"
+    export XDG_VIDEOS_DIR="$HOME/videos"
+    export XDG_SCREENSHOTS_DIR="$HOME/screenshots"
+    export XDG_CONFIG_HOME="$HOME/.config"
+    export XDG_CACHE_HOME="$HOME/.cache"
 }
 
 setup_history() {
@@ -140,5 +150,5 @@ setup_history() {
     [[ "$UID" == 0 ]] && unset HISTFILE && SAVEHIST=0
 }
 
-setup_env; unset -f setup_env
+setup_env;     unset -f setup_env
 setup_history; unset -f setup_history
