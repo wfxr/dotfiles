@@ -41,7 +41,7 @@ pacman --noconfirm -S duf dua-cli htop
 # pacman --noconfirm -S create_ap # Create AP
 pacman --noconfirm -S fd exa bat ripgrep sd
 # pacman --noconfirm -S vivid
-pacman --noconfirm -S xclip xsel rofi-greenclip
+pacman --noconfirm -S xclip xsel
 pacman --noconfirm -S man-pages
 # pacman --noconfirm -S lightscreen # light weight screenshot tool
 # pacman --noconfirm -S shutter
@@ -97,7 +97,7 @@ paru --noconfirm -S clitrans-git
 paru --noconfirm -S git-delta-git
 paru --noconfirm -S sxiv # simple x image viewer
 paru --noconfirm -S topgrade # upgrade all the things
-
+paru --noconfirm -S rofi-greenclip # rofi clipboard
 # backgrounds
 paru --noconfirm -S nitrogen # wallpaper manager
 paru --noconfirm -S \
