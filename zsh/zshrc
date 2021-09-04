@@ -213,7 +213,8 @@ source <(starship init zsh) || logwarn "failed loading starship."
     (( $+commands[gh] )) && zccs::cmd 'gh completion --shell zsh'
 
     export GENCOMPL_FPATH="$CUSTOM_FPATH"
-    [ -f "$GENCOMPL_FPATH/_fzf" ] || gencomp fzf
+    # Now fzf in arch package has completion included
+    # [ -f "$GENCOMPL_FPATH/_fzf" ] || gencomp fzf
     ##### }}} dynamic generated  #####
 }
 
