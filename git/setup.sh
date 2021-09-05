@@ -68,9 +68,11 @@ git config --global user.signingkey wenxuangm@gmail.com
 git config --global commit.gpgsign true
 
 # pre-commit https://pre-commit.com
-pip install --upgrade pre-commit &&
-    git config --global init.templateDir ~/.git-template &&
-    pre-commit init-templatedir ~/.git-template
+hash pre-commit &>/dev/null && {
+    mkdir -p ~/.config/git/template
+    git config --global init.templateDir ~/.config/git/template &&
+        pre-commit init-templatedir ~/.config/git/template
+}
 
 # Prettier diffs
 git config --global diff.compactionHeuristic true

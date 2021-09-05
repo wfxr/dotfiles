@@ -169,7 +169,7 @@ alias kd='kubectl describe'
 alias br='broot'
 
 (( $+commands[btm] )) && alias htop='btm -b'
-alias awm='cd ~/.config/awesome'
+alias awm='cd ~/dotfiles/gui/awesomewm'
 
 (( $+commands[duf] )) && alias pydf=duf
 

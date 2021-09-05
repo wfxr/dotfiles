@@ -8,20 +8,11 @@ logerror() { printf "%b[error]%b %s\n" '\e[0;31m\033[1m' '\e[0m' "$@" >&2; }
 # https://github.com/neovim/neovim/wiki/Installing-Neovim
 install_neovim() {
     hash nvim &>/dev/null && return
-    if hash apt 2>/dev/null; then
-        if ! (sudo apt update && sudo apt install neovim -y); then
-            loginfo "failed installing neovim from package manager. try nvim.appimage instead..."
-            mkdir -p ~/bin
-            curl -fL -o /tmp/nvim \
-                https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
-            chmod u+x /tmp/nvim
-            mv /tmp/nvim ~/bin/nvim
-        fi
-    elif hash pacman 2>/dev/null; then
-        sudo pacman --noconfirm -Sy neovim
-    elif hash brew 2>/dev/null; then
-        brew install neovim
-    fi
+    mkdir -p ~/bin
+    curl -fL -o /tmp/nvim \
+        https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
+    chmod u+x /tmp/nvim
+    mv /tmp/nvim ~/bin/nvim
 }
 
 install_python_support() {
