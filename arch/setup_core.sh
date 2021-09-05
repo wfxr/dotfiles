@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 [ "$(whoami)" != "root" ] && exec sudo -- "$0" "$@"
-
 set -euo pipefail
 IFS=$'\n\t'
 
@@ -9,20 +8,6 @@ SDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) && cd "$SDIR" || exit 1
 info() { printf "$(date -Is) %b[info]%b %s\n" '\e[0;32m\033[1m' '\e[0m' "$*" >&2; }
 warn() { printf "$(date -Is) %b[warn]%b %s\n" '\e[0;33m\033[1m' '\e[0m' "$*" >&2; }
 erro() { printf "$(date -Is) %b[erro]%b %s\n" '\e[0;31m\033[1m' '\e[0m' "$*" >&2; }
-
-function prepare_common_dirs() {
-    mkdir -p "$HOME/.config"
-    mkdir -p "$HOME/tmp"
-    mkdir -p "$HOME/bin"
-    mkdir -p "$HOME/downloads"
-    mkdir -p "$HOME/documents"
-    mkdir -p "$HOME/music"
-    mkdir -p "$HOME/pictures"
-    mkdir -p "$HOME/videos"
-    mkdir -p "$HOME/screenshots"
-    mkdir -p "$HOME/develop"
-}
-
 
 function setup_package_manager() {
     # Download pacman mirrorlist
@@ -39,8 +24,6 @@ function setup_package_manager() {
     pacman --noconfirm -Sy archlinuxcn-keyring
     pacman --noconfirm -Sy paru
     pacman --noconfirm -S pkgtools pkgfile && pkgfile --update
-    mkdir -p ~/.config/paru
-    ln -sf "$SDIR/paru.conf" ~/.config/paru/paru.conf
 
     # auto clean pacman cache
     pacman --noconfirm -S pacman-contrib
@@ -73,6 +56,7 @@ function install_cli_package() {
     # pacman --noconfirm -S vivid
     pacman --noconfirm -S man-pages
     pacman --noconfirm -S neofetch
+    pacman --noconfirm -S rsync
     # pacman --noconfirm -S lightscreen # light weight screenshot tool
     # pacman --noconfirm -S shutter
 
@@ -91,9 +75,6 @@ function install_cli_package() {
     pacman --noconfirm -S sxiv # simple x image viewer
     pacman --noconfirm -S topgrade # upgrade all the things
 }
-
-info 'prepare common directories...'
-prepare_common_dirs
 
 info 'setup package manager...'
 setup_package_manager
