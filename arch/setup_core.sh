@@ -36,7 +36,7 @@ function install_cli_package() {
     pacman --noconfirm -S base-devel
     pacman --noconfirm -S git git-crypt libsecret seahorse python-pre-commit
     pacman --noconfirm -S zsh tmux
-    pacman --noconfirm -S vim neovim-git
+    pacman --noconfirm -S neovim-git
     pacman --noconfirm -S openssh
     # pacman --noconfirm -S clang
     pacman --noconfirm -S go rust
@@ -44,7 +44,7 @@ function install_cli_package() {
     # pacman --noconfirm -S jdk9-openjdk openjdk9-src
     # pacman --noconfirm -S mosh
     pacman --noconfirm -S axel
-    pacman --noconfirm -S shellcheck
+    pacman --noconfirm -S shellcheck-static
     # pacman --noconfirm -S highlight
     pacman --noconfirm -S jq pv
     # pacman --noconfirm -S nethogs
