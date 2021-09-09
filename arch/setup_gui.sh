@@ -10,13 +10,12 @@ erro() { printf "$(date -Is) %b[erro]%b %s\n" '\e[0;31m\033[1m' '\e[0m' "$*" >&2
 
 function setup_fonts() {
     paru --noconfirm -S noto-fonts noto-fonts-cjk noto-fonts-emoji
-    # paru --noconfirm -S nerd-fonts-complete
     paru --noconfirm -S ttf-meslo
     paru --noconfirm -S ttf-iosevka-term
     paru --noconfirm -S ttf-sarasa-gothic
     paru --noconfirm -S nerd-fonts-jetbrains-mono
 
-    ../gui/fonts/setup.sh
+    ../fonts/setup.sh
 }
 
 
@@ -33,17 +32,18 @@ function setup_guis() {
         sudo cp -b "$SDIR/sddm.conf" /etc/sddm.conf.d/sddm.conf
     )
 
-    ../gui/xorg/setup.sh
+    paru --noconfirm -S xorg
+    ../xorg/setup.sh
 
     paru --noconfirm -S picom-git
-    ../gui/picom/setup.sh
+    ../picom/setup.sh
 
     paru --noconfirm -S awesome-git
-    ../gui/awesomewm/setup.sh
+    ../awesomewm/setup.sh
 
     paru --noconfirm -S rofi
     paru --noconfirm -S rofi-greenclip # rofi clipboard
-    ../gui/rofi/setup.sh
+    ../rofi/setup.sh
 
     paru --noconfirm -S kitty alacritty
     ../terminal/kitty/setup.sh
@@ -52,9 +52,8 @@ function setup_guis() {
     paru --noconfirm -S xdotool
     paru --noconfirm -S xclip xsel
 
-    # paru --noconfirm -S fcitx fcitx-gtk2 fcitx-gtk3 fcitx-qt4 fcitx-qt5 fcitx-configtool fcitx-tools
     paru --noconfirm -S fcitx5-chinese-addons fcitx5-git fcitx5-gtk fcitx5-qt fcitx5-pinyin-zhwiki fcitx5-configtool kcm-fcitx5 fcitx5-material-color
-    ../gui/fcitx5/setup.sh
+    ../fcitx5/setup.sh
 
     # paru --noconfirm -S cool-retro-term
     # paru --noconfirm -S screenkey

@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-loginfo()  { printf "%b[info]%b %s\n"  '\e[0;32m\033[1m' '\e[0m' "$@" >&2; }
-logwarn()  { printf "%b[warn]%b %s\n"  '\e[0;33m\033[1m' '\e[0m' "$@" >&2; }
-logerror() { printf "%b[error]%b %s\n" '\e[0;31m\033[1m' '\e[0m' "$@" >&2; }
+info() { printf "$(date -Is) %b[info]%b %s\n" '\e[0;32m\033[1m' '\e[0m' "$*" >&2; }
+warn() { printf "$(date -Is) %b[warn]%b %s\n" '\e[0;33m\033[1m' '\e[0m' "$*" >&2; }
+erro() { printf "$(date -Is) %b[erro]%b %s\n" '\e[0;31m\033[1m' '\e[0m' "$*" >&2; }
 
 SDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
@@ -11,22 +11,13 @@ ln -sf "$SDIR/zshenv"        ~/.zshenv
 ln -sf "$SDIR/zsh_misc"      ~/.zsh_misc
 ln -sf "$SDIR/zsh_aliases"   ~/.zsh_aliases
 ln -sf "$SDIR/zsh_custom"    ~/.zsh_custom
-# ln -sf "$SDIR/zsh_theme"     ~/.zsh_theme
 ln -sf "$SDIR/zsh_fzf_extra" ~/.zsh_fzf_extra
 ln -sf "$SDIR/zsh_secret"    ~/.zsh_secret
-
-mkdir -p ~/.zsh_completions
-ln -sf "$SDIR/completions/_ag"  ~/.zsh_completions/_ag
-ln -sf "$SDIR/completions/_pet" ~/.zsh_completions/_pet
-ln -sf "$SDIR/completions/_jq"  ~/.zsh_completions/_jq
-ln -sf "$SDIR/completions/_fzf" ~/.zsh_completions/_fzf
-ln -sf "$SDIR/completions/_gi"  ~/.zsh_completions/_gi
-ln -sf "$SDIR/completions/_hub" ~/.zsh_completions/_hub
 
 mkdir -p ~/.config/zsh
 ln -sf "$SDIR/abbreviations" ~/.config/zsh/abbreviations
 
-"$SDIR/../cli/starship/setup.sh" || logwarn "shell theme starship not installed correctly."
+hash starship &>/dev/null || warn "shell theme starship not installed."
 
 [[ "$SHELL" =~ "zsh" ]] || chsh -s "$(command -v zsh)"
 

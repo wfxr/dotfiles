@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 SDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) && cd "$SDIR" || return 1
 
-loginfo()  { printf "%b[info]%b %s\n"  '\e[0;32m\033[1m' '\e[0m' "$@" >&2; }
-logwarn()  { printf "%b[warn]%b %s\n"  '\e[0;33m\033[1m' '\e[0m' "$@" >&2; }
-logerror() { printf "%b[error]%b %s\n" '\e[0;31m\033[1m' '\e[0m' "$@" >&2; }
+info() { printf "$(date -Is) %b[info]%b %s\n" '\e[0;32m\033[1m' '\e[0m' "$*" >&2; }
+warn() { printf "$(date -Is) %b[warn]%b %s\n" '\e[0;33m\033[1m' '\e[0m' "$*" >&2; }
+erro() { printf "$(date -Is) %b[erro]%b %s\n" '\e[0;31m\033[1m' '\e[0m' "$*" >&2; }
 
 # https://github.com/neovim/neovim/wiki/Installing-Neovim
 install_neovim() {
@@ -21,7 +21,7 @@ install_python_support() {
         # For tags
         pip install --upgrade pygments
     else
-        logwarn "failed: pip not found."
+        warn "failed: pip not found."
     fi
 }
 
@@ -29,7 +29,7 @@ install_ruby_support() {
     if hash gem &>/dev/null; then
         gem install neovim
     else
-        logwarn "failed: gem not found."
+        warn "failed: gem not found."
     fi
 }
 
@@ -37,7 +37,7 @@ install_node_support() {
     if hash npm &>/dev/null; then
         npm install -g neovim
     else
-        logwarn "failed: npm not found."
+        warn "failed: npm not found."
     fi
 }
 
@@ -59,12 +59,6 @@ install_configs() {
     ln -snf "$SDIR/lua" ~/.config/nvim/lua
 
     ln -sf  "$SDIR/ideavimrc" ~/.ideavimrc
-
-    # https://github.com/onivim/oni
-    hash oni &>/dev/null && {
-        mkdir -p ~/.config/oni
-        ln -sf "$SDIR/oni.tsx" ~/.config/oni/config.tsx
-    }
 }
 
 install_plugins() {
@@ -75,31 +69,31 @@ install_plugins() {
             git clone --depth=1 https://github.com/junegunn/vim-plug ~/.vim/vim-plug && ln -sf ~/.vim/vim-plug/plug.vim "$plug_manager"
     fi
     if ! hash node &>/dev/null; then
-        loginfo "install node(coc.nvim need it)..."
+        info "install node(coc.nvim need it)..."
         mkdir -p ~/.local
         curl -fsSL https://install-node.now.sh/latest | bash -s -- --prefix="$HOME/.local" -y
     fi
-    loginfo "install vim plugins..."
-    nvim +PlugInstall +qall
+    info "install vim plugins..."
+    nvim +PlugInstall +UpdateRemotePlugins +qall
 
     # gtags
     ln -sf "$SDIR/gtags.conf" ~/.gtags.conf
 }
 
-loginfo "install neovim..."
+info "install neovim..."
 install_neovim
 
-loginfo "install python support..."
+info "install python support..."
 install_python_support
 
-loginfo "install ruby support..."
+info "install ruby support..."
 [ "$DEV_RUBY" ] && install_ruby_support
 
-loginfo "install node support..."
+info "install node support..."
 [ "$DEV_NODE" ] && install_node_support
 
-loginfo "install configs..."
+info "install configs..."
 install_configs
 
-loginfo "install plugins..."
+info "install plugins..."
 install_plugins

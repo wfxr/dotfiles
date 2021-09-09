@@ -6,20 +6,18 @@
 #     HomePage: https://github.com/wfxr
 #=============================================================================
 
+# xdg directories
+export XDG_DOWNLOAD_DIR="$HOME/downloads"
+export XDG_DOCUMENTS_DIR="$HOME/documents"
+export XDG_MUSIC_DIR="$HOME/music"
+export XDG_PICTURES_DIR="$HOME/pictures"
+export XDG_VIDEOS_DIR="$HOME/videos"
+export XDG_SCREENSHOTS_DIR="$HOME/screenshots"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+
 function setup_env() {
     export GPG_TTY="$(tty)"
-    # Get os info
-    # if (( $+commands[lsb_release] )); then
-        # export OSNAME=$(lsb_release -si)
-        # export OSVER=$(lsb_release -sr)
-    # elif [ -f /etc/lsb-release ]; then
-        # source /etc/lsb-release
-        # export OSNAME=$DISTRIB_ID
-        # export OSVER=$DISTRIB_RELEASE
-    # else
-        # export OSNAME=$(uname -s)
-        # export OSVER=$(uname -r)
-    # fi
 
     # export PATH everywhere takes too long time
     export PATH="$HOME/bin:$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin:/usr/bin:/usr/games:/usr/local/games:/bin:/sbin"
@@ -32,17 +30,12 @@ function setup_env() {
     _PATH="$HOME/.gem/bin:$HOME/.rbenv/bin:$_PATH"
 
     # C++
-    # export CPLUS_INCLUDE_PATH="/usr/local/include/c++/v1:$CPLUS_INCLUDE_PATH"
-    # export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib"
     export CC="${commands[clang]:-$CC}"
     export CXX="${commands[clang++]:-$CXX}"
 
     # Rust
     _PATH="$HOME/.cargo/bin:$_PATH"
     export CARGO_HOME="$HOME/.cargo"
-    # export RUSTUP_DIST_SERVER="https://mirrors.ustc.edu.cn/rust-static"
-    # export RUST_SRC_PATH="$HOME/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
-    # [[ "$OSNAME" == 'Darwin' ]] && export RUST_SRC_PATH="$HOME/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src"
 
     export TERM="xterm-256color"
 
@@ -78,8 +71,8 @@ function setup_env() {
     export WORDCHARS=''
 
     # Custom zsh completions path
-    export CUSTOM_FPATH="$HOME/.zsh_completions"
-    export fpath=($fpath $CUSTOM_FPATH)
+    export CUSTOM_FPATH="$XDG_CONFIG_HOME/zsh/completions"
+    export fpath=($fpath "$CUSTOM_FPATH")
 
     # LS COLORS
     # https://github.com/ogham/exa/blob/adfee28fb9bb6f491c822ba4506fafef03909945/Vagrantfile#L163
@@ -122,16 +115,6 @@ function setup_env() {
     }
 
     [[ $OSTYPE =~ darwin ]] && source ~/.linuxify 2>/dev/null
-
-    # xdg
-    export XDG_DOWNLOAD_DIR="$HOME/downloads"
-    export XDG_DOCUMENTS_DIR="$HOME/documents"
-    export XDG_MUSIC_DIR="$HOME/music"
-    export XDG_PICTURES_DIR="$HOME/pictures"
-    export XDG_VIDEOS_DIR="$HOME/videos"
-    export XDG_SCREENSHOTS_DIR="$HOME/screenshots"
-    export XDG_CONFIG_HOME="$HOME/.config"
-    export XDG_CACHE_HOME="$HOME/.cache"
 }
 
 setup_history() {

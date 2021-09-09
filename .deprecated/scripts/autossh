@@ -1,3 +1,0 @@
-#!/bin/bash
-
-/usr/bin/autossh -M 55554 -fCNR 55555:localhost:22 wenxuan@agg-1

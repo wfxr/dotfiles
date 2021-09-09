@@ -1,4 +1,0 @@
-[submodule "gui/awesomewm"]
-	path = gui/awesomewm
-	url = https://github.com/wfxr/awm.config
-	branch = main

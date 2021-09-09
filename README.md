@@ -9,8 +9,8 @@ My dotfiles
 
 ``` bash
 git clone --depth=1 https://github.com/wfxr/dotfiles
-# eg: install zsh, vim, git and starship configurations
-dotfiles/install zsh vim git cli/starship
+# eg: install git, zsh, and vim configurations
+dotfiles/install git zsh vim
 ```
 
 ## License

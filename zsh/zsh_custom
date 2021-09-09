@@ -124,11 +124,6 @@ if [[ $TMUX ]]; then
     bindkey '^[w' wfxr::tmux-select-window
 fi
 
-# Search through your LastPass vault with LastPass CLI and copy password to clipboard.
-function lpp() { lpass show -c --password $(lpass ls  | fzf | awk '{print $(NF)}' | sed 's/\]//g') }
-function lpa() { lpass show -c $(lpass ls  | fzf |  awk '{print $(NF)}' | sed 's/\]//g') }
-function lpr() { lpass show -c --field=Root $(lpass ls | fzf  | awk '{print $(NF)}' | sed 's/\]//g') }
-
 # Application launcher
 function fzf-dmenu() {
     # note: xdg-open has a bug with .desktop files, so we cant use that shit
@@ -194,33 +189,6 @@ bindkey '^V' wfxr::paste
 function cip() { curl -fsSL 'cip.cc' }
 function cipp() { curl -fsSL 'ip.cip.cc' }
 function ipshow() { ip addr show | grep 'inet\s\+' | grep -v "127.0.0.1" | awk '{print $2,$9}' | column -t }
-
-# ssh
-function fssh() {
-    [[ $+commands[mosh] ]] && ssh=ssh || ssh=mosh
-    [[ -f ~/.ssh/host_info ]] && host=$(column -t ~/.ssh/host_info | fzf --header-lines=1 | cut -d' ' -f1)
-    [[ -n $host ]] && $ssh $host
-}
-# bindkey -s '^s' 'fssh\n'
-function fsshcp() {
-    local curr=`showip | tail -1 | cut -d'/' -f1`
-    [[ -n $curr  ]] && local hosts=`grep -v '^\s*#' ~/.ssh/host_info | grep -v $curr | fzf -m | awk '{print $1}'`
-    [[ -n $hosts ]] && IFS=$'\n' local files=(`fzf -m`)
-    [[ -n $files ]] && echo $hosts | xargs -i{} scp ${files[@]} {}:
-}
-function fsshcmd() {
-    local curr=`showip | tail -1 | cut -d'/' -f1`
-    [[ -n $curr  ]] && local hosts=`grep -v '^\s*#' ~/.ssh/host_info | grep -v $curr | fzf -m | awk '{print $1}'`
-    host_count=`wc -l <<< $hosts`
-    [[ $host_count -gt 0 ]] && local cmd=(`echo -n |fzf --print-query`)
-    [[ -n $cmd   ]] && echo $hosts | xargs -P $host_count -n1 -i{} bash -c "ssh {} $cmd > {}.log"
-}
-function fssh-copy-id() {
-    local curr=`showip | tail -1 | cut -d'/' -f1`
-    [[ -n $curr  ]] && local hosts=`grep -v '^\s*#' ~/.ssh/host_info | grep -v $curr | fzf -m | awk '{print $1}'`
-    [[ -n $hosts ]] && local pub=`ls -d ~/.ssh/* | grep '\/id_.*pub$' | fzf`
-    [[ -n $pub   ]] && echo $hosts | xargs -i{} ssh-copy-id -i $pub {}
-}
 
 # reference: https://github.com/stark/Color-Scripts/blob/master/color-scripts/colortest
 function colortest::palette() {
@@ -296,37 +264,6 @@ function dwn {
     mkdir ~/downloads    && cd ~/downloads && return
 }
 
-# cd application quickly
-function app {
-    [[ -d ~/application ]] || mkdir ~/application
-    cd ~/application
-}
-
-function frds() {
-    # eg:
-    # vpc-dmp-log rm-2ze8wqw9hu4o264f7.mysql.rds.aliyuncs.com:3306 30001 wenxuan@wfxr test,prod,wenxuan
-    local item=($(column -t ~/.ssh/rds_tunnel_list | fzf --header-lines=1))
-    url=$item[2]
-    port=$item[3]
-    proxy=$item[4]
-    users=(${(@s/,/)item[5]})
-    [[ -n $port ]] && user=$(echo ${(j:\n:)users} | fzf --prompt="User: ")
-    [[ -n $user ]] || return
-    fuser $port/tcp &>/dev/null || ssh -fCNL $port:$url $proxy
-    mycli -P $port -u $user
-}
-
-# csv viewer
-function csvcat() { csvlook "$@" | less -SF }
-
-# ghq
-function gcd() {
-    (( $+commands[exa] )) && ll='exa -lbhg --git --time-style long-iso --color=always' || ll='ls -l --time-style long-iso --color=always'
-    root=$(ghq root)
-    repo=$(ghq list| fzf --preview="$ll $root/{}" --preview-window=right:60%)
-    [[ -n "$repo" ]] && cd "$(ghq root)/$repo"
-}
-
 function mcd() { mkdir -p -v "$1" && cd "$1" && pwd }
 
 function uppercase() { printf '%s\n' "${1^^}" }
@@ -347,12 +284,6 @@ function fnum() {
     else
         numfmt --to iec "${@}"
     fi
-}
-
-function color_cat() {
-    s="\e[38;5;${1}m$2"
-    echo -E "$s"
-    echo -e "$s"
 }
 
 function wfxr::wrapper::jq() {
@@ -389,21 +320,6 @@ function kcurl() {
     curl "$@" < "$BUFFER"
 }
 
-function escli() {
-    local route="$@[-1]"
-    local args=$@[1,-2]
-    case "$route" in
-        _cat* | _nodes* | _cluster* )
-            http --body -a "$USER" "$@[1,-2]" "$ES_API_HOST/$route"
-            ;;
-        * )
-            local BUFFER="/tmp/curl-body-buffer.esquery.json"
-            touch "$BUFFER" && vim "$BUFFER" >/dev/tty
-            http --body -a "$USER" "$@[1,-2]" "$ES_API_HOST/$route" @"$BUFFER"
-            ;;
-    esac
-}
-
 function grepo() {
     [[ "$#" -ne 0 ]] && return $(xopen "https://github.com/${(j:/:)@}")
     local url
@@ -424,12 +340,6 @@ function gsearch() {
     for repo in $repos; do
         xopen "https://github.com/$repo"
     done
-}
-
-function mkycm() {
-    local template
-    template="$(readlink ~/.ycm_extra_conf.py)" || echo 'ycm_extra_conf not installed.' && return 1
-    cp "$template" .ycm_extra_conf.py
 }
 
 function hhkb() {
@@ -460,13 +370,6 @@ function iptables-uniq() { sudo iptables-save | awk '/^COMMIT$/ { delete x; }; !
 
 function iptables-traffic-monitor() { sudo iptables -nvL | grep spt | awk '{print $10,$3,$2,$1}' | column -t }
 
-# (( $+commands[yay] )) && function yy() {
-    # trap "pyenv global $(pyenv global)" INT QUIT TERM EXIT
-    # pyenv global system && yay "$@"
-# } && compdef yy=yay
-
-function bkr() { (nohup "$@" &>/dev/null &) }
-
 function handshake() { curl -w "TCP handshake: %{time_connect}, SSL handshake: %{time_appconnect}\n" -so /dev/null "$@" }
 
 function hooks-link() {
@@ -486,8 +389,6 @@ function hooks-link() {
     fi
     )
 }
-
-function zsh-bench() { for i ({1..${1:-5}}) time zsh -ilc echo &>/dev/null || true }
 
 function y() { ydcv "$*"; }
 
@@ -514,42 +415,7 @@ function vim-plugins-profile() {
 
 function get-window-class() { xprop | grep -i class }
 
-function gtype() {
-    local content=$(cat <<-EOF
-💍 test     - Adding missing tests
-🎸 feat     - A new feature
-🐛 fix      - A bug fix
-🤖 chore    - Build process or auxiliary tool changes
-📝 docs     - Documentation only changes
-💡 refactor - A code change that neither fixes a bug or adds a feature
-💄 style    - Markup, white-space, formatting, missing semi-colons...
-🎡 ci       - CI related changes
-⚡ perf     - A code change that improves performance
-EOF
-)
-    local height=$(( $(echo $"$content" | wc -l) + 4 ))
-    echo "$content" | fzf --height=$height | awk '{ print $2 }'
-}
-
-function git.io() {
-    (( $# < 1 || $# > 2 )) && echo "usage: $0 <url> <code>" 2>&1
-    [[ $# -eq 1 ]] && curl -i https://git.io -F url="$1"
-    [[ $# -eq 2 ]] && curl -i https://git.io -F url="$1" -F "code=$2"
-}
-
-function kube-config-gen() {
-    k --context $1 config view --flatten --minify
-    # replace the token with the user's own
-}
-
 function sumall() { awk '{n+=$1}END{print n}' }
-
-function wallpaper() {
-    [[ $# -ne 1 ]] && return 1
-    local name
-    name=$(basename $1) && mv $1 ~/Pictures/wallpaper
-    sed -i "s#'.*'#'$HOME/Pictures/wallpaper/$name'#" ~/.fehbg && ~/.fehbg
-}
 
 function syncgit() {
     trap 'command rm -rf $TEMP' EXIT INT TERM HUP
