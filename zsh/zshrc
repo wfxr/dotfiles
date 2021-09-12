@@ -195,13 +195,13 @@ __defer_source__() {
 
     ##### dynamic generated {{{ #####
     [ $DEV_TRAVIS ] && zi::cache::file '~/.travis/travis.sh'
-    [ $DEV_K8S    ] && zi::cache::cmd  'kubectl completion zsh'
-    [ $DEV_K8S    ] && zi::cache::cmd  'minikube completion zsh'
     [ $DEV_NODE   ] && zi::cache::cmd  'nodenv init - zsh'
     [ $DEV_RUBY   ] && zi::cache::cmd  'rbenv init - zsh'
     [ $DEV_PYTHON ] && zi::cache::cmd  'pyenv init - zsh'
     [ $DEV_PYTHON ] && zi::cache::cmd  'pip completion --zsh' # fucking slow. cache it!
     [ $DEV_PYTHON ] && zi::cache::cmd  'pipenv --completion' # fucking slow. cache it!
+    (( $+commands[kubectl]  )) && zi::cache::cmd 'kubectl  completion zsh'
+    (( $+commands[minikube] )) && zi::cache::cmd 'minikube completion zsh'
 
     # (( $+commands[broot] )) && zi::cache::cmd 'broot --print-shell-function zsh'
     (( $+commands[gh] )) && zi::cache::cmd 'gh completion --shell zsh'
