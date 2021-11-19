@@ -30,6 +30,7 @@ if has('nvim')
     " }}} nvim-blame-line "
 endif
 
+Plug 'NoahTheDuke/vim-just'
 Plug 'kshenoy/vim-signature'
 Plug 'rhysd/clever-f.vim'
 Plug 'wfxr/vizunicode.vim'
@@ -791,7 +792,6 @@ if has_key(g:plugs, 'coc.nvim')
     nmap <leader>aa  <Plug>(coc-codeaction)
     " Fix autofix problem of current line
     nmap <leader>qf <Plug>(coc-fix-current)
-    nmap <a-cr> :CocAction refactor<CR>
 
     " Create mappings for function text object, requires document symbols feature of languageserver.
     xmap if <Plug>(coc-funcobj-i)
@@ -801,6 +801,7 @@ if has_key(g:plugs, 'coc.nvim')
 
     nmap <c-l><c-l> :CocFzfList<cr>
     nmap <a-s> :CocFzfList symbols<cr>
+    nmap <a-cr> :CocFzfList actions<CR>
     let g:coc_fzf_opts = ['--no-border']
 
     if has('nvim-0.4.0') || has('patch-8.2.0750')

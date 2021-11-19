@@ -235,9 +235,6 @@ augroup custom_filetype
     " Disable automatic comment insertion
     " http://vim.wikia.com/wiki/Disable_automatic_comment_insertion
     au FileType * setl formatoptions-=cro
-
-    " https://github.com/casey/just
-    au BufNewFile,BufRead justfile setf make
 augroup END
 
 set tags=./.tags;,.tags
