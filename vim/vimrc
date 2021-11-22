@@ -171,9 +171,10 @@ endif
 exec 'hi! SignifySignAdd    ctermfg=Green  guifg=#50FA7B ' . (has('termguicolors')? 'guibg=':'ctermbg=') . synIDattr(hlID('SignColumn'),'bg')
 exec 'hi! SignifySignDelete ctermfg=Red    guifg=#FF5555 ' . (has('termguicolors')? 'guibg=':'ctermbg=') . synIDattr(hlID('SignColumn'),'bg')
 exec 'hi! SignifySignChange ctermfg=Yellow guifg=#FFB86C ' . (has('termguicolors')? 'guibg=':'ctermbg=') . synIDattr(hlID('SignColumn'),'bg')
-hi HighlightedyankRegion ctermbg=Red   guibg=#fb4934
-hi MinimapCurrentLine    ctermfg=Green guifg=#50FA7B guibg=#3a3a3a
-hi GitBlameVirtualText   cterm=italic  ctermfg=245   gui=italic guifg=#665c54
+hi HighlightedyankRegion ctermbg=Red       guibg=#fb4934
+hi MinimapCurrentLine    ctermfg=Green     guifg=#50FA7B guibg=#3a3a3a
+hi MinimapCurrentRange   ctermfg=DarkGreen guifg=#87c596 guibg=#3a3a3a
+hi GitBlameVirtualText   cterm=italic      ctermfg=245   gui=italic guifg=#665c54
 
 silent! set pumblend=10 " transparent popup_menu
 silent! set winblend=10 " transparent floating window

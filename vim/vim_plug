@@ -47,7 +47,8 @@ Plug 'ivyl/vim-bling' " alternative to vim-slash
 Plug 'nastevens/vim-cargo-make'
 Plug 'wfxr/minimap.vim'
 let g:minimap_width = 10
-let g:minimap_highlight = 'MinimapCurrentLine'
+let g:minimap_cursor_color = 'MinimapCurrentLine'
+let g:minimap_range_color = 'MinimapCurrentRange'
 let g:minimap_auto_start = 1
 let g:minimap_auto_start_win_enter = 1
 let g:minimap_highlight_range = 1
