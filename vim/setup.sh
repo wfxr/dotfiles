@@ -45,7 +45,7 @@ install_configs() {
     mkdir -p ~/.config ~/.vim/spell
 
     ln -snf "$HOME/.vim"               ~/.config/nvim
-    ln -sf  "$SDIR/vimrc"              ~/.config/nvim/init.vim
+    ln -sf  "$SDIR/init.lua"           ~/.config/nvim/init.lua
     ln -sf  "$SDIR/vimrc"              ~/.vimrc
     ln -sf  "$SDIR/gvimrc"             ~/.gvimrc
     ln -sf  "$SDIR/vim_map"            ~/.vim_map
