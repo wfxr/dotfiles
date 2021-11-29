@@ -4,5 +4,9 @@ max_width = 120
 comment_width = 120
 reorder_imports = true
 fn_single_line = false
-# chain_width = 30
-# width_heuristics
+imports_layout = "HorizontalVertical"
+match_arm_blocks = false
+overflow_delimited_expr = true
+imports_granularity = "Crate"
+struct_lit_width = 60
+struct_variant_width = 60
