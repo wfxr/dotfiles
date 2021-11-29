@@ -1,50 +1,48 @@
-local vo = vim.opt
-
-vo.encoding = 'utf-8'
-vo.termguicolors = true
+vim.opt.encoding = 'utf-8'
+vim.opt.termguicolors = true
 
 vim.cmd 'source ~/.vim_base'
 vim.cmd 'source ~/.vim_plug'
 vim.cmd 'source ~/.vim_map'
 vim.cmd 'source ~/.vim_local'
 
-vo.mouse = 'a'
-vo.linebreak = true
-vo.whichwrap:append('<,>,h,l')
-vo.history = 1000
-vo.lazyredraw = true -- don't redraw while executing macros
-vo.number = true
-vo.cmdheight = 2
-vo.hlsearch = true
-vo.showmatch = true -- show matching brackets when text indicator is over them
-vo.matchtime = 2 -- how many tenths of a second (i.e. x/10 s) to blink when matching brackets
-vo.wildignore = { '*.o', '*~', '*.pyc' } -- ignore compiled files
-vo.wildmode = 'full'
-vo.smartindent = true
-vo.cindent = true
-vo.fileformat = 'unix'
-vo.fileformats = 'unix,dos,mac'
-vo.fileencodings = 'utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936,big5'
-vo.swapfile = false
-vo.undofile = true
-vo.undodir = '/tmp/vim-' .. vim.env.USER .. '/undodir/'
-vo.errorbells = false
-vo.visualbell = true
-vo.autochdir = true
-vo.autoread = true
-vo.diffopt = 'vertical'
-vo.conceallevel=2
-vo.fillchars:append('vert:⎹') -- ¦ ┆ │ ⎹⎸ ▏
-vo.updatetime = 100 -- default 800ms is too slow
-vo.timeoutlen = 400 -- default 1000ms is too long
-vo.showmode = false
-vo.showcmd = true
-vo.autowrite = true
-vo.signcolumn = 'yes'
-vo.hidden = true
-vo.backup = false
-vo.writebackup = false
-vo.shortmess:append('c') -- don't give 'ins-completion-menu' messages.
+vim.opt.mouse = 'a'
+vim.opt.linebreak = true
+vim.opt.whichwrap:append('<,>,h,l')
+vim.opt.history = 1000
+vim.opt.lazyredraw = true -- don't redraw while executing macros
+vim.opt.number = true
+vim.opt.cmdheight = 2
+vim.opt.hlsearch = true
+vim.opt.showmatch = true -- show matching brackets when text indicator is over them
+vim.opt.matchtime = 2 -- how many tenths of a second (i.e. x/10 s) to blink when matching brackets
+vim.opt.wildignore = { '*.o', '*~', '*.pyc' } -- ignore compiled files
+vim.opt.wildmode = 'full'
+vim.opt.smartindent = true
+vim.opt.cindent = true
+vim.opt.fileformat = 'unix'
+vim.opt.fileformats = 'unix,dos,mac'
+vim.opt.fileencodings = 'utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936,big5'
+vim.opt.swapfile = false
+vim.opt.undofile = true
+vim.opt.undodir = '/tmp/vim-' .. vim.env.USER .. '/undodir/'
+vim.opt.errorbells = false
+vim.opt.visualbell = true
+vim.opt.autochdir = true
+vim.opt.autoread = true
+vim.opt.diffopt = 'vertical'
+vim.opt.conceallevel=2
+vim.opt.fillchars:append('vert:⎹') -- ¦ ┆ │ ⎹⎸ ▏
+vim.opt.updatetime = 100 -- default 800ms is too slow
+vim.opt.timeoutlen = 400 -- default 1000ms is too long
+vim.opt.showmode = false
+vim.opt.showcmd = true
+vim.opt.autowrite = true
+vim.opt.signcolumn = 'yes'
+vim.opt.hidden = true
+vim.opt.backup = false
+vim.opt.writebackup = false
+vim.opt.shortmess:append('c') -- don't give 'ins-completion-menu' messages.
 
 vim.cmd [[
     autocmd InsertLeave,WinEnter * set cursorline
@@ -65,7 +63,7 @@ vim.cmd [[
 ]]
 
 vim.cmd 'colorscheme gruvbox-material'
-vo.background = 'dark'
+vim.opt.background = 'dark'
 vim.cmd [[
     exec 'hi! SignifySignAdd    ctermfg=Green  guifg=#50FA7B ' . (has('termguicolors')? 'guibg=':'ctermbg=') . synIDattr(hlID('SignColumn'),'bg')
     exec 'hi! SignifySignDelete ctermfg=Red    guifg=#FF5555 ' . (has('termguicolors')? 'guibg=':'ctermbg=') . synIDattr(hlID('SignColumn'),'bg')
@@ -77,11 +75,11 @@ vim.cmd [[
 ]]
 
 -- transparent
-vo.pumblend = 10 -- popup_menu
-vo.winblend = 10 -- floating window
+vim.opt.pumblend = 10 -- popup_menu
+vim.opt.winblend = 10 -- floating window
 
 -- tags
-vo.tags = './.tags;,.tags'
+vim.opt.tags = './.tags;,.tags'
 vim.env.GTAGSLABEL = 'native-pygments'
 vim.env.GTAGSCONF = '~/.gtags.conf'
 

@@ -126,6 +126,8 @@
   "rust-analyzer.updates.prompt": true,
   "yank.highlight.duration": 100,
   "coc.preferences.formatOnType": true,
+  // https://github.com/neoclide/coc-yaml/issues/51
+  "coc.preferences.formatOnTypeFiletypes": ["rust", "go", "zsh", "bash"],
 
   "metals.showInferredType": true,
   "metals.showImplicitArguments": true,

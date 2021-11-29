@@ -45,15 +45,15 @@ vmap <silent> Y <Plug>TranslateWV
 Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 Plug 'ivyl/vim-bling' " alternative to vim-slash
 Plug 'nastevens/vim-cargo-make'
-Plug 'wfxr/minimap.vim'
-let g:minimap_width = 10
-let g:minimap_cursor_color = 'MinimapCurrentLine'
-let g:minimap_range_color = 'MinimapCurrentRange'
-let g:minimap_auto_start = 1
-let g:minimap_auto_start_win_enter = 1
-let g:minimap_highlight_range = 1
-let g:minimap_block_filetypes = ['fugitive', 'nerdtree', 'tagbar', 'coc-explorer', 'vista']
-let g:minimap_close_filetypes = ['startify', 'netrw', 'vim-plug']
+" Plug 'wfxr/minimap.vim'
+" let g:minimap_width = 8
+" let g:minimap_cursor_color = 'MinimapCurrentLine'
+" let g:minimap_range_color = 'MinimapCurrentRange'
+" let g:minimap_auto_start = 1
+" let g:minimap_auto_start_win_enter = 1
+" let g:minimap_highlight_range = 1
+" let g:minimap_block_filetypes = ['fugitive', 'nerdtree', 'tagbar', 'coc-explorer', 'vista']
+" let g:minimap_close_filetypes = ['startify', 'netrw', 'vim-plug']
 Plug 'jamessan/vim-gnupg' | let g:GPGFilePattern = '*.{gpg,asc,pgp,pvt}'
 " Plug 'machakann/vim-highlightedyank' | let g:highlightedyank_highlight_duration = 100
 Plug 'rhysd/git-messenger.vim'
@@ -1013,6 +1013,7 @@ EOF
                 \     wilder#cmdline_pipeline({
                 \       'language': 'python',
                 \       'fuzzy': 1,
+                \       'sorter': wilder#python_difflib_sorter(),
                 \     }),
                 \     wilder#python_search_pipeline({
                 \       'pattern': wilder#python_fuzzy_pattern(),
