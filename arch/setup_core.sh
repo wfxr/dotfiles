@@ -49,7 +49,7 @@ function install_cli_package() {
     pacman --noconfirm -S jq pv
     # pacman --noconfirm -S nethogs
     # pacman --noconfirm -S global # gtags
-    pacman --noconfirm -S universal-ctags-git # better ctags
+    pacman --noconfirm -S ctags
     pacman --noconfirm -S duf dua-cli htop dstat
     # pacman --noconfirm -S create_ap # Create AP
     pacman --noconfirm -S fd exa bat ripgrep sd
