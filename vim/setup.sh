@@ -75,9 +75,6 @@ install_plugins() {
     fi
     info "install vim plugins..."
     nvim +PlugInstall +UpdateRemotePlugins +qall
-
-    # gtags
-    ln -sf "$SDIR/gtags.conf" ~/.gtags.conf
 }
 
 info "install neovim..."

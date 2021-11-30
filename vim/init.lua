@@ -80,8 +80,6 @@ vim.opt.winblend = 10 -- floating window
 
 -- tags
 vim.opt.tags = './.tags;,.tags'
-vim.env.GTAGSLABEL = 'native-pygments'
-vim.env.GTAGSCONF = '~/.gtags.conf'
 
 -- Show changes since last save
 vim.cmd [[

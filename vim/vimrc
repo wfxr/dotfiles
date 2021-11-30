@@ -239,8 +239,6 @@ augroup custom_filetype
 augroup END
 
 set tags=./.tags;,.tags
-let $GTAGSLABEL = 'native-pygments'
-let $GTAGSCONF = '~/.gtags.conf'
 
 " Automatic rename of tmux window
 if exists('$TMUX') && !exists('$NORENAME')
