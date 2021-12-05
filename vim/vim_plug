@@ -894,7 +894,9 @@ augroup rust_env
                 \ nmap     <buffer> <leader>t<CR> :RustTest<CR>|
                 \ nmap     <buffer> <leader>b<CR> :VT cargo build -q<CR>|
                 \ nmap     <buffer> <leader>r<CR> :VT cargo play  %<CR>|
-                \ nnoremap <buffer> <c-a-l>       :RustFmt<cr>
+                \ nnoremap <buffer> <c-a-l>       :RustFmt<cr>|
+                \ vnoremap <buffer> <c-a-l>       :RustFmtRange<cr>|
+                \ let g:rustfmt_autosave_if_config_present = 1
 augroup END
 " }}} vim-rust "
 
