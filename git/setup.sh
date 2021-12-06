@@ -7,6 +7,7 @@ SDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) && cd "$SDIR"
 git config --global user.name "Wenxuan Zhang"
 git config --global user.email "wenxuangm@gmail.com"
 git config --global github.user "wfxr"
+git config --global credential.username "wfxr"
 git config --global color.ui true
 
 # avoid entering password again and again
