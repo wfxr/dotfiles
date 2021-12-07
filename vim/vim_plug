@@ -818,7 +818,8 @@ endif
 
 " coc-explorer {{{ "
 function! ToggleCocExplorer() abort
-    execute 'CocCommand explorer --toggle --sources file+ --width=30 ' . getcwd()
+    execute 'CocCommand explorer --toggle --sources file+ --width=25'
+    " execute 'CocCommand explorer --toggle --sources file+ --width=30 ' . getcwd()
 endfunction
 nnoremap <silent> <C-\> :call ToggleCocExplorer()<CR>
 " }}} coc-explorer "
