@@ -13,11 +13,10 @@ else
     curl https://sh.rustup.rs -sSf |
         sh -s -- --no-modify-path -y --profile default -c \
         clippy \
-        rls \
         rust-src \
         rust-std \
         rustfmt \
-        rust-analysis \
+        rust-analyzer-preview \
         --default-toolchain nightly || exit 1
 fi
 
