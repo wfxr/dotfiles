@@ -440,6 +440,10 @@ function ghstats() {
     xopen "https://github-readme-stats.vercel.app/api?username=$1&show_icons=true&hide_border=true"
 }
 
+func ghlangs() {
+    xopen "https://github-readme-stats.vercel.app/api/top-langs/?username=$1&exclude_repo=awm.config&langs_count=8&layout=compact&hide_border=true"
+}
+
 function gpom() {
     git branch | grep main   &>/dev/null && git push origin main
     git branch | grep master &>/dev/null && git push origin master
