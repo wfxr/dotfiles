@@ -1,10 +1,28 @@
-# [line_break]
-# disabled = true
+[line_break]
+disabled = false
 
 [time]
 disabled = true
 
 [directory]
-# disabled = true
+disabled = false
+fish_style_pwd_dir_length = 1
 truncation_length = 5
 truncate_to_repo = false
+
+[memory_usage]
+disabled = false
+threshold = 75
+symbol = ""
+style = 'bold dimmed yellow'
+format = '$symbol[$ram( | $swap)]($style) '
+
+[git_branch]
+format = "[$symbol $branch]($style) "
+symbol = ""
+
+[git_metrics]
+disabled = false
+
+[package]
+format = '[$symbol$version]($style) '
