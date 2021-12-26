@@ -120,7 +120,6 @@ __defer_source__() {
             'zsh-users/zsh-completions'        \
             'zdharma/fast-syntax-highlighting' \
             'hlissner/zsh-autopair'            \
-            'rupa/z'                           \
             'wfxr/forgit'                      \
             'wfxr/forepos'                     \
             'wfxr/epoch-cli'                   \
@@ -202,6 +201,7 @@ __defer_source__() {
     [ $DEV_PYTHON ] && zi::cache::cmd  'pipenv --completion' # fucking slow. cache it!
     (( $+commands[kubectl]  )) && zi::cache::cmd 'kubectl  completion zsh'
     (( $+commands[minikube] )) && zi::cache::cmd 'minikube completion zsh'
+    (( $+commands[zoxide] )) && eval "$(zoxide init zsh)"
 
     # (( $+commands[broot] )) && zi::cache::cmd 'broot --print-shell-function zsh'
     (( $+commands[gh] )) && zi::cache::cmd 'gh completion --shell zsh'

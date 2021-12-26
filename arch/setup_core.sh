@@ -74,6 +74,7 @@ function install_cli_package() {
     pacman --noconfirm -S git-delta-git
     pacman --noconfirm -S sxiv # simple x image viewer
     pacman --noconfirm -S topgrade # upgrade all the things
+    pacman --noconfirm -S zoxide # z or autojump alternative
 }
 
 info 'setup package manager...'
