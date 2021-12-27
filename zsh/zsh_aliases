@@ -113,9 +113,8 @@ alias weather='curl wttr.in'
 
 # Edit dotfile in repo
 function vim_linked() { vim "$(readlink "$1")" }
-alias vimrc='vim_linked ~/.vimrc'
+alias vimrc='vim_linked ~/.config/nvim/init.lua'
 alias vimplug='vim_linked ~/.vim_plug'
-alias vimbase='vim_linked ~/.vim_base'
 alias vimmap='vim_linked ~/.vim_map'
 alias gvimrc='vim_linked ~/.gvimrc'
 alias vimlocal='vim_linked ~/.vim_local'
