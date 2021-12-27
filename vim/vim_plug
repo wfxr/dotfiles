@@ -46,7 +46,7 @@ Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 Plug 'ivyl/vim-bling' " alternative to vim-slash
 Plug 'nastevens/vim-cargo-make'
 Plug 'dstein64/vim-startuptime'
-Plug 'dstein64/nvim-scrollview', { 'branch': 'main' }
+" Plug 'dstein64/nvim-scrollview', { 'branch': 'main' } " causing `jump` buggy
 " Plug 'wfxr/minimap.vim'
 " let g:minimap_width = 8
 " let g:minimap_cursor_color = 'MinimapCurrentLine'
