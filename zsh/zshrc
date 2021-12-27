@@ -201,7 +201,7 @@ __defer_source__() {
     [ $DEV_PYTHON ] && zi::cache::cmd  'pipenv --completion' # fucking slow. cache it!
     (( $+commands[kubectl]  )) && zi::cache::cmd 'kubectl  completion zsh'
     (( $+commands[minikube] )) && zi::cache::cmd 'minikube completion zsh'
-    (( $+commands[zoxide] )) && eval "$(zoxide init zsh)"
+    (( $+commands[zoxide] )) && eval "$(zoxide init zsh --cmd j)"
 
     # (( $+commands[broot] )) && zi::cache::cmd 'broot --print-shell-function zsh'
     (( $+commands[gh] )) && zi::cache::cmd 'gh completion --shell zsh'
