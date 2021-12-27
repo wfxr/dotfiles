@@ -1,6 +1,11 @@
 " vim: ft=vim:
 scriptencoding utf-8
 
+" With a map leader it's possible to do extra key combinations
+let mapleader = ','
+let g:mapleader = ','
+noremap \ ,
+
 " Using <SPACE> to fold or unfold
 nnoremap <silent> <SPACE><SPACE> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 " nnoremap <silent> <SPACE><CR> zi

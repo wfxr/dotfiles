@@ -1,7 +1,25 @@
 vim.opt.encoding = 'utf-8'
 vim.opt.termguicolors = true
+vim.opt.scrolloff = 5
+vim.opt.sidescrolloff = 15
+vim.opt.expandtab = true
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.cursorline = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.foldenable = false
+vim.opt.foldmethod = 'syntax'
+vim.opt.foldlevel = 0
+vim.opt.list = true  -- display tabs and trailing spaces visually
+vim.opt.listchars:append({
+    tab = '··',
+    trail = '·',
+    precedes = '«',
+    extends = '»',
+})
+vim.opt.wildmenu = true
 
-vim.cmd 'source ~/.vim_base'
 vim.cmd 'source ~/.vim_plug'
 vim.cmd 'source ~/.vim_map'
 vim.cmd 'source ~/.vim_local'
@@ -162,4 +180,14 @@ vim.cmd [[
         nnoremap <silent> <c-z> :call PreserveClipboadAndSuspend()<cr>
         vnoremap <silent> <c-z> :<c-u>call PreserveClipboadAndSuspend()<cr>
     endif
+]]
+
+-- Strip trailing whitespaces
+vim.cmd [[
+    function! s:strip_whitespace()
+        let l:save = winsaveview()
+        keeppatterns %s/\s\+$//e
+        call winrestview(l:save)
+    endfun
+    command! StripWhitespace call s:strip_whitespace()
 ]]

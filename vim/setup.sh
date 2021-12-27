@@ -46,10 +46,7 @@ install_configs() {
 
     ln -snf "$HOME/.vim"               ~/.config/nvim
     ln -sf  "$SDIR/init.lua"           ~/.config/nvim/init.lua
-    ln -sf  "$SDIR/vimrc"              ~/.vimrc
-    ln -sf  "$SDIR/gvimrc"             ~/.gvimrc
     ln -sf  "$SDIR/vim_map"            ~/.vim_map
-    ln -sf  "$SDIR/vim_base"           ~/.vim_base
     ln -sf  "$SDIR/vim_plug"           ~/.vim_plug
     ln -sf  "$SDIR/spell/en.utf-8.add" ~/.vim/spell/en.utf-8.add
     ln -snf "$SDIR/UltiSnips"          ~/.vim/UltiSnips
