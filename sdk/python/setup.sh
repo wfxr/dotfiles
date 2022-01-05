@@ -35,7 +35,7 @@ install_pyenv() {
 install_python() {
     export PYTHON_CONFIGURE_OPTS="--enable-shared"
     # python
-    v=3.9.1
+    v=3.10.1
     if ! pyenv versions | grep $v &>/dev/null; then
         # pkg=Python-$v.tar.xz
         # mkdir -p ~/.pyenv/cache
@@ -68,9 +68,9 @@ install_tools() {
     pip install --upgrade pip
     pip install pipenv
 
-    #pip install thefuck      # Thefuck is a magnificent app which corrects your previous console command
-    #pip install csvkit       # A suite of utilities for converting to and working with CSV, the king of tabular file formats.
-    pip install pydf         # pydf is much easier to read
+    # pip install thefuck      # Thefuck is a magnificent app which corrects your previous console command
+    # pip install csvkit       # A suite of utilities for converting to and working with CSV, the king of tabular file formats.
+    # pip install pydf         # pydf is much easier to read
     pip install jsbeautifier # json formater
     pip install pygments     # tags engine
 
