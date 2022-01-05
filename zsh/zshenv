@@ -36,6 +36,7 @@ function setup_env() {
     # Rust
     _PATH="$HOME/.cargo/bin:$_PATH"
     export CARGO_HOME="$HOME/.cargo"
+    export CARGO_BUILD_TARGET_DIR="$HOME/.cache/cargo-target"
 
     export TERM="xterm-256color"
 
