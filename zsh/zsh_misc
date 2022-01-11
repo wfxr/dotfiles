@@ -29,3 +29,6 @@ zmodload -i zsh/complist
 
 # Keybinds
 bindkey '^U' backward-kill-line
+
+# Enable comment in interactive shell
+setopt interactivecomments
