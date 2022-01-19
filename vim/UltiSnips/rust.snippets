@@ -67,3 +67,7 @@ fn ${1:it_works}() {
 	$2
 }
 endsnippet
+
+snippet svec "macro to create a string vector" b
+macro_rules! svec { ($($part:expr),* $(,)?) => {{ vec![$($part.to_string(),)*] }} }
+endsnippet
