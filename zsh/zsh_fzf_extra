@@ -31,6 +31,7 @@ FZF_DEFAULT_COMMAND='(git ls-tree -r --name-only HEAD ||
 (( $+commands[fd] )) && FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git 2>/dev/null'
 export FZF_DEFAULT_COMMAND
 FZF_DEFAULT_OPTS="
+--exact
 --prompt '❯ '
 --pointer '➤'
 --marker '┃'
