@@ -198,7 +198,7 @@ __defer_source__() {
     [ $DEV_RUBY   ] && zi::cache::cmd  'rbenv init - zsh'
     [ $DEV_PYTHON ] && zi::cache::cmd  'pyenv init - zsh'
     [ $DEV_PYTHON ] && zi::cache::cmd  'pip completion --zsh' # fucking slow. cache it!
-    [ $DEV_PYTHON ] && zi::cache::cmd  'pipenv --completion' # fucking slow. cache it!
+    [ $DEV_PYTHON ] && zi::cache::cmd  '_PIPENV_COMPLETE=zsh_source pipenv' # fucking slow. cache it!
     (( $+commands[kubectl]  )) && zi::cache::cmd 'kubectl  completion zsh'
     (( $+commands[minikube] )) && zi::cache::cmd 'minikube completion zsh'
     (( $+commands[zoxide] )) && eval "$(zoxide init zsh --cmd j)"
