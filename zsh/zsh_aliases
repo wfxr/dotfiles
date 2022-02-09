@@ -150,6 +150,7 @@ alias gpu='git push upstream'
 alias gst='git status'
 alias gs='git stash'
 alias gsp='git stash pop'
+alias gr='git rebase'
 
 alias gpa='git push origin --all && git push origin --tags'
 
@@ -177,3 +178,7 @@ alias ui_v2ray='xdg-open "http://127.0.0.1:2017/"'
 alias ui_flink='xdg-open "http://127.0.0.1:8081/"'
 (( $+commands[dua] )) && alias ncdu='dua i'
 (( $+commands[clitrans] )) && alias y='clitrans'
+
+alias cm='cargo make'
+alias ct='cargo make test'
+alias cr='cargo make run'
