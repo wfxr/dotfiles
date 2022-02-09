@@ -71,3 +71,10 @@ endsnippet
 snippet svec "macro to create a string vector" b
 macro_rules! svec { ($($part:expr),* $(,)?) => {{ vec![$($part.to_string(),)*] }} }
 endsnippet
+
+snippet err_macro "error macro" b
+#[macro_export]
+macro_rules! err {
+	($($tt:tt)*) => { Err(format!($($tt)*).into()) };
+}
+endsnippet
