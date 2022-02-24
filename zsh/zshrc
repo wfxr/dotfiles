@@ -13,7 +13,7 @@ source <(starship init zsh) || warn "failed loading starship."
 ##### plugin manager {{{ #####
 [ -d ~/.zinit/bin ] || {
     mkdir -p ~/.zinit
-    git clone --depth=1 https://github.com/zdharma/zinit.git ~/.zinit/bin || exit 1
+    git clone --depth=1 https://github.com/zdharma-continuum/zinit.git ~/.zinit/bin || exit 1
 }
 source ~/.zinit/bin/zinit.zsh
 
