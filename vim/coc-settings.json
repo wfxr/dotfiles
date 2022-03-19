@@ -19,6 +19,7 @@
   "codeLens.enable": true,
   "codeLens.separator": "‣",
   "codeLens.subseparator": " | ",
+  "codeLens.position": "right_align",
   "list.indicator": "➤",
 
   // coc-explorer
