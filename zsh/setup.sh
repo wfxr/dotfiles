@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-info() { printf "$(date -Is) %b[info]%b %s\n" '\e[0;32m\033[1m' '\e[0m' "$*" >&2; }
-warn() { printf "$(date -Is) %b[warn]%b %s\n" '\e[0;33m\033[1m' '\e[0m' "$*" >&2; }
-erro() { printf "$(date -Is) %b[erro]%b %s\n" '\e[0;31m\033[1m' '\e[0m' "$*" >&2; }
+info() { printf "$(date +%FT%T) %b[info]%b %s\n" '\e[0;32m\033[1m' '\e[0m' "$*" >&2; }
+warn() { printf "$(date +%FT%T) %b[warn]%b %s\n" '\e[0;33m\033[1m' '\e[0m' "$*" >&2; }
+erro() { printf "$(date +%FT%T) %b[erro]%b %s\n" '\e[0;31m\033[1m' '\e[0m' "$*" >&2; }
 
 SDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
@@ -14,10 +14,7 @@ ln -sf "$SDIR/zsh_custom"    ~/.zsh_custom
 ln -sf "$SDIR/zsh_fzf_extra" ~/.zsh_fzf_extra
 ln -sf "$SDIR/zsh_secret"    ~/.zsh_secret
 
-mkdir -p ~/.config/zsh
-ln -sf "$SDIR/abbreviations" ~/.config/zsh/abbreviations
-
-hash starship &>/dev/null || warn "shell theme starship not installed."
+hash starship &>/dev/null || warn "starship (shell theme) not installed."
 
 [[ "$SHELL" =~ "zsh" ]] || chsh -s "$(command -v zsh)"
 

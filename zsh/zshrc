@@ -126,7 +126,6 @@ __defer_source__() {
             'wfxr/formarks'                    \
             'soimort/translate-shell'          \
             'RobSis/zsh-completion-generator'  \
-            'olets/zsh-abbr'                   \
             ;
     ##### }}} general plugins #####
 
