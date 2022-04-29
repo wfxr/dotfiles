@@ -115,7 +115,10 @@ function setup_env() {
         export KUBECONFIG
     }
 
-    [[ $OSTYPE =~ darwin ]] && source ~/.linuxify 2>/dev/null
+    [[ $OSTYPE =~ darwin ]] && {
+        export PATH="/opt/homebrew/bin:$PATH"
+        source ~/.linuxify 2>/dev/null
+    }
 }
 
 setup_history() {
