@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 
 # https://www.reddit.com/r/rust/comments/m3taw6/rust_playground_at_your_fingertips/
 PLAYGROUNDS_DIR="/tmp/rust-playgrounds"
