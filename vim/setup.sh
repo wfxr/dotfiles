@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 SDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) && cd "$SDIR" || return 1
 
-info() { printf "$(date -Is) %b[info]%b %s\n" '\e[0;32m\033[1m' '\e[0m' "$*" >&2; }
-warn() { printf "$(date -Is) %b[warn]%b %s\n" '\e[0;33m\033[1m' '\e[0m' "$*" >&2; }
-erro() { printf "$(date -Is) %b[erro]%b %s\n" '\e[0;31m\033[1m' '\e[0m' "$*" >&2; }
+info() { printf "$(date +%FT%T) %b[info]%b %s\n" '\e[0;32m\033[1m' '\e[0m' "$*" >&2; }
+warn() { printf "$(date +%FT%T) %b[warn]%b %s\n" '\e[0;33m\033[1m' '\e[0m' "$*" >&2; }
+erro() { printf "$(date +%FT%T) %b[erro]%b %s\n" '\e[0;31m\033[1m' '\e[0m' "$*" >&2; }
 
 # https://github.com/neovim/neovim/wiki/Installing-Neovim
 install_neovim() {
@@ -61,8 +61,7 @@ install_configs() {
 install_plugins() {
     local plug_manager=~/.vim/autoload/plug.vim
     if ! [ -f "$plug_manager" ]; then
-        mkdir -p ~/.vim/autoload
-        curl -fLo "$plug_manager" https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim ||
+        curl -fLo "$plug_manager" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim ||
             git clone --depth=1 https://github.com/junegunn/vim-plug ~/.vim/vim-plug && ln -sf ~/.vim/vim-plug/plug.vim "$plug_manager"
     fi
     if ! hash node &>/dev/null; then
