@@ -33,48 +33,47 @@ function setup_package_manager() {
 }
 
 function install_cli_package() {
-    pacman --noconfirm -S base-devel
-    pacman --noconfirm -S git git-crypt libsecret seahorse python-pre-commit
-    pacman --noconfirm -S zsh tmux
-    pacman --noconfirm -S neovim-git
-    pacman --noconfirm -S openssh
-    # pacman --noconfirm -S clang
-    pacman --noconfirm -S go rust
-    pacman --noconfirm -S words
-    # pacman --noconfirm -S jdk9-openjdk openjdk9-src
-    # pacman --noconfirm -S mosh
-    pacman --noconfirm -S axel
-    pacman --noconfirm -S shellcheck-static
-    # pacman --noconfirm -S highlight
-    pacman --noconfirm -S jq pv
-    # pacman --noconfirm -S nethogs
-    # pacman --noconfirm -S global # gtags
-    pacman --noconfirm -S ctags
-    pacman --noconfirm -S duf dua-cli htop dstat
-    # pacman --noconfirm -S create_ap # Create AP
-    pacman --noconfirm -S fd exa bat ripgrep sd
-    # pacman --noconfirm -S vivid
-    pacman --noconfirm -S man-pages
-    pacman --noconfirm -S neofetch
-    pacman --noconfirm -S rsync
-    # pacman --noconfirm -S lightscreen # light weight screenshot tool
-    # pacman --noconfirm -S shutter
+    paru --noconfirm -S base-devel
+    paru --noconfirm -S git git-crypt libsecret seahorse python-pre-commit
+    paru --noconfirm -S zsh tmux
+    paru --noconfirm -S neovim-git
+    paru --noconfirm -S openssh
+    # paru --noconfirm -S clang
+    paru --noconfirm -S go rust
+    paru --noconfirm -S words
+    # paru --noconfirm -S jdk9-openjdk openjdk9-src
+    # paru --noconfirm -S mosh
+    paru --noconfirm -S axel
+    paru --noconfirm -S shellcheck-static
+    # paru --noconfirm -S highlight
+    paru --noconfirm -S jq pv
+    # paru --noconfirm -S nethogs
+    # paru --noconfirm -S global # gtags
+    paru --noconfirm -S ctags
+    paru --noconfirm -S duf dua-cli htop dstat
+    # paru --noconfirm -S create_ap # Create AP
+    paru --noconfirm -S fd exa bat ripgrep sd
+    # paru --noconfirm -S vivid
+    paru --noconfirm -S man-pages
+    paru --noconfirm -S neofetch
+    paru --noconfirm -S rsync
+    # paru --noconfirm -S lightscreen # light weight screenshot tool
+    # paru --noconfirm -S shutter
 
     # crontab
-    pacman --noconfirm -S cronie
+    paru --noconfirm -S cronie
     systemctl daemon-reload
     systemctl enable cronie.service
     systemctl start  cronie.service
 
-    # pacman --noconfirm -S icdiff # better diff
-    pacman --noconfirm -S mmv-go
-    pacman --noconfirm -S csview-git
-    pacman --noconfirm -S code-minimap-git
-    pacman --noconfirm -S clitrans-git
-    pacman --noconfirm -S git-delta-git
-    pacman --noconfirm -S sxiv # simple x image viewer
-    pacman --noconfirm -S topgrade # upgrade all the things
-    pacman --noconfirm -S zoxide # z or autojump alternative
+    # paru --noconfirm -S icdiff # better diff
+    paru --noconfirm -S mmv-go
+    paru --noconfirm -S csview-git
+    paru --noconfirm -S code-minimap-git
+    paru --noconfirm -S clitrans-git
+    paru --noconfirm -S git-delta-git
+    paru --noconfirm -S topgrade # upgrade all the things
+    paru --noconfirm -S zoxide # z or autojump alternative
 }
 
 info 'setup package manager...'

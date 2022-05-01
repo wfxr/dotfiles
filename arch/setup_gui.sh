@@ -32,6 +32,9 @@ function setup_guis() {
         sudo cp -b "$SDIR/sddm.conf" /etc/sddm.conf.d/sddm.conf
     )
 
+    paru --noconfirm -S libsecret seahorse
+    paru --noconfirm -S sxiv # simple x image viewer
+
     paru --noconfirm -S xorg
     ../xorg/setup.sh
 
