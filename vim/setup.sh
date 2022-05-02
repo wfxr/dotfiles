@@ -25,22 +25,6 @@ install_python_support() {
     fi
 }
 
-install_ruby_support() {
-    if hash gem &>/dev/null; then
-        gem install neovim
-    else
-        warn "failed: gem not found."
-    fi
-}
-
-install_node_support() {
-    if hash npm &>/dev/null; then
-        npm install -g neovim
-    else
-        warn "failed: npm not found."
-    fi
-}
-
 install_configs() {
     mkdir -p ~/.config
 
@@ -49,18 +33,9 @@ install_configs() {
 }
 
 install_plugins() {
-    local plug_manager=~/.vim/autoload/plug.vim
-    if ! [ -f "$plug_manager" ]; then
-        curl -fLo "$plug_manager" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim ||
-            git clone --depth=1 https://github.com/junegunn/vim-plug ~/.vim/vim-plug && ln -sf ~/.vim/vim-plug/plug.vim "$plug_manager"
-    fi
-    if ! hash node &>/dev/null; then
-        info "install node(coc.nvim need it)..."
-        mkdir -p ~/.local
-        curl -fsSL https://install-node.now.sh/latest | bash -s -- --prefix="$HOME/.local" -y
-    fi
     info "install vim plugins..."
-    nvim +PlugInstall +UpdateRemotePlugins +qall
+    nvim +qall
+    nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 }
 
 info "install neovim..."
@@ -68,12 +43,6 @@ install_neovim
 
 info "install python support..."
 install_python_support
-
-info "install ruby support..."
-[ "$DEV_RUBY" ] && install_ruby_support
-
-info "install node support..."
-[ "$DEV_NODE" ] && install_node_support
 
 info "install configs..."
 install_configs
