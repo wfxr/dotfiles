@@ -22,8 +22,8 @@ fi
 
 # rustup component add rls-preview rust-analysis rust-src rustfmt-preview
 mkdir -p ~/.zsh_completions
-rustup completions zsh       > ~/.zsh_completions/_rustup
-rustup completions zsh cargo > ~/.zsh_completions/_cargo
+rustup completions zsh       > ~/.config/zsh/completions/_rustup
+rustup completions zsh cargo > ~/.config/zsh/completions/_cargo
 
 # for checking and applying updates to installed executables
 cargo install --locked cargo-update
