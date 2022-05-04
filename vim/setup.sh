@@ -42,19 +42,9 @@ install_node_support() {
 }
 
 install_configs() {
-    mkdir -p ~/.config ~/.vim/spell
+    mkdir -p ~/.config
 
-    ln -snf "$HOME/.vim"               ~/.config/nvim
-    ln -sf  "$SDIR/init.lua"           ~/.config/nvim/init.lua
-    ln -sf  "$SDIR/vim_map"            ~/.vim_map
-    ln -sf  "$SDIR/vim_plug"           ~/.vim_plug
-    ln -sf  "$SDIR/spell/en.utf-8.add" ~/.vim/spell/en.utf-8.add
-    ln -snf "$SDIR/UltiSnips"          ~/.vim/UltiSnips
-    ln -sf  "$SDIR/coc-settings.json"  ~/.vim/coc-settings.json
-    touch ~/.vim_local
-
-    ln -snf "$SDIR/lua" ~/.config/nvim/lua
-
+    ln -snf "$SDIR/nvim" ~/.config/nvim
     ln -sf  "$SDIR/ideavimrc" ~/.ideavimrc
 }
 

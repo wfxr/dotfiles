@@ -151,4 +151,4 @@ endif
 
 nnoremap <silent> <leader>ee :e<cr>
 
-nnoremap <silent> <tab> :call system('tmux select-pane -t :.+')<cr>
+" nnoremap <silent> <tab> :call system('tmux select-pane -t :.+')<cr>
