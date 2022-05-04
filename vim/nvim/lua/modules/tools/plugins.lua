@@ -48,5 +48,8 @@ tools["nathom/filetype.nvim"] = {
     opt = false,
     config = conf.filetype,
 }
+tools["farmergreg/vim-lastplace"] = {
+    opt = false,
+}
 
 return tools

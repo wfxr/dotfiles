@@ -91,7 +91,7 @@ function config.trouble()
         auto_fold = false, -- automatically fold a file trouble list at creation
         signs = {
             -- icons / text used for a diagnostic
-            error = "••", --  
+            error = "••", -- 
             warning = "•", --
             hint = "", -- 
             information = "",

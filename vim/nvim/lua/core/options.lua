@@ -16,16 +16,13 @@ local function load_options()
     local global_local = {
         termguicolors = true,
         mouse = "a",
-        errorbells = true,
+        errorbells = false,
         visualbell = true,
         hidden = true,
         fileformats = "unix,mac,dos",
         magic = true,
         virtualedit = "block",
         encoding = "utf-8",
-        viewoptions = "folds,cursor,curdir,slash,unix",
-        sessionoptions = "curdir,help,tabpages,winsize",
-        -- clipboard = "unnamedplus",
         wildignorecase = true,
         wildignore = ".git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**",
         wildmode = 'full',
@@ -35,12 +32,7 @@ local function load_options()
         writebackup = false,
         swapfile = false,
         undodir = global.cache_dir .. "undo/",
-        -- directory = global.cache_dir .. "swap/",
-        -- backupdir = global.cache_dir .. "backup/",
-        -- viewdir = global.cache_dir .. "view/",
-        -- spellfile = global.cache_dir .. "spell/en.uft-8.add",
         history = 2000,
-        shada = "!,'300,<50,@100,s10,h",
         backupskip = "/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim",
         smarttab = true,
         shiftround = true,
@@ -60,7 +52,6 @@ local function load_options()
         grepformat = "%f:%l:%c:%m",
         grepprg = "rg --hidden --vimgrep --smart-case --",
         breakat = [[\ \    ;:,!?]],
-        startofline = false,
         whichwrap = "h,l,<,>,[,],~",
         splitbelow = true,
         splitright = true,
@@ -123,16 +114,6 @@ local function load_options()
         concealcursor = "c",
     }
 
-    if global.is_mac then
-        vim.g.clipboard = {
-            name = "macOS-clipboard",
-            copy = { ["+"] = "pbcopy", ["*"] = "pbcopy" },
-            paste = { ["+"] = "pbpaste", ["*"] = "pbpaste" },
-            cache_enabled = 0,
-        }
-        vim.g.python_host_prog = "/usr/bin/python"
-        vim.g.python3_host_prog = "/usr/local/bin/python3"
-    end
     for name, value in pairs(global_local) do
         vim.o[name] = value
     end
