@@ -1,5 +1,3 @@
-local global = require("core.global")
-
 -- Show changes since last save
 vim.cmd [[
     function! s:DiffSaved()
@@ -49,7 +47,7 @@ vim.cmd [[
     endfunction
     augroup gogithub
         au!
-        au FileType *vim,*zsh,*bash,*tmux,lua nnoremap <buffer> <silent> <cr> :call <sid>go_github()<cr>
+        au FileType *vim,*zsh,*bash,*tmux,lua nnoremap <buffer> <silent> gW :call <sid>go_github()<cr>
     augroup END
 ]]
 
