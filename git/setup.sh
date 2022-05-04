@@ -80,9 +80,16 @@ git config --global diff.compactionHeuristic true
 git config --global diff.indentHeuristic on
 
 # Custom pager
-mkdir -p ~/bin
-ln -sf "$PWD/git-pager" ~/bin/git-pager
-git config --global core.pager 'git-pager'
+# mkdir -p ~/bin
+# ln -sf "$PWD/git-pager" ~/bin/git-pager
+
+if hash delta &>/dev/null; then
+    git config --global core.pager             'delta'
+    git config --global interactive.diffFilter 'delta --color-only'
+    git config --global delta.navigate         'true'
+    git config --global merge.conflictstyle    'diff3'
+    git config --global diff.colorMoved        'default'
+fi
 
 # Political correctness?
 git config --global init.defaultBranch main
