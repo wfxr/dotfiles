@@ -1,11 +1,9 @@
 #!/usr/bin/env zsh
-############################################################################
-#    Author: Wenxuan Zhang                                                 #
-#     Email: wenxuangm@gmail.com                                           #
-#   Created: 2020-01-03 16:33                                              #
-############################################################################
 # zmodload zsh/zprof
 bindkey -e # should be on top!
+
+# Make sure homebrew has higher priority
+[[ $OSTYPE =~ darwin ]] && export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
 
 # theme
 source <(starship init zsh) || warn "failed loading starship."
