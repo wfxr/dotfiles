@@ -6,11 +6,6 @@ bindkey -e # should be on top!
         bash -s -- --repo rossmacarthur/sheldon --to ~/bin
 }
 
-# linux brew
-[ -x /home/linuxbrew/.linuxbrew/bin/brew ] && {
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-}
-
 [[ $OSTYPE =~ darwin ]] && {
     # Make sure homebrew has higher priority
     export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"

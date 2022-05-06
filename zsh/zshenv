@@ -22,6 +22,8 @@ function setup_env() {
     # export PATH everywhere takes too long time
     export PATH="$HOME/bin:$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin:/usr/bin:/usr/games:/usr/local/games:/bin:/sbin"
     [[ $OSTYPE =~ darwin ]] && export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
+    [[ -x /home/linuxbrew/.linuxbrew/bin/brew ]] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
     local _PATH="$PATH"
 
     # True color
@@ -31,7 +33,9 @@ function setup_env() {
     _PATH="$HOME/.gem/bin:$HOME/.rbenv/bin:$_PATH"
 
     # C++
+    export CC="${commands[gcc]:-$CC}"
     export CC="${commands[clang]:-$CC}"
+    export CXX="${commands[g++]:-$CXX}"
     export CXX="${commands[clang++]:-$CXX}"
 
     # Rust
