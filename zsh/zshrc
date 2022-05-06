@@ -6,10 +6,15 @@ bindkey -e # should be on top!
         bash -s -- --repo rossmacarthur/sheldon --to ~/bin
 }
 
-if [[ $OSTYPE =~ darwin ]]; then
+# linux brew
+[ -x /home/linuxbrew/.linuxbrew/bin/brew ] && {
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+}
+
+[[ $OSTYPE =~ darwin ]] && {
     # Make sure homebrew has higher priority
     export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
-fi
+}
 
 # theme
 source <(starship init zsh) || warn "failed loading starship."
@@ -29,6 +34,7 @@ source ~/.zsh_misc
 source ~/.zsh_aliases
 [ -f ~/.zsh_local  ] && source ~/.zsh_local
 [ -f ~/.zsh_secret ] && source ~/.zsh_secret 2>/dev/null # maybe locked
+
 source ~/.zsh_custom
 source ~/.zsh_fzf_extra
 
