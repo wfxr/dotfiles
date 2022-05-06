@@ -11,8 +11,7 @@ completion["creativenull/efmls-configs-nvim"] = {
     requires = "neovim/nvim-lspconfig",
 }
 completion["williamboman/nvim-lsp-installer"] = {
-    opt = true,
-    after = "nvim-lspconfig",
+    opt = false,
 }
 completion["RishabhRD/nvim-lsputils"] = {
     opt = true,
