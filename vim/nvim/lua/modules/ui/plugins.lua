@@ -86,12 +86,6 @@ ui["lukas-reineke/indent-blankline.nvim"] = {
     event = "BufRead",
     config = conf.indent_blankline,
 }
-ui["akinsho/bufferline.nvim"] = {
-    opt = true,
-    tag = "*",
-    event = "BufRead",
-    config = conf.nvim_bufferline,
-}
 ui["petertriho/nvim-scrollbar"] = {
     opt = true,
     event = "BufRead",
