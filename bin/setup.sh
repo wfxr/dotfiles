@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
 
-SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) && cd "$SCRIPT_DIR" || return 1
+SDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) && cd "$SDIR" || return 1
 
 mkdir -p ~/bin
 
-for file in *; do
-    [[ "$file" != "$(basename "$0")" ]] && ln -sf "$SCRIPT_DIR/$file" "$HOME/bin/$file"
-done
+ln -sf "$SDIR/playground" "$HOME/bin/playground"
+
+[[ $OSTYPE =~ linux ]] && {
+    ln -sf "$SDIR/pbcopy"  "$HOME/bin/pbcopy"
+    ln -sf "$SDIR/pbpaste" "$HOME/bin/pbpaste"
+}
