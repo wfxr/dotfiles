@@ -143,7 +143,14 @@ function config.lualine()
                 {
                     "diagnostics",
                     sources = { "nvim_diagnostic" },
-                    symbols = { error = " ", warn = " ", info = " " },
+                    symbols = { error = " ", warn = " ", info = " ", hint = " " },
+                    diagnostics_color = {
+                        error = 'DiagnosticSignError',
+                        warn  = 'DiagnosticSignWarn',
+                        info  = 'DiagnosticSignInfo',
+                        hint  = 'DiagnosticSignHint',
+                    },
+                    colored = true,
                 },
             },
             lualine_y = {

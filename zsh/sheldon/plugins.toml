@@ -46,6 +46,11 @@ apply = ["defer"]
 github = "MichaelAquilina/zsh-you-should-use"
 apply = ["defer"]
 
+[plugins.zoxide]
+inline = '''
+(( $+commands[zoxide] )) && eval "$(zoxide init zsh --cmd j)"
+'''
+
 [plugins.compinit]
 inline = '''
 autoload -Uz compinit
