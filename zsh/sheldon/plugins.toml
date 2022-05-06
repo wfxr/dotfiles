@@ -1,0 +1,57 @@
+shell = "zsh"
+
+[templates]
+defer = { value = 'zsh-defer source "{{ file }}"', each = true }
+defer-more = { value = 'zsh-defer -t 0.5 source "{{ file }}"', each = true }
+
+[plugins.zsh-defer]
+github = "romkatv/zsh-defer"
+
+[plugins.zsh-autosuggestions]
+github = "zsh-users/zsh-autosuggestions"
+use = ["{{ name }}.zsh"]
+apply = ["defer"]
+
+[plugins.zsh-completions]
+github = "zsh-users/zsh-completions"
+apply = ["defer"]
+
+[plugins.fast-syntax-highlighting]
+github = "zdharma-continuum/fast-syntax-highlighting"
+apply = ["defer"]
+
+[plugins.zsh-autopair]
+github = "hlissner/zsh-autopair"
+apply = ["defer"]
+
+[plugins.forgit]
+github = "wfxr/forgit"
+apply = ["defer"]
+
+[plugins.forepos]
+github = "wfxr/forepos"
+apply = ["defer"]
+
+[plugins.epoch-cli]
+github = "wfxr/epoch-cli"
+apply = ["defer"]
+
+[plugins.ohmyzsh-plugins]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins"
+use = ["git-extras/*.plugin.zsh"]
+apply = ["defer"]
+
+[plugins.zsh-you-should-use]
+github = "MichaelAquilina/zsh-you-should-use"
+apply = ["defer"]
+
+[plugins.compinit]
+inline = '''
+autoload -Uz compinit
+# once a day
+for dump in ~/.zcompdump(N.mh+24); do
+    compinit; return
+done
+compinit -C
+'''

@@ -14,6 +14,8 @@ ln -sf "$SDIR/zsh_custom"    ~/.zsh_custom
 ln -sf "$SDIR/zsh_fzf_extra" ~/.zsh_fzf_extra
 ln -sf "$SDIR/zsh_secret"    ~/.zsh_secret
 
+rm -f ~/.config/sheldon && ln -snf "$SDIR/sheldon" ~/.config/sheldon
+
 hash starship &>/dev/null || warn "starship (shell theme) not installed."
 
 [[ "$SHELL" =~ "zsh" ]] || chsh -s "$(command -v zsh)"

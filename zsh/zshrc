@@ -1,10 +1,10 @@
 # zmodload zsh/zprof
 bindkey -e # should be on top!
 
-if ! (( $+commands[sheldon] )); then
+(( $+commands[sheldon] )) || {
     curl --proto '=https' -fLsS https://rossmacarthur.github.io/install/crate.sh |
         bash -s -- --repo rossmacarthur/sheldon --to ~/bin
-fi
+}
 
 if [[ $OSTYPE =~ darwin ]]; then
     # Make sure homebrew has higher priority
