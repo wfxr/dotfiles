@@ -15,12 +15,13 @@ ln -sf "$SDIR/zsh_fzf_extra" ~/.zsh_fzf_extra
 ln -sf "$SDIR/zsh_secret"    ~/.zsh_secret
 
 rm -f ~/.config/sheldon && ln -snf "$SDIR/sheldon" ~/.config/sheldon
+ln -sf "$SDIR/starship.toml" ~/.config/starship.toml
 
 hash starship &>/dev/null || warn "starship (shell theme) not installed."
 
 [[ "$SHELL" =~ "zsh" ]] || chsh -s "$(command -v zsh)"
 
-DISABLE_ZSH_DEFER=true zsh -ic 'exit'
+zsh -ic 'exit'
 
 # zsh source order:
 # https://medium.com/@rajsek/zsh-bash-startup-files-loading-order-bashrc-zshrc-etc-e30045652f2e
