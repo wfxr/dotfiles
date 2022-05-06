@@ -25,7 +25,13 @@ function config.nvim_treesitter()
             "vue",
             "css",
         },
-        highlight = { enable = true, disable = { "vim" } },
+        highlight = {
+            enable = true,
+            disable = {
+                "vim",
+                "rust", -- will cause code snippets in documents not highlighted
+            }
+        },
         textobjects = {
             select = {
                 enable = true,
@@ -66,7 +72,6 @@ function config.nvim_treesitter()
         matchup = { enable = true },
     })
     require("nvim-treesitter.install").prefer_git = true
-    local parsers = require("nvim-treesitter.parsers").get_parser_configs()
 end
 
 function config.matchup()
