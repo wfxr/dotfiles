@@ -21,6 +21,7 @@ function setup_env() {
 
     # export PATH everywhere takes too long time
     export PATH="$HOME/bin:$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin:/usr/bin:/usr/games:/usr/local/games:/bin:/sbin"
+    [[ $OSTYPE =~ darwin ]] && export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
     local _PATH="$PATH"
 
     # True color
@@ -114,8 +115,6 @@ function setup_env() {
         done
         export KUBECONFIG
     }
-
-    [[ $OSTYPE =~ darwin ]] && export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
 }
 
 setup_history() {

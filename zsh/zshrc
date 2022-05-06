@@ -1,207 +1,36 @@
-#!/usr/bin/env zsh
 # zmodload zsh/zprof
 bindkey -e # should be on top!
 
-# Make sure homebrew has higher priority
-[[ $OSTYPE =~ darwin ]] && export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
+if ! (( $+commands[sheldon] )); then
+    curl --proto '=https' -fLsS https://rossmacarthur.github.io/install/crate.sh |
+        bash -s -- --repo rossmacarthur/sheldon --to ~/bin
+fi
+
+if [[ $OSTYPE =~ darwin ]]; then
+    # Make sure homebrew has higher priority
+    export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
+fi
 
 # theme
 source <(starship init zsh) || warn "failed loading starship."
 
-##### plugin manager {{{ #####
-[ -d ~/.zinit/bin ] || {
-    mkdir -p ~/.zinit
-    git clone --depth=1 https://github.com/zdharma-continuum/zinit.git ~/.zinit/bin || exit 1
-}
-source ~/.zinit/bin/zinit.zsh
+# You Should Use
+export YSU_MODE=ALL
 
-zi ice depth='1'; zi light 'romkatv/zsh-defer'
-##### }}} #####
+# forgit config
+export FORGIT_FZF_DEFAULT_OPTS="--preview-window='right:60%:nohidden'"
+export FORGIT_LOG_FZF_OPTS="--height '95%'"
 
-##### utils {{{ #####
-# simple colored logger
-function info() { printf "$(date -Is) %b[info]%b %s\n" '\e[0;32m\033[1m' '\e[0m' "$*" >&2; }
-function warn() { printf "$(date -Is) %b[warn]%b %s\n" '\e[0;33m\033[1m' '\e[0m' "$*" >&2; }
-function erro() { printf "$(date -Is) %b[erro]%b %s\n" '\e[0;31m\033[1m' '\e[0m' "$*" >&2; }
+# autosuggest config
+export ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=(forward-word forward-char)
+export ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(end-of-line)
 
-function synchronized() {
-    local lock="$1" handler="$2" fallback="$3"
-    [ -e "$lock" ] && kill -0 "$(command cat "$lock" 2>/dev/null)" && return 1
+source ~/.zsh_misc
+source ~/.zsh_aliases
+[ -f ~/.zsh_local  ] && source ~/.zsh_local
+[ -f ~/.zsh_secret ] && source ~/.zsh_secret 2>/dev/null # maybe locked
+source ~/.zsh_custom
+source ~/.zsh_fzf_extra
 
-    trap "command rm -f $lock" INT TERM EXIT
-    mkdir -p "${lock%/*}" && echo $$ > "$lock"
-
-    eval "$handler"
-
-    command rm -f "$lock"
-}
-
-# cache directory for zinit
-ZINIT_CACHE="/tmp/zinit::cache/$UID"
-function zi::cache() {
-    local srcgen="$1" dest="$ZINIT_CACHE/${2:-$1}.zi::cache" lock="$ZINIT_CACHE/lock"
-    local handler="
-        [ -f '$dest' ] && return # double check
-        eval '$srcgen' > '$dest'
-        zcompile '$dest'
-    "
-    if [ ! -f "$dest" ]; then
-        if ! synchronized "$lock" "$handler"; then
-            source <($rc_gen_cmd) && return
-        fi
-    fi
-    source "$dest"
-}
-function zi::cache::cmd()   { zi::cache "$1"                      }
-function zi::cache::file()  { zi::cache "< $1" "$(basename "$1")" }
-function zi::cache::clean() { rm -rf "$ZINIT_CACHE" ~/.zcompdump* }
-
-# zi::link <from> [dest]
-function zi::link() {
-    mkdir -p ~/bin
-    local src="$1"; local dest="$src"
-    [ $# -eq 2 ] && dest="$2"
-    ln -sf "$(pwd)/$src" "$HOME/bin/$dest"
-    info "link built: ~/bin/$dest -> $(pwd)/$src"
-}
-function zi::ghr() {
-    zi ice nocompile as='null' from='gh-r' atclone="zi::link $2 $3" atpull='%atclone'
-    zi light "$1"
-}
-##### }}} utils #####
-
-__defer_source__() {
-    if [[ -f ~/.fzf.zsh ]]; then
-        source ~/.fzf.zsh
-    else
-        [ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
-        [ -f /usr/share/fzf/completion.zsh   ] && source /usr/share/fzf/completion.zsh
-    fi
-    [ -f ~/.zsh_fzf_extra ] && source ~/.zsh_fzf_extra
-
-    ##### program plugins {{{ #####
-    zi light-mode as='null' cloneonly depth='1' nocompile for                                                   \
-        atclone='zi::link iconful.sh iconful'                                                                   \
-            'wfxr/iconful'                                                                                      \
-        atclone='zi::link b'                                                                                    \
-            'wfxr/fzf-chrome-marks'                                                                             \
-        atclone='zi::link diff-so-fancy && git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"' \
-            'so-fancy/diff-so-fancy'                                                                            \
-        atclone="zi::link httpstat.py httpstat"                                                                 \
-            'reorx/httpstat'                                                                                    \
-        atclone="zi::link pushover-cli pushover"                                                                \
-            'wfxr/pushover-cli'                                                                                 \
-        ;
-
-    # EMOJI_CLI_KEYBIND='^[m'
-    # zi light-mode as='null' cloneonly depth='1' for                       \
-    #     atclone='zi::link emojify; zi::link fuzzy-emoji' multisrc='*.zsh' \
-    #         'wfxr/emoji-cli'                                              \
-    #     ;
-
-    (( $+commands[jq]        )) || zi::ghr 'stedolan/jq'        'jq*'         'jq'
-    (( $+commands[exa]       )) || zi::ghr 'ogham/exa'          'exa*'        'exa'
-    (( $+commands[assh]      )) || zi::ghr 'moul/assh'          'assh*'       'assh'
-    (( $+commands[fd]        )) || zi::ghr 'sharkdp/fd'         '*/fd'        'fd'
-    (( $+commands[bat]       )) || zi::ghr 'sharkdp/bat'        '*/bat'       'bat'
-    (( $+commands[hyperfine] )) || zi::ghr 'sharkdp/hyperfine'  '*/hyperfine' 'hyperfine'
-    (( $+commands[rg]        )) || zi::ghr 'BurntSushi/ripgrep' '*/rg'        'rg'
-    (( $+commands[mmv]       )) || zi::ghr 'itchyny/mmv'        '*/mmv'       'mmv'
-    [  $DEV_KOTLIN           ]  && zi::ghr 'pinterest/ktlint'   'ktlint'      'ktlint'
-    ##### }}} program plugins #####
-
-    ##### general plugins {{{ #####
-    # forgit should be loaded after .zsh_fzf_extra to read fzf's env
-    export FORGIT_FZF_DEFAULT_OPTS="--preview-window='right:60%:nohidden'"
-    export FORGIT_LOG_FZF_OPTS="--height '95%'"
-    export ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=(forward-word forward-char)
-    export ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(end-of-line)
-    zi light-mode lucid depth='1' for          \
-        atload='_zsh_autosuggest_start'        \
-            'zsh-users/zsh-autosuggestions'    \
-        blockf                                 \
-            'zsh-users/zsh-completions'        \
-            'zdharma/fast-syntax-highlighting' \
-            'hlissner/zsh-autopair'            \
-            'wfxr/forgit'                      \
-            'wfxr/forepos'                     \
-            'wfxr/epoch-cli'                   \
-            'wfxr/formarks'                    \
-            'soimort/translate-shell'          \
-            'RobSis/zsh-completion-generator'  \
-            ;
-    ##### }}} general plugins #####
-
-    ##### snippet plugins {{{ #####
-    OMZ=~/.zinit/plugins/ohmyzsh---ohmyzsh/plugins
-    zi ice as='null' cloneonly depth='1' nocompile; zi light 'ohmyzsh/ohmyzsh'
-    zi snippet "$OMZ/git-extras/git-extras.plugin.zsh"
-    zi snippet "$OMZ/git-flow-avh/git-flow-avh.plugin.zsh"
-    zi snippet "$OMZ/mvn/mvn.plugin.zsh"
-    zi snippet "$OMZ/colored-man-pages/colored-man-pages.plugin.zsh"
-    zi ice as='completion'; zi snippet "$OMZ/docker/_docker"
-    zi ice as='completion'; zi snippet "$OMZ/gem/_gem"
-    zi ice as='completion'; zi snippet "$OMZ/lein/_lein"
-    ##### }}} snippet plugins #####
-
-    ##### other rcs {{{ #####
-    source ~/.zsh_misc
-    source ~/.zsh_aliases
-    [ -f ~/.zsh_local  ] && source ~/.zsh_local
-    [ -f ~/.zsh_secret ] && source ~/.zsh_secret 2>/dev/null # maybe locked
-    source ~/.zsh_custom
-    ##### }}} other rcs #####
-
-    ##### compinit {{{ #####
-    # https://gist.github.com/ctechols/ca1035271ad134841284
-    custom_compinit() {
-        autoload -Uz compinit
-        # once a day
-        for dump in ~/.zcompdump(N.mh+24); do
-            compinit; zpcdreplay; return
-        done
-        compinit -C; zpcdreplay
-    }; custom_compinit
-    unset -f custom_compinit
-    ##### }}} compinit #####
-
-    ##### completions {{{ #####
-    export ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=(forward-word forward-char)
-    export ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(end-of-line)
-    zi light-mode lucid depth='1' for          \
-        atload='_zsh_autosuggest_start'        \
-            'zsh-users/zsh-autosuggestions'    \
-        blockf                                 \
-            'zdharma/fast-syntax-highlighting' \
-    ##### }}} completions #####
-
-    ##### dynamic generated {{{ #####
-    [ $DEV_TRAVIS ] && zi::cache::file '~/.travis/travis.sh'
-    [ $DEV_NODE   ] && zi::cache::cmd  'nodenv init - zsh'
-    [ $DEV_RUBY   ] && zi::cache::cmd  'rbenv init - zsh'
-    [ $DEV_PYTHON ] && zi::cache::cmd  'pyenv init - zsh'
-    [ $DEV_PYTHON ] && zi::cache::cmd  'pip completion --zsh' # fucking slow. cache it!
-    [ $DEV_PYTHON ] && zi::cache::cmd  '_PIPENV_COMPLETE=zsh_source pipenv' # fucking slow. cache it!
-    (( $+commands[kubectl]  )) && zi::cache::cmd 'kubectl  completion zsh'
-    (( $+commands[minikube] )) && zi::cache::cmd 'minikube completion zsh'
-    (( $+commands[zoxide] )) && eval "$(zoxide init zsh --cmd j)"
-
-    # (( $+commands[broot] )) && zi::cache::cmd 'broot --print-shell-function zsh'
-    (( $+commands[gh] )) && zi::cache::cmd 'gh completion --shell zsh'
-
-    export GENCOMPL_FPATH="$CUSTOM_FPATH"
-    # Now fzf in arch package has completion included
-    # [ -f "$GENCOMPL_FPATH/_fzf" ] || gencomp fzf
-    ##### }}} dynamic generated  #####
-}
-
-# for bench or install zsh plugins first time
-if [ "$DISABLE_ZSH_DEFER" = true ]; then
-    __defer_source__
-else
-    zsh-defer -a -c __defer_source__
-fi
-
-# zprof
-
-# vim: foldmethod=marker foldenable nowrap:
+# Source all the plugins ✨
+eval "$(sheldon source)"
