@@ -112,7 +112,14 @@ editor["akinsho/toggleterm.nvim"] = {
     event = "BufRead",
     config = conf.toggleterm,
 }
-editor["numtostr/FTerm.nvim"] = { opt = true, event = "BufRead" }
+editor["numtostr/FTerm.nvim"] = {
+    opt = false,
+    config = function ()
+        require("FTerm").setup({
+            border = { "┏", "─", "┓", "│", "┛", "─", "┗", "│" },
+        })
+    end
+}
 editor["norcalli/nvim-colorizer.lua"] = {
     opt = true,
     event = "BufRead",

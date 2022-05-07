@@ -4,8 +4,6 @@ local conf = require("modules.ui.config")
 ui["sainnhe/gruvbox-material"] = {
     opt = false,
     config = function()
-        vim.cmd [[
-        ]]
         vim.g.gruvbox_material_enable_bold = 1
         vim.g.gruvbox_material_enable_italic = 1
         vim.g.gruvbox_material_visual = 'green background'
@@ -13,7 +11,10 @@ ui["sainnhe/gruvbox-material"] = {
         vim.g.gruvbox_material_palette = 'material'
         vim.g.gruvbox_material_better_performance = 1
         vim.opt.background = 'dark'
-        vim.cmd 'colorscheme gruvbox-material'
+        vim.cmd [[
+            colorscheme gruvbox-material
+            highlight FloatBorder guibg=NONE ctermbg=NONE
+        ]]
     end
 }
 ui["kyazdani42/nvim-web-devicons"] = { opt = false }
