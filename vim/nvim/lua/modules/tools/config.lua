@@ -6,16 +6,23 @@ function config.telescope()
     vim.cmd([[packadd telescope-project.nvim]])
     vim.cmd([[packadd telescope-frecency.nvim]])
     vim.cmd([[packadd telescope-zoxide]])
+    vim.cmd([[packadd telescope-ui-select.nvim]])
 
-    require("telescope").setup({
+    local telescope = require("telescope")
+    telescope.setup({
         defaults = {
             initial_mode = "insert",
+            mappings = {
+                i = {
+                    ["<esc>"] = require('telescope.actions').close,
+                    ["<c-[>"] = require('telescope.actions').close,
+                }
+            },
             prompt_prefix = " ❯ ",
             selection_caret = " ",
             entry_prefix = " ",
             scroll_strategy = "cycle",
             results_title = false,
-            -- borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
             borderchars = { "─", "│", "─", "│", "┏", "┓", "┛", "┗" },
             layout_strategy = "horizontal",
             path_display = { "absolute" },
@@ -33,6 +40,15 @@ function config.telescope()
             generic_sorter   = require("telescope.sorters").get_generic_fuzzy_sorter,
         },
         extensions = {
+            ["ui-select"] = {
+                require("telescope.themes").get_cursor {
+                    borderchars = {
+                        prompt  = {'─', '│', ' ', '│', '┏', '┓', '│', '│'},
+                        results = {'─', '│', '─', '│', '┣', '┫', '┛', '┗'},
+                        preview = {'─', '│', '─', '│', '┏', '┓', '┛', '┗'},
+                    },
+                }
+            },
             fzf = {
                 fuzzy = false,
                 override_generic_sorter = true,
@@ -47,10 +63,18 @@ function config.telescope()
         },
     })
 
-    require("telescope").load_extension("fzf")
-    require("telescope").load_extension("project")
-    require("telescope").load_extension("zoxide")
-    require("telescope").load_extension("frecency")
+    vim.lsp.handlers["textDocument/references"]     = require("telescope.builtin").lsp_references
+    vim.lsp.handlers["textDocument/typeDefinition"] = require("telescope.builtin").lsp_type_definitions
+    vim.lsp.handlers["textDocument/definition"]     = require("telescope.builtin").lsp_definitions
+    vim.lsp.handlers["textDocument/implementation"] = require("telescope.builtin").lsp_implementations
+    vim.lsp.handlers["workspace/symbol"]            = require("telescope.builtin").lsp_workspace_symbols
+    vim.lsp.handlers["textDocument/documentSymbol"] = require("telescope.builtin").lsp_document_symbols
+
+    telescope.load_extension("fzf")
+    telescope.load_extension("project")
+    telescope.load_extension("zoxide")
+    telescope.load_extension("frecency")
+    telescope.load_extension("ui-select")
 end
 
 function config.trouble()
@@ -94,7 +118,7 @@ function config.trouble()
             error = "••", -- 
             warning = "•", --
             hint = "", -- 
-            information = "",
+            information = "כֿ", --     כֿ 
             other = "﫠",
         },
         use_lsp_diagnostic_signs = false, -- enabling this will use the signs defined in your lsp client

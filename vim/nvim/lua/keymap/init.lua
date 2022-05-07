@@ -14,9 +14,14 @@ function show_documentation()
         require('crates').show_popup()
     else
         vim.cmd('Lspsaga hover_doc')
-        -- vim.lsp.buf.hover()
     end
 end
+
+project_files = function()
+  local ok = pcall(require"telescope.builtin".git_files)
+  if not ok then require"telescope.builtin".find_files() end
+end
+
 
 local plug_map = {
     -- Lualine
@@ -46,9 +51,8 @@ local plug_map = {
     ["n|K"]          = map_cr("lua show_documentation()"):with_noremap():with_silent(),
     ["n|<C-b>"]      = map_cr("lua require('lspsaga.action').smart_scroll_with_saga(-1)"):with_noremap():with_silent(),
     ["n|<C-f>"]      = map_cr("lua require('lspsaga.action').smart_scroll_with_saga(1)"):with_noremap():with_silent(),
-    ["n|<A-Enter>"]  = map_cr("Lspsaga code_action"):with_noremap():with_silent(),
-    ["v|<A-Enter>"]  = map_cu("Lspsaga range_code_action"):with_noremap():with_silent(),
-    ["n|gd"]         = map_cr("Lspsaga preview_definition"):with_noremap():with_silent(),
+    ["n|<A-Enter>"]  = map_cr("lua vim.lsp.buf.code_action()"):with_noremap():with_silent(),
+    ["v|<A-Enter>"]  = map_cu("lua vim.lsp.buf.range_code_action()"):with_noremap():with_silent(),
     ["n|gu"]         = map_cr("lua vim.lsp.buf.references()"):with_noremap():with_silent(),
     ["n|<Enter>"]    = map_cr("lua vim.lsp.buf.definition()"):with_noremap():with_silent(),
     ["n|<C-\\>"]     = map_cu('lua require("FTerm").toggle()'):with_noremap():with_silent(),
@@ -83,7 +87,7 @@ local plug_map = {
     ["n|<Leader>u"] = map_cr("UndotreeToggle"):with_noremap():with_silent(),
 
     -- Plugin Telescope
-    ["n|<A-f>"]      = map_cu("Telescope find_files"):with_noremap():with_silent(),
+    ["n|<A-f>"]      = map_cu("lua project_files()"):with_noremap():with_silent(),
     ["n|<A-b>"]      = map_cu("Telescope buffers"):with_noremap():with_silent(),
     ["n|<A-g>"]      = map_cu("Telescope live_grep"):with_noremap():with_silent(),
     ["n|<Leader>fp"] = map_cu("lua require('telescope').extensions.project.project{}"):with_noremap():with_silent(),

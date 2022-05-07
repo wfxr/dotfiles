@@ -4,14 +4,15 @@ local conf = require("modules.tools.config")
 tools["RishabhRD/popfix"] = { opt = false }
 tools["nvim-lua/plenary.nvim"] = { opt = false }
 tools["nvim-telescope/telescope.nvim"] = {
-    opt = true,
-    module = "telescope",
-    cmd = "Telescope",
     config = conf.telescope,
     requires = {
         { "nvim-lua/plenary.nvim", opt = false },
         { "nvim-lua/popup.nvim", opt = true },
     },
+}
+tools["nvim-telescope/telescope-ui-select.nvim"] = {
+    opt = true,
+    after = "telescope.nvim",
 }
 tools["nvim-telescope/telescope-fzf-native.nvim"] = {
     opt = true,

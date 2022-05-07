@@ -13,14 +13,14 @@ completion["creativenull/efmls-configs-nvim"] = {
 completion["williamboman/nvim-lsp-installer"] = {
     opt = false,
 }
-completion["RishabhRD/nvim-lsputils"] = {
-    opt = true,
-    after = "nvim-lspconfig",
-    config = conf.nvim_lsputils,
-}
 completion["tami5/lspsaga.nvim"] = {
     opt = true,
     after = "nvim-lspconfig",
+    config = function ()
+        require("lspsaga").init_lsp_saga({
+            rename_prompt_prefix = '❯'
+        })
+    end
 }
 completion["stevearc/aerial.nvim"] = {
     opt = true,

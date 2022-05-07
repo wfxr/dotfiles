@@ -17,7 +17,7 @@ saga.init_lsp_saga({
     error_sign = "••", -- 
     warn_sign = "•", -- 
     hint_sign = "", -- 
-    infor_sign = "",
+    infor_sign = "", --     כֿ 
     code_action_prompt = {
         enable = false,
         sign = false,
