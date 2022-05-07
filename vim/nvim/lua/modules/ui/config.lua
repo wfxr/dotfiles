@@ -1,15 +1,6 @@
 local config = {}
 
 function config.lualine()
-    local gps = require("nvim-gps")
-
-    local function gps_content()
-        if gps.is_available() then
-            return gps.get_location()
-        else
-            return ""
-        end
-    end
     local mini_sections = {
         lualine_a = {},
         lualine_b = {},
@@ -66,10 +57,7 @@ function config.lualine()
         sections = {
             lualine_a = { "mode" },
             lualine_b = { { "branch" }, { "diff" } },
-            lualine_c = {
-                { "lsp_progress" },
-                { gps_content, cond = gps.is_available },
-            },
+            lualine_c = {},
             lualine_x = {
                 {
                     "diagnostics",
@@ -135,28 +123,6 @@ function config.lualine()
             dapui_stacks,
             dapui_watches,
         },
-    })
-end
-
-function config.nvim_gps()
-    require("nvim-gps").setup({
-        icons = {
-            ["class-name"] = " ", -- Classes and class-like objects
-            ["function-name"] = " ", -- Functions
-            ["method-name"] = " ", -- Methods (functions inside class-like objects)
-        },
-        languages = {
-            -- You can disable any language individually here
-            ["c"] = true,
-            ["cpp"] = true,
-            ["go"] = true,
-            ["java"] = true,
-            ["javascript"] = true,
-            ["lua"] = true,
-            ["python"] = true,
-            ["rust"] = true,
-        },
-        separator = " > ",
     })
 end
 

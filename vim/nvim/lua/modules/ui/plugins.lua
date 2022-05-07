@@ -18,16 +18,18 @@ ui["sainnhe/gruvbox-material"] = {
 }
 ui["kyazdani42/nvim-web-devicons"] = { opt = false }
 ui["hoob3rt/lualine.nvim"] = {
-    opt = true,
-    after = "lualine-lsp-progress",
+    opt = false,
     config = conf.lualine,
 }
-ui["SmiteshP/nvim-gps"] = {
+ui["j-hui/fidget.nvim"] = {
     opt = true,
-    after = "nvim-treesitter",
-    config = conf.nvim_gps,
+    after = "nvim-lspconfig",
+    config = function ()
+        require('fidget').setup {
+            text = { spinner = 'moon' },
+        }
+    end
 }
-ui["arkav/lualine-lsp-progress"] = { opt = true, after = "nvim-gps" }
 ui["glepnir/dashboard-nvim"] = { opt = true, event = "BufWinEnter" }
 ui["kyazdani42/nvim-tree.lua"] = {
     opt = true,
