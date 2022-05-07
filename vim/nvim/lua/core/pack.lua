@@ -1,5 +1,4 @@
 local fn, uv, api = vim.fn, vim.loop, vim.api
-local is_mac = require("core.global").is_mac
 local vim_path = require("core.global").vim_path
 local data_dir = require("core.global").data_dir
 local modules_dir = vim_path .. "/lua/modules"
@@ -36,30 +35,19 @@ function Packer:load_packer()
         api.nvim_command("packadd packer.nvim")
         packer = require("packer")
     end
-    if not is_mac then
-        packer.init({
-            compile_path = packer_compiled,
-            git = { clone_timeout = 60 },
-            disable_commands = true,
-            display = {
-                open_fn = function()
-                    return require("packer.util").float({ border = "none" })
-                end,
-            },
-        })
-    else
-        packer.init({
-            compile_path = packer_compiled,
-            git = { clone_timeout = 60 },
-            disable_commands = true,
-            max_jobs = 20,
-            display = {
-                open_fn = function()
-                    return require("packer.util").float({ border = "none" })
-                end,
-            },
-        })
-    end
+    packer.init({
+        ensure_dependencies = true,
+        compile_path = packer_compiled,
+        disable_commands = true,
+        max_jobs = 16,
+        compile_on_sync = true,
+        auto_clean = true,
+        display = {
+            open_fn = function()
+                return require("packer.util").float({ border = "single" })
+            end,
+        },
+    })
     packer.reset()
     local use = packer.use
     self:load_plugins()

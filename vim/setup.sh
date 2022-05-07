@@ -11,7 +11,7 @@ install_python_support() {
         # For tags
         pip install --upgrade pygments
     else
-        warn "failed: pip not found."
+        warn "pip not found."
     fi
 }
 
@@ -22,8 +22,15 @@ install_configs() {
     ln -sf  "$SDIR/ideavimrc" ~/.ideavimrc
 }
 
+install_plugins() {
+    nvim -c 'autocmd User PackerComplete sleep 1000m | quitall' -c 'PackerSync'
+}
+
 info "install python support..."
 install_python_support
 
 info "install configs..."
 install_configs
+
+info "install plugins..."
+install_plugins
