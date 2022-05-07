@@ -46,14 +46,10 @@ alias pvim='vim -u NONE'
 alias ls='ls --color=auto'
 alias ll='ls --group-directories-first -l'
 alias la='ls --group-directories-first -l --all'
-alias l='ll'
 if (( $+commands[exa] )); then
     alias ls='exa --time-style long-iso'
     alias ll='ls -lgbh --git'
-    alias lg='ll -G'    # List by grid
-    alias llg='ll -G'
     alias la='ll -a'
-    alias lag='llg -a'
     alias ldot='ll -d .*'
     alias lss='ll -s size'
     alias lst='ll -s modified'
@@ -73,10 +69,6 @@ alias vi2='vim -O2'
 alias vw=gvim
 alias em='emacsclient -t'
 alias ew='emacsclient -c -a emacs'
-
-alias gv='vim +GV +"autocmd BufWipeout <buffer> qall"'
-
-alias f='fzf -m'
 
 # copy alias
 alias pc='pbcopy'
