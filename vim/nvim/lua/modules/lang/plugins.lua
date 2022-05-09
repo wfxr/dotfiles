@@ -29,4 +29,8 @@ lang["iamcco/markdown-preview.nvim"] = {
     run = "cd app && yarn install",
 }
 lang["chrisbra/csv.vim"] = { opt = true, ft = "csv" }
+lang["solarnz/thrift.vim"] = {
+    opt = true,
+    ft = "thrift",
+}
 return lang
