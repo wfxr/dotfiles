@@ -1,29 +1,12 @@
 #!/usr/bin/env zsh
 unalias mv rm cd mkdir 2>/dev/null;
 
-# alias agall='ag --silent --hidden -g ""'
-# alias agdot='ag --silent --hidden -g ".[^/]+"'
-
 alias sudo='sudo ' #可以使sudo支持alias
 alias usudo='sudo -E -s '
 
 alias dot='cd ~/dotfiles'
 alias tmp='cd /tmp'
 
-# Docker alias
-# alias dps='docker ps'
-# alias dpsa='dps -a'
-# alias drun='docker run'
-# alias drm='docker rm'
-# alias drmi='docker rmi'
-# alias da='docker attach'
-# alias dim='docker images'
-# alias dp='docker pull'
-# alias dstop='docker stop'
-# alias dstart='docker start'
-# alias dexec='docker exec'
-# alias ds='docker service'
-# alias dm='docker-machine'
 alias mks='tmux kill-session -t'
 alias mkS='tmux kill-server'
 (( $+commands[ptpython] )) && alias ipython=ptipython
@@ -34,8 +17,6 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
-alias cd.='cd ..'
-alias cd..='cd ..'
 alias cdr='cd "$(git rev-parse --show-toplevel)"'
 (( $+commands[tac]  )) || alias tac='tail -r'
 (( $+commands[nvim] )) && alias vim='nvim'
@@ -55,14 +36,6 @@ if (( $+commands[exa] )); then
     alias lst='ll -s modified'
     alias tree='ls --tree'
 fi
-# if (( $+commands[lsd] )); then
-    # alias ls='lsd --icon=never'
-    # alias ll='lsd -l'
-    # alias la='ll -a'
-    # alias lss='ll -S -r'
-    # alias lst='ll -t -r --date=relative'
-    # alias tree='lsd --tree'
-# fi
 alias vv='vim $(fzf)'
 alias vi=vim
 alias vi2='vim -O2'
@@ -73,16 +46,9 @@ alias ew='emacsclient -c -a emacs'
 # copy alias
 alias pc='pbcopy'
 alias pp='pbpaste'
-# alias pcurl='pp | xargs curl -s '
-# alias pget='pp | xargs wget'
-# alias pclone='pp | xargs git clone'
-# alias peval='pp | bash'
 
 alias tn='tmux new-session -s'
 alias tl='tmux list-sessions'
-# alias mux=tmuxinator
-# alias daily='tmuxinator daily'
-
 alias weather='curl wttr.in'
 
 # Archlinux
