@@ -293,21 +293,17 @@ function config.cmp()
             ["<Tab>"] = cmp.mapping.confirm({ select = true }),
             -- ["<C-d>"] = cmp.mapping.scroll_docs(-4),
             -- ["<C-f>"] = cmp.mapping.scroll_docs(4),
-            ["<C-n>"] = cmp.mapping(function(fallback)
+            ["<C-j>"] = cmp.mapping(function(fallback)
                 local luasnip = require("luasnip")
-                if cmp.visible() then
-                    cmp.select_next_item()
-                elseif require("luasnip").jumpable(1) then
+                if luasnip.jumpable(1) then
                     luasnip.jump(1)
                 else
                     fallback()
                 end
             end, { "i", "s" }),
-            ["<C-p>"] = cmp.mapping(function(fallback)
+            ["<C-k>"] = cmp.mapping(function(fallback)
                 local luasnip = require("luasnip")
-                if cmp.visible() then
-                    cmp.select_prev_item()
-                elseif luasnip.jumpable(-1) then
+                if luasnip.jumpable(-1) then
                     luasnip.jump(-1)
                 else
                     fallback()
