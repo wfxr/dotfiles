@@ -73,17 +73,4 @@ function config.rust_tools()
     require("rust-tools").setup(opts)
 end
 
-function config.lang_go()
-    vim.g.go_doc_keywordprg_enabled = false
-    vim.g.go_def_mapping_enabled = false
-    vim.wo.list = false
-end
-
--- function config.lang_org()
---     require("orgmode").setup({
---         org_agenda_files = {"~/Sync/org/*"},
---         org_default_notes_file = "~/Sync/org/refile.org"
---     })
--- end
-
 return config
