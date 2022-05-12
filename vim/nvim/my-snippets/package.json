@@ -8,6 +8,10 @@
       {
         "language": ["zsh"],
         "path": "./snippets/zsh.json"
+      },
+      {
+        "language": ["sh"],
+        "path": "./snippets/sh.json"
       }
     ]
   }

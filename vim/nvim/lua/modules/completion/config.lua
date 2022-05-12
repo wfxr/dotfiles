@@ -244,30 +244,30 @@ function config.cmp()
         formatting = {
             format = function(entry, vim_item)
                 local lspkind_icons = {
-                    Text = "",
-                    Method = "",
-                    Function = "",
-                    Constructor = "",
-                    Field = "",
-                    Variable = "",
-                    Class = "ﴯ",
-                    Interface = "",
-                    Module = "",
-                    Property = "ﰠ",
-                    Unit = "",
-                    Value = "",
-                    Enum = "",
-                    Keyword = "",
-                    Snippet = "",
-                    Color = "",
-                    File = "",
-                    Reference = "",
-                    Folder = "",
-                    EnumMember = "",
-                    Constant = "",
-                    Struct = "",
-                    Event = "",
-                    Operator = "",
+                    Text          = "",
+                    Method        = "",
+                    Function      = "",
+                    Constructor   = "",
+                    Field         = "",
+                    Variable      = "",
+                    Class         = "ﴯ",
+                    Interface     = "",
+                    Module        = "",
+                    Property      = "ﰠ",
+                    Unit          = "",
+                    Value         = "",
+                    Enum          = "",
+                    Keyword       = "",
+                    Snippet       = "",
+                    Color         = "",
+                    File          = "",
+                    Reference     = "",
+                    Folder        = "",
+                    EnumMember    = "",
+                    Constant      = "",
+                    Struct        = "",
+                    Event         = "",
+                    Operator      = "",
                     TypeParameter = "",
                 }
                 -- load lspkind icons
@@ -293,12 +293,10 @@ function config.cmp()
             ["<Tab>"] = cmp.mapping.confirm({ select = true }),
             -- ["<C-d>"] = cmp.mapping.scroll_docs(-4),
             -- ["<C-f>"] = cmp.mapping.scroll_docs(4),
-            ["<C-j>"] = cmp.mapping(function(fallback)
+            ["<C-j>"] = cmp.mapping(function()
                 local luasnip = require("luasnip")
-                if luasnip.jumpable(1) then
-                    luasnip.jump(1)
-                else
-                    fallback()
+                if luasnip.expand_or_jumpable() then
+                    luasnip.expand_or_jump()
                 end
             end, { "i", "s" }),
             ["<C-k>"] = cmp.mapping(function(fallback)
@@ -332,10 +330,21 @@ function config.cmp()
 end
 
 function config.luasnip()
-    require("luasnip").config.set_config({
+    local luasnip = require("luasnip")
+    luasnip.config.set_config({
+        -- This tells LuaSnip to remember to keep around the last sniptpet.
+        -- You can jump back into it even if you move outside of the selection
         history = true,
+
+        -- This one is cool cause if you have dynamic snippets, it updates as you type!
         updateevents = "TextChanged,TextChangedI",
+        enable_autosnippets = true,
     })
+    vim.keymap.set("i", "<c-l>", function ()
+        if luasnip.choice_active() then
+            luasnip.change_choice(1)
+        end
+    end)
     require("luasnip/loaders/from_vscode").lazy_load()
     require("luasnip/loaders/from_vscode").lazy_load({
         paths = { "./my-snippets" }
