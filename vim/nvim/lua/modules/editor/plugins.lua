@@ -60,11 +60,6 @@ editor["nvim-treesitter/nvim-treesitter-textobjects"] = {
     opt = true,
     after = "nvim-treesitter",
 }
-editor["p00f/nvim-ts-rainbow"] = {
-    opt = true,
-    after = "nvim-treesitter",
-    event = "BufRead",
-}
 editor["JoosepAlviste/nvim-ts-context-commentstring"] = {
     opt = true,
     after = "nvim-treesitter",
