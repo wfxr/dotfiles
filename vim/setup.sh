@@ -32,5 +32,5 @@ install_python_support
 info "install configs..."
 install_configs
 
-info "install plugins..."
-install_plugins
+# info "install plugins..."
+# install_plugins
