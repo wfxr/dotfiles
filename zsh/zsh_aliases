@@ -28,7 +28,7 @@ alias ls='ls --color=auto'
 alias ll='ls --group-directories-first -l'
 alias la='ls --group-directories-first -l --all'
 if (( $+commands[exa] )); then
-    alias ls='exa --time-style long-iso'
+    alias ls='exa --time-style long-iso --icons --group-directories-first -m'
     alias ll='ls -lgbh --git'
     alias la='ll -a'
     alias ldot='ll -d .*'
