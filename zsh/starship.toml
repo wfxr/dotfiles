@@ -26,3 +26,6 @@ disabled = false
 
 [package]
 format = '[$symbol$version]($style) '
+
+[container]
+format = "[🐳]($style) "
