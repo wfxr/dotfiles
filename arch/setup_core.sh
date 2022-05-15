@@ -46,19 +46,19 @@ function install_cli_package() {
     paru --noconfirm -S axel
     paru --noconfirm -S shellcheck-static
     # paru --noconfirm -S highlight
-    paru --noconfirm -S jq pv
+    paru --noconfirm -S jq xsv choose
+    paru --noconfirm -S pv
     # paru --noconfirm -S nethogs
     # paru --noconfirm -S global # gtags
     paru --noconfirm -S ctags
-    paru --noconfirm -S duf dua-cli htop dstat
-    # paru --noconfirm -S create_ap # Create AP
+    paru --noconfirm -S duf dust dua-cli
+    paru --noconfirm -S htop dstat bottom procs
     paru --noconfirm -S fd exa bat ripgrep sd
     # paru --noconfirm -S vivid
     paru --noconfirm -S man-pages
     paru --noconfirm -S neofetch
     paru --noconfirm -S rsync
-    # paru --noconfirm -S lightscreen # light weight screenshot tool
-    # paru --noconfirm -S shutter
+    paru --noconfirm -S gping
 
     # crontab
     paru --noconfirm -S cronie
