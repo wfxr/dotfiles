@@ -1,6 +1,7 @@
 FROM archlinux:latest
 
 RUN echo -e '[archlinuxcn]\nServer = https://repo.archlinuxcn.org/$arch' >> /etc/pacman.conf && \
+        ln -snf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
         pacman-key --init && \
         pacman --noconfirm -Sy && \
         pacman --noconfirm -S archlinuxcn-keyring && \
