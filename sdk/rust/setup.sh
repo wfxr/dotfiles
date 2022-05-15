@@ -20,13 +20,11 @@ else
         --default-toolchain nightly || exit 1
 fi
 
-# rustup component add rls-preview rust-analysis rust-src rustfmt-preview
-mkdir -p ~/.zsh_completions
+mkdir -p ~/.config/zsh/completions/
 rustup completions zsh       > ~/.config/zsh/completions/_rustup
 rustup completions zsh cargo > ~/.config/zsh/completions/_cargo
 
-# for checking and applying updates to installed executables
-cargo install --locked cargo-update
+cargo install --locked cargo-update # for checking and applying updates to installed executables
 cargo install --locked cargo-edit
 cargo install --locked cargo-play
 cargo install --locked cargo-expand
