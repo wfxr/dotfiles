@@ -101,7 +101,6 @@ local load_core = function()
     disable_distribution_plugins()
     leader_map()
 
-    pack.ensure_plugins()
     neovide_config()
     dashboard_config()
 

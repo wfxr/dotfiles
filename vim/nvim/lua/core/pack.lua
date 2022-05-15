@@ -39,7 +39,7 @@ function Packer:load_packer()
         ensure_dependencies = true,
         compile_path = packer_compiled,
         disable_commands = true,
-        max_jobs = 16,
+        -- max_jobs = 16, -- https://github.com/wbthomason/packer.nvim/issues/751
         compile_on_sync = true,
         auto_clean = true,
         display = {
@@ -51,23 +51,9 @@ function Packer:load_packer()
     packer.reset()
     local use = packer.use
     self:load_plugins()
-    use({ "wbthomason/packer.nvim", opt = true })
+    use({ "wbthomason/packer.nvim" })
     for _, repo in ipairs(self.repos) do
         use(repo)
-    end
-end
-
-function Packer:init_ensure_plugins()
-    local packer_dir = data_dir .. "pack/packer/opt/packer.nvim"
-    local state = uv.fs_stat(packer_dir)
-    if not state then
-        local cmd = "!git clone https://github.com/wbthomason/packer.nvim " .. packer_dir
-        api.nvim_command(cmd)
-        uv.fs_mkdir(data_dir .. "lua", 511, function()
-            assert("make compile path dir failed")
-        end)
-        self:load_packer()
-        packer.install()
     end
 end
 
@@ -79,10 +65,6 @@ local plugins = setmetatable({}, {
         return packer[key]
     end,
 })
-
-function plugins.ensure_plugins()
-    Packer:init_ensure_plugins()
-end
 
 function plugins.back_compile()
     if vim.fn.filereadable(packer_compiled) == 1 then
