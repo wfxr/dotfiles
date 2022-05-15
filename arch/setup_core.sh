@@ -34,8 +34,8 @@ function setup_package_manager() {
 
 function install_cli_package() {
     paru --noconfirm -S base-devel
-    paru --noconfirm -S git git-crypt libsecret seahorse python-pre-commit
-    paru --noconfirm -S zsh tmux
+    paru --noconfirm -S git git-crypt python-pre-commit
+    paru --noconfirm -S zsh sheldon starship tmux
     paru --noconfirm -S neovim-git
     paru --noconfirm -S openssh
     # paru --noconfirm -S clang
@@ -71,7 +71,7 @@ function install_cli_package() {
     paru --noconfirm -S csview-git
     paru --noconfirm -S code-minimap-git
     paru --noconfirm -S clitrans-git
-    paru --noconfirm -S git-delta-git
+    paru --noconfirm -S git-delta
     paru --noconfirm -S topgrade # upgrade all the things
     paru --noconfirm -S zoxide # z or autojump alternative
 }
