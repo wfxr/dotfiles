@@ -47,8 +47,7 @@ RUN paru --noconfirm -S \
 ADD . /root/dotfiles
 RUN ~/dotfiles/install zsh
 SHELL ["/usr/bin/zsh", "-c"]
-RUN ~/dotfiles/install bin git vim tmux bat fd && \
-        nvim --headless +'LspInstall --sync gopls rust_analyzer bashls' +qall
+RUN ~/dotfiles/install bin git vim tmux bat fd
 
 # rust
 RUN rustup toolchain install nightly --component \

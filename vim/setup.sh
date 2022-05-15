@@ -8,7 +8,8 @@ mkdir -p ~/.config
 ln -snf "$SDIR/nvim"      ~/.config/nvim
 ln -sf  "$SDIR/ideavimrc" ~/.ideavimrc
 
-# install plugin manager
+# install plugins
 mgrdir=~/.local/share/nvim/site/pack/packer/start/packer.nvim
 [ -d $mgrdir ] || git clone --depth 1 https://github.com/wbthomason/packer.nvim $mgrdir
-nvim --headless -c 'autocmd User PackerComplete sleep 1000m | quitall' -c 'PackerSync'
+nvim --headless +'autocmd User PackerComplete sleep 1000m | quitall' +'PackerSync'
+nvim --headless +'LspInstall --sync efm gopls rust_analyzer bashls' +qall
