@@ -52,10 +52,11 @@ RUN ~/dotfiles/install bin git vim tmux bat fd
 RUN rustup toolchain install nightly --component \
         rust-std \
         rustfmt \
-        rust-analyzer-preview \
         clippy
 
 # Post-install
 RUN paru -Sc --noconfirm && \
         rm -rf ~/.cache/* ~/.cargo/git ~/.cargo/registry && \
         mkdir ~/work
+
+WORKDIR /root/work
