@@ -36,4 +36,4 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: wfxr/dotfiles:${{ github.event.inputs.version }}
+          tags: wfxr/dotfiles:${{ github.event.inputs.version || 'latest' }}
