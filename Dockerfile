@@ -24,8 +24,7 @@ RUN paru --noconfirm -S \
         exa \
         bat \
         shellcheck-static \
-        net-tools \
-        dstat
+        net-tools dstat gping
 
 RUN paru --noconfirm -S \
         linux-tools-meta \
@@ -41,8 +40,7 @@ RUN paru --noconfirm -S \
         mmv-go \
         csview-git \
         code-minimap-git \
-        clitrans-git \
-        topgrade
+        clitrans-git
 
 # dotfiles
 ADD . /root/dotfiles
