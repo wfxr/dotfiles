@@ -90,7 +90,6 @@ local plug_map = {
     ["n|<A-f>"]      = map_cu("lua project_files()"):with_noremap():with_silent(),
     ["n|<A-b>"]      = map_cu("Telescope buffers"):with_noremap():with_silent(),
     ["n|<A-g>"]      = map_cu("Telescope live_grep"):with_noremap():with_silent(),
-    ["n|<Leader>fp"] = map_cu("lua require('telescope').extensions.project.project{}"):with_noremap():with_silent(),
     ["n|<Leader>fr"] = map_cu("lua require('telescope').extensions.frecency.frecency{}"):with_noremap():with_silent(),
     ["n|<Leader>fe"] = map_cu("DashboardFindHistory"):with_noremap():with_silent(),
     ["n|<Leader>ff"] = map_cu("DashboardFindFile"):with_noremap():with_silent(),

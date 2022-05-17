@@ -3,7 +3,6 @@ local config = {}
 function config.telescope()
     vim.cmd([[packadd sqlite.lua]])
     vim.cmd([[packadd telescope-fzf-native.nvim]])
-    vim.cmd([[packadd telescope-project.nvim]])
     vim.cmd([[packadd telescope-frecency.nvim]])
     vim.cmd([[packadd telescope-zoxide]])
     vim.cmd([[packadd telescope-ui-select.nvim]])
@@ -71,7 +70,6 @@ function config.telescope()
     vim.lsp.handlers["textDocument/documentSymbol"] = require("telescope.builtin").lsp_document_symbols
 
     telescope.load_extension("fzf")
-    telescope.load_extension("project")
     telescope.load_extension("zoxide")
     telescope.load_extension("frecency")
     telescope.load_extension("ui-select")
