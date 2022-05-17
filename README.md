@@ -1,9 +1,10 @@
-## About
-My dotfiles
+## Gallery
 
-## Screenshot
+![screenshot-1](https://raw.githubusercontent.com/wfxr/i/master/archlinux-1.png)
 
-![screenshot](https://raw.githubusercontent.com/wfxr/i/master/dotfiles.png)
+![screenshot-2](https://raw.githubusercontent.com/wfxr/i/master/archlinux-2.png)
+
+![screenshot-3](https://raw.githubusercontent.com/wfxr/i/master/archlinux-3.png)
 
 ## Usage
 
