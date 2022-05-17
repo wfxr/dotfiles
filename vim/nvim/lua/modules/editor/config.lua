@@ -111,20 +111,6 @@ function config.neoscroll()
     })
 end
 
-function config.auto_session()
-    local opts = {
-        log_level = "info",
-        auto_session_enable_last_session = true,
-        auto_session_root_dir = sessions_dir,
-        auto_session_enabled = true,
-        auto_save_enabled = true,
-        auto_restore_enabled = true,
-        auto_session_suppress_dirs = nil,
-    }
-
-    require("auto-session").setup(opts)
-end
-
 function config.toggleterm()
     require("toggleterm").setup({
         -- size can be a number or function which is passed the current terminal
@@ -320,7 +306,7 @@ function config.tabout()
         tabkey = "<A-l>",
         backwards_tabkey = "<A-h>",
         ignore_beginning = false,
-        act_as_tab = true,
+        act_as_tab = false,
         enable_backward = true,
         completion = true,
         tabouts = {

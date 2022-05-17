@@ -1,7 +1,6 @@
 local editor = {}
 local conf = require("modules.editor.config")
 
-editor['kshenoy/vim-signature']           = {}
 editor['rhysd/clever-f.vim']              = {}
 editor['ivyl/vim-bling']                  = {}
 editor['rhysd/git-messenger.vim']         = {}
@@ -78,7 +77,6 @@ editor["andymass/vim-matchup"] = {
     after = "nvim-treesitter",
     config = conf.matchup,
 }
-editor["hrsh7th/vim-eft"] = { opt = true, event = "BufReadPost" }
 editor["romainl/vim-cool"] = {
     opt = true,
     event = { "CursorMoved", "InsertEnter" },
@@ -120,12 +118,6 @@ editor["norcalli/nvim-colorizer.lua"] = {
     event = "BufRead",
     config = conf.nvim_colorizer,
 }
-editor["rmagatti/auto-session"] = {
-    opt = true,
-    cmd = { "SaveSession", "RestoreSession", "DeleteSession" },
-    config = conf.auto_session,
-}
-editor["jdhao/better-escape.vim"] = { opt = true, event = "InsertEnter" }
 editor["rcarriga/nvim-dap-ui"] = {
     opt = false,
     config = conf.dapui,
@@ -141,10 +133,6 @@ editor["rcarriga/nvim-dap-ui"] = {
     },
 }
 editor["tpope/vim-fugitive"] = { opt = true, cmd = { "Git", "G" } }
-editor["famiu/bufdelete.nvim"] = {
-    opt = true,
-    cmd = { "Bdelete", "Bwipeout", "Bdelete!", "Bwipeout!" },
-}
 editor["abecodes/tabout.nvim"] = {
     opt = true,
     event = "InsertEnter",

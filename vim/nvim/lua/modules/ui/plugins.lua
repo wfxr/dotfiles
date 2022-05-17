@@ -44,8 +44,7 @@ ui["lewis6991/gitsigns.nvim"] = {
     requires = { "nvim-lua/plenary.nvim", opt = true },
 }
 ui["lukas-reineke/indent-blankline.nvim"] = {
-    opt = true,
-    event = "BufRead",
+    opt = false,
     config = conf.indent_blankline,
 }
 ui["petertriho/nvim-scrollbar"] = {
