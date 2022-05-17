@@ -179,6 +179,20 @@ function config.nvim_tree()
             relativenumber = false,
             signcolumn = "yes",
             hide_root_folder = false,
+            mappings = {
+                list = {
+                    { key = "<CR>", action = "edit"             },
+                    { key = "o",    action = "preview"          },
+                    { key = "K",    action = "toggle_file_info" },
+                    { key = "yy",   action = "copy"             },
+                    { key = "dd",   action = "cut"              },
+                    { key = "p",    action = "paste"            },
+                    { key = "c",    action = "create"           },
+                    { key = "D",    action = "remove"           },
+                    { key = "<BS>", action = "dir_up"           },
+                    { key = "?",    action = "toggle_help"      },
+                }
+            }
         },
         renderer = {
             indent_markers = {
@@ -206,10 +220,10 @@ function config.nvim_tree()
             exclude = {},
         },
         actions = {
-            use_system_clipboard = true,
             change_dir = {
                 enable = true,
                 global = false,
+                restrict_above_cwd = true,
             },
             open_file = {
                 quit_on_open = false,
