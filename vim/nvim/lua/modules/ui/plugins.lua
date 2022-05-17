@@ -27,7 +27,10 @@ ui["j-hui/fidget.nvim"] = {
     after = "nvim-lspconfig",
     config = function ()
         require('fidget').setup {
-            text = { spinner = 'meter' },
+            text = {
+                spinner = 'meter',
+                done = '',
+            },
         }
     end
 }

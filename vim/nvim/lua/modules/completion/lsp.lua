@@ -46,9 +46,9 @@ lsp_installer.setup({
     },
     ui = {
         icons = {
-            server_installed = "✓",
+            server_installed = "",
             server_pending = "➜",
-            server_uninstalled = "✗",
+            server_uninstalled = "◍",
         },
     },
     keymaps = {
