@@ -22,8 +22,6 @@ function autocmd.load_autocmds()
             { "BufWritePre", "MERGE_MSG", "setlocal noundofile" },
             { "BufWritePre", "*.tmp", "setlocal noundofile" },
             { "BufWritePre", "*.bak", "setlocal noundofile" },
-            -- auto change directory
-            { "BufEnter", "*", "silent! lcd %:p:h" },
             {
                 "BufEnter",
                 "*",
