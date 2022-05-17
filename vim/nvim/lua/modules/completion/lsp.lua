@@ -146,7 +146,7 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
                     usePlaceholders = true,
                     analyses = {
                         nilness = true,
-                        shadow = true,
+                        shadow = false,
                         unusedparams = true,
                         unusewrites = true,
                     },
