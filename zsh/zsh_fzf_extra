@@ -160,10 +160,17 @@ function Rg() {
     rg --column --line-number --no-heading --color=always --smart-case "$1" |
       fzf --ansi \
           --delimiter : \
-          --bind 'alt-e:execute($EDITOR "$(echo {} | cut -d: -f1)" >/dev/tty </dev/tty)' \
+          --bind 'enter:execute($EDITOR +{2} {1} >/dev/tty </dev/tty)' \
           --preview 'bat --style=numbers,header,changes,snip --color=always --highlight-line {2} {1}' \
           --preview-window 'default:right:60%:~1:+{2}+3/2:border-left'
+
+    local ret=$?
+    zle redisplay 2>/dev/null || return $ret
+    typeset -f zle-line-init >/dev/null && zle zle-line-init
+    return $ret
 }
+zle     -N    Rg
+bindkey '\eg' Rg
 
 function RG() {
     local RG_PREFIX INITIAL_QUERY
@@ -173,7 +180,7 @@ function RG() {
         fzf --bind "change:reload:$RG_PREFIX {q} || true" \
         --ansi --disabled --query "$INITIAL_QUERY" \
         --delimiter : \
-        --bind 'alt-e:execute($EDITOR "$(echo {} | cut -d: -f1)" >/dev/tty </dev/tty)' \
+        --bind 'enter:execute($EDITOR +{2} {1} >/dev/tty </dev/tty)' \
         --preview 'bat --style=numbers,header,changes,snip --color=always --highlight-line {2} {1}' \
         --preview-window 'default:right:60%:~1:+{2}+3/2:border-left'
 }
