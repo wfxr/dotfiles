@@ -157,30 +157,28 @@ export FZF_ALT_E_OPTS
 #bindkey '^R' wfxr::fzf-history-widget
 
 function Rg() {
-    rg --column --line-number --no-heading --color=always --smart-case "$1" |
-      fzf --ansi \
-          --delimiter : \
-          --bind 'enter:execute($EDITOR +{2} {1} >/dev/tty </dev/tty)' \
-          --preview 'bat --style=numbers,header,changes,snip --color=always --highlight-line {2} {1}' \
-          --preview-window 'default:right:60%:~1:+{2}+3/2:border-left'
-
-    local ret=$?
-    zle redisplay 2>/dev/null || return $ret
-    typeset -f zle-line-init >/dev/null && zle zle-line-init
-    return $ret
+    local SELECTED
+    SELECTED=$(rg --column --line-number --no-heading --color=always --smart-case "$1" |
+        fzf --ansi \
+            --delimiter : \
+            --no-multi \
+            --bind 'alt-e:execute($EDITOR +{2} {1} >/dev/tty </dev/tty)' \
+            --preview 'bat --style=numbers,header,changes,snip --color=always --highlight-line {2} {1}' \
+            --preview-window 'default:right:60%:~1:+{2}+3/2:border-left'
+    ) && $EDITOR +$(cut -d: -f2 <<<$SELECTED) $(cut -d: -f1 <<<$SELECTED)
 }
-zle     -N    Rg
-bindkey '\eg' Rg
+bindkey -s '\eg' 'Rg^M'
 
 function RG() {
-    local RG_PREFIX INITIAL_QUERY
+    local RG_PREFIX INITIAL_QUERY SELECTED
     RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
     INITIAL_QUERY="$1"
-    FZF_DEFAULT_COMMAND="$RG_PREFIX '$INITIAL_QUERY' || true" \
+    SELECTED=$(FZF_DEFAULT_COMMAND="$RG_PREFIX '$INITIAL_QUERY' || true" \
         fzf --bind "change:reload:$RG_PREFIX {q} || true" \
         --ansi --disabled --query "$INITIAL_QUERY" \
         --delimiter : \
-        --bind 'enter:execute($EDITOR +{2} {1} >/dev/tty </dev/tty)' \
+        --bind 'alt-e:execute($EDITOR +{2} {1} >/dev/tty </dev/tty)' \
         --preview 'bat --style=numbers,header,changes,snip --color=always --highlight-line {2} {1}' \
         --preview-window 'default:right:60%:~1:+{2}+3/2:border-left'
+    ) && $EDITOR +$(cut -d: -f2 <<<$SELECTED) $(cut -d: -f1 <<<$SELECTED)
 }
