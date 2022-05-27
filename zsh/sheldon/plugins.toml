@@ -48,7 +48,13 @@ apply = ["defer"]
 
 [plugins.zoxide]
 inline = '''
-(( $+commands[zoxide] )) && eval "$(zoxide init zsh --cmd j)"
+(( $+commands[zoxide] )) && zsh-defer zi::cache::cmd 'zoxide init zsh --cmd j'
+'''
+
+[plugins.python]
+inline = '''
+(( $+commands[pyenv] )) && zsh-defer zi::cache::cmd 'pyenv init - zsh'
+(( $+commands[pip] ))   && zsh-defer zi::cache::cmd 'pip completion --zsh'
 '''
 
 [plugins.compinit]

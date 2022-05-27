@@ -33,5 +33,37 @@ source ~/.zsh_aliases
 source ~/.zsh_custom
 source ~/.zsh_fzf_extra
 
+function synchronized() {
+    local lock="$1" handler="$2" fallback="$3"
+    [ -e "$lock" ] && kill -0 "$(command cat "$lock" 2>/dev/null)" && return 1
+
+    trap "command rm -f $lock" INT TERM EXIT
+    mkdir -p "${lock%/*}" && echo $$ > "$lock"
+
+    eval "$handler"
+    command rm -f "$lock"
+}
+
+# cache directory for zinit
+ZINIT_CACHE="/tmp/zinit::cache/$UID"
+function zi::cache() {
+    local srcgen="$1" dest="$ZINIT_CACHE/${2:-$1}.zi::cache" lock="$ZINIT_CACHE/lock"
+    local handler="
+        [ -f '$dest' ] && return # double check
+        eval '$srcgen' > '$dest'
+        zcompile '$dest'
+    "
+    if [ ! -f "$dest" ]; then
+        if ! synchronized "$lock" "$handler"; then
+            source <($rc_gen_cmd) && return
+        fi
+    fi
+    source "$dest"
+}
+
+function zi::cache::cmd()   { zi::cache "$1"                      }
+function zi::cache::file()  { zi::cache "< $1" "$(basename "$1")" }
+function zi::cache::clean() { rm -rf "$ZINIT_CACHE" ~/.zcompdump* }
+
 # Source all the plugins ✨
 eval "$(sheldon source)"
