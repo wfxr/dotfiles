@@ -1,7 +1,0 @@
-{
-  "command exists": {
-    "prefix": "hascmd",
-    "body": "(( $+commands[${1:cmd}] )) && $2",
-    "description": "Check if command exists ..."
-  }
-}

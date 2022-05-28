@@ -1,0 +1,20 @@
+snippet usage "Show usage..."
+	usage() { echo "Usage: \$(basename "\$0") <${1:param}>" >&2; }
+
+snippet sdir "get script directory"
+	SDIR=\$(cd "\$(dirname "\${BASH_SOURCE[0]}")" && pwd)${1: && cd "$SDIR"}
+
+snippet hascmd "If command exists..."
+	hash ${1:cmd} &>/dev/null ${2:&&}
+
+snippet temp "Temp file or directory"
+	trap 'command rm -rf ${1:TEMP}' ${2:EXIT INT TERM HUP}
+	${1}="$(mktemp -${3:d}t ${4:"$(basename "\$0")"}.XXXXXX)"
+
+snippet log "log messages with color" b
+	info() { printf "${1:\$(date +%FT%T) }%b[info]%b %s\n" '\e[0;32m\033[1m' '\e[0m' "$*" >&2; }
+	warn() { printf "$1%b[warn]%b %s\n" '\e[0;33m\033[1m' '\e[0m' "$*" >&2; }
+	erro() { printf "$1%b[erro]%b %s\n" '\e[0;31m\033[1m' '\e[0m' "$*" >&2; }
+
+snippet shellcheck "shellcheck disable..." b
+	# shellcheck disable=SC$1

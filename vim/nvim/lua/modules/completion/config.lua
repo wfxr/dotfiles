@@ -345,10 +345,7 @@ function config.luasnip()
             luasnip.change_choice(1)
         end
     end)
-    require("luasnip/loaders/from_vscode").lazy_load()
-    require("luasnip/loaders/from_vscode").lazy_load({
-        paths = { "./my-snippets" }
-    })
+    require("luasnip.loaders.from_snipmate").lazy_load()
 end
 
 -- function config.tabnine()
