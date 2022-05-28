@@ -63,8 +63,6 @@ alias weather='curl wttr.in'
 
 (( $+commands[fasd] )) && alias v='f -e vim'
 
-(( $+commands[assh] )) && alias ssh="assh wrapper ssh"
-
 (( $+commands[lein] )) && alias lrepl='lein repl :connect 59237'
 
 # [[ -n "$TMUX" ]] && alias fzf="fzf --preview-window=down:50%" || alias fzf="fzf --preview-window=right:50%"
