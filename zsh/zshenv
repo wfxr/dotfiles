@@ -1,141 +1,111 @@
 #!/usr/bin/env zsh
 # vim: foldmethod=marker foldenable:
-#=============================================================================
-#       Author: Wenxuan Zhang
-#        Email: wenxuangm@gmail.com
-#     HomePage: https://github.com/wfxr
-#=============================================================================
 
 # xdg directories
-export XDG_DOWNLOAD_DIR="$HOME/downloads"
-export XDG_DOCUMENTS_DIR="$HOME/documents"
-export XDG_MUSIC_DIR="$HOME/music"
-export XDG_PICTURES_DIR="$HOME/pictures"
-export XDG_VIDEOS_DIR="$HOME/videos"
-export XDG_SCREENSHOTS_DIR="$HOME/screenshots"
+export XDG_DOWNLOAD_DIR="$HOME/Downloads"
+export XDG_DOCUMENTS_DIR="$HOME/Documents"
+export XDG_MUSIC_DIR="$HOME/Music"
+export XDG_PICTURES_DIR="$HOME/Pictures"
+export XDG_VIDEOS_DIR="$HOME/Videos"
+export XDG_SCREENSHOTS_DIR="$HOME/Screenshots"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 
-function setup_env() {
-    export GPG_TTY="$(tty)"
+export GPG_TTY="$(tty)"
 
-    # export PATH everywhere takes too long time
-    export PATH="$HOME/bin:$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin:/usr/bin:/usr/games:/usr/local/games:/bin:/sbin"
-    [[ $OSTYPE =~ darwin ]] && export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
-    [[ -x /home/linuxbrew/.linuxbrew/bin/brew ]] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+export PATH="$HOME/bin:$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin:/usr/bin:/usr/games:/usr/local/games:/bin:/sbin"
 
-    local _PATH="$PATH"
+[[ $OSTYPE =~ darwin ]] && export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
+[[ -x /home/linuxbrew/.linuxbrew/bin/brew ]] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-    # True color
-    export COLORTERM=truecolor
+# True color
+export COLORTERM=truecolor
 
-    # Ruby
-    _PATH="$HOME/.gem/bin:$HOME/.rbenv/bin:$_PATH"
+# Ruby
+PATH="$HOME/.gem/bin:$HOME/.rbenv/bin:$PATH"
 
-    # C++
-    export CC="${commands[gcc]:-$CC}"
-    export CC="${commands[clang]:-$CC}"
-    export CXX="${commands[g++]:-$CXX}"
-    export CXX="${commands[clang++]:-$CXX}"
+# C++
+export CC="${commands[gcc]:-$CC}"
+export CC="${commands[clang]:-$CC}"
+export CXX="${commands[g++]:-$CXX}"
+export CXX="${commands[clang++]:-$CXX}"
 
-    # Rust
-    _PATH="$HOME/.cargo/bin:$_PATH"
-    export CARGO_HOME="$HOME/.cargo"
-    export CARGO_BUILD_TARGET_DIR="$HOME/.cache/cargo-target"
+# Rust
+PATH="$HOME/.cargo/bin:$PATH"
+export CARGO_HOME="$HOME/.cargo"
+export CARGO_BUILD_TARGET_DIR="$HOME/.cache/cargo-target"
 
-    export TERM="xterm-256color"
+export TERM="xterm-256color"
 
-    # LANGUAGE must be set by en_US
-    export LANGUAGE="en_US.UTF-8"
-    export LANG="${LANGUAGE}"
-    export LC_ALL="${LANGUAGE}"
-    export LC_CTYPE="${LANGUAGE}"
+# LANGUAGE must be set by en_US
+export LANGUAGE="en_US.UTF-8"
+export LANG="${LANGUAGE}"
+export LC_ALL="${LANGUAGE}"
+export LC_CTYPE="${LANGUAGE}"
 
-    # Editor
-    # For Terminal
-    export EDITOR="${commands[vim]:-$EDITOR}"
-    export EDITOR="${commands[nvim]:-$EDITOR}"
-    export CVSEDITOR="${EDITOR}"
-    export GIT_EDITOR="${EDITOR}"
-    # For GUI
-    export VISUAL="${EDITOR}"
+# Editor
+export EDITOR="${commands[vim]:-$EDITOR}"
+export EDITOR="${commands[nvim]:-$EDITOR}"
+export CVSEDITOR="${EDITOR}"
+export GIT_EDITOR="${EDITOR}"
+export VISUAL="${EDITOR}"
 
-    # Homebrew Bottles中科大源
-    export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.ustc.edu.cn/homebrew-bottles"
+# Homebrew Bottles 中科大源
+export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.ustc.edu.cn/homebrew-bottles"
 
-    # Golang
-    export GOPATH="$HOME/.go"
-    _PATH="$GOPATH/bin:$_PATH"
+# Golang
+export GOPATH="$HOME/.go"
+PATH="$GOPATH/bin:$PATH"
 
-    # Less
-    export LESS="-r -f -F -X -i -P ?f%f:(stdin). ?lb%lb?L/%L.. [?eEOF:?pb%pb\%..]"
-    export LESSCHARSET="utf-8"
-    # Pager
-    export PAGER="${commands[less]:-$PAGER}"
+# Less
+export LESS="-r -f -F -X -i -P ?f%f:(stdin). ?lb%lb?L/%L.. [?eEOF:?pb%pb\%..]"
+export LESSCHARSET="utf-8"
+# Pager
+export PAGER="${commands[less]:-$PAGER}"
 
-    # Word split
-    export WORDCHARS=''
+# Word split
+export WORDCHARS=''
 
-    # Custom zsh completions path
-    export CUSTOM_FPATH="$XDG_CONFIG_HOME/zsh/completions"
-    export fpath=($fpath "$CUSTOM_FPATH")
+# Custom zsh completions path
+export CUSTOM_FPATH="$XDG_CONFIG_HOME/zsh/completions"
+export fpath=($fpath "$CUSTOM_FPATH")
 
-    # LS COLORS
-    # https://github.com/ogham/exa/blob/adfee28fb9bb6f491c822ba4506fafef03909945/Vagrantfile#L163
-    export LS_COLORS="di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
-    # https://github.com/sharkdp/vivid
-    # if (( $+commands[vivid] )); then
-        # export LS_COLORS="$(vivid generate molokai)"
-        # https://the.exa.website/docs/colour-themes#colour-codes
-        # (( $+commands[exa] )) && export EXA_COLORS="$(vivid --color-mode 8-bit generate molokai)"
-    # fi
+# LS COLORS
+# https://github.com/ogham/exa/blob/adfee28fb9bb6f491c822ba4506fafef03909945/Vagrantfile#L163
+export LS_COLORS="di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
+# https://github.com/sharkdp/vivid
+# if (( $+commands[vivid] )); then
+    # export LS_COLORS="$(vivid generate molokai)"
+    # https://the.exa.website/docs/colour-themes#colour-codes
+    # (( $+commands[exa] )) && export EXA_COLORS="$(vivid --color-mode 8-bit generate molokai)"
+# fi
 
-    # For emacsclient
-    export ALTERNATE_EDITOR=""
+# For emacsclient
+export ALTERNATE_EDITOR=""
 
-    # For lein
-    (( $+commands[drip] )) && export LEIN_JAVA_CMD='drip'
+# For lein
+(( $+commands[drip] )) && export LEIN_JAVA_CMD='drip'
 
-    # pyenv
-    export PYENV_ROOT="$HOME/.pyenv"
-    export PYTHON_CONFIGURE_OPTS="--enable-shared"
-    _PATH="$HOME/.pyenv/shims:$PYENV_ROOT/bin:$_PATH"
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PYTHON_CONFIGURE_OPTS="--enable-shared"
+PATH="$HOME/.pyenv/shims:$PYENV_ROOT/bin:$PATH"
 
-    # bat
-    export BAT_CONFIG_PATH="$HOME/.config/bat/config"
+# bat
+export BAT_CONFIGPATH="$HOME/.config/bat/config"
 
-    # node
-    export _PATH="$HOME/.nodenv/shims:$HOME/.nodenv/bin:$_PATH"
+# node
+export PATH="$HOME/.nodenv/shims:$HOME/.nodenv/bin:$PATH"
 
-    # scala coursier
-    export _PATH="$_PATH:$HOME/.local/share/coursier/bin"
+# scala coursier
+export PATH="$PATH:$HOME/.local/share/coursier/bin"
 
-    export PATH="$_PATH"
-
-    # kubectl
-    (( $+commands[kubectl] )) && [ -d ~/.kube ] && {
-        for config in ~/.kube/config*; do
-            KUBECONFIG="$KUBECONFIG:$config"
-        done
-        export KUBECONFIG
-    }
+# kubectl
+(( $+commands[kubectl] )) && [ -d ~/.kube ] && {
+    for config in ~/.kube/config*; do
+        KUBECONFIG="$KUBECONFIG:$config"
+    done
+    export KUBECONFIG
 }
 
-setup_history() {
-    export HISTFILE="$HOME/.zsh_history" # History file
-    export HISTSIZE=100000               # History size in memory
-    export SAVEHIST=1000000              # The number of histsize
-    export LISTMAX=50                    # The size of asking history
-    setopt EXTENDED_HISTORY              # Write the history file in the ":start:elapsed;command" format.
-    setopt INC_APPEND_HISTORY            # Write to the history file immediately, not when the shell exits.
-    # setopt SHARE_HISTORY               # Share history between all sessions.
-    setopt HIST_IGNORE_SPACE             # Do not record an entry starting with a space.
-    setopt HIST_REDUCE_BLANKS            # Remove superfluous blanks before recording entry.
-    setopt HIST_VERIFY                   # Do not execute immediately upon history expansion.
-    setopt HIST_BEEP                     # Beep when accessing nonexistent history.
-    # Do not add in root
-    [[ "$UID" == 0 ]] && unset HISTFILE && SAVEHIST=0
-}
-
-setup_env;     unset -f setup_env
-setup_history; unset -f setup_history
+true
