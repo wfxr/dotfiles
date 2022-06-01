@@ -14,7 +14,30 @@ ui["sainnhe/gruvbox-material"] = {
         vim.cmd [[
             colorscheme gruvbox-material
             highlight FloatBorder guibg=NONE ctermbg=NONE
+            highlight link NormalFloat Normal
         ]]
+    end
+}
+ui["stevearc/dressing.nvim"] = {
+    opt = false,
+    config = function ()
+        require('dressing').setup({
+            input = {
+                default_prompt = "Input:",
+                border = { "┏", "─", "┓", "│", "┛", "─", "┗", "│" },
+                winblend = 5,
+                winhighlight = "NormalFloat:Normal",
+            },
+            select = {
+                -- Priority list of preferred vim.select implementations
+                backend = { "telescope", "fzf_lua", "fzf", "builtin", "nui" },
+                -- Options for built-in selector
+                builtin = {
+                    border = { "┏", "─", "┓", "│", "┛", "─", "┗", "│" },
+                    winblend = 5,
+                },
+            }
+        })
     end
 }
 ui["kyazdani42/nvim-web-devicons"] = { opt = false }
