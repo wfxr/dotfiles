@@ -253,9 +253,9 @@ end
 
 function config.gitsigns()
     vim.cmd [[
-        exec 'hi! GitSignsAdd    ctermfg=Green  guifg=#50FA7B ' . (has('termguicolors')? 'guibg=':'ctermbg=') . synIDattr(hlID('SignColumn'),'bg')
-        exec 'hi! GitSignsDelete ctermfg=Red    guifg=#FF5555 ' . (has('termguicolors')? 'guibg=':'ctermbg=') . synIDattr(hlID('SignColumn'),'bg')
-        exec 'hi! GitSignsChange ctermfg=Yellow guifg=#FFB86C ' . (has('termguicolors')? 'guibg=':'ctermbg=') . synIDattr(hlID('SignColumn'),'bg')
+        exec 'hi! GitSignsAdd    ctermfg=Green  guifg=#50FA7B'
+        exec 'hi! GitSignsDelete ctermfg=Red    guifg=#FF5555'
+        exec 'hi! GitSignsChange ctermfg=Yellow guifg=#FFB86C'
     ]]
 
     require("gitsigns").setup({
