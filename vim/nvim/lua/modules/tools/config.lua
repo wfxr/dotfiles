@@ -23,13 +23,14 @@ function config.telescope()
             scroll_strategy = "cycle",
             results_title = false,
             borderchars = { "─", "│", "─", "│", "┏", "┓", "┛", "┗" },
-            layout_strategy = "horizontal",
-            path_display = { "absolute" },
             file_ignore_patterns = {},
+            sorting_strategy = "ascending",
+            path_display = { "relative" },
+            layout_strategy = "vertical",
             layout_config = {
-                prompt_position = "bottom",
-                horizontal = {
-                    preview_width = 0.5,
+                prompt_position = "top",
+                vertical = {
+                    mirror = true,
                 },
             },
             file_previewer   = require("telescope.previewers").vim_buffer_cat.new,
