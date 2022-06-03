@@ -274,17 +274,16 @@ function config.cmp()
                 vim_item.kind = string.format("%s %s", lspkind_icons[vim_item.kind], vim_item.kind)
 
                 vim_item.menu = ({
-                    -- cmp_tabnine = "[TN]",
                     buffer   = "[BUF]",
-                    orgmode  = "[ORG]",
                     nvim_lsp = "[LSP]",
                     nvim_lua = "[LUA]",
-                    path     = "[PATH]",
-                    tmux     = "[TMUX]",
-                    luasnip  = "[SNIP]",
-                    spell    = "[SPELL]",
+                    path     = "[PTH]",
+                    luasnip  = "[SNP]",
+                    spell    = "[SPL]",
+                    -- cmp_tabnine = "[TN]",
+                    -- orgmode  = "[ORG]",
+                    -- tmux     = "[TMUX]",
                 })[entry.source.name]
-
                 return vim_item
             end,
         },
@@ -315,15 +314,15 @@ function config.cmp()
         },
         -- You should specify your *installed* sources.
         sources = {
-            { name = "nvim_lsp" },
-            { name = "nvim_lua" },
-            { name = "luasnip" },
-            { name = "path" },
-            { name = "spell" },
-            { name = "tmux" },
-            { name = "orgmode" },
-            { name = "buffer" },
-            { name = "latex_symbols" },
+            { name = "nvim_lsp", priority = 99 },
+            { name = "nvim_lua", priority = 98 },
+            { name = "path",     priority = 97 },
+            { name = "buffer",   priority = 96 },
+            { name = "spell",    priority = 95 },
+            { name = "luasnip",  priority = 0  },
+            -- { name = "latex_symbols" },
+            -- { name = "tmux" },
+            -- { name = "orgmode" },
             -- {name = 'cmp_tabnine'}
         },
     })
