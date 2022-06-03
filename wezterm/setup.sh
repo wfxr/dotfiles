@@ -5,3 +5,5 @@ SDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) && cd "$SDIR"
 
 mkdir -p ~/.config/wezterm/
 ln -sf "$SDIR/wezterm.lua" ~/.config/wezterm/wezterm.lua
+
+[[ $OSTYPE =~ darwin ]] && ln -sf "$SDIR/darwin.lua" ~/.config/wezterm/darwin.lua

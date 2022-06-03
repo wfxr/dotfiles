@@ -1,12 +1,14 @@
 local wezterm = require 'wezterm';
 
 local keybinds = {
-    { key = "=", mods = "CTRL", action = "IncreaseFontSize" },
-    { key = "-", mods = "CTRL", action = "DecreaseFontSize" },
-    { key = "0", mods = "CTRL", action = "ResetFontSize" },
+    { key = "=", mods = "CTRL",  action = "IncreaseFontSize" },
+    { key = "-", mods = "CTRL",  action = "DecreaseFontSize" },
+    { key = "0", mods = "CTRL",  action = "ResetFontSize"    },
+    { key = "c", mods = "SUPER", action = "Copy"             },
+    { key = "v", mods = "SUPER", action = "Paste"            },
 }
 
-return {
+local config =  {
     font = wezterm.font_with_fallback({
         "JetBrainsMono Nerd Font",
         "Sarasa Mono SC Nerd",
@@ -44,3 +46,24 @@ return {
         }
     },
 }
+
+local function load_config(module)
+    local m = package.searchpath(module, package.path)
+    if m == nil then
+        return {}
+    end
+    return dofile(m)
+end
+
+local function merge_tables(t1, t2)
+    for k, v in pairs(t2) do
+        if (type(v) == "table") and (type(t1[k] or false) == "table") then
+            merge_tables(t1[k], t2[k])
+        else
+            t1[k] = v
+        end
+    end
+    return t1
+end
+
+return merge_tables(config, load_config("darwin"))
