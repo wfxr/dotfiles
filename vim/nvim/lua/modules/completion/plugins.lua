@@ -6,9 +6,43 @@ completion["neovim/nvim-lspconfig"] = {
     event = "BufReadPre",
     config = conf.nvim_lsp,
 }
-completion["creativenull/efmls-configs-nvim"] = {
+completion["jose-elias-alvarez/null-ls.nvim"] = {
     opt = false,
-    requires = "neovim/nvim-lspconfig",
+    requires = { 'nvim-lua/plenary.nvim' },
+    config = function ()
+        local null_ls = require("null-ls")
+        local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+        null_ls.setup({
+            -- full list: https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
+            sources = {
+                null_ls.builtins.formatting.stylua,
+                null_ls.builtins.formatting.rustfmt,
+                null_ls.builtins.code_actions.gitsigns,
+                null_ls.builtins.code_actions.shellcheck,
+                null_ls.builtins.diagnostics.actionlint,
+                null_ls.builtins.diagnostics.buf, -- protobuf
+                null_ls.builtins.diagnostics.checkmake, -- make
+                -- null_ls.builtins.diagnostics.codespell,
+                null_ls.builtins.diagnostics.golangci_lint,
+                null_ls.builtins.formatting.goimports,
+                null_ls.builtins.formatting.rustfmt,
+                null_ls.builtins.formatting.shfmt,
+            },
+            on_attach = function(client, bufnr)
+                if client.supports_method("textDocument/formatting") then
+                    vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+                    vim.api.nvim_create_autocmd("BufWritePre", {
+                        group = augroup,
+                        buffer = bufnr,
+                        callback = function()
+                            -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
+                            vim.lsp.buf.formatting_sync()
+                        end,
+                    })
+                end
+            end,
+        })
+    end
 }
 completion["williamboman/nvim-lsp-installer"] = {
     opt = false,

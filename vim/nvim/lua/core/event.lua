@@ -46,10 +46,10 @@ function autocmd.load_autocmds()
             { "VimResized", "*", [[tabdo wincmd =]] },
         },
         ft = {
-            { "FileType", "markdown", "set wrap" },
-            { "FileType", "make", "set noexpandtab shiftwidth=8 softtabstop=0" },
+            { "FileType", "go",   "setl nolist noexpandtab" },
+            { "FileType", "make", "setl nolist noexpandtab  shiftwidth=8 softtabstop=0" },
             -- Google tab style
-            { "FileType", "c,cpp", "set expandtab tabstop=2 shiftwidth=2" },
+            { "FileType", "c,cpp", "setl expandtab tabstop=2 shiftwidth=2" },
             { "FileType", "dap-repl", "lua require('dap.ext.autocompl').attach()" },
             {
                 "FileType",
