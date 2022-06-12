@@ -36,7 +36,7 @@ saga.init_lsp_saga({
 
 lsp_installer.setup({
     ensure_installed = {
-        "gopls",
+        "golangci_lint_ls",
         "rust_analyzer",
         "bashls",
         "sumneko_lua",
