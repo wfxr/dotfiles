@@ -9,9 +9,9 @@
 ## Usage
 
 ``` bash
-git clone --depth=1 https://github.com/wfxr/dotfiles
-# eg: install git, zsh, and vim configurations
-dotfiles/install git zsh vim
+git clone https://github.com/wfxr/dotfiles
+# eg: install vim and tmux configurations
+dotfiles/install vim tmux
 ```
 
 ## License
