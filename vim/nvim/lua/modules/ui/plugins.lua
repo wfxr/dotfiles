@@ -161,7 +161,7 @@ ui["goolord/alpha-nvim"] = {
 
         local leader = "comma"
         dashboard.section.buttons.val = {
-            button("comma f n", " File new",      leader, "<cmd>enew<cr>"),
+            button("i",         " File new",      leader, "<cmd>enew<cr>i"),
             button("comma f r", " File frecency", leader, "<cmd>Telescope frecency<cr>"),
             button("comma f e", " File history",  leader, "<cmd>Telescope oldfiles<cr>"),
             button("comma f f", " File find",     leader, "<cmd>Telescope find_files<cr>"),

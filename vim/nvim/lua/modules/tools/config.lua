@@ -25,7 +25,7 @@ function config.telescope()
             borderchars = { "─", "│", "─", "│", "┏", "┓", "┛", "┗" },
             file_ignore_patterns = {},
             sorting_strategy = "ascending",
-            path_display = { "relative" },
+            path_display = {},
             layout_strategy = "vertical",
             layout_config = {
                 prompt_position = "top",
