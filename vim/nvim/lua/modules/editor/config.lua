@@ -1,5 +1,4 @@
 local config = {}
-local sessions_dir = vim.fn.stdpath("data") .. "/sessions/"
 
 function config.nvim_treesitter()
     vim.api.nvim_command("set foldmethod=expr")
