@@ -263,8 +263,8 @@ function config.gitsigns()
             add          = { hl = 'GitSignsAdd',    text = '┃' },
             change       = { hl = 'GitSignsChange', text = '┃' },
             changedelete = { hl = 'GitSignsChange', text = '┃' },
-            topdelete    = { hl = 'GitSignsDelete', text = '↗' },
-            delete       = { hl = 'GitSignsDelete', text = '↘' },
+            topdelete    = { hl = 'GitSignsDelete', text = '⎺⎺' }, -- ↗
+            delete       = { hl = 'GitSignsDelete', text = '⎽⎽' }, -- ↘
         },
         keymaps = {
             -- Default keymap options
