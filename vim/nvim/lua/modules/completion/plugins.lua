@@ -47,21 +47,19 @@ completion["jose-elias-alvarez/null-ls.nvim"] = {
 completion["williamboman/nvim-lsp-installer"] = {
     opt = false,
 }
-completion["tami5/lspsaga.nvim"] = {
-    opt = true,
-    after = "nvim-lspconfig",
-    config = function ()
-        require("lspsaga").init_lsp_saga({
-            rename_prompt_prefix = '❯'
-        })
-    end
-}
 completion["stevearc/aerial.nvim"] = {
     opt = true,
     after = "nvim-lspconfig",
     config = conf.aerial,
 }
-completion["ray-x/lsp_signature.nvim"] = { opt = true, after = "nvim-lspconfig" }
+completion["ray-x/lsp_signature.nvim"] = {
+    opt = true,
+    after = "nvim-lspconfig",
+    config = function ()
+        require("lsp_signature").setup()
+    end
+
+}
 completion["hrsh7th/nvim-cmp"] = {
     config = conf.cmp,
     event = "InsertEnter",

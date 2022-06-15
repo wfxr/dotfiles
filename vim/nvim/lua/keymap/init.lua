@@ -13,7 +13,7 @@ function show_documentation()
     elseif vim.fn.expand('%:t') == 'Cargo.toml' then
         require('crates').show_popup()
     else
-        vim.cmd('Lspsaga hover_doc')
+        vim.lsp.buf.hover()
     end
 end
 
@@ -44,12 +44,9 @@ local plug_map = {
     -- Lsp mapp work when insertenter and lsp start
     ["n|<leader>li"] = map_cr("LspInfo"):with_noremap():with_silent():with_nowait(),
     ["n|<leader>lr"] = map_cr("LspRestart"):with_noremap():with_silent():with_nowait(),
-    ["n|g["]         = map_cr("Lspsaga diagnostic_jump_next"):with_noremap():with_silent(),
-    ["n|g]"]         = map_cr("Lspsaga diagnostic_jump_prev"):with_noremap():with_silent(),
-    ["n|gs"]         = map_cr("Lspsaga signature_help"):with_noremap():with_silent(),
+    ["n|g["]         = map_cr("lua vim.diagnostic.goto_next()"):with_noremap():with_silent(),
+    ["n|g]"]         = map_cr("lua vim.diagnostic.goto_prev()"):with_noremap():with_silent(),
     ["n|K"]          = map_cr("lua show_documentation()"):with_noremap():with_silent(),
-    ["n|<C-b>"]      = map_cr("lua require('lspsaga.action').smart_scroll_with_saga(-1)"):with_noremap():with_silent(),
-    ["n|<C-f>"]      = map_cr("lua require('lspsaga.action').smart_scroll_with_saga(1)"):with_noremap():with_silent(),
     ["n|gr"]         = map_cr("lua vim.lsp.buf.rename()"):with_noremap():with_silent(),
     ["n|<A-Enter>"]  = map_cr("lua vim.lsp.buf.code_action()"):with_noremap():with_silent(),
     ["v|<A-Enter>"]  = map_cu("lua vim.lsp.buf.range_code_action()"):with_noremap():with_silent(),

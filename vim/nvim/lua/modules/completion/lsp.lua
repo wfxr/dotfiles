@@ -1,38 +1,21 @@
 vim.cmd([[packadd nvim-lsp-installer]])
-vim.cmd([[packadd lsp_signature.nvim]])
-vim.cmd([[packadd lspsaga.nvim]])
 vim.cmd([[packadd cmp-nvim-lsp]])
 vim.cmd([[packadd aerial.nvim]])
 vim.cmd([[packadd vim-illuminate]])
 
 local nvim_lsp = require("lspconfig")
-local saga = require("lspsaga")
 local lsp_installer = require("nvim-lsp-installer")
 
--- Override diagnostics symbol
+local signs = {
+    { name = "DiagnosticSignError", text = "••" }, -- 
+    { name = "DiagnosticSignWarn",  text = "•"  }, -- 
+    { name = "DiagnosticSignHint",  text = ""  }, -- 
+    { name = "DiagnosticSignInfo",  text = ""  }, --     כֿ 
+}
 
-saga.init_lsp_saga({
-    error_sign = "••", -- 
-    warn_sign = "•", -- 
-    hint_sign = "", -- 
-    infor_sign = "", --     כֿ 
-    code_action_prompt = {
-        enable = false,
-        sign = false,
-        sign_priority = 40,
-        virtual_text = true,
-    },
-    finder_action_keys = {
-        open = 'o',
-        vsplit = '<C-v>',
-        split = 'C-x',
-        quit = { '<C-[>', '<C-c>', '<Esc>' },
-        scroll_down = '<C-d>',
-        scroll_up = '<C-u>',
-    },
-    code_action_keys   = { quit = { '<C-[>', '<C-c>', '<Esc>' }, exec = '<CR>' },
-    rename_action_keys = { quit = { '<C-[>', '<C-c>', '<Esc>' }, exec = '<CR>' },
-})
+for _, sign in ipairs(signs) do
+  vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
+end
 
 lsp_installer.setup({
     ensure_installed = {
@@ -82,15 +65,6 @@ end
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 local function custom_attach(client, bufnr)
-    require("lsp_signature").on_attach({
-        bind = true,
-        use_lspsaga = false,
-        floating_window = true,
-        fix_pos = true,
-        hint_enable = true,
-        hi_parameter = "Search",
-        handler_opts = { "double" },
-    })
     require("aerial").on_attach(client)
     require("illuminate").on_attach(client)
     if client.supports_method("textDocument/formatting") then
