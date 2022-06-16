@@ -19,8 +19,6 @@ ui["sainnhe/gruvbox-material"] = {
     end
 }
 ui["stevearc/dressing.nvim"] = {
-    opt = true,
-    after = "telescope.nvim",
     config = function ()
         require('dressing').setup({
             input = {
@@ -30,7 +28,7 @@ ui["stevearc/dressing.nvim"] = {
                 winhighlight = "NormalFloat:Normal",
             },
             select = {
-                enabled = true,
+                enabled = false, -- telescope-ui-select is better
                 -- Priority list of preferred vim.select implementations
                 backend = { "telescope", "fzf_lua", "fzf", "builtin", "nui" },
                 -- Options for built-in selector

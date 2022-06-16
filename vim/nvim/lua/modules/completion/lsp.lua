@@ -130,16 +130,7 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
                 hover_actions = {
                     -- the border that is used for the hover window
                     -- see vim.api.nvim_open_win()
-                    border = {
-                        { "┏", "FloatBorder" },
-                        { "─", "FloatBorder" },
-                        { "┓", "FloatBorder" },
-                        { "│", "FloatBorder" },
-                        { "┛", "FloatBorder" },
-                        { "─", "FloatBorder" },
-                        { "┗", "FloatBorder" },
-                        { "│", "FloatBorder" },
-                    },
+                    border = 'none',
                     -- whether the hover action window gets automatically focused
                     auto_focus = false,
                 },
