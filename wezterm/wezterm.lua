@@ -9,11 +9,8 @@ local keybinds = {
 }
 
 local config =  {
-    font = wezterm.font_with_fallback({
+    font = wezterm.font({
         "JetBrainsMono Nerd Font",
-        "Sarasa Mono SC Nerd",
-        "FiraCode Nerd Font",
-        "JetBrains Mono",
     }),
     window_decorations = "NONE",
     disable_default_key_bindings = true,
