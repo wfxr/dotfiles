@@ -29,3 +29,6 @@ format = '[$symbol$version]($style) '
 
 [container]
 format = "[🐳]($style) "
+
+[golang]
+symbol = " "
