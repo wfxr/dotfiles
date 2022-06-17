@@ -155,6 +155,7 @@ function config.nvim_tree()
                     { key = "K",    action = "toggle_file_info" },
                     { key = "yy",   action = "copy"             },
                     { key = "dd",   action = "cut"              },
+                    { key = "gr",   action = "rename"           },
                     { key = "p",    action = "paste"            },
                     { key = "c",    action = "create"           },
                     { key = "D",    action = "remove"           },
