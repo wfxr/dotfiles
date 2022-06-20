@@ -7,10 +7,8 @@ editor['rhysd/git-messenger.vim']         = {}
 editor['junegunn/vim-peekaboo']           = {}
 editor['tpope/vim-rsi']                   = {} -- emacs key bindings
 editor['tpope/vim-surround']              = {}
-editor['tpope/vim-endwise']               = {}
 editor['tpope/vim-repeat']                = {}
 editor['ConradIrwin/vim-bracketed-paste'] = {}
-editor['AndrewRadev/switch.vim']          = {}
 editor["junegunn/vim-easy-align"] = { opt = true, cmd = "EasyAlign" }
 editor["AndrewRadev/splitjoin.vim"] = {
     config = function()
@@ -23,6 +21,11 @@ editor["AndrewRadev/splitjoin.vim"] = {
     end
 }
 
+editor['AndrewRadev/switch.vim'] = {
+    config = function ()
+        vim.g.switch_mapping = "-"
+    end
+}
 editor["RRethy/vim-illuminate"] = {
     event = "BufRead",
     config = function()

@@ -89,7 +89,19 @@ completion["L3MON4D3/LuaSnip"] = {
 }
 completion["windwp/nvim-autopairs"] = {
     after = "nvim-cmp",
-    config = conf.autopairs,
+    config = function ()
+        require("nvim-autopairs").setup({})
+    end,
+}
+completion["RRethy/nvim-treesitter-endwise"] = {
+    after = "nvim-cmp",
+    config = function ()
+        require('nvim-treesitter.configs').setup {
+            endwise = {
+                enable = true,
+            },
+        }
+    end,
 }
 completion["github/copilot.vim"] = { opt = true, cmd = "Copilot" }
 
