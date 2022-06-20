@@ -12,15 +12,12 @@ vim.cmd [[
 
 -- Hide number & sign columns to do tmux copy
 vim.cmd [[
-    function! s:tmux_copy_mode_toggle()
-        setlocal number!
-        if &signcolumn ==? 'no'
-            setlocal signcolumn=yes
-        else
-            setlocal signcolumn=no
-        endif
+    function! s:tmux_copy_mode()
+        setlocal nonumber
+        setlocal signcolumn=no
+        silent! IndentBlanklineDisable
     endfunction
-    command! TmuxCopyModeToggle call s:tmux_copy_mode_toggle()
+    command! TmuxCopyMode call s:tmux_copy_mode()
 ]]
 
 -- Automatic rename of tmux window
