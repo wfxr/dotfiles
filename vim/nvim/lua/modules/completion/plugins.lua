@@ -103,6 +103,25 @@ completion["RRethy/nvim-treesitter-endwise"] = {
         }
     end,
 }
-completion["github/copilot.vim"] = { opt = true, cmd = "Copilot" }
+completion["github/copilot.vim"] = {
+    opt = true,
+    event = "InsertEnter",
+    config = function ()
+        vim.g.copilot_no_tab_map = true
+        vim.g.copilot_assume_mapped = true
+        vim.g.copilot_tab_fallback = ""
+
+        vim.keymap.set("i", "<c-e>", function ()
+            local copilot_keys = vim.fn["copilot#Accept"]()
+            if copilot_keys ~= "" then
+                vim.api.nvim_feedkeys(copilot_keys, "i", true)
+            else
+                local endkey = vim.api.nvim_replace_termcodes('<END>', true, false, true)
+                vim.api.nvim_feedkeys(endkey, "i", true)
+            end
+        end)
+
+    end
+}
 
 return completion
