@@ -20,7 +20,7 @@ completion["jose-elias-alvarez/null-ls.nvim"] = {
 
                 -- null_ls.builtins.diagnostics.actionlint,
                 null_ls.builtins.diagnostics.buf, -- protobuf
-                null_ls.builtins.diagnostics.checkmake, -- make
+                -- null_ls.builtins.diagnostics.checkmake, -- make
                 -- null_ls.builtins.diagnostics.codespell,
 
                 null_ls.builtins.formatting.stylua,
