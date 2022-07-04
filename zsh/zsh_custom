@@ -320,13 +320,17 @@ function kcurl() {
     curl "$@" < "$BUFFER"
 }
 
-function grepo() {
-    [[ "$#" -ne 0 ]] && return $(xopen "https://github.com/${(j:/:)@}")
+function prepo() {
     local url
-    url=$(git remote get-url origin) || return $?
-    [[ "$url" =~ '^git@' ]] && url=$(echo "$url" | sed -e 's#:#/#' -e 's#git@#https://#')
-    xopen "$url"
+    if [[ "$#" -ne 0 ]]; then
+        url="https://github.com/${(j:/:)@}"
+    else
+        url=$(git remote get-url origin) || return $?
+        [[ "$url" =~ '^git@' ]] && url=$(echo "$url" | sed -e 's#:#/#' -e 's#git@#https://#')
+    fi
+    echo "$url"
 }
+function grepo() { xopen "$(prepo $@)" }
 
 function gclone() { git clone "https://github.com/${(j:/:)@}" }
 
