@@ -132,3 +132,5 @@ alias ui_flink='xdg-open "http://127.0.0.1:8081/"'
 alias cm='cargo make'
 alias ct='cargo make test'
 alias cr='cargo make run'
+
+alias ta='tmux attach -t'
