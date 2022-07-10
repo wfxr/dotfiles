@@ -97,19 +97,12 @@ local plug_map = {
     ["n|<Leader>fg"] = map_cu("Telescope git_files"):with_noremap():with_silent(),
     ["n|<Leader>fz"] = map_cu("Telescope zoxide list"):with_noremap():with_silent(),
 
-    -- Plugin vim-eft
-    ["n|f"] = map_cmd("v:lua.enhance_ft_move('f')"):with_expr(),
-    ["n|F"] = map_cmd("v:lua.enhance_ft_move('F')"):with_expr(),
-    ["n|t"] = map_cmd("v:lua.enhance_ft_move('t')"):with_expr(),
-    ["n|T"] = map_cmd("v:lua.enhance_ft_move('T')"):with_expr(),
-    ["n|;"] = map_cmd("v:lua.enhance_ft_move(';')"):with_expr(),
-
     -- Plugin Hop
-    ["n|<leader>w"]  = map_cu("HopWord"):with_noremap(),
-    ["n|<leader>j"]  = map_cu("HopLine"):with_noremap(),
-    ["n|<leader>k"]  = map_cu("HopLine"):with_noremap(),
-    ["n|<leader>c"]  = map_cu("HopChar1"):with_noremap(),
-    ["n|<leader>cc"] = map_cu("HopChar2"):with_noremap(),
+    ["n|sj"]  = map_cu("HopVerticalAC"):with_noremap(),
+    ["n|sk"]  = map_cu("HopVerticalBC"):with_noremap(),
+    ["n|sw"]  = map_cu("HopWord"):with_noremap(),
+    ["n|sc"]  = map_cu("HopChar1"):with_noremap(),
+    ["n|scc"] = map_cu("HopChar2"):with_noremap(),
 
     -- Plugin EasyAlign
     ["n|ga"] = map_cmd("v:lua.enhance_align('nga')"):with_expr(),
@@ -118,14 +111,6 @@ local plug_map = {
     -- Plugin split-term
     ["n|<F5>"]   = map_cr("VTerm"):with_noremap():with_silent(),
     ["n|<C-w>t"] = map_cr("VTerm"):with_noremap():with_silent(),
-
-    -- Plugin MarkdownPreview
-    ["n|<F12>"] = map_cr("MarkdownPreviewToggle"):with_noremap():with_silent(),
-
-    -- Plugin auto_session
-    ["n|<leader>ss"] = map_cu("SaveSession"):with_noremap():with_silent(),
-    ["n|<leader>sr"] = map_cu("RestoreSession"):with_noremap():with_silent(),
-    ["n|<leader>sd"] = map_cu("DeleteSession"):with_noremap():with_silent(),
 
     -- Plugin SnipRun
     ["v|<leader>r"] = map_cr("SnipRun"):with_noremap():with_silent(),

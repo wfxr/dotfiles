@@ -57,9 +57,11 @@ completion["ray-x/lsp_signature.nvim"] = {
     opt = true,
     after = "nvim-lspconfig",
     config = function ()
-        require("lsp_signature").setup()
+        require("lsp_signature").setup({
+            bind = true, -- This is mandatory, otherwise border config won't get registered.
+            handler_opts = 'none',
+        })
     end
-
 }
 completion["hrsh7th/nvim-cmp"] = {
     config = conf.cmp,

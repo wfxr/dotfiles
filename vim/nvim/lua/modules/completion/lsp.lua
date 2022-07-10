@@ -113,7 +113,7 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
                     -- autoSetHints both are true.
                     only_current_line_autocmd = "CursorHold",
                     -- wheter to show parameter hints with the inlay hints or not
-                    show_parameter_hints = false,
+                    show_parameter_hints = true,
                     -- prefix for parameter hints
                     parameter_hints_prefix = "« ",
                     -- prefix for all the other hints (type, chaining)

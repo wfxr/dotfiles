@@ -1,7 +1,6 @@
 local editor = {}
 local conf = require("modules.editor.config")
 
-editor['rhysd/clever-f.vim']              = {}
 editor['ivyl/vim-bling']                  = {}
 editor['rhysd/git-messenger.vim']         = {}
 editor['junegunn/vim-peekaboo']           = {}
@@ -85,19 +84,18 @@ editor["romainl/vim-cool"] = {
     event = { "CursorMoved", "InsertEnter" },
 }
 editor["phaazon/hop.nvim"] = {
-    opt = true,
-    branch = "v1",
-    cmd = {
-        "HopLine",
-        "HopLineStart",
-        "HopWord",
-        "HopPattern",
-        "HopChar1",
-        "HopChar2",
-    },
+    opt = false,
     config = function()
-        require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
+        require("hop").setup({ keys = "asdghklqwrtyuiopzxcvbnmej123478905f" })
     end,
+}
+editor['rhysd/clever-f.vim'] = {
+    config = function ()
+        vim.cmd [[
+            map ; <Plug>(clever-f-repeat-forward)
+            map \ <Plug>(clever-f-repeat-back)
+        ]]
+    end
 }
 editor["karb94/neoscroll.nvim"] = {
     config = conf.neoscroll,
