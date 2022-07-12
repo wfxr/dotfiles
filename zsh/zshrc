@@ -40,7 +40,7 @@ export ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(end-of-line)
 source ~/.zsh_misc
 source ~/.zsh_aliases
 [ -f ~/.zsh_local  ] && source ~/.zsh_local
-[ -f ~/.zsh_secret ] && source ~/.zsh_secret 2>/dev/null # maybe locked
+{ head -1 ~/.zsh_secret | grep unlocked &>/dev/null } && source ~/.zsh_secret
 
 source ~/.zsh_custom
 source ~/.zsh_fzf_extra
