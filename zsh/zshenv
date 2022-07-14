@@ -33,7 +33,7 @@ export CXX="${commands[clang++]:-$CXX}"
 # Rust
 PATH="$HOME/.cargo/bin:$PATH"
 export CARGO_HOME="$HOME/.cargo"
-export CARGO_BUILD_TARGET_DIR="$HOME/.cache/cargo-target"
+export CARGO_TARGET_DIR="$HOME/.cache/cargo/target"
 
 export TERM="xterm-256color"
 
