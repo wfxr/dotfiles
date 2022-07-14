@@ -96,6 +96,7 @@ export BAT_CONFIGPATH="$HOME/.config/bat/config"
 
 # node
 export PATH="$HOME/.nodenv/shims:$HOME/.nodenv/bin:$PATH"
+export PATH="$PATH:$HOME/.yarn/bin"
 
 # scala coursier
 export PATH="$PATH:$HOME/.local/share/coursier/bin"
