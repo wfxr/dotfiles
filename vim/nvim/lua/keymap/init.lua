@@ -52,6 +52,7 @@ local plug_map = {
     ["v|<A-Enter>"]  = map_cu("lua vim.lsp.buf.range_code_action()"):with_noremap():with_silent(),
     ["n|gu"]         = map_cr("lua vim.lsp.buf.references()"):with_noremap():with_silent(),
     ["n|<Enter>"]    = map_cr("lua vim.lsp.buf.definition()"):with_noremap():with_silent(),
+    ["n|<c-a-l>"]    = map_cr("lua vim.lsp.buf.format()"):with_noremap():with_silent(),
     ["n|<C-\\>"]     = map_cu('lua require("FTerm").toggle()'):with_noremap():with_silent(),
     ["t|<C-\\>"]     = map_cu([[<C-\><C-n><CMD>lua require("FTerm").toggle()]]):with_noremap():with_silent(),
     ["t|<C-S-\\>"]   = map_cu([[<C-\><C-n><CMD>lua require("FTerm").exit()]]):with_noremap():with_silent(),

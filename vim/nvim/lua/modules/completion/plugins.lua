@@ -27,6 +27,7 @@ completion["jose-elias-alvarez/null-ls.nvim"] = {
                 null_ls.builtins.formatting.rustfmt,
                 null_ls.builtins.formatting.goimports,
                 null_ls.builtins.formatting.rustfmt,
+                null_ls.builtins.formatting.sql_formatter,
                 -- null_ls.builtins.formatting.shfmt,
             },
             on_attach = function(client, bufnr)
@@ -37,7 +38,7 @@ completion["jose-elias-alvarez/null-ls.nvim"] = {
                         buffer = bufnr,
                         callback = function()
                             -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
-                            vim.lsp.buf.formatting_sync()
+                            -- vim.lsp.buf.format()
                         end,
                     })
                 end
