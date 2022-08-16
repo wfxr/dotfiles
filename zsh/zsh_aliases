@@ -134,3 +134,6 @@ alias ct='cargo make test'
 alias cr='cargo make run'
 
 alias ta='tmux attach -t'
+
+(( $+commands[gnumfmt] )) && alias numfmt=gnumfmt
+(( $+commands[gdate] )) && alias date=gdate
