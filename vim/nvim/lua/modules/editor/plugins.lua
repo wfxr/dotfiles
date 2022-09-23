@@ -45,9 +45,13 @@ editor["RRethy/vim-illuminate"] = {
 editor["numToStr/Comment.nvim"] = {
     config = function()
         require('Comment').setup()
+        -- vim.cmd [[
+        --     nnoremap <c-_> <Plug>(comment_toggle_current_linewise)j
+        --     vnoremap <c-_> <Plug>(comment_toggle_linewise_visual)'>j
+        -- ]]
         vim.cmd [[
-            nnoremap <c-_> <Plug>(comment_toggle_current_linewise)j
-            vnoremap <c-_> <Plug>(comment_toggle_linewise_visual)'>j
+            nmap <c-_> gccj
+            vmap <c-_> gcj
         ]]
     end
 }
