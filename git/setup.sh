@@ -93,3 +93,5 @@ fi
 
 # Political correctness?
 git config --global init.defaultBranch main
+
+git config --global includeIf."gitdir:~/work/".path ~/work/.gitconfig
