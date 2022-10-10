@@ -11,22 +11,40 @@ function config.aerial()
         -- This can be a filetype map (see :help aerial-filetype-map)
         backends = { "treesitter", "lsp", "markdown" },
 
-        -- Enum: persist, close, auto, global
-        --   persist - aerial window will stay open until closed
-        --   close   - aerial window will close when original file is no longer visible
-        --   auto    - aerial window will stay open as long as there is a visible
-        --             buffer to attach to
-        --   global  - same as 'persist', and will always show symbols for the current buffer
-        close_behavior = "auto",
+        layout = {
+            -- These control the width of the aerial window.
+            -- They can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
+            -- min_width and max_width can be a list of mixed types.
+            -- max_width = {40, 0.2} means "the lesser of 40 columns or 20% of total"
+            max_width = { 40, 0.2 },
+            width = nil,
+            min_width = 10,
+
+            -- Determines the default direction to open the aerial window. The 'prefer'
+            -- options will open the window in the other direction *if* there is a
+            -- different buffer in the way of the preferred direction
+            -- Enum: prefer_right, prefer_left, right, left, float
+            default_direction = "prefer_right",
+
+            -- Determines where the aerial window will be opened
+            --   edge   - open aerial at the far right/left of the editor
+            --   window - open aerial to the right/left of the current window
+            placement = "window",
+        },
+
+        -- Determines how the aerial window decides which buffer to display symbols for
+        --   window - aerial window will display symbols for the buffer in the window from which it was opened
+        --   global - aerial window will display symbols for the current window
+        attach_mode = "window",
+
+        -- List of enum values that configure when to auto-close the aerial window
+        --   unfocus       - close aerial when you leave the original source window
+        --   switch_buffer - close aerial when you change buffers in the source window
+        --   unsupported   - close aerial when attaching to a buffer that has no symbol source
+        close_automatic_events = {},
 
         -- Set to false to remove the default keybindings for the aerial buffer
         default_bindings = true,
-
-        -- Enum: prefer_right, prefer_left, right, left, float
-        -- Determines the default direction to open the aerial window. The 'prefer'
-        -- options will open the window in the other direction *if* there is a
-        -- different buffer in the way of the preferred direction
-        default_direction = "prefer_right",
 
         -- Disable aerial on files with this many lines
         disable_max_lines = 10000,
