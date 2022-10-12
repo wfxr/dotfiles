@@ -67,6 +67,7 @@ git config --global alias.unlock '!git-crypt unlock'
 # signing
 git config --global user.signingkey wenxuangm@gmail.com
 git config --global commit.gpgsign true
+git config --global format.signoff true
 
 # pre-commit https://pre-commit.com
 hash pre-commit &>/dev/null && {
