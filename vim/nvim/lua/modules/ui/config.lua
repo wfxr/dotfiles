@@ -141,7 +141,6 @@ function config.nvim_tree()
         update_cwd = true,
         view = {
             width = 30,
-            height = 30,
             side = "left",
             preserve_window_proportions = false,
             number = false,

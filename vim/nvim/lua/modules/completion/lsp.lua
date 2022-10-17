@@ -49,8 +49,7 @@ lsp_installer.setup({
     },
 })
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local lsp_formatting = function(bufnr)
     vim.lsp.buf.format({
