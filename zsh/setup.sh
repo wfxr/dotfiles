@@ -16,7 +16,7 @@ ln -sf "$SDIR/zsh_secret"    ~/.zsh_secret
 
 mkdir -p ~/.config
 
-rm -f ~/.config/sheldon && ln -snf "$SDIR/sheldon" ~/.config/sheldon
+rm -rf ~/.config/sheldon && ln -snf "$SDIR/sheldon" ~/.config/sheldon
 ln -sf "$SDIR/starship.toml" ~/.config/starship.toml
 
 [[ "$SHELL" =~ "zsh" ]] || chsh -s "$(command -v zsh)"
