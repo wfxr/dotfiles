@@ -57,7 +57,7 @@ function synchronized() {
 }
 
 # cache directory for zinit
-ZINIT_CACHE="/tmp/zinit::cache/$UID"
+ZINIT_CACHE="/tmp/zinit::cache:$UID"
 function zi::cache() {
     local srcgen="$1" dest="$ZINIT_CACHE/${2:-$1}.zi::cache" lock="$ZINIT_CACHE/lock"
     local handler="
