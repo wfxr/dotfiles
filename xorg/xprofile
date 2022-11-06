@@ -21,7 +21,7 @@ xrdb -merge ~/.xthemes/amarena
 nitrogen --restore
 
 fcitx5 -d -r
-picom -b --experimental-backends
+picom -b
 if hash greenclip &>/dev/null; then
     killall greenclip;
     greenclip daemon &
