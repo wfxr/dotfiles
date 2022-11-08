@@ -50,6 +50,7 @@ completion["jose-elias-alvarez/null-ls.nvim"] = {
 completion["williamboman/nvim-lsp-installer"] = {
     opt = false,
 }
+-- Neovim plugin for a code outline window
 completion["stevearc/aerial.nvim"] = {
     opt = true,
     after = "nvim-lspconfig",

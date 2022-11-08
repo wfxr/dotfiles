@@ -137,6 +137,13 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
             server = {
                 capabilities = capabilities,
                 on_attach = custom_attach,
+                settings = {
+                    ["rust-analyzer"] = {
+                        cargo = {
+                            allFeatures = true,
+                        },
+                    },
+                },
             }
         })
     elseif server.name == "gopls" then
