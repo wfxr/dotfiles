@@ -31,6 +31,7 @@ cargo install --locked cargo-expand
 cargo install --locked cargo-udeps
 cargo install --locked cargo-watch
 cargo install --locked cargo-make
+cargo install --locked cargo-nextest
 
 cargo install --locked flamegraph
 hash perf &>/dev/null || {
