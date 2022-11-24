@@ -40,10 +40,10 @@ tools["gelguy/wilder.nvim"] = {
     config = conf.wilder,
     requires = { { "romgrk/fzy-lua-native", after = "wilder.nvim" } },
 }
-tools["nathom/filetype.nvim"] = {
-    opt = false,
-    config = conf.filetype,
-}
+-- tools["nathom/filetype.nvim"] = {
+--     opt = false,
+--     config = conf.filetype,
+-- }
 tools["farmergreg/vim-lastplace"] = {
     opt = false,
 }
