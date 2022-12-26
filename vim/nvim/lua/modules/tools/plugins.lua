@@ -47,5 +47,18 @@ tools["gelguy/wilder.nvim"] = {
 tools["farmergreg/vim-lastplace"] = {
     opt = false,
 }
+tools["MunifTanjim/exrc.nvim"] = {
+    opt = false,
+    config = function()
+        require("exrc").setup({
+            files = {
+                ".nvimrc.lua",
+                ".nvimrc",
+                ".exrc.lua",
+                ".exrc",
+            },
+        })
+    end,
+}
 
 return tools
