@@ -24,8 +24,10 @@ ui["stevearc/dressing.nvim"] = {
             input = {
                 default_prompt = "Input:",
                 border = { "┏", "─", "┓", "│", "┛", "─", "┗", "│" },
-                winblend = 5,
-                winhighlight = "NormalFloat:Normal",
+                win_options = {
+                    winblend = 5,
+                    winhighlight = "NormalFloat:Normal",
+                },
             },
             select = {
                 enabled = false, -- telescope-ui-select is better
@@ -34,7 +36,9 @@ ui["stevearc/dressing.nvim"] = {
                 -- Options for built-in selector
                 builtin = {
                     border = { "┏", "─", "┓", "│", "┛", "─", "┗", "│" },
-                    winblend = 5,
+                    win_options = {
+                        winblend = 5,
+                    },
                 },
             }
         })

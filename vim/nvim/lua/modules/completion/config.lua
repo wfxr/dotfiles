@@ -30,6 +30,10 @@ function config.aerial()
             --   edge   - open aerial at the far right/left of the editor
             --   window - open aerial to the right/left of the current window
             placement = "window",
+
+            -- Set to true to only open aerial at the far right/left of the editor
+            -- Default behavior opens aerial relative to current window
+            placement_editor_edge = false,
         },
 
         -- Determines how the aerial window decides which buffer to display symbols for
@@ -145,14 +149,6 @@ function config.aerial()
         -- 'auto' will manage folds if your previous foldmethod was 'manual'
         manage_folds = false,
 
-        -- These control the width of the aerial window.
-        -- They can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
-        -- min_width and max_width can be a list of mixed types.
-        -- max_width = {40, 0.2} means "the lesser of 40 columns or 20% of total"
-        max_width = { 40, 0.2 },
-        width = nil,
-        min_width = 16,
-
         -- Set default symbol icons to use patched font icons (see https://www.nerdfonts.com/)
         -- "auto" will set it to true if nvim-web-devicons or lspkind-nvim is installed.
         nerd_font = "auto",
@@ -164,10 +160,6 @@ function config.aerial()
         -- Automatically open aerial when entering supported buffers.
         -- This can be a function (see :help aerial-open-automatic)
         open_automatic = false,
-
-        -- Set to true to only open aerial at the far right/left of the editor
-        -- Default behavior opens aerial relative to current window
-        placement_editor_edge = false,
 
         -- Run this command after jumping to a symbol (false will disable)
         post_jump_cmd = "normal! zz",
