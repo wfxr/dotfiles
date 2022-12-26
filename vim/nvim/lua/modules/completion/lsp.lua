@@ -64,7 +64,6 @@ end
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 local function custom_attach(client, bufnr)
-    require("aerial").on_attach(client)
     require("illuminate").on_attach(client)
     if client.supports_method("textDocument/formatting") then
         vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
@@ -145,6 +144,19 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
                     },
                 },
             }
+        })
+    elseif server.name == "clangd" then
+        local notify = vim.notify
+        -- https://github.com/jose-elias-alvarez/null-ls.nvim/issues/428
+        vim.notify = function(msg, ...)
+            if msg:match("warning: multiple different client offset_encodings") then
+                return
+            end
+            notify(msg, ...)
+        end
+        nvim_lsp.clangd.setup({
+            capabilities = capabilities,
+            on_attach = custom_attach,
         })
     elseif server.name == "gopls" then
         nvim_lsp.gopls.setup({
