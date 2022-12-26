@@ -46,26 +46,11 @@ function autocmd.load_autocmds()
             { "VimResized", "*", [[tabdo wincmd =]] },
         },
         ft = {
-            { "FileType", "go",   "setl nolist noexpandtab" },
-            { "FileType", "make", "setl nolist noexpandtab  shiftwidth=8 softtabstop=0" },
-            -- Google tab style
-            { "FileType", "c,cpp", "setl expandtab tabstop=2 shiftwidth=2" },
+            { "FileType", "*",        "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" },
+            { "FileType", "c,cpp",    "nnoremap <leader>h :ClangdSwitchSourceHeaderVSplit<CR>" },
+            { "FileType", "go",       "setl nolist noexpandtab" },
+            { "FileType", "make",     "setl nolist noexpandtab  shiftwidth=8 softtabstop=0" },
             { "FileType", "dap-repl", "lua require('dap.ext.autocompl').attach()" },
-            {
-                "FileType",
-                "dashboard",
-                "set showtabline=0 | autocmd WinLeave <buffer> set showtabline=2",
-            },
-            {
-                "FileType",
-                "*",
-                [[setlocal formatoptions-=c formatoptions-=r formatoptions-=o]],
-            },
-            {
-                "FileType",
-                "c,cpp",
-                "nnoremap <leader>h :ClangdSwitchSourceHeaderVSplit<CR>",
-            },
         },
         yank = {
             {
