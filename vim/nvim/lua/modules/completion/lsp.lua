@@ -82,9 +82,6 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
     if server.name == "rust_analyzer" then
         require("rust-tools").setup({
             tools = {
-                -- rust-tools options
-                -- Automatically set inlay hints (type hints)
-                autoSetHints = true,
                 runnables = {
                     -- whether to use telescope for selection menu or not
                     use_telescope = true,
@@ -99,28 +96,39 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
                 },
                 -- These apply to the default RustSetInlayHints command
                 inlay_hints = {
+                    -- automatically set inlay hints (type hints)
+                    -- default: true
+                    auto = true,
+
                     -- Only show inlay hints for the current line
                     only_current_line = false,
-                    -- Event which triggers a refersh of the inlay hints.
-                    -- You can make this "CursorMoved" or "CursorMoved,CursorMovedI" but
-                    -- not that this may cause  higher CPU usage.
-                    -- This option is only respected when only_current_line and
-                    -- autoSetHints both are true.
-                    only_current_line_autocmd = "CursorHold",
-                    -- wheter to show parameter hints with the inlay hints or not
+
+                    -- whether to show parameter hints with the inlay hints or not
+                    -- default: true
                     show_parameter_hints = true,
+
                     -- prefix for parameter hints
+                    -- parameter_hints_prefix = "<- ",
                     parameter_hints_prefix = "« ",
+
                     -- prefix for all the other hints (type, chaining)
+                    -- other_hints_prefix = "=> ",
                     other_hints_prefix = " » ",
+
                     -- whether to align to the length of the longest line in the file
                     max_len_align = false,
+
                     -- padding from the left if max_len_align is true
                     max_len_align_padding = 1,
+
                     -- whether to align to the extreme right or not
                     right_align = false,
+
                     -- padding from the right if right_align is true
                     right_align_padding = 7,
+
+                    -- The color of the hints
+                    highlight = "Comment",
                 },
                 hover_actions = {
                     -- the border that is used for the hover window
@@ -140,6 +148,10 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
                     ["rust-analyzer"] = {
                         cargo = {
                             allFeatures = true,
+                        },
+                        -- https://github.com/simrat39/rust-tools.nvim/issues/300
+                        inlayHints = {
+                            locationLinks = false
                         },
                     },
                 },

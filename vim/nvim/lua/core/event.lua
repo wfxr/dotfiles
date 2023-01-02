@@ -47,7 +47,7 @@ function autocmd.load_autocmds()
         },
         ft = {
             { "FileType", "*",        "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" },
-            { "FileType", "c,cpp",    "nnoremap <leader>h :ClangdSwitchSourceHeaderVSplit<CR>" },
+            { "FileType", "c,cpp",    "nnoremap <leader>h :ClangdSwitchSourceHeader<CR>" },
             { "FileType", "go",       "setl nolist noexpandtab" },
             { "FileType", "make",     "setl nolist noexpandtab  shiftwidth=8 softtabstop=0" },
             { "FileType", "dap-repl", "lua require('dap.ext.autocompl').attach()" },
