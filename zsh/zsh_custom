@@ -498,7 +498,7 @@ function zt_members() {
         https://my.zerotier.com/api/network/8bd5124fd6374d27/member |
         jq '.[] | [.name, .config.ipAssignments[], .physicalAddress, .online] | @tsv' -r |
         sed -e "s/true/${green}online/g" -e "s/false/${red}offline/g" |
-        csview -tH
+        csview -tH --style none
 }
 
 function font_list() { fc-list -f '%{family}\n' | awk '!x[$0]++' }

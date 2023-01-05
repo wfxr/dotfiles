@@ -15,7 +15,12 @@ export GPG_TTY="$(tty)"
 
 export PATH="$HOME/bin:$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin:/usr/bin:/usr/games:/usr/local/games:/bin:/sbin"
 
-[[ $OSTYPE =~ darwin ]] && export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
+if [[ $OSTYPE =~ darwin ]]; then
+    export HOMEBREW_PREFIX=/opt/homebrew
+    export PATH="$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/sbin:$PATH"
+fi
+
+[[ -d /snap/bin ]] && export PATH="/snap/bin:$PATH"
 [[ -x /home/linuxbrew/.linuxbrew/bin/brew ]] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # True color
