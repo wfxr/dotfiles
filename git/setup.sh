@@ -95,4 +95,7 @@ fi
 # Political correctness?
 git config --global init.defaultBranch main
 
+git config --global feature.manyFiles true
+git config --global core.fsmonitor    true
+
 git config --global includeIf."gitdir:~/work/".path ~/work/.gitconfig
