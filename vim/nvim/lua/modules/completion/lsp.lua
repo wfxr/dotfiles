@@ -1,7 +1,6 @@
 vim.cmd([[packadd nvim-lsp-installer]])
 vim.cmd([[packadd cmp-nvim-lsp]])
 vim.cmd([[packadd aerial.nvim]])
-vim.cmd([[packadd vim-illuminate]])
 
 local nvim_lsp = require("lspconfig")
 local lsp_installer = require("nvim-lsp-installer")
@@ -64,17 +63,16 @@ end
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 local function custom_attach(client, bufnr)
-    require("illuminate").on_attach(client)
-    if client.supports_method("textDocument/formatting") then
-        vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-        vim.api.nvim_create_autocmd("BufWritePre", {
-            group = augroup,
-            buffer = bufnr,
-            callback = function()
-                lsp_formatting(bufnr)
-            end,
-        })
-    end
+    -- if client.supports_method("textDocument/formatting") then
+    --     vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+    --     vim.api.nvim_create_autocmd("BufWritePre", {
+    --         group = augroup,
+    --         buffer = bufnr,
+    --         callback = function()
+    --             lsp_formatting(bufnr)
+    --         end,
+    --     })
+    -- end
 end
 
 -- Override server settings here
