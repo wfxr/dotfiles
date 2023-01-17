@@ -19,10 +19,6 @@ install_nodenv() {
         mkdir -p "$(nodenv root)/plugins"
         git clone --depth=1 https://github.com/nodenv/node-build.git \
             "$(nodenv root)/plugins/node-build"
-
-        # automatically install npm packages every time you install a new version of Node
-        git clone --depth=1 https://github.com/nodenv/nodenv-default-packages.git \
-            "$(nodenv root)/plugins/nodenv-default-packages"
     else
         cd ~/.nodenv || return 1
         git pull origin master
