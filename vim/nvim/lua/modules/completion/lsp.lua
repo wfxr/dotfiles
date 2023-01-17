@@ -7,13 +7,13 @@ local lsp_installer = require("nvim-lsp-installer")
 
 local signs = {
     { name = "DiagnosticSignError", text = "••" }, -- 
-    { name = "DiagnosticSignWarn",  text = "•"  }, -- 
-    { name = "DiagnosticSignHint",  text = ""  }, -- 
-    { name = "DiagnosticSignInfo",  text = ""  }, --     כֿ 
+    { name = "DiagnosticSignWarn", text = "•" }, -- 
+    { name = "DiagnosticSignHint", text = "" }, -- 
+    { name = "DiagnosticSignInfo", text = "" }, --     כֿ 
 }
 
 for _, sign in ipairs(signs) do
-  vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
+    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
 end
 
 lsp_installer.setup({
@@ -49,31 +49,6 @@ lsp_installer.setup({
 })
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
-local lsp_formatting = function(bufnr)
-    vim.lsp.buf.format({
-        filter = function(client)
-            -- apply whatever logic you want (in this example, we'll only use null-ls)
-            return client.name == "null-ls"
-        end,
-        bufnr = bufnr,
-    })
-end
-
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-
-local function custom_attach(client, bufnr)
-    -- if client.supports_method("textDocument/formatting") then
-    --     vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-    --     vim.api.nvim_create_autocmd("BufWritePre", {
-    --         group = augroup,
-    --         buffer = bufnr,
-    --         callback = function()
-    --             lsp_formatting(bufnr)
-    --         end,
-    --     })
-    -- end
-end
 
 -- Override server settings here
 for _, server in ipairs(lsp_installer.get_installed_servers()) do
@@ -141,7 +116,6 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
             -- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
             server = {
                 capabilities = capabilities,
-                on_attach = custom_attach,
                 settings = {
                     ["rust-analyzer"] = {
                         cargo = {
@@ -166,12 +140,10 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
         end
         nvim_lsp.clangd.setup({
             capabilities = capabilities,
-            on_attach = custom_attach,
         })
     elseif server.name == "gopls" then
         nvim_lsp.gopls.setup({
             capabilities = capabilities,
-            on_attach = custom_attach,
             flags = { debounce_text_changes = 500 },
             settings = {
                 gopls = {
@@ -188,10 +160,6 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
     elseif server.name == "sumneko_lua" then
         nvim_lsp.sumneko_lua.setup({
             capabilities = capabilities,
-            on_attach = function(client, bufnr)
-                client.server_capabilities.document_formatting = false
-                custom_attach(client, bufnr)
-            end,
             settings = {
                 Lua = {
                     diagnostics = { globals = { "vim", "packer_plugins" } },
@@ -210,7 +178,6 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
     elseif server.name == "jsonls" then
         nvim_lsp.jsonls.setup({
             capabilities = capabilities,
-            on_attach = custom_attach,
             flags = { debounce_text_changes = 500 },
             settings = {
                 json = {
@@ -269,7 +236,6 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
             capabilities = capabilities,
             on_attach = function(client)
                 client.server_capabilities.document_formatting = false
-                custom_attach(client)
             end,
         })
     end

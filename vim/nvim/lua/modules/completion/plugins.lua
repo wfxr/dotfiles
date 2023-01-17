@@ -9,7 +9,7 @@ completion["neovim/nvim-lspconfig"] = {
 completion["jose-elias-alvarez/null-ls.nvim"] = {
     opt = false,
     requires = { 'nvim-lua/plenary.nvim' },
-    config = function ()
+    config = function()
         local null_ls = require("null-ls")
         local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
         null_ls.setup({
@@ -38,8 +38,7 @@ completion["jose-elias-alvarez/null-ls.nvim"] = {
                         group = augroup,
                         buffer = bufnr,
                         callback = function()
-                            -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
-                            vim.lsp.buf.formatting_sync()
+                            vim.lsp.buf.format()
                         end,
                     })
                 end
@@ -59,11 +58,11 @@ completion["stevearc/aerial.nvim"] = {
 completion["ray-x/lsp_signature.nvim"] = {
     opt = true,
     after = "nvim-lspconfig",
-    config = function ()
+    config = function()
         require("lsp_signature").setup({
             bind = true, -- This is mandatory, otherwise border config won't get registered.
             handler_opts = {
-                border = {"┏", "─", "┓", "│", "┛", "─", "┗", "│" },
+                border = { "┏", "─", "┓", "│", "┛", "─", "┗", "│" },
             },
         })
     end
@@ -73,12 +72,12 @@ completion["hrsh7th/nvim-cmp"] = {
     event = "InsertEnter",
     requires = {
         { "lukas-reineke/cmp-under-comparator" },
-        { "saadparwaiz1/cmp_luasnip",   after = "LuaSnip"      },
-        { "hrsh7th/cmp-nvim-lsp",       after = "cmp_luasnip"  },
-        { "hrsh7th/cmp-nvim-lua",       after = "cmp-nvim-lsp" },
-        { "hrsh7th/cmp-path",           after = "cmp-nvim-lua" },
-        { "f3fora/cmp-spell",           after = "cmp-path"     },
-        { "hrsh7th/cmp-buffer",         after = "cmp-spell"    },
+        { "saadparwaiz1/cmp_luasnip", after = "LuaSnip" },
+        { "hrsh7th/cmp-nvim-lsp", after = "cmp_luasnip" },
+        { "hrsh7th/cmp-nvim-lua", after = "cmp-nvim-lsp" },
+        { "hrsh7th/cmp-path", after = "cmp-nvim-lua" },
+        { "f3fora/cmp-spell", after = "cmp-path" },
+        { "hrsh7th/cmp-buffer", after = "cmp-spell" },
         -- { "kdheepak/cmp-latex-symbols", after = "cmp-buffer"   },
         -- { "andersevenrud/cmp-tmux", after = "cmp-nvim-lua" },
         -- {
@@ -96,13 +95,13 @@ completion["L3MON4D3/LuaSnip"] = {
 }
 completion["windwp/nvim-autopairs"] = {
     after = "nvim-cmp",
-    config = function ()
+    config = function()
         require("nvim-autopairs").setup({})
     end,
 }
 completion["RRethy/nvim-treesitter-endwise"] = {
     after = "nvim-cmp",
-    config = function ()
+    config = function()
         require('nvim-treesitter.configs').setup {
             endwise = {
                 enable = true,
@@ -113,12 +112,12 @@ completion["RRethy/nvim-treesitter-endwise"] = {
 completion["github/copilot.vim"] = {
     opt = true,
     event = "InsertEnter",
-    config = function ()
+    config = function()
         vim.g.copilot_no_tab_map = true
         vim.g.copilot_assume_mapped = true
         -- vim.g.copilot_tab_fallback = "\t"
 
-        vim.keymap.set("i", "<c-e>", function ()
+        vim.keymap.set("i", "<c-e>", function()
             local copilot_keys = vim.fn["copilot#Accept"]()
             if copilot_keys ~= "" then
                 vim.api.nvim_feedkeys(copilot_keys, "i", true)
