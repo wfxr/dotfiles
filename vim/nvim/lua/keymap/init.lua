@@ -80,8 +80,8 @@ local plug_map = {
     ["n|<A-t>"] = map_cr("AerialToggle! right"):with_noremap():with_silent(),
 
     -- Plugin Minimap
-    ["n|<A-n>"] = map_cr("MinimapToggle"):with_noremap():with_silent(),
-    ["n|<A-r>"] = map_cr("MinimapRefresh"):with_noremap():with_silent(),
+    ["n|<A-S-n>"] = map_cr("MinimapToggle"):with_noremap():with_silent(),
+    ["n|<A-S-r>"] = map_cr("MinimapRefresh"):with_noremap():with_silent(),
 
     -- Plugin Undotree
     ["n|<Leader>u"] = map_cr("UndotreeToggle"):with_noremap():with_silent(),
