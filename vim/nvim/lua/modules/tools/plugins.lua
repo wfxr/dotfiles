@@ -111,8 +111,8 @@ tools["ojroques/nvim-osc52"] = {
     opt = false,
     config = function()
         vim.keymap.set('n', '<leader>y', require('osc52').copy_operator, { expr = true })
-        vim.keymap.set('n', 'c-y', '<leader>c_', { remap = true })
-        vim.keymap.set('x', 'c-y', require('osc52').copy_visual)
+        vim.keymap.set('n', '<c-y>', '<leader>y_', { remap = true })
+        vim.keymap.set('x', '<c-y>', require('osc52').copy_visual)
     end
 }
 
