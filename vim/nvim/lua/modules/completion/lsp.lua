@@ -18,10 +18,7 @@ end
 
 lsp_installer.setup({
     ensure_installed = {
-        "golangci_lint_ls",
-        "rust_analyzer",
         "bashls",
-        "sumneko_lua",
     },
     ui = {
         icons = {
