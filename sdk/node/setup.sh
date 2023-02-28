@@ -33,7 +33,7 @@ install_nodenv() {
 }
 
 install_node() {
-    v=18.0.0
+    v=18.14.2
     nodenv versions | grep $v || nodenv install $v
     nodenv global $v
     npm install -g yarn
