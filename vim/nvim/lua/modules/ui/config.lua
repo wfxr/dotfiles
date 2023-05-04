@@ -127,15 +127,32 @@ function config.lualine()
 end
 
 function config.nvim_tree()
+    local function on_attach(bufnr)
+        local api = require('nvim-tree.api')
+        local function opts(desc)
+            return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+        end
+
+        vim.keymap.set('n', '<CR>', api.node.open.edit,             opts('Open'))
+        vim.keymap.set('n', 'o',    api.node.open.preview,          opts('Open Preview'))
+        vim.keymap.set('n', 'K',    api.node.show_info_popup,       opts('Info'))
+        vim.keymap.set('n', 'yy',   api.fs.copy.node,               opts('Copy'))
+        vim.keymap.set('n', 'dd',   api.fs.cut,                     opts('Cut'))
+        vim.keymap.set('n', 'gr',   api.fs.rename,                  opts('Rename'))
+        vim.keymap.set('n', 'p',    api.fs.paste,                   opts('Paste'))
+        vim.keymap.set('n', 'c',    api.fs.create,                  opts('Create'))
+        vim.keymap.set('n', 'D',    api.fs.remove,                  opts('Delete'))
+        vim.keymap.set('n', '<BS>', api.tree.change_root_to_parent, opts('Up'))
+        vim.keymap.set('n', '?',    api.tree.toggle_help,           opts('Help'))
+    end
+
     require("nvim-tree").setup({
+        on_attach = on_attach,
         auto_reload_on_write = true,
         disable_netrw = false,
         hijack_cursor = true,
         hijack_netrw = true,
         hijack_unnamed_buffer_when_opening = false,
-        ignore_buffer_on_setup = false,
-        open_on_setup = false,
-        open_on_setup_file = false,
         open_on_tab = false,
         sort_by = "name",
         update_cwd = true,
@@ -147,21 +164,6 @@ function config.nvim_tree()
             relativenumber = false,
             signcolumn = "yes",
             hide_root_folder = false,
-            mappings = {
-                list = {
-                    { key = "<CR>", action = "edit"             },
-                    { key = "o",    action = "preview"          },
-                    { key = "K",    action = "toggle_file_info" },
-                    { key = "yy",   action = "copy"             },
-                    { key = "dd",   action = "cut"              },
-                    { key = "gr",   action = "rename"           },
-                    { key = "p",    action = "paste"            },
-                    { key = "c",    action = "create"           },
-                    { key = "D",    action = "remove"           },
-                    { key = "<BS>", action = "dir_up"           },
-                    { key = "?",    action = "toggle_help"      },
-                }
-            }
         },
         renderer = {
             add_trailing = false,
@@ -223,7 +225,6 @@ function config.nvim_tree()
             update_cwd = true,
             ignore_list = {},
         },
-        ignore_ft_on_setup = {},
         filters = {
             dotfiles = false,
             custom = { ".DS_Store" },
