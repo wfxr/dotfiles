@@ -95,3 +95,9 @@ setup_guis
 
 info 'enable services...'
 enable_services
+
+# dual boot
+# sudo mount /dev/win-efi-partition /mnt
+# sudo cp /boot/grub/grub.cfg /boot/grub/grub.cfg.bak
+# sudo os-prober
+# sudo grub-mkconfig -o /boot/grub/grub.cfg
