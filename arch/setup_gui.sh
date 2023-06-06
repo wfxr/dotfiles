@@ -49,8 +49,8 @@ function setup_guis() {
     ../rofi/setup.sh
 
     paru --noconfirm -S kitty alacritty
-    ../terminal/kitty/setup.sh
-    ../terminal/alacritty/setup.sh
+    ../kitty/setup.sh
+    ../alacritty/setup.sh
 
     paru --noconfirm -S xdotool
     paru --noconfirm -S xclip xsel
