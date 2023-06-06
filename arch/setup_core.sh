@@ -9,6 +9,11 @@ info() { printf "$(date -Is) %b[info]%b %s\n" '\e[0;32m\033[1m' '\e[0m' "$*" >&2
 warn() { printf "$(date -Is) %b[warn]%b %s\n" '\e[0;33m\033[1m' '\e[0m' "$*" >&2; }
 erro() { printf "$(date -Is) %b[erro]%b %s\n" '\e[0;31m\033[1m' '\e[0m' "$*" >&2; }
 
+function config_system() {
+    # config time zone
+    ln -sf /usr/share/zoneinfo/Asia/Chongqing /etc/localtime
+}
+
 function setup_package_manager() {
     # Download pacman mirrorlist
     # Uncomment the wanted mirror
@@ -75,6 +80,9 @@ function install_cli_package() {
     paru --noconfirm -S topgrade # upgrade all the things
     paru --noconfirm -S zoxide # z or autojump alternative
 }
+
+info 'config system...'
+config_system
 
 info 'setup package manager...'
 setup_package_manager
