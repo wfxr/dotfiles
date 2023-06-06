@@ -79,6 +79,12 @@ function setup_guis() {
     # paru --noconfirm -S grub-theme-vimix-git
     # sed -i 's|^\s*#*\s*GRUB_THEME=.*|GRUB_THEME="/usr/share/grub/themes/Vimix/theme.txt"|' /etc/default/grub
     # grub-mkconfig -o /boot/grub/grub.cfg
+
+    paru --noconfirm -S google-chrome
+}
+
+function enable_services() {
+    sudo systemctl enable sddm
 }
 
 info 'setup fonts...'
@@ -86,3 +92,6 @@ setup_fonts
 
 info 'setup guis...'
 setup_guis
+
+info 'enable services...'
+enable_services
