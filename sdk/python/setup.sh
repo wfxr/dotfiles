@@ -35,7 +35,7 @@ install_pyenv() {
 install_python() {
     export PYTHON_CONFIGURE_OPTS="--enable-shared"
     # python
-    v=3.10.1
+    v=3.11.1
     if ! pyenv versions | grep $v &>/dev/null; then
         # pkg=Python-$v.tar.xz
         # mkdir -p ~/.pyenv/cache
