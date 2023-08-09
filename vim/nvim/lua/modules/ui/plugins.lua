@@ -51,6 +51,7 @@ ui["hoob3rt/lualine.nvim"] = {
 }
 ui["j-hui/fidget.nvim"] = {
     opt = true,
+    tag = 'legacy',
     after = "nvim-lspconfig",
     config = function ()
         require('fidget').setup {
