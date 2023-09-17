@@ -41,7 +41,7 @@ export CARGO_HOME="$HOME/.cargo"
 export RUSTUP_INIT_SKIP_PATH_CHECK="yes"
 # export CARGO_TARGET_DIR="$HOME/.cache/cargo/target"
 
-export TERM="xterm-256color"
+export TERM="xterm-kitty"
 
 # LANGUAGE must be set by en_US
 export LANGUAGE="en_US.UTF-8"
