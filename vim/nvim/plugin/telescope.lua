@@ -28,10 +28,10 @@ telescope.setup {
             "--hidden",
             "--glob=!.git/",
         },
-        sorting_strategy = "descending",
+        sorting_strategy = "ascending",
         layout_strategy = "flex",
         layout_config = {
-            prompt_position = "bottom",
+            prompt_position = "top",
             flex = {
                 flip_columns = 161, -- half 27" monitor, scientifically calculated
             },
@@ -40,6 +40,7 @@ telescope.setup {
                 preview_width = 0.6,
             },
             vertical = {
+                mirror = true,
                 preview_cutoff = 0,
                 preview_height = 0.65,
             },
@@ -48,7 +49,7 @@ telescope.setup {
         color_devicons = true,
         winblend = 5,
         set_env = { ["COLORTERM"] = "truecolor" },
-        border = {},
+        border = true,
         borderchars = { "─", "│", "─", "│", "┏", "┓", "┛", "┗" },
         mappings = {
             i = {
@@ -70,7 +71,16 @@ telescope.setup {
         project = {
             hidden_files = false,
         },
-        fzf = is_win and {} or {
+        ["ui-select"] = {
+            require("telescope.themes").get_cursor {
+                borderchars = {
+                    prompt  = {'─', '│', ' ', '│', '┏', '┓', '│', '│'},
+                    results = {'─', '│', '─', '│', '┣', '┫', '┛', '┗'},
+                    preview = {'─', '│', '─', '│', '┏', '┓', '┛', '┗'},
+                },
+            }
+        },
+        fzf = {
             fuzzy = true,
             override_generic_sorter = true,
             override_file_sorter = true,
@@ -78,6 +88,9 @@ telescope.setup {
         },
     },
 }
+
+telescope.load_extension("fzf")
+telescope.load_extension("ui-select")
 
 ---@param lhs string
 ---@param rhs string|fun()
@@ -111,11 +124,6 @@ telescope_map("b", files.buffers)
 
 telescope_map("s", git.status)
 telescope_map("S", git.stash)
-
-local is_win = vim.fn.has "win32" == 1
-if not is_win then
-    require("telescope").load_extension "fzf"
-end
 
 local original_edit = require("telescope.actions.set").edit
 require("telescope.actions.set").edit = function(...)

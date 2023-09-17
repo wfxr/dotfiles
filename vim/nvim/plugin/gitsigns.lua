@@ -4,6 +4,14 @@ if not ok then
 end
 
 gitsigns.setup {
+    signs = {
+        add          = { hl = 'GitSignsAdd',    text = '┃' },
+        change       = { hl = 'GitSignsChange', text = '┃' },
+        changedelete = { hl = 'GitSignsChange', text = '┃' },
+        untracked    = { hl = 'GitSignsAdd',    text = '┃' },
+        topdelete    = { hl = 'GitSignsDelete', text = '⎺' }, -- ⎺ ↗
+        delete       = { hl = 'GitSignsDelete', text = '⎽' }, -- ⎽ ↘
+    },
     current_line_blame = false,
     current_line_blame_opts = {
         delay = vim.o.updatetime,

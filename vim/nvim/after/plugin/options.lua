@@ -123,7 +123,7 @@ if vim.fn.has "win32" == 1 then
 end
 
 -- Fixate cmdheight to 2
-vim.api.nvim_create_autocmd({ "WinScrolled" }, {
-    pattern = "*",
-    command = "set cmdheight=2",
-})
+-- vim.api.nvim_create_autocmd({ "WinScrolled" }, {
+--     pattern = "*",
+--     command = "set cmdheight=2",
+-- })

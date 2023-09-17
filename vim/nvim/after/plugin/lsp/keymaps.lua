@@ -43,7 +43,7 @@ local function buf_set_keymaps(bufnr)
     buf_set_keymap("n", "<leader>p", function()
         local candidates = vim.tbl_filter(function(client)
             return client.name ~= "lua_ls" and client.supports_method "textDocument/formatting"
-        end, vim.lsp.get_active_clients { bufnr = vim.api.nvim_get_current_buf() })
+        end, vim.lsp.get_clients { bufnr = vim.api.nvim_get_current_buf() })
         if #candidates > 1 then
             vim.ui.select(candidates, {
                 prompt = "Client",

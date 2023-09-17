@@ -62,10 +62,8 @@ noremap <leader>bg :w<cr><C-z>
 noremap <leader>M mmHmt:%s/<C-v><CR>//ge<CR>'tzt'm
 
 " Yank & paste
-noremap  <c-y> "+yy
-vnoremap <c-y> "+y
-" noremap  <c-p> "+p
-" vnoremap <c-p> "+p
+" noremap  <c-y> "+yy
+" vnoremap <c-y> "+y
 inoremap <c-v> <c-o>:set paste<cr><c-r>+<c-o>:set nopaste<cr>
 
 " Select pasted text

@@ -5,7 +5,7 @@ end
 
 dressing.setup {
     input = {
-        default_prompt = "> ",
+        default_prompt = " ",
         border = { "┏", "─", "┓", "│", "┛", "─", "┗", "│" },
         win_options = {
             winblend = 5,
@@ -23,5 +23,8 @@ dressing.setup {
                 winblend = 5,
             },
         },
+        telescope = {
+            border = true,
+        }
     }
 }
