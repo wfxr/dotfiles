@@ -157,12 +157,14 @@ export FZF_ALT_E_OPTS
 #bindkey '^R' wfxr::fzf-history-widget
 
 function Rg() {
-    local SELECTED
-    SELECTED=$(rg --column --line-number --no-heading --color=always --smart-case "$1" |
+    local SELECTED RG_PREFIX
+	RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
+    INITIAL_QUERY="$1"
+    SELECTED=$(FZF_DEFAULT_COMMAND="$RG_PREFIX '$INITIAL_QUERY' || true" \
         fzf --ansi \
             --delimiter : \
             --no-multi \
-            --bind 'alt-e:execute($EDITOR +{2} {1} >/dev/tty </dev/tty)' \
+			--bind "alt-e:execute($EDITOR +{2} {1} >/dev/tty </dev/tty)+reload($RG_PREFIX {q} || true)" \
             --preview 'bat --style=numbers,header,changes,snip --color=always --highlight-line {2} {1}' \
             --preview-window 'default:right:60%:~1:+{2}+3/2:border-left'
     ) && $EDITOR +$(cut -d: -f2 <<<$SELECTED) $(cut -d: -f1 <<<$SELECTED)
@@ -177,7 +179,8 @@ function RG() {
         fzf --bind "change:reload:$RG_PREFIX {q} || true" \
         --ansi --disabled --query "$INITIAL_QUERY" \
         --delimiter : \
-        --bind 'alt-e:execute($EDITOR +{2} {1} >/dev/tty </dev/tty)' \
+		--bind 'change:reload:$RG_PREFIX {q} || true' \
+        --bind 'alt-e:execute($EDITOR +{2} {1} >/dev/tty </dev/tty)+refresh-preview' \
         --preview 'bat --style=numbers,header,changes,snip --color=always --highlight-line {2} {1}' \
         --preview-window 'default:right:60%:~1:+{2}+3/2:border-left'
     ) && $EDITOR +$(cut -d: -f2 <<<$SELECTED) $(cut -d: -f1 <<<$SELECTED)

@@ -32,6 +32,7 @@ export YSU_MODE=ALL
 # forgit config
 export FORGIT_FZF_DEFAULT_OPTS="--preview-window='right:60%:nohidden'"
 export FORGIT_LOG_FZF_OPTS="--height '95%'"
+export FORGIT_CHECKOUT_BRANCH_BRANCH_GIT_OPTS='--sort=-committerdate'
 
 # autosuggest config
 export ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=(forward-word forward-char)

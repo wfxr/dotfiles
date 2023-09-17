@@ -115,4 +115,6 @@ export PATH="$PATH:$HOME/.local/share/coursier/bin"
     export KUBECONFIG
 }
 
+[ -f ~/.zshenv_local  ] && source ~/.zshenv_local
+
 true
