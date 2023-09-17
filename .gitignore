@@ -6,3 +6,4 @@
 *.zip
 *.tgz
 *.tar.gz
+.luarc.json
