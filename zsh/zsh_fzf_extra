@@ -16,7 +16,8 @@ fi
 #######################################################################
 #                                 ENV                                 #
 #######################################################################
-# export FZF_COMPLETION_TRIGGER=''
+export FZF_COMPLETION_TRIGGER=''
+# export FZF_COMPLETION_TRIGGER='~~'
 # bindkey '\t' fzf-completion
 # bindkey '^I' "$fzf_default_completion"
 FZF_FILE_HIGHLIGHTER='cat'
@@ -64,7 +65,6 @@ FZF_DEFAULT_OPTS="
 --preview-window right:60%:hidden
 "
 export FZF_DEFAULT_OPTS
-export FZF_COMPLETION_TRIGGER='~~'
 (( $+commands[fd] )) && {
     _fzf_compgen_path() { fd --hidden --follow --exclude ".git" . "$1" }
     _fzf_compgen_dir() { fd --type d --hidden --follow --exclude ".git" . "$1" }
