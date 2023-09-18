@@ -94,9 +94,9 @@ vim.opt.number         = true
 vim.opt.fillchars = {
     eob = " ",
     fold = " ",
-    foldopen = "",
+    foldopen = "", --  
     foldsep = " ",
-    foldclose = "›",
+    foldclose = "", --  ›
 }
 vim.opt.formatoptions:remove "t"
 vim.opt.formatoptions:remove "o"

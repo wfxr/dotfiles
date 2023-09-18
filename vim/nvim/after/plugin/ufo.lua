@@ -5,9 +5,9 @@ end
 
 local function fold_virt_text_handler(virtText, lnum, endLnum, width, truncate)
     local newVirtText = {}
-    local suffix = ("  %d"):format(endLnum - lnum) --  ↙  
+    local suffix = ("   %d"):format(endLnum - lnum) --   ↙  
     local sufWidth = vim.fn.strdisplaywidth(suffix)
-    local targetWidth = width - sufWidth
+    local targetWidth = width - sufWidth - 2
     local curWidth = 0
     for _, chunk in ipairs(virtText) do
         local chunkText = chunk[1]
@@ -27,9 +27,9 @@ local function fold_virt_text_handler(virtText, lnum, endLnum, width, truncate)
         end
         curWidth = curWidth + chunkWidth
     end
-    local rAlignAppndx =
-    math.max(math.min(vim.opt.textwidth["_value"], width - 1) - curWidth - sufWidth, 0)
-    suffix = (" "):rep(rAlignAppndx) .. suffix
+    -- local rAlignAppndx =
+    -- math.max(math.min(vim.opt.textwidth["_value"], width - 1) - curWidth - sufWidth, 0)
+    -- suffix = (" "):rep(rAlignAppndx) .. suffix
     table.insert(newVirtText, { suffix, "Folded" }) -- Folded / MoreMsg
     return newVirtText
 end
