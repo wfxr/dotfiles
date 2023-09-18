@@ -1,6 +1,16 @@
 # zmodload zsh/zprof
 bindkey -e # should be on top!
 
+which_term(){
+    ps -p $(ps -p $$ -o ppid=) -o args=
+}
+
+if [[ $(which_term) == *"kitty" ]]; then
+    export TERM="xterm-kitty"
+else
+    export TERM=${TERM:-xterm-256color}
+fi
+
 HISTFILE="$HOME/.zsh_history" # History file
 HISTSIZE=100000               # History size in memory
 SAVEHIST=1000000              # The number of histsize
@@ -80,13 +90,3 @@ function zi::cache::clean() { rm -rf "$ZINIT_CACHE" ~/.zcompdump* }
 
 # Source all the plugins ✨
 eval "$(sheldon source)"
-
-which_term(){
-    ps -p $(ps -p $$ -o ppid=) -o args=
-}
-
-if [[ $(which_term) == *"kitty" ]]; then
-    export TERM="xterm-kitty"
-else
-    export TERM=${TERM:-xterm-256color}
-fi
