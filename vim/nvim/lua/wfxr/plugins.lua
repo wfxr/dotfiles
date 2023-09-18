@@ -68,17 +68,29 @@ local function spec(use)
         "linty-org/readline.nvim",
         "monaqa/dial.nvim",
         "numToStr/Comment.nvim",
-        "nvim-lualine/lualine.nvim",
-        "simnalamburt/vim-mundo",
         "stevearc/aerial.nvim",
         "stevearc/dressing.nvim",
         "szw/vim-maximizer",
         "windwp/nvim-autopairs",
         "zbirenbaum/neodim",
         "s1n7ax/nvim-window-picker",
-        "j-hui/fidget.nvim",
         "kyazdani42/nvim-tree.lua",
         "farmergreg/vim-lastplace",
+        "nvim-lualine/lualine.nvim",
+        { "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" },
+        { "kevinhwang91/nvim-bqf", ft = "qf", requires = "junegunn/fzf" },
+        { "https://git.sr.ht/~whynothugo/lsp_lines.nvim", as = "lsp_lines.nvim" },
+        { "j-hui/fidget.nvim", tag = 'legacy' },
+        {
+            'Bekaboo/deadcolumn.nvim',
+            config = function()
+                require('deadcolumn').setup({ blending = { threshold = 0.9 } }) -- Call the setup function
+            end
+        },
+        {
+            "simnalamburt/vim-mundo",
+            config = function() vim.keymap.set("n", "U", "<cmd>MundoToggle<CR>") end
+        },
         {
             "gelguy/wilder.nvim",
             event = "CmdlineEnter",
@@ -97,11 +109,6 @@ local function spec(use)
             "junegunn/vim-easy-align",
             cmd = 'EasyAlign',
         },
-        { "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" },
-        { "kevinhwang91/nvim-bqf", ft = "qf", requires = {
-            "junegunn/fzf",
-        } },
-        { "https://git.sr.ht/~whynothugo/lsp_lines.nvim", as = "lsp_lines.nvim" },
         {
             "andymass/vim-matchup",
             setup = function()

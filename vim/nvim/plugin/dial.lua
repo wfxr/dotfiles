@@ -14,9 +14,9 @@ dialconfig.augends:register_group {
     },
 }
 
-vim.keymap.set("n", "<C-a>", dialmap.inc_normal())
-vim.keymap.set("n", "<C-x>", dialmap.dec_normal())
-vim.keymap.set("v", "<C-a>", dialmap.inc_visual())
-vim.keymap.set("v", "<C-x>", dialmap.dec_visual())
-vim.keymap.set("v", "g<C-a>", dialmap.inc_gvisual())
-vim.keymap.set("v", "g<C-x>", dialmap.dec_gvisual())
+vim.keymap.set("n", "<Up>", dialmap.inc_normal())
+vim.keymap.set("n", "<Down>", dialmap.dec_normal())
+vim.keymap.set("v", "<Up>", dialmap.inc_visual())
+vim.keymap.set("v", "<Down>", dialmap.dec_visual())
+vim.keymap.set("v", "g<Up>", dialmap.inc_gvisual())
+vim.keymap.set("v", "g<Down>", dialmap.dec_gvisual())

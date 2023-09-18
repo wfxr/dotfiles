@@ -27,6 +27,7 @@ vim.opt.backup         = false
 vim.opt.writebackup    = false
 vim.opt.swapfile       = false
 vim.opt.undodir        = global.cache_dir .. "undo/"
+vim.opt.undofile       = true
 vim.opt.history        = 2000
 vim.opt.backupskip     = "/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim"
 vim.opt.smarttab       = true
@@ -103,9 +104,9 @@ vim.opt.formatoptions:remove "o"
 -- vim.opt.pumblend = 10, -- popup_menu
 -- vim.opt.winblend = 10, -- floating window
 
-vim.opt_local.undofile       = true
 vim.opt_local.synmaxcol      = 2500
-vim.opt_local.textwidth      = 80
+vim.opt_local.textwidth      = 120
+vim.opt_local.colorcolumn    = { '100' }
 vim.opt_local.expandtab      = true
 vim.opt_local.autoindent     = true
 vim.opt_local.tabstop        = 4

@@ -5,10 +5,8 @@ end
 
 aerial.setup {
     layout = {
-        width = 40,
         default_direction = "right",
         placement = "edge",
     },
 }
-
-vim.keymap.set("n", "<space>s", "<cmd>AerialToggle<CR>")
+vim.keymap.set("n", "<a-t>", "<cmd>AerialToggle<CR>")

@@ -7,8 +7,8 @@ local DONT_TINT = true
 local TINT = false
 
 tint.setup {
-    tint = -30,
-    saturation = 0.5,
+    tint = -20,
+    saturation = 0.6,
     highlight_ignore_patterns = {
         "LspInlayHint.*",
         "WinBar.*",
