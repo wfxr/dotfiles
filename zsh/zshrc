@@ -34,7 +34,7 @@ setopt HIST_BEEP              # Beep when accessing nonexistent history.
 }
 
 # theme
-source <(starship init zsh) || warn "failed loading starship."
+# source <(starship init zsh) || warn "failed loading starship."
 
 # You Should Use
 export YSU_MODE=ALL
@@ -48,13 +48,13 @@ export FORGIT_CHECKOUT_BRANCH_BRANCH_GIT_OPTS='--sort=-committerdate'
 export ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=(forward-word forward-char)
 export ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(end-of-line)
 
-source ~/.zsh_misc
-source ~/.zsh_aliases
-[ -f ~/.zsh_local  ] && source ~/.zsh_local
-{ head -1 ~/.zsh_secret | grep unlocked &>/dev/null } && source ~/.zsh_secret
+source ~/.config/zsh/zsh_misc
+source ~/.config/zsh/zsh_aliases
+[ -f ~/.config/zsh/zsh_local  ] && source ~/.config/zsh/zsh_local
+{ head -1 ~/.config/zsh/zsh_secret | grep unlocked &>/dev/null } && source ~/config/zsh/zsh_secret
 
-source ~/.zsh_custom
-source ~/.zsh_fzf_extra
+source ~/.config/zsh/zsh_custom
+source ~/.config/zsh/zsh_fzf_extra
 
 function synchronized() {
     local lock="$1" handler="$2" fallback="$3"

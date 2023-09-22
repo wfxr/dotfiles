@@ -7,6 +7,14 @@ defer-more = "{% for file in files %} zsh-defer -t 0.5 source \"{{ file }}\"\n {
 [plugins.zsh-defer]
 github = "romkatv/zsh-defer"
 
+[plugins.powerlevel10k]
+github = "romkatv/powerlevel10k"
+[plugins.powerlevel10k.hooks]
+post = '''
+PURE_POWER_MODE=modern
+source ~/.config/zsh/gruvbox-material-dark.zsh
+'''
+
 [plugins.zsh-autosuggestions]
 github = "zsh-users/zsh-autosuggestions"
 use = ["{{ name }}.zsh"]

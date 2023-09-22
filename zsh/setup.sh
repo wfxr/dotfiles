@@ -1,20 +1,19 @@
 #!/usr/bin/env bash
 
-info() { printf "$(date +%FT%T) %b[info]%b %s\n" '\e[0;32m\033[1m' '\e[0m' "$*" >&2; }
-warn() { printf "$(date +%FT%T) %b[warn]%b %s\n" '\e[0;33m\033[1m' '\e[0m' "$*" >&2; }
-erro() { printf "$(date +%FT%T) %b[erro]%b %s\n" '\e[0;31m\033[1m' '\e[0m' "$*" >&2; }
-
 SDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+
+confdir="$HOME/.config/zsh"
+mkdir -p "$confdir"
 
 ln -sf "$SDIR/zshrc"         ~/.zshrc
 ln -sf "$SDIR/zshenv"        ~/.zshenv
-ln -sf "$SDIR/zsh_misc"      ~/.zsh_misc
-ln -sf "$SDIR/zsh_aliases"   ~/.zsh_aliases
-ln -sf "$SDIR/zsh_custom"    ~/.zsh_custom
-ln -sf "$SDIR/zsh_fzf_extra" ~/.zsh_fzf_extra
-ln -sf "$SDIR/zsh_secret"    ~/.zsh_secret
+ln -sf "$SDIR/zsh_misc"      "$confdir/zsh_misc"
+ln -sf "$SDIR/zsh_aliases"   "$confdir/zsh_aliases"
+ln -sf "$SDIR/zsh_custom"    "$confdir/zsh_custom"
+ln -sf "$SDIR/zsh_fzf_extra" "$confdir/zsh_fzf_extra"
+ln -sf "$SDIR/zsh_secret"    "$confdir/zsh_secret"
 
-mkdir -p ~/.config
+ln -sf "$SDIR/gruvbox-material-dark.zsh" "$confdir/gruvbox-material-dark.zsh"
 
 rm -rf ~/.config/sheldon && ln -snf "$SDIR/sheldon" ~/.config/sheldon
 ln -sf "$SDIR/starship.toml" ~/.config/starship.toml
