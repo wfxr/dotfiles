@@ -138,4 +138,6 @@ alias ta='tmux attach -t'
 
 (( $+commands[gnumfmt] )) && alias numfmt=gnumfmt
 (( $+commands[gdate] )) && alias date=gdate
-(( $+commands[gsed] )) && alias date=gsed
+(( $+commands[gsed] )) && alias sed=gsed
+(( $+commands[gawk] )) && alias awk=gawk
+(( $+commands[fdfind])) && alias fd=fdfind
