@@ -135,3 +135,14 @@ lualine.setup {
         dapui_watches,
     },
 }
+
+local keymap = vim.keymap.set
+keymap("n", "<A-1>", ":LualineBuffersJump 1<CR>", { silent = true })
+keymap("n", "<A-2>", ":LualineBuffersJump 2<CR>", { silent = true })
+keymap("n", "<A-3>", ":LualineBuffersJump 3<CR>", { silent = true })
+keymap("n", "<A-4>", ":LualineBuffersJump 4<CR>", { silent = true })
+keymap("n", "<A-5>", ":LualineBuffersJump 5<CR>", { silent = true })
+keymap("n", "<A-6>", ":LualineBuffersJump 6<CR>", { silent = true })
+keymap("n", "<A-7>", ":LualineBuffersJump 7<CR>", { silent = true })
+keymap("n", "<A-8>", ":LualineBuffersJump 8<CR>", { silent = true })
+keymap("n", "<A-9>", ":LualineBuffersJump 9<CR>", { silent = true })
