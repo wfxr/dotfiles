@@ -11,17 +11,17 @@ local function on_attach(bufnr)
         return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
     end
 
-    vim.keymap.set('n', '<CR>', api.node.open.edit,             opts('Open'))
-    vim.keymap.set('n', 'o',    api.node.open.preview,          opts('Open Preview'))
-    vim.keymap.set('n', 'K',    api.node.show_info_popup,       opts('Info'))
-    vim.keymap.set('n', 'yy',   api.fs.copy.node,               opts('Copy'))
-    vim.keymap.set('n', 'dd',   api.fs.cut,                     opts('Cut'))
-    vim.keymap.set('n', 'gr',   api.fs.rename,                  opts('Rename'))
-    vim.keymap.set('n', 'p',    api.fs.paste,                   opts('Paste'))
-    vim.keymap.set('n', 'c',    api.fs.create,                  opts('Create'))
-    vim.keymap.set('n', 'D',    api.fs.remove,                  opts('Delete'))
-    vim.keymap.set('n', '<BS>', api.tree.change_root_to_parent, opts('Up'))
-    vim.keymap.set('n', '?',    api.tree.toggle_help,           opts('Help'))
+    vim.keymap.set('n', '<CR>',      api.node.open.edit,             opts('Open'))
+    vim.keymap.set('n', 'o',         api.node.open.preview,          opts('Open Preview'))
+    vim.keymap.set('n', 'K',         api.node.show_info_popup,       opts('Info'))
+    vim.keymap.set('n', 'yy',        api.fs.copy.node,               opts('Copy'))
+    vim.keymap.set('n', 'dd',        api.fs.cut,                     opts('Cut'))
+    vim.keymap.set('n', '<leader>r', api.fs.rename,                  opts('Rename'))
+    vim.keymap.set('n', 'p',         api.fs.paste,                   opts('Paste'))
+    vim.keymap.set('n', 'c',         api.fs.create,                  opts('Create'))
+    vim.keymap.set('n', 'D',         api.fs.remove,                  opts('Delete'))
+    vim.keymap.set('n', '<BS>',      api.tree.change_root_to_parent, opts('Up'))
+    vim.keymap.set('n', '?',         api.tree.toggle_help,           opts('Help'))
 end
 
 nvimtree.setup {
@@ -41,7 +41,6 @@ nvimtree.setup {
         number = false,
         relativenumber = false,
         signcolumn = "yes",
-        hide_root_folder = false,
     },
     renderer = {
         add_trailing = false,

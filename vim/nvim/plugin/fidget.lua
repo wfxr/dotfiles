@@ -5,9 +5,11 @@ end
 
 fidget.setup {
     window = {
-        done = '',
-        spinner = 'meter',
         relative = "editor",
         blend = 90,
     },
+    text = {
+        done = '',
+        spinner = 'meter',
+    }
 }

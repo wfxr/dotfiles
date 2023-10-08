@@ -168,7 +168,7 @@ local function spec(use)
         -- "williamboman/warden.nvim",
         "sainnhe/gruvbox-material",
         "kyazdani42/nvim-web-devicons",
-        "lukas-reineke/indent-blankline.nvim",
+        { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
         "NvChad/nvim-colorizer.lua",
         "Bekaboo/dropbar.nvim",
     }
