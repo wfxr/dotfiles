@@ -29,13 +29,13 @@ alias ls='ls --color=auto'
 alias ll='ls --group-directories-first -l'
 alias la='ls --group-directories-first -l --all'
 if (( $+commands[exa] )); then
-    alias ls='exa --time-style long-iso --icons --group-directories-first -m'
-    alias ll='ls -lgbh'
+    alias ls='exa --time-style long-iso --group-directories-first -m'
+    alias ll='ls --icons -lgbh'
     alias la='ll -a'
     alias ldot='ll -d .*'
     alias lss='ll -s size'
     alias lst='ll -s modified'
-    alias tree='ls --tree'
+    alias tree='ls --icons --tree'
 fi
 alias vv='vim $(fzf)'
 alias vi=vim
