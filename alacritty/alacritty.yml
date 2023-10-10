@@ -2,19 +2,19 @@
 # Latest config template: https://github.com/alacritty/alacritty/releases
 font:
   normal:
-    family: JetBrains Mono
+    family: JetBrainsMono Nerd Font Mono
     style: Regular
   bold:
-    family: JetBrains Mono
+    family: JetBrainsMono Nerd Font Mono
     style: Bold
   italic:
-    family: JetBrains Mono
+    family: JetBrainsMono Nerd Font Mono
     style: Italic
   bold_italic:
-    family: JetBrains Mono
+    family: JetBrainsMono Nerd Font Mono
     style: Bold Italic
   size: 10
-  use_thin_strokes: true
+  # use_thin_strokes: true
   offset:
     x: 0
     y: 0
