@@ -40,10 +40,10 @@ fi
   fi
 
   typeset -ga POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
-      dir vcs)
+      dir vcs background_jobs)
 
   typeset -ga POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
-      status command_execution_time background_jobs custom_rprompt)
+      status command_execution_time custom_rprompt)
 
   local ins=$(_pp_s '>' '❯')
   local cmd=$(_pp_s '<' '❮')
@@ -54,7 +54,8 @@ fi
     p=$ins
   fi
   if [[ "$DESERT_NIGHT_PURE_POWER_TRUE_COLOR" == "true" ]]; then
-    local ok="%F{#d4be98}${p}%f"
+    # local ok="%F{#d4be98}${p}%f"
+    local ok="%F{#a9b665}${p}%f"
     local err="%F{#ea6962}${p}%f"
   else
     local ok="%F{$(_pp_s 007 223)}${p}%f"
@@ -186,7 +187,7 @@ fi
 
   typeset -g POWERLEVEL9K_BACKGROUND_JOBS_VERBOSE=false
   typeset -g POWERLEVEL9K_BACKGROUND_JOBS_BACKGROUND=none
-  typeset -g POWERLEVEL9K_BACKGROUND_JOBS_VISUAL_IDENTIFIER_COLOR=2
+  typeset -g POWERLEVEL9K_BACKGROUND_JOBS_VISUAL_IDENTIFIER_COLOR=yellow
   typeset -g POWERLEVEL9K_BACKGROUND_JOBS_ICON=$(_pp_s '%%' '⇶')
 
   # typeset -g POWERLEVEL9K_CUSTOM_RPROMPT=custom_rprompt

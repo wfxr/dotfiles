@@ -1,19 +1,22 @@
 #!/usr/bin/env bash
 
-SDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+SDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) && cd "$SDIR"
 
 confdir="$HOME/.config/zsh"
 mkdir -p "$confdir"
 
-ln -sf "$SDIR/zshrc"         ~/.zshrc
-ln -sf "$SDIR/zshenv"        ~/.zshenv
-ln -sf "$SDIR/zsh_misc"      "$confdir/zsh_misc"
-ln -sf "$SDIR/zsh_aliases"   "$confdir/zsh_aliases"
-ln -sf "$SDIR/zsh_custom"    "$confdir/zsh_custom"
-ln -sf "$SDIR/zsh_fzf_extra" "$confdir/zsh_fzf_extra"
-ln -sf "$SDIR/zsh_secret"    "$confdir/zsh_secret"
+ln -sf "$SDIR/zshrc"  ~/.zshrc
+ln -sf "$SDIR/zshenv" ~/.zshenv
 
-ln -sf "$SDIR/gruvbox-material-dark.zsh" "$confdir/gruvbox-material-dark.zsh"
+ln -sf {"$SDIR","$confdir"}/zsh_misc
+ln -sf {"$SDIR","$confdir"}/zsh_aliases
+ln -sf {"$SDIR","$confdir"}/zsh_custom
+ln -sf {"$SDIR","$confdir"}/zsh_fzf_extra
+ln -sf {"$SDIR","$confdir"}/zsh_secret
+
+for f in *.zsh; do
+    ln -sf {"$SDIR","$confdir"}/"$f"
+done
 
 rm -rf ~/.config/sheldon && ln -snf "$SDIR/sheldon" ~/.config/sheldon
 ln -sf "$SDIR/starship.toml" ~/.config/starship.toml

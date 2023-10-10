@@ -40,21 +40,6 @@ function wfxr::rm-broken-links() {
 function rm-broken-links-all() { wfxr::rm-broken-links               }
 function rm-broken-links()     { wfxr::rm-broken-links '-maxdepth 1' }
 
-# config for pet
-function pet-select() {
-  BUFFER=$(pet search --query "$LBUFFER")
-  CURSOR=$#BUFFER
-  zle redisplay
-}
-zle -N pet-select
-stty -ixon
-bindkey '^[s' pet-select
-
-function pet-add-prev() {
-  PREV=$(fc -lrn | head -n 1)
-  sh -c "pet new `printf %q "$PREV"`"
-}
-
 # Tmux switch session
 function wfxr::tmux-switch() {
     [[ ! $TMUX ]] && return 1 # Not in tmux session
@@ -124,23 +109,6 @@ if [[ $TMUX ]]; then
     bindkey '^[w' wfxr::tmux-select-window
 fi
 
-# Application launcher
-function fzf-dmenu() {
-    # note: xdg-open has a bug with .desktop files, so we cant use that shit
-    local selected="$(ls /usr/share/applications | sed 's/\(.*\)\.desktop/\1/g' | fzf -e).desktop"
-    [ $? -eq 0 ] && nohup `grep '^Exec' "/usr/share/applications/$selected" | tail -1 | sed 's/^Exec=//' | sed 's/%.//'` >/dev/null 2>&1&
-}
-# hotkey to run the function (Ctrl+v)
-#bindkey -s '^V' "fzf-dmenu\n"
-
-# Powerful fg
-function fzf-fg() {
-    local jobId=$(jobs -l | fzf --exact --exit-0 --select-1 --height=6 | sed "s/^\[\(.*\)\].*$/\1/g")
-    # continue only when a jobId selected
-    [ $jobId ] && fg %$jobId
-}
-bindkey -s '^[z' "fzf-fg\n"
-
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '^[v' edit-command-line
@@ -150,13 +118,6 @@ function e() {
     local files
     IFS=$'\n' files=($(fzf -q "`echo $@`" -m -1 -0))
     [[ $? -eq 0 ]] && ${EDITOR:-vim} "${files[@]}"
-}
-
-# mosh
-function mosh-kill() {
-    ps -C mosh-server -o uname,pid,ppid,start_time,etime --sort=-start_time | column -t \
-        | fzf --header-lines=2 -m | awk '{print $2}'\
-        | xargs kill -9
 }
 
 function wfxr::translate() {
