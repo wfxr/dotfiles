@@ -31,6 +31,19 @@ vim.opt.undofile       = true
 vim.opt.history        = 2000
 vim.opt.backupskip     = "/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim"
 vim.opt.smarttab       = true
+vim.opt.tabstop        = 4
+vim.opt.expandtab      = true
+vim.opt.autoindent     = true
+vim.opt.softtabstop    = -1
+vim.opt.shiftwidth     = 4
+vim.opt.synmaxcol      = 2500
+vim.opt.textwidth      = 120
+vim.opt.colorcolumn    = { '100' }
+vim.opt.wrap           = false
+vim.opt.linebreak      = true
+vim.opt.signcolumn     = "yes"
+vim.opt.conceallevel   = 2
+vim.opt.concealcursor  = "c"
 vim.opt.shiftround     = true
 vim.opt.timeout        = true
 vim.opt.ttimeout       = true
@@ -103,21 +116,6 @@ vim.opt.formatoptions:remove "o"
 -- vim.opt.statuscolumn = "%=%{&nu?(&rnu&&v:relnum?v:relnum:v:lnum):''}%s%C"
 -- vim.opt.pumblend = 10, -- popup_menu
 -- vim.opt.winblend = 10, -- floating window
-
-vim.opt_local.synmaxcol      = 2500
-vim.opt_local.textwidth      = 120
-vim.opt_local.colorcolumn    = { '100' }
-vim.opt_local.expandtab      = true
-vim.opt_local.autoindent     = true
-vim.opt_local.tabstop        = 4
-vim.opt_local.shiftwidth     = 4
-vim.opt_local.softtabstop    = -1
-vim.opt_local.wrap           = false
-vim.opt_local.linebreak      = true
-vim.opt_local.signcolumn     = "yes"
-vim.opt_local.conceallevel   = 2
-vim.opt_local.concealcursor  = "c"
-
 
 if vim.fn.has "win32" == 1 then
     vim.o.shell = "powershell.exe"
