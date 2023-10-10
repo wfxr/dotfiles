@@ -91,7 +91,6 @@ vim.opt.equalalways    = false
 vim.opt.laststatus     = 3
 vim.opt.display        = "lastline"
 vim.opt.showbreak      = "↳  "
-vim.opt.listchars      = "tab:··,nbsp:+,trail:·,extends:»,precedes:«"
 vim.opt.wildmenu       = true
 vim.opt.autoread       = true
 vim.opt.autowrite      = true
@@ -104,6 +103,11 @@ vim.opt.foldlevel      = 99
 vim.opt.foldlevelstart = 99
 vim.opt.foldenable     = true
 vim.opt.number         = true
+vim.opt.formatoptions:remove "t"
+vim.opt.formatoptions:remove "o"
+-- vim.opt.statuscolumn = "%=%{&nu?(&rnu&&v:relnum?v:relnum:v:lnum):''}%s%C"
+-- vim.opt.pumblend = 10, -- popup_menu
+-- vim.opt.winblend = 10, -- floating window
 vim.opt.fillchars = {
     eob = " ",
     fold = " ",
@@ -111,11 +115,13 @@ vim.opt.fillchars = {
     foldsep = " ",
     foldclose = "", --  ›
 }
-vim.opt.formatoptions:remove "t"
-vim.opt.formatoptions:remove "o"
--- vim.opt.statuscolumn = "%=%{&nu?(&rnu&&v:relnum?v:relnum:v:lnum):''}%s%C"
--- vim.opt.pumblend = 10, -- popup_menu
--- vim.opt.winblend = 10, -- floating window
+vim.opt.listchars = {
+    tab = "  ",
+    nbsp = "+",
+    trail = "·",
+    extends = "»",
+    precedes = "«",
+}
 
 if vim.fn.has "win32" == 1 then
     vim.o.shell = "powershell.exe"
