@@ -4,8 +4,25 @@ if not ok then
 end
 
 treesitter.setup {
-    ensure_installed = "all",
-    ignore_install = { "haskell", "phpdoc" },
+    ensure_installed = {
+        "bash",
+        "c",
+        "cpp",
+        "lua",
+        "go",
+        "gomod",
+        "json",
+        "yaml",
+        "latex",
+        "make",
+        "python",
+        "rust",
+        "html",
+        "javascript",
+        "typescript",
+        "vue",
+        "css",
+    },
     highlight = { enable = true },
     indent = { enable = true },
     playground = {
