@@ -43,11 +43,9 @@ apply = ["defer"]
 github = "wfxr/epoch-cli"
 apply = ["defer"]
 
-[plugins.ohmyzsh-plugins]
-github = "ohmyzsh/ohmyzsh"
-dir = "plugins"
-use = ["git-extras/*.plugin.zsh"]
-apply = ["defer"]
+[plugins.git]
+remote = "https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.zsh"
+apply = ["fpath"]
 
 [plugins.zsh-you-should-use]
 github = "MichaelAquilina/zsh-you-should-use"
