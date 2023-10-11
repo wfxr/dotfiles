@@ -80,6 +80,15 @@ hash pre-commit &>/dev/null && {
 git config --global diff.compactionHeuristic true
 git config --global diff.indentHeuristic on
 
+# Better merge
+# https://gist.github.com/karenyyng/f19ff75c60f18b4b8149
+git config --global merge.conflictstyle 'diff3'
+git config --global merge.tool vimdiff
+if hash nvim &>/dev/null; then
+    git config --global merge.tool nvimdiff
+    git config --global mergetool.nvimdiff.layout "LOCAL,BASE,REMOTE / MERGED"
+fi
+
 # Custom pager
 # mkdir -p ~/bin
 # ln -sf "$PWD/git-pager" ~/bin/git-pager
@@ -91,7 +100,6 @@ if hash delta &>/dev/null; then
     git config --global delta.line-numbers      'true'
     git config --global delta.side-by-side      'false'
     git config --global delta.hunk-header-style 'omit'
-    git config --global merge.conflictstyle     'diff3'
     git config --global diff.colorMoved         'default'
 fi
 
