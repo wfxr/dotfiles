@@ -40,7 +40,7 @@ nvimtree.setup {
         preserve_window_proportions = false,
         number = false,
         relativenumber = false,
-        signcolumn = "yes",
+        signcolumn = "no",
     },
     renderer = {
         add_trailing = false,
@@ -57,8 +57,17 @@ nvimtree.setup {
             },
         },
         icons = {
-            webdev_colors = true,
-            git_placement = "before",
+            web_devicons = {
+                file = {
+                    enable = true,
+                    color = true,
+                },
+                folder = {
+                    enable = false,
+                    color = true,
+                },
+            },
+            git_placement = "after",
             padding = " ",
             symlink_arrow = " ➛ ",
             show = {
@@ -85,7 +94,7 @@ nvimtree.setup {
                     staged    = "",
                     unmerged  = "",
                     renamed   = "",
-                    untracked = "ﲉ",
+                    untracked = "",
                     deleted   = "",
                     ignored   = "",
                 },
