@@ -129,7 +129,13 @@ mason_lspconfig.setup_handlers {
         }
     end,
     ["rust_analyzer"] = function()
-        require("rust-tools").setup {
+        local rt = require("rust-tools")
+        rt.setup {
+            server = {
+                on_attach = function(_, bufnr)
+                    vim.keymap.set("n", "<leader><Enter>", rt.runnables.runnables, { buffer = bufnr })
+                end,
+            },
             tools = {
                 inlay_hints = { auto = false },
                 executor = require("rust-tools/executors").toggleterm,
