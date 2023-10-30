@@ -2,7 +2,8 @@ local function supports_inlay_hints(bufnr)
     local clients = vim.lsp.get_active_clients { bufnr = bufnr }
     for _, client in ipairs(clients) do
         if client.server_capabilities.inlayHintProvider then
-            return true
+            -- return true
+            return false
         end
     end
     return false

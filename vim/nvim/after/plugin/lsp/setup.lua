@@ -137,7 +137,11 @@ mason_lspconfig.setup_handlers {
                 end,
             },
             tools = {
-                inlay_hints = { auto = false },
+                inlay_hints = {
+                    auto = true,
+                    show_parameter_hints = false,
+                    only_current_line = false,
+                },
                 executor = require("rust-tools/executors").toggleterm,
                 hover_actions = { border = "solid" },
             },

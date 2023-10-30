@@ -12,4 +12,15 @@ dap.configurations.rust = {
         stopOnEntry = true,
         waitFor = false,
     },
+    {
+        name = "Launch",
+        type = "rt_lldb",
+        request = "launch",
+        program = function()
+            -- return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+            return vim.fn.jobstart('cargo build')
+        end,
+        stopOnEntry = true,
+        waitFor = false,
+    },
 }
