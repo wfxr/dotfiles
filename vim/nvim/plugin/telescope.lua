@@ -74,11 +74,11 @@ telescope.setup {
         ["ui-select"] = {
             require("telescope.themes").get_cursor {
                 borderchars = {
-                    prompt  = {'─', '│', ' ', '│', '┏', '┓', '│', '│'},
-                    results = {'─', '│', '─', '│', '┣', '┫', '┛', '┗'},
-                    preview = {'─', '│', '─', '│', '┏', '┓', '┛', '┗'},
+                    prompt  = { "─", "│", " ", "│", "┏", "┓", "│", "│" },
+                    results = { "─", "│", "─", "│", "┣", "┫", "┛", "┗" },
+                    preview = { "─", "│", "─", "│", "┏", "┓", "┛", "┗" },
                 },
-            }
+            },
         },
         fzf = {
             fuzzy = true,
@@ -89,8 +89,8 @@ telescope.setup {
     },
 }
 
-telescope.load_extension("fzf")
-telescope.load_extension("ui-select")
+telescope.load_extension "fzf"
+telescope.load_extension "ui-select"
 
 ---@param lhs string
 ---@param rhs string|fun()
@@ -101,27 +101,19 @@ local function telescope_map(lhs, rhs)
 end
 
 telescope_map("r", "<cmd>Telescope resume<CR>")
-
 telescope_map("f", files.find)
-telescope_map(".f", function()
-    files.find { use_buffer_cwd = true }
-end)
+telescope_map(".f", function() files.find { use_buffer_cwd = true } end)
 telescope_map("p", files.git_files)
 vim.keymap.set("n", "<space>p", files.git_files)
-telescope_map(".p", function()
-    files.git_files { use_buffer_cwd = true }
-end)
+telescope_map(".p", function() files.git_files { use_buffer_cwd = true } end)
 telescope_map("a", files.file_browser)
 telescope_map("l", files.current_buffer_fuzzy_find)
 telescope_map("o", files.project)
 telescope_map('"', builtin.registers)
 telescope_map("g", files.grep)
-telescope_map(".g", function()
-    files.grep { use_buffer_cwd = true }
-end)
+telescope_map(".g", function() files.grep { use_buffer_cwd = true } end)
 telescope_map("h", files.oldfiles)
 telescope_map("b", files.buffers)
-
 telescope_map("s", git.status)
 telescope_map("S", git.stash)
 

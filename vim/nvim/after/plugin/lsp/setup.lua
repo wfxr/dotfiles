@@ -5,6 +5,11 @@ if not deps_ok then
     return
 end
 
+for type, icon in pairs(global.symbols.diagnostic) do
+    local hl = "DiagnosticSign" .. type:gsub("^%l", string.upper)
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
 local capabilities
 do
     local default_capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -129,7 +134,7 @@ mason_lspconfig.setup_handlers {
         }
     end,
     ["rust_analyzer"] = function()
-        local rt = require("rust-tools")
+        local rt = require "rust-tools"
         rt.setup {
             server = {
                 on_attach = function(_, bufnr)
@@ -182,10 +187,10 @@ mason_lspconfig.setup_handlers {
                     workspace = {
                         checkThirdParty = false,
                         library = {
-                            [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                            [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+                            [vim.fn.expand "$VIMRUNTIME/lua"] = true,
+                            [vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,
                         },
-                    }
+                    },
                 },
             },
         }

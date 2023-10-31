@@ -12,6 +12,10 @@ hover.setup {
     end,
     title = true,
     preview_window = true,
+    preview_opts = {
+        border = { "┏", "─", "┓", "│", "┛", "─", "┗", "│" },
+        -- border = { "", "", "", "", "", "", "", "" },
+    }
 }
 
 vim.keymap.set("n", "K", hover.hover, { desc = "hover.nvim" })

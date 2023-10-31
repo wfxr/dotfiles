@@ -5,8 +5,6 @@
 -- vim.o.startofline = false
 -- vim.o.backspace = "indent,eol,start"
 
-local global = require("wfxr.global")
-
 vim.opt.termguicolors  = true
 vim.opt.mouse          = "a"
 vim.opt.title          = true
@@ -51,7 +49,7 @@ vim.opt.timeoutlen     = 400
 vim.opt.ttimeoutlen    = 0
 vim.opt.updatetime     = 100
 vim.opt.redrawtime     = 1500
-vim.opt.ignorecase     = false
+vim.opt.ignorecase     = true
 vim.opt.smartcase      = true
 vim.opt.infercase      = true
 vim.opt.incsearch      = true

@@ -65,7 +65,7 @@ local function spec(use)
         "levouh/tint.nvim",
         "lewis6991/hover.nvim",
         "lewis6991/satellite.nvim",
-        "linty-org/readline.nvim",
+        -- "linty-org/readline.nvim",
         "monaqa/dial.nvim",
         "numToStr/Comment.nvim",
         "stevearc/aerial.nvim",
@@ -77,19 +77,22 @@ local function spec(use)
         "kyazdani42/nvim-tree.lua",
         "farmergreg/vim-lastplace",
         "nvim-lualine/lualine.nvim",
+        { "folke/todo-comments.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
         { "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" },
         { "kevinhwang91/nvim-bqf", ft = "qf", requires = "junegunn/fzf" },
-        { "https://git.sr.ht/~whynothugo/lsp_lines.nvim", as = "lsp_lines.nvim" },
-        { "j-hui/fidget.nvim", tag = 'legacy' },
+        -- { "https://git.sr.ht/~whynothugo/lsp_lines.nvim", as = "lsp_lines.nvim" },
+        { "j-hui/fidget.nvim", tag = "legacy" },
         {
-            'Bekaboo/deadcolumn.nvim',
+            "Bekaboo/deadcolumn.nvim",
             config = function()
-                require('deadcolumn').setup({ blending = { threshold = 0.9 } }) -- Call the setup function
-            end
+                require("deadcolumn").setup { blending = { threshold = 0.9 } } -- Call the setup function
+            end,
         },
         {
             "simnalamburt/vim-mundo",
-            config = function() vim.keymap.set("n", "U", "<cmd>MundoToggle<CR>") end
+            config = function()
+                vim.keymap.set("n", "U", "<cmd>MundoToggle<CR>")
+            end,
         },
         {
             "gelguy/wilder.nvim",
@@ -107,7 +110,7 @@ local function spec(use)
         },
         {
             "junegunn/vim-easy-align",
-            cmd = 'EasyAlign',
+            cmd = "EasyAlign",
         },
         {
             "andymass/vim-matchup",
@@ -120,9 +123,7 @@ local function spec(use)
             end,
         },
         {
-            -- "hrsh7th/nvim-cmp",
-            "williamboman/nvim-cmp",
-            branch = "feat/docs-preview-window",
+            "hrsh7th/nvim-cmp",
             requires = {
                 "andersevenrud/cmp-tmux",
                 "hrsh7th/cmp-buffer",
@@ -156,11 +157,17 @@ local function spec(use)
         {
             "ojroques/nvim-osc52",
             config = function()
-                vim.keymap.set('n', '<leader>y', require('osc52').copy_operator, { expr = true })
-                vim.keymap.set('n', '<c-y>', '<leader>y_', { remap = true })
-                vim.keymap.set('x', '<c-y>', require('osc52').copy_visual)
-            end
-        }
+                vim.keymap.set("n", "<leader>y", require("osc52").copy_operator, { expr = true })
+                vim.keymap.set("n", "<c-y>", "<leader>y_", { remap = true })
+                vim.keymap.set("x", "<c-y>", require("osc52").copy_visual)
+            end,
+        },
+        {
+            "iamcco/markdown-preview.nvim",
+            run = function()
+                vim.fn["mkdp#util#install"]()
+            end,
+        },
     }
 
     -- UI
@@ -199,7 +206,10 @@ local function spec(use)
         "b0o/SchemaStore.nvim",
         "folke/neodev.nvim",
         "jmbuhr/otter.nvim",
-        "jose-elias-alvarez/null-ls.nvim",
+        -- "jose-elias-alvarez/null-ls.nvim",
+        "stevearc/conform.nvim",
+        "mfussenegger/nvim-lint",
+        { "folke/trouble.nvim", dependencies = { "nvim-tree/nvim-web-devicons" } },
         "neovim/nvim-lspconfig",
         "pmizio/typescript-tools.nvim",
         "ray-x/lsp_signature.nvim",
@@ -216,7 +226,7 @@ local function spec(use)
                     if copilot_keys ~= "" then
                         vim.api.nvim_feedkeys(copilot_keys, "i", true)
                     else
-                        local endkey = vim.api.nvim_replace_termcodes('<END>', true, false, true)
+                        local endkey = vim.api.nvim_replace_termcodes("<END>", true, false, true)
                         vim.api.nvim_feedkeys(endkey, "i", true)
                     end
                 end)
@@ -230,7 +240,7 @@ local function spec(use)
         requires = {
             "nvim-lua/plenary.nvim",
             "nvim-telescope/telescope-project.nvim",
-            'nvim-telescope/telescope-ui-select.nvim',
+            "nvim-telescope/telescope-ui-select.nvim",
             { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
         },
     }

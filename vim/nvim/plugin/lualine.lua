@@ -62,7 +62,7 @@ lualine.setup {
         icons_enabled = true,
         theme = "auto",
         disabled_filetypes = {},
-        component_separators = { left = '', right = ''},
+        component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
         globalstatus = true,
     },
@@ -74,12 +74,12 @@ lualine.setup {
             {
                 "diagnostics",
                 sources = { "nvim_diagnostic" },
-                symbols = { error = " ", warn = " ", info = " ", hint = " " }, --     כֿ 
+                symbols = global.symbols.diagnostic,
                 diagnostics_color = {
-                    error = 'DiagnosticSignError',
-                    warn  = 'DiagnosticSignWarn',
-                    info  = 'DiagnosticSignInfo',
-                    hint  = 'DiagnosticSignHint',
+                    error = "DiagnosticSignError",
+                    warn  = "DiagnosticSignWarn",
+                    info  = "DiagnosticSignInfo",
+                    hint  = "DiagnosticSignHint",
                 },
                 colored = true,
             },
@@ -112,15 +112,15 @@ lualine.setup {
     tabline = {
         lualine_a = {
             {
-                'buffers',
+                "buffers",
                 mode = 2,
                 show_modified_status = true,
-            }
+            },
         },
         lualine_c = {},
         lualine_x = {},
         lualine_y = {},
-        lualine_z = {}
+        lualine_z = {},
     },
     extensions = {
         "quickfix",

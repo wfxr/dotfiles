@@ -14,4 +14,6 @@ vim.g.nvcode_termcolors = 256
 vim.g.mapleader = ","
 vim.o.termguicolors = true
 
+global = require("wfxr.global")
+
 require "wfxr.plugins"
