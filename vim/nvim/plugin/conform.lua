@@ -5,13 +5,16 @@ end
 
 conform.setup ({
     formatters_by_ft = {
-        -- lua      = { "stylua"                 },
-        rust     = { "rustfmt"                },
-        c        = { "clang_format"           },
-        cpp      = { "clang_format"           },
-        go       = { "goimports"              },
-        markdown = { 'deno_fmt', 'injected'   },
-        sql      = { 'sqlformat', 'pg_format' },
+        -- lua  = { "stylua" },
+
+        rust = { "rustfmt"           },
+        c    = { "clang_format"      },
+        cpp  = { "clang_format"      },
+        go   = { "goimports-reviser" },
+        yaml = { "yamlfix"           },
+
+        markdown = { "deno_fmt",  "injected"  },
+        sql      = { "sqlformat", "pg_format" },
     },
     format_on_save = function(bufnr)
         -- Disable autoformat on certain filetypes
@@ -21,6 +24,11 @@ conform.setup ({
         end
         return { timeout_ms = 500, lsp_fallback = true }
     end,
+    formatters = {
+        ["goimports-reviser"] = {
+            prepend_args = { "-rm-unused", "-set-alias" },
+        },
+    }
 })
 
 vim.api.nvim_create_user_command("Format", function(args)

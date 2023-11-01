@@ -16,7 +16,7 @@ lint.linters_by_ft = {
 
 lint.try_lint()
 
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
+vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave", "BufWritePost" }, {
     callback = function()
         lint.try_lint()
     end,
