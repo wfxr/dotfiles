@@ -125,6 +125,9 @@ if vim.fn.has "win32" == 1 then
     vim.o.shell = "powershell.exe"
 end
 
+-- Enable this will cause ft specified configs be overwritten
+vim.g.editorconfig = false
+
 -- Fixate cmdheight to 2
 -- vim.api.nvim_create_autocmd({ "WinScrolled" }, {
 --     pattern = "*",

@@ -1,0 +1,6 @@
+snippet require_if_ok "require a plugin if ok..."
+	local ok, ${1:name} = pcall(require, "${1}")
+	if not ok then
+		return
+	end
+	$2

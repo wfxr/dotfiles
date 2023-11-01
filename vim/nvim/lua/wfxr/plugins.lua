@@ -77,6 +77,7 @@ local function spec(use)
         "kyazdani42/nvim-tree.lua",
         "farmergreg/vim-lastplace",
         "nvim-lualine/lualine.nvim",
+        "karb94/neoscroll.nvim",
         { "folke/todo-comments.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
         { "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" },
         { "kevinhwang91/nvim-bqf", ft = "qf", requires = "junegunn/fzf" },
@@ -145,13 +146,6 @@ local function spec(use)
             "junegunn/vim-peekaboo",
             setup = function()
                 vim.g.peekaboo_compact = 0
-            end,
-        },
-        {
-            "editorconfig/editorconfig-vim",
-            setup = function()
-                vim.g.EditorConfig_max_line_indicator = ""
-                vim.g.EditorConfig_preserve_formatoptions = 1
             end,
         },
         {
