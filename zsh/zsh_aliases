@@ -141,3 +141,5 @@ alias ta='tmux attach -t'
 (( $+commands[gsed] )) && alias sed=gsed
 (( $+commands[gawk] )) && alias awk=gawk
 (( $+commands[fdfind])) && alias fd=fdfind
+
+alias vimloadinglog="vim -V20vimlog"
