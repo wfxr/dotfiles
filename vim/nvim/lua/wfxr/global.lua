@@ -21,4 +21,8 @@ global.symbols = {
     diagnostic = { error = " ", warn = " ", hint = " ", info = " ", other = " " },
 }
 
+global.borders = {
+    modern = { "┏", "─", "┓", "│", "┛", "─", "┗", "│" }
+}
+
 return global

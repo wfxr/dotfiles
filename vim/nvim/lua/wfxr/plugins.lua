@@ -1,49 +1,36 @@
-local install_path = ("%s/site/pack/packer-lib/opt/packer.nvim"):format(vim.fn.stdpath "data")
-
-local function install_packer()
-    vim.fn.termopen(("git clone https://github.com/wbthomason/packer.nvim %q"):format(install_path))
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
+vim.opt.rtp:prepend(lazypath)
 
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-    install_packer()
-end
-
-vim.cmd.packadd { "packer.nvim" }
-
-function _G.packer_upgrade()
-    vim.fn.delete(install_path, "rf")
-    install_packer()
-end
-
-vim.cmd.command { "PackerUpgrade", ":call v:lua.packer_upgrade()", bang = true }
-
-local function spec(use)
-    use { "lewis6991/impatient.nvim" }
-
+local plugins = {
     -- tpope
-    use {
+    {
         "tpope/vim-repeat",
         "tpope/vim-surround",
         "tpope/vim-fugitive",
         "tpope/vim-unimpaired",
         "tpope/vim-rsi",
         {
-            "tpope/vim-sleuth",
-            setup = function()
-                vim.g.sleuth_automatic = 0
-            end,
-        },
-        {
             "tpope/vim-dispatch",
-            requires = { "radenling/vim-dispatch-neovim" },
+            dependencies = { "radenling/vim-dispatch-neovim" },
         },
-    }
+    },
 
     -- test & debugging
-    use {
+    {
         {
             "nvim-neotest/neotest",
-            requires = {
+            dependencies = {
+                "nvim-lua/plenary.nvim",
                 "haydenmeade/neotest-jest",
                 "rouge8/neotest-rust",
                 "nvim-neotest/neotest-plenary",
@@ -53,16 +40,15 @@ local function spec(use)
         "rcarriga/nvim-dap-ui",
         "theHamsta/nvim-dap-virtual-text",
         "jbyuki/one-small-step-for-vimkind",
-    }
+    },
 
     -- things that either enhance builtin behaviours or could easily be candidates for default behaviour
-    use {
+    {
         "luukvbaal/statuscol.nvim",
         "airblade/vim-rooter",
-        "antoinemadec/FixCursorHold.nvim",
         "ggandor/leap.nvim",
-        "levouh/tint.nvim",
-        "lewis6991/hover.nvim",
+        -- "levouh/tint.nvim",
+        -- "lewis6991/hover.nvim",
         "lewis6991/satellite.nvim",
         -- "linty-org/readline.nvim",
         "monaqa/dial.nvim",
@@ -72,16 +58,27 @@ local function spec(use)
         "szw/vim-maximizer",
         "windwp/nvim-autopairs",
         "zbirenbaum/neodim",
-        "s1n7ax/nvim-window-picker",
         "kyazdani42/nvim-tree.lua",
+        -- {
+        --     "nvim-neo-tree/neo-tree.nvim",
+        --     dependencies = {
+        --         "nvim-lua/plenary.nvim",
+        --         "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+        --         "MunifTanjim/nui.nvim",
+        --         "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+        --         's1n7ax/nvim-window-picker',
+        --     },
+        --     config = function()
+        --         vim.keymap.set("n", "<c-n>", "<cmd>Neotree toggle<CR>")
+        --     end
+        -- },
         "farmergreg/vim-lastplace",
         "nvim-lualine/lualine.nvim",
         "karb94/neoscroll.nvim",
         { "folke/todo-comments.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
-        { "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" },
-        { "kevinhwang91/nvim-bqf", ft = "qf", requires = "junegunn/fzf" },
-        -- { "https://git.sr.ht/~whynothugo/lsp_lines.nvim", as = "lsp_lines.nvim" },
-        { "j-hui/fidget.nvim", tag = "legacy" },
+        { "kevinhwang91/nvim-ufo", dependencies = "kevinhwang91/promise-async" },
+        { "kevinhwang91/nvim-bqf", ft = "qf", dependencies = "junegunn/fzf" },
+        { "j-hui/fidget.nvim", tag = "legacy", event = "LspAttach" },
         {
             "Bekaboo/deadcolumn.nvim",
             config = function()
@@ -106,7 +103,7 @@ local function spec(use)
                     call wilder#set_option('renderer', wilder#renderer_mux({':': wilder#popupmenu_renderer({'highlighter': wilder#lua_fzy_highlighter(), 'left': [wilder#popupmenu_devicons()], 'right': [' ', wilder#popupmenu_scrollbar()]}), '/': wilder#wildmenu_renderer({'highlighter': wilder#lua_fzy_highlighter()})}))
                 ]]
             end,
-            requires = { { "romgrk/fzy-lua-native", after = "wilder.nvim" } },
+            dependencies = { "romgrk/fzy-lua-native", "wilder.nvim" },
         },
         {
             "junegunn/vim-easy-align",
@@ -114,7 +111,7 @@ local function spec(use)
         },
         {
             "andymass/vim-matchup",
-            setup = function()
+            config = function()
                 vim.g.matchup_matchparen_offscreen = {
                     method = "popup",
                     fullwidth = 1,
@@ -124,7 +121,8 @@ local function spec(use)
         },
         {
             "hrsh7th/nvim-cmp",
-            requires = {
+            event = "InsertEnter",
+            dependencies = {
                 "andersevenrud/cmp-tmux",
                 "hrsh7th/cmp-buffer",
                 "hrsh7th/cmp-calc",
@@ -137,16 +135,11 @@ local function spec(use)
                 "saadparwaiz1/cmp_luasnip",
                 {
                     "L3MON4D3/LuaSnip",
-                    requires = { "honza/vim-snippets" },
+                    dependencies = { "honza/vim-snippets" },
                 },
             },
         },
-        {
-            "junegunn/vim-peekaboo",
-            setup = function()
-                vim.g.peekaboo_compact = 0
-            end,
-        },
+        { "junegunn/vim-peekaboo" },
         {
             "ojroques/nvim-osc52",
             config = function()
@@ -157,45 +150,55 @@ local function spec(use)
         },
         {
             "iamcco/markdown-preview.nvim",
-            run = function()
+            ft = "markdown",
+            build = function()
                 vim.fn["mkdp#util#install"]()
             end,
         },
-    }
+    },
 
     -- UI
-    use {
+    {
         -- "williamboman/warden.nvim",
         "sainnhe/gruvbox-material",
-        "kyazdani42/nvim-web-devicons",
+        "nvim-tree/nvim-web-devicons",
         { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
         "NvChad/nvim-colorizer.lua",
         "Bekaboo/dropbar.nvim",
-        { "akinsho/toggleterm.nvim", tag = '*' },
-    }
+        { "akinsho/toggleterm.nvim", version = '*' },
+        {
+            "numToStr/FTerm.nvim",
+            config = function ()
+                require('FTerm').setup({
+                    border = { "┏", "─", "┓", "│", "┛", "─", "┗", "│" },
+                })
+                vim.keymap.set('n', '<C-\\>', '<CMD>lua require("FTerm").toggle()<CR>')
+                vim.keymap.set('t', '<C-\\>', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>')
+            end
+        },
+    },
 
     -- Treesitter
-    use {
+    {
         "nvim-treesitter/nvim-treesitter",
-        disable = vim.fn.has "win32" == 1,
-        run = ":TSUpdate",
-        requires = {
+        build = ":TSUpdate",
+        dependencies = {
             "nvim-treesitter/playground",
             "nvim-treesitter/nvim-treesitter-textobjects",
             -- "HiPhish/nvim-ts-rainbow2",
             "JoosepAlviste/nvim-ts-context-commentstring",
             "windwp/nvim-ts-autotag",
         },
-    }
+    },
 
     -- Mason
-    use {
+    {
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
-    }
+    },
 
     -- LSP
-    use {
+    {
         "DNLHC/glance.nvim",
         "b0o/SchemaStore.nvim",
         "folke/neodev.nvim",
@@ -226,73 +229,47 @@ local function spec(use)
                 end)
             end,
         },
-    }
+    },
 
     -- Telescope
-    use {
+    {
         "nvim-telescope/telescope.nvim",
-        requires = {
+        dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-telescope/telescope-project.nvim",
             "nvim-telescope/telescope-ui-select.nvim",
-            { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+            { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
         },
-    }
+    },
 
     -- git
-    use {
+    {
         "rhysd/git-messenger.vim",
         "rhysd/committia.vim",
         "ruifm/gitlinker.nvim",
         "lewis6991/gitsigns.nvim",
-    }
+    },
 
     -- Misc
-    use { "tweekmonster/startuptime.vim", cmd = { "StartupTime" } }
-    -- use "wakatime/vim-wakatime"
-end
-
-require("packer").startup {
-    spec,
-    config = {
-        display = {
-            open_fn = require("packer.util").float,
-        },
-        max_jobs = vim.fn.has "win32" == 1 and 5 or nil,
+    {
+        "tweekmonster/startuptime.vim",
+        cmd = "StartupTime",
+        init = function()
+            vim.g.startuptime_tries = 10
+        end,
     },
+    -- use "wakatime/vim-wakatime"
 }
 
--- use {
---   'myusername/example',        -- The plugin location string
---   -- The following keys are all optional
---   disable = boolean,           -- Mark a plugin as inactive
---   as = string,                 -- Specifies an alias under which to install the plugin
---   installer = function,        -- Specifies custom installer. See "custom installers" below.
---   updater = function,          -- Specifies custom updater. See "custom installers" below.
---   after = string or list,      -- Specifies plugins to load before this plugin. See "sequencing" below
---   rtp = string,                -- Specifies a subdirectory of the plugin to add to runtimepath.
---   opt = boolean,               -- Manually marks a plugin as optional.
---   bufread = boolean,           -- Manually specifying if a plugin needs BufRead after being loaded
---   branch = string,             -- Specifies a git branch to use
---   tag = string,                -- Specifies a git tag to use. Supports '*' for "latest tag"
---   commit = string,             -- Specifies a git commit to use
---   lock = boolean,              -- Skip updating this plugin in updates/syncs. Still cleans.
---   run = string, function, or table, -- Post-update/install hook. See "update/install hooks".
---   requires = string or list,   -- Specifies plugin dependencies. See "dependencies".
---   rocks = string or list,      -- Specifies Luarocks dependencies for the plugin
---   config = string or function, -- Specifies code to run after this plugin is loaded.
---   -- The setup key implies opt = true
---   setup = string or function,  -- Specifies code to run before this plugin is loaded. The code is ran even if
---                                -- the plugin is waiting for other conditions (ft, cond...) to be met.
---   -- The following keys all imply lazy-loading and imply opt = true
---   cmd = string or list,        -- Specifies commands which load this plugin. Can be an autocmd pattern.
---   ft = string or list,         -- Specifies filetypes which load this plugin.
---   keys = string or list,       -- Specifies maps which load this plugin. See "Keybindings".
---   event = string or list,      -- Specifies autocommand events which load this plugin.
---   fn = string or list          -- Specifies functions which load this plugin.
---   cond = string, function, or list of strings/functions,   -- Specifies a conditional test to load this plugin
---   module = string or list      -- Specifies Lua module names for require. When requiring a string which starts
---                                -- with one of these module names, the plugin will be loaded.
---   module_pattern = string/list -- Specifies Lua pattern of Lua module names for require. When
---                                -- requiring a string which matches one of these patterns, the plugin will be loaded.
--- }
+require("lazy").setup(plugins, {
+    install = {
+        colorscheme = { "gruvbox-material" },
+    },
+    ui = {
+        border = nil,
+    },
+    checker = {
+        -- automatically check for plugin updates
+        enabled = true,
+    },
+})
