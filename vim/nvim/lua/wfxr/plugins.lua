@@ -59,7 +59,6 @@ local function spec(use)
     use {
         "luukvbaal/statuscol.nvim",
         "airblade/vim-rooter",
-        "akinsho/toggleterm.nvim",
         "antoinemadec/FixCursorHold.nvim",
         "ggandor/leap.nvim",
         "levouh/tint.nvim",
@@ -172,6 +171,7 @@ local function spec(use)
         { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
         "NvChad/nvim-colorizer.lua",
         "Bekaboo/dropbar.nvim",
+        { "akinsho/toggleterm.nvim", tag = '*' },
     }
 
     -- Treesitter
