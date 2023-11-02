@@ -109,7 +109,23 @@ lualine.setup {
     inactive_sections = {
         lualine_a = {},
         lualine_b = {},
-        lualine_c = { "filename" },
+        lualine_c = {
+            {
+                "filename",
+                path = 1,
+                fmt = function(filename)
+                    -- Small attempt to workaround https://github.com/nvim-lualine/lualine.nvim/issues/872
+                    if #filename > 80 then
+                        filename = vim.fs.basename(filename)
+                    end
+
+                    if #filename > 80 then
+                        return string.sub(filename, #filename - 80, #filename)
+                    end
+                    return filename
+                end,
+            }
+        },
         lualine_x = { "location" },
         lualine_y = {},
         lualine_z = {},
