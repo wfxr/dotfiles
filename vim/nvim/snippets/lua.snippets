@@ -3,4 +3,7 @@ snippet require_if_ok "require a plugin if ok..."
 	if not ok then
 		return
 	end
-	$2
+	
+	${1}.setup({
+		$2
+	})

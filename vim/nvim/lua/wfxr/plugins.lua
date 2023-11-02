@@ -47,11 +47,9 @@ local plugins = {
         "luukvbaal/statuscol.nvim",
         "airblade/vim-rooter",
         "ggandor/leap.nvim",
-        -- "levouh/tint.nvim",
         "lewis6991/hover.nvim",
         "lewis6991/satellite.nvim",
         "lewis6991/spaceless.nvim",
-        -- "linty-org/readline.nvim",
         "monaqa/dial.nvim",
         "numToStr/Comment.nvim",
         "stevearc/aerial.nvim",
@@ -60,26 +58,27 @@ local plugins = {
         "windwp/nvim-autopairs",
         "zbirenbaum/neodim",
         "kyazdani42/nvim-tree.lua",
-        -- {
-        --     "nvim-neo-tree/neo-tree.nvim",
-        --     dependencies = {
-        --         "nvim-lua/plenary.nvim",
-        --         "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-        --         "MunifTanjim/nui.nvim",
-        --         "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
-        --         's1n7ax/nvim-window-picker',
-        --     },
-        --     config = function()
-        --         vim.keymap.set("n", "<c-n>", "<cmd>Neotree toggle<CR>")
-        --     end
-        -- },
+        {
+            "nvim-neo-tree/neo-tree.nvim",
+            enabled = false, -- TODO: Cause screen flickering?
+            dependencies = {
+                "nvim-lua/plenary.nvim",
+                "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+                "MunifTanjim/nui.nvim",
+                "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+                's1n7ax/nvim-window-picker',
+            },
+            config = function()
+                vim.keymap.set("n", "<c-n>", "<cmd>Neotree toggle<CR>")
+            end
+        },
         "farmergreg/vim-lastplace",
         "nvim-lualine/lualine.nvim",
         "karb94/neoscroll.nvim",
         { "folke/todo-comments.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
         { "kevinhwang91/nvim-ufo", dependencies = "kevinhwang91/promise-async" },
         { "kevinhwang91/nvim-bqf", ft = "qf", dependencies = "junegunn/fzf" },
-        { "j-hui/fidget.nvim", tag = "legacy", event = "LspAttach" },
+        { "j-hui/fidget.nvim", enabled = true, tag = "legacy", event = "LspAttach" },
         {
             "Bekaboo/deadcolumn.nvim",
             config = function()
@@ -94,6 +93,7 @@ local plugins = {
         },
         {
             "gelguy/wilder.nvim",
+            enabled = false, -- Python dependency is annoying
             event = "CmdlineEnter",
             build = ":UpdateRemotePlugins",
             config = function()
@@ -160,12 +160,24 @@ local plugins = {
 
     -- UI
     {
-        -- "williamboman/warden.nvim",
         "sainnhe/gruvbox-material",
         "nvim-tree/nvim-web-devicons",
+        {
+            "folke/noice.nvim",
+            enabled = false,
+            event = "VeryLazy",
+            dependencies = {
+                -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+                "MunifTanjim/nui.nvim",
+                -- OPTIONAL:
+                --   `nvim-notify` is only needed, if you want to use the notification view.
+                --   If not available, we use `mini` as the fallback
+                "rcarriga/nvim-notify",
+            }
+        },
         { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
         "NvChad/nvim-colorizer.lua",
-        -- "Bekaboo/dropbar.nvim", -- TODO: re-enable after https://github.com/wfxr/dotfiles/issues/4 fixed
+        { "Bekaboo/dropbar.nvim", enabled = false, }, -- TODO: Wait https://github.com/wfxr/dotfiles/issues/4
         { "akinsho/toggleterm.nvim", version = '*' },
         {
             "numToStr/FTerm.nvim",
@@ -186,7 +198,6 @@ local plugins = {
         dependencies = {
             "nvim-treesitter/playground",
             "nvim-treesitter/nvim-treesitter-textobjects",
-            -- "HiPhish/nvim-ts-rainbow2",
             "JoosepAlviste/nvim-ts-context-commentstring",
             "windwp/nvim-ts-autotag",
         },
@@ -204,13 +215,13 @@ local plugins = {
         "b0o/SchemaStore.nvim",
         "folke/neodev.nvim",
         "jmbuhr/otter.nvim",
-        -- "jose-elias-alvarez/null-ls.nvim",
+        { "jose-elias-alvarez/null-ls.nvim", enabled = false  }, -- NOTE: replaced by conform.nvim & nvim-lint
         "stevearc/conform.nvim",
         "mfussenegger/nvim-lint",
         { "folke/trouble.nvim", dependencies = { "nvim-tree/nvim-web-devicons" } },
         "neovim/nvim-lspconfig",
         "pmizio/typescript-tools.nvim",
-        "ray-x/lsp_signature.nvim",
+        { "ray-x/lsp_signature.nvim", enabled = true },
         "simrat39/rust-tools.nvim",
         { "lvimuser/lsp-inlayhints.nvim", branch = "anticonceal" },
         {
@@ -259,7 +270,6 @@ local plugins = {
             vim.g.startuptime_tries = 10
         end,
     },
-    -- use "wakatime/vim-wakatime"
 }
 
 require("lazy").setup(plugins, {
