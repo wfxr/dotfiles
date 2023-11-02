@@ -6,7 +6,7 @@ end
 dressing.setup {
     input = {
         default_prompt = " ",
-        border = { "┏", "─", "┓", "│", "┛", "─", "┗", "│" },
+        border = global.borders.modern,
         win_options = {
             winblend = 5,
             winhighlight = "NormalFloat:Normal",
@@ -18,7 +18,7 @@ dressing.setup {
         backend = { "telescope", "fzf_lua", "fzf", "builtin", "nui" },
         -- Options for built-in selector
         builtin = {
-            border = { "┏", "─", "┓", "│", "┛", "─", "┗", "│" },
+            border = global.borders.modern,
             win_options = {
                 winblend = 5,
             },

@@ -22,7 +22,8 @@ global.symbols = {
 }
 
 global.borders = {
-    modern = { "┏", "─", "┓", "│", "┛", "─", "┗", "│" }
+    modern = { "┏", "─", "┓", "│", "┛", "─", "┗", "│" },
+    none = { "", "", "", "", "", "", "", "" },
 }
 
 return global

@@ -13,8 +13,8 @@ hover.setup {
     title = true,
     preview_window = true,
     preview_opts = {
-        border = { "┏", "─", "┓", "│", "┛", "─", "┗", "│" },
-        -- border = { "", "", "", "", "", "", "", "" },
+        -- border = global.borders.none,
+        border = global.borders.modern,
     }
 }
 
