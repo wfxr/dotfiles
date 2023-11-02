@@ -164,13 +164,13 @@ local plugins = {
         "nvim-tree/nvim-web-devicons",
         { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
         "NvChad/nvim-colorizer.lua",
-        "Bekaboo/dropbar.nvim",
+        -- "Bekaboo/dropbar.nvim", -- TODO: re-enable after https://github.com/wfxr/dotfiles/issues/4 fixed
         { "akinsho/toggleterm.nvim", version = '*' },
         {
             "numToStr/FTerm.nvim",
             config = function ()
                 require('FTerm').setup({
-                    border = { "┏", "─", "┓", "│", "┛", "─", "┗", "│" },
+                    border = global.borders.modern
                 })
                 vim.keymap.set('n', '<C-\\>', '<CMD>lua require("FTerm").toggle()<CR>')
                 vim.keymap.set('t', '<C-\\>', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>')
