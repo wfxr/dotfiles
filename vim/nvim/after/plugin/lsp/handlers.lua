@@ -41,5 +41,5 @@ vim.lsp.handlers["textDocument/rename"] = function(err, result, ...)
 end
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-    border = "solid",
+    border = nil,
 })

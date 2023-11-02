@@ -139,6 +139,7 @@ mason_lspconfig.setup_handlers {
             server = {
                 on_attach = function(_, bufnr)
                     vim.keymap.set("n", "<leader><Enter>", rt.runnables.runnables, { buffer = bufnr })
+                    -- vim.keymap.set("n", "K", rt.hover_actions.hover_actions, { buffer = bufnr })
                 end,
             },
             tools = {
@@ -150,7 +151,9 @@ mason_lspconfig.setup_handlers {
                     other_hints_prefix = "  󰮺 ",
                 },
                 executor = require("rust-tools/executors").toggleterm,
-                hover_actions = { border = "solid" },
+                hover_actions = {
+                    border = global.borders.none,
+                },
             },
             dap = {
                 adapter = {
