@@ -1,10 +1,3 @@
--- vim.o.inccommand = "split"
--- vim.wo.wrap = true
--- vim.wo.cursorline = true
--- vim.o.ruler = true
--- vim.o.startofline = false
--- vim.o.backspace = "indent,eol,start"
-
 vim.opt.termguicolors  = true
 vim.opt.mouse          = "a"
 vim.opt.title          = true
@@ -101,8 +94,6 @@ vim.opt.foldlevel      = 99
 vim.opt.foldlevelstart = 99
 vim.opt.foldenable     = true
 vim.opt.number         = true
-vim.opt.formatoptions:remove "t"
-vim.opt.formatoptions:remove "o"
 -- vim.opt.statuscolumn = "%=%{&nu?(&rnu&&v:relnum?v:relnum:v:lnum):''}%s%C"
 -- vim.opt.pumblend = 10, -- popup_menu
 -- vim.opt.winblend = 10, -- floating window
@@ -127,6 +118,14 @@ end
 
 -- Enable this will cause ft specified configs be overwritten
 vim.g.editorconfig = false
+
+vim.api.nvim_create_autocmd({ "FileType" }, {
+    callback = function()
+        vim.opt_local.formatoptions:remove "t" -- Don't auto wrap text using textwidth
+        vim.opt_local.formatoptions:remove "c" -- Don't auto wrap comments using textwidth
+        vim.opt_local.formatoptions:remove "o" -- Don't continue comments with o and O
+    end,
+})
 
 -- Fixate cmdheight to 2
 -- vim.api.nvim_create_autocmd({ "WinScrolled" }, {
