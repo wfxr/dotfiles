@@ -55,7 +55,10 @@ local plugins = {
         "stevearc/aerial.nvim",
         "stevearc/dressing.nvim",
         "szw/vim-maximizer",
-        "windwp/nvim-autopairs",
+        {
+            "windwp/nvim-autopairs",
+            event = "InsertEnter",
+        },
         "zbirenbaum/neodim",
         "kyazdani42/nvim-tree.lua",
         {
@@ -120,6 +123,15 @@ local plugins = {
                 }
             end,
         },
+
+        {
+            "L3MON4D3/LuaSnip",
+            event = "InsertEnter",
+            build = "make install_jsregexp",
+            dependencies = {
+                "rafamadriz/friendly-snippets",
+            }
+        },
         {
             "hrsh7th/nvim-cmp",
             event = "InsertEnter",
@@ -129,15 +141,12 @@ local plugins = {
                 "hrsh7th/cmp-calc",
                 "hrsh7th/cmp-nvim-lsp",
                 "hrsh7th/cmp-path",
+                "hrsh7th/cmp-cmdline",
                 "lukas-reineke/cmp-rg",
                 "onsails/lspkind-nvim",
                 "petertriho/cmp-git",
                 "rcarriga/cmp-dap",
                 "saadparwaiz1/cmp_luasnip",
-                {
-                    "L3MON4D3/LuaSnip",
-                    dependencies = { "honza/vim-snippets" },
-                },
             },
         },
         { "junegunn/vim-peekaboo" },
