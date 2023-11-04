@@ -9,8 +9,8 @@ IFS=$'\n\t'
 
 SDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) && cd "$SDIR" || return 1
 
-mkdir -p ~/.config/kitty
+rm -rf ~/.config/kitty
 
-for f in "$SDIR"/confs/*; do
-    ln -sf "$f" ~/.config/kitty
-done
+mkdir -p ~/.config
+
+ln -sf "$SDIR/confs" ~/.config/kitty

@@ -169,7 +169,8 @@ local plugins = {
 
     -- UI
     {
-        "sainnhe/gruvbox-material",
+        { "sainnhe/gruvbox-material", enabled = false },
+        "sainnhe/everforest",
         "nvim-tree/nvim-web-devicons",
         {
             "folke/noice.nvim",
@@ -283,7 +284,7 @@ local plugins = {
 
 require("lazy").setup(plugins, {
     install = {
-        colorscheme = { "gruvbox-material" },
+        colorscheme = { "everforest" },
     },
     ui = {
         border = nil,
