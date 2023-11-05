@@ -8,6 +8,7 @@ let g:gruvbox_material_background         = 'medium'
 let g:gruvbox_material_foreground         = 'material'
 
 let g:everforest_background = 'hard'
+let g:everforest_better_performance = 1
 
 set background=dark
 colorscheme everforest
