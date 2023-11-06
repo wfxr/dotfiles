@@ -17,3 +17,6 @@
 
 # Use "gitignore" highlighting for ".ignore" files
 --map-syntax .ignore:.gitignore
+
+# Show line numbers
+--number

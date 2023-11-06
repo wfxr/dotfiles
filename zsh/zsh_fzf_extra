@@ -38,15 +38,18 @@ FZF_DEFAULT_COMMAND='(git ls-tree -r --name-only HEAD ||
 (( $+commands[ag] )) && FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g "" 2>/dev/null'
 (( $+commands[fd] )) && FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git 2>/dev/null'
 export FZF_DEFAULT_COMMAND
+# 󰅂     󰅁
 FZF_DEFAULT_OPTS="
 --exact
---prompt '❯ '
---pointer '➤'
+--prompt ' '
+--pointer ''
 --marker '┃'
+--info 'inline:  '
 --border
---color=fg:-1,bg:-1,hl:#ffaf5f,fg+:-1,bg+:-1,hl+:#ffaf5f
---color=prompt:#5fff87,marker:#ff87d7,spinner:#ff87d7
---info inline
+--color=fg:-1,bg:-1,hl:#e69875
+--color=fg+:#83c092,bg+:-1,hl+:#e69875
+--color=info:-1,prompt:#5fff87,pointer:#e67e80
+--color=marker:#e67e80,spinner:#e67e80,header:#87afaf
 --height 80%
 --extended
 --ansi

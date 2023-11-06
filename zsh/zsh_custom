@@ -494,3 +494,11 @@ function vmstart() {
     [[ -z $vm ]] && return 1
     vboxmanage startvm "$vm" --type headless
 }
+
+function vimplug() {
+    local f=$(cd $HOME/.config/nvim/ && fd -t f . |
+        fzf --preview-window=nohidden --preview "($FZF_FILE_HIGHLIGHTER {})")
+
+    [[ -z $f ]] && return 1
+    $EDITOR "$HOME/.config/nvim/$f"
+}
