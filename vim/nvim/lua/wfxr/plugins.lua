@@ -58,7 +58,12 @@ local plugins = {
         "airblade/vim-rooter",
         "ggandor/leap.nvim",
         "lewis6991/hover.nvim",
-        "lewis6991/satellite.nvim",
+        {
+            "lewis6991/satellite.nvim",
+            enabled = function()
+                return vim.fn.has("nvim-0.10") == 1
+            end,
+        },
         "lewis6991/spaceless.nvim",
         "monaqa/dial.nvim",
         "numToStr/Comment.nvim",
