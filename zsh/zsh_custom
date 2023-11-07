@@ -502,3 +502,7 @@ function vimplug() {
     [[ -z $f ]] && return 1
     $EDITOR "$HOME/.config/nvim/$f"
 }
+
+function paste_image() {
+    xclip -selection clipboard -t image/png -o
+}
