@@ -18,5 +18,24 @@ hover.setup {
     }
 }
 
+require('hover').register {
+   name = 'EN->ZH',
+   enabled = function()
+     return true
+   end,
+   execute = require('hover.async').void(function(done)
+        local word = vim.fn.expand('<cword>')
+
+        local job = require('hover.async.job').job
+
+        local output = job {
+            'clitrans', word,
+        }
+
+        local results = { output }
+        done(results and {lines=results, filetype="markdown"})
+   end)
+}
+
 vim.keymap.set("n", "K", hover.hover, { desc = "hover.nvim" })
 vim.keymap.set("n", "gK", hover.hover_select, { desc = "hover.nvim (select)" })
