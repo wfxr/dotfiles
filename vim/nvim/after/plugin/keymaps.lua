@@ -41,17 +41,6 @@ keymap("n", "<space>k", function ()
     end
 end)
 
--- Copilot
-keymap("i", "<c-e>", function()
-    local copilot_keys = vim.fn["copilot#Accept"]()
-    if copilot_keys ~= "" then
-        vim.api.nvim_feedkeys(copilot_keys, "i", true)
-    else
-        local endkey = vim.api.nvim_replace_termcodes('<END>', true, false, true)
-        vim.api.nvim_feedkeys(endkey, "i", true)
-    end
-end)
-
 function show_documentation()
     local filetype = vim.bo.filetype
     if vim.tbl_contains({ 'vim','help' }, filetype) then

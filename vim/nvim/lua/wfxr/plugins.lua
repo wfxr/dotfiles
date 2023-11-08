@@ -254,19 +254,40 @@ local plugins = {
             event = "InsertEnter",
             config = function()
                 vim.g.copilot_filetypes = {
-                    ["*"] = true
+                    ['*'] = true,
+                    DressingInput = false,
+                    TelescopePrompt = false,
+                    ['neo-tree-popup'] = false,
+                    ['dap-repl'] = false,
                 }
                 vim.g.copilot_no_tab_map = true
                 vim.g.copilot_assume_mapped = true
-                vim.keymap.set("i", "<c-e>", function()
-                    local copilot_keys = vim.fn["copilot#Accept"]()
-                    if copilot_keys ~= "" then
-                        vim.api.nvim_feedkeys(copilot_keys, "i", true)
+
+                local function accept_word()
+                    vim.fn['copilot#Accept']('')
+                    local suggestion = vim.fn['copilot#TextQueuedForInsertion']()
+                    if suggestion == "" then
+                        local forward_word = vim.api.nvim_replace_termcodes("<S-Right>", true, false, true)
+                        vim.api.nvim_feedkeys(forward_word, "i", true)
                     else
-                        local endkey = vim.api.nvim_replace_termcodes("<END>", true, false, true)
-                        vim.api.nvim_feedkeys(endkey, "i", true)
+                        suggestion = vim.fn.split(suggestion, [[\W\+\zs]])[1]
+                        suggestion = vim.fn.split(suggestion, [[\n\zs]])[1]
+                        return suggestion
                     end
-                end)
+                end
+
+                local function accept_all()
+                    local suggestion = vim.fn['copilot#Accept']()
+                    if string.match(suggestion, "^%s*$") then
+                        suggestion = vim.api.nvim_replace_termcodes("<END>", true, false, true)
+                    end
+                    vim.api.nvim_feedkeys(suggestion, "i", true)
+                end
+
+                vim.keymap.set("i", "<C-e>", accept_all, { expr = true, remap = false, desc = 'accept all' })
+                vim.keymap.set('i', '<M-f>', accept_word, { expr = true, remap = false, desc = 'accept word' })
+                vim.keymap.set('i', '<M-n>', '<Plug>(copilot-next)', { desc = 'next suggestion' })
+                vim.keymap.set('i', '<M-p>', '<Plug>(copilot-previous)', { desc = 'previous suggestion' })
             end,
         },
     },
