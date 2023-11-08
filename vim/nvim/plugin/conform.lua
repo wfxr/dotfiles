@@ -26,7 +26,10 @@ conform.setup ({
     end,
     formatters = {
         ["goimports-reviser"] = {
-            prepend_args = { "-rm-unused", "-set-alias" },
+            prepend_args = {
+                -- "-rm-unused",
+                "-set-alias",
+            },
         },
     }
 })
