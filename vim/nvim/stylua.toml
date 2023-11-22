@@ -1,2 +1,3 @@
 indent_type = "Spaces"
-no_call_parentheses = true
+indent_width = 2
+column_width = 120

@@ -7,3 +7,5 @@ mkdir -p ~/.config
 
 ln -snf "$SDIR/nvim"      ~/.config/nvim
 ln -sf  "$SDIR/ideavimrc" ~/.ideavimrc
+
+nvim --headless "+Lazy! sync" +qa || true

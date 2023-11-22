@@ -1,1 +1,1 @@
-vim.opt.formatoptions:remove "o"
+vim.opt.tabstop = 2
