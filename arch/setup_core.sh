@@ -64,6 +64,7 @@ function install_cli_package() {
     paru --noconfirm -S neofetch
     paru --noconfirm -S rsync
     paru --noconfirm -S gping
+    paru --noconfirm -S kondo
 
     # crontab
     paru --noconfirm -S cronie
