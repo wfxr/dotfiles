@@ -17,6 +17,7 @@ if vim.g.neovide then
   vim.g.neovide_scale_factor = 0.3
 end
 
+opt.swapfile = false
 opt.mousescroll = "ver:2,hor:6"
 
 -- vim.g.node_host_prog = "/Users/folke/.pnpm-global/5/node_modules/neovim/bin/cli.js"
