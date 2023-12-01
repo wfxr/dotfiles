@@ -62,3 +62,5 @@ keymap('n', '<A-w>', ':set wrap!<CR>', { noremap = true, desc = "Toggle wrap" })
 
 -- nnoremap <leader>p :echo expand('<cword>')<CR>
 keymap('n', '<leader>tr', '<cmd>execute ":!clitrans " .. expand("<cword>")<cr>', { noremap = true, desc = "Translate word" })
+
+keymap('n', '<c-p>', '<c-]>', { noremap = false, desc = "Jump to tag" })
