@@ -45,7 +45,7 @@ return {
   },
 
   {
-    "nvim-cmp",
+    "hrsh7th/nvim-cmp",
     dependencies = {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-cmdline",
@@ -82,7 +82,6 @@ return {
         mapping = cmp.mapping.preset.insert({
           ["<C-d>"] = mapping(mapping.scroll_docs(4), { "i" }),
           ["<C-u>"] = mapping(mapping.scroll_docs(-4), { "i" }),
-          ["<CR>"] = mapping.confirm({ select = false }),
           ["<Tab>"] = mapping.confirm({ select = true }),
           ["<C-n>"] = mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
           ["<C-p>"] = mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),

@@ -64,3 +64,6 @@ keymap('n', '<A-w>', ':set wrap!<CR>', { noremap = true, desc = "Toggle wrap" })
 keymap('n', '<leader>tr', '<cmd>execute ":!clitrans " .. expand("<cword>")<cr>', { noremap = true, desc = "Translate word" })
 
 keymap('n', '<c-p>', '<c-]>', { noremap = false, desc = "Jump to tag" })
+
+-- c-v to paste from clipboard
+keymap({ "i", "c" }, "<c-v>", "<c-o>\"+p", { noremap = true, desc = "Paste from clipboard" })
