@@ -72,6 +72,12 @@ return {
               engine = "nvim-cmp",
             },
           },
+          ["core.export"] = {},
+          ["core.export.markdown"] = {
+            config = {
+              extensions = "all",
+            },
+          },
         },
       })
 

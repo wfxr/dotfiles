@@ -200,7 +200,7 @@ return {
         end
       end
 
-      vim.keymap.set("i", "<C-e>", "copilot#Accept('\\<CR>')", {
+      vim.keymap.set("i", "<C-e>", "copilot#Accept('<End>')", {
         noremap = true,
         silent = true,
         script = true,
