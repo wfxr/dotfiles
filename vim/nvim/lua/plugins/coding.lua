@@ -235,4 +235,16 @@ return {
       },
     },
   },
+
+  {
+    "L3MON4D3/LuaSnip",
+    keys = {
+      { "<tab>", mode = { "i", "s" }, false },
+      { "<s-tab>", mode = { "i", "s" }, false },
+    },
+    config = function(_, opts)
+      require("luasnip").setup(opts)
+      require("luasnip.loaders.from_lua").load({ paths = { "~/.config/nvim/snippets/luasnip" } })
+    end,
+  },
 }
