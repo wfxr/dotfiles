@@ -61,6 +61,7 @@ return {
       local cmp = require("cmp")
       local mapping = cmp.mapping
       local luasnip = require("luasnip")
+      opts.experimental.ghost_text = false
       return vim.tbl_extend("force", opts, {
         formatting = {
           fields = { "abbr", "kind" },
