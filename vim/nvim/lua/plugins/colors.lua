@@ -41,6 +41,8 @@ return {
           hl.CurSearch  = { link = "IncSearch" }
           hl.FlashMatch = { link = "Search"    }
           hl.FlashLabel = { bg = "#db4b4b", fg = "#eeeeee", bold = true }
+
+          hl.NeoTreeGitUntracked = { fg = palette.yellow }
         end,
       })
     end,
