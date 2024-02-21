@@ -59,6 +59,14 @@ return {
         sections = {
           lualine_a = { "mode" },
           lualine_b = { { "branch" }, { "diff" } },
+          lualine_c = {
+            {
+              "filename",
+              file_status = true,
+              newfile_status = true,
+              path = 3,
+            },
+          },
           lualine_x = {
             {
               "diagnostics",

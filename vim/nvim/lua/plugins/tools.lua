@@ -62,7 +62,7 @@ return {
           ["core.dirman"] = { -- Manages Neorg workspaces
             config = {
               workspaces = {
-                neorg = "~/neorg",
+                neorg = "~/.neorg",
               },
               default_workspace = "neorg",
             },
