@@ -242,7 +242,8 @@ return {
   },
 
   {
-    "simrat39/rust-tools.nvim",
+    "mrcjkb/rustaceanvim",
+    ft = { 'rust' },
     lazy = true,
     opts = function(_, opts)
       return vim.tbl_extend("force", opts, {
@@ -254,7 +255,6 @@ return {
             only_current_line = true,
             other_hints_prefix = "  󰮺 ",
           },
-          executor = require("rust-tools/executors").toggleterm,
         }
       })
     end,
