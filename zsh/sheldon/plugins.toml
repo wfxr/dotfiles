@@ -53,7 +53,7 @@ apply = ["defer"]
 
 [plugins.zoxide]
 inline = '''
-(( $+commands[zoxide] )) && zsh-defer zi::cache::cmd 'zoxide init -no-aliases zsh --cmd j'
+(( $+commands[zoxide] )) && zsh-defer zi::cache::cmd 'zoxide init --no-aliases zsh --cmd j'
 '''
 
 [plugins.python]
