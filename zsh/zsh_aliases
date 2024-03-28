@@ -143,6 +143,3 @@ alias ta='tmux attach -t'
 (( $+commands[fdfind])) && alias fd=fdfind
 
 alias vimloadinglog="vim -V20vimlog"
-
-(( $+commands[zoxide] )) && alias j=__zoxide_z
-(( $+commands[zoxide] )) && alias ji=__zoxide_zi
