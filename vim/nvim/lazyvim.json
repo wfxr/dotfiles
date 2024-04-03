@@ -1,14 +1,14 @@
 {
   "extras": [
-    "lazyvim.plugins.extras.coding.yanky",
     "lazyvim.plugins.extras.dap.core",
+    "lazyvim.plugins.extras.coding.yanky",
     "lazyvim.plugins.extras.dap.nlua",
-    "lazyvim.plugins.extras.editor.outline",
     "lazyvim.plugins.extras.lang.markdown",
-    "lazyvim.plugins.extras.vscode"
+    "lazyvim.plugins.extras.vscode",
+    "lazyvim.plugins.extras.editor.outline"
   ],
   "news": {
-    "NEWS.md": "2123"
+    "NEWS.md": "3314"
   },
   "version": 3
 }
