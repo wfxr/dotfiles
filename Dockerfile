@@ -9,9 +9,7 @@ RUN echo -e '[archlinuxcn]\nServer = https://repo.archlinuxcn.org/$arch' >> /etc
     pacman-key --lsign farseerfc@archlinux.org && \
     pacman --noconfirm -Sy && \
     pacman --noconfirm -S archlinuxcn-keyring && \
-    # workaround https://www.reddit.com/r/EndeavourOS/comments/1be08gg/yay_paru_broken_cant_do_anything_with_them_even/
-    ln -s /usr/lib/libalpm.so.14.0.0 /usr/lib/libalpm.so.13 && \
-    pacman --noconfirm -S sudo paru && \
+    pacman --noconfirm -S libalpm sudo paru && \
     paru -Syu --noconfirm
 
 RUN paru --noconfirm -S \
