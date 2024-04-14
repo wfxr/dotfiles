@@ -224,7 +224,7 @@ return {
     opts = {
       linters_by_ft = {
         lua = { "selene", "luacheck" },
-        markdown = { "markdownlint" },
+        -- markdown = { "markdownlint" },
       },
       linters = {
         selene = {
