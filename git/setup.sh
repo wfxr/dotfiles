@@ -115,3 +115,5 @@ git config --global includeIf."gitdir:~/work/".path ~/work/.gitconfig
 # https://github.com/libgit2/libgit2/issues/6531
 # To make powerlevel10k which uses libgit2 work properly
 git config --global index.skipHash false
+
+git config --global push.autoSetupRemote true
