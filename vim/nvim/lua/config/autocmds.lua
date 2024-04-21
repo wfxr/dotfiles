@@ -29,3 +29,11 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.opt_local.formatoptions:remove("o") -- Don't continue comments with o and O
   end,
 })
+
+-- Copilot seems not enabled when entering insert mode by default for some reason.
+-- So we enable it manually here. This is a workaround (#6).
+vim.api.nvim_create_autocmd({ "InsertEnter" }, {
+  callback = function()
+    vim.cmd("Copilot enable")
+  end,
+})
