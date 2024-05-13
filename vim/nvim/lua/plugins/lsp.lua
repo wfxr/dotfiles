@@ -258,5 +258,10 @@ return {
         }
       })
     end,
-  }
+  },
+
+  {
+    "smjonas/inc-rename.nvim",
+    enabled = false,
+  },
 }
