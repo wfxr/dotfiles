@@ -215,6 +215,17 @@ function restore()   { rename    's/^(.*).bak$/$1/g' $@ }
 # Inline calculator
 function = { echo "$@" | tr 'x' '*' | bc -l }
 
+function d() {
+    local a=$1 b=$2
+    d=$(= "(($b) - ($a)) / ($a) * 100")
+    if [[ $d -lt 0 ]]; then
+        ratio_color='\e[1;31m'
+    else
+        ratio_color='\e[1;32m'
+    fi
+    printf "delta: ${ratio_color}%+.2f%%\e[0m\n" "$d"
+}
+
 # Maven search
 function maven-search { xopen "http://mvnrepository.com/search?q="$@ }
 
