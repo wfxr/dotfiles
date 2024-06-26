@@ -5,12 +5,12 @@ return {
     opts = {
       -- stylua: ignore start
       signs = {
-        add          = { hl = 'GitSignsAdd',    text = '┃' },
-        change       = { hl = 'GitSignsChange', text = '┃' },
-        changedelete = { hl = 'GitSignsChange', text = '┃' },
-        untracked    = { hl = 'GitSignsAdd',    text = '┃' },
-        topdelete    = { hl = 'GitSignsDelete', text = '⎺' }, -- ⎺ ↗
-        delete       = { hl = 'GitSignsDelete', text = '⎽' }, -- ⎽ ↘
+        add          = { text = '┃' },
+        change       = { text = '┃' },
+        changedelete = { text = '┃' },
+        untracked    = { text = '┃' },
+        topdelete    = { text = '⎺' }, -- ⎺ ↗
+        delete       = { text = '⎽' }, -- ⎽ ↘
       },
     },
   },
