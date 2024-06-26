@@ -15,7 +15,7 @@ which_term(){
 if [[ $(which_term) == *"kitty" ]]; then
     export TERM="xterm-kitty"
 else
-    export TERM=${TERM:-xterm-256color}
+    export TERM=xterm-256color
 fi
 
 HISTFILE="$HOME/.zsh_history" # History file
