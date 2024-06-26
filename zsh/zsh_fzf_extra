@@ -78,7 +78,6 @@ FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_COMMAND
 FZF_CTRL_T_OPTS="
 --preview \"($FZF_FILE_HIGHLIGHTER {} || $FZF_DIR_HIGHLIGHTER {}) 2>/dev/null | head -200\"
---bind 'enter:execute(echo {})+abort'
 --bind 'alt-e:execute($EDITOR {} >/dev/tty </dev/tty)'
 --preview-window default:right:60%
 "
