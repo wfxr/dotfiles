@@ -53,6 +53,9 @@ git config --global color.diff.whitespace "red reverse"
 # Auto rebase
 git config --global pull.rebase true
 
+# Auto stash
+git config --global rebase.autoStash true
+
 git config --global color.status.added     green
 git config --global color.status.updated   cyan
 git config --global color.status.changed   red
