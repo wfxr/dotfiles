@@ -68,9 +68,6 @@ install_tools() {
     pip install --upgrade pip
     pip install pipenv
 
-    # pip install thefuck      # Thefuck is a magnificent app which corrects your previous console command
-    # pip install csvkit       # A suite of utilities for converting to and working with CSV, the king of tabular file formats.
-    # pip install pydf         # pydf is much easier to read
     pip install jsbeautifier # json formater
     pip install pygments     # tags engine
 
@@ -89,5 +86,3 @@ install_configs || exit $?
 
 loginfo "install tools"
 install_tools || exit $?
-
-grep 'DEV_PYTHON' ~/.zsh_local &>/dev/null || echo 'export DEV_PYTHON=true' >> ~/.zsh_local
