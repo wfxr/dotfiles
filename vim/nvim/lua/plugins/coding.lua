@@ -5,22 +5,6 @@ return {
     config = true,
   },
 
-  -- {
-  --   "echasnovski/mini.bracketed",
-  --   event = "BufReadPost",
-  --   enabled = false,
-  --   config = function()
-  --     local bracketed = require("mini.bracketed")
-  --     bracketed.setup({
-  --       file = { suffix = "" },
-  --       window = { suffix = "" },
-  --       quickfix = { suffix = "" },
-  --       yank = { suffix = "" },
-  --       treesitter = { suffix = "n" },
-  --     })
-  --   end,
-  -- },
-
   -- better increase/descrease
   {
     "monaqa/dial.nvim",
@@ -56,6 +40,7 @@ return {
       "onsails/lspkind.nvim",
       "petertriho/cmp-git",
       "saadparwaiz1/cmp_luasnip",
+      "zbirenbaum/copilot-cmp",
     },
     opts = function(_, opts)
       local cmp = require("cmp")
@@ -107,6 +92,7 @@ return {
           { name = "luasnip" },
           { name = "path" },
           { name = "buffer" },
+          { name = "copilot" },
           { name = "tmux" },
           { name = "rg" },
         }),
@@ -167,58 +153,73 @@ return {
     },
   },
 
-  -- {
-  --   "zbirenbaum/copilot.lua",
-  --   opts = {
-  --     filetypes = { ["*"] = true },
-  --   },
-  -- },
-
   {
-    "github/copilot.vim",
+    "zbirenbaum/copilot.lua",
+    enabled = true,
+    cmd = "Copilot",
     event = "InsertEnter",
-    config = function()
-      vim.g.copilot_filetypes = {
+    opts = {
+      filetypes = {
         ["*"] = true,
-        DressingInput = false,
-        TelescopePrompt = false,
         ["neo-tree-popup"] = false,
         ["dap-repl"] = false,
-      }
-      vim.g.copilot_no_tab_map = true
-      vim.g.copilot_assume_mapped = true
-
-      local function accept_word()
-        vim.fn["copilot#Accept"]("")
-        local suggestion = vim.fn["copilot#TextQueuedForInsertion"]()
-        if suggestion == "" then
-          local forward_word = vim.api.nvim_replace_termcodes("<S-Right>", true, false, true)
-          vim.api.nvim_feedkeys(forward_word, "i", true)
-        else
-          suggestion = vim.fn.split(suggestion, [[\W\+\zs]])[1]
-          suggestion = vim.fn.split(suggestion, [[\n\zs]])[1]
-          return suggestion
-        end
-      end
-
-      vim.keymap.set("i", "<C-e>", "copilot#Accept('<End>')", {
-        noremap = true,
-        silent = true,
-        script = true,
-        expr = true,
-        replace_keycodes = false,
-        desc = "Copilot accept all",
-      })
-      -- stylua : ignore start
-      vim.keymap.set("i", "<M-f>", accept_word, {
-        noremap = true,
-        silent = true,
-        expr = true,
-        desc = "Copilot accept word",
-      })
-      vim.keymap.set("i", "<M-n>", "<Plug>(copilot-next)", { desc = "Copilot next suggestion" })
-      vim.keymap.set("i", "<M-p>", "<Plug>(copilot-previous)", { desc = "Copilot previous suggestion" })
-    end,
+        DressingInput = false,
+        TelescopePrompt = false,
+      },
+      suggestion = {
+        enabled = true,
+        auto_trigger = true,
+        keymap = {
+          accept = false,
+          accept_word = false,
+          accept_line = false,
+          next = "<M-n>",
+          prev = "<M-p>",
+          dismiss = "<C-l>",
+        },
+      },
+    },
+    keys = {
+      {
+        "<M-f>",
+        function()
+          local cs = require("copilot.suggestion")
+          if cs.is_visible() then
+            cs.accept_word()
+          else
+            vim.api.nvim_input("<S-Right>")
+          end
+        end,
+        mode = "i",
+        desc = "Accept Copilot Suggestion (Word)",
+      },
+      {
+        "<C-e>",
+        function()
+          local cs = require("copilot.suggestion")
+          if cs.is_visible() then
+            cs.accept_line()
+          else
+            vim.api.nvim_input("<End>")
+          end
+        end,
+        mode = "i",
+        desc = "Accept Copilot Suggestion (Line)",
+      },
+      {
+        "<M-Enter>",
+        function()
+          local cs = require("copilot.suggestion")
+          if cs.is_visible() then
+            cs.accept()
+          else
+            vim.api.nvim_input("<M-Enter>")
+          end
+        end,
+        mode = "i",
+        desc = "Accept Copilot Suggestion (All)",
+      },
+    },
   },
 
   {
@@ -248,4 +249,67 @@ return {
       require("luasnip.loaders.from_lua").load({ paths = { "~/.config/nvim/snippets/luasnip" } })
     end,
   },
+
+  -- {
+  --   "echasnovski/mini.bracketed",
+  --   event = "BufReadPost",
+  --   enabled = false,
+  --   config = function()
+  --     local bracketed = require("mini.bracketed")
+  --     bracketed.setup({
+  --       file = { suffix = "" },
+  --       window = { suffix = "" },
+  --       quickfix = { suffix = "" },
+  --       yank = { suffix = "" },
+  --       treesitter = { suffix = "n" },
+  --     })
+  --   end,
+  -- },
+
+  -- {
+  --   "github/copilot.vim",
+  --   event = "InsertEnter",
+  --   config = function()
+  --     vim.g.copilot_filetypes = {
+  --       ["*"] = true,
+  --       DressingInput = false,
+  --       TelescopePrompt = false,
+  --       ["neo-tree-popup"] = false,
+  --       ["dap-repl"] = false,
+  --     }
+  --     vim.g.copilot_no_tab_map = true
+  --     vim.g.copilot_assume_mapped = true
+  --
+  --     local function accept_word()
+  --       vim.fn["copilot#Accept"]("")
+  --       local suggestion = vim.fn["copilot#TextQueuedForInsertion"]()
+  --       if suggestion == "" then
+  --         local forward_word = vim.api.nvim_replace_termcodes("<S-Right>", true, false, true)
+  --         vim.api.nvim_feedkeys(forward_word, "i", true)
+  --       else
+  --         suggestion = vim.fn.split(suggestion, [[\W\+\zs]])[1]
+  --         suggestion = vim.fn.split(suggestion, [[\n\zs]])[1]
+  --         return suggestion
+  --       end
+  --     end
+  --
+  --     vim.keymap.set("i", "<C-e>", "copilot#Accept('<End>')", {
+  --       noremap = true,
+  --       silent = true,
+  --       script = true,
+  --       expr = true,
+  --       replace_keycodes = false,
+  --       desc = "Copilot accept all",
+  --     })
+  --     -- stylua : ignore start
+  --     vim.keymap.set("i", "<M-f>", accept_word, {
+  --       noremap = true,
+  --       silent = true,
+  --       expr = true,
+  --       desc = "Copilot accept word",
+  --     })
+  --     vim.keymap.set("i", "<M-n>", "<Plug>(copilot-next)", { desc = "Copilot next suggestion" })
+  --     vim.keymap.set("i", "<M-p>", "<Plug>(copilot-previous)", { desc = "Copilot previous suggestion" })
+  --   end,
+  -- },
 }
