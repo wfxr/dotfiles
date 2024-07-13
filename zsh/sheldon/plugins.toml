@@ -62,6 +62,11 @@ inline = '''
 (( $+commands[pip] ))   && zsh-defer zi::cache::cmd 'pip completion --zsh'
 '''
 
+[plugins.node]
+inline = '''
+(( $+commands[fnm] )) && zsh-defer zi::cache::cmd 'fnm env'
+'''
+
 [plugins.compinit]
 inline = '''
 autoload -Uz compinit

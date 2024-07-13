@@ -1,48 +1,24 @@
 #!/usr/bin/env bash
-################################################################################
-#    Author: Wenxuan                                                           #
-#     Email: wenxuangm@gmail.com                                               #
-#   Created: 2020-01-07 14:00                                                  #
-################################################################################
-SDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) && cd "$SDIR" || exit 1
+set -euo pipefail
+IFS=$'\n\t'
 
-loginfo()  { printf "%b[info]%b %s\n"  '\e[0;32m\033[1m' '\e[0m' "$@" >&2; }
-logwarn()  { printf "%b[warn]%b %s\n"  '\e[0;33m\033[1m' '\e[0m' "$@" >&2; }
-logerror() { printf "%b[error]%b %s\n" '\e[0;31m\033[1m' '\e[0m' "$@" >&2; }
+SDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) && cd "$SDIR"
 
-export PATH="$HOME/.nodenv/shims:$HOME/.nodenv/bin:$PATH"
+info() { printf "$(date +%FT%T) %b[info]%b %s\n" '\e[0;32m\033[1m' '\e[0m' "$*" >&2; }
+warn() { printf "$(date +%FT%T) %b[warn]%b %s\n" '\e[0;33m\033[1m' '\e[0m' "$*" >&2; }
+erro() { printf "$(date +%FT%T) %b[erro]%b %s\n" '\e[0;31m\033[1m' '\e[0m' "$*" >&2; }
 
-install_nodenv() {
-    if ! hash nodenv &>/dev/null; then
-        git clone --depth=1 https://github.com/nodenv/nodenv.git ~/.nodenv || return 1
-        # node-build plugin
-        mkdir -p "$(nodenv root)/plugins"
-        git clone --depth=1 https://github.com/nodenv/node-build.git \
-            "$(nodenv root)/plugins/node-build"
-    else
-        cd ~/.nodenv || return 1
-        git pull origin master
-        cd "$(nodenv root)/plugins/node-build" || return 1
-        git pull origin master
-        cd "$(nodenv root)/plugins/nodenv-default-packages" || return 1
-        git pull origin master
-    fi
-    # optional: compile dynamic bash extension to speed up nodenv
-    cd ~/.nodenv && src/configure && make -C src
-    source <(nodenv init -)
-}
+export PATH="$HOME/bin:$PATH"
 
-install_node() {
-    v=18.14.2
-    nodenv versions | grep $v || nodenv install $v
-    nodenv global $v
-    npm install -g yarn
-}
+if ! command -v fnm &>/dev/null; then
+    info "install nodenv..."
+    mkdir -p "$HOME/bin"
+    curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir "$HOME/bin" --skip-shell
 
-loginfo "install nodenv..."
-install_nodenv || exit $?
+    mkdir -p "$HOME/.config/zsh/completions"
+    fnm completions --shell zsh > "$HOME/.config/zsh/completions/_fnm"
+fi
 
-loginfo "install node..."
-install_node || exit $?
-
-grep 'DEV_NODE' ~/.zsh_local &>/dev/null || echo 'export DEV_NODE=true' >> ~/.zsh_local
+info "install node..."
+fnm install v22.4.1
+fnm use v22.4.1
