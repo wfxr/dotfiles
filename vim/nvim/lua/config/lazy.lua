@@ -20,7 +20,7 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.coding.copilot" },
     -- { import = "lazyvim.plugins.extras.lang.markdown" },
 
-    { import = "lazyvim.plugins.extras.ui.alpha" },
+    -- { import = "lazyvim.plugins.extras.ui.alpha" },
     -- import/override with your plugins
     { import = "plugins" },
   },
