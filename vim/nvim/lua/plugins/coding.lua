@@ -194,7 +194,7 @@ return {
         desc = "Accept Copilot Suggestion (Word)",
       },
       {
-        "<C-e>",
+        "<M-e>",
         function()
           local cs = require("copilot.suggestion")
           if cs.is_visible() then
