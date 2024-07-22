@@ -25,7 +25,7 @@ RUN paru --noconfirm -S \
     zoxide \
     sd \
     ripgrep \
-    exa \
+    eza \
     bat \
     shellcheck-static \
     net-tools dstat gping

@@ -59,7 +59,7 @@ function install_cli_package() {
     paru --noconfirm -S ctags
     paru --noconfirm -S duf dust dua-cli
     paru --noconfirm -S htop dstat bottom procs
-    paru --noconfirm -S fd exa bat ripgrep sd
+    paru --noconfirm -S fd eza bat ripgrep sd
     # paru --noconfirm -S vivid
     paru --noconfirm -S man-pages
     paru --noconfirm -S neofetch

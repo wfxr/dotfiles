@@ -28,8 +28,8 @@ alias pvim='vim -u NONE'
 alias ls='ls --color=auto'
 alias ll='ls --group-directories-first -l'
 alias la='ls --group-directories-first -l --all'
-if (( $+commands[exa] )); then
-    alias ls='exa --time-style long-iso --group-directories-first -m'
+if (( $+commands[eza] )); then
+    alias ls='eza --time-style long-iso --group-directories-first -m'
     alias ll='ls --icons -lgbh'
     alias la='ll -a'
     alias ldot='ll -d .*'

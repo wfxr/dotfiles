@@ -9,7 +9,7 @@ snippet hasvar "If variable exists..."
 endsnippet
 
 snippet better_ll "Create common header" b
-(( $+commands[exa] )) && ll='exa -lbhg --git ${1:--time-style long-iso} ${2:--color=always}' || ll='ls -l $1 $2'
+(( $+commands[eza] )) && ll='eza -lbhg --git ${1:--time-style long-iso} ${2:--color=always}' || ll='ls -l $1 $2'
 endsnippet
 
 snippet default "Set default program" b
