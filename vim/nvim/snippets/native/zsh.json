@@ -1,0 +1,8 @@
+{
+  "hascmd": {
+    "prefix": "hascmd",
+    "body": [
+      "(( \\$+commands[${1:cmd}] )) ${2:&&} $3"
+    ]
+  }
+}

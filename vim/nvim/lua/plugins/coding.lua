@@ -39,14 +39,19 @@ return {
       "lukas-reineke/cmp-rg",
       "onsails/lspkind.nvim",
       "petertriho/cmp-git",
-      "saadparwaiz1/cmp_luasnip",
-      "zbirenbaum/copilot-cmp",
     },
     opts = function(_, opts)
       local cmp = require("cmp")
       local mapping = cmp.mapping
-      local luasnip = require("luasnip")
       opts.experimental.ghost_text = false
+
+      -- native snippets
+      opts.snippet = {
+        expand = function(args)
+          return LazyVim.cmp.expand(args.body)
+        end,
+      }
+
       return vim.tbl_extend("force", opts, {
         formatting = {
           fields = { "abbr", "kind" },
@@ -71,14 +76,19 @@ return {
           ["<Tab>"] = mapping.confirm({ select = true }),
           ["<C-n>"] = mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
           ["<C-p>"] = mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-          ["<C-j>"] = mapping(function(fallback)
-            if luasnip.expand_or_jumpable() then
-              luasnip.expand_or_jump()
+          ["<C-j>"] = cmp.mapping(function(fallback)
+            -- TODO: how to mimic the expand_or_jump behavior?
+            if vim.snippet.active({ direction = 1 }) then
+              vim.snippet.jump(1)
+            elseif cmp.visible() then
+              cmp.confirm({ select = true })
+            else
+              fallback()
             end
           end, { "i", "s" }),
-          ["<C-k>"] = mapping(function(fallback)
-            if luasnip.jumpable(-1) then
-              luasnip.jump(-1)
+          ["<C-k>"] = cmp.mapping(function(fallback)
+            if vim.snippet.active({ direction = -1 }) then
+              vim.snippet.jump(-1)
             else
               fallback()
             end
@@ -88,8 +98,8 @@ return {
           end, { "i", "c" }),
         }),
         sources = cmp.config.sources({
+          { name = "snippets" },
           { name = "nvim_lsp" },
-          { name = "luasnip" },
           { name = "path" },
           { name = "buffer" },
           { name = "copilot" },
@@ -239,15 +249,12 @@ return {
   },
 
   {
-    "L3MON4D3/LuaSnip",
-    keys = {
-      { "<tab>", mode = { "i", "s" }, false },
-      { "<s-tab>", mode = { "i", "s" }, false },
+    "garymjr/nvim-snippets",
+    opts = {
+      search_paths = {
+        vim.fn.stdpath("config") .. "/snippets/native/",
+      },
     },
-    config = function(_, opts)
-      require("luasnip").setup(opts)
-      require("luasnip.loaders.from_lua").load({ paths = { "~/.config/nvim/snippets/luasnip" } })
-    end,
   },
 
   -- {

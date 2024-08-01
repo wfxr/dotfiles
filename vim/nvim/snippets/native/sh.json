@@ -1,0 +1,56 @@
+{
+  "bash": {
+    "prefix": "bash",
+    "body": [
+      "#!/usr/bin/env bash"
+    ]
+  },
+  "sbash": {
+    "prefix": "sbash",
+    "body": [
+      "#!/usr/bin/env bash",
+      "set -euo pipefail",
+      "IFS=\\$'\\n\\t'",
+      ""
+    ]
+  },
+  "usage": {
+    "prefix": "usage",
+    "body": [
+      "usage() { echo \"Usage: \\$(basename \"\\$0\") <${1:param}>\" >&2; }"
+    ]
+  },
+  "sdir": {
+    "prefix": "sdir",
+    "body": [
+      "SDIR=\\$(cd \"\\$(dirname \"\\${BASH_SOURCE[0]}\")\" && pwd) && cd \"\\$SDIR\""
+    ]
+  },
+  "hascmd": {
+    "prefix": "hascmd",
+    "body": [
+      "hash $1 &>/dev/null $2"
+    ]
+  },
+  "temp": {
+    "prefix": "temp",
+    "body": [
+      "trap 'command rm -rf \\$${TEMP:1}' ${2:EXIT INT TERM HUP}",
+      "$1=\\$(mktemp -${3:d}t ${4:\\$(basename \"\\$0\")}.XXXXXX)\""
+    ]
+  },
+  "log": {
+    "prefix": "log",
+    "body": [
+      "info() { printf \"%b[info]%b %s\\n\" '\\e[0;32m\\033[1m' '\\e[0m' \"\\$*\" >&2; }",
+      "warn() { printf \"%b[warn]%b %s\\n\" '\\e[0;33m\\033[1m' '\\e[0m' \"\\$*\" >&2; }",
+      "erro() { printf \"%b[erro]%b %s\\n\" '\\e[0;31m\\033[1m' '\\e[0m' \"\\$*\" >&2; }"
+    ]
+  },
+  "shellcheck": {
+    "prefix": "shellcheck",
+    "body": [
+      "# shellcheck disable=SC$1"
+    ]
+  }
+}
