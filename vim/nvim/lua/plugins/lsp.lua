@@ -190,7 +190,12 @@ return {
         },
         vimls = {},
       },
-      setup = {},
+      setup = {
+        -- use rustaceanvim.mason instead of rust_analyzer installed by mason to avoid toolchain mismatch
+        rust_analyzer = function()
+          return true
+        end,
+      },
     },
   },
 
