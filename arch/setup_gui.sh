@@ -38,7 +38,7 @@ function setup_guis() {
     paru --noconfirm -S xorg
     ../xorg/setup.sh
 
-    paru --noconfirm -S picom-git
+    paru --noconfirm -S picom
     ../picom/setup.sh
 
     paru --noconfirm -S awesome-git
