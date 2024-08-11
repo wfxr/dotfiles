@@ -51,3 +51,18 @@ desc = "A cat(1) clone with wings."
 source = "github"
 repo = "jqlang/jq"
 desc = "Command-line JSON processor"
+
+[pkgs.sheldon]
+source = "github"
+repo = "rossmacarthur/sheldon"
+desc = ":bowtie: Fast, configurable, shell plugin manager"
+
+[pkgs.zoxide]
+source = "github"
+repo = "ajeetdsouza/zoxide"
+desc = "A smarter cd command. Supports all major shells."
+
+[pkgs.duf]
+source = "github"
+repo = "muesli/duf"
+desc = "Disk Usage/Free Utility - a better 'df' alternative"
