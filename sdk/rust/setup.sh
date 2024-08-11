@@ -33,6 +33,10 @@ cargo install --locked cargo-watch
 cargo install --locked cargo-make
 cargo install --locked cargo-nextest
 
+# perf binary size
+cargo install --locked cargo-bloat
+cargo install --locked cargo-unused-features
+
 cargo install --locked flamegraph
 hash perf &>/dev/null || {
     echo "You may need to install the following dependencies on arch:"
