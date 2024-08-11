@@ -37,3 +37,11 @@ vim.api.nvim_create_autocmd({ "InsertEnter" }, {
     vim.cmd("Copilot enable")
   end,
 })
+
+-- Disable autoformat for some filetypes
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = { "yaml" },
+  callback = function()
+    vim.b.autoformat = false
+  end,
+})
