@@ -1,0 +1,53 @@
+# RPK Config File
+#
+# See the documentation for more https://github.com/wfxr/rpk#readme
+
+[pkgs.rpk]
+source = "github"
+repo = "wfxr/rpk"
+desc = "A lightweight, cross-platform cli package manager."
+
+[pkgs.fd]
+source = "github"
+repo = "sharkdp/fd"
+desc = "A simple, fast and user-friendly alternative to 'find'"
+
+[pkgs.rg]
+source = "github"
+repo = "BurntSushi/ripgrep"
+desc = "ripgrep recursively searches directories for a regex pattern while respecting your gitignore"
+
+[pkgs.delta]
+source = "github"
+repo = "dandavison/delta"
+desc = "A syntax-highlighting pager for git, diff, grep, and blame output"
+
+[pkgs.eza]
+source = "github"
+repo = "eza-community/eza"
+desc = "A modern alternative to ls"
+
+[pkgs.dua]
+source = "github"
+repo = "Byron/dua-cli"
+desc = "View disk space usage and delete unwanted data, fast."
+
+[pkgs.mmv]
+source = "github"
+repo = "itchyny/mmv"
+desc = "rename multiple files with editor"
+
+[pkgs.gh]
+source = "github"
+repo = "cli/cli"
+desc = "GitHub’s official command line tool"
+
+[pkgs.bat]
+source = "github"
+repo = "sharkdp/bat"
+desc = "A cat(1) clone with wings."
+
+[pkgs.jq]
+source = "github"
+repo = "jqlang/jq"
+desc = "Command-line JSON processor"

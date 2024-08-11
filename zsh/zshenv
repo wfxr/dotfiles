@@ -103,6 +103,15 @@ export PATH="$PATH:$HOME/.local/share/coursier/bin"
     export KUBECONFIG
 }
 
+# rpk
+(( $+commands[rpk] )) && {
+    export RPK_CONFIG_DIR="$HOME/.config/rpk/"
+    export RPK_CACHE_DIR="$HOME/.cache/rpk/"
+    export RPK_DATA_DIR="$HOME/.local/share/rpk/packages"
+    export RPK_BIN_DIR="$HOME/.local/share/rpk/bin"
+    export PATH="$RPK_BIN_DIR:$PATH"
+}
+
 [ -f ~/.zshenv_local  ] && source ~/.zshenv_local
 
 true
