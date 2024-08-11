@@ -42,7 +42,7 @@ function install_cli_package() {
     paru --noconfirm -S git git-crypt python-pre-commit
     paru --noconfirm -S zsh sheldon tmux
     # paru --noconfirm -S starship
-    paru --noconfirm -S neovim-git
+    paru --noconfirm -S neovim
     paru --noconfirm -S openssh
     # paru --noconfirm -S clang
     paru --noconfirm -S go rust

@@ -119,7 +119,7 @@ alias kg='kubectl get'
 alias kd='kubectl describe'
 alias br='broot'
 
-(( $+commands[btm] )) && alias htop='btm -bT'
+(( $+commands[btm] )) && alias htop='btm -n -b'
 alias awm='cd ~/dotfiles/awesomewm'
 
 (( $+commands[duf] )) && alias pydf=duf

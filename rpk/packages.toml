@@ -66,3 +66,13 @@ desc = "A smarter cd command. Supports all major shells."
 source = "github"
 repo = "muesli/duf"
 desc = "Disk Usage/Free Utility - a better 'df' alternative"
+
+[pkgs.btm]
+source = "github"
+repo = "ClementTsang/bottom"
+desc = "Yet another cross-platform graphical process/system monitor."
+
+[pkgs.sd]
+source = "github"
+repo = "chmln/sd"
+desc = "Intuitive find & replace CLI (sed alternative)"

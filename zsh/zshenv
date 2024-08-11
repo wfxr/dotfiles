@@ -108,7 +108,11 @@ export RPK_CONFIG_DIR="$HOME/.config/rpk/"
 export RPK_CACHE_DIR="$HOME/.cache/rpk/"
 export RPK_DATA_DIR="$HOME/.local/share/rpk/packages"
 export RPK_BIN_DIR="$HOME/.local/share/rpk/bin"
-export PATH="$PATH:$RPK_BIN_DIR"
+if test -f /etc/arch-release; then
+    export PATH="$PATH:$RPK_BIN_DIR"
+else
+    export PATH="$RPK_BIN_DIR:$PATH"
+fi
 
 [ -f ~/.zshenv_local  ] && source ~/.zshenv_local
 
