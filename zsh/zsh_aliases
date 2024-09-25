@@ -91,7 +91,7 @@ alias localdocker='DOCKER_HOST= DOCKER_TLS_PATH= DOCKER_TLS_VERIFY= docker'
 (( $+commands[cargo] )) && alias rust-musl-builder='localdocker run --rm --name rust-musl-builder -it -v "$(pwd)":/home/rust/src ekidd/rust-musl-builder'
 
 # https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/git/git.plugin.zsh
-alias gc='git commit -s -v'
+alias gc='git commit -v'
 alias gb='git branch'
 alias gl='git pull'
 alias gp='git push'
