@@ -6,10 +6,10 @@ local Util = require("lazyvim.util")
 local keymap = vim.keymap.set
 local mapdel = vim.keymap.del
 
-mapdel({ "n", "t" }, "<c-h>")
-mapdel({ "n", "t" }, "<c-l>")
-mapdel({ "n", "t" }, "<c-j>")
-mapdel({ "n", "t" }, "<c-k>")
+-- mapdel({ "n", "t" }, "<c-h>")
+-- mapdel({ "n", "t" }, "<c-l>")
+-- mapdel({ "n", "t" }, "<c-j>")
+-- mapdel({ "n", "t" }, "<c-k>")
 
 keymap("n", "<C-c>", "<cmd>q<cr>", { noremap = true })
 keymap("n", "<C-x>", "<cmd>x<cr>", { noremap = true })
