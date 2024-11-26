@@ -1,27 +1,7 @@
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
-local Util = require("lazyvim.util")
-
 local keymap = vim.keymap.set
-local mapdel = vim.keymap.del
-
--- mapdel({ "n", "t" }, "<c-h>")
--- mapdel({ "n", "t" }, "<c-l>")
--- mapdel({ "n", "t" }, "<c-j>")
--- mapdel({ "n", "t" }, "<c-k>")
 
 keymap("n", "<C-c>", "<cmd>q<cr>", { noremap = true })
 keymap("n", "<C-x>", "<cmd>x<cr>", { noremap = true })
-
--- floating terminal
-local lazyterm = function()
-  Util.terminal(nil, { cwd = Util.root() })
-end
-
--- stylua: ignore start
-keymap("n", "<c-\\>", lazyterm, { desc = "Terminal (root dir)" })
-keymap("t", "<C-\\>", "<cmd>close<cr>", { desc = "Hide Terminal" })
 
 keymap("n", "<c-/>", "gccj", { remap = true, desc = "Comment line" })
 keymap("v", "<c-/>", "gcj",  { remap = true, desc = "Comment line" })
