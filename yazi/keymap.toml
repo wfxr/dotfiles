@@ -1,0 +1,12 @@
+"$schema" = "https://yazi-rs.github.io/schemas/keymap.json"
+
+[manager]
+append_keymap = [
+    { on = "<C-p>", run = "arrow -1", desc = "Move cursor up" },
+    { on = "<C-n>", run = "arrow 1",  desc = "Move cursor down" },
+]
+
+[input]
+prepend_keymap = [
+    { on = "<Esc>", run = "close", desc = "Cancel input" },
+]
