@@ -38,9 +38,9 @@ vim.api.nvim_create_autocmd({ "InsertEnter" }, {
   end,
 })
 
--- Disable autoformat for some filetypes
+-- Disable autoformat for some filetypes (Re-enable by `<leader>uf`)
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = { "yaml" },
+  pattern = { "yaml", "toml" },
   callback = function()
     vim.b.autoformat = false
   end,
