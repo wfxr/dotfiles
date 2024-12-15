@@ -51,7 +51,7 @@ opt.fillchars = {
   fold      = " ",
   foldopen  = "", --  
   foldsep   = " ",
-  foldclose = "", --  ›
+  foldclose = "›", --  ›
 }
 
 -- stylua: ignore
@@ -69,3 +69,9 @@ opt.expandtab   = true
 opt.smarttab    = true
 opt.softtabstop = -1
 opt.shiftwidth  = 0
+
+-- views can only be fully collapsed with the global statusline
+opt.laststatus = 3
+-- Default splitting will cause your main splits to jump when opening an edgebar.
+-- To prevent this, set `splitkeep` to either `screen` or `topline`.
+opt.splitkeep = "screen"

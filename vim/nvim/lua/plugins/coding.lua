@@ -1,3 +1,5 @@
+---@diagnostic disable: missing-fields
+
 return {
   {
     "smjonas/inc-rename.nvim",
@@ -29,105 +31,51 @@ return {
   },
 
   {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-cmdline",
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-path",
-      "andersevenrud/cmp-tmux",
-      "lukas-reineke/cmp-rg",
-      "onsails/lspkind.nvim",
-      "petertriho/cmp-git",
-    },
-    opts = function(_, opts)
-      local cmp = require("cmp")
-      local mapping = cmp.mapping
-      opts.experimental.ghost_text = false
+    "saghen/blink.cmp",
+    lazy = false, -- lazy loading handled internally
+    -- optional: provides snippets for the snippet source
+    dependencies = "rafamadriz/friendly-snippets",
 
-      -- native snippets
-      opts.snippet = {
-        expand = function(args)
-          return LazyVim.cmp.expand(args.body)
-        end,
-      }
-
-      return vim.tbl_extend("force", opts, {
-        formatting = {
-          fields = { "abbr", "kind" },
-          format = function(_, item)
-            local max_abbr_width = 40
-            local ellipsis_char = ".."
-
-            local icons = require("lazyvim.config").icons.kinds
-            if icons[item.kind] then
-              item.kind = icons[item.kind] .. item.kind
+    ---@module 'blink.cmp'
+    ---@type blink.cmp.Config
+    opts = {
+      -- 'default' for mappings similar to built-in completion
+      -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
+      -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
+      keymap = {
+        preset = "default",
+        ["<Tab>"] = {
+          function(cmp)
+            if cmp.snippet_active() then
+              return cmp.accept()
+            else
+              return cmp.select_and_accept()
             end
-            if #item.abbr > max_abbr_width then
-              item.abbr = item.abbr:sub(1, max_abbr_width - ellipsis_char:len()) .. ellipsis_char
-            end
-            item.menu = nil
-            return item
           end,
+          -- "snippet_forward",
+          "fallback",
         },
-        mapping = cmp.mapping.preset.insert({
-          ["<C-d>"] = mapping(mapping.scroll_docs(4), { "i" }),
-          ["<C-u>"] = mapping(mapping.scroll_docs(-4), { "i" }),
-          ["<Tab>"] = mapping.confirm({ select = true }),
-          ["<C-n>"] = mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-          ["<C-p>"] = mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-          ["<C-j>"] = cmp.mapping(function(fallback)
-            -- TODO: how to mimic the expand_or_jump behavior?
-            if vim.snippet.active({ direction = 1 }) then
-              vim.snippet.jump(1)
-            elseif cmp.visible() then
-              cmp.confirm({ select = true })
-            else
-              fallback()
-            end
-          end, { "i", "s" }),
-          ["<C-k>"] = cmp.mapping(function(fallback)
-            if vim.snippet.active({ direction = -1 }) then
-              vim.snippet.jump(-1)
-            else
-              fallback()
-            end
-          end, { "i", "s" }),
-          ["<C-g>"] = mapping(function(fallback)
-            cmp.abort()
-          end, { "i", "c" }),
-        }),
-        sources = cmp.config.sources({
-          { name = "snippets" },
-          { name = "nvim_lsp" },
-          { name = "path" },
-          { name = "buffer" },
-          { name = "copilot" },
-          { name = "tmux" },
-          { name = "rg" },
-        }),
-      })
-    end,
-    config = function(_, opts)
-      local cmp = require("cmp")
-      local cmp_git = require("cmp_git")
+        ["<S-Tab>"] = { "snippet_backward", "fallback" },
+      },
 
-      for _, source in ipairs(opts.sources) do
-        source.group_index = source.group_index or 1
-      end
-      cmp.setup(opts)
-
-      cmp_git.setup({
-        enableRemoteUrlRewrites = true,
-      })
-
-      cmp.setup.filetype("gitcommit", {
-        sources = {
-          { name = "git" },
-          { name = "buffer" },
+      -- default list of enabled providers defined so that you can extend it
+      -- elsewhere in your config, without redefining it, via `opts_extend`
+      sources = {
+        default = { "lsp", "path", "snippets", "buffer" },
+        providers = {
+          snippets = {
+            opts = {
+              search_paths = { vim.fn.stdpath("config") .. "/snippets/native" },
+            },
+          },
         },
-      })
-    end,
+      },
+      -- experimental signature help support
+      signature = { enabled = true },
+    },
+    -- allows extending the providers array elsewhere in your config
+    -- without having to redefine it
+    opts_extend = { "sources.default" },
   },
 
   {
@@ -139,28 +87,7 @@ return {
   },
 
   {
-    "cshuaimin/ssr.nvim",
-    keys = {
-      {
-        "<leader>ssr",
-        function()
-          require("ssr").open()
-        end,
-        mode = { "n", "x" },
-        desc = "Structural Replace",
-      },
-    },
-  },
-
-  {
     "gbprod/yanky.nvim",
-    keys = {
-      -- stylua: ignore start
-      { "<leader>p", function() require("telescope").extensions.yank_history.yank_history({ }) end, desc = "Open Yank History" },
-      { "p", "<Plug>(YankyPutAfter)",    mode = { "n" }, desc = "Put yanked text after cursor" },
-      { "p", "<Plug>(YankyPutAfter)gvy", mode = { "x" }, desc = "Put yanked text after cursor (keep clipboard)" },
-      { "gp", "`[v`]", desc = "Select last paste" },
-    },
   },
 
   {
@@ -247,76 +174,4 @@ return {
       },
     },
   },
-
-  {
-    "garymjr/nvim-snippets",
-    opts = {
-      search_paths = {
-        vim.fn.stdpath("config") .. "/snippets/native/",
-      },
-    },
-  },
-
-  -- {
-  --   "echasnovski/mini.bracketed",
-  --   event = "BufReadPost",
-  --   enabled = false,
-  --   config = function()
-  --     local bracketed = require("mini.bracketed")
-  --     bracketed.setup({
-  --       file = { suffix = "" },
-  --       window = { suffix = "" },
-  --       quickfix = { suffix = "" },
-  --       yank = { suffix = "" },
-  --       treesitter = { suffix = "n" },
-  --     })
-  --   end,
-  -- },
-
-  -- {
-  --   "github/copilot.vim",
-  --   event = "InsertEnter",
-  --   config = function()
-  --     vim.g.copilot_filetypes = {
-  --       ["*"] = true,
-  --       DressingInput = false,
-  --       TelescopePrompt = false,
-  --       ["neo-tree-popup"] = false,
-  --       ["dap-repl"] = false,
-  --     }
-  --     vim.g.copilot_no_tab_map = true
-  --     vim.g.copilot_assume_mapped = true
-  --
-  --     local function accept_word()
-  --       vim.fn["copilot#Accept"]("")
-  --       local suggestion = vim.fn["copilot#TextQueuedForInsertion"]()
-  --       if suggestion == "" then
-  --         local forward_word = vim.api.nvim_replace_termcodes("<S-Right>", true, false, true)
-  --         vim.api.nvim_feedkeys(forward_word, "i", true)
-  --       else
-  --         suggestion = vim.fn.split(suggestion, [[\W\+\zs]])[1]
-  --         suggestion = vim.fn.split(suggestion, [[\n\zs]])[1]
-  --         return suggestion
-  --       end
-  --     end
-  --
-  --     vim.keymap.set("i", "<C-e>", "copilot#Accept('<End>')", {
-  --       noremap = true,
-  --       silent = true,
-  --       script = true,
-  --       expr = true,
-  --       replace_keycodes = false,
-  --       desc = "Copilot accept all",
-  --     })
-  --     -- stylua : ignore start
-  --     vim.keymap.set("i", "<M-f>", accept_word, {
-  --       noremap = true,
-  --       silent = true,
-  --       expr = true,
-  --       desc = "Copilot accept word",
-  --     })
-  --     vim.keymap.set("i", "<M-n>", "<Plug>(copilot-next)", { desc = "Copilot next suggestion" })
-  --     vim.keymap.set("i", "<M-p>", "<Plug>(copilot-previous)", { desc = "Copilot previous suggestion" })
-  --   end,
-  -- },
 }

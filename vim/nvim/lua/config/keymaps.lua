@@ -1,5 +1,6 @@
 local keymap = vim.keymap.set
 
+-- stylua: ignore start
 keymap("n", "<C-c>", "<cmd>q<cr>", { noremap = true })
 keymap("n", "<C-x>", "<cmd>x<cr>", { noremap = true })
 

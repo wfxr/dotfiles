@@ -83,13 +83,6 @@ return {
   },
 
   {
-    "karb94/neoscroll.nvim",
-    opts = {
-      mappings = { "<C-u>", "<C-d>", "zt", "zz", "zb" },
-    },
-  },
-
-  {
     "folke/todo-comments.nvim",
     opts = {
       signs = false,
@@ -112,9 +105,8 @@ return {
   {
     "iamcco/markdown-preview.nvim",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    build = function()
-      vim.fn["mkdp#util#install"]()
-    end,
+    ft = { "markdown" },
+    build = "cd app && yarn install",
     keys = {
       {
         "<leader>cp",
@@ -126,6 +118,18 @@ return {
     config = function()
       vim.cmd([[do FileType]])
     end,
+  },
+
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    opts = {
+      code = {
+        width = "block",
+        position = "left",
+        right_pad = 1,
+        left_pad = 1,
+      },
+    },
   },
 
   {

@@ -1,9 +1,5 @@
 ---@diagnostic disable: missing-fields
 
--- stylua: ignore start
-local hover_map        = { "K",  function() require("hover").hover()        end, silent = true, desc = "hover.nvim"           }
-local hover_select_map = { "gK", function() require("hover").hover_select() end, silent = true, desc = "hover.nvim  (select)" }
-
 return {
   -- neodev
   -- { "folke/neodev.nvim" },
@@ -22,44 +18,6 @@ return {
     end,
   },
 
-  {
-    "lewis6991/hover.nvim",
-    config = function()
-      require("hover").register({
-        name = "EN->ZH",
-        enabled = function()
-          return true
-        end,
-        execute = require("hover.async").void(function(done)
-          local word = vim.fn.expand("<cword>")
-
-          local job = require("hover.async.job").job
-
-          local output = job({
-            "clitrans",
-            word,
-          })
-
-          local results = { output }
-          done(results and { lines = results, filetype = "markdown" })
-        end),
-      })
-      require("hover").setup({
-        init = function()
-          require("hover.providers.lsp")
-          require("hover.providers.gh")
-          require("hover.providers.man")
-          require("hover.providers.dictionary")
-        end,
-        title = true,
-        preview_window = true,
-        preview_opts = {
-          border = "rounded",
-        },
-      })
-    end,
-  },
-
   -- lsp servers
   {
     "neovim/nvim-lspconfig",
@@ -68,14 +26,9 @@ return {
       -- stylua: ignore start
       keys[#keys + 1] = { "<c-k>", mode = "i", false }
       keys[#keys + 1] = { "gI", false }
-      keys[#keys + 1] = hover_map
-      keys[#keys + 1] = hover_select_map
       keys[#keys + 1] = { "<M-enter>", "<leader>ca", mode = { "n", "v" }, has = "codeAction", remap = true, desc = "Code Action",  }
+      -- stylua: ignore end
     end,
-    keys = {
-      -- stylua: ignore start
-      { "gi", function() require("telescope.builtin").lsp_implementations({ reuse_win = true }) end, desc = "Goto Implementation", },
-    },
     opts = {
       inlay_hints = { enabled = false },
       -- Automatically format on save
@@ -104,18 +57,12 @@ return {
           },
         },
       },
-      ---@type lspconfig.options
       servers = {
         bashls = {},
         clangd = {},
         dockerls = {},
         gopls = {},
-        rust_analyzer = {
-          keys = {
-            hover_map,
-            hover_select_map,
-          },
-        },
+        rust_analyzer = {},
         yamlls = {
           settings = {
             yaml = {
@@ -124,35 +71,12 @@ return {
           },
         },
         lua_ls = {
-          single_file_support = true,
           settings = {
             Lua = {
-              workspace = {
-                checkThirdParty = false,
-              },
-              completion = {
-                workspaceWord = true,
-                callSnippet = "Both",
-              },
-              misc = {
-                parameters = {
-                  -- "--log-level=trace",
-                },
-              },
               hover = { expandAlias = false },
-              hint = {
-                enable = true,
-                setType = false,
-                paramType = true,
-                paramName = "Disable",
-                semicolon = "Disable",
-                arrayIndex = "Disable",
-              },
-              doc = {
-                privateName = { "^_" },
-              },
               type = {
                 castNumberToInteger = true,
+                inferParamType = true,
               },
               diagnostics = {
                 disable = { "incomplete-signature-doc", "trailing-space" },
@@ -176,14 +100,6 @@ return {
                   ["unused"] = "Opened",
                 },
                 unusedLocalExclude = { "_*" },
-              },
-              format = {
-                enable = true,
-                defaultConfig = {
-                  indent_style = "space",
-                  indent_size = "2",
-                  continuation_indent_size = "2",
-                },
               },
             },
           },
@@ -229,17 +145,24 @@ return {
     opts = {
       linters_by_ft = {
         lua = { "selene", "luacheck" },
-        -- markdown = { "markdownlint" },
       },
       linters = {
         selene = {
-          condition = function(ctx)
-            return vim.fs.find({ "selene.toml" }, { path = ctx.filename, upward = true })[1]
+          condition = function(_ctx)
+            local root = LazyVim.root.get({ normalize = true })
+            if root ~= vim.uv.cwd() then
+              return false
+            end
+            return vim.fs.find({ "selene.toml" }, { path = root, upward = true })[1]
           end,
         },
         luacheck = {
-          condition = function(ctx)
-            return vim.fs.find({ ".luacheckrc" }, { path = ctx.filename, upward = true })[1]
+          condition = function(_ctx)
+            local root = LazyVim.root.get({ normalize = true })
+            if root ~= vim.uv.cwd() then
+              return false
+            end
+            return vim.fs.find({ ".luacheckrc" }, { path = root, upward = true })[1]
           end,
         },
       },
@@ -248,7 +171,7 @@ return {
 
   {
     "mrcjkb/rustaceanvim",
-    ft = { 'rust' },
+    ft = { "rust" },
     lazy = true,
     opts = function(_, opts)
       return vim.tbl_extend("force", opts, {
@@ -260,7 +183,7 @@ return {
             only_current_line = true,
             other_hints_prefix = "  󰮺 ",
           },
-        }
+        },
       })
     end,
   },

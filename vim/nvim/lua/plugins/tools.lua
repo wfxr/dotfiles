@@ -1,3 +1,5 @@
+---@diagnostic disable: missing-fields
+
 return {
   { "pwntester/octo.nvim", opts = {}, cmd = "Octo" },
 
@@ -7,12 +9,6 @@ return {
     cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
     opts = {},
     keys = { { "<leader>gd", "<cmd>DiffviewOpen<cr>", desc = "DiffView" } },
-  },
-
-  {
-    "jackMort/ChatGPT.nvim",
-    cmd = { "ChatGPTActAs", "ChatGPT" },
-    opts = {},
   },
 
   {
@@ -73,11 +69,6 @@ return {
               default_workspace = "neorg",
             },
           },
-          ["core.completion"] = {
-            config = {
-              engine = "nvim-cmp",
-            },
-          },
           ["core.export"] = {},
           ["core.export.markdown"] = {
             config = {
@@ -85,15 +76,6 @@ return {
             },
           },
         },
-      })
-
-      local cmp = require("cmp")
-      cmp.setup.filetype("norg", {
-        sources = cmp.config.sources({
-          { name = "neorg" },
-        }, {
-          { name = "buffer" },
-        }),
       })
     end,
   },
@@ -122,5 +104,20 @@ return {
       },
     },
     dependencies = { "nvim-tree/nvim-web-devicons" },
+  },
+
+  {
+    "ibhagwan/fzf-lua",
+    opts = function(_, _opts)
+      local config = require("fzf-lua.config")
+      config.defaults.keymap.fzf["alt-d"] = "preview-half-page-down"
+      config.defaults.keymap.fzf["alt-u"] = "preview-half-page-up"
+      config.defaults.keymap.builtin["<a-d>"] = "preview-half-page-down"
+      config.defaults.keymap.builtin["<a-u>"] = "preview-half-page-up"
+      config.defaults.keymap.builtin["<a-j>"] = "preview-down"
+      config.defaults.keymap.builtin["<a-k>"] = "preview-up"
+      config.defaults.keymap.builtin["<a-w>"] = "toggle-preview-wrap"
+      config.defaults.keymap.builtin["?"] = "toggle-preview"
+    end,
   },
 }
