@@ -48,3 +48,6 @@ keymap('n', '<c-p>', '<c-]>', { noremap = false, desc = "Jump to tag" })
 
 -- c-v to paste from clipboard
 keymap({ "i", "c" }, "<c-v>", "<c-r>*", { noremap = true, desc = "Paste from clipboard" })
+
+keymap('n', '<leader>l', ":.lua<cr>", { noremap = true, desc = "Run lua code" })
+keymap('v', '<leader>l', ":lua<cr>",  { noremap = true, desc = "Run lua code" })
