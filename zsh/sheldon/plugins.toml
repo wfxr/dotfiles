@@ -43,6 +43,10 @@ apply = ["defer"]
 github = "wfxr/epoch-cli"
 apply = ["defer"]
 
+[plugins.formarks]
+github = "wfxr/formarks"
+apply = ["defer"]
+
 [plugins.git]
 remote = "https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.zsh"
 apply = ["fpath"]

@@ -135,11 +135,13 @@ alias ct='cargo make test'
 alias cr='cargo make run'
 
 alias ta='tmux attach -t'
+alias tcap='tmux capture-pane -JpS -'
 
 (( $+commands[gnumfmt] )) && alias numfmt=gnumfmt
 (( $+commands[gdate] )) && alias date=gdate
 (( $+commands[gsed] )) && alias sed=gsed
 (( $+commands[gawk] )) && alias awk=gawk
 (( $+commands[fdfind])) && alias fd=fdfind
+(( $+commands[fd])) && alias Fd='fd --hidden --follow --exclude .git'
 
 alias vimloadinglog="vim -V20vimlog"
