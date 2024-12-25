@@ -164,4 +164,18 @@ return {
       end,
     },
   },
+
+  {
+    "wfxr/smartcolumn.nvim",
+    priority = 1001,
+    dev = true,
+    opts = {
+      colorcolumn = { 100, 120 },
+      custom = {
+        c = 80,
+        cpp = 80,
+        gitcommit = 72,
+      },
+    },
+  },
 }
