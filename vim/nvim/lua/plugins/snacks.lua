@@ -7,7 +7,20 @@ return {
     lazy = false,
     opts = {
       bigfile = { enabled = true },
-      input = { enabled = true },
+      input = {
+        enabled = true,
+        win = {
+          keys = {
+            i_del_word = { "<C-w>", "delete_word", mode = "i" },
+            i_esc = { "<Esc>", "close", mode = "i" },
+          },
+          actions = {
+            delete_word = function()
+              return "<cmd>normal! diw<cr><right>"
+            end,
+          },
+        },
+      },
       gitbrowse = { enabled = true },
       dim = {
         animate = {
