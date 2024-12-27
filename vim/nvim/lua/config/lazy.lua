@@ -66,5 +66,6 @@ require("lazy").setup({
   },
   dev = {
     path = "~/dev/",
+    fallback = true,
   },
 })
