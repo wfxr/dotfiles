@@ -65,3 +65,13 @@ desc = "Intuitive find & replace CLI (sed alternative)"
 [pkgs.fzf]
 repo = "junegunn/fzf"
 desc = ":cherry_blossom: A command-line fuzzy finder"
+
+[pkgs.hexyl]
+bins = ["hexyl"]
+repo = "sharkdp/hexyl"
+desc = "A command-line hex viewer"
+
+[pkgs.fastfetch]
+bins = ["fastfetch"]
+repo = "fastfetch-cli/fastfetch"
+desc = "A maintained, feature-rich and performance oriented, neofetch like system information tool."
