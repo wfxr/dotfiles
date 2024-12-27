@@ -38,7 +38,7 @@ RUN paru --noconfirm -S \
     duf \
     dua-cli \
     hyperfine \
-    neofetch \
+    fastfetch \
     onefetch \
     bottom \
     mmv-go \

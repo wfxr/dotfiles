@@ -62,7 +62,8 @@ function install_cli_package() {
     paru --noconfirm -S fd eza bat ripgrep sd
     # paru --noconfirm -S vivid
     paru --noconfirm -S man-pages
-    paru --noconfirm -S neofetch
+    # paru --noconfirm -S neofetch
+    paru --noconfirm -S fastfetch
     paru --noconfirm -S rsync
     paru --noconfirm -S gping
     paru --noconfirm -S kondo
