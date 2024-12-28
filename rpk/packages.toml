@@ -88,3 +88,8 @@ desc = "💥 Blazing fast terminal file manager written in Rust, based on async 
 bins = ["procs"]
 repo = "dalance/procs"
 desc = "A modern replacement for ps written in Rust"
+
+[pkgs.lazydocker]
+bins = ["lazydocker"]
+repo = "jesseduffield/lazydocker"
+desc = "The lazier way to manage everything docker"
