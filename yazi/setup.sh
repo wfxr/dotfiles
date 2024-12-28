@@ -13,3 +13,15 @@ mkdir -p ~/.config/yazi
 ln -sf "$SDIR/yazi.toml"   ~/.config/yazi/
 ln -sf "$SDIR/keymap.toml" ~/.config/yazi/
 ln -sf "$SDIR/theme.toml"  ~/.config/yazi/
+ln -sf "$SDIR/init.lua"    ~/.config/yazi/
+
+instal_plugin_if_not_exists() {
+    ya pack --list | grep -q "$1" || ya pack -a "$1"
+}
+
+instal_plugin_if_not_exists Chromium-3-Oxide/everforest-medium
+instal_plugin_if_not_exists yazi-rs/plugins:git
+instal_plugin_if_not_exists yazi-rs/plugins:smart-enter
+instal_plugin_if_not_exists yazi-rs/plugins:full-border
+instal_plugin_if_not_exists yazi-rs/plugins:max-preview
+# instal_plugin_if_not_exists yazi-rs/plugins:smart-filter

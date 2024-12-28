@@ -105,11 +105,7 @@ alias gr='git rebase'
 
 alias gpa='git push origin --all && git push origin --tags'
 
-alias ra='ranger'
-
 alias mycli='LESS="-S $LESS" mycli'
-
-alias gsn='git-semver-next'
 
 alias k='kubectl'
 alias ka='kubectl apply --recursive -f'
@@ -117,7 +113,6 @@ alias kex='kubectl exec -it'
 alias klo='kubectl logs -f'
 alias kg='kubectl get'
 alias kd='kubectl describe'
-alias br='broot'
 
 (( $+commands[btm] )) && alias htop='btm -n -b'
 alias awm='cd ~/dotfiles/awesomewm'
@@ -127,8 +122,6 @@ alias awm='cd ~/dotfiles/awesomewm'
 alias ui_syncthing='xdg-open "http://127.0.0.1:8384/"'
 alias ui_v2ray='xdg-open "http://127.0.0.1:2017/"'
 alias ui_flink='xdg-open "http://127.0.0.1:8081/"'
-(( $+commands[dua] )) && alias ncdu='dua i'
-(( $+commands[clitrans] )) && alias y='clitrans'
 
 alias cm='cargo make'
 alias ct='cargo make test'
@@ -145,3 +138,7 @@ alias tcap='tmux capture-pane -JpS -'
 (( $+commands[fd])) && alias Fd='fd --hidden --follow --exclude .git'
 
 alias vimloadinglog="vim -V20vimlog"
+
+alias yy=clitrans
+alias pss=procs
+alias y=yazi
