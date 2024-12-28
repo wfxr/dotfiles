@@ -26,10 +26,6 @@ desc = "A modern alternative to ls"
 repo = "Byron/dua-cli"
 desc = "View disk space usage and delete unwanted data, fast."
 
-[pkgs.mmv]
-repo = "itchyny/mmv"
-desc = "rename multiple files with editor"
-
 [pkgs.gh]
 repo = "cli/cli"
 desc = "GitHub’s official command line tool"
