@@ -1,17 +1,22 @@
 #!/usr/bin/env bash
-################################################################################
-#    Author: Wenxuan                                                           #
-#     Email: wenxuangm@gmail.com                                               #
-#   Created: 2019-01-18 18:04                                                  #
-################################################################################
-SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) && cd "$SCRIPT_DIR" || exit 1
+set -euo pipefail
+IFS=$'\n\t'
 
-mkdir -p ~/.config/bat
-ln -sf "$SCRIPT_DIR/config" ~/.config/bat/config
+SDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) && cd "$SDIR"
+
+cfgdir="$(bat --config-dir)/themes"
+
+mkdir -p "$cfgdir"
+ln -sf "$SDIR/config" "$cfgdir/config"
 
 # Themes
-# mkdir -p "$(bat --config-dir)/themes"
-# cd "$(bat --config-dir)/themes" || exit 1
-# test ! -d gruvbox &&
-    # git clone --depth=1 --branch 3.0.0 https://github.com/Briles/gruvbox.git
-# bat cache --build
+mkdir -p "$cfgdir/themes"
+cd "$cfgdir/themes"
+
+for theme in "moon" "night" "storm"; do
+    file="tokyonight_$theme.tmTheme"
+    test -f "$file" ||
+        curl -O https://raw.githubusercontent.com/folke/tokyonight.nvim/main/extras/sublime/$file
+done
+
+bat cache --build
