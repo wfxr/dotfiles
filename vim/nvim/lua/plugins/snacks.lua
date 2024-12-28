@@ -107,6 +107,20 @@ return {
               and vim.bo[buf].buftype ~= "terminal"
           end,
         },
+        -- filter for buffers to enable indent guides
+        filter = function(buf)
+          local excluded_filetypes = {
+            markdown = true,
+            diff = true,
+            text = true,
+          }
+          local b = vim.b[buf]
+          local bo = vim.bo[buf]
+          return vim.g.snacks_indent ~= false
+            and b.snacks_indent ~= false
+            and bo.buftype == ""
+            and not excluded_filetypes[bo.filetype]
+        end,
       },
     },
     keys = {
