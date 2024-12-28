@@ -75,3 +75,16 @@ desc = "A command-line hex viewer"
 bins = ["fastfetch"]
 repo = "fastfetch-cli/fastfetch"
 desc = "A maintained, feature-rich and performance oriented, neofetch like system information tool."
+
+[pkgs.yazi]
+bins = [
+    "yazi",
+    "ya",
+]
+repo = "sxyazi/yazi"
+desc = "💥 Blazing fast terminal file manager written in Rust, based on async I/O."
+
+[pkgs.procs]
+bins = ["procs"]
+repo = "dalance/procs"
+desc = "A modern replacement for ps written in Rust"
