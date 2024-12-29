@@ -105,6 +105,15 @@ if hash delta &>/dev/null; then
     git config --global delta.hunk-header-style 'omit'
     git config --global delta.hyperlinks        'false'
     git config --global diff.colorMoved         'default'
+
+    cfgdir=~/.config/delta
+    mkdir -p $cfgdir
+    if [[ ! -f "$cfgdir/themes.gitconfig" ]]; then
+        curl -fsSL https://raw.githubusercontent.com/catppuccin/delta/refs/heads/main/catppuccin.gitconfig \
+            -o "$cfgdir/themes.gitconfig"
+    fi
+    git config --global include.path "$cfgdir/themes.gitconfig"
+    git config --global delta.features 'catppuccin-frappe'
 fi
 
 # Political correctness?
