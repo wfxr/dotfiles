@@ -4,7 +4,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "everforest",
+      colorscheme = "catppuccin",
     },
   },
   {
@@ -48,5 +48,13 @@ return {
         end,
       })
     end,
+  },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+    opts = {
+      flavour = "frappe", -- latte, frappe, macchiato, mocha
+    },
   },
 }
