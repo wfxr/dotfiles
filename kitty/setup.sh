@@ -11,6 +11,8 @@ SDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) && cd "$SDIR" || return 1
 
 rm -rf ~/.config/kitty
 
-mkdir -p ~/.config
+mkdir -p ~/.config/kitty
 
-ln -sf "$SDIR/confs" ~/.config/kitty
+ln -sf "$SDIR/kitty.conf" ~/.config/kitty
+
+kitty +kitten themes --reload-in=all 'Catppuccin-Frappe'
