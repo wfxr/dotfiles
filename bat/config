@@ -1,5 +1,5 @@
 # --theme="zenburn"
---theme="tokyonight_moon"
+--theme="Catppuccin Frappe"
 
 # Show line numbers, Git modifications and file header (but no grid)
 # --style="numbers,changes"
