@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 SDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )" && cd "$SDIR" || return 1
 
@@ -18,13 +19,9 @@ for f in "$SDIR"/punctuation/*; do
     ln -sf "$f" ~/.local/share/fcitx5/punctuation/
 done
 
-# mkdir -p ~/.local/share/fcitx5/themes
-# trap 'command rm -rf $TEMP' EXIT INT TERM HUP
-# TEMP="$(mktemp -td --suffix=.tmp "$(basename "$0")".XXXXXX)"
-# cd "$TEMP" || return 1
-# git clone --depth 1 https://github.com/wfxr/fcitx5-themes
-# cd "fcitx5-themes" || return 1
-# themes="spring summer autumn winter green transparent-green"
-# for theme in $themes; do
-#     cp -r "$theme" ~/.local/share/fcitx5/themes
-# done
+mkdir -p ~/.local/share/fcitx5/themes
+cd ~/.local/share/fcitx5/themes
+if [ ! -d .catppuccin ]; then
+    git clone --depth 1 https://github.com/catppuccin/fcitx5.git .catppuccin
+    cp -r .catppuccin/src/* ~/.local/share/fcitx5/themes
+fi
