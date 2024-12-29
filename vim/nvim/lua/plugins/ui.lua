@@ -168,10 +168,9 @@ return {
 
   {
     "wfxr/smartcolumn.nvim",
-    priority = 1001,
     dev = true,
     opts = {
-      colorcolumn = { 100, 120 },
+      colorcolumn = 100,
       custom = {
         c = 80,
         cpp = 80,
