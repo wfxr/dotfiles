@@ -50,6 +50,7 @@ export YSU_MODE=ALL
 export FORGIT_FZF_DEFAULT_OPTS="--preview-window='right:60%:nohidden'"
 export FORGIT_LOG_FZF_OPTS="--height '95%'"
 export FORGIT_CHECKOUT_BRANCH_BRANCH_GIT_OPTS='--all --sort=-committerdate'
+export FORGIT_LOG_FORMAT='%C(#ea999c)%h%C(auto)%d %s %C(black)%C(bold)%cr%Creset'
 
 # autosuggest config
 export ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=(forward-word forward-char)

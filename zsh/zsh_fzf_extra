@@ -40,16 +40,11 @@ FZF_DEFAULT_COMMAND='(git ls-tree -r --name-only HEAD ||
 export FZF_DEFAULT_COMMAND
 # 󰅂     󰅁
 FZF_DEFAULT_OPTS="
---exact
 --prompt ' '
 --pointer ''
 --marker '┃'
 --info 'inline:  '
 --border
---color=fg:-1,bg:-1,hl:#e69875
---color=fg+:#83c092,bg+:-1,hl+:#e69875
---color=info:-1,prompt:#5fff87,pointer:#e67e80
---color=marker:#e67e80,spinner:#e67e80,header:#87afaf
 --height 80%
 --extended
 --ansi
@@ -67,6 +62,13 @@ FZF_DEFAULT_OPTS="
 --bind change:top
 --preview \"($FZF_FILE_HIGHLIGHTER {} || $FZF_DIR_HIGHLIGHTER {}) 2>/dev/null | head -200\"
 --preview-window right:60%:hidden
+"
+
+FZF_DEFAULT_OPTS="
+$FZF_DEFAULT_OPTS
+--color=bg+:-1,fg:-1,bg:-1,spinner:#f2d5cf,hl:#e78284 \
+--color=fg:#c6d0f5,header:#e78284,info:#ca9ee6,pointer:#e78284 \
+--color=marker:#ef9f76,fg+:#eebebe,prompt:#ca9ee6,hl+:#e78284 \
 "
 export FZF_DEFAULT_OPTS
 (( $+commands[fd] )) && {
