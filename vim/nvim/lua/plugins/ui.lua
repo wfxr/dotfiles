@@ -41,6 +41,7 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     opts = function()
+      local get_color = require("lualine.utils.utils").extract_highlight_colors
       return {
         options = {
           icons_enabled = true,
@@ -67,10 +68,10 @@ return {
               sources = { "nvim_diagnostic" },
               -- symbols = global.symbols.diagnostic,
               diagnostics_color = {
-                error = "DiagnosticSignError",
-                warn = "DiagnosticSignWarn",
-                info = "DiagnosticSignInfo",
-                hint = "DiagnosticSignHint",
+                error = { fg = get_color("DiagnosticError", "fg") },
+                warn = { fg = get_color("DiagnosticWarn", "fg") },
+                info = { fg = get_color("DiagnosticInfo", "fg") },
+                hint = { fg = get_color("DiagnosticHint", "fg") },
               },
               colored = true,
             },
