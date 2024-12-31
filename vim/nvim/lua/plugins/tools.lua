@@ -140,6 +140,18 @@ return {
         "<c-up>",
         "<cmd>Yazi toggle<cr>",
       },
+      {
+        "<leader>sp",
+        function()
+          local dirs = { "~/.config/nvim" }
+          require("fzf-lua").live_grep({
+            filespec = "-- " .. table.concat(vim.tbl_values(dirs), " "),
+            search = "/",
+            formatter = "path.filename_first",
+          })
+        end,
+        desc = "Search Plugin Spec",
+      },
     },
     opts = {
       -- replace netrw with yazi

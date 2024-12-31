@@ -104,6 +104,7 @@ return {
 
   {
     "iamcco/markdown-preview.nvim",
+    enabled = false and vim.env.SSH_CLIENT and vim.fn.filereadable("/.dockerenv"),
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
     ft = { "markdown" },
     build = "cd app && yarn install",
@@ -118,6 +119,22 @@ return {
     config = function()
       vim.cmd([[do FileType]])
     end,
+  },
+
+  {
+    "toppair/peek.nvim",
+    ft = { "markdown" },
+    build = "deno task --quiet build:fast",
+    enabled = not (vim.env.SSH_CLIENT or vim.fn.filereadable("/.dockerenv")),
+    keys = {
+      {
+        "<leader>cp",
+        function()
+          require("peek").open()
+        end,
+        desc = "Markdown Preview",
+      },
+    },
   },
 
   {

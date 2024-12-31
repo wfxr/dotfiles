@@ -66,7 +66,6 @@ return {
             {
               "diagnostics",
               sources = { "nvim_diagnostic" },
-              -- symbols = global.symbols.diagnostic,
               diagnostics_color = {
                 error = { fg = get_color("DiagnosticError", "fg") },
                 warn = { fg = get_color("DiagnosticWarn", "fg") },

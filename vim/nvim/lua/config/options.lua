@@ -14,7 +14,7 @@ if vim.fn.has("nvim-0.8") == 1 then
 end
 
 if vim.g.neovide then
-  vim.o.guifont = "Fira Code,Symbols Nerd Font Mono:h34"
+  vim.o.guifont = "JetBrainsMono NFM:h34"
   vim.g.neovide_scale_factor = 0.3
 end
 
@@ -75,3 +75,9 @@ opt.laststatus = 3
 -- Default splitting will cause your main splits to jump when opening an edgebar.
 -- To prevent this, set `splitkeep` to either `screen` or `topline`.
 opt.splitkeep = "screen"
+
+-- make startup faster
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_node_provider = 0
