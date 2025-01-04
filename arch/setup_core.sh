@@ -75,12 +75,12 @@ function install_cli_package() {
     systemctl start  cronie.service
 
     # paru --noconfirm -S icdiff # better diff
-    paru --noconfirm -S mmv-go
+    # paru --noconfirm -S mmv-go
     paru --noconfirm -S csview-git
     paru --noconfirm -S code-minimap-git
     paru --noconfirm -S clitrans-git
     paru --noconfirm -S git-delta
-    paru --noconfirm -S topgrade # upgrade all the things
+    # paru --noconfirm -S topgrade # upgrade all the things
     paru --noconfirm -S zoxide # z or autojump alternative
 }
 
