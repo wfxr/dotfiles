@@ -1,10 +1,10 @@
 [Groups/0]
 # Group Name
-Name=Default
+Name=默认
 # Layout
 Default Layout=us
 # Default Input Method
-DefaultIM=keyboard-us
+DefaultIM=shuangpin
 
 [Groups/0/Items/0]
 # Name
@@ -19,5 +19,5 @@ Name=shuangpin
 Layout=
 
 [GroupOrder]
-0=Default
+0=默认
 

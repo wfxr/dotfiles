@@ -1,23 +1,21 @@
 [Hotkey]
-# Enumerate when press trigger key repeatedly
+# 反复按切换键时进行轮换
 EnumerateWithTriggerKeys=True
-# Skip first input method while enumerating
+# 向后切换输入法
+EnumerateBackwardKeys=
+# 轮换输入法时跳过第一个输入法
 EnumerateSkipFirst=False
 
 [Hotkey/TriggerKeys]
-0=Shift
+0=
 1=Zenkaku_Hankaku
 2=Hangul
 
 [Hotkey/AltTriggerKeys]
-0=Shift
-1=Control+space
+0=
 
 [Hotkey/EnumerateForwardKeys]
-0=Control+Shift_L
-
-[Hotkey/EnumerateBackwardKeys]
-0=Control+Shift_R
+0=Control+space
 
 [Hotkey/EnumerateGroupForwardKeys]
 0=Super+space
@@ -47,25 +45,27 @@ EnumerateSkipFirst=False
 0=Control+Alt+P
 
 [Behavior]
-# Active By Default
+# 默认状态为激活
 ActiveByDefault=False
-# Share Input State
+# 重新聚焦时重置状态
+resetStateWhenFocusIn=No
+# 共享输入状态
 ShareInputState=No
-# Show preedit in application
+# 在程序中显示预编辑文本
 PreeditEnabledByDefault=True
-# Show Input Method Information when switch input method
+# 切换输入法时显示输入法信息
 ShowInputMethodInformation=True
-# Show Input Method Information when changing focus
+# 在焦点更改时显示输入法信息
 showInputMethodInformationWhenFocusIn=False
-# Show compact input method information
+# 显示紧凑的输入法信息
 CompactInputMethodInformation=True
-# Show first input method information
+# 显示第一个输入法的信息
 ShowFirstInputMethodInformation=True
-# Default page size
+# 默认页大小
 DefaultPageSize=5
-# Override Xkb Option
+# 覆盖 Xkb 选项
 OverrideXkbOption=False
-# Custom Xkb Option
+# 自定义 Xkb 选项
 CustomXkbOption=
 # Force Enabled Addons
 EnabledAddons=
@@ -73,4 +73,10 @@ EnabledAddons=
 DisabledAddons=
 # Preload input method to be used by default
 PreloadInputMethod=True
+# 允许在密码框中使用输入法
+AllowInputMethodForPassword=False
+# 输入密码时显示预编辑文本
+ShowPreeditForPassword=False
+# 保存用户数据的时间间隔（以分钟为单位）
+AutoSavePeriod=30
 

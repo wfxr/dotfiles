@@ -3,16 +3,8 @@ set -euo pipefail
 
 SDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )" && cd "$SDIR" || return 1
 
-target_dir=~/.config/fcitx5
-mkdir -p $target_dir
-mkdir -p $target_dir/conf
-
-ln -sf "$SDIR/config"  $target_dir/config
-ln -sf "$SDIR/profile" $target_dir/profile
-
-for f in "$SDIR"/conf/*; do
-    ln -sf "$f" $target_dir/conf/
-done
+rm -rf ~/.config/fcitx5
+ln -sf "$SDIR/config" ~/.config/fcitx5
 
 mkdir -p ~/.local/share/fcitx5/punctuation/
 for f in "$SDIR"/punctuation/*; do
