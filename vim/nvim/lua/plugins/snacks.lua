@@ -11,13 +11,8 @@ return {
         enabled = true,
         win = {
           keys = {
-            i_del_word = { "<C-w>", "delete_word", mode = "i" },
-            i_esc = { "<Esc>", "close", mode = "i" },
-          },
-          actions = {
-            delete_word = function()
-              return "<cmd>normal! diw<cr><right>"
-            end,
+            i_del_word = { "<C-w>", "<cmd>normal! diw<cr><right>", mode = "i", expr = true },
+            i_esc = { "<Esc>", "close", mode = "i", expr = true },
           },
         },
       },
