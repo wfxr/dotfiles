@@ -10,17 +10,6 @@ git config --global github.user "wfxr"
 git config --global credential.username "wfxr"
 git config --global color.ui true
 
-# avoid entering password again and again
-if [[ -z "${SSH_CLIENT-}" ]]; then
-    case $OSTYPE in
-        linux* )
-            git config --global credential.helper libsecret
-            ;;
-        darwin* )
-            git config --global credential.helper osxkeychain
-    esac
-fi
-
 # This makes sure that push pushes only the current branch, and pushes it to the
 # same branch pull would pull from
 git config --global push.default upstream
