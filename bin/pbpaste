@@ -1,10 +1,19 @@
 #!/usr/bin/env bash
 
-if hash xsel &>/dev/null; then
-    xsel --clipboard --output "$@"
-elif hash xclip &>/dev/null; then
-    xclip -selection clipboard -o "$@"
-else
-    echo "xsel or xclip is required" >&2
-    exit 1
+if [ "$XDG_SESSION_TYPE" = "x11" ]; then
+    if hash xsel &>/dev/null; then
+        xsel --clipboard --output "$@"
+    elif hash xclip &>/dev/null; then
+        xclip -selection clipboard -o "$@"
+    else
+        echo "xsel or xclip is required" >&2
+        exit 1
+    fi
+elif [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+    if hash wl-paste &>/dev/null; then
+        wl-paste "$@"
+    else
+        echo "wl-clipboard is required" >&2
+        exit 1
+    fi
 fi

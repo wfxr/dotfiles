@@ -16,28 +16,3 @@ ln -sf "$SDIR/playground" "$HOME/bin/playground"
     ln -sf "$SDIR/pbcopy"  "$HOME/bin/pbcopy"
     ln -sf "$SDIR/pbpaste" "$HOME/bin/pbpaste"
 }
-
-
-hash bin &>/dev/null && {
-    warn "marcosnils/bin not installed. (https://github.com/marcosnils/bin/releases)"
-}
-
-install_bin() {
-    local repo=$1
-    local bin=${2:-$(basename "$repo")}
-    if hash "$bin" &>/dev/null; then
-        info "$bin already exists."
-    else
-        bin install "github.com/$repo"
-    fi
-}
-
-[ -n "$_GITHUB_TOKEN" ] && export GITHUB_TOKEN=$_GITHUB_TOKEN
-
-install_bin jqlang/jq
-install_bin eza-community/eza
-install_bin BurntSushi/ripgrep rg
-install_bin sharkdp/fd
-install_bin sharkdp/bat
-install_bin sharkdp/hyperfine
-install_bin muesli/duf
