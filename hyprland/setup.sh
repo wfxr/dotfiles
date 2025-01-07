@@ -18,3 +18,8 @@ done
 ln -sf "$SDIR/chrome-flags.conf"   ~/.config/
 ln -sf "$SDIR/chromium-flags.conf" ~/.config/
 
+pkgs=(fuzzel waybar hyprlock swaync hyprpicker hypridle hyprland-qtutils wlogout)
+
+pkgs+=(grimblast-git ) # screenshot
+
+paru -S --needed --noconfirm "${pkgs[@]}"
