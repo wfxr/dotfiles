@@ -55,6 +55,11 @@ return {
     priority = 1000,
     opts = {
       flavour = "frappe", -- latte, frappe, macchiato, mocha
+      custom_highlights = function(colors)
+        return {
+          DiffChange = { bg = '#78766d' },
+        }
+      end
     },
   },
 }
