@@ -89,3 +89,8 @@ desc = "A modern replacement for ps written in Rust"
 bins = ["lazydocker"]
 repo = "jesseduffield/lazydocker"
 desc = "The lazier way to manage everything docker"
+
+[pkgs.hyperfine]
+bins = ["hyperfine"]
+repo = "sharkdp/hyperfine"
+desc = "A command-line benchmarking tool"
