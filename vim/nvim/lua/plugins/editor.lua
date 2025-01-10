@@ -25,6 +25,10 @@ return {
       window = {
         width = 30,
         side = "left",
+        mappings = {
+          ["<c-x>"] = "open_split",
+          ["<c-v>"] = "open_vsplit",
+        },
       },
       default_component_configs = {
         git_status = {

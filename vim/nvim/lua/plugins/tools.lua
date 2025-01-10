@@ -110,8 +110,13 @@ return {
     "ibhagwan/fzf-lua",
     opts = function(_, _opts)
       local config = require("fzf-lua.config")
+      local actions = require("fzf-lua.actions")
+      config.defaults.actions.files["ctrl-x"] = actions.file_split
+      config.defaults.actions.files["ctrl-v"] = actions.file_vsplit
+
       config.defaults.keymap.fzf["alt-d"] = "preview-half-page-down"
       config.defaults.keymap.fzf["alt-u"] = "preview-half-page-up"
+
       config.defaults.keymap.builtin["<a-d>"] = "preview-half-page-down"
       config.defaults.keymap.builtin["<a-u>"] = "preview-half-page-up"
       config.defaults.keymap.builtin["<a-j>"] = "preview-down"
