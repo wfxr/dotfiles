@@ -31,7 +31,7 @@ window#waybar {
 #custom-left {
    color:      @main-color;
    background: #242424;
-   margin:     4px 0px 4px 0px;
+   margin:     0px 0px 0px 0px;
    opacity:    1;
    border:     0px solid #181825;
 }
@@ -46,37 +46,39 @@ tooltip {
 }
 
 #workspaces {
-    padding:       0px;
-    opacity:       0.6;
+    padding: 0px;
+    opacity: 0.6;
+    border:  none;
 }
 
 #workspaces button {
-    color:         #c6d0f5;
-    background:    #81C8BE;
-    opacity:       0.1;
+    background:    #a6d189;
+    opacity:       0.5;
     box-shadow:    none;
     text-shadow:   none;
     border-radius: 4px;
     padding:       0px;
-    margin:        0px;
-    padding-right: 450px;
+    margin:        0px 5px 0px 5px;
+    padding-left:  230px;
+    padding-right: 230px;
     animation:     gradient_f 20s ease-in infinite;
     transition:    all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
+#workspaces button.empty {
+    opacity:       .1;
+}
+
 #workspaces button:hover {
-    background: #eebebe;
-    color:      #303446;
-    opacity:    1;
-    border:     none;
+    background: #81C8BE;
+    opacity:    0.8;
 }
 
 #workspaces button.active {
-    color:         #303446;
+    background:    #81C8BE;
     opacity:       1;
-    padding-right: 500px;
-    animation:     gradient_f 20s ease-in infinite;
-    transition:    all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+    padding-left:  240px;
+    padding-right: 240px;
 }
 
 #custom-rofi {
