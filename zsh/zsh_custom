@@ -113,13 +113,6 @@ autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '^[v' edit-command-line
 
-# edit
-function e() {
-    local files
-    IFS=$'\n' files=($(fzf -q "`echo $@`" -m -1 -0))
-    [[ $? -eq 0 ]] && ${EDITOR:-vim} "${files[@]}"
-}
-
 function wfxr::translate() {
     WORD=$(cat /usr/share/dict/words | fzf \
         --preview='CLICOLOR_FORCE=1 clitrans {}' \
@@ -148,7 +141,6 @@ zle     -N   wfxr::paste
 bindkey '^V' wfxr::paste
 
 function cip() { curl -fsSL 'cip.cc' }
-function cipp() { curl -fsSL 'ip.cip.cc' }
 function ipshow() { ip addr show | grep 'inet\s\+' | grep -v "127.0.0.1" | awk '{print $2,$9}' | column -t }
 
 # reference: https://github.com/stark/Color-Scripts/blob/master/color-scripts/colortest
@@ -226,20 +218,12 @@ function d() {
     printf "delta: ${ratio_color}%+.2f%%\e[0m\n" "$d"
 }
 
-# Maven search
-function maven-search { xopen "http://mvnrepository.com/search?q="$@ }
-
 # cd downloads quickly
 function dwn {
     [[ -d ~/Downloads ]] && cd ~/Downloads && return
     [[ -d ~/downloads ]] && cd ~/downloads && return
     mkdir ~/downloads    && cd ~/downloads && return
 }
-
-function mcd() { mkdir -p -v "$1" && cd "$1" && pwd }
-
-function uppercase() { printf '%s\n' "${1^^}" }
-function lowercase() { printf '%s\n' "${1,,}" }
 
 (( $+commands[numfmt] )) || alias numfmt=gnumfmt
 function num() {
@@ -276,22 +260,6 @@ function rolling-times() {
     echo "install package $fg[yellow]$(grep -c " installed " /var/log/pacman.log)$reset_color times."
 }
 
-function dequote() { sed 's/\\"/"/g; s/^"\|"$//g' }
-function quote() { sed 's/"/\\"/g; s/^\|$/"/g' }
-
-function vcurl() {
-    local TMPFILE="$(mktemp -t --suffix=.json)"
-    trap "\\rm -f '$TMPFILE'" EXIT INT TERM HUP
-    vim "$TMPFILE" >/dev/tty
-    curl "$@" < "$TMPFILE"
-}
-
-function kcurl() {
-    local BUFFER="/tmp/curl-body-buffer.json"
-    touch "$BUFFER" && vim "$BUFFER" >/dev/tty
-    curl "$@" < "$BUFFER"
-}
-
 function prepo() {
     local url
     if [[ "$#" -ne 0 ]]; then
@@ -303,8 +271,6 @@ function prepo() {
     echo "$url"
 }
 function grepo() { xopen "$(prepo $@)" }
-
-function gclone() { git clone "https://github.com/${(j:/:)@}" }
 
 function gsearch() {
     local header list repos
@@ -322,25 +288,9 @@ function hhkb() {
     setxkbmap -print | grep 'xkb_symbols.*+ctrl(swapcaps)' &>/dev/null && setxkbmap -option || setxkbmap -option "ctrl:swapcaps"
 }
 
-# Dump zsh hash map
-function dump_map() {
-    local cmd="
-        for k in \"\${(@k)$1}\"; do
-            echo $2 \"\$k => \$$1[\$k]\"
-        done
-    "
-    eval "$cmd"
-}
-
 function passgen() { openssl rand -base64 ${1:-10} | tr -d '=' }
 
 function md5gen() { printf "${@:-$(passgen 128)}" | md5sum | awk '{print $1}' }
-
-function vup() { amixer set PCM 5%+ }
-
-function vdn() { amixer set PCM 5%- }
-
-function vto() { amixer set PCM toggle }
 
 function iptables-uniq() { sudo iptables-save | awk '/^COMMIT$/ { delete x; }; !x[$0]++' }
 
@@ -348,50 +298,18 @@ function iptables-traffic-monitor() { sudo iptables -nvL | grep spt | awk '{prin
 
 function handshake() { curl -w "TCP handshake: %{time_connect}, SSL handshake: %{time_appconnect}\n" -so /dev/null "$@" }
 
-function hooks-link() {
-    (
-    set -eo pipefail
-    cd "$(git rev-parse --show-toplevel)"
-    mkdir -p .githooks
-    if [[ $(readlink .git/hooks) == "../.githooks" ]]; then
-        echo 'already linked.'
-    else
-        if [[ -d .git/hooks ]]; then
-            rm -rf .git/hooks.old
-            mv .git/hooks .git/hooks.old
-        fi
-        ln -sf ../.githooks .git/hooks
-        echo 'linked'
-    fi
-    )
-}
-
-function y() { ydcv "$*"; }
-
 function en() { trans zh:en "$*" }
 function cn() { trans en:zh "$*" }
 
-function get-window-class() { xprop | grep -i class }
+function get-xwindow-class() { xprop | grep -i class }
 
-function sumall() { awk '{n+=$1}END{print n}' }
-
-function syncgit() {
-    trap 'command rm -rf $TEMP' EXIT INT TERM HUP
-    TEMP="$(mktemp -td --suffix=.tmp "$(basename "$0")".XXXXXX)"
-    git clone "$(git remote get-url origin)" "$TEMP/repo" &&
-        rm -rf .git && mv "$TEMP/repo/.git" .
-}
-
-zsh_history_uniq() {
+zsh_history_dedup() {
     nl ~/.zsh_history | sort -t ';' -uk2 | sort -nk1 | cut -f2 > /tmp/zsh_history_short &&
         mv ~/.zsh_history "$HOME/.zsh_history_$(date -I)" &&
         mv /tmp/zsh_history_short ~/.zsh_history
 }
 
 has_external_kbd() { find /dev/input/by-id/ | grep -i 'kbd' | grep -iv 'mouse' &>/dev/null }
-
-# disable_touch_pad() { sudo modprobe -r psmouse } # need root privilege
-# enable_touch_pad() { sudo modprobe psmouse } # need root privilege
 disable_touch_pad() { xinput disable $(xinput | grep -i 'touchpad' | grep -Po '(?<=id=)\d+') }
 enable_touch_pad() { xinput enable $(xinput | grep -i 'touchpad' | grep -Po '(?<=id=)\d+') }
 
@@ -410,19 +328,6 @@ is_bright() {
     g=$((16#${1:3:2}))
     b=$((16#${1:5:2}))
     return "$(bc -l <<<"(0.299 * $r + 0.587 * $g + 0.114 * $b) / 255 < 0.5")"
-}
-
-function ghstats() {
-    xopen "https://github-readme-stats.vercel.app/api?username=$1&show_icons=true&hide_border=true"
-}
-
-func ghlangs() {
-    xopen "https://github-readme-stats.vercel.app/api/top-langs/?username=$1&exclude_repo=awm.config&langs_count=8&layout=compact&hide_border=true"
-}
-
-function gpom() {
-    git branch | grep main   &>/dev/null && git push origin main
-    git branch | grep master &>/dev/null && git push origin master
 }
 
 function aurview() {
@@ -504,16 +409,4 @@ function vmstart() {
     [[ -z $vm ]] && vm=$(VBoxManage list vms | fzf | awk '{print $2}')
     [[ -z $vm ]] && return 1
     vboxmanage startvm "$vm" --type headless
-}
-
-function vimplug() {
-    local f=$(cd $HOME/.config/nvim/ && fd -t f . |
-        fzf --preview-window=nohidden --preview "($FZF_FILE_HIGHLIGHTER {})")
-
-    [[ -z $f ]] && return 1
-    $EDITOR "$HOME/.config/nvim/$f"
-}
-
-function paste_image() {
-    xclip -selection clipboard -t image/png -o
 }

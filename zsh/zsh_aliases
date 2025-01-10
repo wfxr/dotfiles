@@ -1,7 +1,8 @@
 #!/usr/bin/env zsh
 unalias mv rm cd mkdir 2>/dev/null;
 
-alias sudo='sudo ' #可以使sudo支持alias
+# make sudo support alias
+alias sudo='sudo '
 alias usudo='sudo -E -s '
 
 alias dot='cd ~/dotfiles'
@@ -9,8 +10,6 @@ alias tmp='cd /tmp'
 
 alias mks='tmux kill-session -t'
 alias mkS='tmux kill-server'
-(( $+commands[ptpython] )) && alias ipython=ptipython
-alias md='mkdir -p -v'
 alias mv='mv -iv'
 [[ "$OSTYPE" =~ linux ]] && alias rm='rm -Iv --one-file-system' || alias rm='rm -iv'
 alias ..='cd ..'
@@ -48,25 +47,11 @@ alias ew='emacsclient -c -a emacs'
 alias pc='pbcopy'
 alias pp='pbpaste'
 
-alias tn='tmux new-session -s'
-alias tl='tmux list-sessions'
-alias weather='curl wttr.in'
-
 # Archlinux
 # -F Causes less to automatically exit if the entire file can be displayed on one screen
 (( $+commands[pacman] )) && alias autoremove='pacman -R $(pacman -Qdtq)'
 
-# Perl-rename
-(( $+commands[perl-rename] )) && alias rename='perl-rename'
-
-# Hub for git
-(( $+commands[hub] )) && alias git=hub
-
-(( $+commands[fasd] )) && alias v='f -e vim'
-
 (( $+commands[lein] )) && alias lrepl='lein repl :connect 59237'
-
-# [[ -n "$TMUX" ]] && alias fzf="fzf --preview-window=down:50%" || alias fzf="fzf --preview-window=right:50%"
 
 # Edit dotfile in repo
 function vim_linked() { vim "$(readlink "$1")" }
@@ -78,12 +63,7 @@ alias zshcustom='vim_linked ~/.config/zsh/zsh_custom'
 alias zshmisc='vim_linked ~/.config/zsh/zsh_misc'
 alias zshlocal='vim ~/.config/zsh/zsh_local'
 alias zshsec='vim_linked ~/.config/zsh/zsh_secret'
-# alias hostinfo='vim_linked ~/.ssh/host_info'
 alias tmuxconf='vim_linked ~/.tmux.conf'
-# alias ycmconf='vim_linked ~/.ycm_extra_conf.py'
-alias emconf='em ~/.spacemacs'
-alias awmrc='vim_linked ~/.config/awesome/rc.lua'
-alias alaconf='vim_linked ~/.config/alacritty/alacritty.yml'
 
 alias csort='LC_ALL=C sort'
 
@@ -95,15 +75,13 @@ alias gc='git commit -v'
 alias gb='git branch'
 alias gl='git pull'
 alias gp='git push'
-alias gpoat='git push origin --all && git push origin --tags'
 alias gpu='git push upstream'
 # alias gco='git checkout'
 alias gst='git status'
+alias gstu='git status -uno'
 alias gs='git stash'
 alias gsp='git stash pop'
 alias gr='git rebase'
-
-alias gpa='git push origin --all && git push origin --tags'
 
 alias mycli='LESS="-S $LESS" mycli'
 
@@ -115,9 +93,6 @@ alias kg='kubectl get'
 alias kd='kubectl describe'
 
 (( $+commands[btm] )) && alias htop='btm -n -b'
-alias awm='cd ~/dotfiles/awesomewm'
-
-(( $+commands[duf] )) && alias pydf=duf
 
 alias ui_syncthing='xdg-open "http://127.0.0.1:8384/"'
 alias ui_v2ray='xdg-open "http://127.0.0.1:2017/"'
@@ -135,10 +110,7 @@ alias tcap='tmux capture-pane -JpS -'
 (( $+commands[gsed] )) && alias sed=gsed
 (( $+commands[gawk] )) && alias awk=gawk
 (( $+commands[fdfind])) && alias fd=fdfind
-(( $+commands[fd])) && alias Fd='fd --hidden --follow --exclude .git'
-
-alias vimloadinglog="vim -V20vimlog"
+(( $+commands[fd])) && alias ffd='fd -uLE .git'
 
 alias yy=clitrans
-alias pss=procs
 alias y=yazi
