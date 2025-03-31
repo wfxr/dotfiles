@@ -86,6 +86,7 @@ repo = "dalance/procs"
 desc = "A modern replacement for ps written in Rust"
 
 [pkgs.lazydocker]
+enabled = "hash docker"
 bins = ["lazydocker"]
 repo = "jesseduffield/lazydocker"
 desc = "The lazier way to manage everything docker"
@@ -94,3 +95,8 @@ desc = "The lazier way to manage everything docker"
 bins = ["hyperfine"]
 repo = "sharkdp/hyperfine"
 desc = "A command-line benchmarking tool"
+
+[pkgs.uv]
+bins = ["uv", "uvx"]
+repo = "astral-sh/uv"
+desc = "An extremely fast Python package and project manager, written in Rust."
