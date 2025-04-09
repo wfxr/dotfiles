@@ -16,7 +16,6 @@ else
         rust-src \
         rust-std \
         rustfmt \
-        rust-analyzer-preview \
         --default-toolchain nightly || exit 1
 fi
 
@@ -25,17 +24,12 @@ rustup completions zsh       > ~/.config/zsh/completions/_rustup
 rustup completions zsh cargo > ~/.config/zsh/completions/_cargo
 
 cargo install --locked cargo-update # for checking and applying updates to installed executables
-cargo install --locked cargo-edit
-cargo install --locked cargo-play
 cargo install --locked cargo-expand
 cargo install --locked cargo-udeps
 cargo install --locked cargo-watch
-cargo install --locked cargo-make
-cargo install --locked cargo-nextest
 
 # perf binary size
 cargo install --locked cargo-bloat
-cargo install --locked cargo-unused-features
 
 cargo install --locked flamegraph
 hash perf &>/dev/null || {
