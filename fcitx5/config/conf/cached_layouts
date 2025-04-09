@@ -914,22 +914,22 @@ Language=
 Label=brl
 
 [keyboard-brai-left_hand]
-Description="键盘 - 盲文 - 盲文（左手）"
+Description="键盘 - 盲文 - 盲文（单手，左手）"
 Language=
 Label="brai (left_hand)"
 
 [keyboard-brai-left_hand_invert]
-Description="键盘 - 盲文 - 盲文（左手，大拇指反转）"
+Description="键盘 - 盲文 - 盲文（单手，左手，大拇指反转）"
 Language=
 Label="brai (left_hand_invert)"
 
 [keyboard-brai-right_hand]
-Description="键盘 - 盲文 - 盲文（右手）"
+Description="键盘 - 盲文 - 盲文（单手，右手）"
 Language=
 Label="brai (right_hand)"
 
 [keyboard-brai-right_hand_invert]
-Description="键盘 - 盲文 - 盲文（右手，大拇指反转）"
+Description="键盘 - 盲文 - 盲文（单手，右手，大拇指反转）"
 Language=
 Label="brai (right_hand_invert)"
 
@@ -2079,12 +2079,12 @@ Language=en
 Label="us (dvorak-alt-intl)"
 
 [keyboard-us-dvorak-l]
-Description="键盘 - 英语（美国） - 英语（Dvorak，左手）"
+Description="键盘 - 英语（美国） - 英语（Dvorak，单手，左手）"
 Language=en
 Label="us (dvorak-l)"
 
 [keyboard-us-dvorak-r]
-Description="键盘 - 英语（美国） - 英语（Dvorak，右手）"
+Description="键盘 - 英语（美国） - 英语（Dvorak，单手，右手）"
 Language=en
 Label="us (dvorak-r)"
 
@@ -3142,6 +3142,11 @@ Label="de (neo_qwertz)"
 Description="键盘 - 德语 - 德语（Neo，QWERTY）"
 Language=de
 Label="de (neo_qwerty)"
+
+[keyboard-de-noted]
+Description="键盘 - 德语 - 德语（Noted）"
+Language=de
+Label="de (noted)"
 
 [keyboard-de-ru-recom]
 Description="键盘 - 德语 - 俄语（德国，推荐）"
