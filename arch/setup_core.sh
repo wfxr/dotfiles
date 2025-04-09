@@ -27,61 +27,45 @@ function setup_package_manager() {
 
     # paru
     pacman --noconfirm -Sy archlinuxcn-keyring
-    pacman --noconfirm -Sy paru
-    pacman --noconfirm -S pkgtools pkgfile && pkgfile --update
+    pacman --noconfirm -S --needed paru
+    pacman --noconfirm -S --needed pkgfile && pkgfile --update
 
     # auto clean pacman cache
-    pacman --noconfirm -S pacman-contrib
+    pacman --noconfirm -S --needed pacman-contrib
     systemctl daemon-reload
     systemctl enable paccache.timer
     systemctl start  paccache.timer
 }
 
 function install_cli_package() {
-    paru --noconfirm -S base-devel
-    paru --noconfirm -S git git-crypt python-pre-commit
-    paru --noconfirm -S zsh sheldon tmux
-    # paru --noconfirm -S starship
-    paru --noconfirm -S neovim
-    paru --noconfirm -S openssh
-    # paru --noconfirm -S clang
-    paru --noconfirm -S go rust
-    paru --noconfirm -S words
-    # paru --noconfirm -S jdk9-openjdk openjdk9-src
-    # paru --noconfirm -S mosh
-    paru --noconfirm -S axel
-    paru --noconfirm -S shellcheck-static
-    # paru --noconfirm -S highlight
-    paru --noconfirm -S jq xsv choose
-    paru --noconfirm -S pv
-    # paru --noconfirm -S nethogs
-    # paru --noconfirm -S global # gtags
-    paru --noconfirm -S ctags
-    paru --noconfirm -S duf dust dua-cli
-    paru --noconfirm -S htop dstat bottom procs
-    paru --noconfirm -S fd eza bat ripgrep sd
-    # paru --noconfirm -S vivid
-    paru --noconfirm -S man-pages
-    # paru --noconfirm -S neofetch
-    paru --noconfirm -S fastfetch
-    paru --noconfirm -S rsync
-    paru --noconfirm -S gping
-    paru --noconfirm -S kondo
+    pkgs=()
+
+    pkgs+=(base-devel)
+    pkgs+=(tar zip unzip gzip xz bzip2 unrar p7zip zstd)
+    pkgs+=(git git-crypt python-pre-commit github-cli git-delta)
+    pkgs+=(zsh sheldon tmux fzf jq)
+    pkgs+=(neovim ctags)
+    pkgs+=(openssh wget axel rsync pv)
+    pkgs+=(duf dust dua-cli)
+    pkgs+=(htop bottom procs)
+    pkgs+=(fd eza bat ripgrep sd yazi xsv zoxide gping tokei)
+    pkgs+=(words man-db man-pages)
+    pkgs+=(fastfetch)
+    pkgs+=(kondo)
+
+    # pkgs+=(clitrans-git)
+    # pkgs+=(code-minimap-git)
+    # pkgs+=(csview-git)
+
+    pkgs+=(go nodejs npm)
+
+    paru -S --noconfirm --needed "${pkgs[@]}"
 
     # crontab
-    paru --noconfirm -S cronie
+    paru -S --noconfirm --needed cronie
     systemctl daemon-reload
     systemctl enable cronie.service
     systemctl start  cronie.service
-
-    # paru --noconfirm -S icdiff # better diff
-    # paru --noconfirm -S mmv-go
-    paru --noconfirm -S csview-git
-    paru --noconfirm -S code-minimap-git
-    paru --noconfirm -S clitrans-git
-    paru --noconfirm -S git-delta
-    # paru --noconfirm -S topgrade # upgrade all the things
-    paru --noconfirm -S zoxide # z or autojump alternative
 }
 
 info 'config system...'

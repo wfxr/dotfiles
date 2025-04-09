@@ -13,7 +13,7 @@ function setup_fonts() {
     paru --noconfirm -S ttf-meslo
     paru --noconfirm -S ttf-iosevka-term
     paru --noconfirm -S ttf-sarasa-gothic
-    paru --noconfirm -S nerd-fonts-jetbrains-mono
+    paru --noconfirm -S ttf-jetbrains-mono-nerd
 
     ../fonts/setup.sh
 }
@@ -32,55 +32,68 @@ function setup_guis() {
         sudo cp -b "$SDIR/sddm.conf" /etc/sddm.conf.d/sddm.conf
     )
 
-    paru --noconfirm -S libsecret seahorse
-    paru --noconfirm -S sxiv # simple x image viewer
+    # paru --noconfirm -S libsecret seahorse
+    # paru --noconfirm -S sxiv # simple x image viewer
 
-    paru --noconfirm -S xorg
-    ../xorg/setup.sh
+    # paru --noconfirm -S xorg
+    # ../xorg/setup.sh
 
-    paru --noconfirm -S picom
-    ../picom/setup.sh
+    # paru --noconfirm -S picom
+    # ../picom/setup.sh
 
-    paru --noconfirm -S awesome-git
-    ../awesomewm/setup.sh
+    # paru --noconfirm -S awesome-git
+    # ../awesomewm/setup.sh
 
-    paru --noconfirm -S rofi
-    paru --noconfirm -S rofi-greenclip # rofi clipboard
-    ../rofi/setup.sh
+    # paru --noconfirm -S rofi
+    # paru --noconfirm -S rofi-greenclip # rofi clipboard
+    # ../rofi/setup.sh
 
     paru --noconfirm -S kitty alacritty
     ../kitty/setup.sh
     ../alacritty/setup.sh
 
-    paru --noconfirm -S xdotool
-    paru --noconfirm -S xclip xsel
+    # paru --noconfirm -S xdotool
+    # paru --noconfirm -S xclip xsel
 
-    paru --noconfirm -S fcitx5-chinese-addons fcitx5-git fcitx5-gtk fcitx5-qt fcitx5-pinyin-zhwiki fcitx5-configtool kcm-fcitx5 fcitx5-material-color
+    paru --noconfirm -S fcitx5 fcitx5-chinese-addons fcitx5-gtk fcitx5-qt fcitx5-pinyin-zhwiki fcitx5-configtool fcitx5-material-color
     ../fcitx5/setup.sh
 
     # paru --noconfirm -S cool-retro-term
     # paru --noconfirm -S screenkey
     # paru --noconfirm -S xss-lock # auto screen lock
 
+    paru --noconfirm -S libnotify # notify-send
+    paru --noconfirm -S brightnessctl
+
     # backgrounds
-    paru --noconfirm -S nitrogen # wallpaper manager
-    paru --noconfirm -S archlinux-wallpaper
+    # paru --noconfirm -S nitrogen # wallpaper manager
+    paru --noconfirm -S swww # wallpaper manager
+    paru --noconfirm -S archlinux-wallpaper elementary-wallpapers
 
     # gtk theme
-    paru --noconfirm -S lxappearance # gtk theme manager
+    # paru --noconfirm -S lxappearance # gtk theme manager
+    paru --noconfirm -S nwg-look # gtk theme manager
+    paru --noconfirm -S qt5ct qt6ct # qt theme manager
     paru --noconfirm -S arc-gtk-theme
+    paru --noconfirm -S kvantum kvantum-qt5
 
     # cursor theme
-    paru --noconfirm -S vimix-cursors
-    mkdir -p ~/.icons/default/
-    printf "[Icon Theme]\nInherits=vimix-cursors\n" > ~/.icons/default/index.theme
+    # paru --noconfirm -S vimix-cursors
+    # mkdir -p ~/.icons/default/
+    # printf "[Icon Theme]\nInherits=vimix-cursors\n" > ~/.icons/default/index.theme
 
     # grub theme
     # paru --noconfirm -S grub-theme-vimix-git
     # sed -i 's|^\s*#*\s*GRUB_THEME=.*|GRUB_THEME="/usr/share/grub/themes/Vimix/theme.txt"|' /etc/default/grub
     # grub-mkconfig -o /boot/grub/grub.cfg
 
-    paru --noconfirm -S google-chrome
+    paru --noconfirm -S google-chrome firefox
+
+    # sound control
+    paru --noconfirm -S pavucontrol
+
+    # media
+    paru --noconfirm -S mpv
 }
 
 function enable_services() {
@@ -101,3 +114,7 @@ enable_services
 # sudo cp /boot/grub/grub.cfg /boot/grub/grub.cfg.bak
 # sudo os-prober
 # sudo grub-mkconfig -o /boot/grub/grub.cfg
+
+# sudo mkinitcpio -P
+# fix Possibly missing firmware for module XXXX:
+#   https://wiki.archlinux.org/title/Mkinitcpio#Recompressing_a_modified_extracted_image
