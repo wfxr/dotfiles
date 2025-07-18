@@ -93,6 +93,7 @@ if hash delta &>/dev/null; then
     git config --global delta.side-by-side      'false'
     git config --global delta.hunk-header-style 'omit'
     git config --global delta.hyperlinks        'false'
+    git config --global delta.tabs              '4'
     git config --global diff.colorMoved         'default'
 
     cfgdir=~/.config/delta
