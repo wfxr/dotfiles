@@ -30,8 +30,6 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.lang.markdown" },
 
     { import = "lazyvim.plugins.extras.ai.copilot" },
-    { import = "lazyvim.plugins.extras.ai.copilot-chat" },
-
     { import = "lazyvim.plugins.extras.util.dot" }, -- Language support for dotfiles
     { import = "lazyvim.plugins.extras.util.mini-hipatterns" }, -- Render colors (like #7daea3) in your code.
 
