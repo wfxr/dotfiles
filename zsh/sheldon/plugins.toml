@@ -3,6 +3,7 @@ shell = "zsh"
 [templates]
 defer = "{% for file in files %} zsh-defer source \"{{ file }}\"\n {% endfor %}"
 defer-more = "{% for file in files %} zsh-defer -t 0.5 source \"{{ file }}\"\n {% endfor %}"
+fpath-completions = 'fpath=( "{{ dir }}/completions" $fpath )'
 
 [plugins.zsh-defer]
 github = "romkatv/zsh-defer"
@@ -33,7 +34,7 @@ apply = ["defer"]
 
 [plugins.forgit]
 github = "wfxr/forgit"
-apply = ["defer"]
+apply = ["source", "fpath-completions"]
 
 [plugins.forepos]
 github = "wfxr/forepos"
