@@ -958,6 +958,11 @@ Description="键盘 - 瑞典语 - 瑞典语（Svdvorak）"
 Language=sv
 Label="se (svdvorak)"
 
+[keyboard-se-colemak]
+Description="键盘 - 瑞典语 - 瑞典语（Colemak）"
+Language=sv
+Label="se (colemak)"
+
 [keyboard-se-mac]
 Description="键盘 - 瑞典语 - 瑞典语（Macintosh）"
 Language=sv
@@ -3672,11 +3677,6 @@ Label=ja
 Description="键盘 - 日语 - 日语（Kana）"
 Language=ja
 Label="jp (kana)"
-
-[keyboard-jp-kana86]
-Description="键盘 - 日语 - 日语（Kana 86）"
-Language=ja
-Label="jp (kana86)"
 
 [keyboard-jp-OADG109A]
 Description="键盘 - 日语 - 日语（OADG 109A）"
