@@ -11,22 +11,17 @@ if hash rustup &>/dev/null; then
     rustup update
 else
     curl https://sh.rustup.rs -sSf |
-        sh -s -- --no-modify-path -y --profile default -c \
-        clippy \
-        rust-src \
-        rust-std \
-        rustfmt \
-        --default-toolchain nightly || exit 1
+        sh -s -- -y --no-modify-path --profile default --default-toolchain nightly || exit 1
 fi
 
 mkdir -p ~/.config/zsh/completions/
 rustup completions zsh       > ~/.config/zsh/completions/_rustup
 rustup completions zsh cargo > ~/.config/zsh/completions/_cargo
 
-cargo install --locked cargo-update # for checking and applying updates to installed executables
+# cargo install --locked cargo-update # for checking and applying updates to installed executables
 cargo install --locked cargo-expand
 cargo install --locked cargo-udeps
-cargo install --locked cargo-watch
+cargo install --locked bacon --features "clipboard sound"
 
 # perf binary size
 cargo install --locked cargo-bloat

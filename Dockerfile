@@ -1,7 +1,5 @@
 FROM archlinux:latest
 
-RUN 
-
 RUN echo -e '[archlinuxcn]\nServer = https://repo.archlinuxcn.org/$arch' >> /etc/pacman.conf && \
     ln -snf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
     pacman-key --init && \
@@ -9,7 +7,7 @@ RUN echo -e '[archlinuxcn]\nServer = https://repo.archlinuxcn.org/$arch' >> /etc
     pacman-key --lsign farseerfc@archlinux.org && \
     pacman --noconfirm -Sy && \
     pacman --noconfirm -S archlinuxcn-keyring && \
-    pacman --noconfirm -S libalpm sudo paru && \
+    pacman --noconfirm -S sudo paru && \
     paru -Syu --noconfirm
 
 RUN paru --noconfirm -S \
@@ -27,13 +25,11 @@ RUN paru --noconfirm -S \
     ripgrep \
     eza \
     bat \
-    shellcheck-static \
-    net-tools dstat gping
+    net-tools
 
 RUN paru --noconfirm -S \
     linux-tools-meta \
     go \
-    rustup \
     nodejs npm \
     duf \
     dua-cli \
@@ -41,22 +37,15 @@ RUN paru --noconfirm -S \
     fastfetch \
     onefetch \
     bottom \
-    mmv-go \
     csview-git \
     code-minimap-git \
-    clitrans-git
+    yazi
 
 # dotfiles
-ADD . /root/dotfiles
+COPY . /root/dotfiles
 RUN ~/dotfiles/install zsh
 SHELL ["/usr/bin/zsh", "-c"]
-RUN ~/dotfiles/install bin git vim tmux bat fd
-
-# rust
-RUN rustup toolchain install nightly --component \
-    rust-std \
-    rustfmt \
-    clippy
+RUN ~/dotfiles/install bin git vim tmux bat fd sdk/rust
 
 # Post-install
 RUN paru -Sc --noconfirm && \
