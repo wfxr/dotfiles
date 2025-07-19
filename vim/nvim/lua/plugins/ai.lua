@@ -1,4 +1,4 @@
----@diagnostic disable: undefined-doc-name
+---@diagnostic disable: undefined-doc-name, missing-fields
 
 return {
   "yetone/avante.nvim",
@@ -7,6 +7,14 @@ return {
   ---@module 'avante'
   ---@type avante.Config
   opts = {
+    input = {
+      provider = "snacks",
+      provider_opts = {
+        -- Additional snacks.input options
+        title = "Avante Input",
+        icon = " ",
+      },
+    },
     provider = "copilot",
     providers = {
       copilot = {
@@ -35,13 +43,12 @@ return {
     --- The below dependencies are optional,
     "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
     "ibhagwan/fzf-lua", -- for file_selector provider fzf
-    "stevearc/dressing.nvim", -- for input provider dressing
     "folke/snacks.nvim", -- for input provider snacks
     "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
     "zbirenbaum/copilot.lua", -- for providers='copilot'
     {
       -- Make sure to set this up properly if you have lazy=true
-      'MeanderingProgrammer/render-markdown.nvim',
+      "MeanderingProgrammer/render-markdown.nvim",
       opts = {
         file_types = { "markdown", "Avante" },
       },
