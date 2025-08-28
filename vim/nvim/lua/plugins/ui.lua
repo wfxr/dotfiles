@@ -37,6 +37,17 @@ return {
     end,
   },
 
+  {
+    "akinsho/bufferline.nvim",
+    -- HACK: remove this workaround after #9 resolved
+    init = function()
+      local bufline = require("catppuccin.groups.integrations.bufferline")
+      function bufline.get()
+        return bufline.get_theme()
+      end
+    end,
+  },
+
   -- lualine
   {
     "nvim-lualine/lualine.nvim",
