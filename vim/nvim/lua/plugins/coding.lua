@@ -167,7 +167,7 @@ return {
   },
 
   {
-    "echasnovski/mini.surround",
+    "nvim-mini/mini.surround",
     opts = {
       -- stylua: ignore start
       mappings = {
