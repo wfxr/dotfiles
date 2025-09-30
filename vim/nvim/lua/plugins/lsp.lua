@@ -175,6 +175,7 @@ return {
     lazy = true,
     opts = function(_, opts)
       return vim.tbl_extend("force", opts, {
+        -- Plugin configuration
         tools = {
           inlay_hints = {
             auto = true,
@@ -184,6 +185,19 @@ return {
             other_hints_prefix = "  󰮺 ",
           },
         },
+        -- LSP configuration
+        server = {
+          default_settings = {
+            -- rust-analyzer language server configuration
+            ["rust-analyzer"] = {
+              procMacro = {
+                enable = true,
+              },
+            },
+          },
+        },
+        -- DAP configuration
+        dap = {},
       })
     end,
   },
