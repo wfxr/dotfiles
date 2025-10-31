@@ -24,31 +24,6 @@ return {
     opts = {
       inlay_hints = { enabled = false },
       -- Automatically format on save
-      capabilities = {
-        textDocument = {
-          foldingRange = {
-            dynamicRegistration = false,
-            lineFoldingOnly = true,
-          },
-          completion = {
-            completionItem = {
-              snippetSupport = true,
-            },
-          },
-          codeAction = {
-            resolveSupport = {
-              properties = vim.list_extend(
-                vim.lsp.protocol.make_client_capabilities().textDocument.codeAction.resolveSupport.properties,
-                {
-                  "documentation",
-                  "detail",
-                  "additionalTextEdits",
-                }
-              ),
-            },
-          },
-        },
-      },
       servers = {
         ["*"] = {
           keys = {
@@ -61,6 +36,31 @@ return {
               has = "codeAction",
               remap = true,
               desc = "Code Action",
+            },
+          },
+          capabilities = {
+            textDocument = {
+              foldingRange = {
+                dynamicRegistration = false,
+                lineFoldingOnly = true,
+              },
+              completion = {
+                completionItem = {
+                  snippetSupport = true,
+                },
+              },
+              codeAction = {
+                resolveSupport = {
+                  properties = vim.list_extend(
+                    vim.lsp.protocol.make_client_capabilities().textDocument.codeAction.resolveSupport.properties,
+                    {
+                      "documentation",
+                      "detail",
+                      "additionalTextEdits",
+                    }
+                  ),
+                },
+              },
             },
           },
         },
