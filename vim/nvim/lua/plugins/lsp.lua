@@ -21,14 +21,6 @@ return {
   -- lsp servers
   {
     "neovim/nvim-lspconfig",
-    init = function()
-      local keys = require("lazyvim.plugins.lsp.keymaps").get()
-      -- stylua: ignore start
-      keys[#keys + 1] = { "<c-k>", mode = "i", false }
-      keys[#keys + 1] = { "gI", false }
-      keys[#keys + 1] = { "<M-enter>", "<leader>ca", mode = { "n", "v" }, has = "codeAction", remap = true, desc = "Code Action",  }
-      -- stylua: ignore end
-    end,
     opts = {
       inlay_hints = { enabled = false },
       -- Automatically format on save
@@ -58,6 +50,20 @@ return {
         },
       },
       servers = {
+        ["*"] = {
+          keys = {
+            -- { "<c-k>", mode = "i", false },
+            -- { "gI", false },
+            {
+              "<M-enter>",
+              "<leader>ca",
+              mode = { "n", "v" },
+              has = "codeAction",
+              remap = true,
+              desc = "Code Action",
+            },
+          },
+        },
         bashls = {},
         clangd = {},
         dockerls = {},

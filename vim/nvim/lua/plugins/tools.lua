@@ -35,6 +35,7 @@ return {
 
   {
     "nvim-neorg/neorg",
+    enabled = false,
     cmd = { "Neorg" },
     ft = { "norg" },
     dependencies = {

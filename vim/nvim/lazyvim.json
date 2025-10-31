@@ -6,6 +6,7 @@
     "lazyvim.plugins.extras.dap.nlua",
     "lazyvim.plugins.extras.editor.outline",
     "lazyvim.plugins.extras.lang.markdown",
+    "lazyvim.plugins.extras.lang.tex",
     "lazyvim.plugins.extras.lang.toml",
     "lazyvim.plugins.extras.vscode"
   ],
