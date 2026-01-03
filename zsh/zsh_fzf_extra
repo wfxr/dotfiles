@@ -41,8 +41,6 @@ export FZF_DEFAULT_COMMAND
 # 󰅂     󰅁
 FZF_DEFAULT_OPTS="
 --prompt ' '
---pointer ''
---marker '┃'
 --info 'inline:  '
 --border
 --height 80%
