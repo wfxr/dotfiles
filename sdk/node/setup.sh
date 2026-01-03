@@ -19,6 +19,12 @@ if ! command -v fnm &>/dev/null; then
     fnm completions --shell zsh > "$HOME/.config/zsh/completions/_fnm"
 fi
 
+eval "$(fnm env)"
+
 info "install node..."
-fnm install v22.4.1
-fnm use v22.4.1
+fnm install v24.12.0
+
+fnm use v24.12.0
+
+# add this line into bashrc or zshrc
+# eval "$(fnm env --use-on-cd --shell zsh)"
