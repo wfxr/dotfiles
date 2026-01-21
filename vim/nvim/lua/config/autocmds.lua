@@ -50,7 +50,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 vim.api.nvim_create_autocmd({ "FileType" }, {
   group = augroup("disable_diagnostics"),
   pattern = { "markdown" },
-  callback = function()
-    vim.diagnostic.enable(false)
+  callback = function(event)
+    vim.diagnostic.enable(false, { bufnr = event.buf })
   end,
 })

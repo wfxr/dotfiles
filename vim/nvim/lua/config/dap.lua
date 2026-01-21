@@ -61,11 +61,14 @@ local function list_go_tests_in_buf(bufnr)
     return {}
   end
 
-  local query = vim.treesitter.query.parse("go", [[
+  local query = vim.treesitter.query.parse(
+    "go",
+    [[
     (function_declaration
       name: (identifier) @name
       parameters: (parameter_list) @params)
-  ]])
+  ]]
+  )
 
   local tests, seen = {}, {}
   for id, node in query:iter_captures(trees[1]:root(), bufnr, 0, -1) do

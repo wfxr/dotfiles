@@ -1,12 +1,6 @@
 ---@diagnostic disable: missing-fields
 
 return {
-  {
-    "smjonas/inc-rename.nvim",
-    cmd = "IncRename",
-    config = true,
-  },
-
   -- better increase/descrease
   {
     enabled = false,
@@ -84,10 +78,6 @@ return {
   },
 
   {
-    "gbprod/yanky.nvim",
-  },
-
-  {
     "zbirenbaum/copilot.lua",
     enabled = true,
     cmd = "Copilot",
@@ -128,7 +118,7 @@ return {
           if cs.is_visible() then
             cs.accept_word()
           else
-            vim.api.nvim_input("<S-Right>")
+            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<S-Right>", true, false, true), "n", false)
           end
         end,
         mode = "i",
@@ -141,7 +131,7 @@ return {
           if cs.is_visible() then
             cs.accept_line()
           else
-            vim.api.nvim_input("<End>")
+            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<End>", true, false, true), "n", false)
           end
         end,
         mode = "i",
@@ -154,7 +144,8 @@ return {
           if cs.is_visible() then
             cs.accept()
           else
-            vim.api.nvim_input("<M-Enter>")
+            -- Pass through without triggering this mapping again.
+            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<M-Enter>", true, false, true), "n", false)
           end
         end,
         mode = "i",

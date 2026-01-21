@@ -35,12 +35,7 @@ keymap('n', '<A-l>', '<C-w>l', { noremap = true, desc = "Move to right window" }
 keymap('n', '<A-o>', '<c-w><c-p>', { noremap = true, desc = "Go to previous window" })
 
 -- Extra readline-style keymaps
-keymap('i', '<C-a>',  '<Home>',  { noremap = true, desc = "Move to start of line" })
-keymap('i', '<C-e>',  '<End>',   { noremap = true, desc = "Move to end of line" })
 keymap('i', '<C-h>', '<BS>',    { noremap = true, desc = "Delete previous character" })
-keymap('i', '<C-d>', '<Del>',   { noremap = true, desc = "Delete next character" })
-keymap('i', '<C-f>', '<Right>', { noremap = true, desc = "Move right" })
-keymap('i', '<C-b>', '<Left>',  { noremap = true, desc = "Move left" })
 -- In insert mode, pressing Ctrl-O switches to normal mode for one command, then switches back to insert mode when the command is finished.
 keymap('i', '<C-k>', '<C-o>D',   { noremap = true, desc = "Delete to start of line" })
 keymap('i', '<C-u>', '<Esc>v0c', { noremap = true, desc = "Delete to start of line" })

@@ -11,11 +11,15 @@ return {
         enabled = true,
         win = {
           keys = {
-            i_del_word = { "<C-w>", "<cmd>normal! diw<cr><right>", mode = "i", expr = true },
-            i_esc = { "<Esc>", "close", mode = "i", expr = true },
+            -- Keep close/cancel behavior consistent with other snacks pickers.
+            i_esc = { "<esc>", { "cmp_close", "cancel" }, mode = "i", expr = true },
+            i_ctrl_w = { "<c-w>", "<c-s-w>", mode = "i", expr = true },
           },
         },
       },
+      -- Replace netrw since we're standardizing on snacks for file browsing.
+      explorer = { replace_netrw = true },
+      gh = { enabled = true },
       gitbrowse = { enabled = true },
       dim = {
         animate = {
@@ -26,6 +30,23 @@ return {
             total = 150, -- maximum duration
           },
         },
+      },
+      scroll = {
+        animate = {
+          duration = { step = 15, total = 150 },
+          easing = "linear",
+        },
+        animate_repeat = {
+          delay = 100,
+          duration = { step = 5, total = 50 },
+          easing = "linear",
+        },
+        -- what buffers to animate
+        filter = function(buf)
+          return vim.g.snacks_scroll ~= false
+            and vim.b[buf].snacks_scroll ~= false
+            and vim.bo[buf].buftype ~= "terminal"
+        end,
       },
       dashboard = {
         enabled = true,
@@ -88,19 +109,6 @@ return {
             total = 150, -- maximum duration
           },
         },
-        scroll = {
-          animate = {
-            duration = { step = 15, total = 150 },
-            easing = "linear",
-          },
-          spamming = 10, -- threshold for spamming detection
-          -- what buffers to animate
-          filter = function(buf)
-            return vim.g.snacks_scroll ~= false
-              and vim.b[buf].snacks_scroll ~= false
-              and vim.bo[buf].buftype ~= "terminal"
-          end,
-        },
         -- filter for buffers to enable indent guides
         filter = function(buf)
           local excluded_filetypes = {
@@ -138,6 +146,8 @@ return {
               },
             },
           },
+          gh_issue = {},
+          gh_pr = {},
         },
       },
     },
@@ -149,6 +159,12 @@ return {
       { "]]",              function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference", mode = { "n", "t" } },
       { "[[",              function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference", mode = { "n", "t" } },
       { "<c-n>",           function() Snacks.explorer({ cwd = LazyVim.root() }) end, desc = "File Explorer (root dir)" },
+      { "<leader>-",       function() Snacks.explorer.reveal() end, desc = "File Explorer (current file)" },
+      { "<leader>gd",      function() Snacks.picker.git_diff({ group = true }) end, desc = "Git Diff" },
+      { "<leader>gi",      function() Snacks.picker.gh_issue() end, desc = "GitHub Issues (open)" },
+      { "<leader>gI",      function() Snacks.picker.gh_issue({ state = "all" }) end, desc = "GitHub Issues (all)" },
+      { "<leader>gp",      function() Snacks.picker.gh_pr() end, desc = "GitHub Pull Requests (open)" },
+      { "<leader>gP",      function() Snacks.picker.gh_pr({ state = "all" }) end, desc = "GitHub Pull Requests (all)" },
       -- stylua: ignore end
     },
   },

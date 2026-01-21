@@ -16,41 +16,6 @@ return {
   },
 
   {
-    "nvim-neo-tree/neo-tree.nvim",
-    enabled = false, -- Replaced by folke's snacks explorer
-    keys = {
-      { "<c-n>", "<leader>fe", desc = "Explorer NeoTree (root dir)", remap = true },
-    },
-    opts = {
-      popup_border_style = "rounded",
-      window = {
-        width = 30,
-        side = "left",
-        mappings = {
-          ["<c-x>"] = "open_split",
-          ["<c-v>"] = "open_vsplit",
-        },
-      },
-      default_component_configs = {
-        git_status = {
-          symbols = {
-            -- stylua: ignore start
-            added     = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
-            modified  = "", -- or "", but this is redundant info if you use git_status_colors on the name
-            deleted   = "", -- this can only be used in the git_status source
-            renamed   = "", -- this can only be used in the git_status source
-            conflict  = "",
-            unstaged  = "",
-            staged    = "",
-            untracked = "󰄱", --  󰄱
-            ignored   = "",
-          },
-        },
-      },
-    },
-  },
-
-  {
     "nvim-mini/mini.align",
     opts = {
       mappings = {
@@ -108,50 +73,29 @@ return {
   },
 
   {
+    -- Override the LazyVim markdown extra to disable browser preview in SSH/container.
     "iamcco/markdown-preview.nvim",
     enabled = not vim.env.SSH_CLIENT and vim.fn.filereadable("/.dockerenv") == 0,
-    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    ft = { "markdown" },
-    build = "cd app && yarn install",
-    keys = {
-      {
-        "<leader>cp",
-        ft = "markdown",
-        "<cmd>MarkdownPreviewToggle<cr>",
-        desc = "Markdown Preview",
-      },
-    },
-    config = function()
-      vim.cmd([[do FileType]])
-    end,
-  },
-
-  {
-    "toppair/peek.nvim",
-    ft = { "markdown" },
-    build = "deno task --quiet build:fast",
-    enabled = false and (not vim.env.SSH_CLIENT and vim.fn.filereadable("/.dockerenv") == 0),
-    keys = {
-      {
-        "<leader>cp",
-        function()
-          require("peek").open()
-        end,
-        desc = "Markdown Preview",
-      },
-    },
   },
 
   {
     "MeanderingProgrammer/render-markdown.nvim",
-    opts = {
-      code = {
+    -- Extend the LazyVim markdown extra: render in Avante buffers too.
+    ft = { "markdown", "norg", "rmd", "org", "codecompanion", "Avante" },
+    opts = function(_, opts)
+      opts = opts or {}
+      opts.file_types = opts.file_types or { "markdown", "norg", "rmd", "org", "codecompanion" }
+      if not vim.tbl_contains(opts.file_types, "Avante") then
+        table.insert(opts.file_types, "Avante")
+      end
+      opts.code = vim.tbl_deep_extend("force", opts.code or {}, {
         width = "block",
         position = "left",
         right_pad = 1,
         left_pad = 1,
-      },
-    },
+      })
+      return opts
+    end,
   },
 
   {

@@ -23,24 +23,31 @@ return {
     "folke/trouble.nvim",
     optional = true,
     specs = {
-      "folke/snacks.nvim",
-      opts = function(_, opts)
-        return vim.tbl_deep_extend("force", opts or {}, {
-          picker = {
-            actions = require("trouble.sources.snacks").actions,
-            win = {
-              input = {
-                keys = {
-                  ["<c-t>"] = {
-                    "trouble_open",
-                    mode = { "n", "i" },
-                  },
-                },
-              },
+      {
+        "folke/snacks.nvim",
+        opts = function(_, opts)
+          opts = opts or {}
+          opts.picker = opts.picker or {}
+
+          -- Avoid eager-loading trouble during snacks setup. Lazy-load it when the action runs.
+          opts.picker.actions = vim.tbl_deep_extend("force", opts.picker.actions or {}, {
+            trouble_open = {
+              action = function(picker)
+                require("trouble.sources.snacks").open(picker, { type = "smart" })
+              end,
+              desc = "smart-open-with-trouble",
             },
-          },
-        })
-      end,
+          })
+
+          opts.picker.win = opts.picker.win or {}
+          opts.picker.win.input = opts.picker.win.input or {}
+          opts.picker.win.input.keys = vim.tbl_deep_extend("force", opts.picker.win.input.keys or {}, {
+            ["<c-t>"] = { "trouble_open", mode = { "n", "i" } },
+          })
+
+          return opts
+        end,
+      },
     },
   },
 
@@ -137,8 +144,6 @@ return {
         },
         extensions = {
           "quickfix",
-          "nvim-tree",
-          "toggleterm",
           "fugitive",
         },
       }

@@ -1,16 +1,6 @@
 ---@diagnostic disable: missing-fields
 
 return {
-  { "pwntester/octo.nvim", opts = {}, cmd = "Octo" },
-
-  -- better diffing
-  {
-    "sindrets/diffview.nvim",
-    cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
-    opts = {},
-    keys = { { "<leader>gd", "<cmd>DiffviewOpen<cr>", desc = "DiffView" } },
-  },
-
   {
     "ojroques/nvim-osc52",
     config = function()
@@ -22,15 +12,7 @@ return {
 
   {
     "tpope/vim-fugitive",
-    Event = "VeryLazy",
-  },
-
-  {
-    "NvChad/nvim-colorizer.lua",
-    ft = { "vim", "lua", "tmux", "zsh", "html", "css", "sass", "typescript", "javascript" },
-    config = function()
-      require("colorizer").setup({})
-    end,
+    event = "VeryLazy",
   },
 
   {
@@ -79,81 +61,5 @@ return {
         },
       })
     end,
-  },
-
-  {
-    "stevearc/oil.nvim",
-    cmd = { "Oil" },
-    opts = {
-      keymaps = {
-        ["g?"] = "actions.show_help",
-        ["<CR>"] = "actions.select",
-        ["<C-s>"] = "actions.select_vsplit",
-        ["<C-h>"] = "actions.select_split",
-        ["<C-t>"] = "actions.select_tab",
-        ["<C-p>"] = "actions.preview",
-        -- ["<C-c>"] = "actions.close",
-        ["<C-l>"] = "actions.refresh",
-        ["<backspace>"] = "actions.parent",
-        ["_"] = "actions.open_cwd",
-        ["`"] = "actions.cd",
-        ["~"] = "actions.tcd",
-        ["gs"] = "actions.change_sort",
-        ["gx"] = "actions.open_external",
-        ["g."] = "actions.toggle_hidden",
-        ["g\\"] = "actions.toggle_trash",
-      },
-    },
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-  },
-
-  {
-    "ibhagwan/fzf-lua",
-    enabled = false, -- Replaced by folke's snack picker
-    opts = function(_, _opts)
-      local config = require("fzf-lua.config")
-      local actions = require("fzf-lua.actions")
-      config.defaults.actions.files["ctrl-x"] = actions.file_split
-      config.defaults.actions.files["ctrl-v"] = actions.file_vsplit
-
-      config.defaults.keymap.fzf["alt-d"] = "preview-half-page-down"
-      config.defaults.keymap.fzf["alt-u"] = "preview-half-page-up"
-
-      config.defaults.keymap.builtin["<a-d>"] = "preview-half-page-down"
-      config.defaults.keymap.builtin["<a-u>"] = "preview-half-page-up"
-      config.defaults.keymap.builtin["<a-j>"] = "preview-down"
-      config.defaults.keymap.builtin["<a-k>"] = "preview-up"
-      config.defaults.keymap.builtin["<a-w>"] = "toggle-preview-wrap"
-      config.defaults.keymap.builtin["?"] = "toggle-preview"
-    end,
-  },
-
-  {
-    "mikavilpas/yazi.nvim",
-    event = "VeryLazy",
-    keys = {
-      {
-        desc = "Open yazi at the current file",
-        "<leader>-",
-        "<cmd>Yazi<cr>",
-      },
-      {
-        desc = "Open the file manager in nvim's working directory",
-        "<leader>cw",
-        "<cmd>Yazi cwd<cr>",
-      },
-      {
-        desc = "Resume the last yazi session",
-        "<c-up>",
-        "<cmd>Yazi toggle<cr>",
-      },
-    },
-    opts = {
-      -- replace netrw with yazi
-      open_for_directories = true,
-      keymaps = {
-        show_help = "<f1>",
-      },
-    },
   },
 }
