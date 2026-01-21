@@ -9,6 +9,7 @@ return {
 
   -- better increase/descrease
   {
+    enabled = false,
     "monaqa/dial.nvim",
     -- stylua: ignore
     keys = {
@@ -33,11 +34,7 @@ return {
   {
     "saghen/blink.cmp",
     lazy = false, -- lazy loading handled internally
-    -- optional: provides snippets for the snippet source
     dependencies = "rafamadriz/friendly-snippets",
-
-    ---@module 'blink.cmp'
-    ---@type blink.cmp.Config
     opts = {
       -- 'default' for mappings similar to built-in completion
       -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)

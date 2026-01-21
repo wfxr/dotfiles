@@ -29,6 +29,7 @@ return {
           keys = {
             -- { "<c-k>", mode = "i", false },
             -- { "gI", false },
+            { "K", false },
             {
               "<M-enter>",
               "<leader>ca",
@@ -68,7 +69,6 @@ return {
         clangd = {},
         dockerls = {},
         gopls = {},
-        rust_analyzer = {},
         yamlls = {
           settings = {
             yaml = {

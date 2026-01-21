@@ -17,6 +17,7 @@ return {
 
   {
     "nvim-neo-tree/neo-tree.nvim",
+    enabled = false, -- Replaced by folke's snacks explorer
     keys = {
       { "<c-n>", "<leader>fe", desc = "Explorer NeoTree (root dir)", remap = true },
     },

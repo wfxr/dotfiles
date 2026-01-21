@@ -19,6 +19,31 @@ return {
     end,
   },
 
+  {
+    "folke/trouble.nvim",
+    optional = true,
+    specs = {
+      "folke/snacks.nvim",
+      opts = function(_, opts)
+        return vim.tbl_deep_extend("force", opts or {}, {
+          picker = {
+            actions = require("trouble.sources.snacks").actions,
+            win = {
+              input = {
+                keys = {
+                  ["<c-t>"] = {
+                    "trouble_open",
+                    mode = { "n", "i" },
+                  },
+                },
+              },
+            },
+          },
+        })
+      end,
+    },
+  },
+
   -- auto-resize windows
   {
     "anuvyklack/windows.nvim",
@@ -27,7 +52,7 @@ return {
       { "anuvyklack/middleclass" },
       { "anuvyklack/animation.nvim", enabled = false },
     },
-    keys = { { "<C-w><C-w>", "<cmd>WindowsMaximize<cr>", desc = "Zoom" } },
+    keys = { { "<a-m>", "<cmd>WindowsMaximize<cr>", desc = "Zoom" } },
     config = function()
       vim.o.winwidth = 5
       vim.o.equalalways = false

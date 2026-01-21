@@ -109,6 +109,7 @@ return {
 
   {
     "ibhagwan/fzf-lua",
+    enabled = false, -- Replaced by folke's snack picker
     opts = function(_, _opts)
       local config = require("fzf-lua.config")
       local actions = require("fzf-lua.actions")
@@ -145,18 +146,6 @@ return {
         desc = "Resume the last yazi session",
         "<c-up>",
         "<cmd>Yazi toggle<cr>",
-      },
-      {
-        "<leader>sp",
-        function()
-          local dirs = { "~/.config/nvim" }
-          require("fzf-lua").live_grep({
-            filespec = "-- " .. table.concat(vim.tbl_values(dirs), " "),
-            search = "/",
-            formatter = "path.filename_first",
-          })
-        end,
-        desc = "Search Plugin Spec",
       },
     },
     opts = {

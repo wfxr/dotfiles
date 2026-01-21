@@ -30,7 +30,6 @@ return {
       dashboard = {
         enabled = true,
         preset = {
-          pick = nil,
           header = [[
                                                        
                                                        
@@ -117,40 +116,40 @@ return {
             and not excluded_filetypes[bo.filetype]
         end,
       },
+      picker = {
+        win = {
+          input = {
+            keys = {
+              ["<Esc>"] = { "close", mode = { "n", "i" } },
+              ["<a-j>"] = { "preview_scroll_down", mode = { "i", "n" } },
+              ["<a-k>"] = { "preview_scroll_up", mode = { "i", "n" } },
+            },
+          },
+        },
+        sources = {
+          explorer = {
+            win = {
+              list = {
+                keys = {
+                  ["<c-c>"] = false,
+                  ["<c-n>"] = false,
+                  ["<c-p>"] = false,
+                },
+              },
+            },
+          },
+        },
+      },
     },
     keys = {
       -- stylua: ignore start
-      { "<leader>un", function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications" },
-      { "<leader>bd", function() Snacks.bufdelete() end, desc = "Delete Buffer" },
-      { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
-      { "<leader>gb", function() Snacks.git.blame_line() end, desc = "Git Blame Line" },
-      { "<leader>gB", function() Snacks.gitbrowse() end, desc = "Git Browse" },
-      { "<leader>gf", function() Snacks.lazygit.log_file() end, desc = "Lazygit Current File History" },
-      { "<leader>gl", function() Snacks.lazygit.log() end, desc = "Lazygit Log (cwd)" },
-      { "<leader>cR", function() Snacks.rename.rename_file() end, desc = "Rename File" },
-      { "<c-\\>",     function() Snacks.terminal() end, desc = "Toggle Terminal" },
-      { "<c-\\>",     function() Snacks.terminal() end, desc = "which_key_ignore", mode = {"t"} },
-      { "]]",         function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference", mode = { "n", "t" } },
-      { "[[",         function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference", mode = { "n", "t" } },
+      { "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart Open" },
+      { "<c-\\>",          function() Snacks.terminal() end, desc = "Toggle Terminal" },
+      { "<c-\\>",          function() Snacks.terminal() end, desc = "which_key_ignore", mode = {"t"} },
+      { "]]",              function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference", mode = { "n", "t" } },
+      { "[[",              function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference", mode = { "n", "t" } },
+      { "<c-n>",           function() Snacks.explorer({ cwd = LazyVim.root() }) end, desc = "File Explorer (root dir)" },
       -- stylua: ignore end
-      {
-        "<leader>N",
-        desc = "Neovim News",
-        function()
-          Snacks.win({
-            file = vim.api.nvim_get_runtime_file("doc/news.txt", false)[1],
-            width = 0.6,
-            height = 0.6,
-            wo = {
-              spell = false,
-              wrap = false,
-              signcolumn = "yes",
-              statuscolumn = " ",
-              conceallevel = 3,
-            },
-          })
-        end,
-      },
     },
   },
 }
