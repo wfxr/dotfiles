@@ -2,6 +2,7 @@
     "id": "botbar",
     "name": "botbar",
     "layer": "bottom",
+    "start_hidden": true,
     "position": "bottom",
     "mod": "dock",
     "height": 40,
