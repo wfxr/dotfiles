@@ -1,52 +1,30 @@
 ---@diagnostic disable: undefined-doc-name, missing-fields
 
 return {
-  "yetone/avante.nvim",
-  event = "VeryLazy",
-  version = false, -- Never set this value to "*"! Never!
-  ---@module 'avante'
-  ---@type avante.Config
-  opts = {
-    input = {
-      provider = "snacks",
-      provider_opts = {
-        -- Additional snacks.input options
-        title = "Avante Input",
-        icon = " ",
+  {
+    "folke/sidekick.nvim",
+    keys = {
+      {
+        "<m-.>",
+        function()
+          require("sidekick.cli").toggle()
+        end,
+        desc = "Sidekick Toggle",
+        mode = { "n", "t", "i", "x" },
       },
     },
-    -- Use snacks picker for Avante selectors (file selector / model selector / history selector).
-    selector = {
-      provider = "snacks",
-    },
-    provider = "copilot",
-    providers = {
-      copilot = {
-        -- model = "gpt-4.1",
-        model = "claude-3.5-sonnet",
-        proxy = nil, -- [protocol://]host[:port] Use this proxy
-        allow_insecure = true, -- Allow insecure server connections
-        timeout = 30000, -- Timeout in milliseconds
-        context_window = 128000, -- Number of tokens to send to the model for context
-        extra_request_body = {
-          temperature = 0.75,
-          max_tokens = 20480,
+    opts = {
+      cli = {
+        mux = {
+          enabled = true,
+          backend = "tmux",
+        },
+        tools = {
+          debug = {
+            cmd = { "bash", "-c", "env | sort | bat -l env" },
+          },
         },
       },
-      deepseek = {
-        __inherited_from = "openai",
-        api_key_name = "DEEPSEEK_API_KEY",
-        endpoint = "https://api.deepseek.com",
-        model = "deepseek-coder",
-      },
     },
-  },
-  dependencies = {
-    "nvim-lua/plenary.nvim",
-    "MunifTanjim/nui.nvim",
-    --- The below dependencies are optional,
-    "folke/snacks.nvim", -- for input provider snacks
-    "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-    "zbirenbaum/copilot.lua", -- for providers='copilot'
   },
 }
