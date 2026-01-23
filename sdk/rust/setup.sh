@@ -21,6 +21,7 @@ rustup completions zsh cargo > ~/.config/zsh/completions/_cargo
 # cargo install --locked cargo-update # for checking and applying updates to installed executables
 cargo install --locked cargo-expand
 cargo install --locked cargo-udeps
+cargo install --locked cargo-nextest
 cargo install --locked bacon --features "clipboard sound"
 
 # perf binary size
