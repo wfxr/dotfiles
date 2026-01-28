@@ -1,2 +1,3 @@
-*.pvt filter=git-crypt diff=git-crypt
-/zsh/zsh_secret filter=git-crypt diff=git-crypt
+*.pvt                filter=git-crypt diff=git-crypt
+/zsh/zsh_secret      filter=git-crypt diff=git-crypt
+/gpg/git-signing.gpg filter=git-crypt diff=git-crypt
