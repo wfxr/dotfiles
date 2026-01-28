@@ -22,3 +22,4 @@ pkill dirmngr || true # restart to reload dirmngr.conf
 # gpg --keyserver keys.gnupg.net --recv-keys CCAF35548C65530F
 
 gpg --allow-secret-key-import --import ./secring.gpg
+gpg --allow-secret-key-import --import ./git-signing.gpg
