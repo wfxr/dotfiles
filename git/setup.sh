@@ -57,7 +57,7 @@ git config --global alias.lock '!git-crypt lock'
 git config --global alias.unlock '!git-crypt unlock'
 
 # signing
-git config --global user.signingkey wenxuangm@gmail.com
+git config --global user.signingkey 'Wenxuan Zhang (git signing)'
 git config --global commit.gpgsign true
 git config --global format.signoff true
 
