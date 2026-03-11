@@ -82,6 +82,7 @@ alias gstu='git status -uno'
 alias gs='git stash'
 alias gsp='git stash pop'
 alias gr='git rebase'
+alias gw='git worktree'
 
 alias mycli='LESS="-S $LESS" mycli'
 
