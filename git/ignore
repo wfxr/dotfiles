@@ -1,0 +1,15 @@
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Editors
+*~
+.*.sw?
+*.sw?
+.direnv/
+
+# Git worktrees
+.wt/

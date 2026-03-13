@@ -4,11 +4,14 @@ IFS=$'\n\t'
 
 SDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) && cd "$SDIR"
 
+ln -sf "$SDIR/ignore" ~/.gitignore
+
 git config --global user.name "Wenxuan Zhang"
 git config --global user.email "wenxuangm@gmail.com"
 git config --global github.user "wfxr"
 git config --global credential.username "wfxr"
 git config --global color.ui true
+git config --global core.excludesfile ~/.gitignore
 
 # This makes sure that push pushes only the current branch, and pushes it to the
 # same branch pull would pull from
