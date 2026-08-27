@@ -8,16 +8,6 @@ fi
 
 bindkey -e
 
-which_term(){
-    ps -p $(ps -p $$ -o ppid=) -o args=
-}
-
-if [[ $(which_term) == *"kitty" ]]; then
-    export TERM="xterm-kitty"
-else
-    export TERM=xterm-256color
-fi
-
 HISTFILE="$HOME/.zsh_history" # History file
 HISTSIZE=100000               # History size in memory
 SAVEHIST=1000000              # The number of histsize

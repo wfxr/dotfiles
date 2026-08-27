@@ -69,7 +69,7 @@ inline = '''
 
 [plugins.node]
 inline = '''
-(( $+commands[fnm] )) && zsh-defer zi::cache::cmd 'fnm env'
+(( $+commands[fnm] )) && eval "$(fnm env --use-on-cd --shell zsh)"
 '''
 
 [plugins.compinit]
