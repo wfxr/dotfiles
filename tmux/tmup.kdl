@@ -1,0 +1,51 @@
+plugin "tmux-plugins/tmux-sensible"
+plugin "tmux-plugins/tmux-resurrect"
+plugin "tmux-plugins/tmux-yank"
+plugin "nhdaly/tmux-better-mouse-mode"
+plugin "tmux-plugins/tmux-copycat"
+
+plugin "wfxr/tmux-fzf"
+plugin "wfxr/tmux-fzf-url" opt-prefix="fzf-url-" {
+    opt "history-limit" "2000"
+    opt "sort-by" "recency"
+}
+
+// Note: Change the plugin order carefully! (TODO: explain why)
+// +---+---+---+---+---------------------+---+---+---+---+
+// | A | B | C | D |    ...windows...    | W | X | Y | Z |
+// +---+---+---+---+---------------------+---+---+---+---+
+plugin "wfxr/tmux-power" opt-prefix="tmux_power_" {
+    opt "theme" "color6" // cyan from terminal colorscheme
+    opt "g0" "#303446"
+    opt "g1" "#414559"
+    opt "g2" "#51576d"
+    opt "g3" "#626880"
+    opt "g4" "#737994"
+    opt "left_a"  "#{USER}@#h"
+    opt "left_b"  "#S"
+    opt "left_c"  "󰕒 #{upload_speed}"    //     󰕒
+    opt "right_x" "󰇚 #{download_speed}"  //     󰇚
+    opt "right_y" "%T"
+    opt "right_z" "%F"
+    opt "right_arrow_icon"     "" //   
+    opt "left_arrow_icon"      "" //   
+    opt "prefix_highlight_pos" "R"
+}
+
+plugin "tmux-plugins/tmux-prefix-highlight" opt-prefix="prefix_highlight_" {
+    opt "prefix_prompt" "Wait"
+    opt "copy_prompt" "Copy"
+    opt "sync_prompt" "Sync"
+}
+
+plugin "wfxr/tmux-net-speed"
+plugin "wfxr/tmux-vertical-zoom"
+
+plugin "Morantron/tmux-fingers" \
+    enabled=#"[ -z "$SSH_CLIENT" ] && [ ! -f /.dockerenv ]"# \
+    opt-prefix="fingers-" {
+    opt "key" "f"
+    opt "pattern-1" #"([-dl\.][rwx-]{9}.*\s+\d{2}:\d{2}\s+([^[:ascii:]]\s+)?)(?<match>\S+)"#
+    opt "pattern-2" #"\b[\w:~]{6,}(?=\s*\()"#
+    opt "pattern-3" "`(?<match>.+)`"
+}

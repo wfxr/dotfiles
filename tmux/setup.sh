@@ -2,12 +2,20 @@
 
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) && cd "$SCRIPT_DIR" || return 1
 
-ln -sf "$SCRIPT_DIR/tmux.conf" ~/.tmux.conf
+mkdir -p "$HOME/.config/tmux"
+ln -sf "$SCRIPT_DIR/tmux.conf" "$HOME/.config/tmux/tmux.conf"
 
 [[ $(uname) == *Darwin* ]] && ln -sf "$SCRIPT_DIR/tmux_osx.conf" ~/.tmux_osx.conf
 
-# tpm
-[[ ! -a ~/.tmux/plugins/tpm ]] && git clone --depth=1 https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+# tmup
+ln -sf "$SCRIPT_DIR/tmup.kdl" "$HOME/.config/tmux/tmup.kdl"
 
 # install plugins
-~/.tmux/plugins/tpm/scripts/install_plugins.sh
+if command -v tmup >/dev/null 2>&1; then
+    TMUP_BIN=$(command -v tmup)
+else
+    curl --proto '=https' --tlsv1.2 -LsSf https://raw.githubusercontent.com/wfxr/tmup/main/install.sh | sh
+    TMUP_BIN="$HOME/.local/bin/tmup"
+fi
+
+"$TMUP_BIN" install

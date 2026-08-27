@@ -64,7 +64,7 @@ alias zshmisc='vim_linked ~/.config/zsh/zsh_misc'
 alias zshlocal='vim ~/.config/zsh/zsh_local'
 alias zshenvlocal='vim ~/.config/zsh/zshenv_local'
 alias zshsec='vim_linked ~/.config/zsh/zsh_secret'
-alias tmuxconf='vim_linked ~/.tmux.conf'
+alias tmuxconf='vim_linked ~/.config/tmux/tmux.conf'
 
 alias csort='LC_ALL=C sort'
 
