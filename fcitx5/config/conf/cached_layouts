@@ -413,6 +413,11 @@ Description="键盘 - 葡萄牙语（巴西） - 葡萄牙语（巴西，IBM/联
 Language=pt
 Label="br (thinkpad)"
 
+[keyboard-br-thinkpad_nodeadkeys]
+Description="键盘 - 葡萄牙语（巴西） - 葡萄牙语（巴西，IBM/联想 ThinkPad，无死键）"
+Language=pt
+Label="br (thinkpad_nodeadkeys)"
+
 [keyboard-br-nativo-epo]
 Description="键盘 - 葡萄牙语（巴西） - 世界语（巴西，Nativo）"
 Language=eo
@@ -528,6 +533,11 @@ Description="键盘 - 波兰语 - 波兰语（Colemak-DH ISO）"
 Language=pl
 Label="pl (colemak_dh)"
 
+[keyboard-pl-colemak_dh_ortho]
+Description="键盘 - 波兰语 - Polish (Colemak-DH Ortholinear)"
+Language=pl
+Label="pl (colemak_dh_ortho)"
+
 [keyboard-pl-sun_type6]
 Description="键盘 - 波兰语 - 波兰语（Sun Type 6/7）"
 Language=pl
@@ -542,6 +552,11 @@ Label="pl (glagolica)"
 Description="键盘 - 波兰语 - 波兰语（Lefty）"
 Language=pl
 Label="pl (lefty)"
+
+[keyboard-pl-slaviature]
+Description="键盘 - 波兰语 - 波兰语（斯拉夫语音标）"
+Language=pl
+Label="pl (slaviature)"
 
 [keyboard-trans]
 Description="键盘 - 国际音标"
@@ -1477,6 +1492,11 @@ Label=my
 Description="键盘 - 缅甸语 - 缅甸语（Zawgyi）"
 Language=my
 Label="my-zwg (zawgyi)"
+
+[keyboard-mm-mara]
+Description="键盘 - 缅甸语 - 马拉语"
+Language=mrh
+Label="mrh (mara)"
 
 [keyboard-mm-mnw]
 Description="键盘 - 缅甸语 - 孟语"
@@ -3502,6 +3522,11 @@ Label="ml (mal_enhanced)"
 Description="键盘 - 印度语言 - 马拉雅拉姆语（Poorna，扩展 InScript）"
 Language=ml
 Label="ml (mal_poorna)"
+
+[keyboard-in-mara]
+Description="键盘 - 印度语言 - 马拉语"
+Language=mrh
+Label="mrh (mara)"
 
 [keyboard-in-mni]
 Description="键盘 - 印度语言 - 曼尼普尔语（梅泰）"
