@@ -93,6 +93,7 @@ PATH="$HOME/.pyenv/shims:$PYENV_ROOT/bin:$PATH"
 
 # node
 export PATH="$PATH:$HOME/.yarn/bin"
+export PATH="$PATH:$HOME/.npm-global/bin"
 
 # scala coursier
 export PATH="$PATH:$HOME/.local/share/coursier/bin"
