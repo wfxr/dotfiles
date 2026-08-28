@@ -1,0 +1,11 @@
+{
+  "notifications": {
+    "enabled": true
+  },
+  "theme": {
+    "base": "catppuccin-mocha",
+    "colors": {
+      "surface": "#45475A"
+    }
+  }
+}
