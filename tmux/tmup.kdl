@@ -1,10 +1,10 @@
-plugin "tmux-plugins/tmux-sensible"
-plugin "tmux-plugins/tmux-resurrect"
-plugin "tmux-plugins/tmux-yank"
-plugin "nhdaly/tmux-better-mouse-mode"
-plugin "tmux-plugins/tmux-copycat"
+plug "tmux-plugins/tmux-sensible"
+plug "tmux-plugins/tmux-resurrect"
+plug "tmux-plugins/tmux-yank"
+plug "nhdaly/tmux-better-mouse-mode"
+plug "tmux-plugins/tmux-copycat"
 
-plugin "wfxr/tmux-fzf" {
+plug "wfxr/tmux-fzf" {
     env "TMUX_FZF_LAUNCH_KEY" "C-f"
     env "TMUX_FZF_OPTIONS" "-p -w 62% -h 38% -m --border=none"
     if #"[ -n "$TMUX_REMOTE" ]"# {
@@ -15,7 +15,7 @@ plugin "wfxr/tmux-fzf" {
     }
 }
 
-plugin "wfxr/tmux-fzf-url" opt-prefix="fzf-url-" {
+plug "wfxr/tmux-fzf-url" opt-prefix="fzf-url-" {
     opt "history-limit" "2000"
     opt "sort-by" "recency"
 }
@@ -24,7 +24,7 @@ plugin "wfxr/tmux-fzf-url" opt-prefix="fzf-url-" {
 // +---+---+---+---+---------------------+---+---+---+---+
 // | A | B | C | D |    ...windows...    | W | X | Y | Z |
 // +---+---+---+---+---------------------+---+---+---+---+
-plugin "wfxr/tmux-power" opt-prefix="tmux_power_" {
+plug "wfxr/tmux-power" opt-prefix="tmux_power_" {
     opt "theme" "color6" // cyan from terminal colorscheme
     opt "g0" "#303446"
     opt "g1" "#414559"
@@ -42,16 +42,16 @@ plugin "wfxr/tmux-power" opt-prefix="tmux_power_" {
     opt "prefix_highlight_pos" "R"
 }
 
-plugin "tmux-plugins/tmux-prefix-highlight" opt-prefix="prefix_highlight_" {
+plug "tmux-plugins/tmux-prefix-highlight" opt-prefix="prefix_highlight_" {
     opt "prefix_prompt" "Wait"
     opt "copy_prompt"   "Copy"
     opt "sync_prompt"   "Sync"
 }
 
-plugin "wfxr/tmux-net-speed"
-plugin "wfxr/tmux-vertical-zoom"
+plug "wfxr/tmux-net-speed"
+plug "wfxr/tmux-vertical-zoom"
 
-plugin "Morantron/tmux-fingers" enabled=#"[ -z "$TMUX_REMOTE" ]"# opt-prefix="fingers-" {
+plug "Morantron/tmux-fingers" enabled=#"[ -z "$TMUX_REMOTE" ]"# opt-prefix="fingers-" {
     opt "key" "f"
     opt "pattern-1" #"([-dl\.][rwx-]{9}.*\s+\d{2}:\d{2}\s+([^[:ascii:]]\s+)?)(?<match>\S+)"#
     opt "pattern-2" #"\b[\w:~]{6,}(?=\s*\()"#
