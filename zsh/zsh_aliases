@@ -54,17 +54,17 @@ alias pp='pbpaste'
 (( $+commands[lein] )) && alias lrepl='lein repl :connect 59237'
 
 # Edit dotfile in repo
-function vim_linked() { vim "$(readlink "$1")" }
-alias zshrc='vim_linked ~/.zshrc'
-alias zshenv='vim_linked ~/.zshenv'
-alias zshfzf='vim_linked ~/.config/zsh/zsh_fzf_extra'
-alias zshalias='vim_linked ~/.config/zsh/zsh_aliases'
-alias zshcustom='vim_linked ~/.config/zsh/zsh_custom'
-alias zshmisc='vim_linked ~/.config/zsh/zsh_misc'
+alias zshrc='vim ~/.zshrc'
+alias zshenv='vim ~/.zshenv'
+alias zshfzf='vim ~/.config/zsh/zsh_fzf_extra'
+alias zshalias='vim ~/.config/zsh/zsh_aliases'
+alias zshcustom='vim ~/.config/zsh/zsh_custom'
+alias zshmisc='vim ~/.config/zsh/zsh_misc'
 alias zshlocal='vim ~/.config/zsh/zsh_local'
 alias zshenvlocal='vim ~/.config/zsh/zshenv_local'
-alias zshsec='vim_linked ~/.config/zsh/zsh_secret'
-alias tmuxconf='vim_linked ~/.config/tmux/tmux.conf'
+alias zshsec='vim ~/.config/zsh/zsh_secret'
+alias tmuxconf='vim ~/.config/tmux/tmux.conf'
+alias tmuxkdl='vim ~/.config/tmux/tmup.kdl'
 
 alias csort='LC_ALL=C sort'
 
