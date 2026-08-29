@@ -4,7 +4,17 @@ plugin "tmux-plugins/tmux-yank"
 plugin "nhdaly/tmux-better-mouse-mode"
 plugin "tmux-plugins/tmux-copycat"
 
-plugin "wfxr/tmux-fzf"
+plugin "wfxr/tmux-fzf" {
+    env "TMUX_FZF_LAUNCH_KEY" "C-f"
+    env "TMUX_FZF_OPTIONS" "-p -w 62% -h 38% -m --border=none"
+    if #"[ -n "$TMUX_REMOTE" ]"# {
+        bind "M-w" { shell "scripts/session.sh attach" }
+    }
+    else {
+        bind "C-w" { shell "scripts/session.sh attach" }
+    }
+}
+
 plugin "wfxr/tmux-fzf-url" opt-prefix="fzf-url-" {
     opt "history-limit" "2000"
     opt "sort-by" "recency"
@@ -34,16 +44,14 @@ plugin "wfxr/tmux-power" opt-prefix="tmux_power_" {
 
 plugin "tmux-plugins/tmux-prefix-highlight" opt-prefix="prefix_highlight_" {
     opt "prefix_prompt" "Wait"
-    opt "copy_prompt" "Copy"
-    opt "sync_prompt" "Sync"
+    opt "copy_prompt"   "Copy"
+    opt "sync_prompt"   "Sync"
 }
 
 plugin "wfxr/tmux-net-speed"
 plugin "wfxr/tmux-vertical-zoom"
 
-plugin "Morantron/tmux-fingers" \
-    enabled=#"[ -z "$SSH_CLIENT" ] && [ ! -f /.dockerenv ]"# \
-    opt-prefix="fingers-" {
+plugin "Morantron/tmux-fingers" enabled=#"[ -z "$TMUX_REMOTE" ]"# opt-prefix="fingers-" {
     opt "key" "f"
     opt "pattern-1" #"([-dl\.][rwx-]{9}.*\s+\d{2}:\d{2}\s+([^[:ascii:]]\s+)?)(?<match>\S+)"#
     opt "pattern-2" #"\b[\w:~]{6,}(?=\s*\()"#
