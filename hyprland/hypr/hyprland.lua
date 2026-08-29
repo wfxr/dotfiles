@@ -194,8 +194,8 @@ bind(mainMod .. " + SHIFT + F", hl.dsp.window.float({ action = "toggle" }))
 bind(mainMod .. " + P", hl.dsp.window.pseudo())
 bind(mainMod .. " + SHIFT + space", hl.dsp.layout("togglesplit"))
 
--- Legacy `fullscreenstate 2` enters with the current client state, then clears
--- both states when the same target pair is already active.
+-- Toggle Hyprland's fullscreen state without changing the fullscreen state
+-- communicated to the client.
 bind(mainMod .. " + F", function()
     local window = hl.get_active_window()
     if window then
@@ -203,7 +203,6 @@ bind(mainMod .. " + F", function()
         local client = window.fullscreen_client
         if window.fullscreen == 2 then
             internal = 0
-            client = 0
         end
 
         hl.dispatch(hl.dsp.window.fullscreen_state({
