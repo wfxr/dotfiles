@@ -118,3 +118,5 @@ alias yy=clitrans
 alias y=yazi
 
 alias codex-luna="codex --model gpt-5.6-luna --config model_reasoning_effort=medium"
+alias codex-sol-high="codex --model gpt-5.6-sol --config model_reasoning_effort=high"
+alias update-skills='npx skills@latest update -g'
