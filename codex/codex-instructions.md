@@ -8,6 +8,8 @@ Do not hard-wrap prose in Markdown at a fixed column width. This rule applies to
 
 ## Git worktrees
 
+For development tasks, create and work in a Git worktree unless the user explicitly asks not to create one or the current working directory is already in the correct worktree for the task.
+
 When creating a Git worktree, prefer placing it under the current repository's `.wt/` directory. Do not create worktrees in `/tmp`.
 
 ## Sub-agent model selection
