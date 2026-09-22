@@ -1,0 +1,130 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+check_environment() {
+  [[ $(uname -s) == Darwin ]] || { echo 'macOS is required.' >&2; exit 69; }
+  [[ $(id -u) != 0 && $(stat -f%u /dev/console) == "$(id -u)" ]] || {
+    echo 'Run as the logged-in GUI user, without sudo.' >&2; exit 77;
+  }
+}
+
+configure_keyboard() {
+  /usr/bin/osascript -l JavaScript - "$1" <<'JXA'
+ObjC.import('Foundation');
+ObjC.import('CoreFoundation');
+ObjC.import('IOKit');
+ObjC.bindFunction('IOHIDEventSystemClientCreateWithType', ['void *', ['void *', 'int', 'void *']]);
+ObjC.bindFunction('IOHIDEventSystemClientSetMatching', ['void', ['void *', 'void *']]);
+ObjC.bindFunction('IOHIDEventSystemClientCopyServices', ['void *', ['void *']]);
+ObjC.bindFunction('IOHIDServiceClientCopyProperty', ['void *', ['void *', 'void *']]);
+ObjC.bindFunction('IOHIDServiceClientSetProperty', ['bool', ['void *', 'void *', 'void *']]);
+
+const preferenceKey = 'com.apple.keyboard.modifiermapping.0-0-0';
+const liveMappingKey = 'HIDKeyboardModifierMappingPairs';
+
+function findBuiltInKeyboard() {
+    // System Settings uses a Monitor client (type 2) and service properties.
+    const client = $.IOHIDEventSystemClientCreateWithType(null, 2, null);
+    requireCondition(client, 'Cannot connect to the HID event system.');
+    const match = $({Product: 'Apple Internal Keyboard / Trackpad', VendorID: 0, ProductID: 0,
+        PrimaryUsagePage: 1, PrimaryUsage: 6, 'Built-In': true});
+    $.IOHIDEventSystemClientSetMatching(client, ObjC.castObjectToRef(match));
+    const result = $.IOHIDEventSystemClientCopyServices(client);
+    requireCondition(result, 'Cannot read keyboard services.');
+    const services = ObjC.castRefToObject(result);
+    requireCondition(Number(services.count) === 1, 'Expected exactly one accessible built-in keyboard service.');
+    return ObjC.castObjectToRef(services.objectAtIndex(0));
+}
+
+function readLiveMapping(service) {
+    const result = $.IOHIDServiceClientCopyProperty(service, ObjC.castObjectToRef($(liveMappingKey)));
+    requireCondition(result, 'Cannot read the keyboard modifier mapping.');
+    const mapping = ObjC.castRefToObject(result);
+    requireCondition(isKind(mapping, $.NSArray), 'Keyboard modifier mapping is not an array.');
+    return ObjC.deepUnwrap(mapping);
+}
+
+function mappingSignature(mapping) {
+    return JSON.stringify(mapping.map(function (pair) {
+        return [pair.HIDKeyboardModifierMappingSrc, pair.HIDKeyboardModifierMappingDst];
+    }).sort(function (a, b) { return a[0] - b[0] || a[1] - b[1]; }));
+}
+
+function applyLiveMapping(service, mapping) {
+    // Use the same setter as System Settings, not a separate UserKeyMapping layer.
+    requireCondition($.IOHIDServiceClientSetProperty(service, ObjC.castObjectToRef($(liveMappingKey)),
+        ObjC.castObjectToRef(mapping)), 'Failed to update the keyboard modifier mapping.');
+    requireCondition(mappingSignature(readLiveMapping(service)) === mappingSignature(ObjC.deepUnwrap(mapping)),
+        'Keyboard service did not load the requested mapping.');
+}
+
+function requireCondition(condition, message) {
+    if (!condition) throw new Error(message);
+}
+
+function exists(value) {
+    return value !== undefined && value !== null && ObjC.unwrap(value) !== undefined && ObjC.unwrap(value) !== null;
+}
+
+function isKind(value, type) {
+    return exists(value) && Boolean(value.isKindOfClass(type));
+}
+
+function buildModifierMapping() {
+    const result = $.NSMutableArray.alloc.init;
+    // Map both Controls to Caps; the GUI reads right Control for its single row.
+    // Caps produces left Control; Option/Command swap on their respective sides.
+    const pairs = [
+        [0x39, 0xe0], [0xe0, 0x39], [0xe4, 0x39],
+        [0xe2, 0xe3], [0xe3, 0xe2], [0xe6, 0xe7], [0xe7, 0xe6]
+    ];
+    pairs.forEach(function (pair) {
+        const mapping = $.NSMutableDictionary.alloc.init;
+        mapping.setObjectForKey($.NSNumber.numberWithLongLong(0x700000000 + pair[0]), 'HIDKeyboardModifierMappingSrc');
+        mapping.setObjectForKey($.NSNumber.numberWithLongLong(0x700000000 + pair[1]), 'HIDKeyboardModifierMappingDst');
+        result.addObject(mapping);
+    });
+    return result;
+}
+
+function saveMapping(mapping) {
+    const domain = $.kCFPreferencesAnyApplication;
+    const user = $.kCFPreferencesCurrentUser;
+    const host = $.kCFPreferencesCurrentHost;
+    // Explicit CF bridging is required: a bare ObjC wrapper can become NULL.
+    $.CFPreferencesSetValue($(preferenceKey), mapping ? ObjC.castObjectToRef(mapping) : null, domain, user, host);
+    requireCondition($.CFPreferencesSynchronize(domain, user, host), 'Failed to save keyboard mapping.');
+    const saved = $.CFPreferencesCopyValue($(preferenceKey), domain, user, host);
+    const actual = saved ? ObjC.castRefToObject(saved) : null;
+    requireCondition(mapping ? exists(actual) && mapping.isEqual(actual) : !exists(actual), 'Saved mapping verification failed.');
+}
+
+function configureKeyboard(args) {
+    requireCondition(args.length === 1 && (args[0] === 'on' || args[0] === 'off'), 'Expected on or off.');
+    const service = findBuiltInKeyboard();
+    readLiveMapping(service); // Check access before changing anything.
+    const mapping = args[0] === 'on' ? buildModifierMapping() : null;
+    applyLiveMapping(service, mapping || $.NSArray.array);
+    saveMapping(mapping);
+    console.log(args[0] === 'on' ? 'Built-in keyboard swaps applied and verified.' : 'Built-in keyboard default mapping restored and verified.');
+}
+
+function run(args) {
+    configureKeyboard(args);
+}
+JXA
+}
+
+main() {
+  local action=${1-on}
+  [[ $# -le 1 ]] || { echo "Usage: $0 [on|off] (default: on)" >&2; exit 64; }
+  case "$action" in
+    on|off) ;;
+    --help|-h) echo "Usage: $0 [on|off] (default: on)"; return ;;
+    *) echo "Usage: $0 [on|off] (default: on)" >&2; exit 64 ;;
+  esac
+  check_environment
+  configure_keyboard "$action"
+}
+
+main "$@"
